@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>linux中的用户管理 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Linux操作系统是多任务（Multi-tasks）多用户（Multi-users）分时操作系统，linux操作系统的用户就是让我们登录到linux的权限；每当我们使用用户名登录操作系统时，linux都会对该用户进行认证、授权审计等操作。操作系统为了识别每个用户，会给每个用户定义一个ID，就是UID。用户组就相当于多个用户的容器；在linux系统中，用户组也有一个ID，GID。"><meta property="og:type" content="blog"><meta property="og:title" content="linux中的用户管理"><meta property="og:url" content="https://jack1024.link/2020/03/05/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="Linux操作系统是多任务（Multi-tasks）多用户（Multi-users）分时操作系统，linux操作系统的用户就是让我们登录到linux的权限；每当我们使用用户名登录操作系统时，linux都会对该用户进行认证、授权审计等操作。操作系统为了识别每个用户，会给每个用户定义一个ID，就是UID。用户组就相当于多个用户的容器；在linux系统中，用户组也有一个ID，GID。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"><meta property="article:published_time" content="2020-03-05T13:10:44.000Z"><meta property="article:modified_time" content="2021-06-16T10:27:58.865Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Linux"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jack1024.link/2020/03/05/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"},"headline":"linux中的用户管理","image":["https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"],"datePublished":"2020-03-05T13:10:44.000Z","dateModified":"2021-06-16T10:27:58.865Z","author":{"@type":"Person","name":"Jack1024"},"publisher":{"@type":"Organization","name":"JACK's BLOG","logo":{"@type":"ImageObject","url":"https://jack1024.link/image/logoko.png"}},"description":"Linux操作系统是多任务（Multi-tasks）多用户（Multi-users）分时操作系统，linux操作系统的用户就是让我们登录到linux的权限；每当我们使用用户名登录操作系统时，linux都会对该用户进行认证、授权审计等操作。操作系统为了识别每个用户，会给每个用户定义一个ID，就是UID。用户组就相当于多个用户的容器；在linux系统中，用户组也有一个ID，GID。"}</script><link rel="canonical" href="https://jack1024.link/2020/03/05/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg" alt="linux中的用户管理"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-05T13:10:44.000Z" title="2020-3-5 9:10:44 ├F10: PM┤">2020-03-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-06-16T10:27:58.865Z" title="2021-6-16 6:27:58 ├F10: PM┤">2021-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">9 minutes read (About 1363 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">linux中的用户管理</h1><div class="content"><h1 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h1><ul>
+<li><p>越是安全性要求高的服务器越需要对用户权限等级制度和服务器操作规范有很高的要求，linux中主要通过用户配置文件来查看和修改用户信息</p>
+</li>
+<li><p>主要有四个配置文件：/etc/passwd，/etc/shadow，/etc/group，/etc/gshadow</p>
+</li>
+</ul>
+<h2 id="etc-passwd：用户信息文件"><a href="#etc-passwd：用户信息文件" class="headerlink" title="/etc/passwd：用户信息文件"></a>/etc/passwd：用户信息文件</h2><ul>
+<li><strong>格式：</strong>用户名称<strong>；</strong>密码标志<strong>；</strong>UID（0超级用户，1—499系统用户:不能登录，不能删除，500—65535普通用户）<strong>；</strong>GID（这里是初始组ID不是附加组ID）<strong>；</strong>用户说明:备注<strong>；</strong>家目录<strong>；</strong>Shell（命令解释器类型，默认是bash）</li>
+</ul>
+<h2 id="etc-shadow：影子文件"><a href="#etc-shadow：影子文件" class="headerlink" title="/etc/shadow：影子文件"></a>/etc/shadow：影子文件</h2><ul>
+<li><p>是passwd的影子</p>
+</li>
+<li><p><strong>格式：</strong>用户名称<strong>；</strong>加密密码（SHA512加密，可以暴力破解，!!和*表示没有密码，不能登录）<strong>；</strong>密码最后一此修改时间（时间戳表示）<strong>；</strong>两次密码修改间隔（天）<strong>；</strong>密码时效天数（-1永不失效）<strong>；</strong>密码修改到期前的警告天数<strong>；</strong>密码到期后的宽限天数<strong>；</strong>账号失效时间（时间戳表示）<strong>；</strong>包留位</p>
+</li>
+<li><p><strong>时间戳换算</strong>：</p>
+<p>时间戳—&gt;日期：<code>date -d &quot;1970-01-01 16066 days&quot;</code></p>
+<p>日期—&gt;时间戳：<code>echo$(($(date --date=&quot;2014/01/06&quot; +%s)/86400+1))</code></p>
+</li>
+</ul>
+<h2 id="etc-group-amp-etc-gshadow：组信息文件-amp-组密码文件"><a href="#etc-group-amp-etc-gshadow：组信息文件-amp-组密码文件" class="headerlink" title="/etc/group&amp;/etc/gshadow：组信息文件&amp;组密码文件"></a>/etc/group&amp;/etc/gshadow：组信息文件&amp;组密码文件</h2><ul>
+<li><strong>/etc/group格式：</strong>组名，组密码标志，GID，组中附加用户 </li>
+<li><strong>/etc/gshadow格式：</strong>组名，组密码(默认没有，也不推荐使用)，组管理员用户名，组中附加用户</li>
+<li>Linux中查看用户的初始组的方法：查询<code>etc/passwd</code>和<code>/etc/group</code>，两两对照查看</li>
+</ul>
+<h1 id="用户管理相关文件"><a href="#用户管理相关文件" class="headerlink" title="用户管理相关文件"></a>用户管理相关文件</h1><ul>
+<li><p>用户的家目录：（会自动生成）</p>
+<p><code>/home/用户名/</code>：权限700</p>
+<p><code>/root/</code>：权限550</p>
+</li>
+<li><p>用户的邮箱：</p>
+<p><code>/var/spool/mail/用户名/</code></p>
+</li>
+<li><p>用户模板目录：就是母板，新建用户会默认创建在用户家目录下</p>
+<p><code>/etc/skel/</code></p>
+</li>
+</ul>
+<h1 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h1><h2 id="useradd：创建用户"><a href="#useradd：创建用户" class="headerlink" title="useradd：创建用户"></a>useradd：创建用户</h2><ul>
+<li>useradd 用户名        passwd 用户名</li>
+<li>新建一个用户实际上就是在上述六个地方生成了默认信息，所以手工修改上述六个地方就可以手工添加用户</li>
+<li><code>useradd -u UID</code>：指定自定义UID</li>
+<li><code>useradd -d 家目录</code>：指定自定义家目录</li>
+<li><code>useradd -c 用户说明</code>：指定自定义用户说明</li>
+<li><code>useradd -g 组名</code>：指定自定义初始组组名</li>
+<li><code>useradd -G 组名1,组名2</code>：指定自定义附加组组名</li>
+<li><code>useradd -s shell</code>：指定自定义shell</li>
+<li>用户<strong>默认值配置</strong>文件：<code>/etc/default/useradd</code> &amp; <code>/etc/login.defs</code> </li>
+</ul>
+<h2 id="passwd：修改用户密码"><a href="#passwd：修改用户密码" class="headerlink" title="passwd：修改用户密码"></a>passwd：修改用户密码</h2><p>超级用户可以改任意用户密码</p>
+<p>普通用户只能给自己设密码</p>
+<ul>
+<li><p><code>whoami</code>：查看当前用户</p>
+</li>
+<li><p><code>passwd -S 用户名</code> ：查看密码状态，就是shadow里面的信息</p>
+</li>
+<li><p><code>passwd -l 用户名</code> ：锁定用户，实际是在shadow中的密码前面加了!</p>
+</li>
+<li><p><code>passwd -u 用户名</code> ：解锁用户</p>
+</li>
+<li><p><code>passwd --stdin 用户名</code> ：使用字符串作为用户密码，例如：<code>echo &quot;123&quot; | passwd --stdin 用户名</code></p>
+</li>
+</ul>
+<h2 id="usermod：修改用户信息"><a href="#usermod：修改用户信息" class="headerlink" title="usermod：修改用户信息"></a>usermod：修改用户信息</h2><ul>
+<li><code>usermod -u UID</code>：修改UID</li>
+<li><code>usermod -c 用户说明</code>：修改用户说明</li>
+<li><code>usermod -G 组名1,组名2</code>：修改附加组</li>
+<li><code>usermod -g 组名</code>：修改初始组<strong>（不推荐）</strong></li>
+<li><code>usermod -L</code>：锁定用户</li>
+<li><code>usermod -U</code>：解锁用户</li>
+</ul>
+<h2 id="chage：修改用户密码状态"><a href="#chage：修改用户密码状态" class="headerlink" title="chage：修改用户密码状态"></a>chage：修改用户密码状态</h2><ul>
+<li><p><code>chage -l</code>：查询密码详细状态</p>
+</li>
+<li><p><code>chage -d 日期</code>：修改密码最后一次更改日期</p>
+</li>
+<li><p><code>chage -m 天数</code>：修改两次密码修改间隔</p>
+</li>
+<li><p><code>chage -M 天数</code>：修改密码有效期</p>
+</li>
+<li><p><code>chage -W 天数</code>：修改密码过期前警告天数</p>
+</li>
+<li><p><code>chage -I 天数</code>：修改宽限天数</p>
+</li>
+<li><p><code>chage -E 日期</code>：修改账号失效时间</p>
+<p>注意：实际是对shadow文件里面的信息进行修改，<code>chage -d 0 用户名</code>使用最多，把用户的修改密码时间归零，强制用户第一次登陆系统必须修改密码</p>
+</li>
+</ul>
+<h2 id="userdel：删除用户"><a href="#userdel：删除用户" class="headerlink" title="userdel：删除用户"></a>userdel：删除用户</h2><ul>
+<li><p><code>userdel -r 用户名</code>：删除用户的同时删掉家目录</p>
+</li>
+<li><p>不推荐手工创建用户，但是可以手工删除用户：</p>
+<blockquote>
+<p><code>etc/passwd</code></p>
+<p><code>etc/shadow</code></p>
+<p><code>etc/group</code></p>
+<p><code>etc/gshadow</code></p>
+<p><code>var/spool/mail/用户名</code></p>
+<p><code>/home/用户名/</code></p>
+</blockquote>
+<p>手工把上面6个位置和要删除的用户的信息删除就可以了</p>
+</li>
+</ul>
+<h2 id="id：查询用户uid，gid和附加组"><a href="#id：查询用户uid，gid和附加组" class="headerlink" title="id：查询用户uid，gid和附加组"></a>id：查询用户uid，gid和附加组</h2><h2 id="su：用户切换"><a href="#su：用户切换" class="headerlink" title="su：用户切换"></a>su：用户切换</h2><ul>
+<li><code>su - 用户名</code> ：连带用户的环境变量一起切换，中间减号绝对不能省去，省去就不会切换环境变量</li>
+<li><code>su -root -c 命令名</code>：不切换root，只是执行root权限才能执行的命令</li>
+</ul>
+<h1 id="用户组管理命令"><a href="#用户组管理命令" class="headerlink" title="用户组管理命令"></a>用户组管理命令</h1><h2 id="groupadd"><a href="#groupadd" class="headerlink" title="groupadd"></a>groupadd</h2><ul>
+<li><code>groupadd 组名</code></li>
+</ul>
+<h2 id="groupmod"><a href="#groupmod" class="headerlink" title="groupmod"></a>groupmod</h2><ul>
+<li><code>groupmod -g 新组id 旧组id</code></li>
+<li><code>groupmod -n 新组名 旧组名</code></li>
+</ul>
+<h2 id="groupdel"><a href="#groupdel" class="headerlink" title="groupdel"></a>groupdel</h2><ul>
+<li><code>groupdel 组名</code>：要想删除一个组，这个组中不允许有初始用户存在</li>
+</ul>
+<h2 id="gpasswd：把用户添入组或者从组中删除"><a href="#gpasswd：把用户添入组或者从组中删除" class="headerlink" title="gpasswd：把用户添入组或者从组中删除"></a>gpasswd：把用户添入组或者从组中删除</h2><ul>
+<li><p><code>gpasswd -a 用户名</code>：把用户加入组</p>
+</li>
+<li><p><code>gpasswd -d 用户名</code>：把用户从组中删除</p>
+<p>注：也可以直接在<code>/etc/group</code>文件里添加附加组(不推荐改初始组)</p>
+</li>
+</ul>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>Linux中用户和用户组的关系是：</p>
+<p><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/3bN9rF.png"></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>linux中的用户管理</p><p><a href="https://jack1024.link/2020/03/05/linux中的用户管理/">https://jack1024.link/2020/03/05/linux中的用户管理/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-03-05</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/03/06/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">linux权限管理</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/03/05/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/"><span class="level-item">linux软件包管理</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "c01de2c9c2beb158c9f0bab336ec3f85",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#用户配置文件"><span class="level-left"><span class="level-item">1</span><span class="level-item">用户配置文件</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#etc-passwd：用户信息文件"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">/etc/passwd：用户信息文件</span></span></a></li><li><a class="level is-mobile" href="#etc-shadow：影子文件"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">/etc/shadow：影子文件</span></span></a></li><li><a class="level is-mobile" href="#etc-group-amp-etc-gshadow：组信息文件-amp-组密码文件"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">/etc/group&amp;/etc/gshadow：组信息文件&amp;组密码文件</span></span></a></li></ul></li><li><a class="level is-mobile" href="#用户管理相关文件"><span class="level-left"><span class="level-item">2</span><span class="level-item">用户管理相关文件</span></span></a></li><li><a class="level is-mobile" href="#用户管理命令"><span class="level-left"><span class="level-item">3</span><span class="level-item">用户管理命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#useradd：创建用户"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">useradd：创建用户</span></span></a></li><li><a class="level is-mobile" href="#passwd：修改用户密码"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">passwd：修改用户密码</span></span></a></li><li><a class="level is-mobile" href="#usermod：修改用户信息"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">usermod：修改用户信息</span></span></a></li><li><a class="level is-mobile" href="#chage：修改用户密码状态"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">chage：修改用户密码状态</span></span></a></li><li><a class="level is-mobile" href="#userdel：删除用户"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">userdel：删除用户</span></span></a></li><li><a class="level is-mobile" href="#id：查询用户uid，gid和附加组"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">id：查询用户uid，gid和附加组</span></span></a></li><li><a class="level is-mobile" href="#su：用户切换"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">su：用户切换</span></span></a></li></ul></li><li><a class="level is-mobile" href="#用户组管理命令"><span class="level-left"><span class="level-item">4</span><span class="level-item">用户组管理命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#groupadd"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">groupadd</span></span></a></li><li><a class="level is-mobile" href="#groupmod"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">groupmod</span></span></a></li><li><a class="level is-mobile" href="#groupdel"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">groupdel</span></span></a></li><li><a class="level is-mobile" href="#gpasswd：把用户添入组或者从组中删除"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">gpasswd：把用户添入组或者从组中删除</span></span></a></li></ul></li><li><a class="level is-mobile" href="#总结："><span class="level-left"><span class="level-item">5</span><span class="level-item">总结：</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/image-20210317103120855.png" alt="实体机安装Arch"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-14T01:18:48.000Z">2021-06-14</time></p><p class="title"><a href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/">实体机安装Arch</a></p><p class="categories"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/English-Grammar.jpg" alt="英语语法框架构建"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-17T07:49:41.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/">英语语法框架构建</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="经济学原理学习"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T13:49:01.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">经济学原理学习</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="基金理财"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T09:31:39.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/">基金理财</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="股票入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T06:58:12.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/">股票入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2021 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

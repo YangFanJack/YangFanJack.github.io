@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>linux常用命令 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。linux命令在系统中有两种类型：内置Shell命令和Linux命令"><meta property="og:type" content="blog"><meta property="og:title" content="linux常用命令"><meta property="og:url" content="https://jack1024.link/2020/03/04/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。linux命令在系统中有两种类型：内置Shell命令和Linux命令"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"><meta property="article:published_time" content="2020-03-04T07:17:31.000Z"><meta property="article:modified_time" content="2021-06-16T10:27:58.865Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Linux"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jack1024.link/2020/03/04/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"},"headline":"linux常用命令","image":["https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"],"datePublished":"2020-03-04T07:17:31.000Z","dateModified":"2021-06-16T10:27:58.865Z","author":{"@type":"Person","name":"Jack1024"},"publisher":{"@type":"Organization","name":"JACK's BLOG","logo":{"@type":"ImageObject","url":"https://jack1024.link/image/logoko.png"}},"description":"Linux作为一个网络操作系统，命令行才是王道，而不是图形。Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。linux命令在系统中有两种类型：内置Shell命令和Linux命令"}</script><link rel="canonical" href="https://jack1024.link/2020/03/04/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg" alt="linux常用命令"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-04T07:17:31.000Z" title="2020-3-4 3:17:31 ├F10: PM┤">2020-03-04</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-06-16T10:27:58.865Z" title="2021-6-16 6:27:58 ├F10: PM┤">2021-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">17 minutes read (About 2587 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">linux常用命令</h1><div class="content"><ul>
+<li><strong>Linux作为一个网络操作系统，命令行才是王道，而不是图形。</strong></li>
+<li><strong>Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。</strong></li>
+<li><strong>linux命令在系统中有两种类型：内置Shell命令和Linux命令</strong></li>
+</ul>
+<h1 id="linux各目录的作用"><a href="#linux各目录的作用" class="headerlink" title="linux各目录的作用"></a>linux各目录的作用</h1><ul>
+<li><p><code>/bin/</code>：存放系统命令</p>
+</li>
+<li><p><code>/sbin/</code>：存放系统目录，只有超级用户能用</p>
+</li>
+<li><p><code>/usr/bin/</code>：存放系统命令，单用户模式不能执行</p>
+</li>
+<li><p><code>/usr/sbin/</code> ：存放系统命令，只有超级用户能用，单用户模式不能执行</p>
+</li>
+<li><p><code>/boot/</code> ：系统启动目录，内核和启动引导程序</p>
+</li>
+<li><p><code>/dev/</code> ：硬件设备文件目录</p>
+</li>
+<li><p><code>/etc/</code> ：linux默认的配置文件保存目录</p>
+</li>
+<li><p><code>/home/</code>：普通用户家目录</p>
+</li>
+<li><p><code>/root/</code>：超级用户家目录</p>
+</li>
+<li><p><code>/lib/</code>：系统调用的函数库</p>
+</li>
+<li><p><code>/lost+found/</code>：当系统意外崩溃时，每个分区都含有的存放的文件碎片用来修复</p>
+</li>
+<li><p><code>/media/</code>：挂载目录，挂载媒体设备</p>
+</li>
+<li><p><code>/mnt/</code>：挂载目录，挂载U盘，移动硬盘，和其他操作系统的分区</p>
+</li>
+<li><p><code>/misc/</code>：挂载目录，挂载NFS服务的共享目录</p>
+</li>
+<li><p><code>/opt/</code>：第三方安装的软件的保存目录，也可以放到/usr/local/下</p>
+</li>
+<li><p><code>/proc/</code>：存放在内存里面，存放系统的内核，进程，外部设备</p>
+</li>
+<li><p><code>/sys/</code>：存放在内存里面，存放系统的内核相关的东西</p>
+</li>
+<li><p><code>/srv/</code>：服务数据目录</p>
+</li>
+<li><p><code>/tmp/</code> ：临时目录，可以清空</p>
+</li>
+<li><p><code>/usr/</code>：系统资源目录</p>
+</li>
+<li><p><code>/var/</code>：动态资源保存目录，日志，邮件，数据库</p>
+</li>
+</ul>
+<h1 id="服务器注意事项"><a href="#服务器注意事项" class="headerlink" title="服务器注意事项"></a>服务器注意事项</h1><ol>
+<li>远程服务器不允许关机，只能重启</li>
+<li>重启时应该关闭服务</li>
+<li>不要在服务器访问高峰运行高负载命令</li>
+<li>远程配置防火墙时不要把自己踢出服务器</li>
+<li>指定合理的密码规范和定期更新</li>
+<li>合理分配权限</li>
+<li>定期备份重要数据和日志</li>
+</ol>
+<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h2><h3 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h3><ul>
+<li><code>ls -l</code>：查看文件所有属性</li>
+<li><code>ls -d</code>：查看目录本身</li>
+<li><code>ls -i</code>：查看文件的inode号</li>
+<li><code>ls -h</code>：人性化显示</li>
+<li><code>ls -s</code>：显示文件占用的块的数量</li>
+<li><code>ls -a</code>：查看隐藏文件</li>
+</ul>
+<h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><ul>
+<li><code>mkdir -p</code>：递归创建目录</li>
+</ul>
+<h3 id="cd-amp-pwd"><a href="#cd-amp-pwd" class="headerlink" title="cd&amp;pwd"></a>cd&amp;pwd</h3><h3 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h3><h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h3><ul>
+<li><p><code>cp -r</code>：复制目录</p>
+</li>
+<li><p><code>cp -p</code>：原文件和新文件属性完全一致</p>
+<p>注：复制的同时可以改名</p>
+</li>
+</ul>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><p>​        注：移动的同时可以改名</p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><ul>
+<li><code>rm -r</code>：文件夹递归删除</li>
+<li><code>rm -f</code>：强制删除，不询问</li>
+</ul>
+<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><h3 id="cat-amp-tac"><a href="#cat-amp-tac" class="headerlink" title="cat&amp;tac"></a>cat&amp;tac</h3><ul>
+<li><code>cat -n</code>：显示行号，tac没有-n选项</li>
+</ul>
+<h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>​        空格翻页，回车换行，q退出</p>
+<h3 id="less"><a href="#less" class="headerlink" title="less"></a>less</h3><p>​        空格翻页，回车换行，q退出，还可以pageup回翻页，上箭头网上翻一行，还可以搜索：/关        键词，再按n搜索下一个匹配的</p>
+<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><ul>
+<li><code>head -n</code>：指定看前几行，默认前10行</li>
+</ul>
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><ul>
+<li><p><code>tail -n</code>：指定看后几行，默认后10行</p>
+</li>
+<li><p><code>tail -f</code>：动态看文件动态变化</p>
+</li>
+</ul>
+<h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h3><ul>
+<li><p><code>ln -s</code>：生成软链接</p>
+</li>
+<li><p><code>ln</code>：生成硬链接，和cp -p的区别是硬链接文件和原文件可以同步更新，硬链接通过inode号来区分。和软连接的区别：1.硬链接不能跨分区   2.硬链接不能针对目录</p>
+</li>
+</ul>
+<h2 id="权限管理命令"><a href="#权限管理命令" class="headerlink" title="权限管理命令"></a>权限管理命令</h2><h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><ul>
+<li><p><code>chmod [u/g/o/a] [+/-/=] [r/w/x]</code></p>
+</li>
+<li><p><code>chmod 三位数XXX</code>：r—4，w—2，x—1：举例：rwxr-xr-x：755</p>
+</li>
+<li><p><code>chmod -R</code>：递归修改目录及目录下的权限</p>
+<p>注释：深入理解文件的wrx和目录的wrx的意义</p>
+</li>
+</ul>
+<h3 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h3><ul>
+<li><code>chown [用户名]</code>：只有管理员root能执行</li>
+</ul>
+<h3 id="chgrp"><a href="#chgrp" class="headerlink" title="chgrp"></a>chgrp</h3><ul>
+<li><p><code>chgrp [组名]</code>：只有管理员root能执行</p>
+<p><strong>注：每个文件都只有一个user和一个group，某些others拥有拥有共同的权限，这些others在一个组里，也就是group所属组。所属者user可以不在所属组group里面，并且一个用户可以在不同的组里。</strong> 相关的命令是：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupadd YYY          //创建组</span><br><span class="line">useradd <span class="literal">-g</span> YYY XXX    //创建用户并将YYY设置为其主要组</span><br><span class="line">usermod <span class="literal">-g</span> ZZZ XXX    //修改用户XXX的主要组为ZZZ</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h3><ul>
+<li><p><code>umask -S</code>：人性化显示默认权限</p>
+</li>
+<li><p><code>umask</code>：显示掩码（非人性化）</p>
+<p>注：Linux中，默认创建的文件是没有可执行权限的，所以文件是666，目录是777</p>
+</li>
+<li><p><code>umask 三位数</code>：修改掩码，使默认权限变化</p>
+</li>
+</ul>
+<h2 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h2><h3 id="find：精准搜索"><a href="#find：精准搜索" class="headerlink" title="find：精准搜索"></a>find：精准搜索</h3><ul>
+<li><p><code>find -name</code>：根据文件名搜索</p>
+</li>
+<li><p><code>find -iname</code>：根据文件名搜索，不区分大小写</p>
+<p>注：通配符：*，？，[]，</p>
+</li>
+<li><p><code>find -size [+/-]</code>：+：大于，-：小于，只有数据块（0.5KB）个数：等于</p>
+</li>
+<li><p><code>find -user</code>：根据所有者查找</p>
+</li>
+<li><p><code>find -group</code>：根据所属组查找</p>
+</li>
+<li><p><code>find -amin [-/+]分钟数</code>：查找指定时间内或者超过该时间被修改过<strong>访问时间</strong>的文件</p>
+</li>
+<li><p><code>find -cmin [-/+]分钟数</code>：查找指定时间内或者超过该时间被修改过<strong>文件属性</strong>的文件</p>
+</li>
+<li><p><code>find -mmin [-/+]分钟数</code>：查找指定时间内或者超过该时间被修改过<strong>文件内容</strong>的文件</p>
+</li>
+<li><p>还可以在两个查找条件之间加上<code>-a</code> 或者<code>-o</code> ，一个是同时满足，一个是满足任意一个即可。或者<code>-exec/-ok 命令 &#123;&#125;\; </code> 对搜索结果执行操作</p>
+</li>
+<li><p><code>find -type</code>：根据文件类型查找</p>
+</li>
+<li><p><code>find -inum</code>：根据inode号查找</p>
+</li>
+</ul>
+<h3 id="locate：模糊查找"><a href="#locate：模糊查找" class="headerlink" title="locate：模糊查找"></a>locate：模糊查找</h3><ul>
+<li>系统里所有的文件都会定期收录到/var/lib/mlocate.db这个文件库里，locate就是在这个里去找，但是新的文件没别收录进去，所以就找不到，需要手动更新文件资料库<code>updatedb</code> （但是tmp目录下不收录进去）</li>
+<li>locate -i：不区分大小写</li>
+</ul>
+<h3 id="which"><a href="#which" class="headerlink" title="which"></a>which</h3><ul>
+<li>which 命令名：查找命令的地址和别名alias</li>
+</ul>
+<h3 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h3><ul>
+<li>whereis 命令名：查找命令地址和其帮助文档的位置</li>
+</ul>
+<h3 id="grep：在文件里面查找"><a href="#grep：在文件里面查找" class="headerlink" title="grep：在文件里面查找"></a>grep：在文件里面查找</h3><ul>
+<li>grep -i：不区分大小写，查找指定字串所在的行</li>
+<li>grep -v：排除指定字串所在的行</li>
+</ul>
+<h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><h3 id="man和info"><a href="#man和info" class="headerlink" title="man和info"></a>man和info</h3><ul>
+<li>man 命令名/配置文件名：查看命令和配置文件的帮助信息，浏览和more操作一样</li>
+<li>帮助类型里1是命令的帮助，5是配置文件的帮助</li>
+<li>For Example：man 1 passwd，man 5 passwd</li>
+</ul>
+<h3 id="whatis"><a href="#whatis" class="headerlink" title="whatis"></a>whatis</h3><ul>
+<li>更加简单的命令查询</li>
+</ul>
+<h3 id="apropos"><a href="#apropos" class="headerlink" title="apropos"></a>apropos</h3><ul>
+<li>更加简单的配置文件查询</li>
+</ul>
+<h3 id="–help"><a href="#–help" class="headerlink" title="–help"></a>–help</h3><ul>
+<li>命令 –help：得到信息更加简单</li>
+</ul>
+<h3 id="help"><a href="#help" class="headerlink" title="help"></a>help</h3><ul>
+<li>shell的<strong>内置命令</strong>的帮助</li>
+</ul>
+<h2 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h2><h3 id="useradd和passwd"><a href="#useradd和passwd" class="headerlink" title="useradd和passwd"></a>useradd和passwd</h3><ul>
+<li>新建用户和修改密码</li>
+</ul>
+<h3 id="who和w"><a href="#who和w" class="headerlink" title="who和w"></a>who和w</h3><ul>
+<li>查看当前登录用户名：tty是本地登录，pts表示远程登录</li>
+</ul>
+<h2 id="压缩解压命令"><a href="#压缩解压命令" class="headerlink" title="压缩解压命令"></a>压缩解压命令</h2><p>​    几种压缩格式</p>
+<blockquote>
+<p>.gz</p>
+<p>.zip</p>
+<p>.bz2</p>
+</blockquote>
+<h3 id="gzip和gunzip-gzip-d"><a href="#gzip和gunzip-gzip-d" class="headerlink" title="gzip和gunzip/gzip -d"></a>gzip和gunzip/gzip -d</h3><ul>
+<li>只能压缩文件，不能压缩目录，并且不保留原文件</li>
+</ul>
+<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><ul>
+<li><p>tar -c：打包</p>
+</li>
+<li><p>tar -x：解包</p>
+</li>
+<li><p>tar -v：显示详细信息</p>
+</li>
+<li><p>tar -f：指定文件名</p>
+</li>
+<li><p>tar -z：打包的同时压缩，或者解包的时候解压缩,适用于压缩解压gz</p>
+</li>
+<li><p>tar -j：同-z，适用于压缩解压bz2</p>
+<p>For Example：<code>tar -cvf XXX.tar YYY</code>   <code>gzip XXX.tar</code> ，最后生成<code>XXX.tar.gz</code> 。或者直接<code>tar -zcvf</code>打包压缩一部合成，反向是<code>tar -zxvf</code> </p>
+</li>
+</ul>
+<h3 id="zip和unzip：压缩比不高"><a href="#zip和unzip：压缩比不高" class="headerlink" title="zip和unzip：压缩比不高"></a>zip和unzip：压缩比不高</h3><ul>
+<li><p>压缩后能保留原文件</p>
+</li>
+<li><p>zip -r：压缩目录</p>
+</li>
+</ul>
+<h3 id="bzip2和bunzip2：gzip的升级版本，压缩比较好"><a href="#bzip2和bunzip2：gzip的升级版本，压缩比较好" class="headerlink" title="bzip2和bunzip2：gzip的升级版本，压缩比较好"></a>bzip2和bunzip2：gzip的升级版本，压缩比较好</h3><ul>
+<li>bzip2 -k：压缩的同时保留原文件</li>
+<li>bunzip -k：解压的同时保留原文件</li>
+</ul>
+<h2 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h2><h3 id="write"><a href="#write" class="headerlink" title="write"></a>write</h3><ul>
+<li>write 用户名：给<strong>在线用户</strong>发信息，以ctrl+D保存结束</li>
+</ul>
+<h3 id="wall"><a href="#wall" class="headerlink" title="wall"></a>wall</h3><ul>
+<li>wall 信息内容：给<strong>当前在线的所有用户</strong>发送信息</li>
+</ul>
+<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><ul>
+<li>网络踩点，Linux会一直ping下去</li>
+<li>ping -c 次数：定义ping的次数</li>
+</ul>
+<h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><ul>
+<li>查看当前系统网卡信息和设置网卡信息（临时的）</li>
+</ul>
+<h3 id="mail"><a href="#mail" class="headerlink" title="mail"></a>mail</h3><ul>
+<li>查看和发送邮件：不一定要在线</li>
+<li>mail 用户名：发动</li>
+<li>mail：查看的子命令：help(帮助)，数字(查看指定邮件)，h(列表)，d 数字(删)</li>
+</ul>
+<h3 id="last"><a href="#last" class="headerlink" title="last"></a>last</h3><ul>
+<li>日志查询命令，统计系统的所有登录信息</li>
+</ul>
+<h3 id="lastlog"><a href="#lastlog" class="headerlink" title="lastlog"></a>lastlog</h3><ul>
+<li>查看用户最后登录的信息</li>
+<li>lastlog -u uid：查看指定用户上次登录的信息</li>
+</ul>
+<h3 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h3><ul>
+<li>traceroute ip地址：跟踪节点的路径</li>
+</ul>
+<h3 id="netstat：显示网络相关信息"><a href="#netstat：显示网络相关信息" class="headerlink" title="netstat：显示网络相关信息"></a>netstat：显示网络相关信息</h3><ul>
+<li><p>netstat -t：TCP协议</p>
+</li>
+<li><p>netstat -u：UDP协议</p>
+</li>
+<li><p>netstat -l：监听</p>
+</li>
+<li><p>netstat -r：路由</p>
+</li>
+<li><p>netstat -n：显示ip地址和端口号</p>
+<p>最常用的三种组合命令：</p>
+</li>
+<li><p>netstat -tlun：查看本机监听的端口</p>
+</li>
+<li><p>netstat -an：查看本机所有的网络连接</p>
+</li>
+<li><p>netstat -rn：查看本机路由表</p>
+</li>
+</ul>
+<h3 id="setup：redhat系linux独有"><a href="#setup：redhat系linux独有" class="headerlink" title="setup：redhat系linux独有"></a>setup：redhat系linux独有</h3><ul>
+<li>配置网络的工具：永久生效</li>
+<li>配置完需要重启网络服务：<code>service network restart</code> </li>
+</ul>
+<h2 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h2><h3 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h3><ul>
+<li>mount [-t 文件系统] 设别文件名 挂载点</li>
+<li>For Example：<code>mount -t iso9660 /dev/sr0 /mnt/cdrom</code> </li>
+</ul>
+<h3 id="umount"><a href="#umount" class="headerlink" title="umount"></a>umount</h3><ul>
+<li>umount 设备文件名：卸载</li>
+</ul>
+<h2 id="关机重启命令"><a href="#关机重启命令" class="headerlink" title="关机重启命令"></a>关机重启命令</h2><h3 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a>shutdown</h3><ul>
+<li>shutdown -h 时间（now）：关机</li>
+<li>shutdown -r 时间：重启</li>
+<li>shutdown -c：取消前一个关机命令</li>
+</ul>
+<h3 id="其他关机命令：halt-poweroff-init-0"><a href="#其他关机命令：halt-poweroff-init-0" class="headerlink" title="其他关机命令：halt,poweroff,init 0"></a>其他关机命令：halt,poweroff,init 0</h3><h3 id="其他重启命令：reboot-init-6"><a href="#其他重启命令：reboot-init-6" class="headerlink" title="其他重启命令：reboot,init 6"></a>其他重启命令：reboot,init 6</h3><h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><ul>
+<li>系统<strong>运行级别</strong>：0：关机，1：单用户，2：不含NFS服务的多用户，3：完全多用户，4：未分配，5：图形界面，6：重启</li>
+<li>/etc/inittab配置文件里面有运行级别的信息，方便查询，也可以改运行级别</li>
+<li>init 数字：设置系统运行级别，临时更改</li>
+<li>runlevel：查看当前运行级别</li>
+</ul>
+<h3 id="runlevel-查询系统运行级别"><a href="#runlevel-查询系统运行级别" class="headerlink" title="runlevel:查询系统运行级别"></a>runlevel:查询系统运行级别</h3><h3 id="logout和exit"><a href="#logout和exit" class="headerlink" title="logout和exit"></a>logout和exit</h3><ul>
+<li>都是退出登录：logout退出是把因为你注销了登陆机而把你踢出的退出，exit是你直接退出连接的机器。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>linux常用命令</p><p><a href="https://jack1024.link/2020/03/04/linux常用命令/">https://jack1024.link/2020/03/04/linux常用命令/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-03-04</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/03/05/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-Vim/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">强大的文本编辑器:Vim</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/03/04/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/"><span class="level-item">linux系统简介和安装</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "222c1b280b7aa1524fa1c8feeba4c655",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#linux各目录的作用"><span class="level-left"><span class="level-item">1</span><span class="level-item">linux各目录的作用</span></span></a></li><li><a class="level is-mobile" href="#服务器注意事项"><span class="level-left"><span class="level-item">2</span><span class="level-item">服务器注意事项</span></span></a></li><li><a class="level is-mobile" href="#Linux常用命令"><span class="level-left"><span class="level-item">3</span><span class="level-item">Linux常用命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#文件处理命令"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">文件处理命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#ls"><span class="level-left"><span class="level-item">3.1.1</span><span class="level-item">ls</span></span></a></li><li><a class="level is-mobile" href="#mkdir"><span class="level-left"><span class="level-item">3.1.2</span><span class="level-item">mkdir</span></span></a></li><li><a class="level is-mobile" href="#cd-amp-pwd"><span class="level-left"><span class="level-item">3.1.3</span><span class="level-item">cd&amp;pwd</span></span></a></li><li><a class="level is-mobile" href="#rmdir"><span class="level-left"><span class="level-item">3.1.4</span><span class="level-item">rmdir</span></span></a></li><li><a class="level is-mobile" href="#cp"><span class="level-left"><span class="level-item">3.1.5</span><span class="level-item">cp</span></span></a></li><li><a class="level is-mobile" href="#mv"><span class="level-left"><span class="level-item">3.1.6</span><span class="level-item">mv</span></span></a></li><li><a class="level is-mobile" href="#rm"><span class="level-left"><span class="level-item">3.1.7</span><span class="level-item">rm</span></span></a></li><li><a class="level is-mobile" href="#touch"><span class="level-left"><span class="level-item">3.1.8</span><span class="level-item">touch</span></span></a></li><li><a class="level is-mobile" href="#cat-amp-tac"><span class="level-left"><span class="level-item">3.1.9</span><span class="level-item">cat&amp;tac</span></span></a></li><li><a class="level is-mobile" href="#more"><span class="level-left"><span class="level-item">3.1.10</span><span class="level-item">more</span></span></a></li><li><a class="level is-mobile" href="#less"><span class="level-left"><span class="level-item">3.1.11</span><span class="level-item">less</span></span></a></li><li><a class="level is-mobile" href="#head"><span class="level-left"><span class="level-item">3.1.12</span><span class="level-item">head</span></span></a></li><li><a class="level is-mobile" href="#tail"><span class="level-left"><span class="level-item">3.1.13</span><span class="level-item">tail</span></span></a></li><li><a class="level is-mobile" href="#ln"><span class="level-left"><span class="level-item">3.1.14</span><span class="level-item">ln</span></span></a></li></ul></li><li><a class="level is-mobile" href="#权限管理命令"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">权限管理命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#chmod"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">chmod</span></span></a></li><li><a class="level is-mobile" href="#chown"><span class="level-left"><span class="level-item">3.2.2</span><span class="level-item">chown</span></span></a></li><li><a class="level is-mobile" href="#chgrp"><span class="level-left"><span class="level-item">3.2.3</span><span class="level-item">chgrp</span></span></a></li><li><a class="level is-mobile" href="#umask"><span class="level-left"><span class="level-item">3.2.4</span><span class="level-item">umask</span></span></a></li></ul></li><li><a class="level is-mobile" href="#文件搜索命令"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">文件搜索命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#find：精准搜索"><span class="level-left"><span class="level-item">3.3.1</span><span class="level-item">find：精准搜索</span></span></a></li><li><a class="level is-mobile" href="#locate：模糊查找"><span class="level-left"><span class="level-item">3.3.2</span><span class="level-item">locate：模糊查找</span></span></a></li><li><a class="level is-mobile" href="#which"><span class="level-left"><span class="level-item">3.3.3</span><span class="level-item">which</span></span></a></li><li><a class="level is-mobile" href="#whereis"><span class="level-left"><span class="level-item">3.3.4</span><span class="level-item">whereis</span></span></a></li><li><a class="level is-mobile" href="#grep：在文件里面查找"><span class="level-left"><span class="level-item">3.3.5</span><span class="level-item">grep：在文件里面查找</span></span></a></li></ul></li><li><a class="level is-mobile" href="#帮助命令"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">帮助命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#man和info"><span class="level-left"><span class="level-item">3.4.1</span><span class="level-item">man和info</span></span></a></li><li><a class="level is-mobile" href="#whatis"><span class="level-left"><span class="level-item">3.4.2</span><span class="level-item">whatis</span></span></a></li><li><a class="level is-mobile" href="#apropos"><span class="level-left"><span class="level-item">3.4.3</span><span class="level-item">apropos</span></span></a></li><li><a class="level is-mobile" href="#–help"><span class="level-left"><span class="level-item">3.4.4</span><span class="level-item">–help</span></span></a></li><li><a class="level is-mobile" href="#help"><span class="level-left"><span class="level-item">3.4.5</span><span class="level-item">help</span></span></a></li></ul></li><li><a class="level is-mobile" href="#用户管理命令"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">用户管理命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#useradd和passwd"><span class="level-left"><span class="level-item">3.5.1</span><span class="level-item">useradd和passwd</span></span></a></li><li><a class="level is-mobile" href="#who和w"><span class="level-left"><span class="level-item">3.5.2</span><span class="level-item">who和w</span></span></a></li></ul></li><li><a class="level is-mobile" href="#压缩解压命令"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">压缩解压命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#gzip和gunzip-gzip-d"><span class="level-left"><span class="level-item">3.6.1</span><span class="level-item">gzip和gunzip/gzip -d</span></span></a></li><li><a class="level is-mobile" href="#tar"><span class="level-left"><span class="level-item">3.6.2</span><span class="level-item">tar</span></span></a></li><li><a class="level is-mobile" href="#zip和unzip：压缩比不高"><span class="level-left"><span class="level-item">3.6.3</span><span class="level-item">zip和unzip：压缩比不高</span></span></a></li><li><a class="level is-mobile" href="#bzip2和bunzip2：gzip的升级版本，压缩比较好"><span class="level-left"><span class="level-item">3.6.4</span><span class="level-item">bzip2和bunzip2：gzip的升级版本，压缩比较好</span></span></a></li></ul></li><li><a class="level is-mobile" href="#网络命令"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">网络命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#write"><span class="level-left"><span class="level-item">3.7.1</span><span class="level-item">write</span></span></a></li><li><a class="level is-mobile" href="#wall"><span class="level-left"><span class="level-item">3.7.2</span><span class="level-item">wall</span></span></a></li><li><a class="level is-mobile" href="#ping"><span class="level-left"><span class="level-item">3.7.3</span><span class="level-item">ping</span></span></a></li><li><a class="level is-mobile" href="#ifconfig"><span class="level-left"><span class="level-item">3.7.4</span><span class="level-item">ifconfig</span></span></a></li><li><a class="level is-mobile" href="#mail"><span class="level-left"><span class="level-item">3.7.5</span><span class="level-item">mail</span></span></a></li><li><a class="level is-mobile" href="#last"><span class="level-left"><span class="level-item">3.7.6</span><span class="level-item">last</span></span></a></li><li><a class="level is-mobile" href="#lastlog"><span class="level-left"><span class="level-item">3.7.7</span><span class="level-item">lastlog</span></span></a></li><li><a class="level is-mobile" href="#traceroute"><span class="level-left"><span class="level-item">3.7.8</span><span class="level-item">traceroute</span></span></a></li><li><a class="level is-mobile" href="#netstat：显示网络相关信息"><span class="level-left"><span class="level-item">3.7.9</span><span class="level-item">netstat：显示网络相关信息</span></span></a></li><li><a class="level is-mobile" href="#setup：redhat系linux独有"><span class="level-left"><span class="level-item">3.7.10</span><span class="level-item">setup：redhat系linux独有</span></span></a></li></ul></li><li><a class="level is-mobile" href="#挂载命令"><span class="level-left"><span class="level-item">3.8</span><span class="level-item">挂载命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#mount"><span class="level-left"><span class="level-item">3.8.1</span><span class="level-item">mount</span></span></a></li><li><a class="level is-mobile" href="#umount"><span class="level-left"><span class="level-item">3.8.2</span><span class="level-item">umount</span></span></a></li></ul></li><li><a class="level is-mobile" href="#关机重启命令"><span class="level-left"><span class="level-item">3.9</span><span class="level-item">关机重启命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#shutdown"><span class="level-left"><span class="level-item">3.9.1</span><span class="level-item">shutdown</span></span></a></li><li><a class="level is-mobile" href="#其他关机命令：halt-poweroff-init-0"><span class="level-left"><span class="level-item">3.9.2</span><span class="level-item">其他关机命令：halt,poweroff,init 0</span></span></a></li><li><a class="level is-mobile" href="#其他重启命令：reboot-init-6"><span class="level-left"><span class="level-item">3.9.3</span><span class="level-item">其他重启命令：reboot,init 6</span></span></a></li><li><a class="level is-mobile" href="#init"><span class="level-left"><span class="level-item">3.9.4</span><span class="level-item">init</span></span></a></li><li><a class="level is-mobile" href="#runlevel-查询系统运行级别"><span class="level-left"><span class="level-item">3.9.5</span><span class="level-item">runlevel:查询系统运行级别</span></span></a></li><li><a class="level is-mobile" href="#logout和exit"><span class="level-left"><span class="level-item">3.9.6</span><span class="level-item">logout和exit</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/image-20210317103120855.png" alt="实体机安装Arch"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-14T01:18:48.000Z">2021-06-14</time></p><p class="title"><a href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/">实体机安装Arch</a></p><p class="categories"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/English-Grammar.jpg" alt="英语语法框架构建"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-17T07:49:41.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/">英语语法框架构建</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="经济学原理学习"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T13:49:01.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">经济学原理学习</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="基金理财"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T09:31:39.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/">基金理财</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="股票入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T06:58:12.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/">股票入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2021 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

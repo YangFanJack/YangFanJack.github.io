@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>计组-数据的机器级表示 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="数值数据的表示；非数值数据的表示及数据的宽度，存储排列，纠&amp;#x2F;检错"><meta property="og:type" content="blog"><meta property="og:title" content="计组-数据的机器级表示"><meta property="og:url" content="https://jack1024.link/2020/11/29/%E8%AE%A1%E7%BB%84-%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="数值数据的表示；非数值数据的表示及数据的宽度，存储排列，纠&amp;#x2F;检错"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101161759.jpg"><meta property="article:published_time" content="2020-11-29T00:39:45.000Z"><meta property="article:modified_time" content="2021-06-16T10:27:58.865Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="计组"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101161759.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jack1024.link/2020/11/29/%E8%AE%A1%E7%BB%84-%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/"},"headline":"计组-数据的机器级表示","image":["https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101161759.jpg"],"datePublished":"2020-11-29T00:39:45.000Z","dateModified":"2021-06-16T10:27:58.865Z","author":{"@type":"Person","name":"Jack1024"},"publisher":{"@type":"Organization","name":"JACK's BLOG","logo":{"@type":"ImageObject","url":"https://jack1024.link/image/logoko.png"}},"description":"数值数据的表示；非数值数据的表示及数据的宽度，存储排列，纠&#x2F;检错"}</script><link rel="canonical" href="https://jack1024.link/2020/11/29/%E8%AE%A1%E7%BB%84-%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101161759.jpg" alt="计组-数据的机器级表示"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-11-29T00:39:45.000Z" title="2020-11-29 8:39:45 ├F10: AM┤">2020-11-29</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-06-16T10:27:58.865Z" title="2021-6-16 6:27:58 ├F10: PM┤">2021-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">11 minutes read (About 1613 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">计组-数据的机器级表示</h1><div class="content"><h2 id="数值数据的表示"><a href="#数值数据的表示" class="headerlink" title="数值数据的表示"></a>数值数据的表示</h2><p>机器数：用0和1编码的计算机内部0/1序列</p>
+<p>真值：机器数真正的值，现实中带正负号的值</p>
+<p>三要素：进位计数制；定、浮点表示；如何用二进制编码</p>
+<h3 id="定点数"><a href="#定点数" class="headerlink" title="定点数"></a>定点数</h3><h4 id="有符号"><a href="#有符号" class="headerlink" title="有符号"></a>有符号</h4><p> 编码：原码，反码，补码，移码</p>
+<p>整数都采用补码表示，浮点数的尾数用原码定点小数表示</p>
+<p><strong>原码变补码</strong>的原理：</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129091346.png" style="zoom: 67%;margin-left:0px;" />
+
+<p><strong>模4补码</strong>：后面<strong>乘法</strong>可能出现中间的类似于下图的情况，但是不能丢掉，所以采用模4补码把中间结果保存，确保最终结果正确。</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129092034.png" style="zoom:67%;margin-left:0px;" />
+
+<p><strong>移码</strong>：将每个数**加一个偏置常数，通常是2^(位数-1)**，实际就是最高位(符号位)+1</p>
+<table>
+<thead>
+<tr>
+<th>真值</th>
+<th>补码表示</th>
+<th>移码表示</th>
+<th>IEEE574移码原理</th>
+<th>原码表示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3</td>
+<td>011（3）</td>
+<td>111</td>
+<td>110</td>
+<td>011</td>
+</tr>
+<tr>
+<td>2</td>
+<td>010（2）</td>
+<td>110</td>
+<td>101</td>
+<td>010</td>
+</tr>
+<tr>
+<td>1</td>
+<td>001（1）</td>
+<td>101</td>
+<td>100</td>
+<td>001</td>
+</tr>
+<tr>
+<td>0</td>
+<td>000（0）</td>
+<td>100</td>
+<td>011</td>
+<td>000，100</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>111（7）</td>
+<td>011</td>
+<td>010</td>
+<td>101</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>110（6）</td>
+<td>010</td>
+<td>001</td>
+<td>110</td>
+</tr>
+<tr>
+<td>-3</td>
+<td>101（5）</td>
+<td>001</td>
+<td>000</td>
+<td>111</td>
+</tr>
+<tr>
+<td>-4</td>
+<td>100（4）</td>
+<td>000</td>
+<td>111</td>
+<td>不能表示</td>
+</tr>
+</tbody></table>
+<ul>
+<li>从真值来看，补码的最高位表示的是符号位；从补码的实际意义来看，补码的值是不包含符号位，如上图所示：</li>
+<li>0的移码和补码表示都是唯一的</li>
+<li>移码和补码仅符号位不同，数值位相同。</li>
+<li>对阶的目的是为了比较大小</li>
+</ul>
+<p>补码的原理就是：做减法的时候可以用加上补码（补码就是真值+模），最后取模来实现。实现了减和加的统一，计算机就是一个模运算系统</p>
+<p>补码：真值的+模（结果取绝对值，符号等于真值的符号）</p>
+<p>移码：真值+模（结果带符号位）</p>
+<h4 id="无符号"><a href="#无符号" class="headerlink" title="无符号"></a>无符号</h4><p>从左往右&amp;从右往左排列：MIPS采用高到低位从左往右，也就是左大右小LSB</p>
+<p>一般在表示<strong>编号&amp;地址</strong>的时候选择unsigned</p>
+<p>原码用来标志浮点数的尾数，反码现已弃用，补码用来表示定点整数和定点纯小数</p>
+<p>带符号和无符号数的<strong>扩展操作</strong>：带符号数添符号位，无符号数添0</p>
+<p><strong>带符号和无符号数</strong>的<strong>移位操作</strong>：</p>
+<ul>
+<li>有符号数（指的是补码，现在都是用补码表示定点有符号数）<ul>
+<li>左移：逻辑左移，空位补0</li>
+<li>右移：算数右移。若为正数，空位补0，若为负数，空位补1</li>
+</ul>
+</li>
+<li>无符号数<ul>
+<li>左移和右移均是逻辑位移，空位补0</li>
+</ul>
+</li>
+</ul>
+<p>MIPS规定：无符号数没有溢出检查</p>
+<p>C编译器默认将带符号整数转化为无符号数</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129103559.png" style="zoom:80%;margin-left:0px;" />
+
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>补码和移码的运算：</p>
+<ul>
+<li>[A+B]补=[A]补+[B]补</li>
+<li>[A-B]补=[A]补+[-B]补</li>
+<li>[A+B]移=[A]移+[B]补</li>
+<li>[A-B]移=[A]移+[-B]补</li>
+</ul>
+<p>规格化形式：小数点前只有一位表示</p>
+<p>浮点数的尾数用原码表示，阶码用移码表示</p>
+<p>只需要对<strong>尾数</strong>和<strong>指数(阶码)<strong>编码，就可以表示一个浮点数，</strong>基数</strong>不需要存在计算机</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129155727.png" style="zoom:67%;margin-left:0px;" />
+
+<p>IEEE 754标准将阶码的移码偏移值设置为127的目的是为了阶码能表示多一位的数</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129163821.png" style="zoom:80%;margin-left:0px;" />
+
+<p><strong>将IEEE 754标准的浮点数翻译为十进制科学计数法</strong></p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129162323.png" style="zoom:67%;margin-left:0px;" />
+
+<p><strong>将十进制科学计数法翻译为IEEE 754标准的浮点数</strong></p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129162629.png" style="zoom:67%;margin-left:0px;" />
+
+<p><strong>四种特殊的IEEE 754表示：</strong></p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129163457.png" style="zoom:67%;margin-left:0px;" />
+
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129163500.png" style="zoom:67%;margin-left:0px;" />
+
+<p><strong>IEEE 754标准的32位格式的表示范围：</strong></p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129164408.png" style="zoom: 67%;margin-left:0px;" />
+
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129164409.png" style="zoom:67%;margin-left:0px;" />
+
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129185632.png" style="zoom:50%;margin-left:0px;" />
+
+<h2 id="10进制数值数据"><a href="#10进制数值数据" class="headerlink" title="10进制数值数据"></a>10进制数值数据</h2><h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h3><img src="https://bkimg.cdn.bcebos.com/pic/e850352ac65c103880a07b53bc119313b17e8941?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5" style="zoom:60%;margin-left:0px;" />
+
+<h3 id="BCD码"><a href="#BCD码" class="headerlink" title="BCD码"></a>BCD码</h3><p>0到9十个数字位用二进制编码。至少用4位二进制表示，就有6中状态状态</p>
+<p>分类：</p>
+<ul>
+<li>8421码：十进制有权码</li>
+<li>余3码：十进制无权码</li>
+<li>2421码：十进制有权码</li>
+</ul>
+<p>8421码+6修正：</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129191939.png" style="zoom:80%;margin-left:0px;" />
+
+<p>10在机器中的表示：</p>
+<ul>
+<li><p>unsigned：000…01010（32位）</p>
+</li>
+<li><p>signed：00001010（32位）</p>
+</li>
+<li><p>ASCII码：00110001  00110000</p>
+</li>
+<li><p>8421码：00010000</p>
+</li>
+<li><p>-10的unsigned：111…10110（32位）</p>
+</li>
+<li><p>浮点表示：+1.01×2^3</p>
+<p>0  10000010  01000…(23位)</p>
+</li>
+</ul>
+<h2 id="非数值数据的表示"><a href="#非数值数据的表示" class="headerlink" title="非数值数据的表示"></a>非数值数据的表示</h2><p><strong>逻辑数据</strong>的编码表示：</p>
+<ul>
+<li><p>N位二进制数可以表示N个逻辑数据，或者一个位串</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129195236.png" style="zoom:50%;margin-left:0px;" /></li>
+</ul>
+<p><strong>西文字符/汉字</strong>的表示</p>
+<ul>
+<li>常见的ASCII码：<ul>
+<li>十进制数字：0/1/2/3…/9</li>
+<li>英文字母：A/B/C…/Z/a/b…/z</li>
+<li>专用符号：+/-/%/*/&amp;/…</li>
+<li>控制符号</li>
+</ul>
+</li>
+<li>汉字：输入码，内码，字模码<ul>
+<li>国标码</li>
+</ul>
+</li>
+<li>国际多字符集</li>
+</ul>
+<h2 id="数据的宽度"><a href="#数据的宽度" class="headerlink" title="数据的宽度"></a>数据的宽度</h2><ul>
+<li><p>比特：计算机中处理，存储，传输信息的最小单位</p>
+</li>
+<li><p>二进制信息的计量单位是字节</p>
+</li>
+<li><p>存储器按照字节编址，字节是最小可寻址单位</p>
+</li>
+<li><p>机器字长：数据通路的宽度，=进行运算的运算器宽度=传输数据的总线宽度=寄存器的宽度</p>
+</li>
+<li><p>存储字长：存储器中一个存储单元(存储地址)所存储的二进制代码的位数，即存储器中的MDR的位数。</p>
+</li>
+<li><p>指令字长：计算机指令字的位数。</p>
+</li>
+<li><p>存储单元：</p>
+<p>计算机中的存储是由存储体来完成的，一个存储体相当于一个<strong>大箱子</strong>，这个大箱子又有许多<strong>小格子</strong></p>
+<p>小格子中存储的就是实际存储的数据，这个小格可以存储<strong>不同位数的数据，与MDR相关</strong></p>
+<p>存储体中的<strong>小格子数量由地址线确定，和MAR相等</strong></p>
+</li>
+</ul>
+<h2 id="存储排列"><a href="#存储排列" class="headerlink" title="存储排列"></a>存储排列</h2><ul>
+<li><p><strong>大端，小端问题</strong>：如何从一个字节地址中取到一个32位的字</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201129203821.png" style="zoom: 67%;margin-left:0px;" /></li>
+<li><p><strong>对齐问题</strong>：一个字能否存放在任何字节边界</p>
+<ul>
+<li>是由编译器控制的（给程序中每一个变量分配一个地址的工作是由编译器来管的），可以对编译器控制是否采取字符边界对其策略）</li>
+</ul>
+</li>
+</ul>
+<h2 id="纠-检错"><a href="#纠-检错" class="headerlink" title="纠/检错"></a>纠/检错</h2><ul>
+<li><p>数据检错纠错的目的：在存取和传送时，由于元器件故障或者噪音干扰等原因会出现差错。</p>
+<ul>
+<li><p>奇偶校验：码字，码距；奇校验码，偶校验码；只能检测奇数个跳变的错误</p>
+</li>
+<li><p>冗余校验：CRC码，采用模2除法除以生成多项式确定的一个信息码，得到一个余数（校验码），该校验码除以信息码得到的余数应该是0，否则就说明出现了错误。</p>
+</li>
+<li><p>海明校验</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201201213212.png" style="zoom: 80%;margin-left:0px;" /></li>
+</ul>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>计组-数据的机器级表示</p><p><a href="https://jack1024.link/2020/11/29/计组-数据的机器级表示/">https://jack1024.link/2020/11/29/计组-数据的机器级表示/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-11-29</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/%E8%AE%A1%E7%BB%84/">计组</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/11/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BB%AA%E8%AE%BA/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">数据结构-绪论</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/11/28/%E8%AE%A1%E7%BB%84-%E6%A6%82%E8%BF%B0/"><span class="level-item">计组-概述</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "74ccc6299bf0d656e5eceb433069bded",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#数值数据的表示"><span class="level-left"><span class="level-item">1</span><span class="level-item">数值数据的表示</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#定点数"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">定点数</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#有符号"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">有符号</span></span></a></li><li><a class="level is-mobile" href="#无符号"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">无符号</span></span></a></li></ul></li><li><a class="level is-mobile" href="#浮点数"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">浮点数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#10进制数值数据"><span class="level-left"><span class="level-item">2</span><span class="level-item">10进制数值数据</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#ASCII码"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">ASCII码</span></span></a></li><li><a class="level is-mobile" href="#BCD码"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">BCD码</span></span></a></li></ul></li><li><a class="level is-mobile" href="#非数值数据的表示"><span class="level-left"><span class="level-item">3</span><span class="level-item">非数值数据的表示</span></span></a></li><li><a class="level is-mobile" href="#数据的宽度"><span class="level-left"><span class="level-item">4</span><span class="level-item">数据的宽度</span></span></a></li><li><a class="level is-mobile" href="#存储排列"><span class="level-left"><span class="level-item">5</span><span class="level-item">存储排列</span></span></a></li><li><a class="level is-mobile" href="#纠-检错"><span class="level-left"><span class="level-item">6</span><span class="level-item">纠/检错</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/image-20210317103120855.png" alt="实体机安装Arch"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-14T01:18:48.000Z">2021-06-14</time></p><p class="title"><a href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/">实体机安装Arch</a></p><p class="categories"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/English-Grammar.jpg" alt="英语语法框架构建"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-17T07:49:41.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/">英语语法框架构建</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="经济学原理学习"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T13:49:01.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">经济学原理学习</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="基金理财"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T09:31:39.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/">基金理财</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="股票入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T06:58:12.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/">股票入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2021 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

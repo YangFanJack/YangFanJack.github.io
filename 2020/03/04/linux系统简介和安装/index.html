@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>linux系统简介和安装 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Linux操作系统的诞生、发展和成长过程始终依赖着五个重要支柱：Unix操作系统、MINIX操作系统、GNU计划、POSIX标准和Internet网络。"><meta property="og:type" content="blog"><meta property="og:title" content="linux系统简介和安装"><meta property="og:url" content="https://jack1024.link/2020/03/04/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="Linux操作系统的诞生、发展和成长过程始终依赖着五个重要支柱：Unix操作系统、MINIX操作系统、GNU计划、POSIX标准和Internet网络。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"><meta property="article:published_time" content="2020-03-04T02:41:10.000Z"><meta property="article:modified_time" content="2021-06-16T10:27:58.865Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Linux"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jack1024.link/2020/03/04/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/"},"headline":"linux系统简介和安装","image":["https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"],"datePublished":"2020-03-04T02:41:10.000Z","dateModified":"2021-06-16T10:27:58.865Z","author":{"@type":"Person","name":"Jack1024"},"publisher":{"@type":"Organization","name":"JACK's BLOG","logo":{"@type":"ImageObject","url":"https://jack1024.link/image/logoko.png"}},"description":"Linux操作系统的诞生、发展和成长过程始终依赖着五个重要支柱：Unix操作系统、MINIX操作系统、GNU计划、POSIX标准和Internet网络。"}</script><link rel="canonical" href="https://jack1024.link/2020/03/04/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg" alt="linux系统简介和安装"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-04T02:41:10.000Z" title="2020-3-4 10:41:10 ├F10: AM┤">2020-03-04</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-06-16T10:27:58.865Z" title="2021-6-16 6:27:58 ├F10: PM┤">2021-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">10 minutes read (About 1459 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">linux系统简介和安装</h1><div class="content"><h2 id="UNIX和Linux发展史"><a href="#UNIX和Linux发展史" class="headerlink" title="UNIX和Linux发展史"></a>UNIX和Linux发展史</h2><p>​        1965年，贝尔实验室：MULTICS计划</p>
+<p>​        69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统</p>
+<p>​        62年，美国军方：ARPA：阿帕网，NCP协议——》TCP/IP协议</p>
+<p>​        71年，可汤普森和丹尼斯里奇发明C语言，重写UNIX</p>
+<p>​        UNIX主要发行版本：AIX(IBM)、HP-UX(HP)、Solaris(Sun)、Linux(Intel,AMD……)、BSD</p>
+<p>​        1991年，芬兰大学生Linus Torvalds开发linux内核。大学教授开发minix，但是不接受外来代码，所以李纳斯独自开发，由社区共同维护。</p>
+<p>​        Linux内核版本号：主版本.次版本.末版本     <a href="www.kernel.org">linux内核官网</a></p>
+<p>​        Linux发行版本：两大派系redhat和debian</p>
+<h2 id="开源软件简介"><a href="#开源软件简介" class="headerlink" title="开源软件简介"></a>开源软件简介</h2><p>​        商业软件和开源软件（开源≠免费）</p>
+<p>​        开源软件：apache、NGINX、MySQL、php、mongoDB、python、Ruby、Perl、Go、Rust、Swift、Java</p>
+<p>​        开源软件的特点：使用自由（绝大多数免费）、研究自由（源代码）、散步和改良的自由</p>
+<p>​        支撑互联网的开源技术（LAMP）：Linux，Apache，MySQL，PHP</p>
+<h2 id="Linux应用领域"><a href="#Linux应用领域" class="headerlink" title="Linux应用领域"></a>Linux应用领域</h2><ol>
+<li><p>基于Linux的企业服务器</p>
+<p><a href="www.netcraft.com">踩点网站</a>：发数据包根据相应嗅探服务器</p>
+<p><a href="www.top500.org">世界前500服务器</a></p>
+</li>
+<li><p>嵌入式应用</p>
+<p>手机，平板：Android底层是Linux</p>
+<p>智能家电，航空系统，银行系统……</p>
+</li>
+<li><p>在电影娱乐业</p>
+<p>特效，图形处理渲染</p>
+</li>
+</ol>
+<h2 id="Linux学习方法"><a href="#Linux学习方法" class="headerlink" title="Linux学习方法"></a>Linux学习方法</h2><p>​        Linux只考虑应用性和稳定性</p>
+<p>​        善于观察提示信息，查找文档，自己解决问题</p>
+<p>​        学习英文：Command not found和No Such file or directory</p>
+<p>​        忘掉Windows的操作习惯</p>
+<p>​        计划，专注，坚持，练习</p>
+<h1 id="Linux系统安装"><a href="#Linux系统安装" class="headerlink" title="Linux系统安装"></a>Linux系统安装</h1><h2 id="VMware虚拟机安装"><a href="#VMware虚拟机安装" class="headerlink" title="VMware虚拟机安装"></a>VMware虚拟机安装</h2><p>​        <a href="www.vmware.com">VMware官网</a>下载，不推荐安装双系统</p>
+<p>​        特点：</p>
+<ol>
+<li><p>不需要分区就能在物理机上使用两种以上的操作系统</p>
+</li>
+<li><p>物理机和虚拟机能实现网络通信</p>
+</li>
+<li><p>可以设定并随时修改虚拟机操作系统的硬件环境</p>
+<p>要求：</p>
+</li>
+<li><p>CPU：主频1GHz以上</p>
+</li>
+<li><p>内存：1GB以上</p>
+</li>
+<li><p>硬盘：8GB以上</p>
+<p>镜像下载：</p>
+<p><a target="_blank" rel="noopener" href="https://www.centos.org/download/mirrors/">官网下载</a>:几个版本：DVD版本，Everything版本，minimal版本，LiveGnome版本，KdeLive版本，livecd版本，NetInstall版本</p>
+</li>
+</ol>
+<h2 id="系统分区"><a href="#系统分区" class="headerlink" title="系统分区"></a>系统分区</h2><p>​        <strong>主分区</strong>：最多只能有4个</p>
+<p>​        <strong>扩展分区</strong>：最多只能有一个；主分区加扩展分区最多有4个；不能写入数据，只能包含逻辑分区</p>
+<p>​        <strong>逻辑分区</strong>：可以和主分区一样正确的写入数据和格式化</p>
+<p>​        <strong>注意：</strong>这套视频录制时间较为久远，当时的硬盘分区形式是MBR的，所以上述的分区限制也只                    是针对MBR分区形式，对于GPT分区形式而言，则没有上述限制了。</p>
+<p>​        电脑根据主板的不同（BOIS或者UEFI），会决定硬盘选择MBR分区方案还是GPT分区方案：</p>
+<ol>
+<li><p><strong>BIOS + MBR</strong></p>
+</li>
+<li><p><strong>UEFI + GPT</strong></p>
+<p>两者区别：</p>
+<ol>
+<li><p>也就是说，电脑使用传统BIOS主板，建议使用MBR分区方案；电脑使用UEFI主板，建议使用GPT分区方案</p>
+</li>
+<li><p>MBR分区表最多只能识别2TB左右的空间，大于2TB的容量将无法识别从而导致硬盘空间浪费；GPT分区表则能够识别2TB以上的硬盘空间。</p>
+</li>
+<li><p>MBR分区表最多只能支持4个主分区或三个主分区+1个扩展分区(逻辑分区不限制)；GPT分区表在Windows系统下可以支持128个主分区。</p>
+</li>
+<li><p>在MBR中，分区表的大小是固定的；在GPT分区表头中可自定义分区数量的最大值，也就是说GPT分区表的大小不是固定的。</p>
+</li>
+</ol>
+<p><strong>硬盘分区的作用：</strong> 把一块大硬盘分成几块</p>
+<p><strong>格式化的作用：</strong> 写入文件系统（1.把硬盘分成一个个等大小的数据块   同时2.建立一个inode列表）</p>
+<p>Linux中的<strong>所有硬件都是文件</strong>：</p>
+<p>硬盘文件名：</p>
+<ol>
+<li>IDE硬盘：/dev/hd[a-d]</li>
+<li>SCSI/SATA/USB硬盘：/dev/sd[a-p]</li>
+<li>光驱：/dev/cdrom或/dev/sr0</li>
+<li>鼠标：/dev/mouse</li>
+</ol>
+<p>分区文件名：</p>
+<ol>
+<li>/dev/hda[数字]:</li>
+<li>/dev/sda[数字]</li>
+</ol>
+<p><strong>挂载：</strong> 给分区分配挂载点</p>
+<ol>
+<li>/根分区</li>
+<li>swap交换分区（内存两倍，最大不超多2GB）</li>
+<li>/boot启动分区（200MB足够）</li>
+</ol>
+<p>总结：</p>
+<ol>
+<li>分区：把大硬盘分为小的分区</li>
+<li>格式化：写入文件系统，同时会清空数据</li>
+<li>分区设备文件名：给每个分区定义设备文件名</li>
+<li>挂在：给每个分区分配挂载点，这个挂在点必须是空目录</li>
+</ol>
+</li>
+</ol>
+<h2 id="Linux系统安装-1"><a href="#Linux系统安装-1" class="headerlink" title="Linux系统安装"></a>Linux系统安装</h2><p>​        把镜像加进去，点击启动，然后用图形界面配置分区和其他的自定义选项，确定定义root用户的密码和普通用户的账号和密码。然后等待安装完成即可。</p>
+<h2 id="远程登陆管理工具"><a href="#远程登陆管理工具" class="headerlink" title="远程登陆管理工具"></a>远程登陆管理工具</h2><p>​        三种网络连接方式：</p>
+<ol>
+<li><p>桥接模式：虚拟机使用物理网卡</p>
+</li>
+<li><p>NAT模式：虚拟机使用vmnet8虚拟网卡</p>
+</li>
+<li><p>Host-only模式：虚拟机使用vmnet1虚拟网卡，并且只能和本机通信</p>
+<p>临时配置ip：<code>ifconfig ens33 192.168.XXX.XXX</code> </p>
+<p>永久配置ip：<code>vim /etc/sysconfig/network-scripts/ifcfg-ens33</code> 修改，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44687427/article/details/88225478">见教程</a></p>
+</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>linux系统简介和安装</p><p><a href="https://jack1024.link/2020/03/04/linux系统简介和安装/">https://jack1024.link/2020/03/04/linux系统简介和安装/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-03-04</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/03/04/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">linux常用命令</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/03/03/Windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/"><span class="level-item">Windows包管理器scoop</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "3e3d5e367dee68e6f2221721d7c07b72",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#UNIX和Linux发展史"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">UNIX和Linux发展史</span></span></a></li><li><a class="level is-mobile" href="#开源软件简介"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">开源软件简介</span></span></a></li><li><a class="level is-mobile" href="#Linux应用领域"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">Linux应用领域</span></span></a></li><li><a class="level is-mobile" href="#Linux学习方法"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">Linux学习方法</span></span></a></li></ul><li><a class="level is-mobile" href="#Linux系统安装"><span class="level-left"><span class="level-item">2</span><span class="level-item">Linux系统安装</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#VMware虚拟机安装"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">VMware虚拟机安装</span></span></a></li><li><a class="level is-mobile" href="#系统分区"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">系统分区</span></span></a></li><li><a class="level is-mobile" href="#Linux系统安装-1"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">Linux系统安装</span></span></a></li><li><a class="level is-mobile" href="#远程登陆管理工具"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">远程登陆管理工具</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/image-20210317103120855.png" alt="实体机安装Arch"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-14T01:18:48.000Z">2021-06-14</time></p><p class="title"><a href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/">实体机安装Arch</a></p><p class="categories"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/English-Grammar.jpg" alt="英语语法框架构建"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-17T07:49:41.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/">英语语法框架构建</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="经济学原理学习"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T13:49:01.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">经济学原理学习</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="基金理财"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T09:31:39.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/">基金理财</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="股票入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T06:58:12.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/">股票入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2021 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>shell基础 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。你在提示符下输入的每个命令都由shell先解释然后传给Linux内核。 说到底，Shell是用户与内核进行交互操作的一种接口，目前最流行的Shell称为bash Shell"><meta property="og:type" content="blog"><meta property="og:title" content="shell基础"><meta property="og:url" content="https://jack1024.link/2020/03/06/shell%E5%9F%BA%E7%A1%80/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。你在提示符下输入的每个命令都由shell先解释然后传给Linux内核。 说到底，Shell是用户与内核进行交互操作的一种接口，目前最流行的Shell称为bash Shell"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"><meta property="article:published_time" content="2020-03-06T14:51:25.000Z"><meta property="article:modified_time" content="2021-06-16T10:27:58.865Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Shell"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jack1024.link/2020/03/06/shell%E5%9F%BA%E7%A1%80/"},"headline":"shell基础","image":["https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg"],"datePublished":"2020-03-06T14:51:25.000Z","dateModified":"2021-06-16T10:27:58.865Z","author":{"@type":"Person","name":"Jack1024"},"publisher":{"@type":"Organization","name":"JACK's BLOG","logo":{"@type":"ImageObject","url":"https://jack1024.link/image/logoko.png"}},"description":"Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。你在提示符下输入的每个命令都由shell先解释然后传给Linux内核。 说到底，Shell是用户与内核进行交互操作的一种接口，目前最流行的Shell称为bash Shell"}</script><link rel="canonical" href="https://jack1024.link/2020/03/06/shell%E5%9F%BA%E7%A1%80/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101160711.jpg" alt="shell基础"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-06T14:51:25.000Z" title="2020-3-6 10:51:25 ├F10: PM┤">2020-03-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-06-16T10:27:58.865Z" title="2021-6-16 6:27:58 ├F10: PM┤">2021-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">17 minutes read (About 2600 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">shell基础</h1><div class="content"><ul>
+<li>shell就是Linux中的命令解释器，说白了，就是一个命令行的交互界面。与Linux不同Windows中就是图形的交互界面。shell还是一个强大的编程语言，因为它可以直接调用Linux的系统命令。</li>
+</ul>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/3OpI41.png" style="zoom:50%;" />
+
+<ul>
+<li>Shell的种类：<ul>
+<li>Bourne Shell语法类：sh，ksh，Bash，psh，zsh</li>
+<li>C Shell语法类（只要同于BSD的Linux版本中）：csh，tcsh</li>
+<li>目前的主流shell时Bash Shell</li>
+</ul>
+</li>
+<li>在文件/etc/shells中，可以查看Linux中默认支持的Shell类型，在命令行下输入shell的名字就可以切换shell类型</li>
+</ul>
+<h1 id="Shell脚本的执行方式"><a href="#Shell脚本的执行方式" class="headerlink" title="Shell脚本的执行方式"></a>Shell脚本的执行方式</h1><ul>
+<li><p>echo命令：输出指定内容</p>
+<ul>
+<li>echo -e：支持反斜线的字符转换 </li>
+</ul>
+</li>
+<li><p>First Script：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/Bash</span></span><br><span class="line">echo -e &quot;Mr Yang is the most handsome man in the world.&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>执行方法：</p>
+<ul>
+<li>第一种：先chmod 755  hello.sh         然后./hello.sh</li>
+<li>第二种：bash hello.sh</li>
+</ul>
+</li>
+<li><p>注意：如果一个shell脚本在Windows中编辑完成，在Linux中发现运行出错，这是因为Windows和Linux格式不同，你可以用<code>cat -A</code>来验证，换行符不用。解决方法就是用命令<code>dos2unix</code>将Windows格式转化为Linux格式</p>
+</li>
+</ul>
+<h1 id="Bash的基本功能"><a href="#Bash的基本功能" class="headerlink" title="Bash的基本功能"></a>Bash的基本功能</h1><h2 id="history"><a href="#history" class="headerlink" title="history"></a>history</h2><ul>
+<li>history n：显示最近的n条命令</li>
+<li>history -d n：删除第n条命令</li>
+<li>history -c：清空历史命令</li>
+<li>history -w：把缓存中的历史命令写入每个用户的缓存文件~/.bash_history</li>
+<li>可以使用上，下箭头的方式调用历史命令，也可以使用<code>!n</code>，<code>!!</code>，<code>!字串</code>直接执行指定的命令</li>
+</ul>
+<h2 id="TAB键"><a href="#TAB键" class="headerlink" title="TAB键"></a>TAB键</h2><ul>
+<li>在Linux的bash中，Tab键可以用来不全命令和文件名</li>
+</ul>
+<h2 id="命令别名-amp-常用快捷键"><a href="#命令别名-amp-常用快捷键" class="headerlink" title="命令别名&amp;常用快捷键"></a>命令别名&amp;常用快捷键</h2><ul>
+<li><p>命令别名就是给命令定义一个别名，For Example：<code>alias vi=&#39;vim&#39;</code></p>
+</li>
+<li><p>直接用alias可以查看当前的所有别名，实际就是查看~/.bashrc文件的内容</p>
+</li>
+<li><p><strong>命令执行的顺序：</strong></p>
+<ol>
+<li>绝对路径或相对路径的命令</li>
+<li>别名</li>
+<li>Bash的内部命令（内部命令就时用whereis找不到的Linux自带命令）</li>
+<li>按找$PATH环境变量定义的目录查找顺序找到的第一的命令（外部命令）</li>
+</ol>
+</li>
+<li><p>让别名永久生效：写入~/.bashrc配置文件</p>
+</li>
+<li><p>unalias：删除别名</p>
+</li>
+<li><p>常用快捷键：Ctrl+下列的字母</p>
+<p>c强制终止当前命令</p>
+<p>l清屏</p>
+<p>u剪切光标之前的内容</p>
+<p>k剪切光标后的内容</p>
+<p>y粘贴</p>
+<p>r搜索历史</p>
+<p>d退出当前终端，相当于logout]</p>
+<p>z暂停进程，放入后台</p>
+<p>s暂停屏幕输出</p>
+<p>q恢复屏幕输出</p>
+</li>
+</ul>
+<h2 id="输入-amp-输出重定向"><a href="#输入-amp-输出重定向" class="headerlink" title="输入&amp;输出重定向"></a>输入&amp;输出重定向</h2><ul>
+<li><p>标准输入输出设备</p>
+<p>键盘：/dev/stdin：标准输入：0文件描述符</p>
+<p>显示器：/dev/sdtout：标准输出：1文件描述符</p>
+<p>显示器：/dev/sdterr：标准错误输出：2文件描述符</p>
+</li>
+<li><p><strong>输出重定向：</strong></p>
+<p>改变输出方向，把命令的正确或者输出结果输出到指定的文件中</p>
+</li>
+<li><p>正确输出和错误输出同时保存进一个文件中：</p>
+<p>以覆盖的方式：命令 &gt; 文件 2&gt;&amp;1     或者      命令 &amp;&gt;文件</p>
+<p>以追加的方式：命令 &gt;&gt; 文件 2&gt;&amp;1     或者      命令 &amp;&gt;&gt;文件</p>
+<p>把正确的输出保存进文件1，错误的输出保存进文件2：命令 &gt;&gt;文件1 2&gt;&gt;文件2</p>
+</li>
+<li><p><strong>输入重定向：</strong>wc，后面既可以直接加文件名，也可以将输入重定向作为输入，不过后者在结果中不会显示文件名，因为它指挥识别输入的文件内容流</p>
+<p>wc -c：统计字节数</p>
+<p>wc -w：统计单词数</p>
+<p>wc -l：统计行数</p>
+</li>
+</ul>
+<h2 id="多命令顺序执行-amp-管道符"><a href="#多命令顺序执行-amp-管道符" class="headerlink" title="多命令顺序执行&amp;管道符"></a>多命令顺序执行&amp;管道符</h2><ul>
+<li><p>多命令顺序执行</p>
+<ul>
+<li>分号：两个命令都会执行</li>
+<li>&amp;&amp;：命令1正确执行，命令2才会执行</li>
+<li>||：命令1错误执行，命令2才会执行</li>
+</ul>
+</li>
+<li><p>dd命令：磁盘复制命令，和cp命令不同，dd可以复制特殊文件，分区甚至整个硬盘。主要的作用就是磁盘复制</p>
+<p>dd if=输入文件 of=输出文件 bs=多少字节数作为一个块 count=块的个数</p>
+<p><code>date;dd if=/dev/zero of=/root/testfile bs=1k count=100000;date</code>用来显示磁盘复制的时间</p>
+</li>
+<li><p><code>命令 &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;</code>：用来判断命令是否正确执行</p>
+</li>
+<li><p>管道符：命令1的<strong>正确输出</strong>作为命令2的操作对象</p>
+</li>
+<li><p>grep命令：在文件中搜索符合条件的字符串</p>
+<p>grep -i：忽略大小写</p>
+<p>grep -n：输出行号</p>
+<p>grep -v：反向查找</p>
+<p>grep –color=auto：搜索出的关键字用颜色显示</p>
+<p>netstat -an | grep ESTABLISHED</p>
+</li>
+</ul>
+<h2 id="通配符-amp-其他特殊符号"><a href="#通配符-amp-其他特殊符号" class="headerlink" title="通配符&amp;其他特殊符号"></a>通配符&amp;其他特殊符号</h2><ul>
+<li><p>?：匹配一个任意字符</p>
+</li>
+<li><p>*：匹配任何内容（0个或任意多个字符）</p>
+</li>
+<li><p>[]：匹配中括号中的任意一个</p>
+</li>
+<li><p>[-]：匹配中括号中范围内任意一个</p>
+</li>
+<li><p>[^]：逻辑非，表示匹配任意一个不是中括号内的一个字符<code>[^0-9]</code>表示任意一个不是数字的字符</p>
+</li>
+<li><p><strong>通配符是用来匹配文件名的，</strong>通配符通常会用来删除指定范围的文件</p>
+</li>
+<li><p><strong>单引号</strong>中的所有符号都是符号，<strong>双引号</strong>中的符号可能会有特殊意义</p>
+<p><code>echo &quot;$SHELL&quot;</code>和<code>echo &#39;$SHELL&#39;</code></p>
+</li>
+<li><p><strong>反引号</strong>和<code>$()</code>中的内容时系统命令</p>
+<p><code>echo &quot;$(ls)&quot;</code>和<code>echo &#39;$(ls)&#39;</code></p>
+</li>
+<li><p><code>#</code>开头时注释</p>
+</li>
+<li><p><code>$</code>用来调用变量</p>
+</li>
+<li><p><code>\</code>用来将特殊符号变成普通符号</p>
+</li>
+</ul>
+<h1 id="Bash的变量"><a href="#Bash的变量" class="headerlink" title="Bash的变量"></a>Bash的变量</h1><h2 id="用户自定义变量"><a href="#用户自定义变量" class="headerlink" title="用户自定义变量"></a>用户自定义变量</h2><ul>
+<li><p>变量名不能用数字开头</p>
+</li>
+<li><p>bash中，变量的默认类型都是字符串型，如果要进行数值运算，需要指定变量类型为数值型</p>
+</li>
+<li><p>变量用单号连接，两侧不能空格，变量名若有空格，需要引号</p>
+</li>
+<li><p>变量值中可以用转义符\让特殊字符失去特殊含义</p>
+</li>
+<li><p>变量值可以进行叠加</p>
+</li>
+<li><p>环境变量名建议大写</p>
+</li>
+<li><p>变量分类：</p>
+<ul>
+<li>用户自定义变量</li>
+<li>环境变量</li>
+<li>位置参数变量</li>
+<li>预定义变量</li>
+</ul>
+</li>
+<li><p><strong>用户自定义变量（本地变量）</strong></p>
+<p>name=”jack”    可以叠加：<code>newname=&quot;$name&quot;yang</code> 或者 <code>newname=$&#123;name&#125;yang</code></p>
+</li>
+<li><p>set：查看系统中所有的变量</p>
+</li>
+<li><p>unset 变量名：删除变量</p>
+</li>
+</ul>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><ul>
+<li><p>本地变量只在当前的shell中生效</p>
+</li>
+<li><p>环境变量会在当前和这个shell的所有子shell中生效，如果把环境变量写入相关的文件，那么这个环境变量会在所有的shell中生效</p>
+</li>
+<li><p>用<code>pstree</code>可以查看shell的父子关系</p>
+</li>
+<li><p><code>export 变量名</code>：申明普通变量为环境变量</p>
+</li>
+<li><p><code>env</code>：专门查看环境变量</p>
+</li>
+<li><p>系统环境变量：</p>
+<ul>
+<li>PATH：查找系统命令的变量，tab键补全和外部命令的查找都是根据$PATH来的，可以用变量叠加的方式把自己的命令加到$PATH中，<code>PATH=&quot;$PATH&quot;:/root/test.sh</code></li>
+<li>PS1：定义系统提示符的变量，<code>echo $PS1</code>    然后用，<code>PS1=’格式‘</code>来自定义命令提示符</li>
+</ul>
+</li>
+</ul>
+<h2 id="位置参数变量"><a href="#位置参数变量" class="headerlink" title="位置参数变量"></a>位置参数变量</h2><h2 id="位置参数变量-1"><a href="#位置参数变量-1" class="headerlink" title="位置参数变量"></a>位置参数变量</h2><ul>
+<li>$n：$0表示命令本身，之后就是命令行参数</li>
+<li>$*：所有参数，把所有参数当作一个整体</li>
+<li>$@：所有参数，把参数区别对待</li>
+<li>$#：所有参数的个数</li>
+</ul>
+<h2 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h2><ul>
+<li><p>$?：返回上一次执行结果正确与否</p>
+</li>
+<li><p>$$：当前进程的PID</p>
+</li>
+<li><p>$!：后台运行的最后一个进程的PID</p>
+</li>
+<li><p>接受键盘输入：read [选项] [变量名]</p>
+<p>-p “提示信息”：</p>
+<p>-t 秒数：限定时间</p>
+<p>-n 字符数：限定字符数</p>
+<p>-s：隐藏输入的信息，适用于输入密码时</p>
+</li>
+</ul>
+<h1 id="Bash的运算"><a href="#Bash的运算" class="headerlink" title="Bash的运算"></a>Bash的运算</h1><h2 id="数值运算与运算符"><a href="#数值运算与运算符" class="headerlink" title="数值运算与运算符"></a>数值运算与运算符</h2><ul>
+<li><p>Linux中变量默认类型时字符串</p>
+</li>
+<li><p><code>declare [+/-][选项] 变量名</code></p>
+<p>-：给变量设定类型属性，例子：-i：将变量声明为整数类型；-x：将变量声明为环境变量</p>
+<p>+：取消变量的类型属性</p>
+<p>-p：显示指定变量的被声明的类型</p>
+</li>
+<li><p><strong>For Example:（四种计算格式，最常用的是第三种）</strong></p>
+<p><code>declare -i cc=$aa+$bb</code></p>
+<p><code>cc=$(expr $aa + $bb)</code></p>
+<p><code>cc=$(($aa+$bb))</code></p>
+<p><code>cc=$[$aa+$bb]</code></p>
+</li>
+</ul>
+<h2 id="变量测试与内容替换"><a href="#变量测试与内容替换" class="headerlink" title="变量测试与内容替换"></a>变量测试与内容替换</h2><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/8CXvrt.png" style="zoom: 80%;" />
+
+<h1 id="环境变量配置文件"><a href="#环境变量配置文件" class="headerlink" title="环境变量配置文件"></a>环境变量配置文件</h1><h2 id="环境变量配置文件简介"><a href="#环境变量配置文件简介" class="headerlink" title="环境变量配置文件简介"></a>环境变量配置文件简介</h2><ul>
+<li><p><code>source 配置文件</code>或者<code>. 配置文件</code>：让修改后的配置文件直接生效</p>
+</li>
+<li><p>环境变量配置文件中主要就是定义对系统的操作环境生效的系统默认环境变量，比如PATH，HISTSIZE，PS1，HOSTNAME等</p>
+</li>
+<li><p>主要的5个配置文件</p>
+<p><code>/etc/profile</code>：针对所有用户</p>
+<p><code>/etc/profile.d/*.sh</code>：针对所有用户</p>
+<p><code>~/.bash_profile</code>：针对单个用户</p>
+<p><code>~/.bashrc</code>：针对单个用户</p>
+<p><code>/etc/bashrc</code>：针对所有用户</p>
+</li>
+</ul>
+<h2 id="环境变量配置文件作用"><a href="#环境变量配置文件作用" class="headerlink" title="环境变量配置文件作用"></a>环境变量配置文件作用</h2><ul>
+<li><strong>环境变量配置文件调用的顺序：</strong></li>
+</ul>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/8PpCge.png" style="zoom: 67%;" />
+
+<ul>
+<li><p><code>/etc/profile</code>：针对所有用户</p>
+<p>USER变量<br>LOGNAME变量<br>MAIL变量<br>PATH变量<br>HOSTNAME变量<br>HISTNAME变量<br>HISTSIZE变量<br>umask<br>调用/etc/profile.d/*.sh文件</p>
+</li>
+<li><p><code>/etc/profile.d/*.sh</code>：针对所有用户</p>
+<p>执行profile.d目录下所有sh文件</p>
+</li>
+<li><p><code>~/.bash_profile</code>：针对单个用户</p>
+<p>追加PATH：在PATH变量后面加上了<code>:$HOME/bin</code>这个目录</p>
+<p>调用~/.bashrc</p>
+</li>
+<li><p><code>~/.bashrc</code>：针对单个用户</p>
+<p>定义别名</p>
+</li>
+<li><p><code>/etc/bashrc</code>：针对所有用户</p>
+<p>定义别名和PS1</p>
+<p>会重复调用PATH，umask啥的，但是只针对no login shell的情况，就是直接敲sh进入一个shell的情况</p>
+</li>
+</ul>
+<h2 id="其他配置文件和登录信息"><a href="#其他配置文件和登录信息" class="headerlink" title="其他配置文件和登录信息"></a>其他配置文件和登录信息</h2><ul>
+<li><p>注销时的配置文件：~/.bash_logout</p>
+</li>
+<li><p>历史命令的保存文件：~/.bash_history</p>
+</li>
+<li><p>登录信息：</p>
+<p>本地终端欢迎信息：/etc/issue</p>
+<p>远程终端欢迎信息：/etc/issue.net</p>
+<ul>
+<li>转义符在该文件中不能使用，只能纯文本登录</li>
+<li>是否生效由ssh的配置文件<code>/etc/ssh/sshd/config</code>决定，要加入<code>Banner /etc/issue.net</code>，重启ssh服务生效：<code>service sshd restart</code></li>
+</ul>
+</li>
+<li><p>登陆后的欢迎信息：/etc/motd（本地和远程都适用）</p>
+<p>推荐特效字符定制网站<a target="_blank" rel="noopener" href="http://network-science.de/ascii/">ASCII Generator</a></p>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>shell基础</p><p><a href="https://jack1024.link/2020/03/06/shell基础/">https://jack1024.link/2020/03/06/shell基础/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-03-06</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a><a class="link-muted mr-2" rel="tag" href="/tags/Shell/">Shell</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/03/06/shell%E7%BC%96%E7%A8%8B/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">shell编程</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/03/06/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"><span class="level-item">linux的文件系统管理</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "6dcf078fb9546ba2347d808f4006f914",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Shell脚本的执行方式"><span class="level-left"><span class="level-item">1</span><span class="level-item">Shell脚本的执行方式</span></span></a></li><li><a class="level is-mobile" href="#Bash的基本功能"><span class="level-left"><span class="level-item">2</span><span class="level-item">Bash的基本功能</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#history"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">history</span></span></a></li><li><a class="level is-mobile" href="#TAB键"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">TAB键</span></span></a></li><li><a class="level is-mobile" href="#命令别名-amp-常用快捷键"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">命令别名&amp;常用快捷键</span></span></a></li><li><a class="level is-mobile" href="#输入-amp-输出重定向"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">输入&amp;输出重定向</span></span></a></li><li><a class="level is-mobile" href="#多命令顺序执行-amp-管道符"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">多命令顺序执行&amp;管道符</span></span></a></li><li><a class="level is-mobile" href="#通配符-amp-其他特殊符号"><span class="level-left"><span class="level-item">2.6</span><span class="level-item">通配符&amp;其他特殊符号</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Bash的变量"><span class="level-left"><span class="level-item">3</span><span class="level-item">Bash的变量</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#用户自定义变量"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">用户自定义变量</span></span></a></li><li><a class="level is-mobile" href="#环境变量"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">环境变量</span></span></a></li><li><a class="level is-mobile" href="#位置参数变量"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">位置参数变量</span></span></a></li><li><a class="level is-mobile" href="#位置参数变量-1"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">位置参数变量</span></span></a></li><li><a class="level is-mobile" href="#预定义变量"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">预定义变量</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Bash的运算"><span class="level-left"><span class="level-item">4</span><span class="level-item">Bash的运算</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#数值运算与运算符"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">数值运算与运算符</span></span></a></li><li><a class="level is-mobile" href="#变量测试与内容替换"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">变量测试与内容替换</span></span></a></li></ul></li><li><a class="level is-mobile" href="#环境变量配置文件"><span class="level-left"><span class="level-item">5</span><span class="level-item">环境变量配置文件</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#环境变量配置文件简介"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">环境变量配置文件简介</span></span></a></li><li><a class="level is-mobile" href="#环境变量配置文件作用"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">环境变量配置文件作用</span></span></a></li><li><a class="level is-mobile" href="#其他配置文件和登录信息"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">其他配置文件和登录信息</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/image-20210317103120855.png" alt="实体机安装Arch"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-14T01:18:48.000Z">2021-06-14</time></p><p class="title"><a href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/">实体机安装Arch</a></p><p class="categories"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/English-Grammar.jpg" alt="英语语法框架构建"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-17T07:49:41.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/">英语语法框架构建</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="经济学原理学习"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T13:49:01.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">经济学原理学习</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="基金理财"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T09:31:39.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/">基金理财</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="股票入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T06:58:12.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/">股票入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2021 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>java-JVM - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Java为什么是一种半编译半解释的语言？Java为什么能跨平台运行？Java的反射，天花乱坠的各种框架是怎么构建起来的？要了解这些东西，java虚拟机时绝对的重点，每一个Java程序员都需要深入理解它。"><meta property="og:type" content="blog"><meta property="og:title" content="java-JVM"><meta property="og:url" content="https://jack1024.link/2021/01/02/java-JVM/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="Java为什么是一种半编译半解释的语言？Java为什么能跨平台运行？Java的反射，天花乱坠的各种框架是怎么构建起来的？要了解这些东西，java虚拟机时绝对的重点，每一个Java程序员都需要深入理解它。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101162218.jpg"><meta property="article:published_time" content="2021-01-02T07:59:28.000Z"><meta property="article:modified_time" content="2021-06-16T10:27:58.861Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Java"><meta property="article:tag" content="JavaSE"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101162218.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jack1024.link/2021/01/02/java-JVM/"},"headline":"java-JVM","image":["https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101162218.jpg"],"datePublished":"2021-01-02T07:59:28.000Z","dateModified":"2021-06-16T10:27:58.861Z","author":{"@type":"Person","name":"Jack1024"},"publisher":{"@type":"Organization","name":"JACK's BLOG","logo":{"@type":"ImageObject","url":"https://jack1024.link/image/logoko.png"}},"description":"Java为什么是一种半编译半解释的语言？Java为什么能跨平台运行？Java的反射，天花乱坠的各种框架是怎么构建起来的？要了解这些东西，java虚拟机时绝对的重点，每一个Java程序员都需要深入理解它。"}</script><link rel="canonical" href="https://jack1024.link/2021/01/02/java-JVM/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101162218.jpg" alt="java-JVM"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-01-02T07:59:28.000Z" title="2021-1-2 3:59:28 ├F10: PM┤">2021-01-02</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-06-16T10:27:58.861Z" title="2021-6-16 6:27:58 ├F10: PM┤">2021-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">18 minutes read (About 2751 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">java-JVM</h1><div class="content"><p><strong>JVM重点问题</strong></p>
+<p><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101184141.png"></p>
+<ol>
+<li>JVM位置</li>
+<li>JVM体系结构</li>
+<li>类加载器</li>
+<li>双亲委派机制</li>
+<li>沙箱安全机制</li>
+<li>Native</li>
+<li>PC寄存器</li>
+<li>方法区</li>
+<li>三种JVM</li>
+<li>栈</li>
+<li>堆</li>
+<li>新生区，老年区</li>
+<li>永久区</li>
+<li>堆内存调优</li>
+<li>GC机制（常用算法）</li>
+<li>JMM</li>
+<li>单点登录（SSO）</li>
+</ol>
+<h2 id="JVM位置"><a href="#JVM位置" class="headerlink" title="JVM位置"></a>JVM位置</h2><p><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101184005.png"></p>
+<h2 id="JVM体系结构（JVM内存模型）"><a href="#JVM体系结构（JVM内存模型）" class="headerlink" title="JVM体系结构（JVM内存模型）"></a>JVM体系结构（JVM内存模型）</h2><p>jvm内存模型主要分为5个部分，是java在运行时，jvm虚拟机拿到了自己能支配的内存之后，将内存进行了割分</p>
+<ul>
+<li>栈：存储函数运行中的一些引用类型的变量&amp;基础类型变量</li>
+<li>堆：存储对象，被栈中的引用类型变量所指向</li>
+<li>本地方法栈：存储C++的native方法运行时的栈区<ul>
+<li>java中有两种方法：java方法和本地方法</li>
+<li>java方法由java语言编写，编译为class文件，运行时放在jvm中</li>
+<li>本地方法由其他语言编写，编译成和处理器相关的机器代码，本地方法保存在动态链接库中，在windows系统中就是.dll文件中，各个平台都有自己独有的</li>
+</ul>
+</li>
+<li>程序计数器：指向程序当前运行的位置</li>
+<li>方法区：存储元数据信息。static，cloader等</li>
+</ul>
+<p><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210101183226.png"></p>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><ul>
+<li><p>.class文件经过类加载器，初始化，在方法中形成一个Class类型的对象用来做实例化操作</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210102093505.png" style="zoom:80%;" /></li>
+<li><p>类加载器分类：（层次从低到高）</p>
+<ul>
+<li>应用程序加载器：AppClassLoader：<strong>记载自定义的类</strong></li>
+<li>扩展加载器：ExtClassCloader：<strong>加载java扩展库中的类</strong></li>
+<li>引导类(根)加载器：由C++实现，<strong>加载java核心库rt.jar，创建扩展类加载器和应用程序类加载器</strong></li>
+<li>虚拟机自带的加载器：</li>
+</ul>
+</li>
+</ul>
+<h2 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h2><ul>
+<li>目的：为了保证安全，重点理解委派</li>
+<li>双亲<strong>委派</strong>机制原理：类加载器收到类加载请求——》一直向上(父类)委托，直到根加载器——》引导类加载器检查是否能加载当前这个类——》能加载就是用当前加载器，否则就通知子加载器进行加载——》重复上个步骤知道将类进行加载</li>
+<li>如果最终都没有找到的话，那么会报异常：Class Not Found</li>
+<li>用一个classLoader一直重复getCloader，如果出现了null的情况，那么有两种情况：要么不存在，要么就是C++写的native方法(java无法获取到)</li>
+<li>APP——》EXT——》BOOT（最终执行）</li>
+<li><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20201219114522.png" style="zoom: 50%;" /></li>
+</ul>
+<h2 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h2><ul>
+<li><p>沙箱机制就是一个限制程序运行的环境，通过设置相应的权限。</p>
+</li>
+<li><p>组成沙箱的基本组件：</p>
+<ul>
+<li><p>字节码校验器：确保java类文件遵循java语言规范，帮助java实现内存保护。核心类不会经过字节码校验。</p>
+</li>
+<li><p>类加载器：</p>
+<ul>
+<li><p>在3个方面对java沙箱起作用</p>
+<ul>
+<li>防止恶意代码干涉善意代码，例如双亲委派（自定义String类根本不会生效）</li>
+<li>守护被信任的类库边界</li>
+<li>将代码归入保护域，确定了代码可以进行哪些操作（例如自己的代码调不了C++的库）</li>
+</ul>
+</li>
+<li><p>JVM为不同的类加载器载入的类提供不同的命名空间</p>
+</li>
+<li><p>包含哪些关于沙箱机制类：</p>
+<ul>
+<li>存取控制器（access controller）</li>
+<li>安全管理器（security manager）</li>
+<li>安全软件包（security package）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Native关键字"><a href="#Native关键字" class="headerlink" title="Native关键字"></a>Native关键字</h2><ul>
+<li>凡是带了native关键字的方法，这个方法会调用C库</li>
+<li>带native关键字的方法在执行时会进入本地方法栈，然后调用本地方法接口JNI</li>
+<li>JNI作用：扩展java的使用，融合不同编程语言为java所用。最初融合的是java诞生时如日中天的C和C++</li>
+</ul>
+<h2 id="PC寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h2><ul>
+<li>Program Counter Register</li>
+<li>线程私有</li>
+<li>就是一个指针，指向方法区中的方法字节码（用来存储指向一条即将要执行的指令的地址），在执行引擎读取下一条指令。</li>
+<li>如果执行的是一个native方法，计数器是空的</li>
+</ul>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><ul>
+<li>Method Area</li>
+<li>所有线程共有：所有字段，方法字节码，构造函数，接口代码</li>
+<li>静态变量<code>static</code>，常量<code>final</code>，类信息<code>Class模板</code>(构造方法，接口定义)，运行时的常量池<code>fianl Pool</code>也存在内存中。</li>
+<li>实例变量存在堆内存中</li>
+</ul>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><ul>
+<li><p>先进后出，后进先出</p>
+</li>
+<li><p>举个栗子：</p>
+<ul>
+<li>栈：喝多了吐</li>
+<li>队列：吃多了拉</li>
+</ul>
+</li>
+<li><p>栈内存：主管程序的运行，生命周期，线程同步</p>
+</li>
+<li><p>线程结束，栈内存也就是释放了，程序也就结束了</p>
+</li>
+<li><p>栈中放哪些类型：</p>
+<ul>
+<li>8大基本类型</li>
+<li>对象引用</li>
+<li>实例的方法</li>
+</ul>
+</li>
+<li><p>栈帧：一帧一帧地存储</p>
+<img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/20210102113520.png" style="zoom: 67%;" /></li>
+<li><p>栈满了会报错：StackOverFLowError</p>
+</li>
+</ul>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><ul>
+<li>三种JVM：<ul>
+<li>SUN公司：HotSpot(TM)，我们学习的</li>
+<li>BEA公司：：JRockit</li>
+<li>IBM公司：J0 VM</li>
+</ul>
+</li>
+<li>Heap</li>
+<li>一个JVM只有一个堆内存，堆内存的大小是可以调节的</li>
+<li>类加载器读取的类文件后，一般把什么东西放进堆中？<ul>
+<li>类的实例，实例中的方法，变量，（jdk1.8后的常量）</li>
+<li>保存所有引用类型的真实对象</li>
+</ul>
+</li>
+<li>堆中还要细分为三个区域：<ul>
+<li>新生区（有三个：Eden Space，Survivor1，Survivor2）：轻量级垃圾回收</li>
+<li>养老区：重量级垃圾回收</li>
+<li>永久区</li>
+</ul>
+</li>
+<li>GC垃圾回收主要发生在伊甸园区&amp;养老区</li>
+<li>假设内存满了，会有OOM（java.out.OutOfMemoryError:Java heap space）错误，说明堆内存满了</li>
+<li>JDK8后，永久存储区更名为：元空间</li>
+</ul>
+<h2 id="OOM故障排除"><a href="#OOM故障排除" class="headerlink" title="OOM故障排除"></a>OOM故障排除</h2><ul>
+<li><p>DEBUG太慢了，所以最好能直接定位代码出错行数，可以使用内存快照分析工具：MAT，Jprofiler</p>
+</li>
+<li><p>MAT，Jprofiler作用：</p>
+<ul>
+<li>分析Dump内存文件，快速定位内存泄漏问题</li>
+<li>获得堆中的数据</li>
+<li>获得大的对象</li>
+<li>……</li>
+</ul>
+</li>
+<li><p>使用Jprofiler工具剖析java代码运行过程</p>
+</li>
+<li><p>```shell<br>#-Xms:设置初始化内存分配大小，默认1/64<br>#-Xmx:设置最大分配内存，默认1/4<br>#-XX:+PrintGCDetails:打印GC垃圾回收信息<br>#-XX:+HeapDumpOnOutOfMemoryError:打印OOM信息<br>-Xms8m -Xmx8m -XX:+HeapDumpOnOutOfMemoryError</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  //RunTime类（代表应用程序的运行环境）常用方法</span><br><span class="line">  getRuntime();</span><br><span class="line">  exec(String command);</span><br><span class="line">  freeMemory();//返回java虚拟机中的空闲内存区，字节为单位</span><br><span class="line">  maxMemory();//返回java虚拟机试图使用的最大内存量，字节为单位</span><br><span class="line">  totalMemory();//返回java虚拟机内存总量，字节为单位</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="GC垃圾回收机制见博客Java-GC机制"><a href="#GC垃圾回收机制见博客Java-GC机制" class="headerlink" title="GC垃圾回收机制见博客Java-GC机制"></a>GC垃圾回收机制见博客<a target="_blank" rel="noopener" href="https://jack1024.club/2020/12/21/Java-GC%E6%9C%BA%E5%88%B6/">Java-GC机制</a></h2><h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><ul>
+<li>什么是JMM？Java Memory Model</li>
+<li>究竟什么是JMM，其实JMM和栈，堆这些JVM内存模型的东西完全不是一个概念的东西。当你第一次听到Java Memory Medel时候，肯定会首先想到这些吧，但是不对。</li>
+<li><strong>实际上JMM是一个抽象的概念，</strong></li>
+<li><strong>在物理实现上，java采用volatile关键字</strong>，该关键字用于修饰变量表示该变量在不同线程中共享。导致编译器和运行时都会注意到该变量是共享的，因此不会对该变量进行重排序。</li>
+</ul>
+<p><strong>JMM实际上就时缓存一致性协议，用于定义数据读写规则</strong></p>
+<ul>
+<li><p><strong>JMM的8种交互操作：</strong></p>
+<ul>
+<li><strong>lock</strong> （锁定）：作用于主内存的变量，把一个变量标识为线程独占状态</li>
+<li><strong>unlock</strong> （解锁）：作用于主内存的变量，它把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定</li>
+<li><strong>read</strong> （读取）：作用于主内存变量，它把一个变量的值从主内存传输到线程的工作内存中，以便随后的load动作使用</li>
+<li><strong>load</strong> （载入）：作用于工作内存的变量，它把read操作从主存中变量放入工作内存中</li>
+<li><strong>use</strong> （使用）：作用于工作内存中的变量，它把工作内存中的变量传输给执行引擎，每当虚拟机遇到一个需要使用到变量的值，就会使用到这个指令</li>
+<li><strong>assign</strong> （赋值）：作用于工作内存中的变量，它把一个从执行引擎中接受到的值放入工作内存的变量副本中</li>
+<li><strong>store</strong> （存储）：作用于主内存中的变量，它把一个从工作内存中一个变量的值传送到主内存中，以便后续的write使用</li>
+<li><strong>write</strong> （写入）：作用于主内存中的变量，它把store操作从工作内存中得到的变量的值放入主内存的变量中</li>
+</ul>
+</li>
+<li><p><strong>JVM对这8种指令定义了如下的规则：</strong></p>
+<ul>
+<li>不允许read和load、store和write操作之一单独出现。即使用了read必须load，使用了store必须write</li>
+<li>不允许线程丢弃他最近的assign操作，即工作变量的数据改变了之后，必须告知主存</li>
+<li>不允许一个线程将没有assign的数据从工作内存同步回主内存</li>
+<li>一个新的变量必须在主内存中诞生，不允许工作内存直接使用一个未被初始化的变量。就是怼变量实施use、store操作之前，必须经过assign和load操作</li>
+<li>一个变量同一时间只有一个线程能对其进行lock。多次lock后，必须执行相同次数的unlock才能解锁</li>
+<li>如果对一个变量进行lock操作，会清空所有工作内存中此变量的值，在执行引擎使用这个变量前，必须重新load或assign操作初始化变量的值</li>
+<li>如果一个变量没有被lock，就不能对其进行unlock操作。也不能unlock一个被其他线程锁住的变量</li>
+<li>对一个变量进行unlock操作之前，必须把此变量同步回主内存</li>
+</ul>
+</li>
+</ul>
+<p>说白了，JMM就是一个关于操作系统读写操作控制的机制，说到这里，过几天要回顾操作系统的知识了。。。。哎</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>java-JVM</p><p><a href="https://jack1024.link/2021/01/02/java-JVM/">https://jack1024.link/2021/01/02/java-JVM/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-01-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a><a class="link-muted mr-2" rel="tag" href="/tags/JavaSE/">JavaSE</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/01/02/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">javaweb-前后端分离史</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/01/01/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/"><span class="level-item">一点想法-2021-01-01</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "86e05995bda57552816d918368e4d997",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#JVM位置"><span class="level-left"><span class="level-item">1</span><span class="level-item">JVM位置</span></span></a></li><li><a class="level is-mobile" href="#JVM体系结构（JVM内存模型）"><span class="level-left"><span class="level-item">2</span><span class="level-item">JVM体系结构（JVM内存模型）</span></span></a></li><li><a class="level is-mobile" href="#类加载器"><span class="level-left"><span class="level-item">3</span><span class="level-item">类加载器</span></span></a></li><li><a class="level is-mobile" href="#双亲委派机制"><span class="level-left"><span class="level-item">4</span><span class="level-item">双亲委派机制</span></span></a></li><li><a class="level is-mobile" href="#沙箱安全机制"><span class="level-left"><span class="level-item">5</span><span class="level-item">沙箱安全机制</span></span></a></li><li><a class="level is-mobile" href="#Native关键字"><span class="level-left"><span class="level-item">6</span><span class="level-item">Native关键字</span></span></a></li><li><a class="level is-mobile" href="#PC寄存器"><span class="level-left"><span class="level-item">7</span><span class="level-item">PC寄存器</span></span></a></li><li><a class="level is-mobile" href="#方法区"><span class="level-left"><span class="level-item">8</span><span class="level-item">方法区</span></span></a></li><li><a class="level is-mobile" href="#栈"><span class="level-left"><span class="level-item">9</span><span class="level-item">栈</span></span></a></li><li><a class="level is-mobile" href="#堆"><span class="level-left"><span class="level-item">10</span><span class="level-item">堆</span></span></a></li><li><a class="level is-mobile" href="#OOM故障排除"><span class="level-left"><span class="level-item">11</span><span class="level-item">OOM故障排除</span></span></a></li><li><a class="level is-mobile" href="#GC垃圾回收机制见博客Java-GC机制"><span class="level-left"><span class="level-item">12</span><span class="level-item">GC垃圾回收机制见博客Java-GC机制</span></span></a></li><li><a class="level is-mobile" href="#JMM"><span class="level-left"><span class="level-item">13</span><span class="level-item">JMM</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/image-20210317103120855.png" alt="实体机安装Arch"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-14T01:18:48.000Z">2021-06-14</time></p><p class="title"><a href="/2021/06/14/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85Arch/">实体机安装Arch</a></p><p class="categories"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/English-Grammar.jpg" alt="英语语法框架构建"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-17T07:49:41.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/">英语语法框架构建</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="经济学原理学习"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T13:49:01.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">经济学原理学习</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="基金理财"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T09:31:39.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E5%9F%BA%E9%87%91%E7%90%86%E8%B4%A2/">基金理财</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/"><img src="https://gitee.com/yangfanjack/blogimage/raw/master/img/cheapest-online-economics-degree.jpg" alt="股票入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-05-15T06:58:12.000Z">2021-05-15</time></p><p class="title"><a href="/2021/05/15/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/">股票入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2021 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
