@@ -1,0 +1,257 @@
+sup {
+	position: relative;
+	top: -0.4em;
+	vertical-align: baseline;
+}
+sub {
+	position: relative;
+	top: 0.4em;
+	vertical-align: baseline;
+}
+a:link {text-decoration:none;}
+a:visited {text-decoration:none;}
+@media screen and (min-device-pixel-ratio:0), (-webkit-min-device-pixel-ratio:0), (min--moz-device-pixel-ratio: 0) { .view { font-size:10em; transform:scale(0.1); -moz-transform:scale(0.1); -webkit-transform:scale(0.1); -moz-transform-origin:top left; -webkit-transform-origin:top left; } }
+.layer { }.ie { font-size: 1pt; }
+.ie body { font-size: 12em; }
+.stl_01 {
+	position: absolute;
+	white-space: nowrap;
+}
+.stl_02 {
+	height: 70.08334em;
+	font-size: 1em;
+	margin: 0em;
+	line-height: 0.0em;
+	display: block;
+	border-style: none;
+	width: 49.58333em;
+}
+.stl_03 {
+	position: relative;
+}
+.stl_04 {
+	position: absolute;
+	left: 0em;
+	top: 0em;
+}
+.stl_05 {
+	position: relative;
+	width: 49.58333em;
+}
+.stl_06 {
+	height: 7.008333em;
+}
+.ie .stl_06 {
+	height: 70.08334em;
+}
+@font-face {
+	font-family:"MMPWKS+MicrosoftYaHei-Bold";
+	src:url("3371fe3b-0000-0000-0000-000000000000.woff") format("woff");
+}
+.stl_07 {
+	font-size: 1.829167em;
+	font-family: "MMPWKS+MicrosoftYaHei-Bold", "Times New Roman";
+	color: #44546B;
+}
+.stl_08 {
+	line-height: 1.041992em;
+}
+.stl_09 {
+	letter-spacing: 0.0004em;
+}
+
+.ie .stl_09 {
+	letter-spacing: 0.0125px;
+}
+@font-face {
+	font-family:"DIKHKL+MicrosoftYaHei";
+	src:url("1b0cfbf9-0000-0000-0000-000000000000.woff") format("woff");
+}
+.stl_10 {
+	font-size: 1em;
+	font-family: "DIKHKL+MicrosoftYaHei", "Times New Roman";
+	color: #525252;
+}
+.stl_11 {
+	letter-spacing: -0.0036em;
+}
+
+.ie .stl_11 {
+	letter-spacing: -0.0582px;
+}
+@font-face {
+	font-family:"AJAHDD+MicrosoftYaHeiLight";
+	src:url("ec0f8afa-0000-0000-0000-000000000000.woff") format("woff");
+}
+.stl_12 {
+	font-size: 0.870833em;
+	font-family: "AJAHDD+MicrosoftYaHeiLight", "Times New Roman";
+	color: #525252;
+}
+.stl_13 {
+	letter-spacing: 0em;
+}
+
+.ie .stl_13 {
+	letter-spacing: 0px;
+}
+.stl_14 {
+	letter-spacing: -0.2519em;
+}
+
+.ie .stl_14 {
+	letter-spacing: -3.5103px;
+}
+.stl_15 {
+	letter-spacing: -1.007em;
+}
+
+.ie .stl_15 {
+	letter-spacing: -14.0303px;
+}
+.stl_16 {
+	letter-spacing: -0.046em;
+}
+
+.ie .stl_16 {
+	letter-spacing: -0.6408px;
+}
+.stl_17 {
+	letter-spacing: -0.0905em;
+}
+
+.ie .stl_17 {
+	letter-spacing: -1.2611px;
+}
+.stl_18 {
+	letter-spacing: -0.1571em;
+}
+
+.ie .stl_18 {
+	letter-spacing: -2.1883px;
+}
+.stl_19 {
+	font-size: 1.079167em;
+	font-family: "MMPWKS+MicrosoftYaHei-Bold", "Times New Roman";
+	color: #FFFFFF;
+}
+.stl_20 {
+	letter-spacing: -0.0003em;
+}
+
+.ie .stl_20 {
+	letter-spacing: -0.0054px;
+}
+.stl_21 {
+	font-size: 1em;
+	font-family: "DIKHKL+MicrosoftYaHei", "Times New Roman";
+	color: #585858;
+}
+.stl_22 {
+	letter-spacing: 0.0005em;
+}
+
+.ie .stl_22 {
+	letter-spacing: 0.0083px;
+}
+.stl_23 {
+	font-size: 0.870833em;
+	font-family: "DIKHKL+MicrosoftYaHei", "Times New Roman";
+	color: #585858;
+}
+.stl_24 {
+	letter-spacing: -0.0004em;
+}
+
+.ie .stl_24 {
+	letter-spacing: -0.0062px;
+}
+.stl_25 {
+	letter-spacing: 0.0018em;
+}
+
+.ie .stl_25 {
+	letter-spacing: 0.0255px;
+}
+.stl_26 {
+	letter-spacing: 0.001em;
+}
+
+.ie .stl_26 {
+	letter-spacing: 0.014px;
+}
+.stl_27 {
+	letter-spacing: 0.0047em;
+}
+
+.ie .stl_27 {
+	letter-spacing: 0.0662px;
+}
+.stl_28 {
+	letter-spacing: 0.0029em;
+}
+
+.ie .stl_28 {
+	letter-spacing: 0.041px;
+}
+.stl_29 {
+	letter-spacing: 0.0036em;
+}
+
+.ie .stl_29 {
+	letter-spacing: 0.0504px;
+}
+.stl_30 {
+	letter-spacing: -0.0008em;
+}
+
+.ie .stl_30 {
+	letter-spacing: -0.0115px;
+}
+.stl_31 {
+	letter-spacing: 0.0011em;
+}
+
+.ie .stl_31 {
+	letter-spacing: 0.0147px;
+}
+.stl_32 {
+	letter-spacing: -0.0075em;
+}
+
+.ie .stl_32 {
+	letter-spacing: -0.1049px;
+}
+.stl_33 {
+	letter-spacing: 0.0022em;
+}
+
+.ie .stl_33 {
+	letter-spacing: 0.0307px;
+}
+.stl_34 {
+	letter-spacing: -0.0051em;
+}
+
+.ie .stl_34 {
+	letter-spacing: -0.0705px;
+}
+.stl_35 {
+	letter-spacing: 0.0044em;
+}
+
+.ie .stl_35 {
+	letter-spacing: 0.0609px;
+}
+.stl_36 {
+	font-size: 0.870833em;
+	font-family: "DIKHKL+MicrosoftYaHei", "Times New Roman";
+	color: #595959;
+}
+.stl_37 {
+	letter-spacing: 0.0038em;
+}
+
+.ie .stl_37 {
+	letter-spacing: 0.0524px;
+}
