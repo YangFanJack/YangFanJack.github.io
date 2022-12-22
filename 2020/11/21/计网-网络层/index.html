@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>计网-网络层 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="网络层提供的两种服务；网际协议IP；网际控制报文协议；IP多播；虚拟专用网VPN；网络地址转换NAT"><meta property="og:type" content="blog"><meta property="og:title" content="计网-网络层"><meta property="og:url" content="https://yangfanjack.github.io/2020/11/21/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="网络层提供的两种服务；网际协议IP；网际控制报文协议；IP多播；虚拟专用网VPN；网络地址转换NAT"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101161244.jpg"><meta property="article:published_time" content="2020-11-21T07:06:46.000Z"><meta property="article:modified_time" content="2022-12-22T02:37:28.603Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="网络"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101161244.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yangfanjack.github.io/2020/11/21/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/"},"headline":"JACK's BLOG","image":["http://rn7xzghaf.hb-bkt.clouddn.com/img20210101161244.jpg"],"datePublished":"2020-11-21T07:06:46.000Z","dateModified":"2022-12-22T02:37:28.603Z","author":{"@type":"Person","name":"Jack1024"},"description":"网络层提供的两种服务；网际协议IP；网际控制报文协议；IP多播；虚拟专用网VPN；网络地址转换NAT"}</script><link rel="canonical" href="https://yangfanjack.github.io/2020/11/21/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/plan">Plan</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101161244.jpg" alt="计网-网络层"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-11-21T07:06:46.000Z" title="2020-11-21 3:06:46 ├F10: PM┤">2020-11-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-22T02:37:28.603Z" title="2022-12-22 10:37:28 ├F10: AM┤">2022-12-22</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">25 minutes read (About 3705 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">计网-网络层</h1><div class="content"><h2 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h2><p>争论的焦点是<strong>可靠交付应当有谁来负责</strong>？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。</p>
+<p>网络层应该向运输层提供怎样的服务？分组交换网提供两种传输服务:</p>
+<ul>
+<li><strong>虚电路服务</strong>：面向连接的，虚电路表示这只是一条逻辑上的连接，和电路交换的一真正的连接只是类似，但并不完全一样。是一种<strong>使所有分组顺序到达目的端</strong>的<strong>可靠性</strong>数据传输服务。</li>
+<li><strong>数据报服务</strong>：无连接的，网络在发送分组时不需要先建立连接，每一个分组独立发送，与其前后的分组无关。是一种<strong>使分组按照独立路由到达目的端</strong>的数据传输服务，比虚电路更加灵活。</li>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201122213200.png" style="zoom:80%;margin-left:0px;" /></li>
+</ul>
+<h2 id="网际协议IP"><a href="#网际协议IP" class="headerlink" title="网际协议IP"></a>网际协议IP</h2><h3 id="虚拟互连网"><a href="#虚拟互连网" class="headerlink" title="虚拟互连网"></a>虚拟互连网</h3><ul>
+<li><p>网络互联的中间设备</p>
+<ul>
+<li>物理层中继系统：转发器，集线器</li>
+<li>数据链路层终极系统：网桥，交换机</li>
+<li>网络层中中继系统：路由器</li>
+<li>网络层以上的中继系统：网关</li>
+</ul>
+</li>
+<li><p>虚拟互连网也就是逻辑互联网络，就是互连起来的各种物理网络的异构性本来就是客观存在的，但是我们利用IP协议就可以使这些性能各异的网络从用户看起来就好像是一个统一的网络。</p>
+</li>
+<li><p><strong>网络层4个协议</strong></p>
+<ul>
+<li>IP协议：</li>
+<li>ARP/RARP协议：</li>
+<li>ICMP协议：</li>
+<li>IGMP协议：</li>
+</ul>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201122215345.png" style="zoom:50%;margin-left:0px;" /></li>
+</ul>
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><ul>
+<li><p>分层：分网络部分和主机部分</p>
+</li>
+<li><p>分类：A类（8+24），B类（16+16），C类（24+8），D类（组播），E类（研究）</p>
+</li>
+<li><p>二进制，十进制</p>
+<ul>
+<li><table>
+<thead>
+<tr>
+<th>1</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>2</td>
+</tr>
+<tr>
+<td>100</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>8</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>16</td>
+</tr>
+<tr>
+<td>100000</td>
+<td>32</td>
+</tr>
+<tr>
+<td>1000000</td>
+<td>64</td>
+</tr>
+<tr>
+<td>10000000</td>
+<td>128</td>
+</tr>
+<tr>
+<td>11000000</td>
+<td>192</td>
+</tr>
+<tr>
+<td>11100000</td>
+<td>224</td>
+</tr>
+<tr>
+<td>11110000</td>
+<td>240</td>
+</tr>
+<tr>
+<td>11111000</td>
+<td>248</td>
+</tr>
+<tr>
+<td>11111100</td>
+<td>252</td>
+</tr>
+<tr>
+<td>11111110</td>
+<td>254</td>
+</tr>
+<tr>
+<td>11111111</td>
+<td>255</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>A类 从1.0.0.0 到126.255.255.255<br>B类 从128.0.0.0到191.255.255.255<br>C类 从192.0.0.0到223.255.255.255</p>
+</li>
+<li><p>在IP地址3种主要类型里，各保留了3个区域作为<strong>私有地址</strong>，其地址范围如下：</p>
+<p>A类地址：10.0.0.0～10.255.255.255</p>
+<p>B类地址：172.16.0.0～172.31.255.255</p>
+<p>C类地址：192.168.0.0～192.168.255.255</p>
+<p><strong>注意：网段中主机部分不全为1，不全为0；全0代表这个网段，全1代表网段中的广播</strong></p>
+</li>
+<li><p>几个特殊ip地址：</p>
+<ul>
+<li>0.0.0.0：不是一个真正意义上的IP地址了。它表示的是这样一个集合：所有不清楚的主机和目的网络。</li>
+</ul>
+</li>
+<li><p>255.255.255.255：限制广播地址</p>
+<ul>
+<li><p>244.0.0.1：组播地址</p>
+</li>
+<li><p>127.0.0.1：本地回环地址</p>
+</li>
+<li><p>169.254.0.0：一般开启了dhcp服务的设备但又无法获取到dhcp的会随机使用这个网段的ip</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="划分子网和构建超网"><a href="#划分子网和构建超网" class="headerlink" title="划分子网和构建超网"></a>划分子网和构建超网</h3><ul>
+<li><p>子网掩码是一个32位地址，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B1%80%E5%9F%9F%E7%BD%91/98626">局域网</a>上，还是在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B9%BF%E5%9F%9F%E7%BD%91/422004">广域网</a>上。用来判断自己和目标地址是否在一个网段、</p>
+</li>
+<li><p><strong>子网划分</strong>：解决IPV4不够用的情况</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124084545.png" style="zoom:67%;margin-left:0px;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124083233.png" style="zoom:67%;margin-left:0px;" /></li>
+<li><p>C类地址分成四个子网：</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124083233.png" style="zoom:67%;margin-left:0px;" />
+
+<p>点到点网络的子网掩码是X.X.X.252</p>
+</li>
+<li><p><strong>变长子网划分：</strong>允许把子网继续划分为更小的网络</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124093444.png" style="zoom:67%;margin-left:0px;" /></li>
+<li><p>超网：</p>
+<p>将多个子网合并为一个网</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124094613.png" style="zoom:80%;margin-left:0px;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124094617.png" style="zoom:80%;margin-left:0px;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124101306.png" style="zoom:67%;margin-left:0px;" /></li>
+</ul>
+<h3 id="IP地址和硬件mac地址"><a href="#IP地址和硬件mac地址" class="headerlink" title="IP地址和硬件mac地址"></a>IP地址和硬件mac地址</h3><ul>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124101437.png" style="zoom:50%;margin-left:0px;" /></li>
+<li><p>ip地址决定了数据包最终要到哪一个计算机，mac地址决定了下一跳给谁</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124102027.png" style="zoom:80%;margin-left:0px;" /></li>
+<li><p><strong>同一子网和同一网段可以看作一个意思</strong></p>
+</li>
+<li><p>代理服务器控制那些计算机能上网：同一网段可以用mac地址控制，但是不同网段只能通过ip地址控制。</p>
+</li>
+<li><p><strong>ARP协议：</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124153154.png" style="zoom: 67%;margin-left:0px;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124130747.png" style="zoom: 50%;margin-left:0px;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124153158.png" style="zoom:67%;margin-left:0px;" /></li>
+<li><p><strong>ARP欺骗：</strong></p>
+<p>同一局域网里面的两台主机之间相互通信是通过Mac地址寻址的，而如果两台主机若不是处于同一子网里面，则在通信的时候会相互将数据发送给各自的路由器网关，通过网关的IP寻址以达到通信目的。但是网关和自己局域网里面的主机通信的时候还是依靠Mac地址寻址的，所以如果我们要把自己攻击机伪造成网关达到欺骗作用，就应该把目标主机上的网关Mac地址缓存改为攻击机的Mac地址（这就可以通过伪造ARP报文来实现）</p>
+</li>
+<li><p>逆向ARP：计算机请求ip地址的过程</p>
+</li>
+</ul>
+<h3 id="IP数据报格式"><a href="#IP数据报格式" class="headerlink" title="IP数据报格式"></a>IP数据报格式</h3><ul>
+<li><p>由<strong>首部</strong>和<strong>数据</strong>两部分组成</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124160215.jpg" style="zoom:100%;margin-left:0px;" /></li>
+</ul>
+<h3 id="IP转发分组的流程"><a href="#IP转发分组的流程" class="headerlink" title="IP转发分组的流程"></a>IP转发分组的流程</h3><ul>
+<li>数据路由：路由器在不同网段转发数据包</li>
+<li>网络畅通的条件：能去能回<ul>
+<li>沿途路由器必须知道到目标网络下一跳给哪个接口</li>
+<li>沿途路由器必须知道到源网络下一跳给哪个接口</li>
+</ul>
+</li>
+</ul>
+<h2 id="网际控制报文协议ICMP协议"><a href="#网际控制报文协议ICMP协议" class="headerlink" title="网际控制报文协议ICMP协议"></a>网际控制报文协议ICMP协议</h2><ul>
+<li><p>为了提高IP数据包交付成功的机会，在网络层使用了网际控制报文协议ICMP</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124204747.png" style="zoom:80%;margin-left:0px;" /></li>
+<li><p>报告的错误：终点不可达；原点抑制；时间超过；参数问题；改变路由（重定向）</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124205206.png" style="zoom:80%;margin-left:0px;" /></li>
+<li><p>ping和pathping命令</p>
+</li>
+</ul>
+<h2 id="路由协议"><a href="#路由协议" class="headerlink" title="路由协议"></a>路由协议</h2><h3 id="IGP-内部网关协议"><a href="#IGP-内部网关协议" class="headerlink" title="IGP(内部网关协议)"></a>IGP(内部网关协议)</h3><h4 id="静态路由协议：管理员手工配置路由信息"><a href="#静态路由协议：管理员手工配置路由信息" class="headerlink" title="静态路由协议：管理员手工配置路由信息"></a>静态路由协议：管理员手工配置路由信息</h4><h4 id="动态路由协议RIP：距离向量路由算法，是应用层协议"><a href="#动态路由协议RIP：距离向量路由算法，是应用层协议" class="headerlink" title="动态路由协议RIP：距离向量路由算法，是应用层协议"></a>动态路由协议RIP：距离向量路由算法，是应用层协议</h4><ul>
+<li><p>周期性广播(30s)，可以根据路由器状态变化动态的改变路由表</p>
+</li>
+<li><p>路由器只掌握物理相连的邻居及链路费用</p>
+</li>
+<li><p>动态地选择最佳路径</p>
+</li>
+<li><p>依据路由器跳数选择最佳路径</p>
+</li>
+<li><p>最大跳数16跳</p>
+</li>
+<li><p>网关就是默认路由</p>
+</li>
+<li><p> 用命令来配置动态路由协议RIP：</p>
+</li>
+</ul>
+<p>  router rip</p>
+<p>  network （注意这里的ip地址要看该路由器所连接的几个网段具体属于ABC哪类网，来决定要配置几次）</p>
+  <img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124212811.png" style="zoom: 50%;margin-left:0px;" />
+
+<h4 id="动态路由协议OSPF：链路状态路由算法，是传输层协议"><a href="#动态路由协议OSPF：链路状态路由算法，是传输层协议" class="headerlink" title="动态路由协议OSPF：链路状态路由算法，是传输层协议"></a>动态路由协议OSPF：链路状态路由算法，是传输层协议</h4><ul>
+<li><p>所有路由器掌握完整的网路拓扑和链路费用信息</p>
+</li>
+<li><p>依据带宽来选择最佳路径</p>
+</li>
+<li><p>支持多区域，触发式更新</p>
+</li>
+<li><p>三个表：邻居表，链路状态表，计算路由表</p>
+</li>
+<li><p>用命令来配置动态路由协议OSPF：</p>
+<p>router rip</p>
+<p>network （注意这里的ip地址要看该路由器所连接的几个网段具体属于ABC哪类网，来决定要配置几次）</p>
+</li>
+</ul>
+<h3 id="EGP-外部网关协议-和IGP-外部网关协议"><a href="#EGP-外部网关协议-和IGP-外部网关协议" class="headerlink" title="EGP(外部网关协议)和IGP(外部网关协议)"></a>EGP(外部网关协议)和IGP(外部网关协议)</h3><ul>
+<li>IGP：一个自治系统AS内使用的路由选择协议<ul>
+<li>BGP协议 ：发言人机制</li>
+</ul>
+</li>
+<li>EGP：在自治系统AS之间使用的路由选择协议<ul>
+<li>RIP协议</li>
+<li>OSPF协议</li>
+</ul>
+</li>
+</ul>
+<h2 id="主机A（135-24-25-23）第一次和不同网段的主机B（135-24-52-123）通信完整过程（数据链路层和网络层）"><a href="#主机A（135-24-25-23）第一次和不同网段的主机B（135-24-52-123）通信完整过程（数据链路层和网络层）" class="headerlink" title="主机A（135.24.25.23）第一次和不同网段的主机B（135.24.52.123）通信完整过程（数据链路层和网络层）"></a>主机A（135.24.25.23）第一次和不同网段的主机B（135.24.52.123）通信完整过程（数据链路层和网络层）</h2><ul>
+<li>A封装好要发送的数据，在要写目的地址时</li>
+<li>A会用子网掩码将自己和目的的ip地址做与运算，判断A和B是否在一个网段，如果不在一个网段，A就知道该用网关把自己的数据传递给B，所以A会广播一个ARP包（连带A自己的ip和mac地址）来获取网关的mac地址</li>
+<li>网关收到ARP包后，先把A的ip和mac地址记录下来，然后把自己的ip和mac地址封装在ARP包中，发送给A</li>
+<li>A封装报文，源mac地址写A自己的mac地址，目标mac地址写网关mac地址，源ip地址写A自己的ip地址，目标ip地址写B的ip地址。</li>
+<li>网关收到报文后，发现是给我自己发的，就开始解包，解开后，通过目标ip地址发现是给另一个网段的主机发送的</li>
+<li>此时如果网关本身就是路由器就直接把数据报把送给吓一跳路由器，如果网关是普通的PC，那么就发送给路由器，由路由器发送给下一跳路由器，目标mac地址写下一跳路由器的mac地址。</li>
+<li>（注意：在公网环境中，从源主机向目标主机请求发送数据时，源ip地址和目的ip地址在传输过程中是不需要改变的，但是由于大部分的情况是源主机是位于局域网环境中，所以，考虑NAT的因素，需要在从保留地址到公网ip的变化中同时也要改变源ip的地址。此时，对于目标ip地址，肯定是公网ip，因为不可能用局域网ip去访问另一个网段中的局域网ip）</li>
+<li>历经千辛万苦，报文段终于到达了B的主机的路由器，路由器发送报文到B所在的网段的网关</li>
+<li>C网段的网关解包后发现不是给自己的，而是给自己网段内的B主机（这里再次用arp协议来实现同一个网段内的通信，先用arp发送一个广播，得到主机B的ip和mac地址，然后就可以在数据链路层中完成同一个网段的通信），就发送给了C主机</li>
+</ul>
+<p><strong>另一个个差不多的过程说明，差不多：</strong></p>
+<ul>
+<li><p>广播只有2层的。跨网段访问是寻址。<br>给你举一个例子，详细说一下数据包的转发流程，环境是三层交换机有两个网段，10.0.0.1/24和192.168.0.1/24，pc1是10段的，pc2是192段的。pc1要与pc2通信。过程如下<br>1.pc1将要与pc2通信，首先根据网卡的ip地址与掩码算出pc2是否与pc1是同网段，如果是同网段直接二层转发，如果不是将跨网段转发<br>2.pc1算出pc2和自己不是同网段，所以要将数据包发送到网关由网关进行三层寻址转发。<br>3.pc1到网关为二层转发，也就是数据帧转发，数据帧转发需要知道对方mac地址，首先pc1会读电脑的arp缓存，看是否有网关ip与mac地址的对应关系，如果有将直接封装帧转发；如果没有将使用arp协议也就是广播，携带自己的ip地址与mac地址，目的地址为网关ip，mac地址为ffff-ffff-ffff。网关收到此arp广播后，将回复pc1自己的mac地址，数据包为源网关ip和mac地址目的为pc1ip和mac地址。<br>4.pc1收到数据包后会将此ip和mac地址写入到电脑的arp缓存表里，并直接封装数据包，三层ip头为源pc1-ip，目的为pc2-ip，二层帧格式为源pc1-mac，目的为网关mac地址（记住此包头）。<br>5.网关将收到pc1发来的数据包，进行拆包，根据其目的ip地址进行寻址（路由表），找到对应的路径（也就是192段vlan）。<br>6.三层交换机会根据其目的ip地址进行本机的arp缓存查找，如果查找到ip和mac地址的对应关系将直接封装转发，如果没有交换机将发送arp广播包获取目的ip地址的mac地址（广播包将只发送192段vlan，其他vlan不广播）。<br>7.三层交换机得知pc2-mac地址后将转发数据，三层包头为源pc1-ip，目的为pc2-i，二层帧包头为源192段网关mac，目的为pc2-mac。<br>8.pc2将收到三层交换发来的数据包，进行拆封即可获取数据，并回复pc1过程同上。</p>
+<p>三层交换机等同于路由器。也就是说源ip和目的ip在数据包里一直不变（不经过nat的情况），mac地址将时刻改变。广播只存在二层。三层情况下是路由寻址。</p>
+</li>
+</ul>
+<h2 id="IP组播"><a href="#IP组播" class="headerlink" title="IP组播"></a>IP组播</h2><ul>
+<li>IGMP协议：是TCP/IP 协议族中负责IP组播成员管理的协议，用来在IP主机和与其直接相邻的组播路由器之间建立、维护组播组成员关系。</li>
+</ul>
+<h2 id="虚拟专用网VPN"><a href="#虚拟专用网VPN" class="headerlink" title="虚拟专用网VPN"></a>虚拟专用网VPN</h2><ul>
+<li>VPN：Virtual Private Network，目的是建立更加安全私密的远程连接</li>
+<li>形象解释就是在巨大的错综复杂的互联网环境中建立一条两个路由器之间的直通隧道</li>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125090725.png" style="zoom:80%;margin-left:0px;" /></li>
+</ul>
+<h2 id="网络地址转换NAT"><a href="#网络地址转换NAT" class="headerlink" title="网络地址转换NAT"></a>网络地址转换NAT</h2><ul>
+<li><p>从局域网地址到公网地址的转化，可以大大缓解ipv4不够用的情况</p>
+</li>
+<li><p>NAT分为静态NAT，动态NAT和PAT，前两种NAT都是针对ip而言的对应，只不过一个是一对一，一个是多对多，现在所说的NAT实际上是PAT（Port Address Translation：端口地址转换）：</p>
+<ul>
+<li>NAT的地址转换是指每个内网地址都被转换成ip地址+源端口的方式，这需要公网ip地址为多个。</li>
+<li>而PAT由于ip地址不足够，就会出现内网地址被转换成ip地址+端口段的形式，这样的公网ip地址通常只是一个。</li>
+<li>举个例子：<ul>
+<li>NAT<br>　　192.168.0.2：4444 —-〉202.116.100.5：4444<br>  　　192.168.0.3：5555 —-〉202.116.100.6：5555<br>  　　192.168.0.10：1233 —〉202.116.100.5：1233</li>
+<li>PAT<br>　　192.168.0.2：4444 —-〉202.116.100.5：50003<br>  　　192.168.0.3：5555—-〉202.116.100.5：50004<br>  　　192.168.0.10：1233 —〉202.116.100.5：50005</li>
+<li><strong>简单来说，PAT是多对1，NAT是多对多.</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>NAT原理图</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124233628.png" style="zoom: 33%;margin-left:0px;" /></li>
+<li><p>端口映射：</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124233635.png" style="zoom:33%;margin-left:0px;" /></li>
+<li><p>内网穿透</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124233640.png" style="zoom:33%;margin-left:0px;" /></li>
+<li><p>可见，端口映射和内网穿透技术都可以实现非同网段访问局域网ip，但是因为国内的网络环境是如图所示的套娃情况。NAT的实现往往不是一层，而是多层，所以基本不可能用端口映射的方式实现本地局域网PC的外雇访问。有什么解决方法呢？一.让ISP给你的第一层路由器分配一个公网ip，很难，几乎不可能。二.花钱买内网穿透服务，很贵且限流。</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201124233704.png" style="zoom:33%;margin-left:0px;" /></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>计网-网络层</p><p><a href="https://yangfanjack.github.io/2020/11/21/计网-网络层/">https://yangfanjack.github.io/2020/11/21/计网-网络层/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-11-21</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-22</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BD%91%E7%BB%9C/">网络</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/11/21/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">计网-运输层</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/11/21/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"><span class="level-item">计网-数据链路层</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "221a6aa5fe3d26ca5a898f0cd0a42199",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#网络层提供的两种服务"><span class="level-left"><span class="level-item">1</span><span class="level-item">网络层提供的两种服务</span></span></a></li><li><a class="level is-mobile" href="#网际协议IP"><span class="level-left"><span class="level-item">2</span><span class="level-item">网际协议IP</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#虚拟互连网"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">虚拟互连网</span></span></a></li><li><a class="level is-mobile" href="#IP地址"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">IP地址</span></span></a></li><li><a class="level is-mobile" href="#划分子网和构建超网"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">划分子网和构建超网</span></span></a></li><li><a class="level is-mobile" href="#IP地址和硬件mac地址"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">IP地址和硬件mac地址</span></span></a></li><li><a class="level is-mobile" href="#IP数据报格式"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">IP数据报格式</span></span></a></li><li><a class="level is-mobile" href="#IP转发分组的流程"><span class="level-left"><span class="level-item">2.6</span><span class="level-item">IP转发分组的流程</span></span></a></li></ul></li><li><a class="level is-mobile" href="#网际控制报文协议ICMP协议"><span class="level-left"><span class="level-item">3</span><span class="level-item">网际控制报文协议ICMP协议</span></span></a></li><li><a class="level is-mobile" href="#路由协议"><span class="level-left"><span class="level-item">4</span><span class="level-item">路由协议</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#IGP-内部网关协议"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">IGP(内部网关协议)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#静态路由协议：管理员手工配置路由信息"><span class="level-left"><span class="level-item">4.1.1</span><span class="level-item">静态路由协议：管理员手工配置路由信息</span></span></a></li><li><a class="level is-mobile" href="#动态路由协议RIP：距离向量路由算法，是应用层协议"><span class="level-left"><span class="level-item">4.1.2</span><span class="level-item">动态路由协议RIP：距离向量路由算法，是应用层协议</span></span></a></li><li><a class="level is-mobile" href="#动态路由协议OSPF：链路状态路由算法，是传输层协议"><span class="level-left"><span class="level-item">4.1.3</span><span class="level-item">动态路由协议OSPF：链路状态路由算法，是传输层协议</span></span></a></li></ul></li><li><a class="level is-mobile" href="#EGP-外部网关协议-和IGP-外部网关协议"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">EGP(外部网关协议)和IGP(外部网关协议)</span></span></a></li></ul></li><li><a class="level is-mobile" href="#主机A（135-24-25-23）第一次和不同网段的主机B（135-24-52-123）通信完整过程（数据链路层和网络层）"><span class="level-left"><span class="level-item">5</span><span class="level-item">主机A（135.24.25.23）第一次和不同网段的主机B（135.24.52.123）通信完整过程（数据链路层和网络层）</span></span></a></li><li><a class="level is-mobile" href="#IP组播"><span class="level-left"><span class="level-item">6</span><span class="level-item">IP组播</span></span></a></li><li><a class="level is-mobile" href="#虚拟专用网VPN"><span class="level-left"><span class="level-item">7</span><span class="level-item">虚拟专用网VPN</span></span></a></li><li><a class="level is-mobile" href="#网络地址转换NAT"><span class="level-left"><span class="level-item">8</span><span class="level-item">网络地址转换NAT</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521232604.png" alt="win10壁纸bingtoday"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-03-30T00:27:58.000Z">2022-03-30</time></p><p class="title"><a href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/">win10壁纸bingtoday</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg" alt="RPM打包初试"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-01T02:44:01.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/">RPM打包初试</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img221251.jpg" alt="国庆北京独游"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-13T00:13:19.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/">国庆北京独游</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgff.jpg" alt="摄影入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-10T10:19:17.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/">摄影入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210923201053126.png" alt="工作流Activiti"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-09-23T11:38:06.000Z">2021-09-23</time></p><p class="title"><a href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">工作流Activiti</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2022 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

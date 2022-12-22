@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>计网-运输层 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="回忆网络层：IP协议(RIP,OSPF,BGP)，ICMP，IGMP，ARP；传输层：TCP，UDP；应用层：http，https，ftp，DNS，SMTP，PoP3，RDP，Telnet，SSH；运输层的功能；运输层协议UDP和TCP；TCP可靠传输的实现；TCP的流量控制；TCP的拥塞控制；TCP的运输连接管理"><meta property="og:type" content="blog"><meta property="og:title" content="计网-运输层"><meta property="og:url" content="https://yangfanjack.github.io/2020/11/21/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="回忆网络层：IP协议(RIP,OSPF,BGP)，ICMP，IGMP，ARP；传输层：TCP，UDP；应用层：http，https，ftp，DNS，SMTP，PoP3，RDP，Telnet，SSH；运输层的功能；运输层协议UDP和TCP；TCP可靠传输的实现；TCP的流量控制；TCP的拥塞控制；TCP的运输连接管理"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101161244.jpg"><meta property="article:published_time" content="2020-11-21T07:07:07.000Z"><meta property="article:modified_time" content="2022-12-22T02:37:28.603Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="网络"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101161244.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yangfanjack.github.io/2020/11/21/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/"},"headline":"JACK's BLOG","image":["http://rn7xzghaf.hb-bkt.clouddn.com/img20210101161244.jpg"],"datePublished":"2020-11-21T07:07:07.000Z","dateModified":"2022-12-22T02:37:28.603Z","author":{"@type":"Person","name":"Jack1024"},"description":"回忆网络层：IP协议(RIP,OSPF,BGP)，ICMP，IGMP，ARP；传输层：TCP，UDP；应用层：http，https，ftp，DNS，SMTP，PoP3，RDP，Telnet，SSH；运输层的功能；运输层协议UDP和TCP；TCP可靠传输的实现；TCP的流量控制；TCP的拥塞控制；TCP的运输连接管理"}</script><link rel="canonical" href="https://yangfanjack.github.io/2020/11/21/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/plan">Plan</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101161244.jpg" alt="计网-运输层"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-11-21T07:07:07.000Z" title="2020-11-21 3:07:07 ├F10: PM┤">2020-11-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-22T02:37:28.603Z" title="2022-12-22 10:37:28 ├F10: AM┤">2022-12-22</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">13 minutes read (About 1979 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">计网-运输层</h1><div class="content"><p><strong>传输层两个协议</strong>的应用场景：</p>
+<ul>
+<li><p><strong>TCP</strong>：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手)</p>
+<ul>
+<li>QQ传文件，访问网站，下载文件</li>
+</ul>
+</li>
+<li><p><strong>UDP</strong>：基于不可靠传输，一个数据包就能完成数据通信，不建立会话，支持多播</p>
+<ul>
+<li>QQ聊天，</li>
+</ul>
+</li>
+<li><p><strong>UDP中IP分片是在IP层完成的， 而TCP分段是在TCP层完成的，TCP在ip层会尽量避免分片</strong></p>
+<p><strong>MTU = IP头+【TCP头+(MSS)】</strong></p>
+<p>TCP层提前完成了分段， 而且， 两个TCP包中都有TCP头， 这是必然的。 所以到了IP层后， 都保留了TCP头， 当然就有了端口信息啊。 这一点与IP层次的分片是不同的。</p>
+<p>​    而且我们应该看到， 因为TCP包在TCP层已经做了限制， 这就决定了， 等TCP包达到IP层的时候， IP层的数据绝对不会超过MTU,  因此， 对于TCP传输来说， IP层是没有必要分片的， 因为TCP层分段的时候， 已经考虑到了这个限制。</p>
+<p>​    所以， 我们经常会说， <strong>UDP传输中， IP分片， 是受到了MTU的限制</strong>， <strong>TCP传输中， TCP分段， 是受到了MSS的限制</strong>（实际上最终还是受到了MTU的限制）</p>
+</li>
+<li><p>http=TCP+80</p>
+<p>https=TCP+443</p>
+<p>ftp=TCP+25</p>
+<p>SMTP=TCP+25</p>
+<p>POP3=TCP+110</p>
+<p>RDP=TCP+3389</p>
+<p>smb=TCP+445</p>
+<p>SQL Server=TCP+1433</p>
+<p>MySQL=TCP+3306</p>
+<p>DNS=UDP+53 or TCP+53</p>
+<p>Telnet=TCP+23</p>
+<p>SSH=TCP+22</p>
+</li>
+<li><p>应用层协议和服务之间的关系：</p>
+<p>用ip地址定位计算机，用端口来定位服务，服务本质上是运行在TCP或UDP的某个端口侦听客户端请求的软件</p>
+<p>查看自己计算机侦听的端口：netstat -an</p>
+<p>测试远程计算机打开的端口：telnet xxx.xxx.xxx.xxx</p>
+</li>
+<li><p>可以<strong>更改服务的端口</strong>和<strong>只打开必要的端口</strong>来<strong>增加服务器安全</strong></p>
+</li>
+<li><p>Windows防火墙安全：</p>
+<ul>
+<li>在网卡上加一层过滤器：只允许某些端口的数据进来</li>
+<li>防火墙是单向的，只拦截来的，不管出去的，出去的时候自动打开端口，出去了就关了，外面的就不要想进来的。</li>
+</ul>
+</li>
+<li><p>Windows防火墙程序防不了灰鸽子木马程序</p>
+<ul>
+<li><p>防火墙是严进宽出，灰鸽子利用了这一点，让中木马的计算机灰鸽子客户端主动连到服务端。所以防火墙防不了灰鸽子木马。</p>
+</li>
+<li><p>解决灰鸽子木马的问题：用IPsec的网络层安全严格控制网络流量</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="运输层的功能"><a href="#运输层的功能" class="headerlink" title="运输层的功能"></a>运输层的功能</h2><ul>
+<li><p>TCP传送的协议数据的那元是TCP报文段</p>
+</li>
+<li><p>UDP传送的协议数据单元是UDP报文或者用户数据报</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125125536.png" style="zoom:100%;margin-left:0px;" /></li>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125125723.png" style="zoom:80%;margin-left:0px;" /></li>
+</ul>
+<h2 id="运输层协议UDP和TCP"><a href="#运输层协议UDP和TCP" class="headerlink" title="运输层协议UDP和TCP"></a>运输层协议UDP和TCP</h2><ul>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125130057.png" style="zoom:80%;margin-left:0px;" />
+
+<p>UDP是无连接的，即是发送数据之前不需要建立连接</p>
+<p>UDP使用尽最大努力交付数据，既不保证可靠交付，同时也不使用拥塞控制</p>
+<p>UDP是面向报文的，UDP没有拥塞控制，很适合多媒体通信的要求</p>
+<p>UDP支持一对一，一对多，多对一和多对多的叫交互通信</p>
+<p>UDP的首部开销小，只有8个字节</p>
+</li>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125133249.png" style="zoom:67%;margin-left:0px;" />
+
+<p><strong>TCP中的几个标志位的作用</strong></p>
+<ul>
+<li><strong>URG</strong> 紧急指针，告诉接收TCP模块<strong>紧要指针域</strong>指着紧要数据。</li>
+<li><strong>ACK</strong> 置1时表示<strong>确认</strong>号（为合法，为0的时候表示数据段不包含确认信息，确认号被忽略。</li>
+<li><strong>PSH</strong> 置1时请求的数据段在<strong>接收方得到后就可直接送到应用程序</strong>，而不必等到缓冲区满时才传送。</li>
+<li><strong>RST</strong> 置1时<strong>重建连接</strong>。如果接收到RST位时候，通常<strong>发生了某些错误</strong>。</li>
+<li><strong>SYN</strong> 置1时用来<strong>发起一个连接</strong>，建立通话和同意建立通话的标志。</li>
+<li><strong>FIN</strong> 置1时表示发端完成发送任务。用来<strong>释放连接</strong>，表明发送方已经没有数据发送了。</li>
+</ul>
+<p>TCP是面向连接的传输层协议</p>
+<p>每一条TCP连接只能有两个端点，每一条TCP连接只能是点对点的，这里的端点是应用程序，也就是套接字(IP+端口号)。</p>
+<p>TCP提供可靠交付的服务</p>
+<p>TCP提供全双工通信（表现为通信与反馈）</p>
+<p>面向字节流</p>
+</li>
+</ul>
+<h2 id="TCP可靠传输的实现"><a href="#TCP可靠传输的实现" class="headerlink" title="TCP可靠传输的实现"></a>TCP可靠传输的实现</h2><p>提供可靠传输，流量控制，拥塞控制功能</p>
+<ul>
+<li><p>可靠传输的工作原理：停止等待，超时重传，确认丢失，确认迟到，自动重传</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125133753.png" style="zoom: 67%;margin-left:0px;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125133858.png" style="zoom:67%;margin-left:0px;" />
+
+<p>使用ARQ机制的优点是简单，但是信道利用率太低（发送所用的时间占比太小）；基于此可以采用<strong>流水线传输（连续ARQ协议），可以得到更高的信道利用率，采用滑动窗口设计实现流水线的可靠传输</strong></p>
+<p>发一个确认一个</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125134408.png" style="zoom: 67%;margin-left:0px;" />
+
+<p>累计确认</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125134612.png" style="zoom:67%;margin-left:0px;" /></li>
+</ul>
+<p><strong>netstat命令</strong>用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-a (all)显示所有连接和监听端口选项，默认不显示LISTEN相关</span><br><span class="line">-t (tcp)仅显示tcp相关选项</span><br><span class="line">-o 显示与每个连接相关的所属进程 ID</span><br><span class="line">-u (udp)仅显示udp相关选项</span><br><span class="line">-n 以数字形式显示地址和端口号。</span><br><span class="line">-l 仅列出有在 Listen (监听) 的服務状态</span><br><span class="line">-p 显示 proto 指定的协议的连接</span><br><span class="line">-r 显示路由信息，路由表</span><br><span class="line">-e 显示以太网统计信息。此选项可以与 -s选项组合使用，例如uid等</span><br><span class="line">-s 按各个协议进行统计</span><br><span class="line">-c 每隔一个固定时间，执行该netstat命令。</span><br><span class="line">提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>Wireshark抓包后的网络层次说明：</strong></p>
+<ul>
+<li><strong>Frame:物理层</strong>的数据帧概况</li>
+<li><strong>Ethernet II: 数据链路层</strong>以太网头部帧</li>
+<li><strong>Internet Protocol Version 4：网络层</strong>IP包头的信息</li>
+<li><strong>Transmission Control Protocol：传输层</strong>的数据段头部信息，此处是TCP协议。</li>
+<li><strong>Hypertext Transfer Protocol：应用层</strong>的信息，此处是<strong>HTTP</strong>协议</li>
+</ul>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125144521.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125144901.png"></p>
+</li>
+</ul>
+<h2 id="TCP协议连接管理：三次握手-四次挥手协议的大致执行流程"><a href="#TCP协议连接管理：三次握手-四次挥手协议的大致执行流程" class="headerlink" title="TCP协议连接管理：三次握手/四次挥手协议的大致执行流程"></a>TCP协议连接管理：三次握手/四次挥手协议的大致执行流程</h2><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125164801.png" style="zoom: 67%;margin-left:0px;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125164802.png" style="zoom:67%;margin-left:0px;" />
+
+<p>STP协议默认采用<strong>滑动窗口累计确认</strong>的机制：</p>
+<p><strong>利用TCP的三次握手协议实现对XP系统的攻击：SYN攻击和LAND攻击</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125151050.png" style="zoom: 33%;margin-left:0px;" />
+
+<h2 id="TCP实际上的可靠传输实现：以字节为单位的滑动窗口"><a href="#TCP实际上的可靠传输实现：以字节为单位的滑动窗口" class="headerlink" title="TCP实际上的可靠传输实现：以字节为单位的滑动窗口"></a>TCP实际上的可靠传输实现：以字节为单位的滑动窗口</h2><ul>
+<li><p><strong>UDP的可靠传输</strong>有上层的<strong>应用层协议来实现</strong></p>
+</li>
+<li><p>TCP传输过程中<strong>无数据包丢失</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125165726.png" style="zoom: 80%;margin-left:0px;" /></li>
+<li><p>TCP传输过程中<strong>有数据包丢失</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125165727.png" style="zoom: 80%;margin-left:0px;" /></li>
+</ul>
+<p><strong>超时重传时间确认：</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125162814.png" style="zoom: 67%;margin-left:0px;" />
+
+<h2 id="TCP的流量控制"><a href="#TCP的流量控制" class="headerlink" title="TCP的流量控制"></a>TCP的流量控制</h2><ul>
+<li><p>TCP的流量控制是基于<strong>滑动窗口机制</strong>的</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125172256.png" style="zoom: 80%;margin-left:0px;" /></li>
+</ul>
+<h2 id="TCP的拥塞控制"><a href="#TCP的拥塞控制" class="headerlink" title="TCP的拥塞控制"></a>TCP的拥塞控制</h2><ul>
+<li><p>TCP的拥塞控制指的是将网络中的<strong>所有计算机</strong>，是一种全局控制，是如何避免让网络产生网络堵塞的。当一个计算机发现有丢包问题出现时，会主动把发送数据包的速度降下来。</p>
+</li>
+<li><p>当资源的需求综合&gt;可用的资源时，将产生资源拥塞。</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201125173907.png" style="zoom:80%;margin-left:0px;" /></li>
+<li><p>拥塞控制的四种算法：慢开始，拥塞避免，快重传，快恢复</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201127101954.png" style="zoom: 50%;margin-left:0px;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201127101955.png" style="zoom:50%;margin-left:0px;" />
+
+<p>A发送窗口的上限值=Min[A的拥塞窗口,B的接收窗口]</p>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>计网-运输层</p><p><a href="https://yangfanjack.github.io/2020/11/21/计网-运输层/">https://yangfanjack.github.io/2020/11/21/计网-运输层/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-11-21</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-22</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BD%91%E7%BB%9C/">网络</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/11/21/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">计网-应用层</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/11/21/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/"><span class="level-item">计网-网络层</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "ac80d45f07f346186bad2683954137b9",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#运输层的功能"><span class="level-left"><span class="level-item">1</span><span class="level-item">运输层的功能</span></span></a></li><li><a class="level is-mobile" href="#运输层协议UDP和TCP"><span class="level-left"><span class="level-item">2</span><span class="level-item">运输层协议UDP和TCP</span></span></a></li><li><a class="level is-mobile" href="#TCP可靠传输的实现"><span class="level-left"><span class="level-item">3</span><span class="level-item">TCP可靠传输的实现</span></span></a></li><li><a class="level is-mobile" href="#TCP协议连接管理：三次握手-四次挥手协议的大致执行流程"><span class="level-left"><span class="level-item">4</span><span class="level-item">TCP协议连接管理：三次握手/四次挥手协议的大致执行流程</span></span></a></li><li><a class="level is-mobile" href="#TCP实际上的可靠传输实现：以字节为单位的滑动窗口"><span class="level-left"><span class="level-item">5</span><span class="level-item">TCP实际上的可靠传输实现：以字节为单位的滑动窗口</span></span></a></li><li><a class="level is-mobile" href="#TCP的流量控制"><span class="level-left"><span class="level-item">6</span><span class="level-item">TCP的流量控制</span></span></a></li><li><a class="level is-mobile" href="#TCP的拥塞控制"><span class="level-left"><span class="level-item">7</span><span class="level-item">TCP的拥塞控制</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521232604.png" alt="win10壁纸bingtoday"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-03-30T00:27:58.000Z">2022-03-30</time></p><p class="title"><a href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/">win10壁纸bingtoday</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg" alt="RPM打包初试"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-01T02:44:01.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/">RPM打包初试</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img221251.jpg" alt="国庆北京独游"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-13T00:13:19.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/">国庆北京独游</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgff.jpg" alt="摄影入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-10T10:19:17.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/">摄影入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210923201053126.png" alt="工作流Activiti"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-09-23T11:38:06.000Z">2021-09-23</time></p><p class="title"><a href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">工作流Activiti</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2022 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

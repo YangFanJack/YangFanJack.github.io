@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>软件生命周期 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="软件说明周期包括 问题定义，可行性研究，需求分析，概要设计，详细设计，编码，测试，维护 八个阶段，重点对需求分析，概要设计，详细设计做介绍。"><meta property="og:type" content="blog"><meta property="og:title" content="软件生命周期"><meta property="og:url" content="https://yangfanjack.github.io/2020/11/14/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="软件说明周期包括 问题定义，可行性研究，需求分析，概要设计，详细设计，编码，测试，维护 八个阶段，重点对需求分析，概要设计，详细设计做介绍。"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210318082226411.png"><meta property="article:published_time" content="2020-11-14T09:22:32.000Z"><meta property="article:modified_time" content="2022-12-22T02:37:28.601Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="软件工程"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210318082226411.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yangfanjack.github.io/2020/11/14/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"},"headline":"JACK's BLOG","image":["http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210318082226411.png"],"datePublished":"2020-11-14T09:22:32.000Z","dateModified":"2022-12-22T02:37:28.601Z","author":{"@type":"Person","name":"Jack1024"},"description":"软件说明周期包括 问题定义，可行性研究，需求分析，概要设计，详细设计，编码，测试，维护 八个阶段，重点对需求分析，概要设计，详细设计做介绍。"}</script><link rel="canonical" href="https://yangfanjack.github.io/2020/11/14/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/plan">Plan</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210318082226411.png" alt="软件生命周期"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-11-14T09:22:32.000Z" title="2020-11-14 5:22:32 ├F10: PM┤">2020-11-14</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-22T02:37:28.601Z" title="2022-12-22 10:37:28 ├F10: AM┤">2022-12-22</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">9 minutes read (About 1420 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">软件生命周期</h1><div class="content"><h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><ul>
+<li>概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。</li>
+</ul>
+<h2 id="需求的获取"><a href="#需求的获取" class="headerlink" title="需求的获取"></a>需求的获取</h2><ul>
+<li>概念：软件需求的来源，软件工程师收集这些软件需求的方法</li>
+<li>包含<ul>
+<li><strong>功能性需求</strong>：用户和其他系统完成的功能，提供的服务</li>
+<li><strong>非功能性需求</strong>：必须遵循的标准，外部界面的细节，实现的约束条件，质量属性等等。</li>
+</ul>
+</li>
+<li>来源：用户目标，领域知识，投资者，运行环境，组织环境</li>
+<li>获取方式：采访，设定情景，原型，会议，观察商业过程和工作流</li>
+<li>需求获取面临的挑战：<ul>
+<li>客户说不清需求</li>
+<li>需求易变性：在系统设计时，将软件的核心建筑放在稳定的需求上。</li>
+<li>问题的复杂度和对问题空间理解的不完备性与不一致性</li>
+</ul>
+</li>
+<li>需求诱导十原则：<ul>
+<li>倾听</li>
+<li>有准备的沟通</li>
+<li>需要有人推动</li>
+<li>最好当面沟通</li>
+<li>记录所有决定</li>
+<li>保持同理协作</li>
+<li>聚焦并协调话题</li>
+<li>采用图形表示</li>
+<li>继续前进原则</li>
+<li>谈判双赢原则</li>
+</ul>
+</li>
+</ul>
+<h2 id="需求确认"><a href="#需求确认" class="headerlink" title="需求确认"></a>需求确认</h2><ul>
+<li><p>需求获取</p>
+</li>
+<li><p>需求提炼：对应用问题及环境的理解和分析，为问题涉及的信息，功能和系统行为建立<strong>分析模型</strong>，将用户需求精确化，完全化，最终形成下一步的需求规格说明书</p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114202338.png"></p>
+</li>
+<li><p>需求描述（需求规格说明书）：对待开发系统的行为的完整描述，包含了功能性需求和非功能性需求，完成的标志是形成一份完整规范的需求规格说明书。</p>
+</li>
+<li><p>需求验证：对需求文档进行检查：有效性检查，一致性检查，完备性检查，现实性检查</p>
+</li>
+</ul>
+<h2 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h2><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114202345.png"></p>
+<h2 id="需求分析的任务"><a href="#需求分析的任务" class="headerlink" title="需求分析的任务"></a>需求分析的任务</h2><h3 id="建立分析模型：面向过程，面向对象"><a href="#建立分析模型：面向过程，面向对象" class="headerlink" title="建立分析模型：面向过程，面向对象"></a>建立分析模型：面向过程，面向对象</h3><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114204041.png"></p>
+<ul>
+<li><p><strong>面向过程分析模型</strong>：用系统工程的思想和工程化的方法，根据用户至上的原则，自始自终按照结构化，模块化，自顶向下地对系统进行分析与设计。</p>
+<ul>
+<li>采用结构化分析方法（面向数据流进行需求分析的方法），用抽象模型的概念，按照软件内部数据传递，变换的关系，自顶向下逐层分解，知道找到满足功能要求的左右可实现的软件为止。</li>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114204951.png"></li>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114204955.png"></li>
+<li><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114211238.png"></li>
+</ul>
+</li>
+<li><p><strong>面向对象分析模型</strong>：由5个层次（主题层，对象类层，结构层，属性层，服务层）和5个活动（标识对象类，标识结构，定义主题，定义属性，定义服务）组成。</p>
+<ul>
+<li><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114212136.png"></p>
+</li>
+<li><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114212139.png"></p>
+</li>
+<li><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114211243.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求"><a href="#编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求" class="headerlink" title="编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求"></a>编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求</h3><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114203028.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114203031.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114203034.png"></p>
+<p>IEEE标准对需求文档提出了以下结构：</p>
+<ul>
+<li>引言（需求文档目的，文档约定，预期读者和阅读建议，产品范围，参考文献）</li>
+<li>综合描述（产品前景，产品功能与优先级，用户特征，运行环境，设计与实现上的限制，假设与依赖性）</li>
+<li>需求描述（功能需求，数据需求，性能需求，外部接口，设计约束，软件质量属性，其他需求）</li>
+<li>附录（词汇表，分析模型，特定问题列表）</li>
+<li>索引</li>
+</ul>
+<h1 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h1><ul>
+<li>概要设计：描述软件顶层架构和组织，划分不同组件</li>
+<li>详细设计：详细描述各组件以便能够编码实现</li>
+</ul>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114214608.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114214611.png"></p>
+<ul>
+<li><p>设计相关概念：</p>
+<ul>
+<li>抽象</li>
+<li>体系结构</li>
+<li>设计模式</li>
+<li>模块化</li>
+<li>信息隐藏</li>
+<li>功能独立</li>
+<li>精化</li>
+<li>重构</li>
+</ul>
+</li>
+<li><p><strong>数据设计</strong></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215052.png"></p>
+</li>
+<li><p><strong>架构设计</strong></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215505.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215409.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215410.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215411.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215412.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215413.png"></p>
+</li>
+<li><p><strong>接口设计</strong></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215730.png"></p>
+</li>
+<li><p><strong>组件设计</strong></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114215733.png"></p>
+</li>
+</ul>
+<h2 id="面向过程架构设计"><a href="#面向过程架构设计" class="headerlink" title="面向过程架构设计"></a>面向过程架构设计</h2><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114221423.png"></p>
+<p>变换型软件结构图</p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114221224.png"></p>
+<p>事务型软件结构图</p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114221225.png"></p>
+<p>混合型软件结构图</p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114221226.png"></p>
+<h2 id="面向过程组件设计"><a href="#面向过程组件设计" class="headerlink" title="面向过程组件设计"></a>面向过程组件设计</h2><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114222146.png"></p>
+<h2 id="面向对象架构设计"><a href="#面向对象架构设计" class="headerlink" title="面向对象架构设计"></a>面向对象架构设计</h2><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114225316.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114225429.png"></p>
+<h2 id="面向对象组件设计（类设计和用例设计）"><a href="#面向对象组件设计（类设计和用例设计）" class="headerlink" title="面向对象组件设计（类设计和用例设计）"></a>面向对象组件设计（类设计和用例设计）</h2><p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114230312.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114230651.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114231017.png"></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20201114231101.png"></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>软件生命周期</p><p><a href="https://yangfanjack.github.io/2020/11/14/软件生命周期/">https://yangfanjack.github.io/2020/11/14/软件生命周期/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-11-14</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-22</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/11/19/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Docker入门指南</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/11/14/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/"><span class="level-item">软件过程模型</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "ca13a7145eae1a2bc7554ea6aeeb6f12",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#需求分析"><span class="level-left"><span class="level-item">1</span><span class="level-item">需求分析</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#需求的获取"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">需求的获取</span></span></a></li><li><a class="level is-mobile" href="#需求确认"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">需求确认</span></span></a></li><li><a class="level is-mobile" href="#需求变更"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">需求变更</span></span></a></li><li><a class="level is-mobile" href="#需求分析的任务"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">需求分析的任务</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#建立分析模型：面向过程，面向对象"><span class="level-left"><span class="level-item">1.4.1</span><span class="level-item">建立分析模型：面向过程，面向对象</span></span></a></li><li><a class="level is-mobile" href="#编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求"><span class="level-left"><span class="level-item">1.4.2</span><span class="level-item">编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#系统设计"><span class="level-left"><span class="level-item">2</span><span class="level-item">系统设计</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#面向过程架构设计"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">面向过程架构设计</span></span></a></li><li><a class="level is-mobile" href="#面向过程组件设计"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">面向过程组件设计</span></span></a></li><li><a class="level is-mobile" href="#面向对象架构设计"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">面向对象架构设计</span></span></a></li><li><a class="level is-mobile" href="#面向对象组件设计（类设计和用例设计）"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">面向对象组件设计（类设计和用例设计）</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521232604.png" alt="win10壁纸bingtoday"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-03-30T00:27:58.000Z">2022-03-30</time></p><p class="title"><a href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/">win10壁纸bingtoday</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg" alt="RPM打包初试"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-01T02:44:01.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/">RPM打包初试</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img221251.jpg" alt="国庆北京独游"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-13T00:13:19.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/">国庆北京独游</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgff.jpg" alt="摄影入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-10T10:19:17.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/">摄影入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210923201053126.png" alt="工作流Activiti"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-09-23T11:38:06.000Z">2021-09-23</time></p><p class="title"><a href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">工作流Activiti</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2022 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>shell编程 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Shell是解释执行的脚本语言，所谓脚本语言就是不用编译就可以直接执行的语言。在Shell中可以调用Linux系统命令。shell的最强大的重要特性是它自身就是一个解释型的程序设计语言，shell 程序设计语言支持在高级语言里所能见到的绝大多数程序控制结构，比如循环，函数，变量和数组。shell 编程语言很易学，并且一旦掌握后它将成为你的得力工具。任何在提示符下能键入的命令都能放到一个可执行的sh"><meta property="og:type" content="blog"><meta property="og:title" content="shell编程"><meta property="og:url" content="https://yangfanjack.github.io/2020/03/06/shell%E7%BC%96%E7%A8%8B/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="Shell是解释执行的脚本语言，所谓脚本语言就是不用编译就可以直接执行的语言。在Shell中可以调用Linux系统命令。shell的最强大的重要特性是它自身就是一个解释型的程序设计语言，shell 程序设计语言支持在高级语言里所能见到的绝大多数程序控制结构，比如循环，函数，变量和数组。shell 编程语言很易学，并且一旦掌握后它将成为你的得力工具。任何在提示符下能键入的命令都能放到一个可执行的sh"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg"><meta property="article:published_time" content="2020-03-06T14:51:56.000Z"><meta property="article:modified_time" content="2022-12-22T02:37:28.764Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Shell"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yangfanjack.github.io/2020/03/06/shell%E7%BC%96%E7%A8%8B/"},"headline":"JACK's BLOG","image":["http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg"],"datePublished":"2020-03-06T14:51:56.000Z","dateModified":"2022-12-22T02:37:28.764Z","author":{"@type":"Person","name":"Jack1024"},"description":"Shell是解释执行的脚本语言，所谓脚本语言就是不用编译就可以直接执行的语言。在Shell中可以调用Linux系统命令。shell的最强大的重要特性是它自身就是一个解释型的程序设计语言，shell 程序设计语言支持在高级语言里所能见到的绝大多数程序控制结构，比如循环，函数，变量和数组。shell 编程语言很易学，并且一旦掌握后它将成为你的得力工具。任何在提示符下能键入的命令都能放到一个可执行的sh"}</script><link rel="canonical" href="https://yangfanjack.github.io/2020/03/06/shell%E7%BC%96%E7%A8%8B/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/plan">Plan</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg" alt="shell编程"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-06T14:51:56.000Z" title="2020-3-6 10:51:56 ├F10: PM┤">2020-03-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-22T02:37:28.764Z" title="2022-12-22 10:37:28 ├F10: AM┤">2022-12-22</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">12 minutes read (About 1868 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">shell编程</h1><div class="content"><h1 id="基础正则表达式"><a href="#基础正则表达式" class="headerlink" title="基础正则表达式"></a>基础正则表达式</h1><ul>
+<li><p><strong>正则表达式</strong>和<strong>通配符</strong>区别：</p>
+<p>通配符：在系统中搜索匹配文件名，是完全匹配。支持命令ls，find，cp，他们不认识正则表达式</p>
+<p>正则表达式：用来在文件中匹配符合条件的字符串，是包含匹配。支持命令：grep，awk，sed<!--more--></p>
+</li>
+<li><p><code>*</code>：前一个字符匹配0次或者任意多次</p>
+</li>
+<li><p><code>.</code>：匹配任意一个字符（换行符除外）</p>
+</li>
+<li><p><code>^</code>：匹配以后面字符作为行首的行</p>
+</li>
+<li><p><code>$</code>：匹配以后面字符作为行尾的行</p>
+</li>
+<li><p><code>^$</code>：匹配空白行</p>
+</li>
+<li><p><code>[]</code>：匹配中括号中的指定的任意一个字符</p>
+</li>
+<li><p><code>[^]</code>：匹配除中括号中的字符外的任意一个字符</p>
+</li>
+<li><p><code>\</code>：转义符</p>
+</li>
+<li><p><code>\&#123;n\&#125;</code>：表示其前面的字符恰好出现n次</p>
+</li>
+<li><p><code>\&#123;n,\&#125;</code>：表示其前面的字符出现不少于n次</p>
+</li>
+<li><p><code>\&#123;n,m\&#125;</code>：表示其前面的字符至少出现n次，最多出现m次</p>
+</li>
+</ul>
+<h1 id="字符截取命令"><a href="#字符截取命令" class="headerlink" title="字符截取命令"></a>字符截取命令</h1><ul>
+<li><h2 id="grep命令：提取符合条件的行"><a href="#grep命令：提取符合条件的行" class="headerlink" title="grep命令：提取符合条件的行"></a><strong><code>grep</code>命令</strong>：提取符合条件的行</h2><p>-c：只输出匹配行的计数</p>
+<p>-i：不区分大小写</p>
+<p>-v：显示不包含匹配文本的所有行</p>
+</li>
+<li><h2 id="cut命令：提取符合条件的列"><a href="#cut命令：提取符合条件的列" class="headerlink" title="cut命令：提取符合条件的列"></a><strong><code>cut</code>命令</strong>：提取符合条件的列</h2><p>-f 列号：提取第几列</p>
+<p>-d 分隔符：按照指定分隔符分割列，默认是制表符tab</p>
+<p><code>cut /etc/passwd | grep /bin/bash | grep -v root | cut -d &quot;:&quot; -f 1</code>：用来提取出普通用户名</p>
+<p><code>df -h | grep &quot;sda5&quot; | cut -f 5</code>：用来提取硬盘的使用率</p>
+</li>
+<li><h2 id="printf命令：按找类型输出格式输出内容"><a href="#printf命令：按找类型输出格式输出内容" class="headerlink" title="printf命令：按找类型输出格式输出内容"></a><strong><code>printf</code>命令</strong>：按找类型输出格式输出内容</h2><p><code>%ns</code>：输出字符串</p>
+<p><code>%ni</code>：输出整数</p>
+<p><code>%m.nf</code>：输出浮点数</p>
+<p>\n，\r，\t：换行，回车，tab键</p>
+<p><code>printf &#39;%s %s %s&#39; 1 2 3 4 5 6</code>：最后输出结果按照%s %s %s格式分为两组</p>
+<p>printf命令不能用管道符，只能<code>printf %s $(cat XXX.txt)</code></p>
+<p>print命令：和printf语法一样，只是会默认换行，print不是系统命令，只能在awk中执行</p>
+</li>
+<li><h2 id="awk命令：截取列"><a href="#awk命令：截取列" class="headerlink" title="awk命令：截取列"></a><strong><code>awk</code>命令</strong>：截取列</h2><p>很强大的命令，可以说是一门编程语言</p>
+<p><strong>格式</strong>：<code>awk ’条件1&#123;动作1&#125; 条件2&#123;动作2&#125; 条件3&#123;动作3&#125;‘ 文件名</code></p>
+<ul>
+<li>awk ‘{printf $2 “\t” $6 “\n”}’ XXX.txt</li>
+<li><code>df -h | awk &#39;&#123;printf $1 &quot;\t&quot; $5 &quot;\t&quot; $6&#125;&#39;</code>：可以处理空格，弥补了cut的不足，但是awk很多命令很复杂</li>
+<li><code>df -h | grep sda5 | awk ’&#123;print $5&#125;‘ | cut -d &quot;% -f 1&quot;</code></li>
+</ul>
+<p><strong>BEGIN</strong>：在所有命令执行之前先执行BEGIN后面的语句块,awk默认是先读入一行再执行后面的语句</p>
+<p><strong>END</strong>：在所有语句处理完后执行</p>
+<p><strong>FS</strong>：指定分隔符，<code>awk ’&#123;FS=&quot;:&quot;&#125;‘</code></p>
+<p><strong>awk还支持条件判断</strong>：<code>awk ’$6&gt;=87 &#123;printf $2 &quot;\n&quot;&#125;‘</code>：</p>
+</li>
+<li><h2 id="sed命令：数据的流编辑器"><a href="#sed命令：数据的流编辑器" class="headerlink" title="sed命令：数据的流编辑器"></a><strong><code>sed</code>命令</strong>：数据的流编辑器</h2><p>vim只能修改文件，sed还可以直接修改<strong>管道符</strong>传过来的流</p>
+<p><strong>格式</strong>：sed [选项] ‘[动作]’ 文件名</p>
+<p>选项：</p>
+<ul>
+<li><p>-n：sed默认把所有数据都输出到屏幕，加上-n表示<strong>只把经过sed修改过后的行输出到屏幕</strong></p>
+</li>
+<li><p>-e：允许对输入数据用<strong>多条sed命令</strong>编辑</p>
+</li>
+<li><p>-i：用sed的修改结果<strong>直接修改读取数据的文件</strong>，而不是由屏幕输出</p>
+</li>
+</ul>
+<p>动作：</p>
+<ul>
+<li>a：行后追加（多行时，行尾要加\）sed ‘2a hello’ XXX.txt</li>
+<li>c：替换（多行时，行尾要加\）sed ‘4c no the line’ XXX.txt</li>
+<li>i：行前插入（多行时，行尾要加\）sed ‘2i hello \ world’ XXX.txt</li>
+<li>d：删除：sed ‘2,4d’ XXX.txt</li>
+<li>p：打印：sed ‘2p’ XXX.txt</li>
+<li>s：字串替换：sed ‘4s old/new/g’ XXX.txt</li>
+</ul>
+</li>
+</ul>
+<h1 id="字符处理命令"><a href="#字符处理命令" class="headerlink" title="字符处理命令"></a>字符处理命令</h1><ul>
+<li><h2 id="sort：排序"><a href="#sort：排序" class="headerlink" title="sort：排序"></a>sort：排序</h2><ul>
+<li>-r：反向排序</li>
+<li>-t -k：指定排序标准：-t “:” -k 3,4：以:为分隔符，按找第3到第4列来排序</li>
+<li>-n：按照数值大小来排</li>
+</ul>
+</li>
+<li><h2 id="wc：统计字符"><a href="#wc：统计字符" class="headerlink" title="wc：统计字符"></a>wc：统计字符</h2><ul>
+<li>-l：行数</li>
+<li>-c：单词数</li>
+<li>-w：字符数</li>
+</ul>
+</li>
+</ul>
+<h1 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h1><ul>
+<li><h2 id="按照文件类型判断："><a href="#按照文件类型判断：" class="headerlink" title="按照文件类型判断："></a><strong>按照文件类型判断：</strong></h2><ul>
+<li><p>-e：判断文件是否存在</p>
+</li>
+<li><p>-b：判断文件是否存在，并且是否是<strong>块设备</strong>文件</p>
+</li>
+<li><p>-c：判断文件是否存在，并且是否是<strong>字符设备</strong>文件</p>
+</li>
+<li><p>-d：判断文件是否存在，并且是否是<strong>目录</strong>文件</p>
+</li>
+<li><p>-f：判断文件是否存在，并且是否是<strong>普通</strong>文件</p>
+</li>
+<li><p>-L：判断文件是否存在，并且是否是<strong>链接</strong>文件</p>
+</li>
+<li><p>-p：判断文件是否存在，并且是否是<strong>管道</strong>文件</p>
+</li>
+<li><p>-S：判断文件是否存在，并且是否是<strong>套接字</strong>文件</p>
+</li>
+<li><p>-s：判断文件是否存在，并且是否是<strong>非空</strong></p>
+</li>
+<li><p><strong>两种判断格式：</strong></p>
+<ul>
+<li><p>test -e XXX.txt</p>
+</li>
+<li><p>[ -e XXX.txt ]：注意首尾各有一个空格</p>
+</li>
+<li><p>FOR EXAMPLE：<code>[-d /root] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;</code>：如果是目录yes，否则no</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h2 id="按照文件权限进行判断"><a href="#按照文件权限进行判断" class="headerlink" title="按照文件权限进行判断"></a>按照文件权限进行判断</h2><ul>
+<li>-r：判断文件是否存在，并且是否该文件有<strong>读</strong>权限，u，g，o中任意一个有都为真</li>
+<li>-w：判断文件是否存在，并且是否该文件有<strong>写</strong>权限，u，g，o中任意一个有都为真</li>
+<li>-x：判断文件是否存在，并且是否该文件有<strong>执行</strong>权限，u，g，o中任意一个有都为真</li>
+<li>-u：判断文件是否存在，并且是否该文件有<strong>SUID</strong>权限，u，g，o中任意一个有都为真</li>
+<li>-g：判断文件是否存在，并且是否该文件有<strong>SGID</strong>权限，u，g，o中任意一个有都为真</li>
+<li>-k：判断文件是否存在，并且是否该文件有<strong>SBIT</strong>权限，u，g，o中任意一个有都为真</li>
+</ul>
+</li>
+<li><h2 id="两个文件之间进行比较"><a href="#两个文件之间进行比较" class="headerlink" title="两个文件之间进行比较"></a>两个文件之间进行比较</h2><ul>
+<li>文件1 -nt 文件2：判断文件1的<strong>修改时间</strong>是否比文件2<strong>新</strong></li>
+<li>文件1 -ot 文件2：判断文件1的<strong>修改时间</strong>是否比文件2<strong>旧</strong></li>
+<li>文件1 -ef 文件2：判断文件1的<strong>inode号</strong>是否和文件2<strong>一致</strong>，可以用来判断两个文件是不是互为硬链接</li>
+</ul>
+</li>
+<li><h2 id="两个整数之间比较"><a href="#两个整数之间比较" class="headerlink" title="两个整数之间比较"></a>两个整数之间比较</h2><ul>
+<li>整数1 -eq 整数2：相等</li>
+<li>整数1 -ne 整数2：不等</li>
+<li>整数1 -gt 整数2：大于</li>
+<li>整数1 -lt 整数2：小于</li>
+<li>整数1 -ge 整数2：大于等于</li>
+<li>整数1 -le 整数2：小于等于</li>
+</ul>
+</li>
+<li><h2 id="字符串的判断"><a href="#字符串的判断" class="headerlink" title="字符串的判断"></a>字符串的判断</h2><ul>
+<li>-z：判断是否为空</li>
+<li>-n：判断是否为非空</li>
+<li>字串1 == 字串2：判断是否相等</li>
+<li>字串1 !=字串2：判断是否不等</li>
+</ul>
+</li>
+<li><h2 id="多重条件判断"><a href="#多重条件判断" class="headerlink" title="多重条件判断"></a>多重条件判断</h2><ul>
+<li>判断1 -a 判断2：逻辑与</li>
+<li>判断1 -o 判断2：逻辑或</li>
+<li>!判断：逻辑非</li>
+</ul>
+</li>
+</ul>
+<h1 id="流程判断"><a href="#流程判断" class="headerlink" title="流程判断"></a>流程判断</h1><ul>
+<li><h2 id="if语句："><a href="#if语句：" class="headerlink" title="if语句："></a>if语句：</h2><ul>
+<li><p>和<code>[-d /root] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;</code>作用一样，但更直观</p>
+</li>
+<li><p><strong>单分支if</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225348.png" style="zoom:50%;" /></li>
+<li><p>FOR EXAMPLE:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">rate=$(df -h | grep /dev/sda5 | awk &#x27;&#123;print $5&#125;&#x27; | cut -d &quot;%&quot; -f 1)</span><br><span class="line">if [ $rate -ge 80 ]</span><br><span class="line">	then</span><br><span class="line">		echo &quot;Warning /dev/sda5 is coming full !!!&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>多分支判断：</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225355.png" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li><h2 id="case语句："><a href="#case语句：" class="headerlink" title="case语句："></a>case语句：</h2><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225406.png" style="zoom:50%;" /></li>
+<li><h2 id="for循环："><a href="#for循环：" class="headerlink" title="for循环："></a>for循环：</h2><ul>
+<li><p><strong>第一种语法：</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225413.png" style="zoom: 50%;" />
+
+<p>FOR EXAMPLE：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i in 1 2 3 4 5 6</span><br><span class="line">	do</span><br><span class="line">		echo $i</span><br><span class="line">	done</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>第二种语法：</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225420.png" style="zoom:50%;" />
+
+<p>FOR EXAMPLE：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line">s=0</span><br><span class="line">for ((i=1;i&lt;=100;i=i+1))</span><br><span class="line">	do</span><br><span class="line">		s=$(($s+$i))</span><br><span class="line">	done</span><br><span class="line">echo &quot;The sum of 1+2+...+100 is $s&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h2 id="while循环和until编程："><a href="#while循环和until编程：" class="headerlink" title="while循环和until编程："></a>while循环和until编程：</h2><ul>
+<li><p><strong>while循环：</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225427.png" style="zoom:50%;" />
+
+<p>FOR EXAMPLE：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line">i=1</span><br><span class="line">s=0</span><br><span class="line">while [ $i -le 100 ]</span><br><span class="line">	do</span><br><span class="line">		s=$(( $s+$i ))</span><br><span class="line">		i=$(( $i+1 ))</span><br><span class="line">	done</span><br><span class="line">echo &quot;The sum is: $s&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>until循环：</strong></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225435.png" style="zoom:50%;" />
+
+<p>FOR EXAMPLE：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line">i=1</span><br><span class="line">s=0</span><br><span class="line">until [ $i -gt 100 ]</span><br><span class="line">	do</span><br><span class="line">		s=$(( $s+$i ))</span><br><span class="line">		i=$(( $i+1 ))</span><br><span class="line">	done</span><br><span class="line">echo &quot;The sum is: $s&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>shell编程</p><p><a href="https://yangfanjack.github.io/2020/03/06/shell编程/">https://yangfanjack.github.io/2020/03/06/shell编程/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-03-06</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-22</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a><a class="link-muted mr-2" rel="tag" href="/tags/Shell/">Shell</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/03/10/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">linux的服务管理</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/03/06/shell%E5%9F%BA%E7%A1%80/"><span class="level-item">shell基础</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "efcb1fcbc6bbc82eaf031dee9259f375",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#基础正则表达式"><span class="level-left"><span class="level-item">1</span><span class="level-item">基础正则表达式</span></span></a></li><li><a class="level is-mobile" href="#字符截取命令"><span class="level-left"><span class="level-item">2</span><span class="level-item">字符截取命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#grep命令：提取符合条件的行"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">grep命令：提取符合条件的行</span></span></a></li><li><a class="level is-mobile" href="#cut命令：提取符合条件的列"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">cut命令：提取符合条件的列</span></span></a></li><li><a class="level is-mobile" href="#printf命令：按找类型输出格式输出内容"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">printf命令：按找类型输出格式输出内容</span></span></a></li><li><a class="level is-mobile" href="#awk命令：截取列"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">awk命令：截取列</span></span></a></li><li><a class="level is-mobile" href="#sed命令：数据的流编辑器"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">sed命令：数据的流编辑器</span></span></a></li></ul></li><li><a class="level is-mobile" href="#字符处理命令"><span class="level-left"><span class="level-item">3</span><span class="level-item">字符处理命令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#sort：排序"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">sort：排序</span></span></a></li><li><a class="level is-mobile" href="#wc：统计字符"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">wc：统计字符</span></span></a></li></ul></li><li><a class="level is-mobile" href="#条件判断"><span class="level-left"><span class="level-item">4</span><span class="level-item">条件判断</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#按照文件类型判断："><span class="level-left"><span class="level-item">4.1</span><span class="level-item">按照文件类型判断：</span></span></a></li><li><a class="level is-mobile" href="#按照文件权限进行判断"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">按照文件权限进行判断</span></span></a></li><li><a class="level is-mobile" href="#两个文件之间进行比较"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">两个文件之间进行比较</span></span></a></li><li><a class="level is-mobile" href="#两个整数之间比较"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">两个整数之间比较</span></span></a></li><li><a class="level is-mobile" href="#字符串的判断"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">字符串的判断</span></span></a></li><li><a class="level is-mobile" href="#多重条件判断"><span class="level-left"><span class="level-item">4.6</span><span class="level-item">多重条件判断</span></span></a></li></ul></li><li><a class="level is-mobile" href="#流程判断"><span class="level-left"><span class="level-item">5</span><span class="level-item">流程判断</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#if语句："><span class="level-left"><span class="level-item">5.1</span><span class="level-item">if语句：</span></span></a></li><li><a class="level is-mobile" href="#case语句："><span class="level-left"><span class="level-item">5.2</span><span class="level-item">case语句：</span></span></a></li><li><a class="level is-mobile" href="#for循环："><span class="level-left"><span class="level-item">5.3</span><span class="level-item">for循环：</span></span></a></li><li><a class="level is-mobile" href="#while循环和until编程："><span class="level-left"><span class="level-item">5.4</span><span class="level-item">while循环和until编程：</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521232604.png" alt="win10壁纸bingtoday"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-03-30T00:27:58.000Z">2022-03-30</time></p><p class="title"><a href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/">win10壁纸bingtoday</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg" alt="RPM打包初试"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-01T02:44:01.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/">RPM打包初试</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img221251.jpg" alt="国庆北京独游"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-13T00:13:19.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/">国庆北京独游</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgff.jpg" alt="摄影入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-10T10:19:17.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/">摄影入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210923201053126.png" alt="工作流Activiti"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-09-23T11:38:06.000Z">2021-09-23</time></p><p class="title"><a href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">工作流Activiti</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2022 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

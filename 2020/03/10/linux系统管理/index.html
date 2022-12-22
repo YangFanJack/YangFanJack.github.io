@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>linux系统管理 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一个ID号。 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法看到的进程，通常使用后台方式执行。一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中。直到关机才才结束。"><meta property="og:type" content="blog"><meta property="og:title" content="linux系统管理"><meta property="og:url" content="https://yangfanjack.github.io/2020/03/10/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一个ID号。 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法看到的进程，通常使用后台方式执行。一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中。直到关机才才结束。"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg"><meta property="article:published_time" content="2020-03-10T13:21:48.000Z"><meta property="article:modified_time" content="2022-12-22T02:37:28.832Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Linux"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yangfanjack.github.io/2020/03/10/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"},"headline":"JACK's BLOG","image":["http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg"],"datePublished":"2020-03-10T13:21:48.000Z","dateModified":"2022-12-22T02:37:28.832Z","author":{"@type":"Person","name":"Jack1024"},"description":"在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一个ID号。 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法看到的进程，通常使用后台方式执行。一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中。直到关机才才结束。"}</script><link rel="canonical" href="https://yangfanjack.github.io/2020/03/10/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/plan">Plan</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg" alt="linux系统管理"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-10T13:21:48.000Z" title="2020-3-10 9:21:48 ├F10: PM┤">2020-03-10</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-22T02:37:28.832Z" title="2022-12-22 10:37:28 ├F10: AM┤">2022-12-22</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">6 minutes read (About 839 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">linux系统管理</h1><div class="content"><p><strong>进程管理的作用：（下面优先级由高到低）</strong></p>
+<ol>
+<li>判断服务器的健康状态</li>
+<li>查看系统中的所有进程</li>
+<li>杀死进程</li>
+</ol>
+<h2 id="进程查看"><a href="#进程查看" class="headerlink" title="进程查看"></a>进程查看</h2><ul>
+<li><p><code>ps aux</code>：查看系统中所有进程，查看BSD操作系统格式</p>
+</li>
+<li><p><code>ps -le</code>：查看系统中所有进程，Linux格式</p>
+</li>
+<li><p>输出格式的作用：</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521224651.png" style="zoom: 50%;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521224659.png" style="zoom:50%;" /></li>
+<li><p><code>top</code>（每3秒更新一次）</p>
+<p>-d 秒数：默认每3秒更新一次，可指定</p>
+<p>？或h：显示交互模式的帮助</p>
+<p>P：以CPU使用率排序</p>
+<p>M：以内存使用率排序</p>
+<p>N：以PID排序</p>
+<p>q：退出top</p>
+<p><strong>top命令的显示：</strong></p>
+<p><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521224746.png"></p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521224706.png" style="zoom:50%;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521224753.png" style="zoom:50%;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521224809.png" style="zoom:50%;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521224823.png" style="zoom:50%;" />
+
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521224937.png" style="zoom:50%;" /></li>
+<li><p><code>pstree</code>：查看进程树</p>
+</li>
+</ul>
+<h2 id="进程终止"><a href="#进程终止" class="headerlink" title="进程终止"></a>进程终止</h2><ul>
+<li><p><code>kill</code></p>
+<p>-l：查看kill支持的信号</p>
+<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225035.png" style="zoom:50%;" />
+
+<p>-1 PID：重启进程</p>
+<p>-9 PID：终止进程</p>
+</li>
+<li><p><code>killall 进程名</code>：按照进程名杀死，选项和kill通用</p>
+<p>-i：有询问</p>
+<p>-I：忽略进程名的大小写</p>
+</li>
+<li><p><code>pkill 进程名</code>：按照进程名杀死，选项和kill通用</p>
+<p>也可以加t选项跟终端号：<code>pkill -t 终端号</code>：按照终端号踢出用户，用 <code>w</code> 命令查询系统中登录的用户，然后用终端号来踢</p>
+</li>
+</ul>
+<h1 id="工作管理"><a href="#工作管理" class="headerlink" title="工作管理"></a>工作管理</h1><ul>
+<li>把进程放入后台<ul>
+<li>命令后面加&amp;：后台继续运行</li>
+<li>在命令执行过程中，按下ctrl+z快捷键：放入后台即暂停</li>
+</ul>
+</li>
+<li>查看后台的工作：<code>jobs -l</code>：加l会显示工作号</li>
+<li><code>bg %工作号</code>：恢复后台暂停的工作恢复到后台运行，但是不能恢复和前台有交互的命令比如<code>top命令</code>和<code>vim命令</code></li>
+<li><code>fg %工作号</code>：恢复后台暂停的工作恢复到前台运行</li>
+<li><strong>注意：工作号≠PID</strong></li>
+</ul>
+<h1 id="系统资源查看"><a href="#系统资源查看" class="headerlink" title="系统资源查看"></a>系统资源查看</h1><ul>
+<li><p><code>vmstat 刷新延时(s) 刷新次数</code>：<strong>监视系统资源</strong>使用情况，和top内容差不多，但更简洁</p>
+</li>
+<li><p><code>dmesg</code>：<strong>开机时内核检测</strong>，一般结合grep使用</p>
+</li>
+<li><p>free：查看<strong>内存使用</strong>情况</p>
+<p>-b：以字节为单位显示</p>
+<p>-k：以KB为单位显示（默认就是）</p>
+<p>-m：以MB为单位显示</p>
+<p>-g：以GB为单位显示</p>
+</li>
+<li><p>查看<strong>CPU</strong>信息：</p>
+<ul>
+<li><code>cat /proc/cupinfo</code>:每次开机都会更新</li>
+<li><code>dmesg | grep CPU</code></li>
+<li><code>uptime</code>：实际就是top命令第一行</li>
+</ul>
+</li>
+<li><p><code>uname</code>：查看<strong>系统与内核相关信息</strong></p>
+<p>-a：查看系统所有相关信息</p>
+<p>-r：查看内核版本</p>
+<p>-s：查看内核名称</p>
+</li>
+<li><p>判断当前系统的<strong>位数</strong>：file /bin/ls（通过系统外部命令的位数来推测）</p>
+</li>
+<li><p><code>lsb_release -a</code>：查询Linux系统的<strong>发行版本</strong></p>
+</li>
+<li><p><code>lsof -p PID</code>：列出进程调用的文件</p>
+</li>
+</ul>
+<h1 id="系统定时任务"><a href="#系统定时任务" class="headerlink" title="系统定时任务"></a>系统定时任务</h1><p><strong>前提</strong>：必须启动crond服务：<code>service crond restart</code>并且<code>chkconfig crond on</code>，Linux系统都是默认启动和自启动的</p>
+<ul>
+<li><p>crontab：设置系统定时任务</p>
+<p>-e：编辑crontab定时任务</p>
+<p>-l：查询crontab任务</p>
+<p>-r：删除当前用户所有的crontab任务</p>
+<p>打开文件编辑的格式是：<code>* * * * * command</code></p>
+<ul>
+<li>第一个*：分钟（0-59）</li>
+<li>第二个*：小时（0-23）</li>
+<li>第三个*：天（1-31）</li>
+<li>第四个*：月（1-12）</li>
+<li>第五个*：星期（0-7，0和7都代表星期日）</li>
+</ul>
+<p>特殊符号：<img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521225045.png" style="zoom:50%;" /></p>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>linux系统管理</p><p><a href="https://yangfanjack.github.io/2020/03/10/linux系统管理/">https://yangfanjack.github.io/2020/03/10/linux系统管理/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-03-10</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-22</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/03/10/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">linux日志管理</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/03/10/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/"><span class="level-item">linux的服务管理</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "0bde1983f9a7869d97bba3cb44ba155c",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#进程查看"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">进程查看</span></span></a></li><li><a class="level is-mobile" href="#进程终止"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">进程终止</span></span></a></li></ul><li><a class="level is-mobile" href="#工作管理"><span class="level-left"><span class="level-item">2</span><span class="level-item">工作管理</span></span></a></li><li><a class="level is-mobile" href="#系统资源查看"><span class="level-left"><span class="level-item">3</span><span class="level-item">系统资源查看</span></span></a></li><li><a class="level is-mobile" href="#系统定时任务"><span class="level-left"><span class="level-item">4</span><span class="level-item">系统定时任务</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20220521232604.png" alt="win10壁纸bingtoday"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-03-30T00:27:58.000Z">2022-03-30</time></p><p class="title"><a href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/">win10壁纸bingtoday</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img20210101160711.jpg" alt="RPM打包初试"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-01T02:44:01.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/">RPM打包初试</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/img221251.jpg" alt="国庆北京独游"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-13T00:13:19.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/">国庆北京独游</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgff.jpg" alt="摄影入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-10T10:19:17.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/">摄影入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/"><img src="http://rn7xzghaf.hb-bkt.clouddn.com/imgimage-20210923201053126.png" alt="工作流Activiti"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-09-23T11:38:06.000Z">2021-09-23</time></p><p class="title"><a href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">工作流Activiti</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2022 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
