@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My Hugo Site</title>
-    <link>https://yangfanjack.github.io/post/</link>
+    <link>114.116.115.171/post/</link>
     <description>Recent content in Posts on My Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 30 Mar 2022 08:27:58 +0000</lastBuildDate><atom:link href="https://yangfanjack.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Mar 2022 08:27:58 +0000</lastBuildDate><atom:link href="114.116.115.171/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>win10壁纸bingtoday</title>
-      <link>https://yangfanjack.github.io/post/win10%E5%A3%81%E7%BA%B8bingtoday/</link>
+      <link>114.116.115.171/post/win10%E5%A3%81%E7%BA%B8bingtoday/</link>
       <pubDate>Wed, 30 Mar 2022 08:27:58 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/win10%E5%A3%81%E7%BA%B8bingtoday/</guid>
+      <guid>114.116.115.171/post/win10%E5%A3%81%E7%BA%B8bingtoday/</guid>
       <description>注册表指定壁纸路径 WIN+R打开运行对话框：输入regedit打开注册表 到达路径：计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System下，一个叫Wallpaper的名称就是壁纸的指定路径，更换成你希望的壁纸路径：例如：C:\wallpaper\wallpaper.jpg 每日bing壁纸下载 通过java代码实现下载每日bing壁纸到刚才注册表指定的壁纸路径
 public class DownloadMain { public static void main(String[] args) throws IOException { final String imgResource = getImgResource(); final URL url = new URL(imgResource); final URLConnection urlConnection = url.openConnection(); final BufferedInputStream bis = new BufferedInputStream(urlConnection.getInputStream()); final BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(&amp;#34;C:\\wallpaper\\wallpaper.jpg&amp;#34;)); final byte[] bytes = new byte[1024]; int len = 0; while ((len=bis.read(bytes)) != -1){ bos.write(bytes,0,len); } bis.close(); bos.close(); } public static String getImgResource() throws IOException{ String url = &amp;#34;http://cn.</description>
     </item>
     
     <item>
       <title>RPM打包初试</title>
-      <link>https://yangfanjack.github.io/post/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</link>
+      <link>114.116.115.171/post/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</link>
       <pubDate>Wed, 01 Dec 2021 10:44:01 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</guid>
+      <guid>114.116.115.171/post/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</guid>
       <description>1434
 rpm打包需要一个独立的打包目录
 BUILD：编译rpm包的临时目录 BUILDROOT：编译后生成的软件临时安装目录 RPMS：最终生成的可安装rpm包存放目录 SOURCES：所有源文件和补丁文件存放目录 SPECS：存放SPEC文件的目录 SRPMS：软件最终的rpm源码格式存放路径 打包需要从源码sources开始，将存放源码的目录打包压缩成tar.gz格式，放进SOURCES目录中
@@ -32,10 +32,10 @@ BUILD：编译rpm包的临时目录 BUILDROOT：编译后生成的软件临时�
     
     <item>
       <title>国庆北京独游</title>
-      <link>https://yangfanjack.github.io/post/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/</link>
+      <link>114.116.115.171/post/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/</link>
       <pubDate>Wed, 13 Oct 2021 08:13:19 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/</guid>
+      <guid>114.116.115.171/post/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/</guid>
       <description>在保定工作的这3个月里，从学校到工作过渡很平稳，学校里做的事和工作中差异不大，总体来说还是很快适应了工作环境。另外，和学校相比，假期确实太少啦，但是没办法，毕竟要挣钱的嘛。自己要想办法在一天8小时的工作中做更多有意义的事，否则就真的是浪费时间了。
 好不容易等到国庆长假，早就计划趁着这次假期去北京走走看看，上一次去北京还是大二寒假返校利用转机空挡期在北京玩了一天，那次北京行印象深刻。但一天的行程，我即使用一天50000步的极限速度来搞，也不可能走完北京几个著名景点，况且还是走马观花式地在地铁线上往来于景点之间。
 这次的北京行，我希望能尽量放慢时间，从底向上体会北京这座城的样貌。
@@ -76,10 +76,10 @@ Day3 由于前两天的高负荷奔走，第三天9点才从旅馆动身出发�
     
     <item>
       <title>摄影入门</title>
-      <link>https://yangfanjack.github.io/post/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/</link>
+      <link>114.116.115.171/post/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/</link>
       <pubDate>Sun, 10 Oct 2021 18:19:17 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/</guid>
+      <guid>114.116.115.171/post/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/</guid>
       <description>曝光 摄影就是用光线绘图，摄影是光与影的艺术！ 曝光：胶片、底片、数码时代的CMOS通过光线产生影像的过程 曝光不足 &amp;amp; 曝光过度(过曝) 曝光正常：亮有细节不过曝，暗有层次不漆黑 摄影的第一步是控制曝光 光圈（f） 光圈用来控制进光量 f3.5、f5.6、f8、f11、f16、f22：数值和光圈大小成反比 大光圈：景深浅，主体清晰背景模糊 小光圈：景深长、主体和背景都很清晰 快门（以秒为单位） 用来控制光线进来的时间，时间越长曝光越多 高速快门凝固瞬间 低速快门记录轨迹（必须用三脚架） 感光度ISO 底片/胶片/CMOS感光元件 等硬件的感官能力 ISO越高，感光能力越强，画质越粗糙，噪点越多；反之亦然 但是：一张有噪点的照片比一张拍虚了的照片有价值 当光圈和快门没有办法时，适当提高ISO增加亮度 重点：光圈、快门、ISO调节优先级：光圈 &amp;gt; 快门 &amp;gt; ISO **暗处：**首先增大光圈，如果不够再适当延长快门时间，如果此时光线还是不足，那么再调节ISO，增大感光能力 **亮处：**首先缩小ISO，降低感光能力，如果还是太亮，就缩短快门时间，如果还是不行，再缩小光圈。 拍摄模式 拍摄模式种类： M：手动曝光模式 A（AV）：光圈优先模式 S（TV）：快门优先模式 P：程序自动模式（傻瓜模式） 光圈、快门、ISO的组合关系 光圈、快门、ISO共同决定了一张影像的曝光 相机镜头 定焦 &amp;amp; 变焦
 定焦镜头：成像质量好，方便性差 变焦镜头：成像质量比定焦镜头略差，方便性好 **焦距：**决定了镜头能看到的范围大小
 镜头越短看的范围广，镜头长看的范围窄
@@ -91,10 +91,10 @@ Day3 由于前两天的高负荷奔走，第三天9点才从旅馆动身出发�
     
     <item>
       <title>工作流Activiti</title>
-      <link>https://yangfanjack.github.io/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</link>
+      <link>114.116.115.171/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</link>
       <pubDate>Thu, 23 Sep 2021 19:38:06 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</guid>
+      <guid>114.116.115.171/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</guid>
       <description>工作流的作用是：对系统的业务流程进行自动化管理。一个软件的系统核心是系统的业务流程，工作流只是协助进行业务流程管理。工作流能更好的管理业务流程，提高系统的可扩展性。
 工作流的具体应用：
 关键业务流程 行政管理类 财务相关类 客户服务类 特殊服务类 在没有专门的工作流引擎前，要实现流程控制，通常的做法是采用状态字段的值类跟踪流程的变化情况。这样不用角色的用户，通过状态字段的取值来决定记录是否显示。但是这样做和业务代码的耦合性特别高。
@@ -125,10 +125,10 @@ Activiti环境 &amp;lt;!-- https://mvnrepository.com/artifact/org.activiti/activ
     
     <item>
       <title>shiro权限管理</title>
-      <link>https://yangfanjack.github.io/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
       <pubDate>Thu, 12 Aug 2021 21:30:04 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
       <description>shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。
 只要有人参与的系统都需要进行权限管理。
 什么是Shiro？ Shiro是apache旗下的一个开源框架，它将软件系统的安全认认证相关的功能抽取出来，实现用户身份认证、权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。
@@ -145,10 +145,10 @@ credential：凭证信息
     
     <item>
       <title>毕业九寨三人游</title>
-      <link>https://yangfanjack.github.io/post/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/</link>
+      <link>114.116.115.171/post/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/</link>
       <pubDate>Thu, 08 Jul 2021 17:38:00 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/</guid>
+      <guid>114.116.115.171/post/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/</guid>
       <description>6月9号本科毕设答辩后就赶回家了，休息一个月就要开始工作啦。和高中同学联系打算出去玩玩儿。综合考虑后打算到九寨-黄龙-若尔盖一线玩玩儿，我的博客不仅仅是技术博客，旅行游记是一个不错的题材。
 总体计划 本次前往九寨沟的行程有几个计划：报个旅游团、坐班车去然后租车自驾、全程包车、坐班车去然后包车等等计划都有想过，虽然三个同学都有拿到驾照，但是平时都在学校学习，开车的机会并不多，再加上当前绵九高速正在施工，从江油前往九寨沟的路并不好走甚至有点儿危险；在论如果跟团游的话不是很舒服，旅行安排的灵活性就不足。最后选择自行做班车到九寨沟，然后在九寨沟当地联系一个司机包车游览九寨沟、黄龙、若尔盖草原一线。九寨沟是没有铁路的，当然，你可以选择做飞机前往，但是因为旅游专线，机票价格十分高昂。
 这个司机也是在网上浏览一个2017年的游客写的游记，其中推荐了这个九寨沟当地刘师傅。先说一下旅行的总体安排。整个旅行大概有6天时间：
@@ -185,10 +185,10 @@ Day6 第六天一大早，简单吃了点儿饭就坐车回江油了，一路上
     
     <item>
       <title>实体机安装Arch</title>
-      <link>https://yangfanjack.github.io/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</link>
+      <link>114.116.115.171/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</link>
       <pubDate>Mon, 14 Jun 2021 09:18:48 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</guid>
+      <guid>114.116.115.171/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</guid>
       <description>准备： 机器：华硕飞行堡垒fx-60vm
 第一系统：win10
 Arch镜像
@@ -200,10 +200,10 @@ U盘
     
     <item>
       <title>英语语法框架构建</title>
-      <link>https://yangfanjack.github.io/post/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/</link>
+      <link>114.116.115.171/post/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/</link>
       <pubDate>Mon, 17 May 2021 15:49:41 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/</guid>
+      <guid>114.116.115.171/post/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/</guid>
       <description>Simple Sentence：主语+谓语 可以独立完成的动作：不及物动词Intransitive Verbs 主语+不及物动词 有一个动作的承受者：单及物动词Monotransitive Verbs 主语+单及物动词+宾语 有两个动作承受者：双及物动词Ditransitive Verbs 主语+间接宾语+直接宾语 只有一个动作承受者（不同于2）：复杂及物动词Complex-Transitive Verbs 主语+复杂及物动词+宾语+宾语补语 不是狭义的”动作“：系动词Linking Verbs 主语+系动词+主语补语(表语) Parts Of Speech：句子成分 Subject：主语 Predicate Verb：谓语动词 Object：宾语 Object Complement：宾语补语 Subject Complement（Predicative）：主语补语（表语） Attributive：定语&amp;mdash;修饰主语/宾语 Adverbial：状语&amp;mdash;修饰谓语动词 Appositive：同位语&amp;mdash;再把主语/宾语说一遍 Non Simple Sentence Compuond Sentence：Simple Sentence+Simple Sentence&amp;hellip;
 Complex Sentence：Main Clause（主句）+Subordinate Clause（从句）
 Subordinate Clause 主语从句 宾语从句 表语从句 同位语从句 定语从句 状语从句 词类 Nouns：名词 Articles：冠词 Pronouns：代词 Adjectives：形容词 Numerals：数词 Adverbs：副词 Prepositions：介词 Interjections：叹词 Conjunctions：连词 Verbs：动词 注意：对于句子成分和词类的关系而言，除了谓语动词只能用动词，其余句子成份都可能包含不同的词类
@@ -212,10 +212,10 @@ Predicate Verbs&amp;rsquo; Big Three（谓语动词的三大本领） 表示动�
     
     <item>
       <title>经济学原理学习</title>
-      <link>https://yangfanjack.github.io/post/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</link>
+      <link>114.116.115.171/post/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Sat, 15 May 2021 21:49:01 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>114.116.115.171/post/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</guid>
       <description>经济学入门 宗旨：没有对的经济学理论，只有好的经济学理论
 Let‘s Go
 经济学演变 自给自足，没有交换 开始分工，根据劳动量交换产品 随着生产力发展，更多的产品生产出来，产生货币：从商品中分离出来充当一般等价物的商品，专门用于交换（吾以吾之所有予市场，换吾之所需，货币就是这一过程的约定，它反映的是个体与社会的经济协作关系） 交换促进了分工，分工带来了生产率提升，反过来又促进了交换 交换的前提是交换双方彼此信任。 货币要么是具有稀缺性，要么背后有强权背书。所以一旦遇到乱世，大家都会把货币兑换成普通商品或者硬通货。 早期交易体系：以铜币为基础的弱信用链（谷物，绢帛，铜钱） 早期铜钱货币交易体系中，铜钱较稀缺，铜钱铸造速度&amp;lt;生产率提高速度，市场流通货币减少，货币增值，商品价格下降，会导致通货紧缩 经济由所有市场内的全部交易构成
@@ -230,10 +230,10 @@ Trade can make everyone better off：贸易使人人收益 Markets are usually a
     
     <item>
       <title>股票入门</title>
-      <link>https://yangfanjack.github.io/post/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</link>
+      <link>114.116.115.171/post/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</link>
       <pubDate>Sat, 15 May 2021 14:58:12 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</guid>
+      <guid>114.116.115.171/post/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</guid>
       <description>理财的几种投资渠道： 银行利息 年利率1.5% 银行的利率跑不赢通货膨胀 证券投资：股票 收益高 波动很大，技术要求大 房地产投资 基金 收益低点：货币基金，纯债基金 收益高点：股票型基金，混合型基金 一些概念： 债券：别人买你，还你利息 股票：共同分享开公司的成果 A股：中国大陆公司发行的股票 指数：一家公司一只股票，多支股票组合形成指数 大盘（上证指数）：在上海债券交易所上发行的所有股票组合 小盘（中证500指数）：选取了500家中小公司的股票组合 基金：由基金公司拿我们的钱，帮我们买股票，债券，帮助我们打理我们的钱 我们不会理财，可以找大的基金公司（天弘，富国&amp;hellip;&amp;hellip;），千万不要找P2P 关于基金Fund的一些概念 开放式基金（随买随卖）按照投资类型一般分为：
 股票型：风险较高收益较多 债券型：风险较低收益较少 混合型：股票+债券 货币型：风险最小，收益最少。投资于货币市场的基金。例：一年以内的银行定期存款，剩余期限397天以内的债券 经济 &amp;amp; 金融 ？ 经济 一次性的买卖，为了自己消费 供需定价 金融 买家炒来炒去，为了自己赚钱 预期决定价格，大家看涨它就涨 股票分类： A股，B股，H股，N股，S股
 一般做的都是沪深A股（上海证券交易所 &amp;amp; 深圳证券交易所）
@@ -242,29 +242,29 @@ Trade can make everyone better off：贸易使人人收益 Markets are usually a
     
     <item>
       <title>Java中加载配置文件的几种方法</title>
-      <link>https://yangfanjack.github.io/post/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</link>
+      <link>114.116.115.171/post/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</link>
       <pubDate>Sun, 21 Mar 2021 19:22:16 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</guid>
+      <guid>114.116.115.171/post/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</guid>
       <description>Java的常用web框架中会有很多配置文件，这些配置文件都是为了降低代码耦合性而从代码中剥离出来的。为了在程序运行时动态地加载这些文件进内存，需要加载这些配置文件，学习过程中发现有很多种方法都能将这些配置文件加载进内存，需要总结下方便记忆。
 基于ClassLoader加载配置文件 Properties properties = new Properties(); InputStream in = 当前类名.class.getClassLoader().getResourceAsStream(&amp;#34;配置文件相对路径&amp;#34;); properties.load(in); System.out.println(properties.getProperty(&amp;#34;username&amp;#34;)); System.out.println(properties.getProperty(&amp;#34;password&amp;#34;)); 基于Resources读取配置文件 InputStream resourceAsStream = Resources.getResourceAsStream(&amp;#34;SqlMapConfig.xml&amp;#34;); SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream); SqlSession sqlSession = sqlSessionFactory.openSession(); //获得MyBatis框架生成的UserMapper接口的实现类 UserMapper userMapper = sqlSession.getMapper(UserMapper.class); User user = userMapper.findById(1); System.out.println(user); sqlSession.close(); 基于ResourceBundle读取配置文件 ResourceBundle resourceBundle = ResourceBundle.getBundle(&amp;#34;配置文件相对路径&amp;#34;); System.out.println(resourceBundle.getString(&amp;#34;username&amp;#34;)); InputStream in3 = new FileInputStream(new File(filePath)); ResourceBundle resourceBundle2 = new PropertyResourceBundle(in3); System.out.println(resourceBundle2.getString(&amp;#34;username&amp;#34;)); </description>
     </item>
     
     <item>
       <title>Nginx</title>
-      <link>https://yangfanjack.github.io/post/nginx/</link>
+      <link>114.116.115.171/post/nginx/</link>
       <pubDate>Thu, 18 Mar 2021 22:10:05 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/nginx/</guid>
+      <guid>114.116.115.171/post/nginx/</guid>
       <description> Nginx 是一款高性能的 http 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。由俄罗斯的程序设计师伊戈尔·西索夫（Igor Sysoev）所开发，官方测试 nginx 能够支支撑 5 万并发链接，并且 cpu、内存等资源消耗却非常低，运行非常稳定。 应用场景 http 服务器。Nginx 是一个 http 服务可以独立提供 http 服务。可以做网页静态服务器。 虚拟主机。可以实现在一台服务器虚拟出多个网站。例如个人网站使用的虚拟主机。 反向代理，负载均衡。当网站的访问量达到一定程度后，单台服务器不能满足用户的请求时，需要用多台服务器集群可以使用 nginx 做反向代理。并且多台服务器可以平均分担负载，不会因为某台服务器负载高宕机而某台服务器闲置的情况。 HTTP服务器 将静态网站文件 上传到服务器的/usr/local/nginx/html下即可访问 虚拟主机 虚拟主机，也叫“网站空间”，就是把一台运行在互联网上的物理服务器划分成多个“虚拟”服务器。虚拟主机技术极大的促进了网络技术的应用和普及。同时虚拟主机的租用服务也成了网络时代的一种新型经济形式。 端口绑定 域名绑定 反向代理 负载均衡 </description>
     </item>
     
     <item>
       <title>Arch入教路</title>
-      <link>https://yangfanjack.github.io/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</link>
+      <link>114.116.115.171/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</link>
       <pubDate>Wed, 17 Mar 2021 10:29:41 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</guid>
+      <guid>114.116.115.171/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</guid>
       <description>我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kubuntu，mint。早就听说了Arch邪教，纯命令安装系统，需要对linux系统有更深的了解，也借这个契机来试试。
 第一步：虚拟机试探 官网下载安装包
 启动vBox，开始进入安装界面
@@ -280,10 +280,10 @@ vim /etc/pacman.d/mirrorlist # 找到中国镜像移到最上面或者添加 Ser
     
     <item>
       <title>redis缓存技术</title>
-      <link>https://yangfanjack.github.io/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</link>
+      <link>114.116.115.171/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</link>
       <pubDate>Tue, 16 Mar 2021 10:54:17 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</guid>
+      <guid>114.116.115.171/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</guid>
       <description>Redis简介： **概念：**redis是一款高性能的NOSQL（Not Only SQL）系列的菲关系型数据库
 Redis特点：
 Redis 是一个开源的使用 ANSI、C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种语言的 API。
@@ -304,10 +304,10 @@ lpush key value rpush key value lrange key start end lpop key rpop key 集合类
     
     <item>
       <title>javaWeb三大组件</title>
-      <link>https://yangfanjack.github.io/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</link>
+      <link>114.116.115.171/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</link>
       <pubDate>Tue, 16 Mar 2021 10:51:26 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</guid>
+      <guid>114.116.115.171/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</guid>
       <description>Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦截请求：完成通用操作（登录验证，统一编码，敏感字符过滤） @WebFilter(&amp;#34;/*&amp;#34;)//访问所有资源之前，都会执行该过滤器 public class FilterDemo1 implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { System.out.println(&amp;#34;filterDemo1被执行了....&amp;#34;); //放行 filterChain.doFilter(servletRequest,servletResponse); } @Override public void destroy() { } } web.xml配置 &amp;lt;filter&amp;gt; &amp;lt;filter-name&amp;gt;demo1&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;cn.itcast.web.filter.FilterDemo1&amp;lt;/filter-class&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;demo1&amp;lt;/filter-name&amp;gt; &amp;lt;!-- 拦截路径 --&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt; 过滤器执行流程
 执行放行前的代码 执行放行后的资源 回来执行过滤器放行代码下边的代码（一般是对response对象做增强） 过滤器生命周期方法
 **init:**在服务器启动后，会创建Filter对象，然后调用init方法。只执行一次。用于加载资源 **doFilter:**每一次请求被拦截资源时，会执行。执行多次 **destroy:**在服务器关闭后，Filter对象被销毁。如果服务器是正常关闭，则会执行destroy方法。只执行一次。用于释放资源 过滤器配置详解
@@ -316,37 +316,37 @@ lpush key value rpush key value lrange key start end lpop key rpop key 集合类
     
     <item>
       <title>java基础快速回顾-下</title>
-      <link>https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/</link>
+      <link>114.116.115.171/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/</link>
       <pubDate>Tue, 09 Mar 2021 11:42:39 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/</guid>
+      <guid>114.116.115.171/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/</guid>
       <description>Lambda表达式 匿名内部类可以省去定义实现类，但是语法太复杂 lambda表达式不关注面向对象，返璞归真，仅仅关注内容本身。 //一些参数，一个箭头，一段重写代码 () -&amp;gt; System.out.println(&amp;#34;lambda&amp;#34;); 将Runnable接口作为参数进行传递，可以使用两种方法： 使用lambda必须满足接口中有且仅有一个抽象方法 有且仅有一个抽象方法的接口称为 “函数式接口” Lambda的省略写法有如下要求： 括号中参数列表的数据类型可以省略 括号中的参数只有一个，那么类型和（）都可以省略 如果{}的代码只有一行，都可以省略{} return 分号，且必须要一起省略，不能只省略部分 FIle类 文件和目录的抽象表示，用于文件&amp;amp;目录的创建、查找和删除等操作 //File类的4个成员变量 //路径分隔符(windows分号,linux冒号) static String pathSeparator; static char pathSeparatorChar; //默认名称分隔符(windows反斜杠，linux正斜杠) static String separator; static char separator; //注意：操作路径的时候，路径不能写死了，根据不同系统更换 File构造函数 /** File(String pathname); File(String parent,String child); File(File parent,String child) 路径可以是文件名，也可以是文件夹名 可以相对路径，也可以绝对路径 路径可以是存在的，也可以是不存在的 创建File对象，只是把字符串封装为File对象，不考虑路径的真假情况 **/ public static void main(){ File f1 = new File(&amp;#34;/home/jack1024/桌面/a.txt&amp;#34;); File f2 = new File(&amp;#34;/home/jack1024/桌面/a&amp;#34;); } File类常用方法： public String getAbsolutePath();//文件/目录绝对路径名字符串（无论构造方法中传递相对还是绝对，都返回绝对路径） public String getPath();//文件/目录路径名字符串（构造方法中传递的字符串） public String getName();//文件/目录名字 public long length();//文件字节大小(目录没有大小概念) 判断功能： public boolean exists();//该文件/目录是否存在 public boolean isDirectory();//是否为目录 public boolean isFile();//是否为文件 创建 &amp;amp; 删除 public boolean createNewFile();//当该名字的文件不存在时，创建一个新的空文件 public boolean delete();//删除由此File表示的文件或目录，不走回收站 public boolean mkdir();//创建由此File表示的目录 public boolean mkdirs();//创建由此File表示的目录，包括任何必须但不存在的父目录 目录遍历 包含隐藏文件/文件夹 public String[] list();//返回一个String数组，表示该File目录中所有子文件或目录 public File[] listFiles();//返回一个File数组，表示该File目录中所有子文件或目录 递归 直接递归 &amp;amp; 间接递归 递归一定要有停止的条件约束，否则会出现栈内存溢出StackOverFlowError 递归的次数也不能太多，否则也可能发生栈内存溢出 构造方法中禁止递归 递归图示：</description>
     </item>
     
     <item>
       <title>java基础快速回顾-中</title>
-      <link>https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/</link>
+      <link>114.116.115.171/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/</link>
       <pubDate>Sat, 06 Mar 2021 09:36:20 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/</guid>
+      <guid>114.116.115.171/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/</guid>
       <description>Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名+@+hashcode”值 看一个类是否重写了toString方法，可以通过直接打印对象名字，没有重写的显示对象地址值，重写的按照toString重写内容自定义打印 equals() Object类的equals()方法默认就是用==来进行比较 public class Person{ public String name; public int age; @Override public boolean equals(Object obj){ Person p = (Person)obj; return this.name.equals(p.name) &amp;amp;&amp;amp; this.age==p.age; } } public class Test{ public static void main(String[] args){ Person p1 = new Person(); p1.name = &amp;#34;jack&amp;#34;; p1.age = 10; Person p2 = new Person(); p2.name = &amp;#34;sam&amp;#34;; p2.age = 14; p1.equals(p2); } } Objects类 Objectsq工具类提供了一些静态方法来操作对象，这些方法是空指针安全，容忍空指针的 String s1 = null; String s2 = &amp;#34;jack&amp;#34;; System.</description>
     </item>
     
     <item>
       <title>我的Linux工作平台搭建</title>
-      <link>https://yangfanjack.github.io/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</link>
+      <link>114.116.115.171/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Sat, 06 Mar 2021 09:35:39 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</guid>
+      <guid>114.116.115.171/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</guid>
       <description>Mint LInux安装概述 rufus录入iso镜像到U盘 进入bios界面调节启动位置为U盘 开机进入安装界面，下一步&amp;hellip; efi分区自动放入win10的efi分区，/分区45G，/home分区300G，swap分区1G 安装后配置 双系统时间不同步 sudo apt update # 禁用Ubuntu的UTC timedatectl set-local-rtc 1 --adjust-system-clock # 更新本地时间 sudo apt install ntpdate sudo ntpdate time.windows.com # 将本地时间更新到硬件上 sudo hwclock --localtime --systohc 输入法里安装ficix &amp;amp; 安装搜狗输入法 IDEA等jetbrain公司的IDE的搜狗输入法不跟随问题可以采用更改这些IDE的运行环境解决 完善mint的中文支持 sudo apt-get install language-pack-zh-hans language-pack-gnome-zh-hans #添加微软雅黑字体 #雅黑字体文件放在 Windows/fonts/ 文件夹，或者在控制面板-字体中查找，两个文件名分别为：msyh.ttf和msyhbd.ttf。字体 # 在Linux mint 系统字体文件夹中创建对应的字体文件夹： sudo mkdir /usr/share/fonts/msyh # 移动字体文件到对应的文件夹下： udo mv msyh.ttf msyhbd.ttf /usr/share/fonts/msyh # 更新字体： sudo fc-cache -fv 安装typora wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add - # 添加公钥 sudo add-apt-repository &amp;#39;deb https://typora.</description>
     </item>
     
     <item>
       <title>旧手机搭建linux服务器</title>
-      <link>https://yangfanjack.github.io/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <link>114.116.115.171/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
       <pubDate>Fri, 19 Feb 2021 20:43:01 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <guid>114.116.115.171/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>硬件&amp;amp;软件准备： 硬件：
 一台已root的安卓手机 软件：
 Linux Deploy：https://github.com/meefik/linuxdeploy/releases busyBox：https://github.com/meefik/busybox/releases 开干 点开busyBox直接安装，记住安装地址 点开linux deploy，点击左上角三条杠，修改系统名字，然后进入设置，自己根据需要开关选项 在PATH环境变量里写上busyBox的安装路径 点击右下角的属性按钮，根据需要安装linux发行版 我选的是ubuntu，考虑到国内网络环境，将源地址改为http://mirrors.ustc.edu.cn/ubuntu-ports/ 在镜像大小里最好分多点空间，默认只有2G，如果有外置sd卡最好把镜像地址改为sd卡的地址，这样能自行分区更合理。 修改初始用户的username和password，本地化选择语言，推荐英文 初始化，挂载，SSH，声音服务 推荐都弄上 返回主界面，点击右上角三个点开始安装，等待一会儿，直到出现deploy字样，说明安装成功 此时先点击停止，在点击启动，就可以根据局域网ip通过ssh来远程连接安卓上linux容器了。 配置 做一些配置
@@ -355,10 +355,10 @@ apt update apt upgrade apt install gcc g++ vim git openjdk-8-jdk net-tools bash-
     
     <item>
       <title>JDBC</title>
-      <link>https://yangfanjack.github.io/post/jdbc/</link>
+      <link>114.116.115.171/post/jdbc/</link>
       <pubDate>Thu, 18 Feb 2021 07:31:41 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/jdbc/</guid>
+      <guid>114.116.115.171/post/jdbc/</guid>
       <description>JDBC JDBC本质： 其实是官方（sun公司）定义的一套操作所有关系型数据库的规则，即接口。各个数据库厂商去实现这套接口，提供数据库驱动jar包。我们可以使用这套接口（JDBC）编程，真正执行的代码是驱动jar包中的实现类。
 操作步骤 导入驱动jar包 mysql-connector-java-5.1.37-bin.jar 复制mysql-connector-java-5.1.37-bin.jar到项目的libs目录下 右键&amp;ndash;&amp;gt;Add As Library 注册驱动 获取数据库连接对象 Connection 定义sql 获取执行sql语句的对象 Statement 执行sql，接受返回结果 处理结果 释放资源 //1. 导入驱动jar包 //2.注册驱动 Class.forName(&amp;#34;com.mysql.jdbc.Driver&amp;#34;); //3.获取数据库连接对象 //如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称 Connection conn = DriverManager.getConnection(&amp;#34;jdbc:mysql://localhost:3306/db3&amp;#34;, &amp;#34;root&amp;#34;, &amp;#34;root&amp;#34;); //4.定义sql语句 String sql = &amp;#34;update account set balance = 500 where id = 1&amp;#34;; //5.获取执行sql的对象 Statement //prepareStatement(String sql)解决sql注入问题 Statement stmt = conn.createStatement(); //6.执行sql int count = stmt.executeUpdate(sql); //7.处理结果 System.out.println(count); //8.释放资源 stmt.close(); conn.close(); 几个重要对象 DriverManager
 //通过查看源码发现：在com.mysql.jdbc.Driver类中存在静态代码块 //mysql5之后的驱动jar包可以省略注册驱动的步骤。 static { try { java.</description>
@@ -366,10 +366,10 @@ apt update apt upgrade apt install gcc g++ vim git openjdk-8-jdk net-tools bash-
     
     <item>
       <title>玩儿转MySQL</title>
-      <link>https://yangfanjack.github.io/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</link>
+      <link>114.116.115.171/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</link>
       <pubDate>Thu, 11 Feb 2021 20:21:12 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</guid>
+      <guid>114.116.115.171/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</guid>
       <description>数据库的特点：
 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 常见的数据库软件：
 数据库软件是对数据库的不同实现 常见的有： Oracle MySQL Microsoft SQL Server DB2 MongoDB SQLite Redis MySQL准备 安装：推荐5.7版本 Windows直接官网下载安装包，然后根据提示选择并下一步，如果要删除除了在控制面板卸载，还需要在C盘的ProgramData的目录下的mysql目录卸载
@@ -381,10 +381,10 @@ create database if not exists db1; create database db2 character set gbk; 数据
     
     <item>
       <title>SSM框架-Mybatis</title>
-      <link>https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-mybatis/</link>
+      <link>114.116.115.171/post/ssm%E6%A1%86%E6%9E%B6-mybatis/</link>
       <pubDate>Fri, 22 Jan 2021 22:40:39 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-mybatis/</guid>
+      <guid>114.116.115.171/post/ssm%E6%A1%86%E6%9E%B6-mybatis/</guid>
       <description>开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下：
 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变java代码。 查询操作时，需要手动将结果集中的数据手动封装到实体中。插入操作时，需要手动将实体的数据设置到sql语句的占位符位置 应对上述问题给出的解决方案：
 使用数据库连接池初始化连接资源 将sql语句抽取到xml配置文件中 使用反射、内省等底层技术，自动将实体与表进行属性与字段的自动映射 什么是Mybatis mybatis 是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。 mybatis通过xml或注解的方式将要执行的各种 statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。 最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM（对象关系映射）思想解决了实体和数据库映射的问题，对jdbc 进行了封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。 开发步骤 MyBatis开发步骤：
@@ -393,10 +393,10 @@ create database if not exists db1; create database db2 character set gbk; 数据
     
     <item>
       <title>SSM框架-SpringMVC</title>
-      <link>https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</link>
+      <link>114.116.115.171/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</link>
       <pubDate>Thu, 21 Jan 2021 22:40:31 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</guid>
+      <guid>114.116.115.171/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</guid>
       <description>SpringMVC的简介 SpringMVC概述 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于SpringFrameWork 的后续产品，已经融合在 Spring Web Flow 中。
 SpringMVC 已经成为目前最主流的MVC框架之一，并且随着Spring3.0 的发布，全面超越 Struts2，成为最优秀的 MVC 框架。它通过一套注解，让一个简单的 Java 类成为处理请求的控制器，而无须实现任何接口。同时它还支持 RESTful 编程风格的请求。
 SpringMVC快速入门 需求：客户端发起请求，服务器端接收请求，执行逻辑并进行视图跳转。
@@ -409,28 +409,28 @@ SpringMVC快速入门 需求：客户端发起请求，服务器端接收请求�
     
     <item>
       <title>SSM框架-Spring</title>
-      <link>https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-spring/</link>
+      <link>114.116.115.171/post/ssm%E6%A1%86%E6%9E%B6-spring/</link>
       <pubDate>Wed, 20 Jan 2021 22:40:22 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-spring/</guid>
+      <guid>114.116.115.171/post/ssm%E6%A1%86%E6%9E%B6-spring/</guid>
       <description>Spring简介 Spring前身：EJB框架 Spring优点 方便解耦，简化开发：IOC容器使对象的依赖关系由Spring控制，编程者更专注于上层的应用 AOP编程的支持：方便面向切面编程 声明式事务的控制：配置的方式简化开发 Junit：方便程序测试 方便集成各种优秀的框架：Mybatis等 降低JavaEE API的使用难度：提供了一些工具的封装类 开源：方便学习 Spring程序大致步骤 导入Spring开发的maven依赖 编写Dao接口和实现类 创建Spring核心配置文件applicationContext.xml 在Spring配置文件中配置实现类 使用Spring的API获得Bean实例 Spring核心配置文件 bean标签 **id：**唯一性标识，通过其获得对象 **class：**bean的全限定名称 **scope：**singleton(默认)，prototype等5个 scope：bean对象在核心配置文件加载时就创建，只有一个，spring容器销毁时才会销毁bean prototype：bean对象在每次getBean时创建一个，对象长时间不用会被GC垃圾回收机制回收 **init-method：**指定类中初始化方法名称，对象创建后执行 **destory-method：**指定类中销毁方法名称，对象销毁前执行 bean实例化的三种方式： 无参构造实例化：默认 工厂静态方法实例化：factory-method=“工厂方法”，class中写工厂类 工厂实例方法实例化：需要先bean一个工厂对象，然后factory-bean=“工厂实例”，factory-method=“工厂方法” 依赖注入 依赖注入是Spring框架核心IOC的具体体现 通过控制反转，把对象的控制权交给Spring容器。IOC解耦可以降低Service业务层和Dao持久层之间的关系，此时依赖关系就由Spring来维护了，Spring容器会自己把持久层对象传入业务层。 如何把UserDao依赖注入到UserService中？ /** 构造方法 **/ public class UserServiceImpl implements UserService{ private UserDao userDao; public UserServiceImpl(UserDao userDao){ this.userDao = userDao; } public userServiceImpl(){ } public void save(){ usreDao.save(); } } //name指的构造函数的参数名 &amp;lt;bean id=&amp;#34;userDao&amp;#34; class=&amp;#34;link.jack1024.dao.impl.UserDaoImpl&amp;#34;&amp;gt;&amp;lt;/bean&amp;gt; &amp;lt;bean id=&amp;#34;userService&amp;#34; class=&amp;#34;link.jack1024.service.impl.UserServiceImpl&amp;#34;&amp;gt; &amp;lt;constructor-arg name=&amp;#34;userDao&amp;#34; ref=&amp;#34;userDao&amp;#34;&amp;gt;&amp;lt;/constructor-arg&amp;gt; &amp;lt;/bean&amp;gt; /** set方法 **/ public class UserServiceImpl implements UserService{ private UserDao userDao; public void setUserDao(UserDao userDao){ this.</description>
     </item>
     
     <item>
       <title>web前端-elementUI</title>
-      <link>https://yangfanjack.github.io/post/web%E5%89%8D%E7%AB%AF-elementui/</link>
+      <link>114.116.115.171/post/web%E5%89%8D%E7%AB%AF-elementui/</link>
       <pubDate>Thu, 14 Jan 2021 20:04:58 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/web%E5%89%8D%E7%AB%AF-elementui/</guid>
+      <guid>114.116.115.171/post/web%E5%89%8D%E7%AB%AF-elementui/</guid>
       <description>利用vue-cli搭建vue的webpack项目 # 初始化webpack项目 vue init webpack vue01 cd vue01 # 安装依赖 cnpm install vue-router --save-dev cnpm install element-ui --save cnpm install axios vue-axios --save cnpm install # main.js中引入 import ElementUI from &amp;#39;element-ui&amp;#39; import &amp;#39;element-ui/lib/theme-chalk/index.css&amp;#39; import axios from &amp;#39;axios&amp;#39; import VueAxios from &amp;#39;vue-axios&amp;#39; import VueRouter from &amp;#39;vue-router&amp;#39; Vue.use(ElementUI); Vue.use(VueAxios,axios); Vue.use(VueRouter); </description>
     </item>
     
     <item>
       <title>精简版JS:jQuery</title>
-      <link>https://yangfanjack.github.io/post/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/</link>
+      <link>114.116.115.171/post/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/</link>
       <pubDate>Wed, 13 Jan 2021 22:34:34 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/</guid>
+      <guid>114.116.115.171/post/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/</guid>
       <description>JavaScript 和 JQuery jQuery就是一个JavaScript库，里面封装了大量JavaScript函数
 推荐一个各种开源项目CDN服务搜索网站：https://www.bootcdn.cn/
 &amp;lt;a href=&amp;#34;&amp;#34; id=&amp;#34;text-jquery&amp;#34;&amp;gt;click me&amp;lt;/a&amp;gt; &amp;lt;!--JavaScript的在线cdn引入--&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; //公式：$(css的selector).action(); //document.getElementById(&amp;#34;text-jquery&amp;#34;).onclick = function(){} $(&amp;#34;#text-jquery&amp;#34;).click(function(){ alert(&amp;#34;hello,jquery&amp;#34;); }) &amp;lt;/script&amp;gt; $是什么 //jQuery的文件结构：其实是一个自执行函数,引入了jquery的js文件，会执行这个自执行函数。 (function(){ window.jQuery = window.$ = jQuery;//给window对象添加一个jQuery属性和$属性，用JQuery函数赋值给$ //$是一个函数，所以会根据参数的不同进行不同的处理 $(function(){});//入口函数 $(&amp;#34;#div&amp;#34;);//选择器 $(&amp;#34;&amp;lt;div&amp;gt;我是一个div标签&amp;lt;/div&amp;gt;&amp;#34;);//创建div标签 $(dom对象);//把dom对象转化为jquery对象 }) Dom对象和jQuery对象 dom对象：原生js选择器获取到的对象，只能调用dom属性或者方法，但是不能调用jQuery的属性和方法
@@ -442,10 +442,10 @@ jQuery和JavaScript对象的互相转化：
     
     <item>
       <title>JavaScript快速回顾</title>
-      <link>https://yangfanjack.github.io/post/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</link>
+      <link>114.116.115.171/post/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</link>
       <pubDate>Fri, 08 Jan 2021 15:27:36 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</guid>
+      <guid>114.116.115.171/post/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</guid>
       <description>再次回顾前端三件套
 HTML（结构）：超文本标记语言，决定网页的结构和内容 CSS（表现）：层叠样式表，设定网页的表现样式 JavaScript（行为）：一种弱类型的脚本语言，其源代码不需要经过编译，由浏览器解释运行，用于控制网页的行为。 历史
 Native原生JS开发：按照【ECMAScript】标准的开发方式，特点是所有浏览器都支持。（目前的主流版本是ES6，但是ES5才是所有浏览器都支持，所以需要用webpack把ES6打包为ES5） TypeScript微软标准：微软开发的语言，是JavaScript的超集。除了具备ES的特性之外还有很多不在范围内的新特性，会导致很多浏览器不能直接支持Typescript语法，需要编译后才能被浏览器正确执行。 Javascript流行库 &amp;amp; 框架
@@ -464,10 +464,10 @@ let和var的区别体现在作用域上：var的作用域是函数作用域，le
     
     <item>
       <title>CSS快速回顾</title>
-      <link>https://yangfanjack.github.io/post/css%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</link>
+      <link>114.116.115.171/post/css%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</link>
       <pubDate>Fri, 08 Jan 2021 15:27:24 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/css%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</guid>
+      <guid>114.116.115.171/post/css%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</guid>
       <description>前端三件套 HTML+CSS+JavaScript
 结构+表现+交互
 css历史 1.0 2.0 2.1 3.0 怎么学CSS CSS是什么 CSS怎么用 CSS选择器（重难点） 美化网页（文字，阴影，超链接，列表，渐变） 盒子模型（重点） 浮动 定位 网页动画（特效） 什么是CSS 层叠样式表(Cascading Style Sheets)，美化网页（字体，颜色，边距，高度，宽度，背景图片，网页） 发展史： CSS1.0：高耦合内联基础样式 CSS2.0：DIV+CSS，HTML和CSS结构分离的思想，网页变得简单，利于SEO CSS2.1：浮动，定位 CSS3.0：圆角，阴影，动画&amp;hellip;..有浏览器兼容性问题（IE6前端之殇） CSS快速入门 /* 规范语法： 选择器{ 属性1:属性值; 属性2:属性值; ... } */ h1{ color: red; } CSS优势： 内容和表现分离 网页结构表现统一，可以实现复用 样式十分丰富 建议使用独立于html的css文件 利用seo，容易被搜索引擎收录 三种导入方式 &amp;lt;!--1. 行内样式--&amp;gt; &amp;lt;h1 style=&amp;#34;color: red&amp;#34;&amp;gt;中华人民共和国&amp;lt;/h1&amp;gt; &amp;lt;!--2. 内部样式表--&amp;gt; &amp;lt;!DOCTYPE&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;lt;title&amp;gt;内部样式表&amp;lt;/title&amp;gt; &amp;lt;!--使用内部样式表引入CSS--&amp;gt; &amp;lt;style type=&amp;#34;text/css&amp;#34;&amp;gt; div{ background: green; } &amp;lt;/style&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt;我是DIV&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; &amp;lt;!</description>
@@ -475,10 +475,10 @@ css历史 1.0 2.0 2.1 3.0 怎么学CSS CSS是什么 CSS怎么用 CSS选择器（
     
     <item>
       <title>HTML快速回顾</title>
-      <link>https://yangfanjack.github.io/post/html%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</link>
+      <link>114.116.115.171/post/html%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</link>
       <pubDate>Fri, 08 Jan 2021 15:27:14 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/html%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</guid>
+      <guid>114.116.115.171/post/html%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</guid>
       <description>初识HTML Hyper Text Markup Language
 超文本：文字，图片，音频，视频，动画等
 HTML5：
@@ -492,10 +492,10 @@ HTML5和CSS3是未来发展趋势 W3C：World Wide Web Consortium万维网联盟
     
     <item>
       <title>vue入门指南</title>
-      <link>https://yangfanjack.github.io/post/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
+      <link>114.116.115.171/post/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Tue, 05 Jan 2021 17:09:07 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>114.116.115.171/post/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
       <description>**vue：**一款渐进式（逐步实现新特性）JavaScript框架。其特性综合了Angular(模块化MVVM)和React(虚拟DOM)的优点
 **Ajax：**前端通信框架，因为Vue的边界很明确，就是为了处理DOM，所以不具备通信能力，需要额外使用一个通信框架和服务器交互；也可以直接选择使用jQuery提供的Ajax同行功能(只是因为为了使用Ajax要完全导入jQuery的包显得很笨重)
 前端MVVM框架：
@@ -512,10 +512,10 @@ MVVM框架 源自经典的MVC模式，MVVM的核心是ViewModel层，负责转�
     
     <item>
       <title>javaweb-前后端分离史</title>
-      <link>https://yangfanjack.github.io/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/</link>
+      <link>114.116.115.171/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/</link>
       <pubDate>Sat, 02 Jan 2021 21:55:24 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/</guid>
+      <guid>114.116.115.171/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/</guid>
       <description>前后端分离演变史 model1(MVC时代)： 以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后端框架，例如SSH，SSM **优点：**MVC是一个很好的协作模式，能后有效降低代码的耦合度，从架构上能让开发者明白代码应该写在哪里。为了让View试图层更加存粹，还可以将JSP替换为Thymeleaf，Freemarker等模板引擎，使模板里无法写入java代码，让前后端分工更加清晰 缺点： 前端开发重度依赖开发环境，开发效率低。这种架构下，前后端协作主要有两种模式： 前端写Demo，写好后，让后端去套模板。好处是Demo可以本地开发，很高效。不足时需要后端套模板，套完后还需要前端人员确定，来回沟通调整的成本很大。 另一种协作模式是前端负责浏览器端的所有开发和服务器端的View层模板开发。好处是UI相关的代码都是前端去写就好了，后端不用管前端的数据。不足就是前端开发重度绑定开发环境，环境成为影响前端开发效率的重要因素。 前后端职责纠缠不清，模板引擎功能强大，依旧可以通过拿到的上下文变量来实现各种业务逻辑。这样，只要前端弱势一点，往往就会被后端要求在模板层写入不少业务代码。还有个很大的灰色地带是Controller，页面路由等功能本应该是前端最关注的，但却是由后端来实现的。Controller和Model往往也会纠缠不清，看了让人咬牙的业务逻辑代码经常会出现在Controller层，这些问题不能全纠结于程序员的素养，否则JSP就够了。 对前端发挥的局限性：性能优化如果只在前端做空间非常有限，于是我们经常需要后端合作，但由于后端框架限制，我们很难使用【Comet】，【BigPipe】等技术来优化性能 基于AJAX的SPA时代 使用CDN作为静态资源存储，JavaScript网站归来，Single Page Application
 优点：前后端分工清晰，关键是AJAX接口。复杂度从基于服务器引擎的JSP转移到了基于浏览器引擎的JavaScript。这个时代出现了类似后端MVC模式的分层架构
 缺点：前后端接口的约定。需要通过接口规则和接口平台等方式来实现前后端的搞笑并行并发。前端由于JavaScript可能出现大量JS代码的组织。
@@ -531,10 +531,10 @@ Front-end UI layer：处理浏览器层的展现逻辑，通过CSS渲染样式�
     
     <item>
       <title>java-JVM</title>
-      <link>https://yangfanjack.github.io/post/java-jvm/</link>
+      <link>114.116.115.171/post/java-jvm/</link>
       <pubDate>Sat, 02 Jan 2021 15:59:28 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/java-jvm/</guid>
+      <guid>114.116.115.171/post/java-jvm/</guid>
       <description>JVM重点问题
 JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制（常用算法） JMM 单点登录（SSO） JVM位置 JVM体系结构（JVM内存模型） jvm内存模型主要分为5个部分，是java在运行时，jvm虚拟机拿到了自己能支配的内存之后，将内存进行了割分
 栈：存储函数运行中的一些引用类型的变量&amp;amp;基础类型变量 堆：存储对象，被栈中的引用类型变量所指向 本地方法栈：存储C++的native方法运行时的栈区 java中有两种方法：java方法和本地方法 java方法由java语言编写，编译为class文件，运行时放在jvm中 本地方法由其他语言编写，编译成和处理器相关的机器代码，本地方法保存在动态链接库中，在windows系统中就是.dll文件中，各个平台都有自己独有的 程序计数器：指向程序当前运行的位置 方法区：存储元数据信息。static，cloader等 类加载器 .class文件经过类加载器，初始化，在方法中形成一个Class类型的对象用来做实例化操作
@@ -551,10 +551,10 @@ JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Nat
     
     <item>
       <title>一点想法-2021-01-01</title>
-      <link>https://yangfanjack.github.io/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</link>
+      <link>114.116.115.171/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</link>
       <pubDate>Fri, 01 Jan 2021 10:59:31 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</guid>
+      <guid>114.116.115.171/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</guid>
       <description>这学期期末，连续做了三个小项目，最后一个实习最后，叫写个3000字的总结，没啥写的。就扯了了点自己学java这么久以来的感悟。想想也放在博客上吧，随便谈谈。
 我之前做过的所有项目的前台静态页面都是用纯css，html，javascript或者jquery自己写的，这样可以锻炼自己对前端三件套的掌握程度。但是这次我们采用了一个后台管理的前端模板adminlte，类似的模板有很多，选择它的原因是有很详细的中文说明。对于大多数的后台管理系统的前台来说，它提供的已足够充足，只需要根据需要选择相应的控件就行了，如果整个项目都是后端程序员开发，大大简化了后端程序员的负担。
 对于SSM框架来说，我还是很有感触，我的javaweb之路是一步一步学来的，对javaweb的发展史还是有一定的了解。从最初的servelet，不管页面要显示什么内容，都需要servlet中打印语句到浏览器页面显示，对于servlet中冗长的out语句，简直是噩梦。到后来，借鉴asp的形式，诞生了jsp，这种技术可以在html语句中直接写java代码，如果说servlet是在java代码中写标签，jsp就是在标签中写java代码，这个时候，要完成一个简单的页面，只需要一个几个jsp页面就可以实现了，看似简单，但是随着互联网的迅速发展，当web项目越做越大时，对于庞大代码的首要任务是如何去维护它，如何去践行高内聚低耦合等程序设计原则。然后就是出现了javabean类，将jsp中的部分java代码剥离出来放到专门的java类中达到解耦的目的，此时可以看作MVC的雏形，jsp是表示层，控制层，javabean是模型层，这就是model1开发模式。之后，又将jsp中的控制层单独剥离出来，让servlet来充当，这样，就是大名鼎鼎的model2开发模式即MVC模式的诞生。再然后，就是各种后端java框架的出现了，从Struts2+Spring+Hibernate的SSH，到SpringMVC+Spring+Mybatis的SSM，实际上还是MVC模式，只不过更加人性化，简化了原始的JSP+Servlet+JavaBean的开发模式。需要注意的是，这里的对应关系是JSP是表示层，Servlet是控制层，JavaBean是模型层。但是对于SSH和SSM框架来说，每一个框架对应的是三层模型，分别是Controller层，Service层，Dao层。控制层还是那个控制层，Service层和Dao层都属于模型层。所以，完整的技术栈应该是：JSP+SpringMVC+Spring+Mybatis。这里的逻辑关系很容易混淆，特别是对于新手，很容易把MVC和三层架构搞混。这里理解清晰对与整个后端知识的学习可以说是很重要的。理解一项技术的历史发展我认为对于一个技术学习者来说是很重要的，一个增加专业素养，二是增加学习兴趣，三是能知道自己究竟在学什么，能更加清晰地认识到这项技术在历史中地位，对自己对于新技术的判定页会有很大帮助。
@@ -565,10 +565,10 @@ JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Nat
     
     <item>
       <title>到底啥是VPN</title>
-      <link>https://yangfanjack.github.io/post/%E5%88%B0%E5%BA%95%E5%95%A5%E6%98%AFvpn/</link>
+      <link>114.116.115.171/post/%E5%88%B0%E5%BA%95%E5%95%A5%E6%98%AFvpn/</link>
       <pubDate>Tue, 29 Dec 2020 10:51:17 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E5%88%B0%E5%BA%95%E5%95%A5%E6%98%AFvpn/</guid>
+      <guid>114.116.115.171/post/%E5%88%B0%E5%BA%95%E5%95%A5%E6%98%AFvpn/</guid>
       <description>什么是VPN？ 对于出差的员工，公司的IT部门会在他们的电脑上装上VPN软件。这个VPN软件可以连接到一台由公司内部控制的电脑服务器上，叫“VPN服务器”（VPN Server）。出差员工连上VPN以后，他上网时就不再直接访问公共互联网，而是通过VPN服务器间接访问。本质上是正向代理。
 VPN还有一个重要特点：VPN用户和VPN服务器之间的通讯是加密的，这样就不会被黑客盗取内容。这就好比两个人打电话，是有可能被第三方监听的，但是如果打电话的两个人使用的是别人都听不懂的特殊语言（这就是加密），那么即使有人监听，打电话的内容也不会被泄露。
 VPN有什么用： VPN可以提高上网的安全性 因为使用VPN时所用的网络访问都是加密进行的，所以使用VPN上网，安全性就更高，黑客很难截取用户的重要信息。如果你使用公共WIFI上网（例如在咖啡馆上网）时，需要做安全性强的操作（比如使用网上银行或网上投资账户），那么建议你连上VPN，因为这样会大大提高安全性。
@@ -581,10 +581,10 @@ VPN可以突破网站的地域限制 很多网站都有地域限制，比如视�
     
     <item>
       <title>AJAX局部刷新技术</title>
-      <link>https://yangfanjack.github.io/post/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/</link>
+      <link>114.116.115.171/post/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/</link>
       <pubDate>Mon, 28 Dec 2020 20:34:54 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/</guid>
+      <guid>114.116.115.171/post/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/</guid>
       <description>AJAX含义： Asynchromnous JavaScript And XML 异步的Javascript（编程语言）和XML（文件格式） AJAX不是一门新的编程语言，是一个多门已有技术组合后创新产生的新技术 核心点： 核心编程语言是JS 数据交换的工具是XML（现已被JOSN替代） AJAX是一种异步请求方式（和同步请求对立） 同步&amp;amp;异步请求 同步请求： 浏览器发起的传统请求（表单，超链接，地址栏输入地址，location.href） 用户从发起请求开始，到服务器端相应结果完毕，这段时间内不能再操作页面，如果服务端相应结果耗时很长，用户在这段时间内一直等待体验很差。 特点： 一定刷新页面 地址栏一定改变 发起同步请求，会阻塞用户的其他操作 异步请求： AJAX是一种浏览器端的异步请求技术 对于AJAX，服务端响应的不是一个完整页面，而是字符串（页面的数据部分），不会刷新页面 用户在JavaScript发起请求开始，到服务端响应结果完毕，不用等待，用户可以一直操作页面，用户体验好 特点： 不刷新页面 地址栏不改变 异步请求不会阻塞用户的其他操作 原生AJAX操作 AJAX异步请求通用模型 JSON 异步请求下，Server端响应会Client的不是一个完整页面，而是字符串数据，当服务端响应的结果比较复杂时（对象，数组，集合），简单格式的字符串不能满足需求，在传递复杂的数据时，不能使用简单格式的字符串，要使用JSON格式的字符串。
 JSON：JavaScript Object Notation，它是JS对象字符串表示形式，定义了对象等复杂数据的特定字符串格式，独立于各个编程语言，是一种轻量级的数据交换格式。
 按照java数据类型可分为以下两种JSON字符串转化方式：
@@ -596,10 +596,10 @@ Jackson工具的使用 &amp;lt;!-- 引入依赖 --&amp;gt; &amp;lt;dependency&am
     
     <item>
       <title>内网穿透浅析</title>
-      <link>https://yangfanjack.github.io/post/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/</link>
+      <link>114.116.115.171/post/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/</link>
       <pubDate>Mon, 28 Dec 2020 09:32:58 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/</guid>
+      <guid>114.116.115.171/post/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/</guid>
       <description>首先需要明确的是：内网穿透只是目的，不是特指哪一种技术，可以有多种方式来实现通过公网对局域网中的主机的访问。
 内网穿透的技术：目前了解的大致分为以下两种
 基于client和server，利用公网的一个中间服务器实现流量转发 利用UDP打洞来实现P2P 当然，自己能申请公网ip更好。直接做一个端口映射（常见的端口转发有以下三种模式：手动设计端口转发规则，DMZ，UPNP）利用DDNS动态绑定域名即可。 Tips:其实，我觉得如果从实现目的这个层次去说，VPN的正向代理同样也实现了访问企业/学校内部局域网的目的，所以我觉得这也叫实现了内网穿透（不知道准不准确）
@@ -622,10 +622,10 @@ UDP打洞中不同NAT的组合方式 上述介绍四种NAT的类型对其进行�
     
     <item>
       <title>Java-GC机制</title>
-      <link>https://yangfanjack.github.io/post/java-gc%E6%9C%BA%E5%88%B6/</link>
+      <link>114.116.115.171/post/java-gc%E6%9C%BA%E5%88%B6/</link>
       <pubDate>Mon, 21 Dec 2020 09:55:07 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/java-gc%E6%9C%BA%E5%88%B6/</guid>
+      <guid>114.116.115.171/post/java-gc%E6%9C%BA%E5%88%B6/</guid>
       <description>背景： Java的内存管理实际上就是对象的管理，其中包括对象的分配和释放。对于程序员来说，分配对象使用new关键字；释放对象时，只要将对象所有引用赋值为null，让程序不能够再访问到这个对象，我们称该对象为&amp;quot;不可达的&amp;quot;.GC将负责回收所有&amp;quot;不可达&amp;quot;对象的内存空间。 堆空间是用来存储new出来的对象的，当new出来的对象填充满时，会让堆爆掉，程序就挂了，这显然时不被允许的。 Garbage Collection的机制就是判断堆内存中哪些对象能被删除，判断的标准就是GCRoot GCRoot GCRoot：指向堆中的对象的引用，包含： 栈上的引用直接或者间接地被引用 方法区上全局的的Static变量&amp;amp;常量直接或者间接被引用 本地方法栈上的的C++直接或者间接被引用 那些可以直接存在的，没有和GCRoot有相连的关系的对象可以被删除 GC机制清理堆中垃圾的思路 **标记-清理：**在堆中要删除对象后面打标
 缺点：标记和清除两次扫描会严重浪费时间，同时会产生内存碎片 优点：不需要额外空间 **标记-整理：**堆中删除的对象留下的空间能聚集在一起
 缺点：代价太大，除了两次扫描还要把所有整理后的对象前移 优点：减少了内存碎片 **复制算法：**将整个内存一分为二，将1区需要删除的标记，然后将没打标记的对象紧凑复制到2区，既避免了内存碎片问题，整个内存开销又不是很大。
@@ -651,19 +651,19 @@ jdk1.6之前：永久代，常量池在方法区 jdk1.7：永久代慢慢退化�
     
     <item>
       <title>java基础快速回顾-上</title>
-      <link>https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/</link>
+      <link>114.116.115.171/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/</link>
       <pubDate>Sat, 19 Dec 2020 15:08:49 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/</guid>
+      <guid>114.116.115.171/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/</guid>
       <description>java语言开发环境搭建 java虚拟机——JVM 实质就是翻译，把.class文件翻译成计算机能认识的机器语言 java所谓的跨平台指的是java程序跨平台。JVM不是跨平台的，各个平台（Windows，Linux，mac）的JVM是不同的。 Java这个语言很非凡。 一、你可以说它是编译型的。因为所有的Java代码都是要编译的，.java不经过编译就什么用都没有。 二、你可以说它是解释型的。因为java代码编译后不能直接运行，它是解释运行在JVM上的，所以它是解释运行的，那也就算是解释的了。 JRE和JDK JRE：java Runtime Environment，包含JVM和运行时需要的核心类库 JDK：java Development Kit，是java程序开发工具包，包含JRE和开发人员使用的工具 想要运行一个已有的java程序，那么只需安装JRE即可；想要开发一个全新的java程序，那么必须安装JDK 配置JDK环境变量 在全局系统变量中2个操作 新建JAVA_HOME变量：（jdk的安装路径） 修改Path：添加%JAVA_HOME%\bin HelloWorld入门程序 程序开发步骤 java程序开发三步骤：编写——》.java——》编译（编译器javac.exe）——》.class——》运行（JVM解释执行：java.exe） 新建文件名为HelloWorld的java文件，编辑： public class HelloWorld{//public的类名必须和文件名完全一致 public static void main(String[] args){ System.out.println(&amp;#34;Hello,world!&amp;#34;); } } //编译 javac HelloWorld.java //JVM解释执行 java HelloWorld HelloWorld程序说明 单行注释，多行注释： //单行注释 /*多行注释*/ public static void main(String[] args)是程序入口 关键字说明：java中有特殊含义的保留字 标识符： 指的是在程序中，我们自定义的内容中，如类的名字，方法的名字，变量的名字等都是标识符， 命名规则（硬性要求） 标识符可以包含：英文字符，数字，$符，_下划线 标识符不能以数字开头 标识符不能是关键字 命名规范（软性要求） 类名规范：首字符大写，后面每个单词首字母大写（大驼峰式） 变量名规范：首字符小写，后面每个单词首字母小写（小驼峰式） 方法名规范：同变量名 常量 概念：在程序运行期间固定不变的量 分类： 字符串常量：双引号引起来的 整数常量：直接写上的数字，没有小数点 浮点数常量：直接写上的数字，有小数点 字符常量：单引号引起来的单个字符，有且仅有一个字符 布尔常量：true或者false 空常量：null，代表没有任何数据 数据类型 引用数据类型 字符串，数组，类，接口，Lambda等 基本数据类型 整数型：byte，short，int，long 浮点型：float，double 字符型：char 布尔型：boolean 注意事项：</description>
     </item>
     
     <item>
       <title>java-反射</title>
-      <link>https://yangfanjack.github.io/post/java-%E5%8F%8D%E5%B0%84/</link>
+      <link>114.116.115.171/post/java-%E5%8F%8D%E5%B0%84/</link>
       <pubDate>Sat, 19 Dec 2020 12:56:10 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/java-%E5%8F%8D%E5%B0%84/</guid>
+      <guid>114.116.115.171/post/java-%E5%8F%8D%E5%B0%84/</guid>
       <description>静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C++、Java、Delphi、C#等。
 动态语言（弱类型语言） 动态语言是在运行时确定数据类型的语言。变量使用之前不需要类型声明，通常变量的类型是被赋值的那个值的类型。 例如PHP/ASP/Ruby/Python/Perl/ABAP/SQL/JavaScript/Unix Shell等等。
 强类型定义语言 强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。
@@ -681,29 +681,29 @@ class User{ private String name; private int id; private itn age; public User(){
     
     <item>
       <title>java-注解</title>
-      <link>https://yangfanjack.github.io/post/java-%E6%B3%A8%E8%A7%A3/</link>
+      <link>114.116.115.171/post/java-%E6%B3%A8%E8%A7%A3/</link>
       <pubDate>Sat, 19 Dec 2020 12:55:39 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/java-%E6%B3%A8%E8%A7%A3/</guid>
+      <guid>114.116.115.171/post/java-%E6%B3%A8%E8%A7%A3/</guid>
       <description>什么是注解 可以被其他程序读取 可以附加在package,class,method,field上都可以添加注解 可通过反射实现对注解中信息的访问 注解是jdk1.5后的新特性 注解作用 编写文档：通过代码里标识的注解生成doc文档 代码分析：通过代码里标识的注解堆代码进行分析（结合反射） 编译检查：通过代码里标识的注解让编译器能实现基本的编译检查（@Override） 内置注解 @Override：必须重写父类的方法 @Deprecated：已过时的，不推荐使用，存在更好的方式 @SuppressWarning：镇压警告 元注解 负责解释其他注解的注解：Java定义了4个标准的meta-annotation类型，以供其他的annotation类型做说明 @target：描述注解使用范围 @Retention：描述什么级别保存该注释信息，用于描述注解的生命周期(SOURCE&amp;lt;CLASS&amp;lt;RUNTIME) @Documented：说明该注解将被包含在javadoc中 @Inherited：说明子类可以继承父类中的该注解 @Target(value={ElementType.METHOD,ElementType.TYPE}) @Retention(value=RetentionPolicy=RUNTIME) @Documented @Inherited @interface MyAnnotation(){ } 自定义注解 @interface用来声明一个注解 注解体中的每一个方法实际就是一个配置参数，方法名就是参数名，返回值类型就是参数的类型（返回值只能是Class,String,enum） 可以通过default来声明参数的默认值 只有一个参数，参数名是value，赋值时可省略参数名 注解元素必须要有值，我们定义注解元素时，经常使用空字符串0作为默认值 public class Test{ //注解可以显式赋值，如果没有默认值必须给注解赋值 @MyAnnotation(name = &amp;#34;JackYang&amp;#34;,school={&amp;#34;西部开源&amp;#34;,&amp;#34;清华大学&amp;#34;}) public void test(){} } @Target(value={ElementType.METHOD,ElementType.TYPE}) @Retention(value=RetentionPolicy=RUNTIME) @interface MyAnnotation(){ //注解的参数：参数类型+参数名 String name() default &amp;#34;&amp;#34;; int age() default 0; int id() default -1;//默认值是-1代表不存在 String[] school(); } </description>
     </item>
     
     <item>
       <title>初试刷机</title>
-      <link>https://yangfanjack.github.io/post/%E5%88%9D%E8%AF%95%E5%88%B7%E6%9C%BA/</link>
+      <link>114.116.115.171/post/%E5%88%9D%E8%AF%95%E5%88%B7%E6%9C%BA/</link>
       <pubDate>Sat, 05 Dec 2020 22:14:42 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E5%88%9D%E8%AF%95%E5%88%B7%E6%9C%BA/</guid>
+      <guid>114.116.115.171/post/%E5%88%9D%E8%AF%95%E5%88%B7%E6%9C%BA/</guid>
       <description>
 解BL锁 首先需要确保MIUI处于开发版最新版 连续点击全部参数里的MIUI版本将设备处于开发者模式 退出系统中所有登录的账号（小米账号，谷歌账号&amp;hellip;&amp;hellip;） 关机后打开fastboot模式（同时按电源键&amp;amp;音量下键） 向小米官方申请解锁并在电脑上下载miflash解锁工具 电脑usb连接手机，点击解锁，会显示成功。 备份数据 在刷新的rec和新系统之前如果需要备份原系统的数据，可以用小米助手（MiAssistant）来备份数据，官方可下载。 刷入第三方REC 可选的第三方REC很多（TWRP，橙狐，奇兔） 根据选择的REC不同，刷入REC的方式也不同，这里以TWRP为例： 在各种论坛自己找到自己设备（小米平板4）的TWRP刷入工具包，按照规则傻瓜式操作即可操作成功，成功后系统自动启动进入REC 刷入系统&amp;amp;面具&amp;amp;谷歌套件 可以选择各种适配自己设备的系统，以魔趣为例： 登录魔趣官网https://download.mokeedev.com/，根据设备型号选择下载系统包（稳定版&amp;amp;每夜版） 在论坛寻找下载magisk面具zip包 在https://opengapps.org/下载谷歌套件zip包 之前的三个包可以在电脑下载 设备关机并进入REC（同时按电源键&amp;amp;音量上键） 清理data分区和四清，重启进入REC 从电脑拷入三个zip包进入设备根目录 点击安装，选择系统zip包刷入 继续刷入magisk包，成功后重启进入系统 此时基本就可以了，系统基本配置好后就可以关机再次进入REC，刷入谷歌套件zip包，重启即可 注意： 谷歌套件如果只需要谷歌服务的话，推荐用nano版本的，其他版本会有其他不必要的东西 经常出现这种情况：再次进入REC时会让输入data密码确认，否则访问不了data目录，此时可能有两种情况： 系统设置了开机密码，此密码就是开机密码 设备没开机密码，但是还是要输入data密码，此时就没辙了，除了清理data毫无他法。这里的问题就是TWRP包本身的问题，这里最好就多换几个TWRP包试一试，有些包自带data解密的，或者寻找一个data解密文件来解密 推荐魔趣稳定版本，每夜版每天都会更新，非常不稳定，可能会出现各种各样的问题。 </description>
     </item>
     
     <item>
       <title>计网-无线网络</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Sat, 21 Nov 2020 15:08:14 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C/</guid>
       <description>无线网络的比较
 PAN：蓝牙 LAN：WiFi MAN：WiMAX WAN：2G，3G，4G，5G 以无线AP（无线交换机）为中心的无线局域网
 最原始的单计算机拨号上网：
@@ -717,10 +717,10 @@ PAN：蓝牙 LAN：WiFi MAN：WiMAX WAN：2G，3G，4G，5G 以无线AP（无线
     
     <item>
       <title>计网-音频服务</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E9%9F%B3%E9%A2%91%E6%9C%8D%E5%8A%A1/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E9%9F%B3%E9%A2%91%E6%9C%8D%E5%8A%A1/</link>
       <pubDate>Sat, 21 Nov 2020 15:08:03 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E9%9F%B3%E9%A2%91%E6%9C%8D%E5%8A%A1/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E9%9F%B3%E9%A2%91%E6%9C%8D%E5%8A%A1/</guid>
       <description>在Internet上传输音频视频面临的问题？
 音频视频：占用的带宽高，网速需要恒定，延迟要低（尤其是交互性的） 数据信息：对带宽，网速是否恒定，有延迟要求不高 延迟：对需要实时交互的音视频影响大。
 网速是否稳定：对非交互式的音视频也有很大影响，可以通过在客户端设置缓存来实现
@@ -736,10 +736,10 @@ IP电话是利用分组交换通过互联网实现通信（交换式音视频）
     
     <item>
       <title>计网-网络安全</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</link>
       <pubDate>Sat, 21 Nov 2020 15:07:48 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</guid>
       <description>网络安全问题概述 网络安全面临的4种威胁 截获（被动式攻击）：窃听他人通信内容 中断（主动式攻击）：中断他人的网络通信 篡改（主动式攻击）：故意修改网络上传送的报文 伪造（主动式攻击）：伪造信息在网络上传送 Cain工具：捕获同一网段中用户输入的账号密码；篡改域名解析结果
 通过arp欺骗实现（应对方法就是在自己的计算机上安装arp防火墙，但是如果交换机能监视，cain能直接从交换机拿数据，自己机器上的arp防火墙就没用了） **DNS欺骗（篡改DNS解析结果）**的实例：钓鱼网站：你输入工商银行的域名，经由篡改服务机到DNS服务器得到正确的ip地址，回来先到篡改服务机，会把正确的ip改为一个和工商银行界面相似的钓鱼网站的ip，然后你进入钓鱼网站输入工商银行的域名，钓鱼网站就把你的账号密码拿到了。
 **伪造：**一个服务器只允许某几台计算机能访问，这时一台范围外的计算机伪造自己的ip为其中一台有访问权限的ip来访问目标服务器，前提是那一台计算机没有运行，否则会出现ip冲突。
@@ -780,10 +780,10 @@ AH：只数字签名 ESP：既要签名又要加密 链路加密与端到端加�
     
     <item>
       <title>计网-应用层</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/</link>
       <pubDate>Sat, 21 Nov 2020 15:07:18 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
       <description>域名系统DNS QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了
 域名服务器采用分布式的域名查询解析
 我个人认为这里的本机缓存指的是本机的DNS缓存，访问网站的时候是先查询本机缓存，再查询hosts配置，之后才去请求本地DNS缓存。
@@ -803,10 +803,10 @@ DNS区域传输的时候使用TCP协议：
     
     <item>
       <title>计网-运输层</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/</link>
       <pubDate>Sat, 21 Nov 2020 15:07:07 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/</guid>
       <description>传输层两个协议的应用场景：
 TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手)
 QQ传文件，访问网站，下载文件 UDP：基于不可靠传输，一个数据包就能完成数据通信，不建立会话，支持多播
@@ -843,10 +843,10 @@ UDP传送的协议数据单元是UDP报文或者用户数据报
     
     <item>
       <title>计网-网络层</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
       <pubDate>Sat, 21 Nov 2020 15:06:46 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
       <description>网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。
 网络层应该向运输层提供怎样的服务？分组交换网提供两种传输服务:
 虚电路服务：面向连接的，虚电路表示这只是一条逻辑上的连接，和电路交换的一真正的连接只是类似，但并不完全一样。是一种使所有分组顺序到达目的端的可靠性数据传输服务。 数据报服务：无连接的，网络在发送分组时不需要先建立连接，每一个分组独立发送，与其前后的分组无关。是一种使分组按照独立路由到达目的端的数据传输服务，比虚电路更加灵活。 网际协议IP 虚拟互连网 网络互联的中间设备
@@ -870,10 +870,10 @@ C类地址：192.168.0.0～192.168.255.255
     
     <item>
       <title>计网-数据链路层</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
       <pubDate>Sat, 21 Nov 2020 15:06:19 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
       <description>数据链路层基本概念及基本问题 基本概念 两种信道类型： 点到点信道 广播信道 链路和数据链路：链路是物理层，数据链路包含物理层和数据链路层 帧：在网络层包的基础上增加头和尾 三个基本问题 封装成帧 在网络层数据报基础上+帧首部&amp;amp;帧尾部，帧的数据部分MTU≤1500Byte 透明传输 用字节填充法解决透明传输问题 差错控制 传输过程中可能会有比特差错（0变1或者1变0），误码率
 循环冗余检验CRC（除数由数据链路层协议确定）,通过CRC算法生成FCS帧检验序列
 不纠错，有错误直接丢掉（重传不是数据链路层管的事情）
@@ -904,10 +904,10 @@ MAC层的硬件地址：48位二进制（前24为代表厂家，后24为厂家�
     
     <item>
       <title>计网-物理层</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/</link>
       <pubDate>Sat, 21 Nov 2020 15:06:00 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/</guid>
       <description>物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，+5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
 数据：运送消息的实体
 信号：数据的电气或电磁的表现
@@ -930,10 +930,10 @@ FTTx技术：光纤到户</description>
     
     <item>
       <title>计网-概述</title>
-      <link>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/</link>
+      <link>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sat, 21 Nov 2020 15:05:40 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/</guid>
+      <guid>114.116.115.171/post/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/</guid>
       <description>计算机网络在信息时代的作用 连通性，信息共享，软硬件共享
 因特网概述 网络 network：结点（计算机，交换机）+链路
 互联网 internet（数量距离相对网络增大）：网络+路由器
@@ -956,20 +956,20 @@ OSI7层 应用层：能够产生网络流量，能和用户交互的应用程序
     
     <item>
       <title>Martin Fowler关于微服务架构的论文译文</title>
-      <link>https://yangfanjack.github.io/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</link>
+      <link>114.116.115.171/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</link>
       <pubDate>Sat, 21 Nov 2020 13:09:52 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</guid>
+      <guid>114.116.115.171/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</guid>
       <description>中文译文地址
 Martin Flower原论文地址</description>
     </item>
     
     <item>
       <title>docker进阶指南</title>
-      <link>https://yangfanjack.github.io/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</link>
+      <link>114.116.115.171/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</link>
       <pubDate>Fri, 20 Nov 2020 15:51:50 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</guid>
+      <guid>114.116.115.171/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</guid>
       <description>docker可视化 # Portainer:利用Portainer可以轻松构建，管理及维护Docker环境，它基于容器安装，高效部署 docker run -d -p 8088:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock --privileged=true portainer/portainer # Rancher:Rancher是一个开源的企业级全栈化容器部署及管理平台。Rancher为容器提供一揽子基础架构服务：CNI兼容的网络服务、存储服务、主机管理、负载均衡、防护墙……Rancher让上述服务跨越公有云、私有云、虚拟机、物理机环境运行，真正实现一键式应用部署和管理。 docker run ‐di ‐‐name=rancher ‐p 9090:8080 rancher/server docker的分层机制 Docker镜像是分层构建的，Dockerfile 中每条指令都会新建一层。例如以下 Dockerfile:
 FROM ubuntu:18.04 COPY . /app RUN make /app CMD python /app/app.py 以上四条指令会创建四层，分别对应基础镜像、复制文件、编译文件以及入口文件，每层只记录本层所做的更改，而这些层都是只读层(镜像层)。当你启动一个容器，Docker 会在最顶部添加读写层，你在容器内做的所有更改，如写日志、修改、删除文件等，都保存到了读写层内，一般称该层为容器层，如下图所示：
 事实上，容器（container）和镜像（image）的最主要区别就是容器加上了顶层的读写层。所有对容器的修改都发生在此层，镜像并不会被修改，也即前面说的 COW(copy-on-write)技术。容器需要读取某个文件时，直接从底部只读层去读即可，而如果需要修改某文件，则将该文件拷贝到顶部读写层进行修改，只读层保持不变。
@@ -980,20 +980,20 @@ commit镜像 docker commit #提交容器成为一个新的副本 docker commit -
     
     <item>
       <title>linux网络配置</title>
-      <link>https://yangfanjack.github.io/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
+      <link>114.116.115.171/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Fri, 20 Nov 2020 10:02:31 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
+      <guid>114.116.115.171/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
       <description>网络命令 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0 up #禁用设备 ifconfig eth0 down 网络配置 #查看相应设备名称对应的设备信息 ethtool eth0 #查看相应设备名称对应的设备位置(回车后与eth0 相对应的网卡接口旁边的指示灯就会闪烁，这样你就能很快确定eth0 网口的位置啦) ethtool -p eth0 #Linux里面有两套管理网络连接的方案,两套方案是冲突的，不能同时共存。 /etc/network/interfaces（/etc/init.d/networking） Network-Manager 都是基于单网卡单ip的配置
 静态配置 Redhat类 sudo vim /etc/sysconfig/network-scripts/ifcfg-eth[x]文件([x]为使用的网卡) # xxxxxxx(网卡名称，不用改) DEVICE=eth0 BOOTPROTO=static TYPE=ether HWADDR=xx:xx:xx:xx:xx:xx (网卡mac地址，不用改) IPADDR=x.x.x.x(ip地址) NETMASK=x.x.x.x(子网掩码) BROADCAST=x.x.x.x.(广播地址) NETWORK=x.x.x.x(网络地址) GATEWAY=x.x.x.x(网关地址) ONBOOT=yes(开机自启动) DNS1=x.x.x.x(域名服务器地址) DNS2=x.x.x.x Ubuntu类 sudo vim /etc/network/interfaces # The primary network interface (配置主网络接口) auto eth0 #开机自动激活eth0接口 iface eth0 inet static #配置eth0接口为静态地址 address 192.</description>
     </item>
     
     <item>
       <title>linux服务器搭建ssm项目环境</title>
-      <link>https://yangfanjack.github.io/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
+      <link>114.116.115.171/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
       <pubDate>Thu, 19 Nov 2020 20:42:26 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
+      <guid>114.116.115.171/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
       <description>购买服务器 阿里云云翼计划：9.5块钱/月
 配置环境 jdk环境 yum -y install java-1.8.0-openjdk.x86_64 java -version mysql环境 安装mysql cd /tmp wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm rpm -ivh mysql-community-release-el7-5.noarch.rpm yum install mysql mysql-server mysql-devel -y 启动mysql systemctl start mysql.service mysqladmin -u root password root mysql -uroot -proot tomcat环境 windwos环境中下载tomcat9的tar.gz后缀的压缩包
 https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/
@@ -1008,19 +1008,19 @@ cd /usr/local tar xzf apache-tomcat-9.0.17.tar.gz #更名文件夹为tomcat9 cd 
     
     <item>
       <title>Docker入门指南</title>
-      <link>https://yangfanjack.github.io/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
+      <link>114.116.115.171/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Thu, 19 Nov 2020 18:09:16 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>114.116.115.171/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
       <description>docker介绍 下载docker依赖环境 想安装Docker，需要先将依赖的环境全部下载下来，就像Maven依赖JDK一样 yum -y install yum-utils device-mapper-persistent-data lvm2 指定docker镜像源头 默认下载Docker会去国外服务器下载，速度较慢，可以设置为阿里云镜像源，速度更快 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 安装docker yum makecache fast yum -y install docker-ce #配置阿里云镜像加速器 sudo mkdir -p /etc/docker sudo tee /etc/docker/daemon.json &amp;lt;&amp;lt;-&amp;#39;EOF&amp;#39; { &amp;#34;registry-mirrors&amp;#34;: [&amp;#34;https://46dcjg1g.mirror.aliyuncs.com&amp;#34;] } EOF sudo systemctl daemon-reload sudo systemctl restart docker 启动docker 安装成功后，需要手动启动，设置为开机启动，并测试一下 Docker #启动docker服务 systemctl start docker #设置开机自动启动 systemctl enable docker #测试 docker run hello-world docker中央仓库 1.Docker官方的中央仓库：这个仓库是镜像最全的，但是下载速度较慢。 https://hub.docker.com/ 2.国内的镜像网站：网易蜂巢，daoCloud等，下载速度快，但是镜像相对不全。 https://c.163yun.com/hub#/home http://hub.daocloud.io/ （推荐使用） 3.在公司内部会采用私服的方式拉取镜像（添加配置） #需要创建 /etc/docker/daemon.json，并添加如下内容 { &amp;#34;registry-mirrors&amp;#34;:[&amp;#34;https://registry.docker-cn.com&amp;#34;], &amp;#34;insecure-registries&amp;#34;:[&amp;#34;ip:port&amp;#34;] } #重启两个服务 systemctl daemon-reload systemctl restart docker docker镜像操作 拉取镜像 从中央仓库拉取镜像到本地 docker pull 镜像名称[:tag] #举个栗子:docker pull daocloud.</description>
     </item>
     
     <item>
       <title>软件生命周期</title>
-      <link>https://yangfanjack.github.io/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+      <link>114.116.115.171/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
       <pubDate>Sat, 14 Nov 2020 17:22:32 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
+      <guid>114.116.115.171/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
       <description>需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软件需求的方法 包含 功能性需求：用户和其他系统完成的功能，提供的服务 非功能性需求：必须遵循的标准，外部界面的细节，实现的约束条件，质量属性等等。 来源：用户目标，领域知识，投资者，运行环境，组织环境 获取方式：采访，设定情景，原型，会议，观察商业过程和工作流 需求获取面临的挑战： 客户说不清需求 需求易变性：在系统设计时，将软件的核心建筑放在稳定的需求上。 问题的复杂度和对问题空间理解的不完备性与不一致性 需求诱导十原则： 倾听 有准备的沟通 需要有人推动 最好当面沟通 记录所有决定 保持同理协作 聚焦并协调话题 采用图形表示 继续前进原则 谈判双赢原则 需求确认 需求获取
 需求提炼：对应用问题及环境的理解和分析，为问题涉及的信息，功能和系统行为建立分析模型，将用户需求精确化，完全化，最终形成下一步的需求规格说明书
 需求描述（需求规格说明书）：对待开发系统的行为的完整描述，包含了功能性需求和非功能性需求，完成的标志是形成一份完整规范的需求规格说明书。
@@ -1041,10 +1041,10 @@ cd /usr/local tar xzf apache-tomcat-9.0.17.tar.gz #更名文件夹为tomcat9 cd 
     
     <item>
       <title>软件过程模型</title>
-      <link>https://yangfanjack.github.io/post/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/</link>
+      <link>114.116.115.171/post/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Sat, 14 Nov 2020 14:33:54 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/</guid>
+      <guid>114.116.115.171/post/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/</guid>
       <description>软件工程 三要素： 方法：软件工程方法为软件开发提供了“如何做”的技术。软件工程方法分为两类：结构化方法和面向对象方法。
 工具：软件工具为软件工程方法提供了自动的或半自动的软件支撑环境。集成的软件工程工具再加上人的因素构成了软件工程环境。
 过程：软件工程的过程则是将软件工程的方法和工具综合起来以达到合理、及时地进行计算机软件开发的目的。过程定义了方法使用的顺序、要求交付的文档资料、为保证质量和协调变化所需要的管理、及软件开发各个阶段完成的里程碑。
@@ -1060,10 +1060,10 @@ cd /usr/local tar xzf apache-tomcat-9.0.17.tar.gz #更名文件夹为tomcat9 cd 
     
     <item>
       <title>SSM框架整合</title>
-      <link>https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</link>
+      <link>114.116.115.171/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</link>
       <pubDate>Mon, 19 Oct 2020 12:31:09 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</guid>
+      <guid>114.116.115.171/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</guid>
       <description>​ Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Design中阐述的部分理念和原型衍生而来。它是为了解决企业应用开发的复杂性而创建的。Spring使用基本的JavaBean来完成以前只可能由EJB完成的事情。然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。 简单来说，Spring是一个轻量级的控制反转（IoC）和面向切面（AOP）的容器框架。
 ​ Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring MVC 分离了控制器、模型对象、分派器以及处理程序对象的角色，这种分离让它们更容易进行定制。
 ​ MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。MyBatis是一个基于Java的持久层框架。iBATIS提供的持久层框架包括SQL Maps和Data Access Objects（DAO）MyBatis 消除了几乎所有的JDBC代码和参数的手工设置以及结果集的检索。MyBatis 使用简单的 XML或注解用于配置和原始映射，将接口和 Java 的POJOs（Plain Old Java Objects，普通的 Java对象）映射成数据库中的记录。
@@ -1072,28 +1072,28 @@ SSM整合总体思路 //Spring配置文件 ## spring-dao.xml * &amp;lt;context:p
     
     <item>
       <title>浅谈日清1894海战（二）</title>
-      <link>https://yangfanjack.github.io/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%BA%8C/</link>
+      <link>114.116.115.171/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%BA%8C/</link>
       <pubDate>Wed, 24 Jun 2020 16:56:42 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%BA%8C/</guid>
+      <guid>114.116.115.171/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%BA%8C/</guid>
       <description> 上篇文章简单谈了下洋务运动的时代背景，北洋水师就是在19世纪中叶后的这样一个科技，政治大变革时代下诞生的。这次主要谈谈甲午战争中的大东沟海战，从一场海战放开来看，日本和清国之后的命运似乎就能说得通了。 先看战前。朝鲜内战，清朝以宗主国的身份入朝作战（主要是淮军）。此时，走上帝国主义道路的日本按照福泽谕吉的大陆政策，第一步正是朝鲜。在甲午战争正式爆发前的这个阶段，随着日本源源不断的向半岛派兵，日本逐渐掌握优势。清廷上的一群键盘侠就开始炮轰李鸿章，以前受洋人欺负，现在连日本也打不过，你李鸿章还想讲和。李鸿章心里清楚，此时的清军里就那么几个地方军能打仗，朝鲜战事上非淮军不可，用淮军和日本现代化军队打，无论是出于自保还是现实，避战都是正确的，在外交上依靠英法俄在华利益制衡日本相比之下更合适。奈何光绪也是年轻气盛，权力好不容易回来了（1889年，慈溪试探性地交还权力给了光绪），有大做一番的雄心壮志，加上一部分人的鼓动，不顾李鸿章反对，向日本宣战。国家统治层没有一套现代化的完备的战略决策制度，朝堂仪事+皇帝拍板定案的形式局限性很大。清廷统治层这种只图嘴上痛快就将一个国家推向战争的做法是极不负责的。 再看战时，甲午战争分为陆战和海战，这里谈的是海战中的大东沟海战。主要从军费，军舰（航速，射速，炮弹，老化），战术，官兵，情报几个角度简单谈谈： 先说军费：北洋水师成立的初衷就是一支防御性质的舰队，他的作用是守住京畿海口，配合陆军作战，这就限制了其规模上限。1888年建立初的北洋水师是亚洲最强舰队这一点不假，但是之后几乎未新添一舰，反观日本，虽然前期比不上北洋水师，但是直到1894开战，几乎一直在接收新式军舰。海军是一个需要长期投入才能起到效果的军种，更何况是在海军装备更新换代的关键时期（可以说甲午海战也是之后战列舰发展方向的参考案例）。再说清廷内部的问题，李鸿章和户部尚书翁同龢的私仇，海军衙门高层的人事变动，我觉得也是导致北洋水师后期装备停止更新的重要原因。 再说军舰：北洋水师的核心就是两艘德国制造的7000t铁甲舰，其他的都是2000t左右中规中矩的炮舰。由于年久未修的主观因素和装备革新的时代客观因素，开战前的航速已经明显下滑并落后于时代；火炮在开战前已经和日本形成代差；北洋水师炮弹配置上多为穿甲弹，少有开花弹，与之相比是日本的下濑火药。这些致命问题的根本原因就是军费没有跟上，五年陆军，十年空军，百年海军，这话不是没有道理，更何况是处在“铁甲舰到前无畏舰”的关键过渡时期。 10艘舰艇两两相伴，凭借定镇两舰打头阵冲进敌阵，然后再各自搏杀，寻找机会冲撞。日本这边的舰艇有几艘快速巡洋舰，组成了第一分队，航速远高于北洋舰队，快速绕道北洋侧翼集火超勇扬威，整场战争日本联合舰队没有给北洋水师留近身的机会，一直保持在一定距离利用速射炮快速倾泻弹药。可见，装备很大程度上决定了战术，不同的历史时期下的装备和战术结合产生的结果可能恰恰相反。 官兵素质上，据最新的历史考证发现，整个大东沟海战中，北洋水师的命中率是要高于日本的，甚至不输同时期的欧美海军。北洋海军雇佣洋人教官，模式也采用西方标准，虽然后期撤换掉了郎威理，但北洋水师多年的严格训练是很有成果的。从海战中的实际表现上来看，北洋海军的绝大部分官兵的表现确实都是值得肯定的。 间谍战是最容易被忽视的战争形式，据史料解密，甲午战前活跃在中国的日本间谍数量惊人，其伪装程度很高，通过各种手段获取了大量军事情报。 大东沟海战之后，虽然北洋舰队损失很大，但是家底还是有的，尚有一战之力，奈何陆军增援始终不到，等于是放弃了威海卫，最终难逃覆灭。 不管如何，1894年，大清还能倚靠李中堂的北洋水师在海上和日本真刀真枪地干一场，可谁又能想到，短短6年后，八国联军从中国的内海长驱直入直达紫禁城，讽刺的是，攻占京城时不少大清子民争着给洋人带路，诚然，“普天之下，莫非王土，和我有什么关系”，中国几千年的朝代更迭，底层百姓仍然只是过客。或许，大清只是败给了时代。 </description>
     </item>
     
     <item>
       <title>浅谈日清1894海战（一）</title>
-      <link>https://yangfanjack.github.io/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%B8%80/</link>
+      <link>114.116.115.171/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%B8%80/</link>
       <pubDate>Mon, 22 Jun 2020 22:48:01 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%B8%80/</guid>
+      <guid>114.116.115.171/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%B8%80/</guid>
       <description> “威海卫陷落，北洋舰队全军覆没标志着洋务运动的失败”，这是历史课本记述的那场战争，语文课本和影视作品中关于邓世昌率致远全舰撞击吉野的描述同样深入国人心。提起甲午，大家会想到很多关键词，然而，120多年前，围绕这场战争，当时的日本和大清的都是一个怎样的状态。1888年北洋海军建立，其实力一举被列强排位世界海军前10，是什么原因导致短短6年后被清人口中的矮子日本胖揍，再六年，八国从中国内海长驱直入，直取京畿。 1864年，持续十多年的太平天国运动结束。太平军本来是有能力推翻清王朝的，为什么没有？我觉得一方面是太平天国内部在起义运动后期统治层之间的分裂和战略分兵错误。另一方面，慈溪放开部分军权，让地方练兵，曾国藩的湘军就是镇压太平天国的主力，李鸿章的淮军同样源于此。太平天国结束后，加上之前两次鸦片战争的失败，慈溪支持的洋务派压倒了守旧派，其实慈溪这时很很清楚，如果不做出点改变朝廷只有死路一条，这也是她一开始支持维新变法的原因，但是这里的矛盾就是你改革可以，但是不能威胁慈溪的绝对统治，不然慈溪绝对搞死你。 洋务运动从19世纪60年代开始，持续了大约30年。我们可以看看这个时间段，世界上其他国家在干嘛？1861—1865年，美国通过南北战争实现实质统一。1871年，俾斯麦带领德国走向统一并在普法战争中击败法国。法国虽然在普法战争中战败，但是由于国库殷实，之后迅速复兴。英国在第一次工业革命后成为世界第一强国，正在全世界扩张。日本从1868年开始明治维新。沙俄1856年在克里米亚战争中失败开始搞农奴制改革。可见洋务运动这30年清国周边相对太平，也给了这个机会。但是，要知道，从60年代后期开始，第二次工业革命开始，与第一次几乎英国独享不同，这次是英德美法遍地开花。在其他列前纷纷崛起的19世纪，倡导“中体西用”的洋务运动注定不会一帆风顺。 洋务运动是一场大工程，在慈溪的授权下，中央是以奕昕为代表的满族官员。地方是以林则徐，魏源，左宗棠，曾国藩，李鸿章，沈葆桢，张之洞等等为代表的地方汉族官员。其涉及面较广，我要谈的围绕大清国海防建设，注意，是海防，不是海权。当时的清国，能有诸如李鸿章这样的洋务派的思想就已经很不错了，他们要的是建立海军守住海疆继续封建，没有一个海权的认识。 “师夷长技以制夷”，洋务派随即开始筹备海军建设。最开始的想法就是买，但被英国人李泰国摆了一道。之后沈葆桢逐渐意识到得自己建船厂，海军基地，同时培养自己的海军将领。于是在法国人的帮助下建立了马尾船厂，海军基地和船政学堂，聘请英法教师教学。在这里培养了中国第一批近代海军人才，也可能第一批睁眼看世界的中国人。 这些人当中很多留学英法，是那个时代西方世界中唯一的中国面孔。他们有的成了外交官，有的做了船政讲师、船舶设计师，但大部分都是之后北洋舰队的主要将领。当时的他们并不知道，身处时代浪潮下，自己将会何去何从。 1869年，自主建造的蒸汽化炮舰万年清号下水，1888年，自造铁甲舰平远号下水编入北洋水师。短期来看，洋务运动在海军上的建设很有效果，和同时也在建设海军的日本比起来至少在效果上甚至要更好。但是，清帝国的体系承自千年，已经是集权制的顶峰，正因如此，在人类历史最大变革的19世纪，肯定没有幕府统治下的日本好掉头，更何况倒幕运动已经把明治天皇请回来进行几乎全盘的西化。所以，长期来看，日本对中国的优势从这时就开始了，日本的野心也开始显现。 1874年，日本以琉球事件为借口发动了对台湾的军事行动，这次事件以大清承认日本对琉球的主权和赔款而告终。这次事件刺激了清廷，随机决定创办北洋水师和南洋水师。1884年，中法战争爆发，法国人偷袭了马尾，南洋水师全军覆没。1894年，日本趁着朝鲜内乱，跨海发兵。在牙山和丰岛两次海陆失利后，9月17日，护送运兵船支援平壤战役的北洋海军编队和在海上寻找决战的日本联合舰队在大东沟外海相遇，黄海海战爆发。海战历时5小时，北洋方面被击沉5艘，退回威海卫，失去制海权。关于这场海战的评价有很多，有说编队雁形阵错误的，有说北洋官兵军纪差的，有说慈溪挪用海军军费的，有说劣质炮弹的，诸如此类。海战战术层面上，国家制度落后就必败这类话没有任何意义，要尽可能准确地了解这场战争失败的直接原因，还得实事求是，从实际出发多方面分析。（接下文） </description>
     </item>
     
     <item>
       <title>javaWeb核心:servlet细节</title>
-      <link>https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</link>
+      <link>114.116.115.171/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</link>
       <pubDate>Wed, 25 Mar 2020 16:42:00 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</guid>
+      <guid>114.116.115.171/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</guid>
       <description>HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间相互独立，不能交互数据 历史版本： 1.0版本：每次请求都会建立新的连接 1.1版本：每次连接建立后会等一会儿，如果有新的请求会复用 请求消息数据格式 请求行
 请求方式 请求url 请求协议/版本 GET /login.html HTTP/1.1 HTTP协议有7中请求方式，常用的就是GET和POST
 GET：请求参数在请求行中；请求url长度有限制；相对不安全 POST：请求参数在请求体中；请求url长度没有限制；相对安全 请求头
@@ -1115,10 +1115,10 @@ Content-type：服务器告诉浏览器本次响应体数据格式以及编码�
     
     <item>
       <title>JavaWeb核心:理解servlet</title>
-      <link>https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</link>
+      <link>114.116.115.171/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</link>
       <pubDate>Wed, 18 Mar 2020 19:37:53 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</guid>
+      <guid>114.116.115.171/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</guid>
       <description>Servlet定义
 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java类被tomcat识别的规则
 我们需要自定义一个类，来实现servlet接口，复写接口的的方法，tomcat就可以识别这个类，我们就称这个类是个servlet
@@ -1134,10 +1134,10 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
     
     <item>
       <title>IDEA中tomcat的神奇走位</title>
-      <link>https://yangfanjack.github.io/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/</link>
+      <link>114.116.115.171/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/</link>
       <pubDate>Wed, 18 Mar 2020 13:27:32 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/</guid>
+      <guid>114.116.115.171/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/</guid>
       <description>tomcat服务器的三种部署方式： 直接将项目放进webapps目录下即可
 /项目名就是访问路径
 可以简化部署：将项目里的全部文件打一个war包，然后把war包放进webapps里面会自动解压缩。删除war包会自动删除项目。
@@ -1152,10 +1152,10 @@ WEB-INF目录是个安全目录，其下的资源不能直接被浏览器访问<
     
     <item>
       <title>Win10桌面美化</title>
-      <link>https://yangfanjack.github.io/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</link>
+      <link>114.116.115.171/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</link>
       <pubDate>Wed, 11 Mar 2020 19:42:16 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</guid>
+      <guid>114.116.115.171/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</guid>
       <description>先放上一张我的桌面：
 前言：Windows操作系统经过几十年的发展，到目前已经相当成熟，在个人桌面操作系统中也是处于霸主地位，但是对于我而言，如果根据自我审美和操作习惯对Win10进行美化，无疑也是会提高舒适度和办公学习效率的。
 everything+Wox 这东西能让你的桌面干干净净，再也不用在桌面码满快捷方式，还能一定程度上摆脱鼠标的束缚，查找软件，文档，甚至网页都是可以的，还有很多功能我没有探索到的。 其实关于全局搜索软件的尝试，我最开始是用的listary，很好用，就是有个缺点，能改样式的高级版收费。所以我就换了Wox，注意：要让Wox能全局搜索，需要配合everything，两个软件都设置成开机自启，美滋滋。 RocketDock win10的任务栏和Mac、Linux的Dock栏的喜爱见仁见智，不过我觉得Mac的dock栏的设计确实更加具有美感，效率性很不差。经过我的一番搜索，其实有很多：ObjectDock，BitDock等等，一些桌面第三方都支持这一功能，我为什么选择RocketDock呢？一个字，小。RocketDock对内存的占用几乎可以忽略不计，开机自启后完全不会拖慢Windows系统的运行。
@@ -1171,10 +1171,10 @@ ok，这篇博文就先介绍这几个最基本的工具，如果有什么不清
     
     <item>
       <title>linux备份与恢复</title>
-      <link>https://yangfanjack.github.io/post/linux%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
+      <link>114.116.115.171/post/linux%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
       <pubDate>Wed, 11 Mar 2020 17:26:23 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
+      <guid>114.116.115.171/post/linux%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
       <description>备份概述 Linux中需要备份的数据：/root/目录，/home/目录，/var/spool/mail/目录，/etc/目录，其他目录
 安装的服务的数据也需要备份：
 apache需要备份的数据：配置文件，网页主目录，日志文件
@@ -1201,10 +1201,10 @@ restore [模式选项] [选项]
     
     <item>
       <title>linux启动管理</title>
-      <link>https://yangfanjack.github.io/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/</link>
       <pubDate>Wed, 11 Mar 2020 17:26:08 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/</guid>
       <description>CentOS 6的启动管理 运行级别：7个级别
 runlevel：查看运行级别
 init 运行级别：改变当前运行级别
@@ -1226,10 +1226,10 @@ initrd /initramfs-2.6.32-279.el6.i686.img initramfs内存文件系统镜像文�
     
     <item>
       <title>hexo博客优化之图床迁移&amp;google收录</title>
-      <link>https://yangfanjack.github.io/post/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/</link>
+      <link>114.116.115.171/post/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/</link>
       <pubDate>Wed, 11 Mar 2020 11:32:08 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/</guid>
+      <guid>114.116.115.171/post/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/</guid>
       <description>前言：
 搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打开时间（更别说我的博客是托管在github上的了）。图床就是一个好的解决方案，顾名思义，图床就是一个存储图片个“床”，一个云端的图片库，它把博客和图片分离开来，更好管理的同时也不会拖慢博客的速度。 我写博客虽然都是给自己看的，但是搜索引擎搜不到自己的文章总感觉缺了点什么:laughing:,让谷歌收录自己的博文，再加上自己博文的质量，就能在google搜索引擎上根据关键词搜索到自己的文章了。（百度的收录我没有弄，不过大同小异） 图床迁移： 我之前的图床用的是路过图床，这是个免费的图床，还不错，免费额度完全够用，但是感觉图片打开速度有点慢。所以就百度了一下，发现了一种同样免费且快捷的方式：gitee(码云)+PicGo。迁移过后，实测效果明显，下面就来总结一下
 现在码云建立一个仓库，按照下面格式来。没有账号的自己注册。
@@ -1251,10 +1251,10 @@ npm install hexo-generator-sitemap --save 安装完后进入根目录的配置�
     
     <item>
       <title>linux日志管理</title>
-      <link>https://yangfanjack.github.io/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</link>
       <pubDate>Tue, 10 Mar 2020 22:54:07 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</guid>
       <description>日志管理简介 百度百科简介：系统日志是记录系统中硬件、软件和系统问题的信息，同时还可以监视系统中发生的事件。用户可以通过它来检查错误发生的原因，或者寻找受到攻击时攻击者留下的痕迹。系统日志包括系统日志、应用程序日志和安全日志。
 服务器出现问题先查看日志，才能找准原因
 CentOS7中原来的日志服务syslogd被rsyslogd取代，两者兼容
@@ -1280,10 +1280,10 @@ logrotate -f /etc/logrotate.conf：强制轮替，不管日志轮替的条件是
     
     <item>
       <title>linux系统管理</title>
-      <link>https://yangfanjack.github.io/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
       <pubDate>Tue, 10 Mar 2020 21:21:48 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
       <description>进程管理的作用：（下面优先级由高到低）
 判断服务器的健康状态 查看系统中的所有进程 杀死进程 进程查看 ps aux：查看系统中所有进程，查看BSD操作系统格式
 ps -le：查看系统中所有进程，Linux格式
@@ -1321,10 +1321,10 @@ cat /proc/cupinfo:每次开机都会更新 dmesg | grep CPU uptime：实际就�
     
     <item>
       <title>linux的服务管理</title>
-      <link>https://yangfanjack.github.io/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/</link>
       <pubDate>Tue, 10 Mar 2020 17:56:48 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/</guid>
       <description>服务简介与分类 Linux服务分类 RPM包默认安装的服务 独立的服务 基于xinetd（超级守护进程）服务 源码包安装的服务（第三方源码包） 服务的启动与自启动 查询已安装的服务
 RPM包安装的服务：chkconfig --list：查看RPM包安装的服务按照运行级别的自启动状态。如果查询当前启动的服务，用ps aux或者netstat或者service --status-all
 源码包安装的服务：没有命令，只能去服务安装位置查看，一般在/usr/local/下
@@ -1336,10 +1336,10 @@ RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特�
     
     <item>
       <title>shell编程</title>
-      <link>https://yangfanjack.github.io/post/shell%E7%BC%96%E7%A8%8B/</link>
+      <link>114.116.115.171/post/shell%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Fri, 06 Mar 2020 22:51:56 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/shell%E7%BC%96%E7%A8%8B/</guid>
+      <guid>114.116.115.171/post/shell%E7%BC%96%E7%A8%8B/</guid>
       <description>&lt;h1 id=&#34;基础正则表达式&#34;&gt;基础正则表达式&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1352,10 +1352,10 @@ RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特�
     
     <item>
       <title>shell基础</title>
-      <link>https://yangfanjack.github.io/post/shell%E5%9F%BA%E7%A1%80/</link>
+      <link>114.116.115.171/post/shell%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Fri, 06 Mar 2020 22:51:25 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/shell%E5%9F%BA%E7%A1%80/</guid>
+      <guid>114.116.115.171/post/shell%E5%9F%BA%E7%A1%80/</guid>
       <description>shell就是Linux中的命令解释器，说白了，就是一个命令行的交互界面。与Linux不同Windows中就是图形的交互界面。shell还是一个强大的编程语言，因为它可以直接调用Linux的系统命令。 Shell的种类： Bourne Shell语法类：sh，ksh，Bash，psh，zsh C Shell语法类（只要同于BSD的Linux版本中）：csh，tcsh 目前的主流shell时Bash Shell 在文件/etc/shells中，可以查看Linux中默认支持的Shell类型，在命令行下输入shell的名字就可以切换shell类型 Shell脚本的执行方式 echo命令：输出指定内容
 echo -e：支持反斜线的字符转换 First Script：
 #!/bin/Bash echo -e &amp;#34;Mr Yang is the most handsome man in the world.&amp;#34; 执行方法：
@@ -1375,10 +1375,10 @@ y粘贴</description>
     
     <item>
       <title>linux的文件系统管理</title>
-      <link>https://yangfanjack.github.io/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
       <pubDate>Fri, 06 Mar 2020 20:30:32 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
       <description>分区和系统文件 对于硬盘分区形式是MBR的，主分区+扩展分区&amp;lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
 挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
 mkdir /mnt/cdrom/：建立挂载点
@@ -1397,10 +1397,10 @@ Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常�
     
     <item>
       <title>linux权限管理</title>
-      <link>https://yangfanjack.github.io/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
       <pubDate>Fri, 06 Mar 2020 10:00:13 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
       <description>ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
 setfacl 选项 文件名
 setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
@@ -1432,10 +1432,10 @@ Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一�
     
     <item>
       <title>linux中的用户管理</title>
-      <link>https://yangfanjack.github.io/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</link>
       <pubDate>Thu, 05 Mar 2020 21:10:44 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</guid>
       <description>用户配置文件 越是安全性要求高的服务器越需要对用户权限等级制度和服务器操作规范有很高的要求，linux中主要通过用户配置文件来查看和修改用户信息
 主要有四个配置文件：/etc/passwd，/etc/shadow，/etc/group，/etc/gshadow
 /etc/passwd：用户信息文件 **格式：用户名称；密码标志；UID（0超级用户，1—499系统用户:不能登录，不能删除，500—65535普通用户）；GID（这里是初始组ID不是附加组ID）；用户说明:备注；家目录；**Shell（命令解释器类型，默认是bash） /etc/shadow：影子文件 是passwd的影子
@@ -1460,10 +1460,10 @@ passwd -u 用户名 ：解锁用户</description>
     
     <item>
       <title>linux软件包管理</title>
-      <link>https://yangfanjack.github.io/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/</link>
+      <link>114.116.115.171/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/</link>
       <pubDate>Thu, 05 Mar 2020 12:20:07 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/</guid>
+      <guid>114.116.115.171/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/</guid>
       <description>软件包管理简介 ​	软件包分类：
 源码包：包括脚本安装包 二进制包：RPM包，系统默认包（ubuntu中是deb包） 源码包的优点 开源 可以自由选择所需的功能 软件是便宜安装，所以更加是个自己的系统，更加稳定也效率更高 卸载方便（直接把目录删除） 源码包的缺点 安装步骤多 编译并安装时间过长 因为是编译安装，安装过程中一旦报错新手很难解决 RPM包优点 包管理系统简单，只需要几个命令就可以实现软件包的安装，升级，查询和卸载 安装速度比源码包快很多 RPM包缺点 不能看见原代码 功能选择不如源码包灵活 依赖性 RPM包管理—rpm命令管理 RPM包名和包全名
 RPM包的依赖性：树形依赖，环形依赖，模块依赖(以.iso.数组结束的就是模块依赖，也叫库文件依赖模块依赖查询网站)
@@ -1487,10 +1487,10 @@ RPM包中文件提取（用来修复系统）：
     
     <item>
       <title>强大的文本编辑器:Vim</title>
-      <link>https://yangfanjack.github.io/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/</link>
+      <link>114.116.115.171/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/</link>
       <pubDate>Thu, 05 Mar 2020 10:41:52 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/</guid>
+      <guid>114.116.115.171/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/</guid>
       <description>Vim是linux中的一款使用最广的文本编辑器，全屏幕编辑器。 可以建立，编辑，显示文本文件。 它没有菜单只有命令. 三种模式 命令模式
 插入模式：后：a/A，前：i/I，行：o/O进入
 退出模式
@@ -1510,10 +1510,10 @@ RPM包中文件提取（用来修复系统）：
     
     <item>
       <title>linux常用命令</title>
-      <link>https://yangfanjack.github.io/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+      <link>114.116.115.171/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Wed, 04 Mar 2020 15:17:31 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+      <guid>114.116.115.171/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
       <description>Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命令在系统中有两种类型：内置Shell命令和Linux命令 linux各目录的作用 /bin/：存放系统命令
 /sbin/：存放系统目录，只有超级用户能用
 /usr/bin/：存放系统命令，单用户模式不能执行
@@ -1544,10 +1544,10 @@ rm rm -r：文件夹递归删除 rm -f：强制删除，不询问 touch cat&amp;
     
     <item>
       <title>linux系统简介和安装</title>
-      <link>https://yangfanjack.github.io/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/</link>
+      <link>114.116.115.171/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/</link>
       <pubDate>Wed, 04 Mar 2020 10:41:10 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/</guid>
+      <guid>114.116.115.171/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/</guid>
       <description>UNIX和Linux发展史 ​	1965年，贝尔实验室：MULTICS计划
 ​	69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统
 ​	62年，美国军方：ARPA：阿帕网，NCP协议——》TCP/IP协议
@@ -1589,10 +1589,10 @@ CPU：主频1GHz以上
     
     <item>
       <title>Windows包管理器scoop</title>
-      <link>https://yangfanjack.github.io/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</link>
+      <link>114.116.115.171/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</link>
       <pubDate>Tue, 03 Mar 2020 18:34:53 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</guid>
+      <guid>114.116.115.171/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</guid>
       <description>对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装一些环境配置软件就会省去手动配置环境变量的步骤，并且里面的软件还很齐全，wonderful!
 安装 管理员身份打开终端，设置用户变量
 [environment]::setEnvironmentVariable(&amp;#39;SCOOP&amp;#39;,&amp;#39;D:\software\scoop&amp;#39;,&amp;#39;User&amp;#39;) 启用
@@ -1604,10 +1604,10 @@ $env:SCOOP_GLOBAL=&amp;#39;D:\software&amp;#39; 使用 scoop help：查看scoop�
     
     <item>
       <title>hexo博客搭建</title>
-      <link>https://yangfanjack.github.io/post/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
+      <link>114.116.115.171/post/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Tue, 03 Mar 2020 17:40:54 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
+      <guid>114.116.115.171/post/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
       <description>注：推荐观看bilibili的up主codesheep的hexo视频教程，本博客是参考该视频
 1. 部署环境 安装nodejs:官网下载,下载完包括nodejs本身和npm包管理器
 管理员身份打开终端(推荐git bash)
@@ -1625,10 +1625,10 @@ hexo s 在本地localhost:4000`端口可以预览本地的博客
     
     <item>
       <title>makefile基础语法</title>
-      <link>https://yangfanjack.github.io/post/makefile%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+      <link>114.116.115.171/post/makefile%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Tue, 03 Mar 2020 16:53:57 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/makefile%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+      <guid>114.116.115.171/post/makefile%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
       <description>C/C++文件到可执行文件的过程 gcc -E xx.c -o xx.i 预处理gcc -s xx.i -o xx.s 编译gcc -c xx.s -o xx.o 汇编gcc xx.o -o xx 链接 ​	对于单个文件的编译，可以浓缩为一条命令
 gcc xx.c -o xx ​	但是在实际开发中，我们的一个项目有多个文件，并且有多层文件夹的嵌套。makefile文件就是为了解决这个问题而出现的
 makefile文件的基础语法 1. 第一层次：easiest ​	基本格式：
@@ -1639,10 +1639,10 @@ makefile文件的基础语法 1. 第一层次：easiest ​	基本格式：
     
     <item>
       <title>markdown基础语法</title>
-      <link>https://yangfanjack.github.io/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+      <link>114.116.115.171/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Tue, 03 Mar 2020 12:13:04 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+      <guid>114.116.115.171/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
       <description>markdown基础——博客必备 推荐编辑器 typora vscode 语法 1. 标题 markdown的标题一共分为六个级别，从大到小依次是：
 # 这是一级标题 ## 这是二级标题 ### 这是三级标题 #### 这是四级标题 ##### 这是五级标题 ###### 这是六级标题 2. 字体 加粗
 **这是加粗** 斜体
@@ -1656,10 +1656,10 @@ makefile文件的基础语法 1. 第一层次：easiest ​	基本格式：
     
     <item>
       <title>git基础</title>
-      <link>https://yangfanjack.github.io/post/git%E5%9F%BA%E7%A1%80/</link>
+      <link>114.116.115.171/post/git%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Tue, 03 Mar 2020 11:53:47 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/git%E5%9F%BA%E7%A1%80/</guid>
+      <guid>114.116.115.171/post/git%E5%9F%BA%E7%A1%80/</guid>
       <description>git的安装 ​	官网下载后，在cmd中输入git验证是否安装完成
 git的基本配置 git config --global user.name &amp;#34;name&amp;#34;git config --global user.email &amp;#34;email&amp;#34; ​	需要注意的是可以有三种参数，local、global和system，优先级依次降低。global是全局配置，local可以为本地项目添加单独配置
 ​	查看配置命令：
@@ -1677,10 +1677,10 @@ git init //初始化，让git帮助管理文件夹git status //检测当前目�
     
     <item>
       <title>JavaScript类型转换</title>
-      <link>https://yangfanjack.github.io/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
+      <link>114.116.115.171/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
       <pubDate>Mon, 16 Dec 2019 21:57:57 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
+      <guid>114.116.115.171/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
       <description>强类型定义语言和弱类型定义语言 1）强类型定义语言： 强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。
 2）弱类型定义语言： 数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋不同数据类型的值。 强类型定义语言在速度上可能略逊色于弱类型定义语言，但是强类型定义语言带来的严谨性能够有效的避免许多错误。另外，“这门语言是不是动态语言”与“这门语言是否类型安全”之间是完全没有联系的！ 例如：Python是动态语言，是强类型定义语言（类型安全的语言）; VBScript是动态语言，是弱类型定义语言（类型不安全的语言）; JAVA是静态语言，是强类型定义语言（类型安全的语言）。
 js中的数据类型 基本数据类型：string, number, boolean, undefined, null 引用数据类型：Object, Array, Function 转化规律 显示转换 toString()方法：null和undefined没有该方法 null和undefined有String()函数，该函数适应性更加好 Number()函数： 字符串转数字：只能转纯数字字符串，如果是空串或空格串，转为0，否则NaN 布尔转数字：true-&amp;gt;`;false-&amp;gt;0 Null转数字：结果为0 undefined转数字：结果为NaN parseInt()函数和parseIntFloat()函数:将字符串中有效的整数部分提出来转化为整数。如果是对非字符串使用该方法，则会先将其转化为string，然后再运算。 Boolean()函数： number:只有0和NaN是false string:只有空串是false,甚至空格串也是true undefined:false null:false 对象类型：都是true JavaScript中的运算符隐式转换 &amp;ldquo;+&amp;ldquo;运算：对非number的值进行算数运算时，会先将这些值转化为number,然后再运算（string和NaN除外） 任何值和NaN做算数运算结果都是NaN 如果两个字符串相加，会拼串。 任何值和字符串做“+”运算，都需要将其转化为字符串，然后拼串 numbe类型+&amp;rdquo;&amp;quot;(空串)：隐式将number转化为string，和String()和toString()功能相同 对于其他算数运算(&amp;rdquo;-&amp;quot;,&amp;quot;*&amp;quot;,&amp;quot;/&amp;quot;)，非number都会转化为number 根据第6条，可知：string类型-0；string类型*1；string类型/1都可以转化为number类型（加0不可以，0会转为string） 正号：对于非number,会先转化为number类型，&amp;quot;+string&amp;quot;也可以将string类型转化为number类型。 !取反符:对非boolean双重取反&amp;quot;!!&amp;quot;，可以将非Boolean类型转化为Boolean类型 </description>
@@ -1688,19 +1688,19 @@ js中的数据类型 基本数据类型：string, number, boolean, undefined, nu
     
     <item>
       <title>C&#43;&#43;程序实现演讲比赛成绩打分程序</title>
-      <link>https://yangfanjack.github.io/post/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%88%90%E7%BB%A9%E6%89%93%E5%88%86%E7%A8%8B%E5%BA%8F/</link>
+      <link>114.116.115.171/post/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%88%90%E7%BB%A9%E6%89%93%E5%88%86%E7%A8%8B%E5%BA%8F/</link>
       <pubDate>Tue, 26 Nov 2019 23:29:39 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%88%90%E7%BB%A9%E6%89%93%E5%88%86%E7%A8%8B%E5%BA%8F/</guid>
+      <guid>114.116.115.171/post/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%88%90%E7%BB%A9%E6%89%93%E5%88%86%E7%A8%8B%E5%BA%8F/</guid>
       <description>程序总体框架 1.speaker类：演讲选手类 class Speaker { public: string m_Name; //严格意义上这俩数据成员应该是私有的，用set和get函数来调用 double m_Sorce[2];//此处是为了简便，严格意义上这样是不规范大气的 Speaker(); ~Speaker(); }; 2.speechManager类：演讲比赛类（主体） class SpeechManager { public: SpeechManager(); ~SpeechManager(); void show_Menu();//打印菜单 void exitSystem();//退出系统 void initSpeech();//初始化speechManager类的各个数据成员 void createSpeaker();//创建参加比赛的12名选手 void startSpeech();//比赛的主函数，包含所有流程，所有分流程又拆分为单独函数 void speechDraw();//抽签 void speechContest();//比赛（重点） void showScore();//显示晋级选手 void saveRecord();//保存每一届冠亚季军到csv文件 void loadRecord();//加载文件中每一届数据到程序中 void showRecord();//显示文件中的数据（每一届的冠亚季军） void clearRecord();//清除文件记录 vector&amp;lt;int&amp;gt; v1;//保存每一届的最初12名选手 vector&amp;lt;int&amp;gt; v2;//保存每一届第一轮比赛晋级的6名选手 vector&amp;lt;int&amp;gt; vVictory;//保存每一届冠亚季军 map&amp;lt;int,Speaker&amp;gt;m_Speaker; map&amp;lt;int,vector&amp;lt;string&amp;gt;&amp;gt; m_Record;//存放往届记录 int m_index;//保存是每一届比赛的第几轮 bool fileIsEmpty;//判断文件是否为空 }; 3.main.cpp(主函数) int main() { int choice=0; while(true) { srand((unsigned int)time(NULL)); SpeechManager sm; sm.</description>
     </item>
     
     <item>
       <title>C&#43;&#43;的几种初始化方式</title>
-      <link>https://yangfanjack.github.io/post/c&#43;&#43;%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F/</link>
+      <link>114.116.115.171/post/c&#43;&#43;%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Mon, 04 Nov 2019 15:54:39 +0000</pubDate>
       
-      <guid>https://yangfanjack.github.io/post/c&#43;&#43;%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F/</guid>
+      <guid>114.116.115.171/post/c&#43;&#43;%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F/</guid>
       <description>列表初始化 作为C++11新标准的一部分，用花括号来初始化变量得到了全面应用。
 但有局限性：当对内置对象使用列表初始化的时候，若初始值存在丢失的风险时，编译器会报错
 拷贝初始化 例子：string s2=s1;

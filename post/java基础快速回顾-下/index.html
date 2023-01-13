@@ -63,13 +63,13 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="/114.116.115.171/main.min.css" />
 
   
 
   
      
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
+  <link rel="preload" as="image" href="114.116.115.171/theme.png" />
 
   
   
@@ -79,12 +79,12 @@
   
 
   
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
+  <link rel="preload" as="image" href="114.116.115.171/github.svg" />
   
 
   
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
+  <link rel="icon" href="114.116.115.171/favicon.ico" />
+  <link rel="apple-touch-icon" href="114.116.115.171/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.109.0">
@@ -104,7 +104,7 @@
   <meta property="og:title" content="java基础快速回顾-下" />
 <meta property="og:description" content="Lambda表达式 匿名内部类可以省去定义实现类，但是语法太复杂 lambda表达式不关注面向对象，返璞归真，仅仅关注内容本身。 //一些参数，一个箭头，一段重写代码 () -&gt; System.out.println(&#34;lambda&#34;); 将Runnable接口作为参数进行传递，可以使用两种方法： 使用lambda必须满足接口中有且仅有一个抽象方法 有且仅有一个抽象方法的接口称为 “函数式接口” Lambda的省略写法有如下要求： 括号中参数列表的数据类型可以省略 括号中的参数只有一个，那么类型和（）都可以省略 如果{}的代码只有一行，都可以省略{} return 分号，且必须要一起省略，不能只省略部分 FIle类 文件和目录的抽象表示，用于文件&amp;目录的创建、查找和删除等操作 //File类的4个成员变量 //路径分隔符(windows分号,linux冒号) static String pathSeparator; static char pathSeparatorChar; //默认名称分隔符(windows反斜杠，linux正斜杠) static String separator; static char separator; //注意：操作路径的时候，路径不能写死了，根据不同系统更换 File构造函数 /** File(String pathname); File(String parent,String child); File(File parent,String child) 路径可以是文件名，也可以是文件夹名 可以相对路径，也可以绝对路径 路径可以是存在的，也可以是不存在的 创建File对象，只是把字符串封装为File对象，不考虑路径的真假情况 **/ public static void main(){ File f1 = new File(&#34;/home/jack1024/桌面/a.txt&#34;); File f2 = new File(&#34;/home/jack1024/桌面/a&#34;); } File类常用方法： public String getAbsolutePath();//文件/目录绝对路径名字符串（无论构造方法中传递相对还是绝对，都返回绝对路径） public String getPath();//文件/目录路径名字符串（构造方法中传递的字符串） public String getName();//文件/目录名字 public long length();//文件字节大小(目录没有大小概念) 判断功能： public boolean exists();//该文件/目录是否存在 public boolean isDirectory();//是否为目录 public boolean isFile();//是否为文件 创建 &amp; 删除 public boolean createNewFile();//当该名字的文件不存在时，创建一个新的空文件 public boolean delete();//删除由此File表示的文件或目录，不走回收站 public boolean mkdir();//创建由此File表示的目录 public boolean mkdirs();//创建由此File表示的目录，包括任何必须但不存在的父目录 目录遍历 包含隐藏文件/文件夹 public String[] list();//返回一个String数组，表示该File目录中所有子文件或目录 public File[] listFiles();//返回一个File数组，表示该File目录中所有子文件或目录 递归 直接递归 &amp; 间接递归 递归一定要有停止的条件约束，否则会出现栈内存溢出StackOverFlowError 递归的次数也不能太多，否则也可能发生栈内存溢出 构造方法中禁止递归 递归图示：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="114.116.115.171/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-09T11:42:39+00:00" />
 <meta property="article:modified_time" content="2021-03-09T11:42:39+00:00" />
 
@@ -128,7 +128,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io/"
+      href="114.116.115.171"
       >My Hugo Site</a
     >
     <a
@@ -868,14 +868,14 @@
     
     <a
       class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/"
+      href="114.116.115.171/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/"
       ><span class="mr-1.5">←</span><span>javaWeb三大组件</span></a
     >
     
     
     <a
       class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/"
+      href="114.116.115.171/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/"
       ><span>java基础快速回顾-中</span><span class="ml-1.5">→</span></a
     >
     
@@ -935,7 +935,7 @@
 >
   <div class="mr-auto">
     &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io/">My Hugo Site</a>
+    <a class="link" href="114.116.115.171">My Hugo Site</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a

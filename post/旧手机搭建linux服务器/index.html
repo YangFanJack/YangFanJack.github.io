@@ -66,13 +66,13 @@ apt update apt upgrade apt install gcc g&#43;&#43; vim git openjdk-8-jdk net-too
   
   
   
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="/114.116.115.171/main.min.css" />
 
   
 
   
      
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
+  <link rel="preload" as="image" href="114.116.115.171/theme.png" />
 
   
   
@@ -82,12 +82,12 @@ apt update apt upgrade apt install gcc g&#43;&#43; vim git openjdk-8-jdk net-too
   
 
   
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
+  <link rel="preload" as="image" href="114.116.115.171/github.svg" />
   
 
   
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
+  <link rel="icon" href="114.116.115.171/favicon.ico" />
+  <link rel="apple-touch-icon" href="114.116.115.171/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.109.0">
@@ -110,7 +110,7 @@ apt update apt upgrade apt install gcc g&#43;&#43; vim git openjdk-8-jdk net-too
 Linux Deploy：https://github.com/meefik/linuxdeploy/releases busyBox：https://github.com/meefik/busybox/releases 开干 点开busyBox直接安装，记住安装地址 点开linux deploy，点击左上角三条杠，修改系统名字，然后进入设置，自己根据需要开关选项 在PATH环境变量里写上busyBox的安装路径 点击右下角的属性按钮，根据需要安装linux发行版 我选的是ubuntu，考虑到国内网络环境，将源地址改为http://mirrors.ustc.edu.cn/ubuntu-ports/ 在镜像大小里最好分多点空间，默认只有2G，如果有外置sd卡最好把镜像地址改为sd卡的地址，这样能自行分区更合理。 修改初始用户的username和password，本地化选择语言，推荐英文 初始化，挂载，SSH，声音服务 推荐都弄上 返回主界面，点击右上角三个点开始安装，等待一会儿，直到出现deploy字样，说明安装成功 此时先点击停止，在点击启动，就可以根据局域网ip通过ssh来远程连接安卓上linux容器了。 配置 做一些配置
 apt update apt upgrade apt install gcc g&#43;&#43; vim git openjdk-8-jdk net-tools bash-completion htop # LinuxDeploy下ping命令无法运行，提示socket：权限不足，原来android里将一些硬件使用（包括网络）的权限归到不同的用户组. 而3003就是关于网络权限的组，称为inet. 上述命令是在debian的用户权限系统中给root 添加inte权限． usermod -G 3003 root # 修改root的密码 su - root passwd 安装samba服务 #安装samba apt install samba samba-common #选定需要共享的文件夹 mkdir XXX #设置文件夹权限 chmod 777 XXX #设置samba用户密码 useradd smbUser smbpasswd -a smbUser smbpasswd -xx smbUser #配置samba的配置文件 vim /etc/samba/smb." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="114.116.115.171/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-02-19T20:43:01+00:00" />
 <meta property="article:modified_time" content="2021-02-19T20:43:01+00:00" />
 
@@ -140,7 +140,7 @@ apt update apt upgrade apt install gcc g&#43;&#43; vim git openjdk-8-jdk net-too
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io/"
+      href="114.116.115.171"
       >My Hugo Site</a
     >
     <a
@@ -381,14 +381,14 @@ apt update apt upgrade apt install gcc g&#43;&#43; vim git openjdk-8-jdk net-too
     
     <a
       class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/"
+      href="114.116.115.171/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/"
       ><span class="mr-1.5">←</span><span>我的Linux工作平台搭建</span></a
     >
     
     
     <a
       class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/jdbc/"
+      href="114.116.115.171/post/jdbc/"
       ><span>JDBC</span><span class="ml-1.5">→</span></a
     >
     
@@ -448,7 +448,7 @@ apt update apt upgrade apt install gcc g&#43;&#43; vim git openjdk-8-jdk net-too
 >
   <div class="mr-auto">
     &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io/">My Hugo Site</a>
+    <a class="link" href="114.116.115.171">My Hugo Site</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a
