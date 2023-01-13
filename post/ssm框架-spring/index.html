@@ -63,13 +63,13 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
 
   
 
   
      
-  <link rel="preload" as="image" href="http://example.org/theme.png" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
 
   
   
@@ -79,12 +79,12 @@
   
 
   
-  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
   
 
   
-  <link rel="icon" href="http://example.org/favicon.ico" />
-  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.109.0">
@@ -104,7 +104,7 @@
   <meta property="og:title" content="SSM框架-Spring" />
 <meta property="og:description" content="Spring简介 Spring前身：EJB框架 Spring优点 方便解耦，简化开发：IOC容器使对象的依赖关系由Spring控制，编程者更专注于上层的应用 AOP编程的支持：方便面向切面编程 声明式事务的控制：配置的方式简化开发 Junit：方便程序测试 方便集成各种优秀的框架：Mybatis等 降低JavaEE API的使用难度：提供了一些工具的封装类 开源：方便学习 Spring程序大致步骤 导入Spring开发的maven依赖 编写Dao接口和实现类 创建Spring核心配置文件applicationContext.xml 在Spring配置文件中配置实现类 使用Spring的API获得Bean实例 Spring核心配置文件 bean标签 **id：**唯一性标识，通过其获得对象 **class：**bean的全限定名称 **scope：**singleton(默认)，prototype等5个 scope：bean对象在核心配置文件加载时就创建，只有一个，spring容器销毁时才会销毁bean prototype：bean对象在每次getBean时创建一个，对象长时间不用会被GC垃圾回收机制回收 **init-method：**指定类中初始化方法名称，对象创建后执行 **destory-method：**指定类中销毁方法名称，对象销毁前执行 bean实例化的三种方式： 无参构造实例化：默认 工厂静态方法实例化：factory-method=“工厂方法”，class中写工厂类 工厂实例方法实例化：需要先bean一个工厂对象，然后factory-bean=“工厂实例”，factory-method=“工厂方法” 依赖注入 依赖注入是Spring框架核心IOC的具体体现 通过控制反转，把对象的控制权交给Spring容器。IOC解耦可以降低Service业务层和Dao持久层之间的关系，此时依赖关系就由Spring来维护了，Spring容器会自己把持久层对象传入业务层。 如何把UserDao依赖注入到UserService中？ /** 构造方法 **/ public class UserServiceImpl implements UserService{ private UserDao userDao; public UserServiceImpl(UserDao userDao){ this.userDao = userDao; } public userServiceImpl(){ } public void save(){ usreDao.save(); } } //name指的构造函数的参数名 &lt;bean id=&#34;userDao&#34; class=&#34;link.jack1024.dao.impl.UserDaoImpl&#34;&gt;&lt;/bean&gt; &lt;bean id=&#34;userService&#34; class=&#34;link.jack1024.service.impl.UserServiceImpl&#34;&gt; &lt;constructor-arg name=&#34;userDao&#34; ref=&#34;userDao&#34;&gt;&lt;/constructor-arg&gt; &lt;/bean&gt; /** set方法 **/ public class UserServiceImpl implements UserService{ private UserDao userDao; public void setUserDao(UserDao userDao){ this." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/post/ssm%E6%A1%86%E6%9E%B6-spring/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-spring/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-01-20T22:40:22+00:00" />
 <meta property="article:modified_time" content="2021-01-20T22:40:22+00:00" />
 
@@ -128,7 +128,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="http://example.org/"
+      href="https://yangfanjack.github.io/"
       >My Hugo Site</a
     >
     <a
@@ -1169,14 +1169,14 @@ aop 一样，我们可以将切点表达式抽取。抽取方式是在切面内�
     
     <a
       class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="http://example.org/post/ssm%E6%A1%86%E6%9E%B6-springmvc/"
+      href="https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-springmvc/"
       ><span class="mr-1.5">←</span><span>SSM框架-SpringMVC</span></a
     >
     
     
     <a
       class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="http://example.org/post/web%E5%89%8D%E7%AB%AF-elementui/"
+      href="https://yangfanjack.github.io/post/web%E5%89%8D%E7%AB%AF-elementui/"
       ><span>web前端-elementUI</span><span class="ml-1.5">→</span></a
     >
     
@@ -1236,7 +1236,7 @@ aop 一样，我们可以将切点表达式抽取。抽取方式是在切面内�
 >
   <div class="mr-auto">
     &copy; 2023
-    <a class="link" href="http://example.org/">My Hugo Site</a>
+    <a class="link" href="https://yangfanjack.github.io/">My Hugo Site</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a
