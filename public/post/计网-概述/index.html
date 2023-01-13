@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>计网-概述 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="计算机网络在信息时代的作用 连通性，信息共享，软硬件共享
+因特网概述 网络 network：结点（计算机，交换机）&#43;链路
+互联网 internet（数量距离相对网络增大）：网络&#43;路由器
+因特网 Internet：全球最大的互联网
+因特网发展三个阶段：
+ARPANET向互联网发展 三级结构的因特网（校园网，地区网，主干网） 多层次的ISP结构的因特网 因特网的标准化工作由因特网协会定义：因特网研究部，因特网工程部
+因特网组成 C/S：客户机/服务器下载东西，客户机越多下载越慢
+P2P：结点越多下载越快
+电路交换：需要建立连接搭建专线（建立连接-》通话-》释放资源），适用于实时通讯（打电话）
+分组交换：不需要建立连接，没有专线。将一个报文拆分为多包，每一个包不一定走同一条路。路由器由存储转发的功能。但是比电路交换延迟更大。
+报文交换：和分许交换类似，但是不用拆分。
+计算机网络在我国发展 1994年4月20日PRC接入互联网
+计算机网络的类别 局域网：自己购买设备，自己维护，带宽固定。
+广域网：花钱买服务，花钱买带宽。
+计算机网络的性能 速率：连接在计算机网络上的主机在数字信道（一个接收端到一个发送端）上的传送位数的速率。b/s,kb/s,Mb/s,Gb/s 带宽：数字信道所能传送的最高数据率。b/s,kb/s,Mb/s,Gb/s 吞吐率：单位时间内通过某个网络的数据量（总的）b/s,Mb/s 时延：发送时延，传播时延，处理时延，排队时延 时延带宽积：传播时延✖带宽（一个信道承载数据能力） 往返时间：从发送方发送数据开始，到发送方收到接收方确认 利用率：有数据通过时间/(有无)数据通过时间 非性能指标：费用，质量，标准化，可靠性，可扩展性，可升级性，管理与维护 计算机网络的体系结构 分层的原因：标准化并降低每一层的相互关联
+OSI7层 应用层：能够产生网络流量，能和用户交互的应用程序 表示层：加密，压缩，编解码（开发人员需要考虑的问题） 会话层：服务器和客户端建立的会话（可以用来查木马：netstat -nb）木马一般时隐藏盗窃信息 传输层：可靠传输(建立会话)，不可靠传输(QQ发消息，广播发送)，流量控制 网络层：IP地址编址，选择最佳路径 数据链路层：数据如何封装，添加物理层mac地址 物理层：电压，接口标准 网络排错：从底层往高层排错
+网络安全和osi参考模型
+物理层安全(连线安全) 数据链路层安全(ADSL和AP密码) 网络层安全（网关对某些网段的ip限制访问外网） 应用层安全（SQL注入漏洞，上传漏洞） 应用层 传输层 网络层 数据链路层 物理层 应用程序（传输数据单元PDU） 段（报文） 包（数据报） 帧 比特流 " />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="计网-概述" />
+<meta property="og:description" content="计算机网络在信息时代的作用 连通性，信息共享，软硬件共享
+因特网概述 网络 network：结点（计算机，交换机）&#43;链路
+互联网 internet（数量距离相对网络增大）：网络&#43;路由器
+因特网 Internet：全球最大的互联网
+因特网发展三个阶段：
+ARPANET向互联网发展 三级结构的因特网（校园网，地区网，主干网） 多层次的ISP结构的因特网 因特网的标准化工作由因特网协会定义：因特网研究部，因特网工程部
+因特网组成 C/S：客户机/服务器下载东西，客户机越多下载越慢
+P2P：结点越多下载越快
+电路交换：需要建立连接搭建专线（建立连接-》通话-》释放资源），适用于实时通讯（打电话）
+分组交换：不需要建立连接，没有专线。将一个报文拆分为多包，每一个包不一定走同一条路。路由器由存储转发的功能。但是比电路交换延迟更大。
+报文交换：和分许交换类似，但是不用拆分。
+计算机网络在我国发展 1994年4月20日PRC接入互联网
+计算机网络的类别 局域网：自己购买设备，自己维护，带宽固定。
+广域网：花钱买服务，花钱买带宽。
+计算机网络的性能 速率：连接在计算机网络上的主机在数字信道（一个接收端到一个发送端）上的传送位数的速率。b/s,kb/s,Mb/s,Gb/s 带宽：数字信道所能传送的最高数据率。b/s,kb/s,Mb/s,Gb/s 吞吐率：单位时间内通过某个网络的数据量（总的）b/s,Mb/s 时延：发送时延，传播时延，处理时延，排队时延 时延带宽积：传播时延✖带宽（一个信道承载数据能力） 往返时间：从发送方发送数据开始，到发送方收到接收方确认 利用率：有数据通过时间/(有无)数据通过时间 非性能指标：费用，质量，标准化，可靠性，可扩展性，可升级性，管理与维护 计算机网络的体系结构 分层的原因：标准化并降低每一层的相互关联
+OSI7层 应用层：能够产生网络流量，能和用户交互的应用程序 表示层：加密，压缩，编解码（开发人员需要考虑的问题） 会话层：服务器和客户端建立的会话（可以用来查木马：netstat -nb）木马一般时隐藏盗窃信息 传输层：可靠传输(建立会话)，不可靠传输(QQ发消息，广播发送)，流量控制 网络层：IP地址编址，选择最佳路径 数据链路层：数据如何封装，添加物理层mac地址 物理层：电压，接口标准 网络排错：从底层往高层排错
+网络安全和osi参考模型
+物理层安全(连线安全) 数据链路层安全(ADSL和AP密码) 网络层安全（网关对某些网段的ip限制访问外网） 应用层安全（SQL注入漏洞，上传漏洞） 应用层 传输层 网络层 数据链路层 物理层 应用程序（传输数据单元PDU） 段（报文） 包（数据报） 帧 比特流 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-21T15:05:40+00:00" />
+<meta property="article:modified_time" content="2020-11-21T15:05:40+00:00" />
+
+  
+  <meta itemprop="name" content="计网-概述">
+<meta itemprop="description" content="计算机网络在信息时代的作用 连通性，信息共享，软硬件共享
+因特网概述 网络 network：结点（计算机，交换机）&#43;链路
+互联网 internet（数量距离相对网络增大）：网络&#43;路由器
+因特网 Internet：全球最大的互联网
+因特网发展三个阶段：
+ARPANET向互联网发展 三级结构的因特网（校园网，地区网，主干网） 多层次的ISP结构的因特网 因特网的标准化工作由因特网协会定义：因特网研究部，因特网工程部
+因特网组成 C/S：客户机/服务器下载东西，客户机越多下载越慢
+P2P：结点越多下载越快
+电路交换：需要建立连接搭建专线（建立连接-》通话-》释放资源），适用于实时通讯（打电话）
+分组交换：不需要建立连接，没有专线。将一个报文拆分为多包，每一个包不一定走同一条路。路由器由存储转发的功能。但是比电路交换延迟更大。
+报文交换：和分许交换类似，但是不用拆分。
+计算机网络在我国发展 1994年4月20日PRC接入互联网
+计算机网络的类别 局域网：自己购买设备，自己维护，带宽固定。
+广域网：花钱买服务，花钱买带宽。
+计算机网络的性能 速率：连接在计算机网络上的主机在数字信道（一个接收端到一个发送端）上的传送位数的速率。b/s,kb/s,Mb/s,Gb/s 带宽：数字信道所能传送的最高数据率。b/s,kb/s,Mb/s,Gb/s 吞吐率：单位时间内通过某个网络的数据量（总的）b/s,Mb/s 时延：发送时延，传播时延，处理时延，排队时延 时延带宽积：传播时延✖带宽（一个信道承载数据能力） 往返时间：从发送方发送数据开始，到发送方收到接收方确认 利用率：有数据通过时间/(有无)数据通过时间 非性能指标：费用，质量，标准化，可靠性，可扩展性，可升级性，管理与维护 计算机网络的体系结构 分层的原因：标准化并降低每一层的相互关联
+OSI7层 应用层：能够产生网络流量，能和用户交互的应用程序 表示层：加密，压缩，编解码（开发人员需要考虑的问题） 会话层：服务器和客户端建立的会话（可以用来查木马：netstat -nb）木马一般时隐藏盗窃信息 传输层：可靠传输(建立会话)，不可靠传输(QQ发消息，广播发送)，流量控制 网络层：IP地址编址，选择最佳路径 数据链路层：数据如何封装，添加物理层mac地址 物理层：电压，接口标准 网络排错：从底层往高层排错
+网络安全和osi参考模型
+物理层安全(连线安全) 数据链路层安全(ADSL和AP密码) 网络层安全（网关对某些网段的ip限制访问外网） 应用层安全（SQL注入漏洞，上传漏洞） 应用层 传输层 网络层 数据链路层 物理层 应用程序（传输数据单元PDU） 段（报文） 包（数据报） 帧 比特流 "><meta itemprop="datePublished" content="2020-11-21T15:05:40+00:00" />
+<meta itemprop="dateModified" content="2020-11-21T15:05:40+00:00" />
+<meta itemprop="wordCount" content="61">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计网-概述"/>
+<meta name="twitter:description" content="计算机网络在信息时代的作用 连通性，信息共享，软硬件共享
+因特网概述 网络 network：结点（计算机，交换机）&#43;链路
+互联网 internet（数量距离相对网络增大）：网络&#43;路由器
+因特网 Internet：全球最大的互联网
+因特网发展三个阶段：
+ARPANET向互联网发展 三级结构的因特网（校园网，地区网，主干网） 多层次的ISP结构的因特网 因特网的标准化工作由因特网协会定义：因特网研究部，因特网工程部
+因特网组成 C/S：客户机/服务器下载东西，客户机越多下载越慢
+P2P：结点越多下载越快
+电路交换：需要建立连接搭建专线（建立连接-》通话-》释放资源），适用于实时通讯（打电话）
+分组交换：不需要建立连接，没有专线。将一个报文拆分为多包，每一个包不一定走同一条路。路由器由存储转发的功能。但是比电路交换延迟更大。
+报文交换：和分许交换类似，但是不用拆分。
+计算机网络在我国发展 1994年4月20日PRC接入互联网
+计算机网络的类别 局域网：自己购买设备，自己维护，带宽固定。
+广域网：花钱买服务，花钱买带宽。
+计算机网络的性能 速率：连接在计算机网络上的主机在数字信道（一个接收端到一个发送端）上的传送位数的速率。b/s,kb/s,Mb/s,Gb/s 带宽：数字信道所能传送的最高数据率。b/s,kb/s,Mb/s,Gb/s 吞吐率：单位时间内通过某个网络的数据量（总的）b/s,Mb/s 时延：发送时延，传播时延，处理时延，排队时延 时延带宽积：传播时延✖带宽（一个信道承载数据能力） 往返时间：从发送方发送数据开始，到发送方收到接收方确认 利用率：有数据通过时间/(有无)数据通过时间 非性能指标：费用，质量，标准化，可靠性，可扩展性，可升级性，管理与维护 计算机网络的体系结构 分层的原因：标准化并降低每一层的相互关联
+OSI7层 应用层：能够产生网络流量，能和用户交互的应用程序 表示层：加密，压缩，编解码（开发人员需要考虑的问题） 会话层：服务器和客户端建立的会话（可以用来查木马：netstat -nb）木马一般时隐藏盗窃信息 传输层：可靠传输(建立会话)，不可靠传输(QQ发消息，广播发送)，流量控制 网络层：IP地址编址，选择最佳路径 数据链路层：数据如何封装，添加物理层mac地址 物理层：电压，接口标准 网络排错：从底层往高层排错
+网络安全和osi参考模型
+物理层安全(连线安全) 数据链路层安全(ADSL和AP密码) 网络层安全（网关对某些网段的ip限制访问外网） 应用层安全（SQL注入漏洞，上传漏洞） 应用层 传输层 网络层 数据链路层 物理层 应用程序（传输数据单元PDU） 段（报文） 包（数据报） 帧 比特流 "/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">计网-概述</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Nov 21, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="计算机网络在信息时代的作用">计算机网络在信息时代的作用</h2>
+<p>连通性，信息共享，软硬件共享</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121151622.png" alt=""></p>
+<h2 id="因特网概述">因特网概述</h2>
+<ul>
+<li>
+<p>网络 network：结点（计算机，交换机）+链路</p>
+</li>
+<li>
+<p>互联网 internet（数量距离相对网络增大）：网络+路由器</p>
+</li>
+<li>
+<p>因特网 Internet：全球最大的互联网</p>
+</li>
+<li>
+<p>因特网发展三个阶段：</p>
+<ul>
+<li>ARPANET向互联网发展</li>
+<li>三级结构的因特网（校园网，地区网，主干网）</li>
+<li>多层次的ISP结构的因特网</li>
+</ul>
+</li>
+<li>
+<p>因特网的<strong>标准化</strong>工作由<strong>因特网协会</strong>定义：因特网研究部，因特网工程部</p>
+</li>
+</ul>
+<h2 id="因特网组成">因特网组成</h2>
+<!-- raw HTML omitted -->
+<p>C/S：客户机/服务器下载东西，客户机越多下载越慢</p>
+<p>P2P：结点越多下载越快</p>
+<!-- raw HTML omitted -->
+<p>电路交换：需要建立连接搭建专线（建立连接-》通话-》释放资源），适用于实时通讯（打电话）</p>
+<p>分组交换：不需要建立连接，没有专线。将一个报文拆分为多包，每一个包不一定走同一条路。路由器由存储转发的功能。但是比电路交换延迟更大。</p>
+<p>报文交换：和分许交换类似，但是不用拆分。</p>
+<!-- raw HTML omitted -->
+<h2 id="计算机网络在我国发展">计算机网络在我国发展</h2>
+<p>1994年4月20日PRC接入互联网</p>
+<h2 id="计算机网络的类别">计算机网络的类别</h2>
+<!-- raw HTML omitted -->
+<p>局域网：自己购买设备，自己维护，带宽固定。</p>
+<p>广域网：花钱买服务，花钱买带宽。</p>
+<h2 id="计算机网络的性能">计算机网络的性能</h2>
+<ul>
+<li>速率：连接在计算机网络上的主机在数字信道（一个接收端到一个发送端）上的传送位数的速率。b/s,kb/s,Mb/s,Gb/s</li>
+<li>带宽：数字信道所能传送的<strong>最高</strong>数据率。b/s,kb/s,Mb/s,Gb/s</li>
+<li>吞吐率：单位时间内通过某个网络的数据量（总的）b/s,Mb/s</li>
+<li>时延：发送时延，传播时延，处理时延，排队时延</li>
+<li>时延带宽积：传播时延✖带宽（一个信道承载数据能力）</li>
+<li>往返时间：从发送方发送数据开始，到发送方收到接收方确认</li>
+<li>利用率：有数据通过时间/(有无)数据通过时间</li>
+<li>非性能指标：费用，质量，标准化，可靠性，可扩展性，可升级性，管理与维护</li>
+</ul>
+<h2 id="计算机网络的体系结构">计算机网络的体系结构</h2>
+<!-- raw HTML omitted -->
+<p><strong>分层的原因：标准化并降低每一层的相互关联</strong></p>
+<h3 id="osi7层">OSI7层</h3>
+<ul>
+<li>应用层：能够产生网络流量，能和用户交互的应用程序</li>
+<li>表示层：加密，压缩，编解码（开发人员需要考虑的问题）</li>
+<li>会话层：服务器和客户端建立的会话（可以用来查木马：netstat -nb）木马一般时隐藏盗窃信息</li>
+<li>传输层：可靠传输(建立会话)，不可靠传输(QQ发消息，广播发送)，流量控制</li>
+<li>网络层：IP地址编址，选择最佳路径</li>
+<li>数据链路层：数据如何封装，添加物理层mac地址</li>
+<li>物理层：电压，接口标准</li>
+</ul>
+<p><strong>网络排错：从底层往高层排错</strong></p>
+<p><strong>网络安全和osi参考模型</strong></p>
+<ul>
+<li>物理层安全(连线安全)</li>
+<li>数据链路层安全(ADSL和AP密码)</li>
+<li>网络层安全（网关对某些网段的ip限制访问外网）</li>
+<li>应用层安全（SQL注入漏洞，上传漏洞）</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220522094803.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">应用层</th>
+<th style="text-align:center">传输层</th>
+<th style="text-align:center">网络层</th>
+<th style="text-align:center">数据链路层</th>
+<th style="text-align:center">物理层</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用程序（传输数据单元PDU）</td>
+<td style="text-align:center">段（报文）</td>
+<td style="text-align:center">包（数据报）</td>
+<td style="text-align:center">帧</td>
+<td style="text-align:center">比特流</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/"
+      ><span class="mr-1.5">←</span><span>计网-物理层</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/"
+      ><span>Martin Fowler关于微服务架构的论文译文</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

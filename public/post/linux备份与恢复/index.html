@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>linux备份与恢复 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="备份概述 Linux中需要备份的数据：/root/目录，/home/目录，/var/spool/mail/目录，/etc/目录，其他目录
+安装的服务的数据也需要备份：
+apache需要备份的数据：配置文件，网页主目录，日志文件
+mysql需要备份的数据：源码包安装的：/usr/local/mysql/data/或者RPM包安装的：/var/lib/mysql
+备份策略：
+完全备份：效果最高，但需要更大的硬盘空间 增量备份：每次备份只备份新的数据，占用空间少，但是恢复起来麻烦 差异备份：每次备份都只备份完全备份中不存在的，折中方法 备份命令 完全备份完全可以用tar打包压缩来做，但是如果是差异备份就会非常麻烦，这时就需要用到Linux为数据备份量是打造的备份和恢复命令dump命令和restore命令
+dump [选项] 备份之后的文件名 原文件名
+-级别：0到9个备份级别
+-f：指定备份之后的文件名
+-u：把备份时间记录在/etc/dumpdates文件中
+-v：显示备份过程
+-j：把备份文件压缩为.bz2格式
+-W：查看详情
+注意：dump命令只有在备份分区的时候才能增量备份，备份普通目录只能完全备份
+restore [模式选项] [选项]
+四个模式：
+-C：比较备份数据和实际数据的变化
+-i：交互模式
+-t：查看模式
+-r：还原模式
+一个选项：
+-f：指定备份文件的文件名 " />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="linux备份与恢复" />
+<meta property="og:description" content="备份概述 Linux中需要备份的数据：/root/目录，/home/目录，/var/spool/mail/目录，/etc/目录，其他目录
+安装的服务的数据也需要备份：
+apache需要备份的数据：配置文件，网页主目录，日志文件
+mysql需要备份的数据：源码包安装的：/usr/local/mysql/data/或者RPM包安装的：/var/lib/mysql
+备份策略：
+完全备份：效果最高，但需要更大的硬盘空间 增量备份：每次备份只备份新的数据，占用空间少，但是恢复起来麻烦 差异备份：每次备份都只备份完全备份中不存在的，折中方法 备份命令 完全备份完全可以用tar打包压缩来做，但是如果是差异备份就会非常麻烦，这时就需要用到Linux为数据备份量是打造的备份和恢复命令dump命令和restore命令
+dump [选项] 备份之后的文件名 原文件名
+-级别：0到9个备份级别
+-f：指定备份之后的文件名
+-u：把备份时间记录在/etc/dumpdates文件中
+-v：显示备份过程
+-j：把备份文件压缩为.bz2格式
+-W：查看详情
+注意：dump命令只有在备份分区的时候才能增量备份，备份普通目录只能完全备份
+restore [模式选项] [选项]
+四个模式：
+-C：比较备份数据和实际数据的变化
+-i：交互模式
+-t：查看模式
+-r：还原模式
+一个选项：
+-f：指定备份文件的文件名 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/linux%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-11T17:26:23+00:00" />
+<meta property="article:modified_time" content="2020-03-11T17:26:23+00:00" />
+
+  
+  <meta itemprop="name" content="linux备份与恢复">
+<meta itemprop="description" content="备份概述 Linux中需要备份的数据：/root/目录，/home/目录，/var/spool/mail/目录，/etc/目录，其他目录
+安装的服务的数据也需要备份：
+apache需要备份的数据：配置文件，网页主目录，日志文件
+mysql需要备份的数据：源码包安装的：/usr/local/mysql/data/或者RPM包安装的：/var/lib/mysql
+备份策略：
+完全备份：效果最高，但需要更大的硬盘空间 增量备份：每次备份只备份新的数据，占用空间少，但是恢复起来麻烦 差异备份：每次备份都只备份完全备份中不存在的，折中方法 备份命令 完全备份完全可以用tar打包压缩来做，但是如果是差异备份就会非常麻烦，这时就需要用到Linux为数据备份量是打造的备份和恢复命令dump命令和restore命令
+dump [选项] 备份之后的文件名 原文件名
+-级别：0到9个备份级别
+-f：指定备份之后的文件名
+-u：把备份时间记录在/etc/dumpdates文件中
+-v：显示备份过程
+-j：把备份文件压缩为.bz2格式
+-W：查看详情
+注意：dump命令只有在备份分区的时候才能增量备份，备份普通目录只能完全备份
+restore [模式选项] [选项]
+四个模式：
+-C：比较备份数据和实际数据的变化
+-i：交互模式
+-t：查看模式
+-r：还原模式
+一个选项：
+-f：指定备份文件的文件名 "><meta itemprop="datePublished" content="2020-03-11T17:26:23+00:00" />
+<meta itemprop="dateModified" content="2020-03-11T17:26:23+00:00" />
+<meta itemprop="wordCount" content="32">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux备份与恢复"/>
+<meta name="twitter:description" content="备份概述 Linux中需要备份的数据：/root/目录，/home/目录，/var/spool/mail/目录，/etc/目录，其他目录
+安装的服务的数据也需要备份：
+apache需要备份的数据：配置文件，网页主目录，日志文件
+mysql需要备份的数据：源码包安装的：/usr/local/mysql/data/或者RPM包安装的：/var/lib/mysql
+备份策略：
+完全备份：效果最高，但需要更大的硬盘空间 增量备份：每次备份只备份新的数据，占用空间少，但是恢复起来麻烦 差异备份：每次备份都只备份完全备份中不存在的，折中方法 备份命令 完全备份完全可以用tar打包压缩来做，但是如果是差异备份就会非常麻烦，这时就需要用到Linux为数据备份量是打造的备份和恢复命令dump命令和restore命令
+dump [选项] 备份之后的文件名 原文件名
+-级别：0到9个备份级别
+-f：指定备份之后的文件名
+-u：把备份时间记录在/etc/dumpdates文件中
+-v：显示备份过程
+-j：把备份文件压缩为.bz2格式
+-W：查看详情
+注意：dump命令只有在备份分区的时候才能增量备份，备份普通目录只能完全备份
+restore [模式选项] [选项]
+四个模式：
+-C：比较备份数据和实际数据的变化
+-i：交互模式
+-t：查看模式
+-r：还原模式
+一个选项：
+-f：指定备份文件的文件名 "/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">linux备份与恢复</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 11, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h1 id="备份概述">备份概述</h1>
+<ul>
+<li>
+<p><strong>Linux中需要备份的数据</strong>：/root/目录，/home/目录，/var/spool/mail/目录，/etc/目录，其他目录</p>
+</li>
+<li>
+<p>安装的服务的数据也需要备份：</p>
+<p>apache需要备份的数据：配置文件，网页主目录，日志文件</p>
+<p>mysql需要备份的数据：源码包安装的：<code>/usr/local/mysql/data/</code>或者RPM包安装的：<code>/var/lib/mysql</code></p>
+</li>
+<li>
+<p>备份策略：</p>
+<ul>
+<li>完全备份：效果最高，但需要更大的硬盘空间</li>
+<li>增量备份：每次备份只备份新的数据，占用空间少，但是恢复起来麻烦</li>
+<li>差异备份：每次备份都只备份完全备份中不存在的，折中方法</li>
+</ul>
+</li>
+</ul>
+<h1 id="备份命令">备份命令</h1>
+<ul>
+<li>
+<p>完全备份完全可以用tar打包压缩来做，但是如果是差异备份就会非常麻烦，这时就需要用到Linux为数据备份量是打造的备份和恢复命令dump命令和restore命令</p>
+</li>
+<li>
+<p><code>dump [选项] 备份之后的文件名 原文件名</code></p>
+<p>-级别：0到9个备份级别</p>
+<p>-f：指定备份之后的文件名</p>
+<p>-u：把备份时间记录在/etc/dumpdates文件中</p>
+<p>-v：显示备份过程</p>
+<p>-j：把备份文件压缩为.bz2格式</p>
+<p>-W：查看详情</p>
+<p>注意：dump命令只有在备份分区的时候才能增量备份，备份普通目录只能完全备份</p>
+</li>
+<li>
+<p>restore [模式选项] [选项]</p>
+<p>四个模式：</p>
+<ul>
+<li>
+<p>-C：比较备份数据和实际数据的变化</p>
+</li>
+<li>
+<p>-i：交互模式</p>
+</li>
+<li>
+<p>-t：查看模式</p>
+</li>
+<li>
+<p>-r：还原模式</p>
+</li>
+</ul>
+<p>一个选项：</p>
+<ul>
+<li>-f：指定备份文件的文件名</li>
+</ul>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/"
+      ><span class="mr-1.5">←</span><span>Win10桌面美化</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/"
+      ><span>linux启动管理</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

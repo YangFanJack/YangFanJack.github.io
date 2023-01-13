@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>javaweb-前后端分离史 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="前后端分离演变史 model1(MVC时代)： 以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后端框架，例如SSH，SSM **优点：**MVC是一个很好的协作模式，能后有效降低代码的耦合度，从架构上能让开发者明白代码应该写在哪里。为了让View试图层更加存粹，还可以将JSP替换为Thymeleaf，Freemarker等模板引擎，使模板里无法写入java代码，让前后端分工更加清晰 缺点： 前端开发重度依赖开发环境，开发效率低。这种架构下，前后端协作主要有两种模式： 前端写Demo，写好后，让后端去套模板。好处是Demo可以本地开发，很高效。不足时需要后端套模板，套完后还需要前端人员确定，来回沟通调整的成本很大。 另一种协作模式是前端负责浏览器端的所有开发和服务器端的View层模板开发。好处是UI相关的代码都是前端去写就好了，后端不用管前端的数据。不足就是前端开发重度绑定开发环境，环境成为影响前端开发效率的重要因素。 前后端职责纠缠不清，模板引擎功能强大，依旧可以通过拿到的上下文变量来实现各种业务逻辑。这样，只要前端弱势一点，往往就会被后端要求在模板层写入不少业务代码。还有个很大的灰色地带是Controller，页面路由等功能本应该是前端最关注的，但却是由后端来实现的。Controller和Model往往也会纠缠不清，看了让人咬牙的业务逻辑代码经常会出现在Controller层，这些问题不能全纠结于程序员的素养，否则JSP就够了。 对前端发挥的局限性：性能优化如果只在前端做空间非常有限，于是我们经常需要后端合作，但由于后端框架限制，我们很难使用【Comet】，【BigPipe】等技术来优化性能 基于AJAX的SPA时代 使用CDN作为静态资源存储，JavaScript网站归来，Single Page Application
+优点：前后端分工清晰，关键是AJAX接口。复杂度从基于服务器引擎的JSP转移到了基于浏览器引擎的JavaScript。这个时代出现了类似后端MVC模式的分层架构
+缺点：前后端接口的约定。需要通过接口规则和接口平台等方式来实现前后端的搞笑并行并发。前端由于JavaScript可能出现大量JS代码的组织。
+大前端MV*时代 MVC：同步通信：View，Controller，Model MVP：异步通信：View，Presenter，Model MVVM：异步通信：View，ViewModel，Model 为了降低前端开发的复杂度，涌现了大量前端框架：AngularJS，React，Vue.js，EmberJS等，这些框架按类型分为：Templates，Controllers，Models三层，然后在层能分层
+优点： 前后端职责很清晰：前端工作在浏览器端，后端工作在服务器端，开发并行。前后端独立开发，独立运行，甚至独立部署上线。 前端开发的复杂度可控：前端代码很重，很合理的分层，让前端代码能各司其职。 缺点： 代码不能复用，例如后端依旧需要对数据各种校验，无法直接复用浏览器端的代码 全异步，对SEO不利，往往还需要服务器端做同步渲染的降级方式 性能并非最佳，特别是移动互联网下 SPA不能满足所有需求，依旧存在大量多页面应用。URL Design需要后端配合，前端无法完全掌握。 NodeJS带来的全栈时代 前端的MVC模式解决了很多问题，但是也有很多不足。随着NodeJS的兴起，JavaScript开始有能力运行在服务端。这意味着可以有一种全新的研发模式。
+在这种研发模式下，前后端职责很清晰了。
+对前端来说，两个UI层各司其职：
+Front-end UI layer：处理浏览器层的展现逻辑，通过CSS渲染样式，通过Javascript添加交互式功能。 Back-end UI layer：处理路由，模板，数据获取，Cookie等。通过路由，前端终于可以自主把控URL Design了。这样无论是单页面应用还是多页面应用，前端都可以自由调控。后端也终于可以拜托对崭新啊的强关注，转而可以专心业务逻辑层的开发。 通过 Node，Web Server 层也是 JavaScript 代码，这意味着部分代码可前后复用，需要 SEO 的场景可以在服务端同步渲染，由于异步请求太多导致的性能问题也可以通过服务端来缓解。前一种模式的不足，通过这种模式几乎都能完美解决掉。
+与 JSP 模式相比，全栈模式看起来是一种回归，也的确是一种向原始开发模式的回归，不过是一种螺旋上升式的回归。
+基于 Node 的全栈模式，依旧面临很多挑战：
+需要前端对服务端编程有更进一步的认识。比如 network/tcp、PE 等知识的掌握。 Node 层与 Java 层的高效通信。Node 模式下，都在服务器端，RESTful HTTP 通信未必高效， 过 SOAP 等方式通信更高效。一切需要在验证中前行。 对部署、运维层面的熟练了解，需要更多知识点和实操经验。 大量历史遗留问题如何过渡。这可能是最大最大的阻力。 总结 模式没有好坏高下之分，只有合不合适。 Ajax 给前端开发带来了一次质的飞跃，Node 很可能是第二次。 SoC（关注度分离：关注点分离是日常生活和生产中广泛使用的解决复杂问题的一种系统思维方法。大体思路是,先将复杂问题做合理的分解,再分别仔细研究问题的不同侧面(关注点)，最后综合各方面的结果，合成整体的解决方案。） 是一条伟大的原则。上面种种模式，都是让前后端的职责更清晰，分工更合理高效。 还有个原则，让合适的人做合适的事。比如 Web Server 层的 UI Layer 开发，前端是更合适的人选。 " />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="javaweb-前后端分离史" />
+<meta property="og:description" content="前后端分离演变史 model1(MVC时代)： 以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后端框架，例如SSH，SSM **优点：**MVC是一个很好的协作模式，能后有效降低代码的耦合度，从架构上能让开发者明白代码应该写在哪里。为了让View试图层更加存粹，还可以将JSP替换为Thymeleaf，Freemarker等模板引擎，使模板里无法写入java代码，让前后端分工更加清晰 缺点： 前端开发重度依赖开发环境，开发效率低。这种架构下，前后端协作主要有两种模式： 前端写Demo，写好后，让后端去套模板。好处是Demo可以本地开发，很高效。不足时需要后端套模板，套完后还需要前端人员确定，来回沟通调整的成本很大。 另一种协作模式是前端负责浏览器端的所有开发和服务器端的View层模板开发。好处是UI相关的代码都是前端去写就好了，后端不用管前端的数据。不足就是前端开发重度绑定开发环境，环境成为影响前端开发效率的重要因素。 前后端职责纠缠不清，模板引擎功能强大，依旧可以通过拿到的上下文变量来实现各种业务逻辑。这样，只要前端弱势一点，往往就会被后端要求在模板层写入不少业务代码。还有个很大的灰色地带是Controller，页面路由等功能本应该是前端最关注的，但却是由后端来实现的。Controller和Model往往也会纠缠不清，看了让人咬牙的业务逻辑代码经常会出现在Controller层，这些问题不能全纠结于程序员的素养，否则JSP就够了。 对前端发挥的局限性：性能优化如果只在前端做空间非常有限，于是我们经常需要后端合作，但由于后端框架限制，我们很难使用【Comet】，【BigPipe】等技术来优化性能 基于AJAX的SPA时代 使用CDN作为静态资源存储，JavaScript网站归来，Single Page Application
+优点：前后端分工清晰，关键是AJAX接口。复杂度从基于服务器引擎的JSP转移到了基于浏览器引擎的JavaScript。这个时代出现了类似后端MVC模式的分层架构
+缺点：前后端接口的约定。需要通过接口规则和接口平台等方式来实现前后端的搞笑并行并发。前端由于JavaScript可能出现大量JS代码的组织。
+大前端MV*时代 MVC：同步通信：View，Controller，Model MVP：异步通信：View，Presenter，Model MVVM：异步通信：View，ViewModel，Model 为了降低前端开发的复杂度，涌现了大量前端框架：AngularJS，React，Vue.js，EmberJS等，这些框架按类型分为：Templates，Controllers，Models三层，然后在层能分层
+优点： 前后端职责很清晰：前端工作在浏览器端，后端工作在服务器端，开发并行。前后端独立开发，独立运行，甚至独立部署上线。 前端开发的复杂度可控：前端代码很重，很合理的分层，让前端代码能各司其职。 缺点： 代码不能复用，例如后端依旧需要对数据各种校验，无法直接复用浏览器端的代码 全异步，对SEO不利，往往还需要服务器端做同步渲染的降级方式 性能并非最佳，特别是移动互联网下 SPA不能满足所有需求，依旧存在大量多页面应用。URL Design需要后端配合，前端无法完全掌握。 NodeJS带来的全栈时代 前端的MVC模式解决了很多问题，但是也有很多不足。随着NodeJS的兴起，JavaScript开始有能力运行在服务端。这意味着可以有一种全新的研发模式。
+在这种研发模式下，前后端职责很清晰了。
+对前端来说，两个UI层各司其职：
+Front-end UI layer：处理浏览器层的展现逻辑，通过CSS渲染样式，通过Javascript添加交互式功能。 Back-end UI layer：处理路由，模板，数据获取，Cookie等。通过路由，前端终于可以自主把控URL Design了。这样无论是单页面应用还是多页面应用，前端都可以自由调控。后端也终于可以拜托对崭新啊的强关注，转而可以专心业务逻辑层的开发。 通过 Node，Web Server 层也是 JavaScript 代码，这意味着部分代码可前后复用，需要 SEO 的场景可以在服务端同步渲染，由于异步请求太多导致的性能问题也可以通过服务端来缓解。前一种模式的不足，通过这种模式几乎都能完美解决掉。
+与 JSP 模式相比，全栈模式看起来是一种回归，也的确是一种向原始开发模式的回归，不过是一种螺旋上升式的回归。
+基于 Node 的全栈模式，依旧面临很多挑战：
+需要前端对服务端编程有更进一步的认识。比如 network/tcp、PE 等知识的掌握。 Node 层与 Java 层的高效通信。Node 模式下，都在服务器端，RESTful HTTP 通信未必高效， 过 SOAP 等方式通信更高效。一切需要在验证中前行。 对部署、运维层面的熟练了解，需要更多知识点和实操经验。 大量历史遗留问题如何过渡。这可能是最大最大的阻力。 总结 模式没有好坏高下之分，只有合不合适。 Ajax 给前端开发带来了一次质的飞跃，Node 很可能是第二次。 SoC（关注度分离：关注点分离是日常生活和生产中广泛使用的解决复杂问题的一种系统思维方法。大体思路是,先将复杂问题做合理的分解,再分别仔细研究问题的不同侧面(关注点)，最后综合各方面的结果，合成整体的解决方案。） 是一条伟大的原则。上面种种模式，都是让前后端的职责更清晰，分工更合理高效。 还有个原则，让合适的人做合适的事。比如 Web Server 层的 UI Layer 开发，前端是更合适的人选。 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-01-02T21:55:24+00:00" />
+<meta property="article:modified_time" content="2021-01-02T21:55:24+00:00" />
+
+  
+  <meta itemprop="name" content="javaweb-前后端分离史">
+<meta itemprop="description" content="前后端分离演变史 model1(MVC时代)： 以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后端框架，例如SSH，SSM **优点：**MVC是一个很好的协作模式，能后有效降低代码的耦合度，从架构上能让开发者明白代码应该写在哪里。为了让View试图层更加存粹，还可以将JSP替换为Thymeleaf，Freemarker等模板引擎，使模板里无法写入java代码，让前后端分工更加清晰 缺点： 前端开发重度依赖开发环境，开发效率低。这种架构下，前后端协作主要有两种模式： 前端写Demo，写好后，让后端去套模板。好处是Demo可以本地开发，很高效。不足时需要后端套模板，套完后还需要前端人员确定，来回沟通调整的成本很大。 另一种协作模式是前端负责浏览器端的所有开发和服务器端的View层模板开发。好处是UI相关的代码都是前端去写就好了，后端不用管前端的数据。不足就是前端开发重度绑定开发环境，环境成为影响前端开发效率的重要因素。 前后端职责纠缠不清，模板引擎功能强大，依旧可以通过拿到的上下文变量来实现各种业务逻辑。这样，只要前端弱势一点，往往就会被后端要求在模板层写入不少业务代码。还有个很大的灰色地带是Controller，页面路由等功能本应该是前端最关注的，但却是由后端来实现的。Controller和Model往往也会纠缠不清，看了让人咬牙的业务逻辑代码经常会出现在Controller层，这些问题不能全纠结于程序员的素养，否则JSP就够了。 对前端发挥的局限性：性能优化如果只在前端做空间非常有限，于是我们经常需要后端合作，但由于后端框架限制，我们很难使用【Comet】，【BigPipe】等技术来优化性能 基于AJAX的SPA时代 使用CDN作为静态资源存储，JavaScript网站归来，Single Page Application
+优点：前后端分工清晰，关键是AJAX接口。复杂度从基于服务器引擎的JSP转移到了基于浏览器引擎的JavaScript。这个时代出现了类似后端MVC模式的分层架构
+缺点：前后端接口的约定。需要通过接口规则和接口平台等方式来实现前后端的搞笑并行并发。前端由于JavaScript可能出现大量JS代码的组织。
+大前端MV*时代 MVC：同步通信：View，Controller，Model MVP：异步通信：View，Presenter，Model MVVM：异步通信：View，ViewModel，Model 为了降低前端开发的复杂度，涌现了大量前端框架：AngularJS，React，Vue.js，EmberJS等，这些框架按类型分为：Templates，Controllers，Models三层，然后在层能分层
+优点： 前后端职责很清晰：前端工作在浏览器端，后端工作在服务器端，开发并行。前后端独立开发，独立运行，甚至独立部署上线。 前端开发的复杂度可控：前端代码很重，很合理的分层，让前端代码能各司其职。 缺点： 代码不能复用，例如后端依旧需要对数据各种校验，无法直接复用浏览器端的代码 全异步，对SEO不利，往往还需要服务器端做同步渲染的降级方式 性能并非最佳，特别是移动互联网下 SPA不能满足所有需求，依旧存在大量多页面应用。URL Design需要后端配合，前端无法完全掌握。 NodeJS带来的全栈时代 前端的MVC模式解决了很多问题，但是也有很多不足。随着NodeJS的兴起，JavaScript开始有能力运行在服务端。这意味着可以有一种全新的研发模式。
+在这种研发模式下，前后端职责很清晰了。
+对前端来说，两个UI层各司其职：
+Front-end UI layer：处理浏览器层的展现逻辑，通过CSS渲染样式，通过Javascript添加交互式功能。 Back-end UI layer：处理路由，模板，数据获取，Cookie等。通过路由，前端终于可以自主把控URL Design了。这样无论是单页面应用还是多页面应用，前端都可以自由调控。后端也终于可以拜托对崭新啊的强关注，转而可以专心业务逻辑层的开发。 通过 Node，Web Server 层也是 JavaScript 代码，这意味着部分代码可前后复用，需要 SEO 的场景可以在服务端同步渲染，由于异步请求太多导致的性能问题也可以通过服务端来缓解。前一种模式的不足，通过这种模式几乎都能完美解决掉。
+与 JSP 模式相比，全栈模式看起来是一种回归，也的确是一种向原始开发模式的回归，不过是一种螺旋上升式的回归。
+基于 Node 的全栈模式，依旧面临很多挑战：
+需要前端对服务端编程有更进一步的认识。比如 network/tcp、PE 等知识的掌握。 Node 层与 Java 层的高效通信。Node 模式下，都在服务器端，RESTful HTTP 通信未必高效， 过 SOAP 等方式通信更高效。一切需要在验证中前行。 对部署、运维层面的熟练了解，需要更多知识点和实操经验。 大量历史遗留问题如何过渡。这可能是最大最大的阻力。 总结 模式没有好坏高下之分，只有合不合适。 Ajax 给前端开发带来了一次质的飞跃，Node 很可能是第二次。 SoC（关注度分离：关注点分离是日常生活和生产中广泛使用的解决复杂问题的一种系统思维方法。大体思路是,先将复杂问题做合理的分解,再分别仔细研究问题的不同侧面(关注点)，最后综合各方面的结果，合成整体的解决方案。） 是一条伟大的原则。上面种种模式，都是让前后端的职责更清晰，分工更合理高效。 还有个原则，让合适的人做合适的事。比如 Web Server 层的 UI Layer 开发，前端是更合适的人选。 "><meta itemprop="datePublished" content="2021-01-02T21:55:24+00:00" />
+<meta itemprop="dateModified" content="2021-01-02T21:55:24+00:00" />
+<meta itemprop="wordCount" content="84">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="javaweb-前后端分离史"/>
+<meta name="twitter:description" content="前后端分离演变史 model1(MVC时代)： 以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后端框架，例如SSH，SSM **优点：**MVC是一个很好的协作模式，能后有效降低代码的耦合度，从架构上能让开发者明白代码应该写在哪里。为了让View试图层更加存粹，还可以将JSP替换为Thymeleaf，Freemarker等模板引擎，使模板里无法写入java代码，让前后端分工更加清晰 缺点： 前端开发重度依赖开发环境，开发效率低。这种架构下，前后端协作主要有两种模式： 前端写Demo，写好后，让后端去套模板。好处是Demo可以本地开发，很高效。不足时需要后端套模板，套完后还需要前端人员确定，来回沟通调整的成本很大。 另一种协作模式是前端负责浏览器端的所有开发和服务器端的View层模板开发。好处是UI相关的代码都是前端去写就好了，后端不用管前端的数据。不足就是前端开发重度绑定开发环境，环境成为影响前端开发效率的重要因素。 前后端职责纠缠不清，模板引擎功能强大，依旧可以通过拿到的上下文变量来实现各种业务逻辑。这样，只要前端弱势一点，往往就会被后端要求在模板层写入不少业务代码。还有个很大的灰色地带是Controller，页面路由等功能本应该是前端最关注的，但却是由后端来实现的。Controller和Model往往也会纠缠不清，看了让人咬牙的业务逻辑代码经常会出现在Controller层，这些问题不能全纠结于程序员的素养，否则JSP就够了。 对前端发挥的局限性：性能优化如果只在前端做空间非常有限，于是我们经常需要后端合作，但由于后端框架限制，我们很难使用【Comet】，【BigPipe】等技术来优化性能 基于AJAX的SPA时代 使用CDN作为静态资源存储，JavaScript网站归来，Single Page Application
+优点：前后端分工清晰，关键是AJAX接口。复杂度从基于服务器引擎的JSP转移到了基于浏览器引擎的JavaScript。这个时代出现了类似后端MVC模式的分层架构
+缺点：前后端接口的约定。需要通过接口规则和接口平台等方式来实现前后端的搞笑并行并发。前端由于JavaScript可能出现大量JS代码的组织。
+大前端MV*时代 MVC：同步通信：View，Controller，Model MVP：异步通信：View，Presenter，Model MVVM：异步通信：View，ViewModel，Model 为了降低前端开发的复杂度，涌现了大量前端框架：AngularJS，React，Vue.js，EmberJS等，这些框架按类型分为：Templates，Controllers，Models三层，然后在层能分层
+优点： 前后端职责很清晰：前端工作在浏览器端，后端工作在服务器端，开发并行。前后端独立开发，独立运行，甚至独立部署上线。 前端开发的复杂度可控：前端代码很重，很合理的分层，让前端代码能各司其职。 缺点： 代码不能复用，例如后端依旧需要对数据各种校验，无法直接复用浏览器端的代码 全异步，对SEO不利，往往还需要服务器端做同步渲染的降级方式 性能并非最佳，特别是移动互联网下 SPA不能满足所有需求，依旧存在大量多页面应用。URL Design需要后端配合，前端无法完全掌握。 NodeJS带来的全栈时代 前端的MVC模式解决了很多问题，但是也有很多不足。随着NodeJS的兴起，JavaScript开始有能力运行在服务端。这意味着可以有一种全新的研发模式。
+在这种研发模式下，前后端职责很清晰了。
+对前端来说，两个UI层各司其职：
+Front-end UI layer：处理浏览器层的展现逻辑，通过CSS渲染样式，通过Javascript添加交互式功能。 Back-end UI layer：处理路由，模板，数据获取，Cookie等。通过路由，前端终于可以自主把控URL Design了。这样无论是单页面应用还是多页面应用，前端都可以自由调控。后端也终于可以拜托对崭新啊的强关注，转而可以专心业务逻辑层的开发。 通过 Node，Web Server 层也是 JavaScript 代码，这意味着部分代码可前后复用，需要 SEO 的场景可以在服务端同步渲染，由于异步请求太多导致的性能问题也可以通过服务端来缓解。前一种模式的不足，通过这种模式几乎都能完美解决掉。
+与 JSP 模式相比，全栈模式看起来是一种回归，也的确是一种向原始开发模式的回归，不过是一种螺旋上升式的回归。
+基于 Node 的全栈模式，依旧面临很多挑战：
+需要前端对服务端编程有更进一步的认识。比如 network/tcp、PE 等知识的掌握。 Node 层与 Java 层的高效通信。Node 模式下，都在服务器端，RESTful HTTP 通信未必高效， 过 SOAP 等方式通信更高效。一切需要在验证中前行。 对部署、运维层面的熟练了解，需要更多知识点和实操经验。 大量历史遗留问题如何过渡。这可能是最大最大的阻力。 总结 模式没有好坏高下之分，只有合不合适。 Ajax 给前端开发带来了一次质的飞跃，Node 很可能是第二次。 SoC（关注度分离：关注点分离是日常生活和生产中广泛使用的解决复杂问题的一种系统思维方法。大体思路是,先将复杂问题做合理的分解,再分别仔细研究问题的不同侧面(关注点)，最后综合各方面的结果，合成整体的解决方案。） 是一条伟大的原则。上面种种模式，都是让前后端的职责更清晰，分工更合理高效。 还有个原则，让合适的人做合适的事。比如 Web Server 层的 UI Layer 开发，前端是更合适的人选。 "/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">javaweb-前后端分离史</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Jan 2, 2021</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="前后端分离演变史">前后端分离演变史</h2>
+<h3 id="model1mvc时代"><strong>model1(MVC时代)：</strong></h3>
+<ul>
+<li>以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后端框架，例如SSH，SSM</li>
+<li>**优点：**MVC是一个很好的协作模式，能后有效降低代码的耦合度，从架构上能让开发者明白代码应该写在哪里。为了让View试图层更加存粹，还可以将JSP替换为Thymeleaf，Freemarker等模板引擎，使模板里无法写入java代码，让前后端分工更加清晰</li>
+<li><strong>缺点：</strong>
+<ol>
+<li>前端开发重度依赖开发环境，开发效率低。这种架构下，前后端协作主要有两种模式：
+<ol>
+<li>前端写Demo，写好后，让后端去套模板。好处是Demo可以本地开发，很高效。不足时需要后端套模板，套完后还需要前端人员确定，来回沟通调整的成本很大。</li>
+<li>另一种协作模式是前端负责浏览器端的所有开发和服务器端的View层模板开发。好处是UI相关的代码都是前端去写就好了，后端不用管前端的数据。不足就是前端开发重度绑定开发环境，环境成为影响前端开发效率的重要因素。</li>
+</ol>
+</li>
+<li>前后端职责纠缠不清，模板引擎功能强大，依旧可以通过拿到的上下文变量来实现各种业务逻辑。这样，只要前端弱势一点，往往就会被后端要求在模板层写入不少业务代码。还有个很大的灰色地带是Controller，页面路由等功能本应该是前端最关注的，但却是由后端来实现的。Controller和Model往往也会纠缠不清，看了让人咬牙的业务逻辑代码经常会出现在Controller层，这些问题不能全纠结于程序员的素养，否则JSP就够了。</li>
+<li>对前端发挥的局限性：性能优化如果只在前端做空间非常有限，于是我们经常需要后端合作，但由于后端框架限制，我们很难使用【Comet】，【BigPipe】等技术来优化性能</li>
+</ol>
+</li>
+</ul>
+<h3 id="基于ajax的spa时代">基于AJAX的SPA时代</h3>
+<ul>
+<li>
+<p>使用CDN作为静态资源存储，JavaScript网站归来，Single Page Application</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>优点：前后端分工清晰，关键是AJAX接口。复杂度从基于服务器引擎的JSP转移到了基于浏览器引擎的JavaScript。这个时代出现了类似后端MVC模式的分层架构</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>缺点：前后端接口的约定。需要通过接口规则和接口平台等方式来实现前后端的搞笑并行并发。前端由于JavaScript可能出现大量JS代码的组织。</p>
+</li>
+</ul>
+<h3 id="大前端mv时代">大前端MV*时代</h3>
+<ul>
+<li>MVC：同步通信：View，Controller，Model</li>
+<li>MVP：异步通信：View，Presenter，Model</li>
+<li>MVVM：异步通信：View，ViewModel，Model</li>
+</ul>
+<p>为了降低前端开发的复杂度，涌现了大量前端框架：AngularJS，React，Vue.js，EmberJS等，这些框架按类型分为：Templates，Controllers，Models三层，然后在层能分层</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>优点：
+<ol>
+<li>前后端职责很清晰：前端工作在浏览器端，后端工作在服务器端，开发并行。前后端独立开发，独立运行，甚至独立部署上线。</li>
+<li>前端开发的复杂度可控：前端代码很重，很合理的分层，让前端代码能各司其职。</li>
+</ol>
+</li>
+<li>缺点：
+<ol>
+<li>代码不能复用，例如后端依旧需要对数据各种校验，无法直接复用浏览器端的代码</li>
+<li>全异步，对SEO不利，往往还需要服务器端做同步渲染的降级方式</li>
+<li>性能并非最佳，特别是移动互联网下</li>
+<li>SPA不能满足所有需求，依旧存在大量多页面应用。URL Design需要后端配合，前端无法完全掌握。</li>
+</ol>
+</li>
+</ul>
+<h3 id="nodejs带来的全栈时代">NodeJS带来的全栈时代</h3>
+<p>前端的MVC模式解决了很多问题，但是也有很多不足。随着NodeJS的兴起，JavaScript开始有能力运行在服务端。这意味着可以有一种全新的研发模式。</p>
+<!-- raw HTML omitted -->
+<p>在这种研发模式下，前后端职责很清晰了。</p>
+<p>对前端来说，两个UI层各司其职：</p>
+<ol>
+<li>Front-end UI layer：处理浏览器层的展现逻辑，通过CSS渲染样式，通过Javascript添加交互式功能。</li>
+<li>Back-end UI layer：处理路由，模板，数据获取，Cookie等。通过路由，前端终于可以自主把控URL Design了。这样无论是单页面应用还是多页面应用，前端都可以自由调控。后端也终于可以拜托对崭新啊的强关注，转而可以专心业务逻辑层的开发。</li>
+</ol>
+<p>通过 Node，Web Server 层也是 JavaScript 代码，这意味着部分代码可前后复用，需要 SEO 的场景可以在服务端同步渲染，由于异步请求太多导致的性能问题也可以通过服务端来缓解。前一种模式的不足，通过这种模式几乎都能完美解决掉。</p>
+<p>与 JSP 模式相比，全栈模式看起来是一种回归，也的确是一种向原始开发模式的回归，不过是一种螺旋上升式的回归。</p>
+<p>基于 Node 的全栈模式，依旧面临很多挑战：</p>
+<ol>
+<li>需要前端对服务端编程有更进一步的认识。比如 network/tcp、PE 等知识的掌握。</li>
+<li>Node 层与 Java 层的高效通信。Node 模式下，都在服务器端，RESTful HTTP 通信未必高效，</li>
+<li>过 SOAP 等方式通信更高效。一切需要在验证中前行。</li>
+<li>对部署、运维层面的熟练了解，需要更多知识点和实操经验。</li>
+<li>大量历史遗留问题如何过渡。这可能是最大最大的阻力。</li>
+</ol>
+<h2 id="总结">总结</h2>
+<ol>
+<li>模式没有好坏高下之分，只有合不合适。</li>
+<li>Ajax 给前端开发带来了一次质的飞跃，Node 很可能是第二次。</li>
+<li>SoC（关注度分离：关注点分离是日常生活和生产中广泛使用的解决复杂问题的一种系统思维方法。大体思路是,先将复杂问题做合理的分解,再分别仔细研究问题的不同侧面(关注点)，最后综合各方面的结果，合成整体的解决方案。） 是一条伟大的原则。上面种种模式，都是让前后端的职责更清晰，分工更合理高效。</li>
+<li>还有个原则，让合适的人做合适的事。比如 Web Server 层的 UI Layer 开发，前端是更合适的人选。</li>
+</ol>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+      ><span class="mr-1.5">←</span><span>vue入门指南</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/java-jvm/"
+      ><span>java-JVM</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Arch入教路 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kubuntu，mint。早就听说了Arch邪教，纯命令安装系统，需要对linux系统有更深的了解，也借这个契机来试试。
+第一步：虚拟机试探 官网下载安装包
+启动vBox，开始进入安装界面
+确保开启虚拟机的EFI支持
+确保网络
+ip link #有线网络 dhcpcd #无线网络 iwctl [iwd] device list [iwd] station device scan [iwd] station device get-networks [iwd] station device connect SSID ping www.baidu.com 更新系统时间
+timedatectl set-ntp true #检查服务状态 timedatectl status 系统分区
+fdisk -l cfdisk /dev/sdx (x替换成相应的硬盘字母，一般是a或b，默认gpt即可) 分区结果
+mkfs.fat -F32 /dev/sda1 mkfs.ext4 /dev/sda3 mkswap /dev/sda2 swapon /dev/sda2 挂载
+mount /dev/sda3 /mnt mkdir /mnt/boot mount /dev/sda1 /mnt/boot 安装
+vim /etc/pacman.d/mirrorlist # 找到中国镜像移到最上面或者添加 Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch # pacstrap脚本安装arch基础 pacstrap /mnt base base-devel linux linux-firmware dhcpcd vim 生成fstab挂载文件" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Arch入教路" />
+<meta property="og:description" content="我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kubuntu，mint。早就听说了Arch邪教，纯命令安装系统，需要对linux系统有更深的了解，也借这个契机来试试。
+第一步：虚拟机试探 官网下载安装包
+启动vBox，开始进入安装界面
+确保开启虚拟机的EFI支持
+确保网络
+ip link #有线网络 dhcpcd #无线网络 iwctl [iwd] device list [iwd] station device scan [iwd] station device get-networks [iwd] station device connect SSID ping www.baidu.com 更新系统时间
+timedatectl set-ntp true #检查服务状态 timedatectl status 系统分区
+fdisk -l cfdisk /dev/sdx (x替换成相应的硬盘字母，一般是a或b，默认gpt即可) 分区结果
+mkfs.fat -F32 /dev/sda1 mkfs.ext4 /dev/sda3 mkswap /dev/sda2 swapon /dev/sda2 挂载
+mount /dev/sda3 /mnt mkdir /mnt/boot mount /dev/sda1 /mnt/boot 安装
+vim /etc/pacman.d/mirrorlist # 找到中国镜像移到最上面或者添加 Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch # pacstrap脚本安装arch基础 pacstrap /mnt base base-devel linux linux-firmware dhcpcd vim 生成fstab挂载文件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-17T10:29:41+00:00" />
+<meta property="article:modified_time" content="2021-03-17T10:29:41+00:00" />
+
+  
+  <meta itemprop="name" content="Arch入教路">
+<meta itemprop="description" content="我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kubuntu，mint。早就听说了Arch邪教，纯命令安装系统，需要对linux系统有更深的了解，也借这个契机来试试。
+第一步：虚拟机试探 官网下载安装包
+启动vBox，开始进入安装界面
+确保开启虚拟机的EFI支持
+确保网络
+ip link #有线网络 dhcpcd #无线网络 iwctl [iwd] device list [iwd] station device scan [iwd] station device get-networks [iwd] station device connect SSID ping www.baidu.com 更新系统时间
+timedatectl set-ntp true #检查服务状态 timedatectl status 系统分区
+fdisk -l cfdisk /dev/sdx (x替换成相应的硬盘字母，一般是a或b，默认gpt即可) 分区结果
+mkfs.fat -F32 /dev/sda1 mkfs.ext4 /dev/sda3 mkswap /dev/sda2 swapon /dev/sda2 挂载
+mount /dev/sda3 /mnt mkdir /mnt/boot mount /dev/sda1 /mnt/boot 安装
+vim /etc/pacman.d/mirrorlist # 找到中国镜像移到最上面或者添加 Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch # pacstrap脚本安装arch基础 pacstrap /mnt base base-devel linux linux-firmware dhcpcd vim 生成fstab挂载文件"><meta itemprop="datePublished" content="2021-03-17T10:29:41+00:00" />
+<meta itemprop="dateModified" content="2021-03-17T10:29:41+00:00" />
+<meta itemprop="wordCount" content="566">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Arch入教路"/>
+<meta name="twitter:description" content="我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kubuntu，mint。早就听说了Arch邪教，纯命令安装系统，需要对linux系统有更深的了解，也借这个契机来试试。
+第一步：虚拟机试探 官网下载安装包
+启动vBox，开始进入安装界面
+确保开启虚拟机的EFI支持
+确保网络
+ip link #有线网络 dhcpcd #无线网络 iwctl [iwd] device list [iwd] station device scan [iwd] station device get-networks [iwd] station device connect SSID ping www.baidu.com 更新系统时间
+timedatectl set-ntp true #检查服务状态 timedatectl status 系统分区
+fdisk -l cfdisk /dev/sdx (x替换成相应的硬盘字母，一般是a或b，默认gpt即可) 分区结果
+mkfs.fat -F32 /dev/sda1 mkfs.ext4 /dev/sda3 mkswap /dev/sda2 swapon /dev/sda2 挂载
+mount /dev/sda3 /mnt mkdir /mnt/boot mount /dev/sda1 /mnt/boot 安装
+vim /etc/pacman.d/mirrorlist # 找到中国镜像移到最上面或者添加 Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch # pacstrap脚本安装arch基础 pacstrap /mnt base base-devel linux linux-firmware dhcpcd vim 生成fstab挂载文件"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">Arch入教路</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 17, 2021</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p>我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kubuntu，mint。早就听说了Arch邪教，纯命令安装系统，需要对linux系统有更深的了解，也借这个契机来试试。</p>
+<h2 id="第一步虚拟机试探">第一步：虚拟机试探</h2>
+<ol>
+<li>
+<p>官网下载<a href="https://archlinux.org/download/">安装包</a></p>
+</li>
+<li>
+<p>启动vBox，开始进入安装界面</p>
+</li>
+<li>
+<p>确保开启虚拟机的EFI支持</p>
+</li>
+<li>
+<p>确保网络</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ip link
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#有线网络</span>
+</span></span><span style="display:flex;"><span>dhcpcd
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#无线网络</span>
+</span></span><span style="display:flex;"><span>iwctl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>iwd<span style="color:#f92672">]</span> device list
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>iwd<span style="color:#f92672">]</span> station device scan
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>iwd<span style="color:#f92672">]</span> station device get-networks
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>iwd<span style="color:#f92672">]</span> station device connect SSID
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ping www.baidu.com
+</span></span></code></pre></div></li>
+<li>
+<p>更新系统时间</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>timedatectl set-ntp true
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#检查服务状态</span>
+</span></span><span style="display:flex;"><span>timedatectl status
+</span></span></code></pre></div></li>
+<li>
+<p>系统分区</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fdisk -l  
+</span></span><span style="display:flex;"><span>cfdisk /dev/sdx  <span style="color:#f92672">(</span>x替换成相应的硬盘字母，一般是a或b，默认gpt即可<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>分区结果</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210318123200700.png" alt="image-20210318123200700"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkfs.fat -F32 /dev/sda1
+</span></span><span style="display:flex;"><span>mkfs.ext4 /dev/sda3
+</span></span><span style="display:flex;"><span>mkswap /dev/sda2
+</span></span><span style="display:flex;"><span>swapon /dev/sda2
+</span></span></code></pre></div></li>
+<li>
+<p>挂载</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mount /dev/sda3 /mnt
+</span></span><span style="display:flex;"><span>mkdir /mnt/boot
+</span></span><span style="display:flex;"><span>mount /dev/sda1 /mnt/boot
+</span></span></code></pre></div></li>
+<li>
+<p>安装</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/pacman.d/mirrorlist
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 找到中国镜像移到最上面或者添加</span>
+</span></span><span style="display:flex;"><span>Server <span style="color:#f92672">=</span> http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># pacstrap脚本安装arch基础</span>
+</span></span><span style="display:flex;"><span>pacstrap /mnt base base-devel linux linux-firmware dhcpcd vim
+</span></span></code></pre></div></li>
+<li>
+<p>生成fstab挂载文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</span></span><span style="display:flex;"><span>cat /mnt/etc/fstab
+</span></span></code></pre></div></li>
+<li>
+<p>切换根目录，进入安装好的系统</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>arch-chroot /mnt
+</span></span></code></pre></div></li>
+<li>
+<p>本地化设置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</span></span><span style="display:flex;"><span>hwclock --systohc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim /etc/locale.gen
+</span></span><span style="display:flex;"><span>en_US.UTF-8 UTF-8
+</span></span><span style="display:flex;"><span>zh_CN.UTF-8 UTF-8
+</span></span><span style="display:flex;"><span>zh_TW.UTF-8 UTF-8
+</span></span><span style="display:flex;"><span>locale-gen
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim /etc/locale.conf
+</span></span><span style="display:flex;"><span>LANG<span style="color:#f92672">=</span>en_US.UTF-8
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim /etc/hostname
+</span></span><span style="display:flex;"><span>jack1024
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim /etc/hosts
+</span></span><span style="display:flex;"><span>127.0.0.1	localhost
+</span></span><span style="display:flex;"><span>::1		localhost
+</span></span><span style="display:flex;"><span>127.0.1.1	jack1024.localdomain	jack1024
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#设置root密码</span>
+</span></span><span style="display:flex;"><span>passwd
+</span></span></code></pre></div></li>
+<li>
+<p>设置微码引导</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#intel CPU</span>
+</span></span><span style="display:flex;"><span>pacman -S intel-ucode
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#AMD CPU</span>
+</span></span><span style="display:flex;"><span>pacman -S amd-ucode
+</span></span></code></pre></div></li>
+<li>
+<p>安装引导</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pacman -S os-prober ntfs-3g grub efibootmgr
+</span></span><span style="display:flex;"><span>grub-install --target<span style="color:#f92672">=</span>x86_64-efi --efi-directory<span style="color:#f92672">=</span>/boot --bootloader-id<span style="color:#f92672">=</span>GRUB
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#生成并查看引导配置</span>
+</span></span><span style="display:flex;"><span>grub-mkconfig -o /boot/grub/grub.cfg
+</span></span><span style="display:flex;"><span>cat /boot/grub/grub.cfg
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重启</span>
+</span></span><span style="display:flex;"><span>umount -R /mnt
+</span></span><span style="display:flex;"><span>reboot
+</span></span></code></pre></div><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210318131450261.png" alt="image-20210318131450261"></p>
+<p>出现这个说明安装一切搞定，重启后进入邪教生活。</p>
+</li>
+<li>
+<p>常用软件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#重启后登录</span>
+</span></span><span style="display:flex;"><span>jack1024 login: root
+</span></span><span style="display:flex;"><span>password: ****
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#联网</span>
+</span></span><span style="display:flex;"><span>dhcpd
+</span></span><span style="display:flex;"><span>ping www.baidu.com
+</span></span><span style="display:flex;"><span>systemctl enable dhcpcd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#配置国内源</span>
+</span></span><span style="display:flex;"><span>vim /etc/pacman.conf
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#文档末尾添加</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>multilib<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Include <span style="color:#f92672">=</span> /etc/pacman.d/mirrorlist
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>archlinuxcn<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Server <span style="color:#f92672">=</span> https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装 archlinuxcn-keyring 包以导入 GPG key</span>
+</span></span><span style="display:flex;"><span>pacman -S archlinuxcn-keyring
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#更新</span>
+</span></span><span style="display:flex;"><span>pacman -Syyu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装常用软件</span>
+</span></span><span style="display:flex;"><span>pacman -S openssh man git
+</span></span><span style="display:flex;"><span>systemctl start sshd
+</span></span><span style="display:flex;"><span>systemctl enable ssdd.service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#添加用户</span>
+</span></span><span style="display:flex;"><span>useradd -m -G wheel -s /bin/bash username
+</span></span><span style="display:flex;"><span>passwd username
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#给用户sudo权利</span>
+</span></span><span style="display:flex;"><span>pacman -S sudo
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#第一种方法</span>
+</span></span><span style="display:flex;"><span>su - root
+</span></span><span style="display:flex;"><span>chmod u+w /etc/sudoers
+</span></span><span style="display:flex;"><span>vim /etc/sudoers
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#找到这行 root ALL=(ALL) ALL,在他下面添加xxx ALL=(ALL) ALL (这里的xxx是你的用户名)</span>
+</span></span><span style="display:flex;"><span>chmod u-w /etc/sudoers
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#第二种方法</span>
+</span></span><span style="display:flex;"><span>ln -s /usr/bin/vim /usr/bin/vi
+</span></span><span style="display:flex;"><span>visudo
+</span></span><span style="display:flex;"><span>%wheel ALL<span style="color:#f92672">=(</span>ALL<span style="color:#f92672">)</span> ALL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装zsh</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#不知道为什么虚拟机无法从github clone，所以采用gitee</span>
+</span></span><span style="display:flex;"><span>wget https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#找到以下部分</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default settings</span>
+</span></span><span style="display:flex;"><span>ZSH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>ZSH<span style="color:#66d9ef">:-</span>~/.oh-my-zsh<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>REPO<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>REPO<span style="color:#66d9ef">:-</span>ohmyzsh/ohmyzsh<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>REMOTE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>REMOTE<span style="color:#66d9ef">:-</span>https://github.com/<span style="color:#e6db74">${</span>REPO<span style="color:#e6db74">}</span>.git<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>BRANCH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>BRANCH<span style="color:#66d9ef">:-</span>master<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#把</span>
+</span></span><span style="display:flex;"><span>REPO<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>REPO<span style="color:#66d9ef">:-</span>ohmyzsh/ohmyzsh<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>REMOTE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>REMOTE<span style="color:#66d9ef">:-</span>https://github.com/<span style="color:#e6db74">${</span>REPO<span style="color:#e6db74">}</span>.git<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#替换为</span>
+</span></span><span style="display:flex;"><span>REPO<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>REPO<span style="color:#66d9ef">:-</span>mirrors/oh-my-zsh<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>REMOTE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>REMOTE<span style="color:#66d9ef">:-</span>https://gitee.com/<span style="color:#e6db74">${</span>REPO<span style="color:#e6db74">}</span>.git<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">777</span> install.sh
+</span></span><span style="display:flex;"><span>bash install.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 然后参考之前的linux工作环境配置那篇博客自定义zsh</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 由于虚拟机暂时无法访问github，需要通过gitee安装一些插件</span>
+</span></span><span style="display:flex;"><span>git clone https://gitee.com/mirror-github/zsh-syntax-highlighting.git <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>~/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/plugins/zsh-syntax-highlighting
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git clone https://gitee.com/lxgyChen/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestion
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git clone https://gitee.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 经过多次试错终于能让虚拟机从github拉取项目了</span>
+</span></span><span style="display:flex;"><span>用浏览器访问 IPAddress.com 使用 IP Lookup 工具获得
+</span></span><span style="display:flex;"><span>github.com
+</span></span><span style="display:flex;"><span>github.global.ssl.fastly.net
+</span></span><span style="display:flex;"><span>raw.githubusercontent.com
+</span></span><span style="display:flex;"><span>三个域名的ip地址
+</span></span><span style="display:flex;"><span>然后写入/etc/hosts中即可
+</span></span></code></pre></div><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210318160332058.png" alt="image-20210318160332058"></p>
+</li>
+<li>
+<p>安装图形界面</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#安装声卡驱动</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#查看显卡型号</span>
+</span></span><span style="display:flex;"><span>lspci | grep VSA
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#查看独显型号</span>
+</span></span><span style="display:flex;"><span>lspci | grep 3D
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#参考官网驱动表进行安装</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S 驱动包名
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装输入设备驱动</span>
+</span></span><span style="display:flex;"><span>pacman -S xf86-input-libinput
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装笔记本触摸板驱动</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S xf86-input-synaptics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装中文字体</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S ttf-dejavu wqy-bitmapfont wqy-microhei wqy-zenhei noto-fonts noto-fonts-emoji
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># xorg用于实现窗口系统，sddm是登陆管理器，登陆管理器还有lightdm等等，但是个人比较推荐sddm，sddm可以支持多个桌面环境的切换。</span>
+</span></span><span style="display:flex;"><span>pacman -S xorg xorg-server
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装kde桌面</span>
+</span></span><span style="display:flex;"><span>pacman -S plasma
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装kde应用</span>
+</span></span><span style="display:flex;"><span>pacman -S kde-applications
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装sddm图形登录界面</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S sddm sddm-kcm
+</span></span><span style="display:flex;"><span>systemctl enable sddm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装网络管理</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S net-tools networkmanager
+</span></span><span style="display:flex;"><span>sudo systemctl enable NetworkManager
+</span></span></code></pre></div></li>
+<li>
+<p>virtualbox安装增强功能（经过反复折腾，最终安装失败）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo pacman
+</span></span><span style="display:flex;"><span>sudo pacman -S linux-headers
+</span></span><span style="display:flex;"><span>sudo pacman -S base-devel
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#理论上安装以上就行了，但是还是失败了，不知道为什么</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="安装主步骤">安装主步骤：</h2>
+<ol>
+<li>联网</li>
+<li>更新时间</li>
+<li>创建分区</li>
+<li>格式化挂载点</li>
+<li>挂载分区</li>
+<li>国内镜像置顶</li>
+<li>拉取安装件（包括devel）</li>
+<li>生成挂载文件</li>
+<li>切换根目录</li>
+<li>调整时区</li>
+<li>生成配置文件</li>
+<li>本地化修改</li>
+<li>修改root密码</li>
+<li>网络工具安装</li>
+<li>安装微码引导</li>
+</ol>
+<h2 id="pacman包管理">pacman包管理</h2>
+<ul>
+<li>简洁高效</li>
+<li>拥有神器：Arch User Repository</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查看本地软件仓库更新情况</span>
+</span></span><span style="display:flex;"><span>pacman -Sy
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 强行更新本地软件仓库</span>
+</span></span><span style="display:flex;"><span>pacman -Syy
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从本地仓库更新软件</span>
+</span></span><span style="display:flex;"><span>pacman -Su
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 优雅の一步：同步并更新所有</span>
+</span></span><span style="display:flex;"><span>pacman -Syu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#滚动更新</span>
+</span></span><span style="display:flex;"><span>pacman -Syyu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 安装软件</span>
+</span></span><span style="display:flex;"><span>pacman -S 软件名
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 通过正则表达式搜索软件</span>
+</span></span><span style="display:flex;"><span>pacman -Ss 正则表达式
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 清除本地软件仓库</span>
+</span></span><span style="display:flex;"><span>pacman -Sc
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 完全清空包缓存（Warning: 关于pacman -Scc，仅在你确定不需要做任何软件包降级工作时才这样做。pacman -Scc会从缓存中删除所有软件包）</span>
+</span></span><span style="display:flex;"><span>pacman Scc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 仅仅删除软件本身（不推荐）</span>
+</span></span><span style="display:flex;"><span>pacman -R 软件名
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除软件、它的依赖（推荐）</span>
+</span></span><span style="display:flex;"><span>pacman -Rs 软件名
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除软件、它的依赖、全局配置文件，本地配置文件不会删除（推荐）</span>
+</span></span><span style="display:flex;"><span>pacman -Rns 软件名
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 列出已安装软件包</span>
+</span></span><span style="display:flex;"><span>pacman -Q
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 列出自己安装的软件</span>
+</span></span><span style="display:flex;"><span>pacman -Qe
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 列出安装的软件（只有名字）</span>
+</span></span><span style="display:flex;"><span>pacman -Qq
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 通过正则查询本地安装的软件</span>
+</span></span><span style="display:flex;"><span>pacman -Qs 正则表达式
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 列出所有孤儿包</span>
+</span></span><span style="display:flex;"><span>pacman -Qdt
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除所有孤儿包</span>
+</span></span><span style="display:flex;"><span>pacman -R <span style="color:#66d9ef">$(</span>pacman -Qdtq<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查新哪些包拥有指定文件</span>
+</span></span><span style="display:flex;"><span>pacman -Qo 文件名
+</span></span></code></pre></div><h3 id="aur助手">AUR助手</h3>
+<ul>
+<li>
+<p>Arch 用户软件仓库 通常称为 AUR，是给 Arch 用户的基于社区的软件存储库。</p>
+</li>
+<li>
+<p>什么是 AUR（Arch 用户软件仓库）？</p>
+<p>Arch 用户软件仓库 通常称为 AUR，是给 Arch 用户的基于社区的软件存储库。</p>
+<p>根据软件包在 AUR 社区的流行程度，用户编译的软件包会进入到 Arch 的官方存储库。</p>
+</li>
+<li>
+<p>什么是 AUR 助手？</p>
+<p>AUR 助手是一个包装程序，允许用户从 AUR 存储库安装软件包，而无需手动干预。</p>
+<p>很多用例实现了自动化，比如包搜索、解决依赖关系、检索和构建 AUR 包、Web 内容检索和 AUR 包提交之类。</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Yay 是 Arch Linux 下基于 CLI 的最佳 AUR 助手，使用 Go 语言编写。Yay 是基于 yaourt、apacman 和 pacaur 设计的。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 这是最合适推荐给新手的 AUR 助手。类似于 Pacman，其使用方法和 pacman 中的命令和选项很相似，可以让用户在搜索过程中找到匹配的软件包提供程序，并进行选择。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git clone https://aur.archlinux.org/yay.git
+</span></span><span style="display:flex;"><span>cd yay-git
+</span></span><span style="display:flex;"><span>makepkg -si
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 然后就可以直接使用yay命令了，和pacman几乎一致的命令</span>
+</span></span></code></pre></div><p>用debian系的小伙都惊呆了，AUR是真的牛皮</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210318212110059.png" alt="image-20210318212110059"></p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/nginx/"
+      ><span class="mr-1.5">←</span><span>Nginx</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/"
+      ><span>redis缓存技术</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

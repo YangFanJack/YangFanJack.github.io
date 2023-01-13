@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>C&#43;&#43;程序实现演讲比赛成绩打分程序 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="程序总体框架 1.speaker类：演讲选手类 class Speaker { public: string m_Name; //严格意义上这俩数据成员应该是私有的，用set和get函数来调用 double m_Sorce[2];//此处是为了简便，严格意义上这样是不规范大气的 Speaker(); ~Speaker(); }; 2.speechManager类：演讲比赛类（主体） class SpeechManager { public: SpeechManager(); ~SpeechManager(); void show_Menu();//打印菜单 void exitSystem();//退出系统 void initSpeech();//初始化speechManager类的各个数据成员 void createSpeaker();//创建参加比赛的12名选手 void startSpeech();//比赛的主函数，包含所有流程，所有分流程又拆分为单独函数 void speechDraw();//抽签 void speechContest();//比赛（重点） void showScore();//显示晋级选手 void saveRecord();//保存每一届冠亚季军到csv文件 void loadRecord();//加载文件中每一届数据到程序中 void showRecord();//显示文件中的数据（每一届的冠亚季军） void clearRecord();//清除文件记录 vector&lt;int&gt; v1;//保存每一届的最初12名选手 vector&lt;int&gt; v2;//保存每一届第一轮比赛晋级的6名选手 vector&lt;int&gt; vVictory;//保存每一届冠亚季军 map&lt;int,Speaker&gt;m_Speaker; map&lt;int,vector&lt;string&gt;&gt; m_Record;//存放往届记录 int m_index;//保存是每一届比赛的第几轮 bool fileIsEmpty;//判断文件是否为空 }; 3.main.cpp(主函数) int main() { int choice=0; while(true) { srand((unsigned int)time(NULL)); SpeechManager sm; sm." />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="C&#43;&#43;程序实现演讲比赛成绩打分程序" />
+<meta property="og:description" content="程序总体框架 1.speaker类：演讲选手类 class Speaker { public: string m_Name; //严格意义上这俩数据成员应该是私有的，用set和get函数来调用 double m_Sorce[2];//此处是为了简便，严格意义上这样是不规范大气的 Speaker(); ~Speaker(); }; 2.speechManager类：演讲比赛类（主体） class SpeechManager { public: SpeechManager(); ~SpeechManager(); void show_Menu();//打印菜单 void exitSystem();//退出系统 void initSpeech();//初始化speechManager类的各个数据成员 void createSpeaker();//创建参加比赛的12名选手 void startSpeech();//比赛的主函数，包含所有流程，所有分流程又拆分为单独函数 void speechDraw();//抽签 void speechContest();//比赛（重点） void showScore();//显示晋级选手 void saveRecord();//保存每一届冠亚季军到csv文件 void loadRecord();//加载文件中每一届数据到程序中 void showRecord();//显示文件中的数据（每一届的冠亚季军） void clearRecord();//清除文件记录 vector&lt;int&gt; v1;//保存每一届的最初12名选手 vector&lt;int&gt; v2;//保存每一届第一轮比赛晋级的6名选手 vector&lt;int&gt; vVictory;//保存每一届冠亚季军 map&lt;int,Speaker&gt;m_Speaker; map&lt;int,vector&lt;string&gt;&gt; m_Record;//存放往届记录 int m_index;//保存是每一届比赛的第几轮 bool fileIsEmpty;//判断文件是否为空 }; 3.main.cpp(主函数) int main() { int choice=0; while(true) { srand((unsigned int)time(NULL)); SpeechManager sm; sm." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%88%90%E7%BB%A9%E6%89%93%E5%88%86%E7%A8%8B%E5%BA%8F/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-11-26T23:29:39+00:00" />
+<meta property="article:modified_time" content="2019-11-26T23:29:39+00:00" />
+
+  
+  <meta itemprop="name" content="C&#43;&#43;程序实现演讲比赛成绩打分程序">
+<meta itemprop="description" content="程序总体框架 1.speaker类：演讲选手类 class Speaker { public: string m_Name; //严格意义上这俩数据成员应该是私有的，用set和get函数来调用 double m_Sorce[2];//此处是为了简便，严格意义上这样是不规范大气的 Speaker(); ~Speaker(); }; 2.speechManager类：演讲比赛类（主体） class SpeechManager { public: SpeechManager(); ~SpeechManager(); void show_Menu();//打印菜单 void exitSystem();//退出系统 void initSpeech();//初始化speechManager类的各个数据成员 void createSpeaker();//创建参加比赛的12名选手 void startSpeech();//比赛的主函数，包含所有流程，所有分流程又拆分为单独函数 void speechDraw();//抽签 void speechContest();//比赛（重点） void showScore();//显示晋级选手 void saveRecord();//保存每一届冠亚季军到csv文件 void loadRecord();//加载文件中每一届数据到程序中 void showRecord();//显示文件中的数据（每一届的冠亚季军） void clearRecord();//清除文件记录 vector&lt;int&gt; v1;//保存每一届的最初12名选手 vector&lt;int&gt; v2;//保存每一届第一轮比赛晋级的6名选手 vector&lt;int&gt; vVictory;//保存每一届冠亚季军 map&lt;int,Speaker&gt;m_Speaker; map&lt;int,vector&lt;string&gt;&gt; m_Record;//存放往届记录 int m_index;//保存是每一届比赛的第几轮 bool fileIsEmpty;//判断文件是否为空 }; 3.main.cpp(主函数) int main() { int choice=0; while(true) { srand((unsigned int)time(NULL)); SpeechManager sm; sm."><meta itemprop="datePublished" content="2019-11-26T23:29:39+00:00" />
+<meta itemprop="dateModified" content="2019-11-26T23:29:39+00:00" />
+<meta itemprop="wordCount" content="469">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;程序实现演讲比赛成绩打分程序"/>
+<meta name="twitter:description" content="程序总体框架 1.speaker类：演讲选手类 class Speaker { public: string m_Name; //严格意义上这俩数据成员应该是私有的，用set和get函数来调用 double m_Sorce[2];//此处是为了简便，严格意义上这样是不规范大气的 Speaker(); ~Speaker(); }; 2.speechManager类：演讲比赛类（主体） class SpeechManager { public: SpeechManager(); ~SpeechManager(); void show_Menu();//打印菜单 void exitSystem();//退出系统 void initSpeech();//初始化speechManager类的各个数据成员 void createSpeaker();//创建参加比赛的12名选手 void startSpeech();//比赛的主函数，包含所有流程，所有分流程又拆分为单独函数 void speechDraw();//抽签 void speechContest();//比赛（重点） void showScore();//显示晋级选手 void saveRecord();//保存每一届冠亚季军到csv文件 void loadRecord();//加载文件中每一届数据到程序中 void showRecord();//显示文件中的数据（每一届的冠亚季军） void clearRecord();//清除文件记录 vector&lt;int&gt; v1;//保存每一届的最初12名选手 vector&lt;int&gt; v2;//保存每一届第一轮比赛晋级的6名选手 vector&lt;int&gt; vVictory;//保存每一届冠亚季军 map&lt;int,Speaker&gt;m_Speaker; map&lt;int,vector&lt;string&gt;&gt; m_Record;//存放往届记录 int m_index;//保存是每一届比赛的第几轮 bool fileIsEmpty;//判断文件是否为空 }; 3.main.cpp(主函数) int main() { int choice=0; while(true) { srand((unsigned int)time(NULL)); SpeechManager sm; sm."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">C&#43;&#43;程序实现演讲比赛成绩打分程序</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Nov 26, 2019</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="程序总体框架">程序总体框架</h2>
+<h3 id="1speaker类演讲选手类">1.speaker类：演讲选手类</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Speaker</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    string m_Name;    <span style="color:#75715e">//严格意义上这俩数据成员应该是私有的，用set和get函数来调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> m_Sorce[<span style="color:#ae81ff">2</span>];<span style="color:#75715e">//此处是为了简便，严格意义上这样是不规范大气的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    Speaker();
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>Speaker();
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="2speechmanager类演讲比赛类主体">2.speechManager类：演讲比赛类（主体）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpeechManager</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    SpeechManager();
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>SpeechManager();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">show_Menu</span>();<span style="color:#75715e">//打印菜单
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">exitSystem</span>();<span style="color:#75715e">//退出系统
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initSpeech</span>();<span style="color:#75715e">//初始化speechManager类的各个数据成员
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createSpeaker</span>();<span style="color:#75715e">//创建参加比赛的12名选手
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">startSpeech</span>();<span style="color:#75715e">//比赛的主函数，包含所有流程，所有分流程又拆分为单独函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">speechDraw</span>();<span style="color:#75715e">//抽签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">speechContest</span>();<span style="color:#75715e">//比赛（重点）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showScore</span>();<span style="color:#75715e">//显示晋级选手
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">saveRecord</span>();<span style="color:#75715e">//保存每一届冠亚季军到csv文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadRecord</span>();<span style="color:#75715e">//加载文件中每一届数据到程序中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showRecord</span>();<span style="color:#75715e">//显示文件中的数据（每一届的冠亚季军）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clearRecord</span>();<span style="color:#75715e">//清除文件记录
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v1;<span style="color:#75715e">//保存每一届的最初12名选手
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v2;<span style="color:#75715e">//保存每一届第一轮比赛晋级的6名选手
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> vVictory;<span style="color:#75715e">//保存每一届冠亚季军
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,Speaker<span style="color:#f92672">&gt;</span>m_Speaker;
+</span></span><span style="display:flex;"><span>    map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;&gt;</span> m_Record;<span style="color:#75715e">//存放往届记录
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> m_index;<span style="color:#75715e">//保存是每一届比赛的第几轮
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> fileIsEmpty;<span style="color:#75715e">//判断文件是否为空
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><h3 id="3maincpp主函数">3.main.cpp(主函数)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> choice<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(true)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        srand((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)time(NULL));
+</span></span><span style="display:flex;"><span>        SpeechManager sm;
+</span></span><span style="display:flex;"><span>        sm.show_Menu();
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;please give me a choice:&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>        cin <span style="color:#f92672">&gt;&gt;</span>choice;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">switch</span>(choice)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#75715e">//开始演讲比赛
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            sm.startSpeech();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span><span style="color:#75715e">//查看往届记录
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">//sm.loadRecord();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            sm.showRecord();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#75715e">//清空比赛记录
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            sm.clearRecord();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">:</span><span style="color:#75715e">//退出比赛程序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            sm.exitSystem();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            system(<span style="color:#e6db74">&#34;cls&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;    
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="比赛大致流程">比赛大致流程</h2>
+<blockquote>
+<p>每一届的比赛从12名选手中选取得到，12名选手分为6  6两组，然后分别从6中选3，第一轮比赛得到6名晋级选手。</p>
+<p>第二轮比赛中同样是从晋级的6名选手中选3人，按照成绩评选为每一届比赛的最终冠军，亚军和季军。</p>
+</blockquote>
+<h3 id="speechmanager类中的函数实现功能的重要函数">SpeechManager类中的函数（实现功能的重要函数）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>SpeechManager<span style="color:#f92672">::</span>SpeechManager()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>initSpeech();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>createSpeaker();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>loadRecord();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SpeechManager<span style="color:#f92672">::~</span>SpeechManager()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>show_Menu()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;***************************************&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;****************Welcome!***************&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;************1.开始演讲比赛**************&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;************2.查看往届记录**************&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;************3.清空比赛记录**************&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;************4.退出比赛程序**************&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;***************************************&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>exitSystem()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;欢迎下次使用！&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    system(<span style="color:#e6db74">&#34;pause&#34;</span>);
+</span></span><span style="display:flex;"><span>    exit(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>initSpeech()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>v1.clear();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>v2.clear();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>vVictory.clear();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Speaker.clear();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record.clear();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>createSpeaker()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    string nameSeed <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ABCDEFGHIJKL&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>nameSeed.size();i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        string name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Speaker&#34;</span>;
+</span></span><span style="display:flex;"><span>        name<span style="color:#f92672">+=</span>nameSeed[i];
+</span></span><span style="display:flex;"><span>        Speaker sp;
+</span></span><span style="display:flex;"><span>        sp.m_Name<span style="color:#f92672">=</span>name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>;j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            sp.m_Sorce[j]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>v1.push_back(i<span style="color:#f92672">+</span><span style="color:#ae81ff">10001</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Speaker.insert(make_pair(i<span style="color:#f92672">+</span><span style="color:#ae81ff">10001</span>,sp));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>startSpeech()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//第一轮比赛
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//抽签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>speechDraw();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//比赛
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>speechContest();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//显示晋级结果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>showScore();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//第二轮比赛
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//抽签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>speechDraw();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//比赛
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>speechContest();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//显示晋级结果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>showScore();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//保存分数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>saveRecord();
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;本届比赛完毕！&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    system(<span style="color:#e6db74">&#34;pause&#34;</span>);
+</span></span><span style="display:flex;"><span>    system(<span style="color:#e6db74">&#34;cls&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>speechDraw()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;第&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;轮比赛正在抽签。。。&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;___________________________________&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;抽签结果如下：&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        random_shuffle(v1.begin(),v1.end());
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>iterator it<span style="color:#f92672">=</span>v1.begin();it<span style="color:#f92672">!=</span>v1.end();it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            cout<span style="color:#f92672">&lt;&lt;*</span>it<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        random_shuffle(v2.begin(),v2.end());
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>iterator it<span style="color:#f92672">=</span>v2.begin();it<span style="color:#f92672">!=</span>v2.end();it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            cout<span style="color:#f92672">&lt;&lt;*</span>it<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;_________________________________&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    system(<span style="color:#e6db74">&#34;pause&#34;</span>);
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>speechContest()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;第&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;轮比赛正在比赛。。。&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    multimap <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>,<span style="color:#66d9ef">int</span>,greater<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;&gt;</span> groupScore; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> num<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v_Src;     
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>) 
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        v_Src<span style="color:#f92672">=</span>v1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        v_Src<span style="color:#f92672">=</span>v2;   
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>iterator it<span style="color:#f92672">=</span>v_Src.begin();it<span style="color:#f92672">!=</span>v_Src.end();it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        num<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//评委打分
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        deque<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> d;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">double</span> score<span style="color:#f92672">=</span>(rand()<span style="color:#f92672">%</span><span style="color:#ae81ff">401</span><span style="color:#f92672">+</span><span style="color:#ae81ff">600</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">10.f</span>;
+</span></span><span style="display:flex;"><span>            cout<span style="color:#f92672">&lt;&lt;</span>score<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>            d.push_back(score);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>        sort(d.begin(),d.end(),greater<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span>());
+</span></span><span style="display:flex;"><span>        d.pop_back();
+</span></span><span style="display:flex;"><span>        d.pop_front();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> sum<span style="color:#f92672">=</span>accumulate(d.begin(),d.end(),<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> avg<span style="color:#f92672">=</span>sum<span style="color:#f92672">/</span>(<span style="color:#66d9ef">double</span>)d.size();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Speaker[<span style="color:#f92672">*</span>it].m_Sorce[<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>avg;
+</span></span><span style="display:flex;"><span>        groupScore.insert(make_pair(avg,<span style="color:#f92672">*</span>it));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(num<span style="color:#f92672">%</span><span style="color:#ae81ff">6</span><span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;第&#34;</span><span style="color:#f92672">&lt;&lt;</span>num<span style="color:#f92672">/</span><span style="color:#ae81ff">6</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;组名次：&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span>(multimap<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>,<span style="color:#66d9ef">int</span>,greater<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;&gt;::</span>iterator it<span style="color:#f92672">=</span>groupScore.begin();it<span style="color:#f92672">!=</span>groupScore.end();it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;编号：&#34;</span><span style="color:#f92672">&lt;&lt;</span>it<span style="color:#f92672">-&gt;</span>second<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;  成绩：&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Speaker[it<span style="color:#f92672">-&gt;</span>second].m_Sorce[<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>            } 
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span>(multimap<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>,<span style="color:#66d9ef">int</span>,greater<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;&gt;::</span>iterator it<span style="color:#f92672">=</span>groupScore.begin();it<span style="color:#f92672">!=</span>groupScore.end()<span style="color:#f92672">&amp;&amp;</span>count<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;it<span style="color:#f92672">++</span>,count<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    v2.push_back((<span style="color:#f92672">*</span>it).second);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    vVictory.push_back((<span style="color:#f92672">*</span>it).second);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            groupScore.clear();  
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;第&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;轮比赛完毕。&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>showScore()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;第&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;轮晋级选手如下：&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        v<span style="color:#f92672">=</span>v2;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        v<span style="color:#f92672">=</span>vVictory;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>iterator it<span style="color:#f92672">=</span>v.begin();it<span style="color:#f92672">!=</span>v.end();it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;选手编号:&#34;</span><span style="color:#f92672">&lt;&lt;*</span>it<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; 姓名:&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Speaker[<span style="color:#f92672">*</span>it].m_Name<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; 得分:&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Speaker[<span style="color:#f92672">*</span>it].m_Sorce[<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_index<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    system(<span style="color:#e6db74">&#34;pause&#34;</span>);
+</span></span><span style="display:flex;"><span>    system(<span style="color:#e6db74">&#34;cls&#34;</span>);
+</span></span><span style="display:flex;"><span>    show_Menu();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>saveRecord()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    ofstream ofs;
+</span></span><span style="display:flex;"><span>    ofs.open(<span style="color:#e6db74">&#34;speech.csv&#34;</span>,ios<span style="color:#f92672">::</span>out<span style="color:#f92672">|</span>ios<span style="color:#f92672">::</span>app);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>iterator it<span style="color:#f92672">=</span>vVictory.begin();it<span style="color:#f92672">!=</span>vVictory.end();it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        ofs<span style="color:#f92672">&lt;&lt;*</span>it<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Speaker[<span style="color:#f92672">*</span>it].m_Sorce[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;,&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ofs<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    ofs.close();
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;文件记录已经保存！&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//更新文件不为空的状态
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>fileIsEmpty<span style="color:#f92672">=</span>false;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>loadRecord()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    ifstream <span style="color:#a6e22e">ifs</span>(<span style="color:#e6db74">&#34;speech.csv&#34;</span>,ios<span style="color:#f92672">::</span>in);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//文件不存在的情况
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>ifs.is_open())
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>fileIsEmpty<span style="color:#f92672">=</span>true;
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;文件不存在！&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>        ifs.close();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//文件空的情况
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">char</span> ch;
+</span></span><span style="display:flex;"><span>    ifs<span style="color:#f92672">&gt;&gt;</span>ch;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(ifs.eof())
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;文件为空！&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>fileIsEmpty<span style="color:#f92672">=</span>true;
+</span></span><span style="display:flex;"><span>        ifs.close();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>fileIsEmpty<span style="color:#f92672">=</span>false;
+</span></span><span style="display:flex;"><span>    ifs.putback(ch);<span style="color:#75715e">//放回上面读取的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    string data;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> index<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(ifs<span style="color:#f92672">&gt;&gt;</span>data)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> v;<span style="color:#75715e">//存放记录中的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//cout&lt;&lt;data&lt;&lt;endl;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> pos<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//查到逗号位置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> start<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span>(true)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            pos<span style="color:#f92672">=</span>data.find(<span style="color:#e6db74">&#34;,&#34;</span>,start);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(pos<span style="color:#f92672">==-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//没有找到
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                string temp <span style="color:#f92672">=</span> data.substr(start,pos<span style="color:#f92672">-</span>start);
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//cout&lt;&lt;temp&lt;&lt;endl;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                v.push_back(temp);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            start<span style="color:#f92672">=</span>pos<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record.insert(make_pair(index<span style="color:#f92672">++</span>,v));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ifs.close();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*for(map&lt;int,vector&lt;string&gt;&gt;::iterator it=m_Record.begin();it!=m_Record.end();it++)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        cout&lt;&lt;&#34;第&#34;&lt;&lt;it-&gt;first&lt;&lt;&#34;届: &#34;&lt;&lt;&#34;冠军编号:&#34;&lt;&lt;it-&gt;second[0]&lt;&lt;&#34;分数:&#34;&lt;&lt;it-&gt;second[1]&lt;&lt;endl;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    }*/</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>showRecord()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>fileIsEmpty)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;文件为空或文件不存在！&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record.size();i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;第&#34;</span><span style="color:#f92672">&lt;&lt;</span>i<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;届: &#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>            cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;冠军编号:&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record[i][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; 分数:&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record[i][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>            cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;亚军编号:&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record[i][<span style="color:#ae81ff">2</span>]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; 分数:&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record[i][<span style="color:#ae81ff">3</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>            cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;季军编号:&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record[i][<span style="color:#ae81ff">4</span>]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; 分数:&#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_Record[i][<span style="color:#ae81ff">5</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    system(<span style="color:#e6db74">&#34;pause&#34;</span>);
+</span></span><span style="display:flex;"><span>    system(<span style="color:#e6db74">&#34;cls&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SpeechManager<span style="color:#f92672">::</span>clearRecord()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;是否确定清空数据文件：(y or n)&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    string select;
+</span></span><span style="display:flex;"><span>    cin<span style="color:#f92672">&gt;&gt;</span>select;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(select<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;y&#34;</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//确认清空
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ofstream <span style="color:#a6e22e">ofs</span>(<span style="color:#e6db74">&#34;speech.csv&#34;</span>,ios<span style="color:#f92672">::</span>trunc);
+</span></span><span style="display:flex;"><span>        ofs.close();
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;清空成功！&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span>(select<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;n&#34;</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        system(<span style="color:#e6db74">&#34;pause&#34;</span>);
+</span></span><span style="display:flex;"><span>        system(<span style="color:#e6db74">&#34;cls&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;选项输入错误！&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
+      ><span class="mr-1.5">←</span><span>JavaScript类型转换</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/c&#43;&#43;%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F/"
+      ><span>C&#43;&#43;的几种初始化方式</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

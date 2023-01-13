@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>shiro权限管理 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。
+只要有人参与的系统都需要进行权限管理。
+什么是Shiro？ Shiro是apache旗下的一个开源框架，它将软件系统的安全认认证相关的功能抽取出来，实现用户身份认证、权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。
+**Security Manager：**包含Authenticator认证器，Authorizer授权器，Session Manager会话管理器，Cache Manager缓存管理器，Session DAO会话数据访问对象，Pluggable Realms可插拔域 **cryptography：**密码器（sha256，md5） **subject：**主体（Shiro集成的东西，宿主） Shiro中用户的身份认证 subject：主体
+访问系统的用户，主体可以是用户、程序等，进行认证都称为主体。主体在进行身份认证时需要身份信息Principal和凭证信息credential
+Principal：身份信息
+身份认证的标识，如用户名、手机号、邮箱地址等。一个主体可以有多个身份信息，但是只能有一个主身份信息。
+credential：凭证信息
+只有主体自己知道的安全信息，如密码、证书等
+认证流程：
+代码
+[users]zhangsan=123lisi=1234wangwu=12345zhaoliu=123456public class TestAuhenticator{public static void main( String[] args ){//创建安全管理器对象DefaultSecurityManager securityManager = new DefaultSecurityManager();//给安全管理器设置realmsecurityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));//SecurityUtils安全工具类SecurityUtils.setSecurityManager(securityManager);//拿到主体subjectSubject subject = SecurityUtils.getSubject();//模拟登录，创建令牌UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);//用户登录try {System.out.println(&#34;Authentication Status:&#34;&#43;subject.isAuthenticated());subject.login(token);System.out.println(&#34;Authentication Status:&#34;&#43;subject.isAuthenticated());}catch (UnknownAccountException e){e." />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="shiro权限管理" />
+<meta property="og:description" content="shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。
+只要有人参与的系统都需要进行权限管理。
+什么是Shiro？ Shiro是apache旗下的一个开源框架，它将软件系统的安全认认证相关的功能抽取出来，实现用户身份认证、权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。
+**Security Manager：**包含Authenticator认证器，Authorizer授权器，Session Manager会话管理器，Cache Manager缓存管理器，Session DAO会话数据访问对象，Pluggable Realms可插拔域 **cryptography：**密码器（sha256，md5） **subject：**主体（Shiro集成的东西，宿主） Shiro中用户的身份认证 subject：主体
+访问系统的用户，主体可以是用户、程序等，进行认证都称为主体。主体在进行身份认证时需要身份信息Principal和凭证信息credential
+Principal：身份信息
+身份认证的标识，如用户名、手机号、邮箱地址等。一个主体可以有多个身份信息，但是只能有一个主身份信息。
+credential：凭证信息
+只有主体自己知道的安全信息，如密码、证书等
+认证流程：
+代码
+[users]zhangsan=123lisi=1234wangwu=12345zhaoliu=123456public class TestAuhenticator{public static void main( String[] args ){//创建安全管理器对象DefaultSecurityManager securityManager = new DefaultSecurityManager();//给安全管理器设置realmsecurityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));//SecurityUtils安全工具类SecurityUtils.setSecurityManager(securityManager);//拿到主体subjectSubject subject = SecurityUtils.getSubject();//模拟登录，创建令牌UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);//用户登录try {System.out.println(&#34;Authentication Status:&#34;&#43;subject.isAuthenticated());subject.login(token);System.out.println(&#34;Authentication Status:&#34;&#43;subject.isAuthenticated());}catch (UnknownAccountException e){e." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-08-12T21:30:04+00:00" />
+<meta property="article:modified_time" content="2021-08-12T21:30:04+00:00" />
+
+  
+  <meta itemprop="name" content="shiro权限管理">
+<meta itemprop="description" content="shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。
+只要有人参与的系统都需要进行权限管理。
+什么是Shiro？ Shiro是apache旗下的一个开源框架，它将软件系统的安全认认证相关的功能抽取出来，实现用户身份认证、权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。
+**Security Manager：**包含Authenticator认证器，Authorizer授权器，Session Manager会话管理器，Cache Manager缓存管理器，Session DAO会话数据访问对象，Pluggable Realms可插拔域 **cryptography：**密码器（sha256，md5） **subject：**主体（Shiro集成的东西，宿主） Shiro中用户的身份认证 subject：主体
+访问系统的用户，主体可以是用户、程序等，进行认证都称为主体。主体在进行身份认证时需要身份信息Principal和凭证信息credential
+Principal：身份信息
+身份认证的标识，如用户名、手机号、邮箱地址等。一个主体可以有多个身份信息，但是只能有一个主身份信息。
+credential：凭证信息
+只有主体自己知道的安全信息，如密码、证书等
+认证流程：
+代码
+[users]zhangsan=123lisi=1234wangwu=12345zhaoliu=123456public class TestAuhenticator{public static void main( String[] args ){//创建安全管理器对象DefaultSecurityManager securityManager = new DefaultSecurityManager();//给安全管理器设置realmsecurityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));//SecurityUtils安全工具类SecurityUtils.setSecurityManager(securityManager);//拿到主体subjectSubject subject = SecurityUtils.getSubject();//模拟登录，创建令牌UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);//用户登录try {System.out.println(&#34;Authentication Status:&#34;&#43;subject.isAuthenticated());subject.login(token);System.out.println(&#34;Authentication Status:&#34;&#43;subject.isAuthenticated());}catch (UnknownAccountException e){e."><meta itemprop="datePublished" content="2021-08-12T21:30:04+00:00" />
+<meta itemprop="dateModified" content="2021-08-12T21:30:04+00:00" />
+<meta itemprop="wordCount" content="612">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="shiro权限管理"/>
+<meta name="twitter:description" content="shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。
+只要有人参与的系统都需要进行权限管理。
+什么是Shiro？ Shiro是apache旗下的一个开源框架，它将软件系统的安全认认证相关的功能抽取出来，实现用户身份认证、权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。
+**Security Manager：**包含Authenticator认证器，Authorizer授权器，Session Manager会话管理器，Cache Manager缓存管理器，Session DAO会话数据访问对象，Pluggable Realms可插拔域 **cryptography：**密码器（sha256，md5） **subject：**主体（Shiro集成的东西，宿主） Shiro中用户的身份认证 subject：主体
+访问系统的用户，主体可以是用户、程序等，进行认证都称为主体。主体在进行身份认证时需要身份信息Principal和凭证信息credential
+Principal：身份信息
+身份认证的标识，如用户名、手机号、邮箱地址等。一个主体可以有多个身份信息，但是只能有一个主身份信息。
+credential：凭证信息
+只有主体自己知道的安全信息，如密码、证书等
+认证流程：
+代码
+[users]zhangsan=123lisi=1234wangwu=12345zhaoliu=123456public class TestAuhenticator{public static void main( String[] args ){//创建安全管理器对象DefaultSecurityManager securityManager = new DefaultSecurityManager();//给安全管理器设置realmsecurityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));//SecurityUtils安全工具类SecurityUtils.setSecurityManager(securityManager);//拿到主体subjectSubject subject = SecurityUtils.getSubject();//模拟登录，创建令牌UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);//用户登录try {System.out.println(&#34;Authentication Status:&#34;&#43;subject.isAuthenticated());subject.login(token);System.out.println(&#34;Authentication Status:&#34;&#43;subject.isAuthenticated());}catch (UnknownAccountException e){e."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">shiro权限管理</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Aug 12, 2021</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h1 id="shiro权限管理">shiro权限管理</h1>
+<p>Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。</p>
+<p>只要有人参与的系统都需要进行权限管理。</p>
+<h2 id="什么是shiro">什么是Shiro？</h2>
+<p>Shiro是apache旗下的一个开源框架，它将软件系统的安全认认证相关的功能抽取出来，实现用户身份认证、权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225542.png" alt="Shiro核心架构图"></p>
+<ul>
+<li>**Security Manager：**包含Authenticator认证器，Authorizer授权器，Session Manager会话管理器，Cache Manager缓存管理器，Session DAO会话数据访问对象，Pluggable Realms可插拔域</li>
+<li>**cryptography：**密码器（sha256，md5）</li>
+<li>**subject：**主体（Shiro集成的东西，宿主）</li>
+</ul>
+<h2 id="shiro中用户的身份认证">Shiro中用户的身份认证</h2>
+<ul>
+<li>
+<p><strong>subject：主体</strong></p>
+<p>访问系统的用户，主体可以是用户、程序等，进行认证都称为主体。主体在进行身份认证时需要身份信息Principal和凭证信息credential</p>
+</li>
+<li>
+<p><strong>Principal：身份信息</strong></p>
+<p>身份认证的标识，如用户名、手机号、邮箱地址等。一个主体可以有多个身份信息，但是只能有一个主身份信息。</p>
+</li>
+<li>
+<p><strong>credential：凭证信息</strong></p>
+<p>只有主体自己知道的安全信息，如密码、证书等</p>
+</li>
+</ul>
+<p><strong>认证流程：</strong></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225641.png" alt="image-20210730101307429"></p>
+<p><strong>代码</strong></p>
+<pre tabindex="0"><code>[users]
+zhangsan=123
+lisi=1234
+wangwu=12345
+zhaoliu=123456
+public class TestAuhenticator
+{
+    public static void main( String[] args )
+    {
+        //创建安全管理器对象
+        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+        //给安全管理器设置realm
+        securityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));
+        //SecurityUtils安全工具类
+        SecurityUtils.setSecurityManager(securityManager);
+        //拿到主体subject
+        Subject subject = SecurityUtils.getSubject();
+        //模拟登录，创建令牌
+        UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);
+        //用户登录
+        try {
+            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+            subject.login(token);
+            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+        }
+        catch (UnknownAccountException e){
+            e.printStackTrace();
+            System.out.println(&#34;认证失败，用户名不存在！&#34;);
+        }
+        catch (IncorrectCredentialsException e){
+            e.printStackTrace();
+            System.out.println(&#34;认证失败，密码错误！&#34;);
+        }
+
+    }
+}
+</code></pre><p><strong>源码剖析</strong></p>
+<ul>
+<li>
+<p>最终执行用户名校验，在 SimpleAccountRealm类（继承于AuthorizingRealm） doGetAuthenticationInfo() 这个方法中完成用户名校验：查看是否有这个用户</p>
+</li>
+<li>
+<p>最终密码的校验，在 AuthenticatingRealm类 assertCredentialsMath() 这个方法中完成密码校验的</p>
+</li>
+<li>
+<p>通过剖析源码可知，如果要把Realm放在数据库中，只需要继承AuthorizingRealm类，然后重写 doGetAuthenticationInfo() 方法即可</p>
+</li>
+<li>
+<p>几个重要Realm类的继承关系图：</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225652.png" alt="image-20210731093920423"></p>
+</li>
+<li>
+<p>总结：</p>
+<p>AuthenticatingRealm中有认证方法：doGetAuthenticationInfo()</p>
+<p>AuthorizingRealm中有授权方法：doGetAuthorizationInfo()</p>
+<p>所以，当实际上操作数据库时，我们自定义的Realm类实际上是继承AuthorizingRealm类，然后重写 doGetAuthenticationInfo() 和 doGetAuthorizationInfo() 两个方法。</p>
+</li>
+</ul>
+<h2 id="自定义realm">自定义Realm</h2>
+<pre tabindex="0"><code>public class CustomRealm extends AuthorizingRealm {
+    /**
+     * 授权
+     * @param principalCollection
+     * @return
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        return null;
+    }
+
+    /**
+     * 认证
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        String principal = (String) authenticationToken.getPrincipal();
+        String credentials = new String((char[]) authenticationToken.getCredentials());
+        System.out.println(&#34;************************************&#34;);
+        System.out.println(principal);
+        System.out.println(credentials);
+        if(&#34;zhangsan&#34;.equals(principal)){
+            return new SimpleAuthenticationInfo(&#34;zhangsan&#34;,&#34;123&#34;,this.getName());
+        }
+        return null;
+    }
+}
+public class TestAuhenticator
+{
+    public static void main( String[] args )
+    {
+        //创建安全管理器对象
+        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+        //给安全管理器设置realm
+//        securityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));
+        securityManager.setRealm(new CustomRealm());
+        //SecurityUtils安全工具类
+        SecurityUtils.setSecurityManager(securityManager);
+        //拿到主体subject
+        Subject subject = SecurityUtils.getSubject();
+        //模拟登录，创建令牌
+        UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);
+        //用户登录
+        try {
+            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+            subject.login(token);
+            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+        }
+        catch (UnknownAccountException e){
+            e.printStackTrace();
+            System.out.println(&#34;认证失败，用户名不存在！&#34;);
+        }
+        catch (IncorrectCredentialsException e){
+            e.printStackTrace();
+            System.out.println(&#34;认证失败，密码错误！&#34;);
+        }
+
+    }
+}
+</code></pre><h2 id="密码加密">密码加密</h2>
+<p><strong>MD5算法</strong></p>
+<ul>
+<li>一般用来加密 &amp; 签名</li>
+<li>MD5加密不可逆</li>
+<li>MD5算法生成结果始终是一个16进、32位长度的字符串</li>
+<li>一般在后端代码的业务层完成加密操作如果要进行用户名</li>
+<li>使用MD5算法，输入只会有唯一输出。所以为了防止有人恶意穷举试探密码，我们需要给密码加盐后再MD5机密</li>
+</ul>
+<p><strong>Shiro中的MD5加密</strong></p>
+<p>直接看代码</p>
+<pre tabindex="0"><code>public class CustomRealm extends AuthorizingRealm {
+    /**
+     * 授权
+     * @param principalCollection
+     * @return
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        return null;
+    }
+
+    /**
+     * 认证
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        String principal = (String) authenticationToken.getPrincipal();
+        String credentials = new String((char[]) authenticationToken.getCredentials());
+        System.out.println(&#34;************************************&#34;);
+        System.out.println(principal);
+        System.out.println(credentials);
+        if(&#34;zhangsan&#34;.equals(principal)){
+            return new SimpleAuthenticationInfo(&#34;zhangsan&#34;,&#34;123&#34;, ByteSource.Util.bytes(&#34;abc*&#34;),this.getName());
+        }
+        return null;
+    }
+}
+public class TestAuhenticator
+{
+    public static void main( String[] args )
+    {
+        //创建安全管理器对象
+        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+        //新建自定义realm对象
+        CustomRealm realm = new CustomRealm();
+        //设置realm使用hash凭证检测器
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName(&#34;md5&#34;);
+        credentialsMatcher.setHashIterations(1024);//设置加盐散列次数
+        realm.setCredentialsMatcher(credentialsMatcher);
+
+        //给安全管理器设置realm
+//        securityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));
+        securityManager.setRealm(realm);
+        //SecurityUtils安全工具类
+        SecurityUtils.setSecurityManager(securityManager);
+        //拿到主体subject
+        Subject subject = SecurityUtils.getSubject();
+        //模拟登录，创建令牌
+        UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);
+        //用户登录
+        try {
+            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+            subject.login(token);
+            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+        }
+        catch (UnknownAccountException e){
+            e.printStackTrace();
+            System.out.println(&#34;认证失败，用户名不存在！&#34;);
+        }
+        catch (IncorrectCredentialsException e){
+            e.printStackTrace();
+            System.out.println(&#34;认证失败，密码错误！&#34;);
+        }
+
+    }
+}
+</code></pre><h2 id="shiro中的授权操作">Shiro中的授权操作</h2>
+<p><strong>关键对象</strong></p>
+<ul>
+<li>
+<p>Who对What进行How操作</p>
+</li>
+<li>
+<p>Who是访问资源的主体，What是系统的资源，How是针对资源的操作</p>
+</li>
+<li>
+<p>授权流程：</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225715.png" alt="image-20210801100955232"></p>
+</li>
+<li>
+<p>授权方式：</p>
+<ul>
+<li>
+<p>基于角色的访问控制：Role-Based Access Control</p>
+<pre tabindex="0"><code>if(subject.hasRole(&#34;admin&#34;)){
+    //操作资源
+}
+</code></pre></li>
+<li>
+<p>基于资源的访问控制：Resource-Based Access Control</p>
+<pre tabindex="0"><code>if(subject.isPermission(&#34;user:create:*&#34;)){
+    //操作资源
+}
+/**
+权限字符串：资源标识符:操作:资源实例标识符
+	* 用户创建权限：user:create:*
+	* 用户实例001修改的权限：user:create:001
+	* 用户实例001的所有权限：user:*:001
+**/
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="shiro中的授权实现">Shiro中的授权实现</h2>
+<p><strong>编程式</strong></p>
+<pre tabindex="0"><code>Subject subject = SecurityUtils.getSubject();
+if(subject.hasRole(&#34;admin&#34;)){
+    //有权限
+}
+else{
+    //无权限
+}
+</code></pre><p><strong>注解式</strong></p>
+<pre tabindex="0"><code>@RequireRoles(&#34;admin&#34;)
+public void hello(){
+    //有权限
+}
+</code></pre><p><strong>JSP标签式</strong></p>
+<pre tabindex="0"><code>&lt;shiro:hasRole name=&#34;admin&#34;&gt;
+    &lt;!--有权限--&gt;
+&lt;/shiro:hasRole&gt;
+&lt;!--注意：Thymeleaf中使用shiro需要额外集成--&gt;
+</code></pre><p><strong>代码实现</strong></p>
+<pre tabindex="0"><code>public class CustomRealm extends AuthorizingRealm {
+    /**
+     * 授权
+     * @param principalCollection
+     * @return
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        System.out.println(&#34;==================Authorization===================&#34;);
+        String primaryPrincipal = (String) principalCollection.getPrimaryPrincipal();
+        System.out.println(primaryPrincipal);
+        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+        simpleAuthorizationInfo.addRole(&#34;admin&#34;);
+        simpleAuthorizationInfo.addRole(&#34;user&#34;);
+        simpleAuthorizationInfo.addStringPermission(&#34;admin:create:*&#34;);
+        simpleAuthorizationInfo.addStringPermission(&#34;user:update:01&#34;);
+        return simpleAuthorizationInfo;
+    }
+
+    /**
+     * 认证
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        System.out.println(&#34;==================Authentication===================&#34;);
+        String principal = (String) authenticationToken.getPrincipal();
+        String credentials = new String((char[]) authenticationToken.getCredentials());
+        System.out.println(&#34;************************************&#34;);
+        System.out.println(principal);
+        System.out.println(credentials);
+        if(&#34;zhangsan&#34;.equals(principal)){
+            return new SimpleAuthenticationInfo(principal,&#34;44610a20602341c591e0c9b5ecf19ff3&#34;, ByteSource.Util.bytes(&#34;abc*&#34;),this.getName());
+        }
+        return null;
+    }
+}
+public class TestAuthenticator
+{
+    public static void main( String[] args )
+    {
+        //创建安全管理器对象
+        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+        //新建自定义realm对象
+        CustomRealm realm = new CustomRealm();
+        //设置realm使用hash凭证检测器
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName(&#34;md5&#34;);
+        credentialsMatcher.setHashIterations(1024);//设置加盐散列次数
+        realm.setCredentialsMatcher(credentialsMatcher);
+
+        //给安全管理器设置realm
+//        securityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));
+        securityManager.setRealm(realm);
+        //SecurityUtils安全工具类
+        SecurityUtils.setSecurityManager(securityManager);
+        //拿到主体subject
+        Subject subject = SecurityUtils.getSubject();
+        //模拟登录，创建令牌
+        UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);
+        //用户登录
+        try {
+            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+            subject.login(token);
+            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+        }
+        catch (UnknownAccountException e){
+            e.printStackTrace();
+            System.out.println(&#34;认证失败，用户名不存在！&#34;);
+        }
+        catch (IncorrectCredentialsException e){
+            e.printStackTrace();
+            System.out.println(&#34;认证失败，密码错误！&#34;);
+        }
+
+        //进行授权操作
+        if(subject.isAuthenticated()){
+            System.out.println(subject.hasRole(&#34;user&#34;));
+            System.out.println(subject.hasAllRoles(Arrays.asList(&#34;admin&#34;,&#34;user&#34;)));
+            System.out.println(subject.isPermitted(&#34;admin:create:*&#34;));
+            System.out.println(subject.isPermitted(&#34;user:update:02&#34;));
+        }
+
+    }
+}
+</code></pre><h2 id="权限模型">权限模型</h2>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225741.png" alt="image-20210802215244502"></p>
+<h2 id="shiro和ssm的整合">Shiro和SSM的整合</h2>
+<p><strong>整合思路</strong></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225748.png" alt="image-20210802191222968"></p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/"
+      ><span class="mr-1.5">←</span><span>工作流Activiti</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/"
+      ><span>毕业九寨三人游</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>linux的服务管理 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="服务简介与分类 Linux服务分类 RPM包默认安装的服务 独立的服务 基于xinetd（超级守护进程）服务 源码包安装的服务（第三方源码包） 服务的启动与自启动 查询已安装的服务
+RPM包安装的服务：chkconfig --list：查看RPM包安装的服务按照运行级别的自启动状态。如果查询当前启动的服务，用ps aux或者netstat或者service --status-all
+源码包安装的服务：没有命令，只能去服务安装位置查看，一般在/usr/local/下
+其实源码包和RPM包安装的服务在Linux中的区别就是安装位置不同
+RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特殊文件有自己的默认保存位置)
+独立服务的管理 启动方式：/etc/init.d/独立服务名和service 独立服务名 自启动方式： chkconfig --level 运行级别 独立服务名：打开自启动 chkconfig 独立服务名 off：关闭自启动 修改/etc/rc.d/rc.local文件,加入需要自启动的服务名 使用ntsysv命令管理自启动，图形界面很直观 基于xinetd(超级守护进程)服务的管理 默认情况下Linux是没有xinted的，需要手动安装yum -y install xinetd 然后用chkconfig --list查看，基于xinetd的服务不占用内存，但是需要的响应时间更长 基于xinetd的服务的启动，修改/etc/xinetd.d/下对应的服务的配置文件,然后service xinetd restart 基于xinetd的服务的自启动： chkconfig 服务名 on和chkconfig 服务名 off 图形界面工具：ntsysv 基于xinetd的启动和自启动是通用的，两者区分不是很严格，这种设置不利于管理，所以现在基于xinetd的服务越来越少了 源码包安装服务的管理 ​	RPM包安装的服务默认保存位置：/usr/local/
+源码包安装服务的启动和关闭(用绝对路径的启动脚本启动)：/usr/local/apache2/bin/apachectl start|stop 一般每一个源码包都有安装说明INSTALL，应该查看里面的启动方法 源码包安装服务的自启动： vim /etc/rc.d/rc.local加入/usr/local/apache2/bin/apachectl start 把源码包服务的启动脚本软连接到/etc/init.d/目录下和chkconfig --add 服务名，就可以实现service，chkconfig和ntsysv命令管理源码包安装服务，但是并不推荐，容易混乱。 " />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="linux的服务管理" />
+<meta property="og:description" content="服务简介与分类 Linux服务分类 RPM包默认安装的服务 独立的服务 基于xinetd（超级守护进程）服务 源码包安装的服务（第三方源码包） 服务的启动与自启动 查询已安装的服务
+RPM包安装的服务：chkconfig --list：查看RPM包安装的服务按照运行级别的自启动状态。如果查询当前启动的服务，用ps aux或者netstat或者service --status-all
+源码包安装的服务：没有命令，只能去服务安装位置查看，一般在/usr/local/下
+其实源码包和RPM包安装的服务在Linux中的区别就是安装位置不同
+RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特殊文件有自己的默认保存位置)
+独立服务的管理 启动方式：/etc/init.d/独立服务名和service 独立服务名 自启动方式： chkconfig --level 运行级别 独立服务名：打开自启动 chkconfig 独立服务名 off：关闭自启动 修改/etc/rc.d/rc.local文件,加入需要自启动的服务名 使用ntsysv命令管理自启动，图形界面很直观 基于xinetd(超级守护进程)服务的管理 默认情况下Linux是没有xinted的，需要手动安装yum -y install xinetd 然后用chkconfig --list查看，基于xinetd的服务不占用内存，但是需要的响应时间更长 基于xinetd的服务的启动，修改/etc/xinetd.d/下对应的服务的配置文件,然后service xinetd restart 基于xinetd的服务的自启动： chkconfig 服务名 on和chkconfig 服务名 off 图形界面工具：ntsysv 基于xinetd的启动和自启动是通用的，两者区分不是很严格，这种设置不利于管理，所以现在基于xinetd的服务越来越少了 源码包安装服务的管理 ​	RPM包安装的服务默认保存位置：/usr/local/
+源码包安装服务的启动和关闭(用绝对路径的启动脚本启动)：/usr/local/apache2/bin/apachectl start|stop 一般每一个源码包都有安装说明INSTALL，应该查看里面的启动方法 源码包安装服务的自启动： vim /etc/rc.d/rc.local加入/usr/local/apache2/bin/apachectl start 把源码包服务的启动脚本软连接到/etc/init.d/目录下和chkconfig --add 服务名，就可以实现service，chkconfig和ntsysv命令管理源码包安装服务，但是并不推荐，容易混乱。 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-10T17:56:48+00:00" />
+<meta property="article:modified_time" content="2020-03-10T17:56:48+00:00" />
+
+  
+  <meta itemprop="name" content="linux的服务管理">
+<meta itemprop="description" content="服务简介与分类 Linux服务分类 RPM包默认安装的服务 独立的服务 基于xinetd（超级守护进程）服务 源码包安装的服务（第三方源码包） 服务的启动与自启动 查询已安装的服务
+RPM包安装的服务：chkconfig --list：查看RPM包安装的服务按照运行级别的自启动状态。如果查询当前启动的服务，用ps aux或者netstat或者service --status-all
+源码包安装的服务：没有命令，只能去服务安装位置查看，一般在/usr/local/下
+其实源码包和RPM包安装的服务在Linux中的区别就是安装位置不同
+RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特殊文件有自己的默认保存位置)
+独立服务的管理 启动方式：/etc/init.d/独立服务名和service 独立服务名 自启动方式： chkconfig --level 运行级别 独立服务名：打开自启动 chkconfig 独立服务名 off：关闭自启动 修改/etc/rc.d/rc.local文件,加入需要自启动的服务名 使用ntsysv命令管理自启动，图形界面很直观 基于xinetd(超级守护进程)服务的管理 默认情况下Linux是没有xinted的，需要手动安装yum -y install xinetd 然后用chkconfig --list查看，基于xinetd的服务不占用内存，但是需要的响应时间更长 基于xinetd的服务的启动，修改/etc/xinetd.d/下对应的服务的配置文件,然后service xinetd restart 基于xinetd的服务的自启动： chkconfig 服务名 on和chkconfig 服务名 off 图形界面工具：ntsysv 基于xinetd的启动和自启动是通用的，两者区分不是很严格，这种设置不利于管理，所以现在基于xinetd的服务越来越少了 源码包安装服务的管理 ​	RPM包安装的服务默认保存位置：/usr/local/
+源码包安装服务的启动和关闭(用绝对路径的启动脚本启动)：/usr/local/apache2/bin/apachectl start|stop 一般每一个源码包都有安装说明INSTALL，应该查看里面的启动方法 源码包安装服务的自启动： vim /etc/rc.d/rc.local加入/usr/local/apache2/bin/apachectl start 把源码包服务的启动脚本软连接到/etc/init.d/目录下和chkconfig --add 服务名，就可以实现service，chkconfig和ntsysv命令管理源码包安装服务，但是并不推荐，容易混乱。 "><meta itemprop="datePublished" content="2020-03-10T17:56:48+00:00" />
+<meta itemprop="dateModified" content="2020-03-10T17:56:48+00:00" />
+<meta itemprop="wordCount" content="61">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux的服务管理"/>
+<meta name="twitter:description" content="服务简介与分类 Linux服务分类 RPM包默认安装的服务 独立的服务 基于xinetd（超级守护进程）服务 源码包安装的服务（第三方源码包） 服务的启动与自启动 查询已安装的服务
+RPM包安装的服务：chkconfig --list：查看RPM包安装的服务按照运行级别的自启动状态。如果查询当前启动的服务，用ps aux或者netstat或者service --status-all
+源码包安装的服务：没有命令，只能去服务安装位置查看，一般在/usr/local/下
+其实源码包和RPM包安装的服务在Linux中的区别就是安装位置不同
+RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特殊文件有自己的默认保存位置)
+独立服务的管理 启动方式：/etc/init.d/独立服务名和service 独立服务名 自启动方式： chkconfig --level 运行级别 独立服务名：打开自启动 chkconfig 独立服务名 off：关闭自启动 修改/etc/rc.d/rc.local文件,加入需要自启动的服务名 使用ntsysv命令管理自启动，图形界面很直观 基于xinetd(超级守护进程)服务的管理 默认情况下Linux是没有xinted的，需要手动安装yum -y install xinetd 然后用chkconfig --list查看，基于xinetd的服务不占用内存，但是需要的响应时间更长 基于xinetd的服务的启动，修改/etc/xinetd.d/下对应的服务的配置文件,然后service xinetd restart 基于xinetd的服务的自启动： chkconfig 服务名 on和chkconfig 服务名 off 图形界面工具：ntsysv 基于xinetd的启动和自启动是通用的，两者区分不是很严格，这种设置不利于管理，所以现在基于xinetd的服务越来越少了 源码包安装服务的管理 ​	RPM包安装的服务默认保存位置：/usr/local/
+源码包安装服务的启动和关闭(用绝对路径的启动脚本启动)：/usr/local/apache2/bin/apachectl start|stop 一般每一个源码包都有安装说明INSTALL，应该查看里面的启动方法 源码包安装服务的自启动： vim /etc/rc.d/rc.local加入/usr/local/apache2/bin/apachectl start 把源码包服务的启动脚本软连接到/etc/init.d/目录下和chkconfig --add 服务名，就可以实现service，chkconfig和ntsysv命令管理源码包安装服务，但是并不推荐，容易混乱。 "/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">linux的服务管理</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 10, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h1 id="服务简介与分类">服务简介与分类</h1>
+<ul>
+<li>
+<h2 id="linux服务分类">Linux服务分类</h2>
+<ul>
+<li>RPM包默认安装的服务
+<ul>
+<li>独立的服务</li>
+<li>基于xinetd（超级守护进程）服务</li>
+</ul>
+</li>
+<li>源码包安装的服务（第三方源码包）</li>
+</ul>
+</li>
+<li>
+<h2 id="服务的启动与自启动">服务的启动与自启动</h2>
+<ul>
+<li>
+<p>查询已安装的服务</p>
+<ul>
+<li>
+<p><strong>RPM包安装的服务</strong>：<code>chkconfig --list</code>：查看RPM包安装的服务按照运行级别的自启动状态。如果查询当前启动的服务，用<code>ps aux</code>或者<code>netstat</code>或者<code>service --status-all</code></p>
+</li>
+<li>
+<p><strong>源码包安装的服务</strong>：没有命令，只能去服务安装位置查看，一般在<code>/usr/local/</code>下</p>
+</li>
+<li>
+<p>其实源码包和RPM包安装的服务在Linux中的区别就是安装位置不同</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="rpm包安装服务的管理">RPM包安装服务的管理</h1>
+<p>​		<strong>RPM包安装的服务默认保存位置：</strong>(特殊文件有自己的默认保存位置)</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<h2 id="独立服务的管理">独立服务的管理</h2>
+<ul>
+<li>启动方式：<code>/etc/init.d/独立服务名</code>和<code>service 独立服务名</code></li>
+<li>自启动方式：
+<ul>
+<li><code>chkconfig --level 运行级别 独立服务名</code>：打开自启动</li>
+<li><code>chkconfig 独立服务名 off</code>：关闭自启动</li>
+<li>修改<code>/etc/rc.d/rc.local</code>文件,加入需要自启动的服务名</li>
+<li>使用<code>ntsysv</code>命令管理自启动，图形界面很直观</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="基于xinetd超级守护进程服务的管理">基于xinetd(超级守护进程)服务的管理</h2>
+<ul>
+<li>默认情况下Linux是没有xinted的，需要手动安装<code>yum -y install xinetd</code></li>
+<li>然后用<code>chkconfig --list</code>查看，基于xinetd的服务不占用内存，但是需要的响应时间更长</li>
+<li>基于xinetd的服务的启动，修改<code>/etc/xinetd.d/</code>下对应的服务的配置文件,然后<code>service xinetd restart</code></li>
+<li>基于xinetd的服务的自启动：
+<ul>
+<li><code>chkconfig 服务名 on</code>和<code>chkconfig 服务名 off</code></li>
+<li>图形界面工具：ntsysv</li>
+</ul>
+</li>
+<li>基于xinetd的启动和自启动是通用的，两者区分不是很严格，这种设置不利于管理，所以现在基于xinetd的服务越来越少了</li>
+</ul>
+</li>
+</ul>
+<h1 id="源码包安装服务的管理">源码包安装服务的管理</h1>
+<p>​		<strong>RPM包安装的服务默认保存位置：</strong>/usr/local/</p>
+<ul>
+<li>源码包安装服务的启动和关闭(用绝对路径的启动脚本启动)：<code>/usr/local/apache2/bin/apachectl start|stop</code></li>
+<li>一般每一个源码包都有安装说明INSTALL，应该查看里面的启动方法</li>
+<li>源码包安装服务的自启动：
+<ul>
+<li><code>vim /etc/rc.d/rc.local</code>加入<code>/usr/local/apache2/bin/apachectl start</code></li>
+</ul>
+</li>
+<li>把源码包服务的启动脚本软连接到<code>/etc/init.d/</code>目录下和<code>chkconfig --add 服务名</code>，就可以实现<code>service</code>，<code>chkconfig</code>和<code>ntsysv</code>命令管理源码包安装服务，<strong>但是并不推荐</strong>，容易混乱。</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
+      ><span class="mr-1.5">←</span><span>linux系统管理</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/shell%E7%BC%96%E7%A8%8B/"
+      ><span>shell编程</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

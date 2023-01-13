@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>linux权限管理 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
+setfacl 选项 文件名
+setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
+最大有效权限与删除ACL权限 最大有效权限mask：可以通过getfacl 文件名来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。 需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限 setfacl -x u/g:用户名/组名 文件名：删除文件指定的ACL权限 setfacl -b 文件名：删除文件所有ACL权限 默认ACL和递归ACL权限（只能针对目录） setfacl -m d:u/g:用户名/组名:权限 文件名：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限
+setfacl -k：删除父目录的默认ACL权限
+setfacl -m -R ...：递归设定文件夹的ACL权限
+文件特殊权限 SetUID：在所有者的x位置上变成了s 四个条件缺一不可：
+只有二进制文件（例如命令和脚本文件）才能设定SUID权限
+命令执行者必须对该程序有x权限
+命令执行者会在执行的时候获得该程序文件的属主身份
+SUID权限只在该程序执行过程中生效，也就是身份改变旨在程序执行过程中有效
+passwd命令拥有SetUID权限，所以普通用户能修改自己密码
+我们通常会看到4777，2777，1777的权限标识，依次是加了SUID，SGID，SBIT权限
+可以用chmod来赋予和删除SUID
+SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。
+SetGID：在所属组的x位置上变成了s 针对二进制文件，三个条件缺一不可：
+命令执行者必须对该程序有x权限
+命令执行者会在执行的时候获得该程序文件的所属组身份
+SUID权限只在该程序执行过程中生效，也就是所属组身份改变旨在程序执行过程中有效
+注：例如/usr/bin/locate命令
+针对目录，三个条件缺一不可：
+普通用户必须对此目录拥有r和x权限，才能进入该目录
+普通用户在此目录中的有效组会变成此目录的所著组
+若普通用户对此目录拥有w权限时，新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组
+可以用chmod来赋予和删除SGID
+Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一不可：
+只有目录才能设定SBIT权限" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="linux权限管理" />
+<meta property="og:description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
+setfacl 选项 文件名
+setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
+最大有效权限与删除ACL权限 最大有效权限mask：可以通过getfacl 文件名来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。 需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限 setfacl -x u/g:用户名/组名 文件名：删除文件指定的ACL权限 setfacl -b 文件名：删除文件所有ACL权限 默认ACL和递归ACL权限（只能针对目录） setfacl -m d:u/g:用户名/组名:权限 文件名：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限
+setfacl -k：删除父目录的默认ACL权限
+setfacl -m -R ...：递归设定文件夹的ACL权限
+文件特殊权限 SetUID：在所有者的x位置上变成了s 四个条件缺一不可：
+只有二进制文件（例如命令和脚本文件）才能设定SUID权限
+命令执行者必须对该程序有x权限
+命令执行者会在执行的时候获得该程序文件的属主身份
+SUID权限只在该程序执行过程中生效，也就是身份改变旨在程序执行过程中有效
+passwd命令拥有SetUID权限，所以普通用户能修改自己密码
+我们通常会看到4777，2777，1777的权限标识，依次是加了SUID，SGID，SBIT权限
+可以用chmod来赋予和删除SUID
+SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。
+SetGID：在所属组的x位置上变成了s 针对二进制文件，三个条件缺一不可：
+命令执行者必须对该程序有x权限
+命令执行者会在执行的时候获得该程序文件的所属组身份
+SUID权限只在该程序执行过程中生效，也就是所属组身份改变旨在程序执行过程中有效
+注：例如/usr/bin/locate命令
+针对目录，三个条件缺一不可：
+普通用户必须对此目录拥有r和x权限，才能进入该目录
+普通用户在此目录中的有效组会变成此目录的所著组
+若普通用户对此目录拥有w权限时，新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组
+可以用chmod来赋予和删除SGID
+Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一不可：
+只有目录才能设定SBIT权限" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-06T10:00:13+00:00" />
+<meta property="article:modified_time" content="2020-03-06T10:00:13+00:00" />
+
+  
+  <meta itemprop="name" content="linux权限管理">
+<meta itemprop="description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
+setfacl 选项 文件名
+setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
+最大有效权限与删除ACL权限 最大有效权限mask：可以通过getfacl 文件名来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。 需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限 setfacl -x u/g:用户名/组名 文件名：删除文件指定的ACL权限 setfacl -b 文件名：删除文件所有ACL权限 默认ACL和递归ACL权限（只能针对目录） setfacl -m d:u/g:用户名/组名:权限 文件名：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限
+setfacl -k：删除父目录的默认ACL权限
+setfacl -m -R ...：递归设定文件夹的ACL权限
+文件特殊权限 SetUID：在所有者的x位置上变成了s 四个条件缺一不可：
+只有二进制文件（例如命令和脚本文件）才能设定SUID权限
+命令执行者必须对该程序有x权限
+命令执行者会在执行的时候获得该程序文件的属主身份
+SUID权限只在该程序执行过程中生效，也就是身份改变旨在程序执行过程中有效
+passwd命令拥有SetUID权限，所以普通用户能修改自己密码
+我们通常会看到4777，2777，1777的权限标识，依次是加了SUID，SGID，SBIT权限
+可以用chmod来赋予和删除SUID
+SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。
+SetGID：在所属组的x位置上变成了s 针对二进制文件，三个条件缺一不可：
+命令执行者必须对该程序有x权限
+命令执行者会在执行的时候获得该程序文件的所属组身份
+SUID权限只在该程序执行过程中生效，也就是所属组身份改变旨在程序执行过程中有效
+注：例如/usr/bin/locate命令
+针对目录，三个条件缺一不可：
+普通用户必须对此目录拥有r和x权限，才能进入该目录
+普通用户在此目录中的有效组会变成此目录的所著组
+若普通用户对此目录拥有w权限时，新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组
+可以用chmod来赋予和删除SGID
+Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一不可：
+只有目录才能设定SBIT权限"><meta itemprop="datePublished" content="2020-03-06T10:00:13+00:00" />
+<meta itemprop="dateModified" content="2020-03-06T10:00:13+00:00" />
+<meta itemprop="wordCount" content="119">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux权限管理"/>
+<meta name="twitter:description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
+setfacl 选项 文件名
+setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
+最大有效权限与删除ACL权限 最大有效权限mask：可以通过getfacl 文件名来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。 需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限 setfacl -x u/g:用户名/组名 文件名：删除文件指定的ACL权限 setfacl -b 文件名：删除文件所有ACL权限 默认ACL和递归ACL权限（只能针对目录） setfacl -m d:u/g:用户名/组名:权限 文件名：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限
+setfacl -k：删除父目录的默认ACL权限
+setfacl -m -R ...：递归设定文件夹的ACL权限
+文件特殊权限 SetUID：在所有者的x位置上变成了s 四个条件缺一不可：
+只有二进制文件（例如命令和脚本文件）才能设定SUID权限
+命令执行者必须对该程序有x权限
+命令执行者会在执行的时候获得该程序文件的属主身份
+SUID权限只在该程序执行过程中生效，也就是身份改变旨在程序执行过程中有效
+passwd命令拥有SetUID权限，所以普通用户能修改自己密码
+我们通常会看到4777，2777，1777的权限标识，依次是加了SUID，SGID，SBIT权限
+可以用chmod来赋予和删除SUID
+SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。
+SetGID：在所属组的x位置上变成了s 针对二进制文件，三个条件缺一不可：
+命令执行者必须对该程序有x权限
+命令执行者会在执行的时候获得该程序文件的所属组身份
+SUID权限只在该程序执行过程中生效，也就是所属组身份改变旨在程序执行过程中有效
+注：例如/usr/bin/locate命令
+针对目录，三个条件缺一不可：
+普通用户必须对此目录拥有r和x权限，才能进入该目录
+普通用户在此目录中的有效组会变成此目录的所著组
+若普通用户对此目录拥有w权限时，新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组
+可以用chmod来赋予和删除SGID
+Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一不可：
+只有目录才能设定SBIT权限"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">linux权限管理</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 6, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h1 id="acl权限">ACL权限</h1>
+<h2 id="acl权限的简介和开启方式">ACL权限的简介和开启方式</h2>
+<ul>
+<li>任何一个文件在一个时刻只能有一个所有者和所属组</li>
+<li>ACL权限用来解决文件的权限身份不够用的情况</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统</li>
+<li>ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限</li>
+</ul>
+<h2 id="查看与设定acl权限">查看与设定ACL权限</h2>
+<ul>
+<li>
+<p><code>getfacl 文件名</code>：查看ACL的权限</p>
+</li>
+<li>
+<p><code>setfacl 选项 文件名</code></p>
+<p><code>setfacl -m u/g/m:用户名/组名/不写:权限 文件名</code>：设定文件的ACL权限</p>
+</li>
+</ul>
+<h2 id="最大有效权限与删除acl权限">最大有效权限与删除ACL权限</h2>
+<ul>
+<li>最大有效权限mask：可以通过<code>getfacl 文件名</code>来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。</li>
+<li>需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限</li>
+<li><code>setfacl -x u/g:用户名/组名 文件名</code>：删除文件指定的ACL权限</li>
+<li><code>setfacl -b 文件名</code>：删除文件所有ACL权限</li>
+</ul>
+<h2 id="默认acl和递归acl权限只能针对目录">默认ACL和递归ACL权限（只能针对目录）</h2>
+<ul>
+<li>
+<p><code>setfacl -m d:u/g:用户名/组名:权限 文件名</code>：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限</p>
+</li>
+<li>
+<p><code>setfacl -k</code>：删除父目录的默认ACL权限</p>
+</li>
+<li>
+<p><code>setfacl -m -R ...</code>：递归设定文件夹的ACL权限</p>
+</li>
+</ul>
+<h1 id="文件特殊权限">文件特殊权限</h1>
+<h2 id="setuid在所有者的x位置上变成了s">SetUID：在所有者的x位置上变成了s</h2>
+<ul>
+<li>
+<p><strong>四个条件缺一不可：</strong></p>
+<p>只有<strong>二进制文件</strong>（例如命令和脚本文件）才能设定SUID权限</p>
+<p>命令执行者必须对该程序<strong>有x权限</strong></p>
+<p>命令执行者会在执行的时候获得该程序文件的<strong>属主身份</strong></p>
+<p>SUID权限只在该程序执行<strong>过程中生效</strong>，也就是身份改变旨在程序执行过程中有效</p>
+</li>
+<li>
+<p>passwd命令拥有SetUID权限，所以普通用户能修改自己密码</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>我们通常会看到<strong>4777，2777，1777</strong>的权限标识，依次是加了<strong>SUID，SGID，SBIT</strong>权限</p>
+</li>
+<li>
+<p>可以用<code>chmod</code>来赋予和删除SUID</p>
+</li>
+<li>
+<p><strong>SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。</strong></p>
+</li>
+</ul>
+<h2 id="setgid在所属组的x位置上变成了s">SetGID：在所属组的x位置上变成了s</h2>
+<ul>
+<li>
+<p><strong>针对二进制文件，三个条件缺一不可：</strong></p>
+<p>命令执行者必须对该程序<strong>有x权限</strong></p>
+<p>命令执行者会在执行的时候获得该程序文件的<strong>所属组身份</strong></p>
+<p>SUID权限只在该程序执行<strong>过程中生效</strong>，也就是所属组身份改变旨在程序执行过程中有效</p>
+<p>注：例如/usr/bin/locate命令</p>
+</li>
+<li>
+<p><strong>针对目录，三个条件缺一不可：</strong></p>
+<p>普通用户必须对此目录<strong>拥有r和x权限</strong>，才能进入该目录</p>
+<p>普通用户在此目录中的<strong>有效组会变成此目录的所著组</strong></p>
+<p>若普通用户对此目录拥有<strong>w权限</strong>时，<strong>新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组</strong></p>
+</li>
+<li>
+<p>可以用<code>chmod</code>来赋予和删除SGID</p>
+</li>
+</ul>
+<h2 id="sticky-bit黏着位在其他人的x位置上变成了t">Sticky BIT(黏着位)：在其他人的x位置上变成了t</h2>
+<ul>
+<li>
+<p><strong>四个条件缺一不可：</strong></p>
+<p>只有目录才能设定SBIT权限</p>
+<p><strong>普通用户</strong>必须对该目录<strong>有x和w权限</strong></p>
+<p>有了SBIT，<strong>普通用户</strong>即使有目录的w权限，也不能删除其他用户建立的文件</p>
+</li>
+</ul>
+<h2 id="需要注意的安全性">需要注意的安全性：</h2>
+<ul>
+<li><strong>需要定期对系统中含有SUID或者SGID权限的文件进行检查，如果有异常多出来的含有该权限的文件，如果多出来了，是一个极大的安全隐患，需要手工清除。</strong></li>
+</ul>
+<h1 id="文件系统属性chattr权限">文件系统属性chattr权限</h1>
+<ul>
+<li>
+<p>**chattr：**change file attributes on a linux file system</p>
+</li>
+<li>
+<p><code>chattr [+-=] [选项] 文件或目录名</code>：增加，减去，等于chattr权限</p>
+<p>i选项：</p>
+<p>​	1.对文件：不允许任何用户（包括root用户）对文件进行任何修改，只能读</p>
+<p>​	2.对目录：任何用户（包括root用户）只能在目录下修改文件内容，但是不能删除和创建文件</p>
+<p>a选项：</p>
+<p>​	1.对文件：任何用户（包括root用户）只能对文件增加数据，但是不能删除和修改现有数据</p>
+<p>​	2.对目录：任何用户（包括root用户）只能在目录中建立和修改文件里的内容，但是不能删除文件</p>
+</li>
+<li>
+<p>查看文件系统属性：lsattr</p>
+<p>lsattr 选项 文件名</p>
+<p>​	-a选项：显示所有文件和目录</p>
+<p>​	-d选项：若文件时目录，仅列出目录自己的属性</p>
+</li>
+</ul>
+<h1 id="系统命令sudo权限">系统命令sudo权限</h1>
+<ul>
+<li>
+<p>之前学的是对文件的操作权限，sudo是对系统命令的权限。sudo权限是root把本来只能超级用户执行的命令赋予普通用户的执行</p>
+</li>
+<li>
+<p>root权限先执行命令visudo命令修改/etc/sudoers文件</p>
+<p>在这一行<code>root   ALL=(ALL)    ALL</code>下面添加例如：</p>
+<p>​               <code> jack   ALL=/sbin/shutdown -r now</code>：授权jack能重启服务器的权限</p>
+</li>
+<li>
+<p>然后相应用户或者用户组用<code>sudo -l</code>查看自己能用那些sudo命令，然后<code>sudo 命令</code>执行</p>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
+      ><span class="mr-1.5">←</span><span>linux的文件系统管理</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
+      ><span>linux中的用户管理</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

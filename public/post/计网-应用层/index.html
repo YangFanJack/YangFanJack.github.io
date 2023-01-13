@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>计网-应用层 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="域名系统DNS QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了
+域名服务器采用分布式的域名查询解析
+我个人认为这里的本机缓存指的是本机的DNS缓存，访问网站的时候是先查询本机缓存，再查询hosts配置，之后才去请求本地DNS缓存。
+动态主机配置协议DHCP 静态IP地址：手动配置
+一般固定的台式机
+动态IP地址：通过DHCP协议自动获得
+一般的移动的设备，例如wifi连接的笔记本电脑
+计算机通过广播向DHCP服务器发送广播请求，DHCP服务器从地址池里选择一个地址给计算机发过去。如果同时有多个DHCP服务器应答，计算机还要选择一个DHCP服务器发一个确认信息，然后DHCP服务器才能把所有设置给计算机。 DHCP服务器要是静态地址，一般只给本网段的计算机分配地址。 了解租期和续约 除了同网段的DHCP分配，还可以跨网段DHCP分配 对比RARP逆向地址解析协议：从功能上说，RARP只能实现简单的从MAC地址到IP地址的查询工作，RARP server上的MAC地址和IP地址是必须事先静态配置好的。但DHCP却可以实现除静态分配外的动态IP地址分配以及IP地址租期管理等等相对复杂的功能。
+文件传送协议FTP 控制连接：标准端口21，用于发送ftp命令信息 数据连接：标准端口22，用于上传下载数据 数据连接的建立类型： 主动模式：ftp客户端告诉ftp服务器使用什么端口侦听，ftp服务器和ftp客户端的这个端口建立连接 被动模式：ftp服务器打开一个端口等待客户端来连接 FTP服务器端如果有防火墙，需要在防火墙上开21和20端口，需要使用主动模式进行连接 远程终端协议TELNET 默认使用TCP 的23端口 远程桌面RDP net user administrator all 更改用户密码 net user han all /add 添加用户 将用户添加到远程桌面组 Remote Desktop Users组 Server多用户操作系统，启用远程桌面可以都用户同时使用服务器 XP和Windows 7是单用户操作系统，不支持多用户同时登录 远程时可以将本地的硬盘资源映射到远程计算机上 万维网WWW 一个网站的标志：可以通过不同端口，不同的IP地址，不同的主机头（域名）来区分； tomcat服务器部署了多个项目，阿里云的域名解析到服务器ip，可以通过配置，让不同域名解析访问不同的项目。 http协议 web代理服务器 节省内网访问Internet的带宽 使用代理服务器连网关，DNS都不需要，只需要和代理的服务器通信就行了，所有访问Internet的工作都是代理服务器做的。 能绕过防火墙直接访问墙外的网站，这是一种正向代理 电子邮件（SMTP，POP3，IMAP） 发送协议：SMTP 接收邮件协议：POP3，IMAP 注意：
+DNS占用53号端口，同时使用TCP和UDP协议。DNS在区域传输的时候使用TCP协议，其他时候使用UDP协议。
+DNS区域传输的时候使用TCP协议：
+1.辅域名服务器会定时（一般3小时）向主域名服务器进行查询以便了解数据是否有变动。如有变动，会执行一次区域传送，进行数据同步。区域传送使用TCP而不是UDP，因为数据同步传送的数据量比一个请求应答的数据量要多得多。
+2.TCP是一种可靠连接，保证了数据的准确性。
+域名解析时使用UDP协议：
+客户端向DNS服务器查询域名，一般返回的内容都不超过512字节，用UDP传输即可。不用经过三次握手，这样DNS服务器负载更低，响应更快。理论上说，客户端也可以指定向DNS服务器查询时用TCP，但事实上，很多DNS服务器进行配置的时候，仅支持UDP查询包。" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="计网-应用层" />
+<meta property="og:description" content="域名系统DNS QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了
+域名服务器采用分布式的域名查询解析
+我个人认为这里的本机缓存指的是本机的DNS缓存，访问网站的时候是先查询本机缓存，再查询hosts配置，之后才去请求本地DNS缓存。
+动态主机配置协议DHCP 静态IP地址：手动配置
+一般固定的台式机
+动态IP地址：通过DHCP协议自动获得
+一般的移动的设备，例如wifi连接的笔记本电脑
+计算机通过广播向DHCP服务器发送广播请求，DHCP服务器从地址池里选择一个地址给计算机发过去。如果同时有多个DHCP服务器应答，计算机还要选择一个DHCP服务器发一个确认信息，然后DHCP服务器才能把所有设置给计算机。 DHCP服务器要是静态地址，一般只给本网段的计算机分配地址。 了解租期和续约 除了同网段的DHCP分配，还可以跨网段DHCP分配 对比RARP逆向地址解析协议：从功能上说，RARP只能实现简单的从MAC地址到IP地址的查询工作，RARP server上的MAC地址和IP地址是必须事先静态配置好的。但DHCP却可以实现除静态分配外的动态IP地址分配以及IP地址租期管理等等相对复杂的功能。
+文件传送协议FTP 控制连接：标准端口21，用于发送ftp命令信息 数据连接：标准端口22，用于上传下载数据 数据连接的建立类型： 主动模式：ftp客户端告诉ftp服务器使用什么端口侦听，ftp服务器和ftp客户端的这个端口建立连接 被动模式：ftp服务器打开一个端口等待客户端来连接 FTP服务器端如果有防火墙，需要在防火墙上开21和20端口，需要使用主动模式进行连接 远程终端协议TELNET 默认使用TCP 的23端口 远程桌面RDP net user administrator all 更改用户密码 net user han all /add 添加用户 将用户添加到远程桌面组 Remote Desktop Users组 Server多用户操作系统，启用远程桌面可以都用户同时使用服务器 XP和Windows 7是单用户操作系统，不支持多用户同时登录 远程时可以将本地的硬盘资源映射到远程计算机上 万维网WWW 一个网站的标志：可以通过不同端口，不同的IP地址，不同的主机头（域名）来区分； tomcat服务器部署了多个项目，阿里云的域名解析到服务器ip，可以通过配置，让不同域名解析访问不同的项目。 http协议 web代理服务器 节省内网访问Internet的带宽 使用代理服务器连网关，DNS都不需要，只需要和代理的服务器通信就行了，所有访问Internet的工作都是代理服务器做的。 能绕过防火墙直接访问墙外的网站，这是一种正向代理 电子邮件（SMTP，POP3，IMAP） 发送协议：SMTP 接收邮件协议：POP3，IMAP 注意：
+DNS占用53号端口，同时使用TCP和UDP协议。DNS在区域传输的时候使用TCP协议，其他时候使用UDP协议。
+DNS区域传输的时候使用TCP协议：
+1.辅域名服务器会定时（一般3小时）向主域名服务器进行查询以便了解数据是否有变动。如有变动，会执行一次区域传送，进行数据同步。区域传送使用TCP而不是UDP，因为数据同步传送的数据量比一个请求应答的数据量要多得多。
+2.TCP是一种可靠连接，保证了数据的准确性。
+域名解析时使用UDP协议：
+客户端向DNS服务器查询域名，一般返回的内容都不超过512字节，用UDP传输即可。不用经过三次握手，这样DNS服务器负载更低，响应更快。理论上说，客户端也可以指定向DNS服务器查询时用TCP，但事实上，很多DNS服务器进行配置的时候，仅支持UDP查询包。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-21T15:07:18+00:00" />
+<meta property="article:modified_time" content="2020-11-21T15:07:18+00:00" />
+
+  
+  <meta itemprop="name" content="计网-应用层">
+<meta itemprop="description" content="域名系统DNS QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了
+域名服务器采用分布式的域名查询解析
+我个人认为这里的本机缓存指的是本机的DNS缓存，访问网站的时候是先查询本机缓存，再查询hosts配置，之后才去请求本地DNS缓存。
+动态主机配置协议DHCP 静态IP地址：手动配置
+一般固定的台式机
+动态IP地址：通过DHCP协议自动获得
+一般的移动的设备，例如wifi连接的笔记本电脑
+计算机通过广播向DHCP服务器发送广播请求，DHCP服务器从地址池里选择一个地址给计算机发过去。如果同时有多个DHCP服务器应答，计算机还要选择一个DHCP服务器发一个确认信息，然后DHCP服务器才能把所有设置给计算机。 DHCP服务器要是静态地址，一般只给本网段的计算机分配地址。 了解租期和续约 除了同网段的DHCP分配，还可以跨网段DHCP分配 对比RARP逆向地址解析协议：从功能上说，RARP只能实现简单的从MAC地址到IP地址的查询工作，RARP server上的MAC地址和IP地址是必须事先静态配置好的。但DHCP却可以实现除静态分配外的动态IP地址分配以及IP地址租期管理等等相对复杂的功能。
+文件传送协议FTP 控制连接：标准端口21，用于发送ftp命令信息 数据连接：标准端口22，用于上传下载数据 数据连接的建立类型： 主动模式：ftp客户端告诉ftp服务器使用什么端口侦听，ftp服务器和ftp客户端的这个端口建立连接 被动模式：ftp服务器打开一个端口等待客户端来连接 FTP服务器端如果有防火墙，需要在防火墙上开21和20端口，需要使用主动模式进行连接 远程终端协议TELNET 默认使用TCP 的23端口 远程桌面RDP net user administrator all 更改用户密码 net user han all /add 添加用户 将用户添加到远程桌面组 Remote Desktop Users组 Server多用户操作系统，启用远程桌面可以都用户同时使用服务器 XP和Windows 7是单用户操作系统，不支持多用户同时登录 远程时可以将本地的硬盘资源映射到远程计算机上 万维网WWW 一个网站的标志：可以通过不同端口，不同的IP地址，不同的主机头（域名）来区分； tomcat服务器部署了多个项目，阿里云的域名解析到服务器ip，可以通过配置，让不同域名解析访问不同的项目。 http协议 web代理服务器 节省内网访问Internet的带宽 使用代理服务器连网关，DNS都不需要，只需要和代理的服务器通信就行了，所有访问Internet的工作都是代理服务器做的。 能绕过防火墙直接访问墙外的网站，这是一种正向代理 电子邮件（SMTP，POP3，IMAP） 发送协议：SMTP 接收邮件协议：POP3，IMAP 注意：
+DNS占用53号端口，同时使用TCP和UDP协议。DNS在区域传输的时候使用TCP协议，其他时候使用UDP协议。
+DNS区域传输的时候使用TCP协议：
+1.辅域名服务器会定时（一般3小时）向主域名服务器进行查询以便了解数据是否有变动。如有变动，会执行一次区域传送，进行数据同步。区域传送使用TCP而不是UDP，因为数据同步传送的数据量比一个请求应答的数据量要多得多。
+2.TCP是一种可靠连接，保证了数据的准确性。
+域名解析时使用UDP协议：
+客户端向DNS服务器查询域名，一般返回的内容都不超过512字节，用UDP传输即可。不用经过三次握手，这样DNS服务器负载更低，响应更快。理论上说，客户端也可以指定向DNS服务器查询时用TCP，但事实上，很多DNS服务器进行配置的时候，仅支持UDP查询包。"><meta itemprop="datePublished" content="2020-11-21T15:07:18+00:00" />
+<meta itemprop="dateModified" content="2020-11-21T15:07:18+00:00" />
+<meta itemprop="wordCount" content="63">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计网-应用层"/>
+<meta name="twitter:description" content="域名系统DNS QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了
+域名服务器采用分布式的域名查询解析
+我个人认为这里的本机缓存指的是本机的DNS缓存，访问网站的时候是先查询本机缓存，再查询hosts配置，之后才去请求本地DNS缓存。
+动态主机配置协议DHCP 静态IP地址：手动配置
+一般固定的台式机
+动态IP地址：通过DHCP协议自动获得
+一般的移动的设备，例如wifi连接的笔记本电脑
+计算机通过广播向DHCP服务器发送广播请求，DHCP服务器从地址池里选择一个地址给计算机发过去。如果同时有多个DHCP服务器应答，计算机还要选择一个DHCP服务器发一个确认信息，然后DHCP服务器才能把所有设置给计算机。 DHCP服务器要是静态地址，一般只给本网段的计算机分配地址。 了解租期和续约 除了同网段的DHCP分配，还可以跨网段DHCP分配 对比RARP逆向地址解析协议：从功能上说，RARP只能实现简单的从MAC地址到IP地址的查询工作，RARP server上的MAC地址和IP地址是必须事先静态配置好的。但DHCP却可以实现除静态分配外的动态IP地址分配以及IP地址租期管理等等相对复杂的功能。
+文件传送协议FTP 控制连接：标准端口21，用于发送ftp命令信息 数据连接：标准端口22，用于上传下载数据 数据连接的建立类型： 主动模式：ftp客户端告诉ftp服务器使用什么端口侦听，ftp服务器和ftp客户端的这个端口建立连接 被动模式：ftp服务器打开一个端口等待客户端来连接 FTP服务器端如果有防火墙，需要在防火墙上开21和20端口，需要使用主动模式进行连接 远程终端协议TELNET 默认使用TCP 的23端口 远程桌面RDP net user administrator all 更改用户密码 net user han all /add 添加用户 将用户添加到远程桌面组 Remote Desktop Users组 Server多用户操作系统，启用远程桌面可以都用户同时使用服务器 XP和Windows 7是单用户操作系统，不支持多用户同时登录 远程时可以将本地的硬盘资源映射到远程计算机上 万维网WWW 一个网站的标志：可以通过不同端口，不同的IP地址，不同的主机头（域名）来区分； tomcat服务器部署了多个项目，阿里云的域名解析到服务器ip，可以通过配置，让不同域名解析访问不同的项目。 http协议 web代理服务器 节省内网访问Internet的带宽 使用代理服务器连网关，DNS都不需要，只需要和代理的服务器通信就行了，所有访问Internet的工作都是代理服务器做的。 能绕过防火墙直接访问墙外的网站，这是一种正向代理 电子邮件（SMTP，POP3，IMAP） 发送协议：SMTP 接收邮件协议：POP3，IMAP 注意：
+DNS占用53号端口，同时使用TCP和UDP协议。DNS在区域传输的时候使用TCP协议，其他时候使用UDP协议。
+DNS区域传输的时候使用TCP协议：
+1.辅域名服务器会定时（一般3小时）向主域名服务器进行查询以便了解数据是否有变动。如有变动，会执行一次区域传送，进行数据同步。区域传送使用TCP而不是UDP，因为数据同步传送的数据量比一个请求应答的数据量要多得多。
+2.TCP是一种可靠连接，保证了数据的准确性。
+域名解析时使用UDP协议：
+客户端向DNS服务器查询域名，一般返回的内容都不超过512字节，用UDP传输即可。不用经过三次握手，这样DNS服务器负载更低，响应更快。理论上说，客户端也可以指定向DNS服务器查询时用TCP，但事实上，很多DNS服务器进行配置的时候，仅支持UDP查询包。"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">计网-应用层</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Nov 21, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="域名系统dns">域名系统DNS</h2>
+<ul>
+<li>
+<p>QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了</p>
+</li>
+<li>
+<p>域名服务器采用分布式的域名查询解析</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>我个人认为这里的<strong>本机缓存</strong>指的是本机的DNS缓存，访问网站的时候是先查询本机缓存，再查询<strong>hosts配置</strong>，之后才去请求<strong>本地DNS缓存</strong>。</p>
+</li>
+</ul>
+<h2 id="动态主机配置协议dhcp">动态主机配置协议DHCP</h2>
+<ul>
+<li>
+<p>静态IP地址：手动配置</p>
+<p>一般固定的台式机</p>
+</li>
+<li>
+<p>动态IP地址：通过DHCP协议自动获得</p>
+<p>一般的移动的设备，例如wifi连接的笔记本电脑</p>
+<ul>
+<li>计算机通过广播向DHCP服务器发送广播请求，DHCP服务器从地址池里选择一个地址给计算机发过去。如果同时有多个DHCP服务器应答，计算机还要选择一个DHCP服务器发一个确认信息，然后DHCP服务器才能把所有设置给计算机。</li>
+<li>DHCP服务器要是静态地址，一般只给本网段的计算机分配地址。</li>
+<li>了解租期和续约</li>
+<li>除了同网段的DHCP分配，还可以跨网段DHCP分配</li>
+</ul>
+</li>
+<li>
+<p><strong>对比RARP</strong>逆向地址解析协议：从功能上说，RARP只能实现简单的从MAC地址到IP地址的查询工作，RARP server上的MAC地址和IP地址是必须事先静态配置好的。但DHCP却可以实现除静态分配外的动态IP地址分配以及IP地址租期管理等等相对复杂的功能。</p>
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<h2 id="文件传送协议ftp">文件传送协议FTP</h2>
+<ul>
+<li>控制连接：标准端口21，用于发送ftp命令信息</li>
+<li>数据连接：标准端口22，用于上传下载数据</li>
+<li>数据连接的建立类型：
+<ul>
+<li>主动模式：ftp客户端告诉ftp服务器使用什么端口侦听，ftp服务器和ftp客户端的这个端口建立连接</li>
+<li>被动模式：ftp服务器打开一个端口等待客户端来连接</li>
+</ul>
+</li>
+<li>FTP服务器端如果有防火墙，需要在防火墙上开21和20端口，需要使用主动模式进行连接</li>
+</ul>
+<h2 id="远程终端协议telnet">远程终端协议TELNET</h2>
+<ul>
+<li>默认使用TCP 的23端口</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<h2 id="远程桌面rdp">远程桌面RDP</h2>
+<ul>
+<li>net user administrator all 更改用户密码</li>
+<li>net user han all /add 添加用户</li>
+<li>将用户添加到远程桌面组 Remote Desktop Users组</li>
+<li>Server多用户操作系统，启用远程桌面可以都用户同时使用服务器</li>
+<li>XP和Windows 7是单用户操作系统，不支持多用户同时登录</li>
+<li>远程时可以将本地的硬盘资源映射到远程计算机上</li>
+</ul>
+<h2 id="万维网www">万维网WWW</h2>
+<ul>
+<li>一个网站的标志：可以通过不同端口，不同的IP地址，不同的主机头（域名）来区分；
+<ul>
+<li>tomcat服务器部署了多个项目，阿里云的域名解析到服务器ip，可以通过配置，让不同域名解析访问不同的项目。</li>
+</ul>
+</li>
+</ul>
+<h3 id="http协议">http协议</h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="web代理服务器">web代理服务器</h3>
+<ol>
+<li>节省内网访问Internet的带宽</li>
+<li>使用代理服务器连网关，DNS都不需要，只需要和代理的服务器通信就行了，所有访问Internet的工作都是代理服务器做的。</li>
+<li>能绕过防火墙直接访问墙外的网站，这是一种正向代理</li>
+</ol>
+<h2 id="电子邮件smtppop3imap">电子邮件（SMTP，POP3，IMAP）</h2>
+<h3 id="发送协议smtp">发送协议：SMTP</h3>
+<h3 id="接收邮件协议pop3imap">接收邮件协议：POP3，IMAP</h3>
+<!-- raw HTML omitted -->
+<p><strong>注意：</strong></p>
+<p>DNS占用53号端口，同时使用TCP和UDP协议。DNS在<strong>区域传输</strong>的时候使用TCP协议，<strong>其他时候</strong>使用UDP协议。</p>
+<p><strong>DNS区域传输的时候使用TCP协议：</strong></p>
+<p>1.辅域名服务器会定时（一般3小时）向主域名服务器进行查询以便了解数据是否有变动。如有变动，会执行一次区域传送，进行数据同步。区域传送使用TCP而不是UDP，因为数据同步传送的数据量比一个请求应答的数据量要多得多。</p>
+<p>2.TCP是一种可靠连接，保证了数据的准确性。</p>
+<p><strong>域名解析时使用UDP协议：</strong></p>
+<p>客户端向DNS服务器查询域名，一般返回的内容都不超过512字节，用UDP传输即可。不用经过三次握手，这样DNS服务器负载更低，响应更快。理论上说，客户端也可以指定向DNS服务器查询时用TCP，但事实上，很多DNS服务器进行配置的时候，仅支持UDP查询包。</p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
+      ><span class="mr-1.5">←</span><span>计网-网络安全</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/"
+      ><span>计网-运输层</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

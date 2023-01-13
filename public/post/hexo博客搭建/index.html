@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>hexo博客搭建 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="注：推荐观看bilibili的up主codesheep的hexo视频教程，本博客是参考该视频
+1. 部署环境 安装nodejs:官网下载,下载完包括nodejs本身和npm包管理器
+管理员身份打开终端(推荐git bash)
+node -v和npm -v验证是否安装成功
+安装cnpm
+用npm安装cnpm的taobao源，防止丢包，提高安装成功率，用cnpm -v验证
+npm install cnpm -g --registry=https://registry.npm.taobao.org 同样也可以直接修改npm的仓库源
+npm config set registry https://registry.npm.taobao.org #查看npm仓库 npm config get registry 这里其实推荐使用nvm这个nodejs版本管理工具来安装nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash nvm --version nvm ls-remote nvm install v12.18.0 nvm ls 用 cnpm install -g hexo-cli 全局安装hexo博客框架，用hexo -v验证
+2. 初始化博客 建立一个空的文件夹，作为blog博客目录
+在blog目录下，hexo init 自动克隆博客框架到本地
+hexo s 在本地localhost:4000`端口可以预览本地的博客
+3. 写博客 hexo n &quot;blog name&quot; 生成新博文到source文件夹下，就可以愉快的写博客了 hexo clean 清理目录之后，hexo g 更新生成 4." />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="hexo博客搭建" />
+<meta property="og:description" content="注：推荐观看bilibili的up主codesheep的hexo视频教程，本博客是参考该视频
+1. 部署环境 安装nodejs:官网下载,下载完包括nodejs本身和npm包管理器
+管理员身份打开终端(推荐git bash)
+node -v和npm -v验证是否安装成功
+安装cnpm
+用npm安装cnpm的taobao源，防止丢包，提高安装成功率，用cnpm -v验证
+npm install cnpm -g --registry=https://registry.npm.taobao.org 同样也可以直接修改npm的仓库源
+npm config set registry https://registry.npm.taobao.org #查看npm仓库 npm config get registry 这里其实推荐使用nvm这个nodejs版本管理工具来安装nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash nvm --version nvm ls-remote nvm install v12.18.0 nvm ls 用 cnpm install -g hexo-cli 全局安装hexo博客框架，用hexo -v验证
+2. 初始化博客 建立一个空的文件夹，作为blog博客目录
+在blog目录下，hexo init 自动克隆博客框架到本地
+hexo s 在本地localhost:4000`端口可以预览本地的博客
+3. 写博客 hexo n &quot;blog name&quot; 生成新博文到source文件夹下，就可以愉快的写博客了 hexo clean 清理目录之后，hexo g 更新生成 4." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-03T17:40:54+00:00" />
+<meta property="article:modified_time" content="2020-03-03T17:40:54+00:00" />
+
+  
+  <meta itemprop="name" content="hexo博客搭建">
+<meta itemprop="description" content="注：推荐观看bilibili的up主codesheep的hexo视频教程，本博客是参考该视频
+1. 部署环境 安装nodejs:官网下载,下载完包括nodejs本身和npm包管理器
+管理员身份打开终端(推荐git bash)
+node -v和npm -v验证是否安装成功
+安装cnpm
+用npm安装cnpm的taobao源，防止丢包，提高安装成功率，用cnpm -v验证
+npm install cnpm -g --registry=https://registry.npm.taobao.org 同样也可以直接修改npm的仓库源
+npm config set registry https://registry.npm.taobao.org #查看npm仓库 npm config get registry 这里其实推荐使用nvm这个nodejs版本管理工具来安装nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash nvm --version nvm ls-remote nvm install v12.18.0 nvm ls 用 cnpm install -g hexo-cli 全局安装hexo博客框架，用hexo -v验证
+2. 初始化博客 建立一个空的文件夹，作为blog博客目录
+在blog目录下，hexo init 自动克隆博客框架到本地
+hexo s 在本地localhost:4000`端口可以预览本地的博客
+3. 写博客 hexo n &quot;blog name&quot; 生成新博文到source文件夹下，就可以愉快的写博客了 hexo clean 清理目录之后，hexo g 更新生成 4."><meta itemprop="datePublished" content="2020-03-03T17:40:54+00:00" />
+<meta itemprop="dateModified" content="2020-03-03T17:40:54+00:00" />
+<meta itemprop="wordCount" content="107">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="hexo博客搭建"/>
+<meta name="twitter:description" content="注：推荐观看bilibili的up主codesheep的hexo视频教程，本博客是参考该视频
+1. 部署环境 安装nodejs:官网下载,下载完包括nodejs本身和npm包管理器
+管理员身份打开终端(推荐git bash)
+node -v和npm -v验证是否安装成功
+安装cnpm
+用npm安装cnpm的taobao源，防止丢包，提高安装成功率，用cnpm -v验证
+npm install cnpm -g --registry=https://registry.npm.taobao.org 同样也可以直接修改npm的仓库源
+npm config set registry https://registry.npm.taobao.org #查看npm仓库 npm config get registry 这里其实推荐使用nvm这个nodejs版本管理工具来安装nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash nvm --version nvm ls-remote nvm install v12.18.0 nvm ls 用 cnpm install -g hexo-cli 全局安装hexo博客框架，用hexo -v验证
+2. 初始化博客 建立一个空的文件夹，作为blog博客目录
+在blog目录下，hexo init 自动克隆博客框架到本地
+hexo s 在本地localhost:4000`端口可以预览本地的博客
+3. 写博客 hexo n &quot;blog name&quot; 生成新博文到source文件夹下，就可以愉快的写博客了 hexo clean 清理目录之后，hexo g 更新生成 4."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">hexo博客搭建</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 3, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>注：推荐观看bilibili的up主codesheep的hexo视频教程，本博客是参考该视频</strong></p>
+<h2 id="1-部署环境">1. 部署环境</h2>
+<ul>
+<li>
+<p><strong>安装nodejs:</strong><a href="http://nodejs.cn/">官网下载</a>,下载完包括nodejs本身和npm包管理器</p>
+</li>
+<li>
+<p>管理员身份<strong>打开终端</strong>(推荐git bash)</p>
+<p><code>node -v</code>和<code>npm -v</code>验证是否安装成功</p>
+</li>
+<li>
+<p>安装cnpm</p>
+<p>用npm安装cnpm的taobao源，防止丢包，提高安装成功率，用<code>cnpm -v</code>验证</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install cnpm -g --registry<span style="color:#f92672">=</span>https://registry.npm.taobao.org
+</span></span></code></pre></div><p>同样也可以直接修改npm的仓库源</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm config set registry https://registry.npm.taobao.org
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#查看npm仓库</span>
+</span></span><span style="display:flex;"><span>npm config get registry
+</span></span></code></pre></div></li>
+<li>
+<p>这里其实推荐使用nvm这个nodejs版本管理工具来安装nodejs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+</span></span><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nvm --version
+</span></span><span style="display:flex;"><span>nvm ls-remote
+</span></span><span style="display:flex;"><span>nvm install v12.18.0
+</span></span><span style="display:flex;"><span>nvm ls
+</span></span></code></pre></div></li>
+<li>
+<p>用 <code>cnpm install -g hexo-cli</code> 全局安装hexo博客框架，用<code>hexo -v</code>验证</p>
+</li>
+</ul>
+<h2 id="2-初始化博客">2. 初始化博客</h2>
+<ul>
+<li>
+<p>建立一个空的文件夹，作为blog博客目录</p>
+</li>
+<li>
+<p>在blog目录下，<code>hexo init</code> 自动克隆博客框架到本地</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img349QHS.png" alt=""></p>
+</li>
+<li>
+<p>hexo s<code> 在本地</code>localhost:4000`端口可以预览本地的博客</p>
+</li>
+</ul>
+<h2 id="3-写博客">3. 写博客</h2>
+<ul>
+<li><code>hexo n &quot;blog name&quot;</code> 生成新博文到source文件夹下，就可以愉快的写博客了</li>
+<li><code>hexo clean</code> 清理目录之后，<code>hexo g</code> 更新生成</li>
+</ul>
+<h2 id="4-部署博客到github免费推荐">4. 部署博客到GitHub(免费，推荐)</h2>
+<ul>
+<li>
+<p>为了远程访问，需要将博客部署到远程仓库，方式有多种，这里推荐github，因为免费</p>
+</li>
+<li>
+<p>github中新建仓库，仓库名设置为    <code>你的github用户名.github.io</code></p>
+</li>
+<li>
+<p>在本地blog根目录安装git部署插件：<code>cnpm install --save hexo-deployer-git</code></p>
+</li>
+<li>
+<p>设置<code>_config.yml</code>文件，在文件最底部添加自己的Github仓库地址</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img34FTdf.png" alt=""></p>
+</li>
+<li>
+<pre tabindex="0"><code>hexo clean 
+hexo g
+hexo d     按照提示输入github密码完成远程部署
+</code></pre></li>
+<li>
+<p>通过<code>你的github用户名.github.io</code> 远程访问自己的博客，完美打开</p>
+</li>
+</ul>
+<h2 id="5-后续自定义美化博客">5. 后续自定义美化博客</h2>
+<ul>
+<li>
+<p><strong>主题选择</strong></p>
+<p>可以访问<a href="https://hexo.io/themes/">hexo官方网站</a>，选择自己喜欢的主题</p>
+</li>
+<li>
+<p>克隆主题到本地themes目录下：</p>
+<p><code>git clone https://github.com/XXXX/XXX.git themes/XXX </code></p>
+</li>
+<li>
+<p>在<code>_config.yml</code> 中修改主题为XXX</p>
+</li>
+<li>
+<p>最后在主题文件夹里面的配置文件里面实现自定义功能和美化</p>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/"
+      ><span class="mr-1.5">←</span><span>Windows包管理器scoop</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/makefile%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
+      ><span>makefile基础语法</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

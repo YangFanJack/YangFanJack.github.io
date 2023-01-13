@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>linux的文件系统管理 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
+挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
+mkdir /mnt/cdrom/：建立挂载点
+mount -t iso9660 /dev/cdrom /mnt/cdrom/或者mount /dev/sr0 /mnt/cdrom：挂载
+cd /mnt/cdrom/：去挂载点访问
+umount 设备文件名或挂载点：在拿走光盘之前需要先卸载光盘
+挂载U盘步骤：（U盘的设备文件名是自动识别的，用fdisk -l查看）
+mkdir /mnt/usb/：建立挂载点
+mount -t vfat /dev/sdb1 /mnt/usb/：挂载
+cd /mnt/usb/：去挂载点访问
+umount 设备文件名或挂载点：在拔U盘之前需要先卸载光盘
+注意：挂载U盘只能用本机或者虚拟机，不能用远程工具
+​	Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的
+Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="linux的文件系统管理" />
+<meta property="og:description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
+挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
+mkdir /mnt/cdrom/：建立挂载点
+mount -t iso9660 /dev/cdrom /mnt/cdrom/或者mount /dev/sr0 /mnt/cdrom：挂载
+cd /mnt/cdrom/：去挂载点访问
+umount 设备文件名或挂载点：在拿走光盘之前需要先卸载光盘
+挂载U盘步骤：（U盘的设备文件名是自动识别的，用fdisk -l查看）
+mkdir /mnt/usb/：建立挂载点
+mount -t vfat /dev/sdb1 /mnt/usb/：挂载
+cd /mnt/usb/：去挂载点访问
+umount 设备文件名或挂载点：在拔U盘之前需要先卸载光盘
+注意：挂载U盘只能用本机或者虚拟机，不能用远程工具
+​	Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的
+Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-06T20:30:32+00:00" />
+<meta property="article:modified_time" content="2020-03-06T20:30:32+00:00" />
+
+  
+  <meta itemprop="name" content="linux的文件系统管理">
+<meta itemprop="description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
+挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
+mkdir /mnt/cdrom/：建立挂载点
+mount -t iso9660 /dev/cdrom /mnt/cdrom/或者mount /dev/sr0 /mnt/cdrom：挂载
+cd /mnt/cdrom/：去挂载点访问
+umount 设备文件名或挂载点：在拿走光盘之前需要先卸载光盘
+挂载U盘步骤：（U盘的设备文件名是自动识别的，用fdisk -l查看）
+mkdir /mnt/usb/：建立挂载点
+mount -t vfat /dev/sdb1 /mnt/usb/：挂载
+cd /mnt/usb/：去挂载点访问
+umount 设备文件名或挂载点：在拔U盘之前需要先卸载光盘
+注意：挂载U盘只能用本机或者虚拟机，不能用远程工具
+​	Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的
+Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。"><meta itemprop="datePublished" content="2020-03-06T20:30:32+00:00" />
+<meta itemprop="dateModified" content="2020-03-06T20:30:32+00:00" />
+<meta itemprop="wordCount" content="125">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux的文件系统管理"/>
+<meta name="twitter:description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
+挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
+mkdir /mnt/cdrom/：建立挂载点
+mount -t iso9660 /dev/cdrom /mnt/cdrom/或者mount /dev/sr0 /mnt/cdrom：挂载
+cd /mnt/cdrom/：去挂载点访问
+umount 设备文件名或挂载点：在拿走光盘之前需要先卸载光盘
+挂载U盘步骤：（U盘的设备文件名是自动识别的，用fdisk -l查看）
+mkdir /mnt/usb/：建立挂载点
+mount -t vfat /dev/sdb1 /mnt/usb/：挂载
+cd /mnt/usb/：去挂载点访问
+umount 设备文件名或挂载点：在拔U盘之前需要先卸载光盘
+注意：挂载U盘只能用本机或者虚拟机，不能用远程工具
+​	Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的
+Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">linux的文件系统管理</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 6, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h1 id="分区和系统文件">分区和系统文件</h1>
+<ul>
+<li>对于硬盘分区形式是<strong>MBR</strong>的，主分区+扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区</li>
+<li>对于<strong>GPT</strong>分区形式而言，没有上述限制</li>
+<li>Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。</li>
+<li>格式化的目的就是写入文件系统</li>
+</ul>
+<h1 id="文件系统常用命令">文件系统常用命令</h1>
+<h2 id="df命令du命令fsck命令dumpe2fs命令">df命令，du命令，fsck命令，dumpe2fs命令</h2>
+<ul>
+<li><code>df -a -h</code>：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小)</li>
+<li><code>du -a -h -s</code>：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小)</li>
+<li>**df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间）</li>
+<li><code>fsck -a -y 分区设备文件名</code>：文件系统修复命令，不需要自己手动执行</li>
+<li><code>dumpe2fs 分区设备文件名</code>：显示ext2、ext3、ext4文件系统的超级块和块组信息</li>
+</ul>
+<h2 id="挂载命令">挂载命令</h2>
+<ul>
+<li>将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配</li>
+<li><code>mount -l</code>：查询异已挂载的设备，加-l会显示卷标名</li>
+<li><code>mount -a</code>：依据配置文件<code>/etc/fstab</code>中的内容，自动挂载</li>
+<li><code>mount [-t 文件系统]  [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点</code></li>
+</ul>
+<h2 id="挂载光盘和u盘">挂载光盘和U盘</h2>
+<ul>
+<li>
+<p>Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载</p>
+</li>
+<li>
+<p><strong>挂载光盘步骤：</strong>（sr0和cdrom都可以作为设备文件名）</p>
+<p><code>mkdir /mnt/cdrom/</code>：建立挂载点</p>
+<p><code>mount -t iso9660 /dev/cdrom /mnt/cdrom/</code>或者<code>mount /dev/sr0 /mnt/cdrom</code>：挂载</p>
+<p><code>cd /mnt/cdrom/</code>：去挂载点访问</p>
+<p><code>umount 设备文件名或挂载点</code>：在拿走光盘之前需要先卸载光盘</p>
+</li>
+<li>
+<p><strong>挂载U盘步骤：</strong>（U盘的设备文件名是自动识别的，用<code>fdisk -l</code>查看）</p>
+<p><code>mkdir /mnt/usb/</code>：建立挂载点</p>
+<p><code>mount -t vfat /dev/sdb1 /mnt/usb/</code>：挂载</p>
+<p><code>cd /mnt/usb/</code>：去挂载点访问</p>
+<p><code>umount 设备文件名或挂载点</code>：在拔U盘之前需要先卸载光盘</p>
+<p><strong>注意：挂载U盘只能用本机或者虚拟机，不能用远程工具</strong></p>
+<p>​			<strong>Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的</strong></p>
+</li>
+</ul>
+<h2 id="linux如何支持ntfs文件系统">Linux如何支持NTFS文件系统</h2>
+<ul>
+<li>
+<p>Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。</p>
+</li>
+<li>
+<p>几种让Linux支持NTFS文件系统的方法：</p>
+<ul>
+<li>内核重新编译</li>
+<li>第三方的插件：<a href="http://www.tuxera.com/community/ntfs-3g-download/">ntfd-3g</a></li>
+</ul>
+</li>
+<li>
+<p>内核编译太麻烦，太高端，一般选择“ntfd-3g插件”来实现</p>
+</li>
+<li>
+<p>安装步骤：</p>
+<p><code>tar -zxvf ntfs-3g_ntfsprogs-2013.1.13.tgz</code>：解压</p>
+<p><code>cd ntfs-3g_ntfsprogs-2013.1.13</code>：进入解压目录`</p>
+<p><code>./configure：</code>编译前准备</p>
+<p><code>make</code>：编译</p>
+<p><code>make install</code>：编译安装</p>
+<p><code>mount -t ntfs-3g 设备文件名 挂载点</code>：挂载NTFS分区的硬盘</p>
+</li>
+</ul>
+<h1 id="fdisk分区">fdisk分区</h1>
+<h2 id="fdisk命令分区过程">fdisk命令分区过程</h2>
+<ul>
+<li>
+<p>虚拟机添加新硬盘，并用<code>fdisk -l</code>查询新硬盘是否被识别</p>
+</li>
+<li>
+<p>若已识别新硬盘/dev/sdb/，就开始为新硬盘分区，<code>fdisk /dev/sdb/</code>进入fdisk交互模式</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>partprobe：分完区后必须执行这个命令，重新读取分区表信息</p>
+</li>
+<li>
+<p>然后格式化分区：<code>mkfs -t ext4 /dev/sdb1</code>   <code>mkfs -t ext4 /dev/sdb5 </code></p>
+</li>
+<li>
+<p>最后创建挂载点并挂载：<code>mkdir /disk1</code>     <code>mount /dev/sdb1 /disk1/</code>   <code>mkdir /disk5     </code> <code>mount /dev/sdb1 /disk5/</code></p>
+</li>
+<li>
+<p>fdisk -l：查看，两个分区挂载完毕</p>
+</li>
+</ul>
+<h2 id="分区自动挂载和etcfstab文件修复">分区自动挂载和/etc/fstab文件修复</h2>
+<ul>
+<li>
+<p>上面的mount命令挂载只能临时生效，每次重启都要手动挂载硬盘，要想永久生效，就要修改/etc/fstab配置文件的内容。</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>添加了挂载信息后，执行mount -a，依据配置文件<code>/etc/fstab</code>中的内容，自动挂载</p>
+</li>
+<li>
+<p>万一<code>/etc/fstab</code>文件写错了，会导致系统崩溃</p>
+</li>
+<li>
+<p><strong>/etc/fstab文件修复</strong>：出错后按提示进入root操作界面，发现<code>/etc/fstab</code>文件是只读，执行<code>mount -o remount,rw /</code>，就可以修改<code>/etc/fstab</code>文件了，就可以修复了。</p>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/shell%E5%9F%BA%E7%A1%80/"
+      ><span class="mr-1.5">←</span><span>shell基础</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/"
+      ><span>linux权限管理</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>linux系统简介和安装 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="UNIX和Linux发展史 ​	1965年，贝尔实验室：MULTICS计划
+​	69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统
+​	62年，美国军方：ARPA：阿帕网，NCP协议——》TCP/IP协议
+​	71年，可汤普森和丹尼斯里奇发明C语言，重写UNIX
+​	UNIX主要发行版本：AIX(IBM)、HP-UX(HP)、Solaris(Sun)、Linux(Intel,AMD&hellip;&hellip;)、BSD
+​	1991年，芬兰大学生Linus Torvalds开发linux内核。大学教授开发minix，但是不接受外来代码，所以李纳斯独自开发，由社区共同维护。
+​	Linux内核版本号：主版本.次版本.末版本 linux内核官网
+​	Linux发行版本：两大派系redhat和debian
+开源软件简介 ​	商业软件和开源软件（开源≠免费）
+​	开源软件：apache、NGINX、MySQL、php、mongoDB、python、Ruby、Perl、Go、Rust、Swift、Java
+​	开源软件的特点：使用自由（绝大多数免费）、研究自由（源代码）、散步和改良的自由
+​	支撑互联网的开源技术（LAMP）：Linux，Apache，MySQL，PHP
+Linux应用领域 基于Linux的企业服务器
+踩点网站：发数据包根据相应嗅探服务器
+世界前500服务器
+嵌入式应用
+手机，平板：Android底层是Linux
+智能家电，航空系统，银行系统&hellip;&hellip;
+在电影娱乐业
+特效，图形处理渲染
+Linux学习方法 ​	Linux只考虑应用性和稳定性
+​	善于观察提示信息，查找文档，自己解决问题
+​	学习英文：Command not found和No Such file or directory
+​	忘掉Windows的操作习惯
+​	计划，专注，坚持，练习
+Linux系统安装 VMware虚拟机安装 ​	VMware官网下载，不推荐安装双系统
+​	特点：
+不需要分区就能在物理机上使用两种以上的操作系统
+物理机和虚拟机能实现网络通信
+可以设定并随时修改虚拟机操作系统的硬件环境
+要求：
+CPU：主频1GHz以上
+内存：1GB以上
+硬盘：8GB以上
+镜像下载：
+官网下载:几个版本：DVD版本，Everything版本，minimal版本，LiveGnome版本，KdeLive版本，livecd版本，NetInstall版本
+系统分区 ​	主分区：最多只能有4个" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="linux系统简介和安装" />
+<meta property="og:description" content="UNIX和Linux发展史 ​	1965年，贝尔实验室：MULTICS计划
+​	69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统
+​	62年，美国军方：ARPA：阿帕网，NCP协议——》TCP/IP协议
+​	71年，可汤普森和丹尼斯里奇发明C语言，重写UNIX
+​	UNIX主要发行版本：AIX(IBM)、HP-UX(HP)、Solaris(Sun)、Linux(Intel,AMD&hellip;&hellip;)、BSD
+​	1991年，芬兰大学生Linus Torvalds开发linux内核。大学教授开发minix，但是不接受外来代码，所以李纳斯独自开发，由社区共同维护。
+​	Linux内核版本号：主版本.次版本.末版本 linux内核官网
+​	Linux发行版本：两大派系redhat和debian
+开源软件简介 ​	商业软件和开源软件（开源≠免费）
+​	开源软件：apache、NGINX、MySQL、php、mongoDB、python、Ruby、Perl、Go、Rust、Swift、Java
+​	开源软件的特点：使用自由（绝大多数免费）、研究自由（源代码）、散步和改良的自由
+​	支撑互联网的开源技术（LAMP）：Linux，Apache，MySQL，PHP
+Linux应用领域 基于Linux的企业服务器
+踩点网站：发数据包根据相应嗅探服务器
+世界前500服务器
+嵌入式应用
+手机，平板：Android底层是Linux
+智能家电，航空系统，银行系统&hellip;&hellip;
+在电影娱乐业
+特效，图形处理渲染
+Linux学习方法 ​	Linux只考虑应用性和稳定性
+​	善于观察提示信息，查找文档，自己解决问题
+​	学习英文：Command not found和No Such file or directory
+​	忘掉Windows的操作习惯
+​	计划，专注，坚持，练习
+Linux系统安装 VMware虚拟机安装 ​	VMware官网下载，不推荐安装双系统
+​	特点：
+不需要分区就能在物理机上使用两种以上的操作系统
+物理机和虚拟机能实现网络通信
+可以设定并随时修改虚拟机操作系统的硬件环境
+要求：
+CPU：主频1GHz以上
+内存：1GB以上
+硬盘：8GB以上
+镜像下载：
+官网下载:几个版本：DVD版本，Everything版本，minimal版本，LiveGnome版本，KdeLive版本，livecd版本，NetInstall版本
+系统分区 ​	主分区：最多只能有4个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-04T10:41:10+00:00" />
+<meta property="article:modified_time" content="2020-03-04T10:41:10+00:00" />
+
+  
+  <meta itemprop="name" content="linux系统简介和安装">
+<meta itemprop="description" content="UNIX和Linux发展史 ​	1965年，贝尔实验室：MULTICS计划
+​	69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统
+​	62年，美国军方：ARPA：阿帕网，NCP协议——》TCP/IP协议
+​	71年，可汤普森和丹尼斯里奇发明C语言，重写UNIX
+​	UNIX主要发行版本：AIX(IBM)、HP-UX(HP)、Solaris(Sun)、Linux(Intel,AMD&hellip;&hellip;)、BSD
+​	1991年，芬兰大学生Linus Torvalds开发linux内核。大学教授开发minix，但是不接受外来代码，所以李纳斯独自开发，由社区共同维护。
+​	Linux内核版本号：主版本.次版本.末版本 linux内核官网
+​	Linux发行版本：两大派系redhat和debian
+开源软件简介 ​	商业软件和开源软件（开源≠免费）
+​	开源软件：apache、NGINX、MySQL、php、mongoDB、python、Ruby、Perl、Go、Rust、Swift、Java
+​	开源软件的特点：使用自由（绝大多数免费）、研究自由（源代码）、散步和改良的自由
+​	支撑互联网的开源技术（LAMP）：Linux，Apache，MySQL，PHP
+Linux应用领域 基于Linux的企业服务器
+踩点网站：发数据包根据相应嗅探服务器
+世界前500服务器
+嵌入式应用
+手机，平板：Android底层是Linux
+智能家电，航空系统，银行系统&hellip;&hellip;
+在电影娱乐业
+特效，图形处理渲染
+Linux学习方法 ​	Linux只考虑应用性和稳定性
+​	善于观察提示信息，查找文档，自己解决问题
+​	学习英文：Command not found和No Such file or directory
+​	忘掉Windows的操作习惯
+​	计划，专注，坚持，练习
+Linux系统安装 VMware虚拟机安装 ​	VMware官网下载，不推荐安装双系统
+​	特点：
+不需要分区就能在物理机上使用两种以上的操作系统
+物理机和虚拟机能实现网络通信
+可以设定并随时修改虚拟机操作系统的硬件环境
+要求：
+CPU：主频1GHz以上
+内存：1GB以上
+硬盘：8GB以上
+镜像下载：
+官网下载:几个版本：DVD版本，Everything版本，minimal版本，LiveGnome版本，KdeLive版本，livecd版本，NetInstall版本
+系统分区 ​	主分区：最多只能有4个"><meta itemprop="datePublished" content="2020-03-04T10:41:10+00:00" />
+<meta itemprop="dateModified" content="2020-03-04T10:41:10+00:00" />
+<meta itemprop="wordCount" content="131">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux系统简介和安装"/>
+<meta name="twitter:description" content="UNIX和Linux发展史 ​	1965年，贝尔实验室：MULTICS计划
+​	69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统
+​	62年，美国军方：ARPA：阿帕网，NCP协议——》TCP/IP协议
+​	71年，可汤普森和丹尼斯里奇发明C语言，重写UNIX
+​	UNIX主要发行版本：AIX(IBM)、HP-UX(HP)、Solaris(Sun)、Linux(Intel,AMD&hellip;&hellip;)、BSD
+​	1991年，芬兰大学生Linus Torvalds开发linux内核。大学教授开发minix，但是不接受外来代码，所以李纳斯独自开发，由社区共同维护。
+​	Linux内核版本号：主版本.次版本.末版本 linux内核官网
+​	Linux发行版本：两大派系redhat和debian
+开源软件简介 ​	商业软件和开源软件（开源≠免费）
+​	开源软件：apache、NGINX、MySQL、php、mongoDB、python、Ruby、Perl、Go、Rust、Swift、Java
+​	开源软件的特点：使用自由（绝大多数免费）、研究自由（源代码）、散步和改良的自由
+​	支撑互联网的开源技术（LAMP）：Linux，Apache，MySQL，PHP
+Linux应用领域 基于Linux的企业服务器
+踩点网站：发数据包根据相应嗅探服务器
+世界前500服务器
+嵌入式应用
+手机，平板：Android底层是Linux
+智能家电，航空系统，银行系统&hellip;&hellip;
+在电影娱乐业
+特效，图形处理渲染
+Linux学习方法 ​	Linux只考虑应用性和稳定性
+​	善于观察提示信息，查找文档，自己解决问题
+​	学习英文：Command not found和No Such file or directory
+​	忘掉Windows的操作习惯
+​	计划，专注，坚持，练习
+Linux系统安装 VMware虚拟机安装 ​	VMware官网下载，不推荐安装双系统
+​	特点：
+不需要分区就能在物理机上使用两种以上的操作系统
+物理机和虚拟机能实现网络通信
+可以设定并随时修改虚拟机操作系统的硬件环境
+要求：
+CPU：主频1GHz以上
+内存：1GB以上
+硬盘：8GB以上
+镜像下载：
+官网下载:几个版本：DVD版本，Everything版本，minimal版本，LiveGnome版本，KdeLive版本，livecd版本，NetInstall版本
+系统分区 ​	主分区：最多只能有4个"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">linux系统简介和安装</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 4, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="unix和linux发展史">UNIX和Linux发展史</h2>
+<p>​		1965年，贝尔实验室：MULTICS计划</p>
+<p>​		69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统</p>
+<p>​		62年，美国军方：ARPA：阿帕网，NCP协议——》TCP/IP协议</p>
+<p>​		71年，可汤普森和丹尼斯里奇发明C语言，重写UNIX</p>
+<p>​		UNIX主要发行版本：AIX(IBM)、HP-UX(HP)、Solaris(Sun)、Linux(Intel,AMD&hellip;&hellip;)、BSD</p>
+<p>​		1991年，芬兰大学生Linus Torvalds开发linux内核。大学教授开发minix，但是不接受外来代码，所以李纳斯独自开发，由社区共同维护。</p>
+<p>​		Linux内核版本号：主版本.次版本.末版本     <a href="www.kernel.org">linux内核官网</a></p>
+<p>​		Linux发行版本：两大派系redhat和debian</p>
+<h2 id="开源软件简介">开源软件简介</h2>
+<p>​		商业软件和开源软件（开源≠免费）</p>
+<p>​		开源软件：apache、NGINX、MySQL、php、mongoDB、python、Ruby、Perl、Go、Rust、Swift、Java</p>
+<p>​		开源软件的特点：使用自由（绝大多数免费）、研究自由（源代码）、散步和改良的自由</p>
+<p>​		支撑互联网的开源技术（LAMP）：Linux，Apache，MySQL，PHP</p>
+<h2 id="linux应用领域">Linux应用领域</h2>
+<ol>
+<li>
+<p>基于Linux的企业服务器</p>
+<p><a href="www.netcraft.com">踩点网站</a>：发数据包根据相应嗅探服务器</p>
+<p><a href="www.top500.org">世界前500服务器</a></p>
+</li>
+<li>
+<p>嵌入式应用</p>
+<p>手机，平板：Android底层是Linux</p>
+<p>智能家电，航空系统，银行系统&hellip;&hellip;</p>
+</li>
+<li>
+<p>在电影娱乐业</p>
+<p>特效，图形处理渲染</p>
+</li>
+</ol>
+<h2 id="linux学习方法">Linux学习方法</h2>
+<p>​		Linux只考虑应用性和稳定性</p>
+<p>​		善于观察提示信息，查找文档，自己解决问题</p>
+<p>​		学习英文：Command not found和No Such file or directory</p>
+<p>​		忘掉Windows的操作习惯</p>
+<p>​		计划，专注，坚持，练习</p>
+<h1 id="linux系统安装">Linux系统安装</h1>
+<h2 id="vmware虚拟机安装">VMware虚拟机安装</h2>
+<p>​		<a href="www.vmware.com">VMware官网</a>下载，不推荐安装双系统</p>
+<p>​		特点：</p>
+<ol>
+<li>
+<p>不需要分区就能在物理机上使用两种以上的操作系统</p>
+</li>
+<li>
+<p>物理机和虚拟机能实现网络通信</p>
+</li>
+<li>
+<p>可以设定并随时修改虚拟机操作系统的硬件环境</p>
+<p>要求：</p>
+</li>
+<li>
+<p>CPU：主频1GHz以上</p>
+</li>
+<li>
+<p>内存：1GB以上</p>
+</li>
+<li>
+<p>硬盘：8GB以上</p>
+<p>镜像下载：</p>
+<p><a href="https://www.centos.org/download/mirrors/">官网下载</a>:几个版本：DVD版本，Everything版本，minimal版本，LiveGnome版本，KdeLive版本，livecd版本，NetInstall版本</p>
+</li>
+</ol>
+<h2 id="系统分区">系统分区</h2>
+<p>​		<strong>主分区</strong>：最多只能有4个</p>
+<p>​		<strong>扩展分区</strong>：最多只能有一个；主分区加扩展分区最多有4个；不能写入数据，只能包含逻辑分区</p>
+<p>​		<strong>逻辑分区</strong>：可以和主分区一样正确的写入数据和格式化</p>
+<p>​		**注意：**这套视频录制时间较为久远，当时的硬盘分区形式是MBR的，所以上述的分区限制也只					是针对MBR分区形式，对于GPT分区形式而言，则没有上述限制了。</p>
+<p>​		电脑根据主板的不同（BOIS或者UEFI），会决定硬盘选择MBR分区方案还是GPT分区方案：</p>
+<ol>
+<li>
+<p><strong>BIOS + MBR</strong></p>
+</li>
+<li>
+<p><strong>UEFI + GPT</strong></p>
+<p>两者区别：</p>
+<ol>
+<li>
+<p>也就是说，电脑使用传统BIOS主板，建议使用MBR分区方案；电脑使用UEFI主板，建议使用GPT分区方案</p>
+</li>
+<li>
+<p>MBR分区表最多只能识别2TB左右的空间，大于2TB的容量将无法识别从而导致硬盘空间浪费；GPT分区表则能够识别2TB以上的硬盘空间。</p>
+</li>
+<li>
+<p>MBR分区表最多只能支持4个主分区或三个主分区+1个扩展分区(逻辑分区不限制)；GPT分区表在Windows系统下可以支持128个主分区。</p>
+</li>
+<li>
+<p>在MBR中，分区表的大小是固定的；在GPT分区表头中可自定义分区数量的最大值，也就是说GPT分区表的大小不是固定的。</p>
+</li>
+</ol>
+<p><strong>硬盘分区的作用：</strong> 把一块大硬盘分成几块</p>
+<p><strong>格式化的作用：</strong> 写入文件系统（1.把硬盘分成一个个等大小的数据块   同时2.建立一个inode列表）</p>
+<p>Linux中的<strong>所有硬件都是文件</strong>：</p>
+<p>硬盘文件名：</p>
+<ol>
+<li>IDE硬盘：/dev/hd[a-d]</li>
+<li>SCSI/SATA/USB硬盘：/dev/sd[a-p]</li>
+<li>光驱：/dev/cdrom或/dev/sr0</li>
+<li>鼠标：/dev/mouse</li>
+</ol>
+<p>分区文件名：</p>
+<ol>
+<li>/dev/hda[数字]:</li>
+<li>/dev/sda[数字]</li>
+</ol>
+<p><strong>挂载：</strong> 给分区分配挂载点</p>
+<ol>
+<li>/根分区</li>
+<li>swap交换分区（内存两倍，最大不超多2GB）</li>
+<li>/boot启动分区（200MB足够）</li>
+</ol>
+<p>总结：</p>
+<ol>
+<li>分区：把大硬盘分为小的分区</li>
+<li>格式化：写入文件系统，同时会清空数据</li>
+<li>分区设备文件名：给每个分区定义设备文件名</li>
+<li>挂在：给每个分区分配挂载点，这个挂在点必须是空目录</li>
+</ol>
+</li>
+</ol>
+<h2 id="linux系统安装-1">Linux系统安装</h2>
+<p>​		把镜像加进去，点击启动，然后用图形界面配置分区和其他的自定义选项，确定定义root用户的密码和普通用户的账号和密码。然后等待安装完成即可。</p>
+<h2 id="远程登陆管理工具">远程登陆管理工具</h2>
+<p>​		三种网络连接方式：</p>
+<ol>
+<li>
+<p>桥接模式：虚拟机使用物理网卡</p>
+</li>
+<li>
+<p>NAT模式：虚拟机使用vmnet8虚拟网卡</p>
+</li>
+<li>
+<p>Host-only模式：虚拟机使用vmnet1虚拟网卡，并且只能和本机通信</p>
+<p>临时配置ip：<code>ifconfig ens33 192.168.XXX.XXX</code></p>
+<p>永久配置ip：<code>vim /etc/sysconfig/network-scripts/ifcfg-ens33</code> 修改，<a href="https://blog.csdn.net/weixin_44687427/article/details/88225478">见教程</a></p>
+</li>
+</ol>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+      ><span class="mr-1.5">←</span><span>linux常用命令</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/"
+      ><span>Windows包管理器scoop</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>linux系统管理 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="进程管理的作用：（下面优先级由高到低）
+判断服务器的健康状态 查看系统中的所有进程 杀死进程 进程查看 ps aux：查看系统中所有进程，查看BSD操作系统格式
+ps -le：查看系统中所有进程，Linux格式
+输出格式的作用：
+top（每3秒更新一次）
+-d 秒数：默认每3秒更新一次，可指定
+？或h：显示交互模式的帮助
+P：以CPU使用率排序
+M：以内存使用率排序
+N：以PID排序
+q：退出top
+top命令的显示：
+pstree：查看进程树
+进程终止 kill
+-l：查看kill支持的信号
+-1 PID：重启进程
+-9 PID：终止进程
+killall 进程名：按照进程名杀死，选项和kill通用
+-i：有询问
+-I：忽略进程名的大小写
+pkill 进程名：按照进程名杀死，选项和kill通用
+也可以加t选项跟终端号：pkill -t 终端号：按照终端号踢出用户，用 w 命令查询系统中登录的用户，然后用终端号来踢
+工作管理 把进程放入后台 命令后面加&amp;：后台继续运行 在命令执行过程中，按下ctrl&#43;z快捷键：放入后台即暂停 查看后台的工作：jobs -l：加l会显示工作号 bg %工作号：恢复后台暂停的工作恢复到后台运行，但是不能恢复和前台有交互的命令比如top命令和vim命令 fg %工作号：恢复后台暂停的工作恢复到前台运行 注意：工作号≠PID 系统资源查看 vmstat 刷新延时(s) 刷新次数：监视系统资源使用情况，和top内容差不多，但更简洁
+dmesg：开机时内核检测，一般结合grep使用
+free：查看内存使用情况
+-b：以字节为单位显示
+-k：以KB为单位显示（默认就是）
+-m：以MB为单位显示
+-g：以GB为单位显示
+查看CPU信息：
+cat /proc/cupinfo:每次开机都会更新 dmesg | grep CPU uptime：实际就是top命令第一行 uname：查看系统与内核相关信息
+-a：查看系统所有相关信息
+-r：查看内核版本" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="linux系统管理" />
+<meta property="og:description" content="进程管理的作用：（下面优先级由高到低）
+判断服务器的健康状态 查看系统中的所有进程 杀死进程 进程查看 ps aux：查看系统中所有进程，查看BSD操作系统格式
+ps -le：查看系统中所有进程，Linux格式
+输出格式的作用：
+top（每3秒更新一次）
+-d 秒数：默认每3秒更新一次，可指定
+？或h：显示交互模式的帮助
+P：以CPU使用率排序
+M：以内存使用率排序
+N：以PID排序
+q：退出top
+top命令的显示：
+pstree：查看进程树
+进程终止 kill
+-l：查看kill支持的信号
+-1 PID：重启进程
+-9 PID：终止进程
+killall 进程名：按照进程名杀死，选项和kill通用
+-i：有询问
+-I：忽略进程名的大小写
+pkill 进程名：按照进程名杀死，选项和kill通用
+也可以加t选项跟终端号：pkill -t 终端号：按照终端号踢出用户，用 w 命令查询系统中登录的用户，然后用终端号来踢
+工作管理 把进程放入后台 命令后面加&amp;：后台继续运行 在命令执行过程中，按下ctrl&#43;z快捷键：放入后台即暂停 查看后台的工作：jobs -l：加l会显示工作号 bg %工作号：恢复后台暂停的工作恢复到后台运行，但是不能恢复和前台有交互的命令比如top命令和vim命令 fg %工作号：恢复后台暂停的工作恢复到前台运行 注意：工作号≠PID 系统资源查看 vmstat 刷新延时(s) 刷新次数：监视系统资源使用情况，和top内容差不多，但更简洁
+dmesg：开机时内核检测，一般结合grep使用
+free：查看内存使用情况
+-b：以字节为单位显示
+-k：以KB为单位显示（默认就是）
+-m：以MB为单位显示
+-g：以GB为单位显示
+查看CPU信息：
+cat /proc/cupinfo:每次开机都会更新 dmesg | grep CPU uptime：实际就是top命令第一行 uname：查看系统与内核相关信息
+-a：查看系统所有相关信息
+-r：查看内核版本" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-10T21:21:48+00:00" />
+<meta property="article:modified_time" content="2020-03-10T21:21:48+00:00" />
+
+  
+  <meta itemprop="name" content="linux系统管理">
+<meta itemprop="description" content="进程管理的作用：（下面优先级由高到低）
+判断服务器的健康状态 查看系统中的所有进程 杀死进程 进程查看 ps aux：查看系统中所有进程，查看BSD操作系统格式
+ps -le：查看系统中所有进程，Linux格式
+输出格式的作用：
+top（每3秒更新一次）
+-d 秒数：默认每3秒更新一次，可指定
+？或h：显示交互模式的帮助
+P：以CPU使用率排序
+M：以内存使用率排序
+N：以PID排序
+q：退出top
+top命令的显示：
+pstree：查看进程树
+进程终止 kill
+-l：查看kill支持的信号
+-1 PID：重启进程
+-9 PID：终止进程
+killall 进程名：按照进程名杀死，选项和kill通用
+-i：有询问
+-I：忽略进程名的大小写
+pkill 进程名：按照进程名杀死，选项和kill通用
+也可以加t选项跟终端号：pkill -t 终端号：按照终端号踢出用户，用 w 命令查询系统中登录的用户，然后用终端号来踢
+工作管理 把进程放入后台 命令后面加&amp;：后台继续运行 在命令执行过程中，按下ctrl&#43;z快捷键：放入后台即暂停 查看后台的工作：jobs -l：加l会显示工作号 bg %工作号：恢复后台暂停的工作恢复到后台运行，但是不能恢复和前台有交互的命令比如top命令和vim命令 fg %工作号：恢复后台暂停的工作恢复到前台运行 注意：工作号≠PID 系统资源查看 vmstat 刷新延时(s) 刷新次数：监视系统资源使用情况，和top内容差不多，但更简洁
+dmesg：开机时内核检测，一般结合grep使用
+free：查看内存使用情况
+-b：以字节为单位显示
+-k：以KB为单位显示（默认就是）
+-m：以MB为单位显示
+-g：以GB为单位显示
+查看CPU信息：
+cat /proc/cupinfo:每次开机都会更新 dmesg | grep CPU uptime：实际就是top命令第一行 uname：查看系统与内核相关信息
+-a：查看系统所有相关信息
+-r：查看内核版本"><meta itemprop="datePublished" content="2020-03-10T21:21:48+00:00" />
+<meta itemprop="dateModified" content="2020-03-10T21:21:48+00:00" />
+<meta itemprop="wordCount" content="100">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux系统管理"/>
+<meta name="twitter:description" content="进程管理的作用：（下面优先级由高到低）
+判断服务器的健康状态 查看系统中的所有进程 杀死进程 进程查看 ps aux：查看系统中所有进程，查看BSD操作系统格式
+ps -le：查看系统中所有进程，Linux格式
+输出格式的作用：
+top（每3秒更新一次）
+-d 秒数：默认每3秒更新一次，可指定
+？或h：显示交互模式的帮助
+P：以CPU使用率排序
+M：以内存使用率排序
+N：以PID排序
+q：退出top
+top命令的显示：
+pstree：查看进程树
+进程终止 kill
+-l：查看kill支持的信号
+-1 PID：重启进程
+-9 PID：终止进程
+killall 进程名：按照进程名杀死，选项和kill通用
+-i：有询问
+-I：忽略进程名的大小写
+pkill 进程名：按照进程名杀死，选项和kill通用
+也可以加t选项跟终端号：pkill -t 终端号：按照终端号踢出用户，用 w 命令查询系统中登录的用户，然后用终端号来踢
+工作管理 把进程放入后台 命令后面加&amp;：后台继续运行 在命令执行过程中，按下ctrl&#43;z快捷键：放入后台即暂停 查看后台的工作：jobs -l：加l会显示工作号 bg %工作号：恢复后台暂停的工作恢复到后台运行，但是不能恢复和前台有交互的命令比如top命令和vim命令 fg %工作号：恢复后台暂停的工作恢复到前台运行 注意：工作号≠PID 系统资源查看 vmstat 刷新延时(s) 刷新次数：监视系统资源使用情况，和top内容差不多，但更简洁
+dmesg：开机时内核检测，一般结合grep使用
+free：查看内存使用情况
+-b：以字节为单位显示
+-k：以KB为单位显示（默认就是）
+-m：以MB为单位显示
+-g：以GB为单位显示
+查看CPU信息：
+cat /proc/cupinfo:每次开机都会更新 dmesg | grep CPU uptime：实际就是top命令第一行 uname：查看系统与内核相关信息
+-a：查看系统所有相关信息
+-r：查看内核版本"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">linux系统管理</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 10, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>进程管理的作用：（下面优先级由高到低）</strong></p>
+<ol>
+<li>判断服务器的健康状态</li>
+<li>查看系统中的所有进程</li>
+<li>杀死进程</li>
+</ol>
+<h2 id="进程查看">进程查看</h2>
+<ul>
+<li>
+<p><code>ps aux</code>：查看系统中所有进程，查看BSD操作系统格式</p>
+</li>
+<li>
+<p><code>ps -le</code>：查看系统中所有进程，Linux格式</p>
+</li>
+<li>
+<p>输出格式的作用：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p><code>top</code>（每3秒更新一次）</p>
+<p>-d 秒数：默认每3秒更新一次，可指定</p>
+<p>？或h：显示交互模式的帮助</p>
+<p>P：以CPU使用率排序</p>
+<p>M：以内存使用率排序</p>
+<p>N：以PID排序</p>
+<p>q：退出top</p>
+<p><strong>top命令的显示：</strong></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224746.png" alt=""></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p><code>pstree</code>：查看进程树</p>
+</li>
+</ul>
+<h2 id="进程终止">进程终止</h2>
+<ul>
+<li>
+<p><code>kill</code></p>
+<p>-l：查看kill支持的信号</p>
+<!-- raw HTML omitted -->
+<p>-1 PID：重启进程</p>
+<p>-9 PID：终止进程</p>
+</li>
+<li>
+<p><code>killall 进程名</code>：按照进程名杀死，选项和kill通用</p>
+<p>-i：有询问</p>
+<p>-I：忽略进程名的大小写</p>
+</li>
+<li>
+<p><code>pkill 进程名</code>：按照进程名杀死，选项和kill通用</p>
+<p>也可以加t选项跟终端号：<code>pkill -t 终端号</code>：按照终端号踢出用户，用 <code>w</code> 命令查询系统中登录的用户，然后用终端号来踢</p>
+</li>
+</ul>
+<h1 id="工作管理">工作管理</h1>
+<ul>
+<li>把进程放入后台
+<ul>
+<li>命令后面加&amp;：后台继续运行</li>
+<li>在命令执行过程中，按下ctrl+z快捷键：放入后台即暂停</li>
+</ul>
+</li>
+<li>查看后台的工作：<code>jobs -l</code>：加l会显示工作号</li>
+<li><code>bg %工作号</code>：恢复后台暂停的工作恢复到后台运行，但是不能恢复和前台有交互的命令比如<code>top命令</code>和<code>vim命令</code></li>
+<li><code>fg %工作号</code>：恢复后台暂停的工作恢复到前台运行</li>
+<li><strong>注意：工作号≠PID</strong></li>
+</ul>
+<h1 id="系统资源查看">系统资源查看</h1>
+<ul>
+<li>
+<p><code>vmstat 刷新延时(s) 刷新次数</code>：<strong>监视系统资源</strong>使用情况，和top内容差不多，但更简洁</p>
+</li>
+<li>
+<p><code>dmesg</code>：<strong>开机时内核检测</strong>，一般结合grep使用</p>
+</li>
+<li>
+<p>free：查看<strong>内存使用</strong>情况</p>
+<p>-b：以字节为单位显示</p>
+<p>-k：以KB为单位显示（默认就是）</p>
+<p>-m：以MB为单位显示</p>
+<p>-g：以GB为单位显示</p>
+</li>
+<li>
+<p>查看<strong>CPU</strong>信息：</p>
+<ul>
+<li><code>cat /proc/cupinfo</code>:每次开机都会更新</li>
+<li><code>dmesg | grep CPU</code></li>
+<li><code>uptime</code>：实际就是top命令第一行</li>
+</ul>
+</li>
+<li>
+<p><code>uname</code>：查看<strong>系统与内核相关信息</strong></p>
+<p>-a：查看系统所有相关信息</p>
+<p>-r：查看内核版本</p>
+<p>-s：查看内核名称</p>
+</li>
+<li>
+<p>判断当前系统的<strong>位数</strong>：file /bin/ls（通过系统外部命令的位数来推测）</p>
+</li>
+<li>
+<p><code>lsb_release -a</code>：查询Linux系统的<strong>发行版本</strong></p>
+</li>
+<li>
+<p><code>lsof -p PID</code>：列出进程调用的文件</p>
+</li>
+</ul>
+<h1 id="系统定时任务">系统定时任务</h1>
+<p><strong>前提</strong>：必须启动crond服务：<code>service crond restart</code>并且<code>chkconfig crond on</code>，Linux系统都是默认启动和自启动的</p>
+<ul>
+<li>
+<p>crontab：设置系统定时任务</p>
+<p>-e：编辑crontab定时任务</p>
+<p>-l：查询crontab任务</p>
+<p>-r：删除当前用户所有的crontab任务</p>
+<p>打开文件编辑的格式是：<code>* * * * * command</code></p>
+<ul>
+<li>第一个*：分钟（0-59）</li>
+<li>第二个*：小时（0-23）</li>
+<li>第三个*：天（1-31）</li>
+<li>第四个*：月（1-12）</li>
+<li>第五个*：星期（0-7，0和7都代表星期日）</li>
+</ul>
+<p>特殊符号：<!-- raw HTML omitted --></p>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/"
+      ><span class="mr-1.5">←</span><span>linux日志管理</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/"
+      ><span>linux的服务管理</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>
