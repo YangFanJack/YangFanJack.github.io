@@ -73,13 +73,13 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
   
   
   
-  <link rel="preload stylesheet" as="style" href="/114.116.115.171/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
 
   
 
   
      
-  <link rel="preload" as="image" href="114.116.115.171/theme.png" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
 
   
   
@@ -89,12 +89,12 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
   
 
   
-  <link rel="preload" as="image" href="114.116.115.171/github.svg" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
   
 
   
-  <link rel="icon" href="114.116.115.171/favicon.ico" />
-  <link rel="apple-touch-icon" href="114.116.115.171/apple-touch-icon.png" />
+  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.109.0">
@@ -124,7 +124,7 @@ HttpServlet抽象类也是继承于Servlet接口，并且由doPost和doGet方法
 Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定义多个访问路径：@webServlet({&ldquo;d4&rdquo;,&ldquo;d44&rdquo;,&ldquo;d444&rdquo;}) 路径定义规则： /XXX /XXX/XX：多层路径，目录结构 *.do Servlet和JSP？ 先上一张图： 要理解servlet和jsp的区别与联系，我们需要回顾javaWeb的发展历史：
 最开始的web，用户使用浏览器向web服务器发送的请求都是静态的资源（html,css,javascript）。为了能够根据不同用户的不同请求来动态的处理并且返回资源，servlet就出现了。 前面提到了servlet是在服务器端的java代码，通过java这个高级语言就能动态的处理数据和资源，然后把经过动态处理后的静态资源再打回浏览器客户端。但是有一个问题，servlet类中需要写大量的冗余的out.write代码写html，这就导致后端人员都想骂娘，然后，jsp就诞生了。 jsp是sun公司借鉴微软的asp后，推出的直接在原来的静态页面html中嵌入java代码的技术。但是，这样虽然可以避免冗余，但是前端人员必须要懂后端知识，并且在html中插入大量的java代码会是jsp文件代码看起来凌乱不堪，自己写完了都看不懂，更不要说多人协作了。所以再后来，基于MVC模式的JSP&#43;Servlet&#43;JavaBean就应运而生了（也就是上面图中所表达的） 所以，总结就是： 一个java类必须是serevlet类才能被浏览器访问到，jsp本质上就是一个servlet，jsp简化servlet的繁琐写html代码的操作 servlet是在java代码中写html，jsp是在html中写java代码 注：关于MVC的具体以及Web发展后期框架的出现以及前后端分离的知识现在还在学习中，以后会陆续写出来。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="114.116.115.171/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-18T19:37:53+00:00" />
 <meta property="article:modified_time" content="2020-03-18T19:37:53+00:00" />
 
@@ -168,7 +168,7 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="114.116.115.171"
+      href="https://yangfanjack.github.io"
       >My Hugo Site</a
     >
     <a
@@ -388,14 +388,14 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
     
     <a
       class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="114.116.115.171/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/"
+      href="https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/"
       ><span class="mr-1.5">←</span><span>javaWeb核心:servlet细节</span></a
     >
     
     
     <a
       class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="114.116.115.171/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/"
+      href="https://yangfanjack.github.io/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/"
       ><span>IDEA中tomcat的神奇走位</span><span class="ml-1.5">→</span></a
     >
     
@@ -455,7 +455,7 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
 >
   <div class="mr-auto">
     &copy; 2023
-    <a class="link" href="114.116.115.171">My Hugo Site</a>
+    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a

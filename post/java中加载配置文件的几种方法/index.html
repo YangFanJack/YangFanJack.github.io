@@ -64,13 +64,13 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="/114.116.115.171/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
 
   
 
   
      
-  <link rel="preload" as="image" href="114.116.115.171/theme.png" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
 
   
   
@@ -80,12 +80,12 @@
   
 
   
-  <link rel="preload" as="image" href="114.116.115.171/github.svg" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
   
 
   
-  <link rel="icon" href="114.116.115.171/favicon.ico" />
-  <link rel="apple-touch-icon" href="114.116.115.171/apple-touch-icon.png" />
+  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.109.0">
@@ -106,7 +106,7 @@
 <meta property="og:description" content="Java的常用web框架中会有很多配置文件，这些配置文件都是为了降低代码耦合性而从代码中剥离出来的。为了在程序运行时动态地加载这些文件进内存，需要加载这些配置文件，学习过程中发现有很多种方法都能将这些配置文件加载进内存，需要总结下方便记忆。
 基于ClassLoader加载配置文件 Properties properties = new Properties(); InputStream in = 当前类名.class.getClassLoader().getResourceAsStream(&#34;配置文件相对路径&#34;); properties.load(in); System.out.println(properties.getProperty(&#34;username&#34;)); System.out.println(properties.getProperty(&#34;password&#34;)); 基于Resources读取配置文件 InputStream resourceAsStream = Resources.getResourceAsStream(&#34;SqlMapConfig.xml&#34;); SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream); SqlSession sqlSession = sqlSessionFactory.openSession(); //获得MyBatis框架生成的UserMapper接口的实现类 UserMapper userMapper = sqlSession.getMapper(UserMapper.class); User user = userMapper.findById(1); System.out.println(user); sqlSession.close(); 基于ResourceBundle读取配置文件 ResourceBundle resourceBundle = ResourceBundle.getBundle(&#34;配置文件相对路径&#34;); System.out.println(resourceBundle.getString(&#34;username&#34;)); InputStream in3 = new FileInputStream(new File(filePath)); ResourceBundle resourceBundle2 = new PropertyResourceBundle(in3); System.out.println(resourceBundle2.getString(&#34;username&#34;)); " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="114.116.115.171/post/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://yangfanjack.github.io/post/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-21T19:22:16+00:00" />
 <meta property="article:modified_time" content="2021-03-21T19:22:16+00:00" />
 
@@ -132,7 +132,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="114.116.115.171"
+      href="https://yangfanjack.github.io"
       >My Hugo Site</a
     >
     <a
@@ -268,14 +268,14 @@
     
     <a
       class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="114.116.115.171/post/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/"
+      href="https://yangfanjack.github.io/post/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/"
       ><span class="mr-1.5">←</span><span>股票入门</span></a
     >
     
     
     <a
       class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="114.116.115.171/post/nginx/"
+      href="https://yangfanjack.github.io/post/nginx/"
       ><span>Nginx</span><span class="ml-1.5">→</span></a
     >
     
@@ -335,7 +335,7 @@
 >
   <div class="mr-auto">
     &copy; 2023
-    <a class="link" href="114.116.115.171">My Hugo Site</a>
+    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a

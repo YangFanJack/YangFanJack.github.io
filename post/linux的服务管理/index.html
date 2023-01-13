@@ -69,13 +69,13 @@ RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特�
   
   
   
-  <link rel="preload stylesheet" as="style" href="/114.116.115.171/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
 
   
 
   
      
-  <link rel="preload" as="image" href="114.116.115.171/theme.png" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
 
   
   
@@ -85,12 +85,12 @@ RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特�
   
 
   
-  <link rel="preload" as="image" href="114.116.115.171/github.svg" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
   
 
   
-  <link rel="icon" href="114.116.115.171/favicon.ico" />
-  <link rel="apple-touch-icon" href="114.116.115.171/apple-touch-icon.png" />
+  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.109.0">
@@ -116,7 +116,7 @@ RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特�
 独立服务的管理 启动方式：/etc/init.d/独立服务名和service 独立服务名 自启动方式： chkconfig --level 运行级别 独立服务名：打开自启动 chkconfig 独立服务名 off：关闭自启动 修改/etc/rc.d/rc.local文件,加入需要自启动的服务名 使用ntsysv命令管理自启动，图形界面很直观 基于xinetd(超级守护进程)服务的管理 默认情况下Linux是没有xinted的，需要手动安装yum -y install xinetd 然后用chkconfig --list查看，基于xinetd的服务不占用内存，但是需要的响应时间更长 基于xinetd的服务的启动，修改/etc/xinetd.d/下对应的服务的配置文件,然后service xinetd restart 基于xinetd的服务的自启动： chkconfig 服务名 on和chkconfig 服务名 off 图形界面工具：ntsysv 基于xinetd的启动和自启动是通用的，两者区分不是很严格，这种设置不利于管理，所以现在基于xinetd的服务越来越少了 源码包安装服务的管理 ​	RPM包安装的服务默认保存位置：/usr/local/
 源码包安装服务的启动和关闭(用绝对路径的启动脚本启动)：/usr/local/apache2/bin/apachectl start|stop 一般每一个源码包都有安装说明INSTALL，应该查看里面的启动方法 源码包安装服务的自启动： vim /etc/rc.d/rc.local加入/usr/local/apache2/bin/apachectl start 把源码包服务的启动脚本软连接到/etc/init.d/目录下和chkconfig --add 服务名，就可以实现service，chkconfig和ntsysv命令管理源码包安装服务，但是并不推荐，容易混乱。 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="114.116.115.171/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://yangfanjack.github.io/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-10T17:56:48+00:00" />
 <meta property="article:modified_time" content="2020-03-10T17:56:48+00:00" />
 
@@ -152,7 +152,7 @@ RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特�
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="114.116.115.171"
+      href="https://yangfanjack.github.io"
       >My Hugo Site</a
     >
     <a
@@ -345,14 +345,14 @@ RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特�
     
     <a
       class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="114.116.115.171/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
+      href="https://yangfanjack.github.io/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
       ><span class="mr-1.5">←</span><span>linux系统管理</span></a
     >
     
     
     <a
       class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="114.116.115.171/post/shell%E7%BC%96%E7%A8%8B/"
+      href="https://yangfanjack.github.io/post/shell%E7%BC%96%E7%A8%8B/"
       ><span>shell编程</span><span class="ml-1.5">→</span></a
     >
     
@@ -412,7 +412,7 @@ RPM包安装服务的管理 ​	RPM包安装的服务默认保存位置：(特�
 >
   <div class="mr-auto">
     &copy; 2023
-    <a class="link" href="114.116.115.171">My Hugo Site</a>
+    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a

@@ -65,13 +65,13 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="/114.116.115.171/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
 
   
 
   
      
-  <link rel="preload" as="image" href="114.116.115.171/theme.png" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
 
   
   
@@ -81,12 +81,12 @@
   
 
   
-  <link rel="preload" as="image" href="114.116.115.171/github.svg" />
+  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
   
 
   
-  <link rel="icon" href="114.116.115.171/favicon.ico" />
-  <link rel="apple-touch-icon" href="114.116.115.171/apple-touch-icon.png" />
+  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.109.0">
@@ -108,7 +108,7 @@
 操作步骤 导入驱动jar包 mysql-connector-java-5.1.37-bin.jar 复制mysql-connector-java-5.1.37-bin.jar到项目的libs目录下 右键&ndash;&gt;Add As Library 注册驱动 获取数据库连接对象 Connection 定义sql 获取执行sql语句的对象 Statement 执行sql，接受返回结果 处理结果 释放资源 //1. 导入驱动jar包 //2.注册驱动 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); //3.获取数据库连接对象 //如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称 Connection conn = DriverManager.getConnection(&#34;jdbc:mysql://localhost:3306/db3&#34;, &#34;root&#34;, &#34;root&#34;); //4.定义sql语句 String sql = &#34;update account set balance = 500 where id = 1&#34;; //5.获取执行sql的对象 Statement //prepareStatement(String sql)解决sql注入问题 Statement stmt = conn.createStatement(); //6.执行sql int count = stmt.executeUpdate(sql); //7.处理结果 System.out.println(count); //8.释放资源 stmt.close(); conn.close(); 几个重要对象 DriverManager
 //通过查看源码发现：在com.mysql.jdbc.Driver类中存在静态代码块 //mysql5之后的驱动jar包可以省略注册驱动的步骤。 static { try { java." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="114.116.115.171/post/jdbc/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://yangfanjack.github.io/post/jdbc/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-02-18T07:31:41+00:00" />
 <meta property="article:modified_time" content="2021-02-18T07:31:41+00:00" />
 
@@ -136,7 +136,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="114.116.115.171"
+      href="https://yangfanjack.github.io"
       >My Hugo Site</a
     >
     <a
@@ -635,14 +635,14 @@
     
     <a
       class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="114.116.115.171/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/"
+      href="https://yangfanjack.github.io/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/"
       ><span class="mr-1.5">←</span><span>旧手机搭建linux服务器</span></a
     >
     
     
     <a
       class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="114.116.115.171/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/"
+      href="https://yangfanjack.github.io/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/"
       ><span>玩儿转MySQL</span><span class="ml-1.5">→</span></a
     >
     
@@ -702,7 +702,7 @@
 >
   <div class="mr-auto">
     &copy; 2023
-    <a class="link" href="114.116.115.171">My Hugo Site</a>
+    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a
