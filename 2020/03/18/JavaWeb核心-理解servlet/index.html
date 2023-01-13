@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JavaWeb核心:理解servlet - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="jsp就是在html里面写java代码，servlet就是在java里面写html代码。其实jsp经过容器解释之后就是servlet.只是我们自己写代码的时候尽量能让它们各司其职，jsp更注重前端显示，servlet更注重模型和业务逻辑。不要写出万能的jsp或servlet来即可。"><meta property="og:type" content="blog"><meta property="og:title" content="JavaWeb核心:理解servlet"><meta property="og:url" content="https://yangfanjack.github.io/2020/03/18/JavaWeb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="jsp就是在html里面写java代码，servlet就是在java里面写html代码。其实jsp经过容器解释之后就是servlet.只是我们自己写代码的时候尽量能让它们各司其职，jsp更注重前端显示，servlet更注重模型和业务逻辑。不要写出万能的jsp或servlet来即可。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101162218.jpg"><meta property="article:published_time" content="2020-03-18T11:37:53.000Z"><meta property="article:modified_time" content="2022-12-22T08:01:32.393Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Web"><meta property="article:tag" content="Java"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101162218.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yangfanjack.github.io/2020/03/18/JavaWeb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/"},"headline":"JACK's BLOG","image":["https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101162218.jpg"],"datePublished":"2020-03-18T11:37:53.000Z","dateModified":"2022-12-22T08:01:32.393Z","author":{"@type":"Person","name":"Jack1024"},"description":"jsp就是在html里面写java代码，servlet就是在java里面写html代码。其实jsp经过容器解释之后就是servlet.只是我们自己写代码的时候尽量能让它们各司其职，jsp更注重前端显示，servlet更注重模型和业务逻辑。不要写出万能的jsp或servlet来即可。"}</script><link rel="canonical" href="https://yangfanjack.github.io/2020/03/18/JavaWeb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/plan">Plan</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101162218.jpg" alt="JavaWeb核心:理解servlet"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-18T11:37:53.000Z" title="2020-3-18 7:37:53 ├F10: PM┤">2020-03-18</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-22T08:01:32.393Z" title="2022-12-22 4:01:32 ├F10: PM┤">2022-12-22</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">10 minutes read (About 1446 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">JavaWeb核心:理解servlet</h1><div class="content"><p>Servlet定义</p>
+<ul>
+<li><p><strong>物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java类被tomcat识别的规则</strong></p>
+</li>
+<li><p><strong>我们需要自定义一个类，来实现servlet接口，复写接口的的方法，tomcat就可以识别这个类，我们就称这个类是个servlet</strong></p>
+</li>
+</ul>
+<p><strong>实际操作：</strong></p>
+<ol>
+<li>创建JavaEE项目</li>
+<li>定义一个类，实现servlet接口</li>
+<li>重写接口中的抽象方法</li>
+<li>在web.xml中配置servlet</li>
+</ol>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224023.png"></p>
+<h2 id="Servlet的执行原理"><a href="#Servlet的执行原理" class="headerlink" title="Servlet的执行原理"></a>Servlet的执行原理</h2><p>servlet中的java类和javase中的普通java类是不一样的，它的运行依赖tomcat这个web容器，自己没有main方法。实现的servlet方法不需要自己调用，服务器会自己按照需要调用</p>
+<ol>
+<li>当服务器接收到客户端浏览器的请求后，会解析请求的URL路径，获取访问的servlet的资源路径</li>
+<li>查找web.xml文件，是否有对应的<url-pattern>标签体内容</li>
+<li>如果有，则会找到对应的<servlet-class>全类名</li>
+<li>tomcat会将字节码文件内加载进内存，并且创建其对象</li>
+<li>tomcat按照需要自己调用方法</li>
+</ol>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224030.png" alt="image-20210314153955729"></p>
+<h2 id="Servlet中的生命周期"><a href="#Servlet中的生命周期" class="headerlink" title="Servlet中的生命周期"></a>Servlet中的生命周期</h2><h3 id="sevlet中的方法"><a href="#sevlet中的方法" class="headerlink" title="sevlet中的方法"></a>sevlet中的方法</h3><ul>
+<li>init方法：servlet被创建时执行</li>
+<li>service方法：每一次servlet被访问时执行</li>
+<li>destroy方法：在服务器正常关闭时执行</li>
+</ul>
+<p>上面三个方法对应servlet的三个生命周期</p>
+<ul>
+<li>servletConfig方法：获得servletconfig对象，就是servlet的配置对象</li>
+<li>getServletInfo方法：获得servlet的一些信息，版本，作者…</li>
+</ul>
+<h3 id="Servlet被创建"><a href="#Servlet被创建" class="headerlink" title="Servlet被创建"></a>Servlet被创建</h3><ul>
+<li>默认情况下，第一次被访问时，servlet被创建，加载资源</li>
+<li>非默认时，可以子啊web.xml中指定servlet的创建时机，配置<load-on-startup></load-on-startup>标签的值，<strong>正数</strong>表示在服务器<strong>启动时创建</strong>，<strong>负数</strong>表示<strong>第一次被访问时创建</strong></li>
+<li>一个servlet类在内存中只有一个对象，是单例模式。多用户同时访问时，可能不安全，但是加锁会严重影响性能，所有尽量不要在servlet中定义<strong>成员变量线程公共资源</strong>，定义局部变量就没有安全问题了，因为局部变量在栈中，线程私有。</li>
+</ul>
+<h3 id="Servlet提供服务"><a href="#Servlet提供服务" class="headerlink" title="Servlet提供服务"></a>Servlet提供服务</h3><ul>
+<li>每次访问都会执行service方法</li>
+</ul>
+<h3 id="Servlet被销毁"><a href="#Servlet被销毁" class="headerlink" title="Servlet被销毁"></a>Servlet被销毁</h3><ul>
+<li>服务器关闭时，Servlet被销毁，释放资源。但是只有服务器正常关闭，才会执行destroy方法。</li>
+</ul>
+<h2 id="Servlet3-0"><a href="#Servlet3-0" class="headerlink" title="Servlet3.0"></a>Servlet3.0</h2><ul>
+<li>选择JavaEE时，选择servlet版本3.0以上，可以不选择web.xml了</li>
+<li>可以通过注解配置：<code>@WebServlet</code>，不需要web.xml配置文件中配置了</li>
+</ul>
+<h2 id="Servlet体系结构"><a href="#Servlet体系结构" class="headerlink" title="Servlet体系结构"></a>Servlet体系结构</h2><ul>
+<li><p>Servlet接口，GenericServlet抽象类，HttpServlet抽象类</p>
+</li>
+<li><p>GenericServlet抽象类继承Servlet抽象类，已经空实现了除了service方法之外的所有抽象方法。所以，可以让自定义的servelt类继承GenricServlet类，减少工作量。</p>
+</li>
+<li><p>HttpServlet抽象类也是继承于Servlet接口，并且由doPost和doGet方法，我们可以让自定义的Servlet类继承HttpServlet类复写doGet和doPost方法，但是service方法不用复写了，HttpServlet抽象类已经帮你写好了。用来根据post和get的请求方式做出不同判断。</p>
+</li>
+</ul>
+<h2 id="Servlet相关配置"><a href="#Servlet相关配置" class="headerlink" title="Servlet相关配置"></a>Servlet相关配置</h2><ul>
+<li>urlpartten：Servlet的访问路径<ul>
+<li>一个Servlet可以定义多个访问路径：@webServlet({“d4”,”d44”,”d444”})</li>
+<li>路径定义规则：<ul>
+<li>/XXX</li>
+<li>/XXX/XX：多层路径，目录结构</li>
+<li>*.do</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Servlet和JSP？"><a href="#Servlet和JSP？" class="headerlink" title="Servlet和JSP？"></a>Servlet和JSP？</h2><ul>
+<li>先上一张图：</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224039.png"></p>
+<ul>
+<li><p>要理解servlet和jsp的区别与联系，我们需要回顾javaWeb的发展历史：</p>
+<ol>
+<li>最开始的web，用户使用浏览器向web服务器发送的请求都是静态的资源（html,css,javascript）。为了能够根据不同用户的不同请求来动态的处理并且返回资源，servlet就出现了。</li>
+<li>前面提到了servlet是在服务器端的java代码，通过java这个高级语言就能动态的处理数据和资源，然后把经过动态处理后的静态资源再打回浏览器客户端。但是有一个问题，servlet类中需要写大量的冗余的out.write代码写html，这就导致后端人员都想骂娘，然后，jsp就诞生了。</li>
+<li>jsp是sun公司借鉴微软的asp后，推出的直接在原来的静态页面html中嵌入java代码的技术。但是，这样虽然可以避免冗余，但是前端人员必须要懂后端知识，并且在html中插入大量的java代码会是jsp文件代码看起来凌乱不堪，自己写完了都看不懂，更不要说多人协作了。所以再后来，基于MVC模式的JSP+Servlet+JavaBean就应运而生了（也就是上面图中所表达的）</li>
+<li>所以，总结就是：<ul>
+<li>一个java类必须是serevlet类才能被浏览器访问到，jsp本质上就是一个servlet，jsp简化servlet的繁琐写html代码的操作</li>
+<li>servlet是在java代码中写html，jsp是在html中写java代码</li>
+</ul>
+</li>
+</ol>
+<p><strong>注：关于MVC的具体以及Web发展后期框架的出现以及前后端分离的知识现在还在学习中，以后会陆续写出来。</strong></p>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JavaWeb核心:理解servlet</p><p><a href="https://yangfanjack.github.io/2020/03/18/JavaWeb核心-理解servlet/">https://yangfanjack.github.io/2020/03/18/JavaWeb核心-理解servlet/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-03-18</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-22</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Web/">Web</a><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/03/25/javaWeb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">javaWeb核心:servlet细节</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/03/18/IDEA%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/"><span class="level-item">IDEA中tomcat的神奇走位</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "a738faadb62e1ef4f362dbe78b5f684e",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Servlet的执行原理"><span class="level-left"><span class="level-item">1</span><span class="level-item">Servlet的执行原理</span></span></a></li><li><a class="level is-mobile" href="#Servlet中的生命周期"><span class="level-left"><span class="level-item">2</span><span class="level-item">Servlet中的生命周期</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#sevlet中的方法"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">sevlet中的方法</span></span></a></li><li><a class="level is-mobile" href="#Servlet被创建"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Servlet被创建</span></span></a></li><li><a class="level is-mobile" href="#Servlet提供服务"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">Servlet提供服务</span></span></a></li><li><a class="level is-mobile" href="#Servlet被销毁"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">Servlet被销毁</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Servlet3-0"><span class="level-left"><span class="level-item">3</span><span class="level-item">Servlet3.0</span></span></a></li><li><a class="level is-mobile" href="#Servlet体系结构"><span class="level-left"><span class="level-item">4</span><span class="level-item">Servlet体系结构</span></span></a></li><li><a class="level is-mobile" href="#Servlet相关配置"><span class="level-left"><span class="level-item">5</span><span class="level-item">Servlet相关配置</span></span></a></li><li><a class="level is-mobile" href="#Servlet和JSP？"><span class="level-left"><span class="level-item">6</span><span class="level-item">Servlet和JSP？</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521232604.png" alt="win10壁纸bingtoday"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-03-30T00:27:58.000Z">2022-03-30</time></p><p class="title"><a href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/">win10壁纸bingtoday</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101160711.jpg" alt="RPM打包初试"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-01T02:44:01.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/">RPM打包初试</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img221251.jpg" alt="国庆北京独游"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-13T00:13:19.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/">国庆北京独游</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgff.jpg" alt="摄影入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-10T10:19:17.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/">摄影入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210923201053126.png" alt="工作流Activiti"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-09-23T11:38:06.000Z">2021-09-23</time></p><p class="title"><a href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">工作流Activiti</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2023 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

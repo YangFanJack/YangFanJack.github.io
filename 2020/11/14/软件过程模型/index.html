@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>软件过程模型 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="软件&amp;#x3D;程序+数据+文档，软件是一种产品，也是开发其他软件产品的工具。软件的发展有一个过程（个体化，作坊式，工程化，产业化），在这个过程中由于软件本身的问题和不正确的开发方法的原因产生软件危机的问题，前者是客观问题，可以技术的进步得以解决，后者只有通过软件开发的工程化来化解。"><meta property="og:type" content="blog"><meta property="og:title" content="软件过程模型"><meta property="og:url" content="https://yangfanjack.github.io/2020/11/14/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="软件&amp;#x3D;程序+数据+文档，软件是一种产品，也是开发其他软件产品的工具。软件的发展有一个过程（个体化，作坊式，工程化，产业化），在这个过程中由于软件本身的问题和不正确的开发方法的原因产生软件危机的问题，前者是客观问题，可以技术的进步得以解决，后者只有通过软件开发的工程化来化解。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210318082226411.png"><meta property="article:published_time" content="2020-11-14T06:33:54.000Z"><meta property="article:modified_time" content="2022-12-22T08:01:32.109Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="软件工程"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210318082226411.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yangfanjack.github.io/2020/11/14/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/"},"headline":"JACK's BLOG","image":["https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210318082226411.png"],"datePublished":"2020-11-14T06:33:54.000Z","dateModified":"2022-12-22T08:01:32.109Z","author":{"@type":"Person","name":"Jack1024"},"description":"软件&#x3D;程序+数据+文档，软件是一种产品，也是开发其他软件产品的工具。软件的发展有一个过程（个体化，作坊式，工程化，产业化），在这个过程中由于软件本身的问题和不正确的开发方法的原因产生软件危机的问题，前者是客观问题，可以技术的进步得以解决，后者只有通过软件开发的工程化来化解。"}</script><link rel="canonical" href="https://yangfanjack.github.io/2020/11/14/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/plan">Plan</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210318082226411.png" alt="软件过程模型"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-11-14T06:33:54.000Z" title="2020-11-14 2:33:54 ├F10: PM┤">2020-11-14</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-22T08:01:32.109Z" title="2022-12-22 4:01:32 ├F10: PM┤">2022-12-22</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">12 minutes read (About 1737 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">软件过程模型</h1><div class="content"><h1 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h1><ul>
+<li><h2 id="三要素："><a href="#三要素：" class="headerlink" title="三要素："></a>三要素：</h2><ul>
+<li><p>方法：软件工程方法为软件开发提供了“如何做”的技术。软件工程方法分为两类：结构化方法和面向对象方法。</p>
+</li>
+<li><p>工具：软件工具为软件工程方法提供了自动的或半自动的软件支撑环境。集成的软件工程工具再加上人的因素构成了软件工程环境。</p>
+</li>
+<li><p>过程：软件工程的过程则是将软件工程的方法和工具综合起来以达到合理、及时地进行计算机软件开发的目的。过程定义了方法使用的顺序、要求交付的文档资料、为保证质量和协调变化所需要的管理、及软件开发各个阶段完成的里程碑。</p>
+</li>
+</ul>
+</li>
+<li><h2 id="七原则"><a href="#七原则" class="headerlink" title="七原则"></a>七原则</h2><ul>
+<li><strong>用分阶段的生命周期计划严格管理</strong></li>
+<li><strong>坚持进行阶段评审</strong></li>
+<li><strong>实行严格的产品控制</strong> </li>
+<li><strong>用现代程序设计技术</strong> </li>
+<li><strong>结果应能清楚地审查</strong></li>
+<li><strong>开发小组的人员应该少而精</strong></li>
+<li><strong>承认不断改进软件工程实践的必要性</strong></li>
+</ul>
+</li>
+<li><h2 id="知识体系"><a href="#知识体系" class="headerlink" title="知识体系"></a>知识体系</h2><ul>
+<li><h3 id="开发与维护过程"><a href="#开发与维护过程" class="headerlink" title="开发与维护过程"></a>开发与维护过程</h3><ul>
+<li>软件需求</li>
+<li>软件设计</li>
+<li>软件构造</li>
+<li>软件测试</li>
+<li>软件维护</li>
+</ul>
+</li>
+<li><h3 id="支持组织过程"><a href="#支持组织过程" class="headerlink" title="支持组织过程"></a>支持组织过程</h3><ul>
+<li>软件配置管理</li>
+<li>软件工程管理</li>
+<li>软件过程</li>
+<li>软件工具（编码，测试等）</li>
+<li>软件质量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114151251.png"></p>
+<h1 id="软件过程（生命周期）"><a href="#软件过程（生命周期）" class="headerlink" title="软件过程（生命周期）"></a>软件过程（生命周期）</h1><h2 id="软件生命周期："><a href="#软件生命周期：" class="headerlink" title="软件生命周期："></a>软件生命周期：</h2><ul>
+<li>问题定义：项目计划报告</li>
+<li>可行性研究：可行性研究报告</li>
+<li>需求分析：需求规格说明书</li>
+<li>概要设计：概要设计说明书</li>
+<li>详细设计：详细设计说明书</li>
+<li>编码：源程序</li>
+<li>测试：软件测试报告</li>
+<li>维护：软件维护说明</li>
+</ul>
+<h2 id="软件过程模型-软件生存周期模型"><a href="#软件过程模型-软件生存周期模型" class="headerlink" title="软件过程模型/软件生存周期模型"></a>软件过程模型/软件生存周期模型</h2><h3 id="传统软件过程模型"><a href="#传统软件过程模型" class="headerlink" title="传统软件过程模型"></a>传统软件过程模型</h3><h4 id="1-瀑布模型：适用于系统需求明确且稳定，技术成熟，工程管理较严格的场合，如军工，航天，医疗。"><a href="#1-瀑布模型：适用于系统需求明确且稳定，技术成熟，工程管理较严格的场合，如军工，航天，医疗。" class="headerlink" title="1. 瀑布模型：适用于系统需求明确且稳定，技术成熟，工程管理较严格的场合，如军工，航天，医疗。"></a>1. 瀑布模型：适用于系统需求明确且稳定，技术成熟，工程管理较严格的场合，如军工，航天，医疗。</h4><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114152356.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114152903.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114152908.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114152943.png"></p>
+<h4 id="2-V模型"><a href="#2-V模型" class="headerlink" title="2. V模型"></a>2. V模型</h4><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114152915.png"></p>
+<h4 id="3-原型模型（当客户不清楚系统的具体输入输出；或开发者不确定算法的效率，软件与操作系统是否兼容以及客户与计算机交互的方式时，使用原型模型）"><a href="#3-原型模型（当客户不清楚系统的具体输入输出；或开发者不确定算法的效率，软件与操作系统是否兼容以及客户与计算机交互的方式时，使用原型模型）" class="headerlink" title="3. 原型模型（当客户不清楚系统的具体输入输出；或开发者不确定算法的效率，软件与操作系统是否兼容以及客户与计算机交互的方式时，使用原型模型）"></a>3. 原型模型（当客户不清楚系统的具体输入输出；或开发者不确定算法的效率，软件与操作系统是否兼容以及客户与计算机交互的方式时，使用原型模型）</h4><p>原型：一个部分开发的产品，是客户和开发人员能够对加护开发的系统的相关方面进行检查。</p>
+<p>原型化的目的：</p>
+<ul>
+<li>明确并完善需求</li>
+<li>研究技术选择方案</li>
+</ul>
+<p>原型结果：</p>
+<ul>
+<li>抛弃原型</li>
+<li>把原型发展为最终产品</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114153457.png"></p>
+<h4 id="4-增量模型（适用于软件开发过程中可能发生变化，具有较大风险，或者希望尽早进入市场的项目）"><a href="#4-增量模型（适用于软件开发过程中可能发生变化，具有较大风险，或者希望尽早进入市场的项目）" class="headerlink" title="4. 增量模型（适用于软件开发过程中可能发生变化，具有较大风险，或者希望尽早进入市场的项目）"></a>4. 增量模型（适用于软件开发过程中可能发生变化，具有较大风险，或者希望尽早进入市场的项目）</h4><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114154131.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114154135.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114154139.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114154143.png"></p>
+<h4 id="5-螺旋模型-适用于需求不明确或需求可能发生变化的大型复杂软件系统"><a href="#5-螺旋模型-适用于需求不明确或需求可能发生变化的大型复杂软件系统" class="headerlink" title="5. 螺旋模型(适用于需求不明确或需求可能发生变化的大型复杂软件系统)"></a>5. 螺旋模型(适用于需求不明确或需求可能发生变化的大型复杂软件系统)</h4><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114155035.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114155039.png"></p>
+<h4 id="6-喷泉模型"><a href="#6-喷泉模型" class="headerlink" title="6. 喷泉模型"></a>6. 喷泉模型</h4><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114155043.png"></p>
+<h3 id="现代软件过程模型"><a href="#现代软件过程模型" class="headerlink" title="现代软件过程模型"></a>现代软件过程模型</h3><h4 id="1-基于构件的开发模型（使用于系统之间有共性的情况）"><a href="#1-基于构件的开发模型（使用于系统之间有共性的情况）" class="headerlink" title="1. 基于构件的开发模型（使用于系统之间有共性的情况）"></a>1. 基于构件的开发模型（使用于系统之间有共性的情况）</h4><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114155829.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114155832.png"></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114155836.png"></p>
+<h4 id="2-统一过程模型"><a href="#2-统一过程模型" class="headerlink" title="2. 统一过程模型"></a>2. 统一过程模型</h4><ul>
+<li><p>由Rational公司推出的完整且完美的软件工程方法</p>
+</li>
+<li><p>基于面向对象方法学</p>
+</li>
+<li><p>使用统一建模语言UML</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114160438.png"></p>
+</li>
+<li><p>实践视角（6条最佳实践）</p>
+<ul>
+<li>迭代式开发</li>
+<li>管理需求</li>
+<li>基于构件体系结构</li>
+<li>可视化建模</li>
+<li>验证软件质量</li>
+<li>控制软甲变更</li>
+</ul>
+</li>
+<li><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114160706.png"></p>
+</li>
+</ul>
+<h4 id="3-敏捷开发-适合需求模糊且经常改变的场合，适合商业竞争环境下的项目-，重点。"><a href="#3-敏捷开发-适合需求模糊且经常改变的场合，适合商业竞争环境下的项目-，重点。" class="headerlink" title="3. 敏捷开发(适合需求模糊且经常改变的场合，适合商业竞争环境下的项目)，重点。"></a>3. 敏捷开发(适合需求模糊且经常改变的场合，适合商业竞争环境下的项目)，重点。</h4><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114165948.png"></p>
+<ul>
+<li><p>为了解决瀑布流开发模式因为前阶段修改而导致的耦合问题</p>
+</li>
+<li><p>把一个大项目拆分为多个互相联系且能独立运行的小项目，分别完成，主体软件要随时能交互给用户</p>
+</li>
+<li><p>人员架构：</p>
+<ul>
+<li>PO(Product Owner)：项目经理，确定产品方向愿景，交付优先级、时间</li>
+<li>SM(Scrum Master)：小组队长</li>
+<li>Team(DEV开发人员&amp;QA测试人员)：</li>
+</ul>
+</li>
+<li><p>会议：</p>
+<ul>
+<li>敏捷计划会：一个Sprint开一次（一个sprint就是一个迭代），每一个Sprint的任务明确，需求分析，故事点划分</li>
+<li>每日立会：<ul>
+<li>从昨天到现在，我完成了什么</li>
+<li>从现在到明天，我计划完成什么</li>
+<li>有什么阻碍我的发展，抛出困难和风险</li>
+</ul>
+</li>
+<li>敏捷评审会：获取客户反馈</li>
+<li>敏捷回顾会：每个Sprint末尾开一次，总结经验和教训<ul>
+<li>迭代速率，迭代燃气燃尽图</li>
+<li>迭代计划故事和实际完成故事</li>
+<li>计划发布日期和实际发布日期</li>
+<li>客户满意度，团队满意度，生产环境Bug数，生产Bug解决时间，用户故事</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>总的项目需要拆分，包括代码库页拆分，便于管理。立会时领取故事点完成，自行验证（静态检查，复杂度，测试用例，功能测试），git push后触发CI(持续集成)流程。有团队骨干代码评审（code review），如果都通过了就入库了。</p>
+</li>
+<li><p>主分支的代码随时可交付。</p>
+</li>
+<li><p>每个开发人员的开发互不影响。</p>
+</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114170108.png"></p>
+<h3 id="选择软件过程模型"><a href="#选择软件过程模型" class="headerlink" title="选择软件过程模型"></a>选择软件过程模型</h3><ul>
+<li>软件过程模型是不断发展的</li>
+<li>各种软件过程模型各有优缺点和使用场合</li>
+<li>不同类型软件往往需要不同软件过程模型</li>
+<li>选用时不必拘泥于某种模型</li>
+<li>可组合多种模型</li>
+<li>可根据实际创造新的模型</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114170932.png"></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>软件过程模型</p><p><a href="https://yangfanjack.github.io/2020/11/14/软件过程模型/">https://yangfanjack.github.io/2020/11/14/软件过程模型/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-11-14</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-22</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/11/14/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">软件生命周期</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/10/19/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/"><span class="level-item">SSM框架整合</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "bf4114499f25563d7f2b1a123a2baf29",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#软件工程"><span class="level-left"><span class="level-item">1</span><span class="level-item">软件工程</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#三要素："><span class="level-left"><span class="level-item">1.1</span><span class="level-item">三要素：</span></span></a></li><li><a class="level is-mobile" href="#七原则"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">七原则</span></span></a></li><li><a class="level is-mobile" href="#知识体系"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">知识体系</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#开发与维护过程"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">开发与维护过程</span></span></a></li><li><a class="level is-mobile" href="#支持组织过程"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">支持组织过程</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#软件过程（生命周期）"><span class="level-left"><span class="level-item">2</span><span class="level-item">软件过程（生命周期）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#软件生命周期："><span class="level-left"><span class="level-item">2.1</span><span class="level-item">软件生命周期：</span></span></a></li><li><a class="level is-mobile" href="#软件过程模型-软件生存周期模型"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">软件过程模型/软件生存周期模型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#传统软件过程模型"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">传统软件过程模型</span></span></a></li><li><a class="level is-mobile" href="#现代软件过程模型"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">现代软件过程模型</span></span></a></li><li><a class="level is-mobile" href="#选择软件过程模型"><span class="level-left"><span class="level-item">2.2.3</span><span class="level-item">选择软件过程模型</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521232604.png" alt="win10壁纸bingtoday"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-03-30T00:27:58.000Z">2022-03-30</time></p><p class="title"><a href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/">win10壁纸bingtoday</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101160711.jpg" alt="RPM打包初试"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-01T02:44:01.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/">RPM打包初试</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img221251.jpg" alt="国庆北京独游"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-13T00:13:19.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/">国庆北京独游</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgff.jpg" alt="摄影入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-10T10:19:17.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/">摄影入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210923201053126.png" alt="工作流Activiti"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-09-23T11:38:06.000Z">2021-09-23</time></p><p class="title"><a href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">工作流Activiti</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2023 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

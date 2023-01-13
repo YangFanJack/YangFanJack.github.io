@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>java基础快速回顾-下 - JACK&#039;s BLOG</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="JACK&#039;s BLOG"><meta name="msapplication-TileImage" content="/image/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JACK&#039;s BLOG"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Java是一门纯粹的面向对象的高级的平台无关的编程语言"><meta property="og:type" content="blog"><meta property="og:title" content="java基础快速回顾-下"><meta property="og:url" content="https://yangfanjack.github.io/2021/03/09/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/"><meta property="og:site_name" content="JACK&#039;s BLOG"><meta property="og:description" content="Java是一门纯粹的面向对象的高级的平台无关的编程语言"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101162218.jpg"><meta property="article:published_time" content="2021-03-09T03:42:39.000Z"><meta property="article:modified_time" content="2022-12-22T08:01:32.391Z"><meta property="article:author" content="Jack1024"><meta property="article:tag" content="笔记"><meta property="article:tag" content="Java"><meta property="article:tag" content="JavaSE"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101162218.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yangfanjack.github.io/2021/03/09/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/"},"headline":"JACK's BLOG","image":["https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101162218.jpg"],"datePublished":"2021-03-09T03:42:39.000Z","dateModified":"2022-12-22T08:01:32.391Z","author":{"@type":"Person","name":"Jack1024"},"description":"Java是一门纯粹的面向对象的高级的平台无关的编程语言"}</script><link rel="canonical" href="https://yangfanjack.github.io/2021/03/09/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/"><link rel="icon" href="/image/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="JACK's BLOG" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/plan">Plan</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101162218.jpg" alt="java基础快速回顾-下"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-03-09T03:42:39.000Z" title="2021-3-9 11:42:39 ├F10: AM┤">2021-03-09</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-22T08:01:32.391Z" title="2022-12-22 4:01:32 ├F10: PM┤">2022-12-22</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">29 minutes read (About 4384 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">java基础快速回顾-下</h1><div class="content"><h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><ul>
+<li>匿名内部类可以省去定义实现类，但是语法太复杂</li>
+<li>lambda表达式不关注面向对象，返璞归真，仅仅关注内容本身。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一些参数，一个箭头，一段重写代码</span></span><br><span class="line">() -&gt; System.out.println(<span class="string">&quot;lambda&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将Runnable接口作为参数进行传递，可以使用两种方法：</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223437.png" alt="image-20210309120501501"></p>
+<ul>
+<li>使用lambda必须满足接口中有且仅有一个抽象方法</li>
+<li>有且仅有一个抽象方法的接口称为 “函数式接口”</li>
+<li>Lambda的省略写法有如下要求：<ol>
+<li>括号中参数列表的数据类型可以省略</li>
+<li>括号中的参数只有一个，那么类型和（）都可以省略</li>
+<li>如果{}的代码只有一行，都可以省略{} return 分号，且必须要一起省略，不能只省略部分</li>
+</ol>
+</li>
+</ul>
+<h2 id="FIle类"><a href="#FIle类" class="headerlink" title="FIle类"></a>FIle类</h2><ul>
+<li><strong>文件和目录</strong>的抽象表示，用于文件&amp;目录的创建、查找和删除等操作</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//File类的4个成员变量</span></span><br><span class="line"><span class="comment">//路径分隔符(windows分号,linux冒号)</span></span><br><span class="line"><span class="keyword">static</span> String pathSeparator;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">char</span> pathSeparatorChar;</span><br><span class="line"><span class="comment">//默认名称分隔符(windows反斜杠，linux正斜杠)</span></span><br><span class="line"><span class="keyword">static</span> String separator;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">char</span> separator;</span><br><span class="line"><span class="comment">//注意：操作路径的时候，路径不能写死了，根据不同系统更换</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>File构造函数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	File(String pathname);</span></span><br><span class="line"><span class="comment">	File(String parent,String child);</span></span><br><span class="line"><span class="comment">	File(File parent,String child)</span></span><br><span class="line"><span class="comment">	路径可以是文件名，也可以是文件夹名</span></span><br><span class="line"><span class="comment">	可以相对路径，也可以绝对路径</span></span><br><span class="line"><span class="comment">	路径可以是存在的，也可以是不存在的</span></span><br><span class="line"><span class="comment">	创建File对象，只是把字符串封装为File对象，不考虑路径的真假情况</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    File f1 = <span class="keyword">new</span> File(<span class="string">&quot;/home/jack1024/桌面/a.txt&quot;</span>);</span><br><span class="line">    File f2 = <span class="keyword">new</span> File(<span class="string">&quot;/home/jack1024/桌面/a&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>File类常用方法：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getAbsolutePath</span><span class="params">()</span></span>;<span class="comment">//文件/目录绝对路径名字符串（无论构造方法中传递相对还是绝对，都返回绝对路径）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getPath</span><span class="params">()</span></span>;<span class="comment">//文件/目录路径名字符串（构造方法中传递的字符串）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>;<span class="comment">//文件/目录名字</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">length</span><span class="params">()</span></span>;<span class="comment">//文件字节大小(目录没有大小概念)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>判断功能：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">exists</span><span class="params">()</span></span>;<span class="comment">//该文件/目录是否存在</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isDirectory</span><span class="params">()</span></span>;<span class="comment">//是否为目录</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFile</span><span class="params">()</span></span>;<span class="comment">//是否为文件</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建 &amp; 删除</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">createNewFile</span><span class="params">()</span></span>;<span class="comment">//当该名字的文件不存在时，创建一个新的空文件</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">()</span></span>;<span class="comment">//删除由此File表示的文件或目录，不走回收站</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdir</span><span class="params">()</span></span>;<span class="comment">//创建由此File表示的目录</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdirs</span><span class="params">()</span></span>;<span class="comment">//创建由此File表示的目录，包括任何必须但不存在的父目录</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>目录遍历<ul>
+<li>包含隐藏文件/文件夹</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String[] list();<span class="comment">//返回一个String数组，表示该File目录中所有子文件或目录</span></span><br><span class="line"><span class="keyword">public</span> File[] listFiles();<span class="comment">//返回一个File数组，表示该File目录中所有子文件或目录</span></span><br></pre></td></tr></table></figure>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><ul>
+<li>直接递归 &amp; 间接递归</li>
+<li>递归一定要有停止的条件约束，否则会出现栈内存溢出StackOverFlowError</li>
+<li>递归的次数也不能太多，否则也可能发生栈内存溢出</li>
+<li>构造方法中禁止递归</li>
+</ul>
+<p>递归图示：</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223505.png" alt="image-20210310002114259"></p>
+<h3 id="文件过滤器"><a href="#文件过滤器" class="headerlink" title="文件过滤器"></a>文件过滤器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> File[] listFiles(FileFilter filter);</span><br><span class="line"><span class="keyword">public</span> File[] listFiles(FilenameFilter filter);</span><br></pre></td></tr></table></figure>
+<p>通过重写accept()方法来实现</p>
+<h2 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h2><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223522.png" alt="image-20210310010209212"></p>
+<h3 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h3><h4 id="字节输出流"><a href="#字节输出流" class="headerlink" title="字节输出流"></a>字节输出流</h4><ul>
+<li>OutputStream：所有输出字节流的超类，接下来主要探讨其子类FileOutputStream：<ol>
+<li>close()：释放资源</li>
+<li>flush()：刷新此输出流并强制写出所有缓冲的输出字节</li>
+<li>void write(byte[] b)：往文件写入多个字节</li>
+<li>void write(int b)：往文件写入一个字节</li>
+<li>void write(byte[] b,int off,int len)：往文件写入指定位置指定长度的放入的数组中的字节</li>
+</ol>
+</li>
+<li>FileOutputStream构造方法：<ol>
+<li>FileOutputStream(File file)</li>
+<li>FileOutputStream(String name)</li>
+<li>FileOutputStream(File file, boolean append)</li>
+<li>FileOutputStream(String name, boolean append) </li>
+</ol>
+</li>
+</ul>
+<h4 id="字节输入流"><a href="#字节输入流" class="headerlink" title="字节输入流"></a>字节输入流</h4><ul>
+<li>InputStream：表示字节输入流的所有子类超类。接下来主要探讨其子类FileInputStream：<ol>
+<li>close()：释放资源</li>
+<li>int read(byte[] b)：从文件读取一定数量的字节，并将其存在缓冲区数组b中</li>
+<li>int read()：从文件读取一个字节</li>
+</ol>
+</li>
+<li>FileInputStream构造方法：<ol>
+<li>FileInputStream(File file)</li>
+<li>FileInputStream(String name)</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>((len=fis.read())!=-<span class="number">1</span>)&#123;</span><br><span class="line">    System.out.println((<span class="keyword">char</span>)len);</span><br><span class="line">&#125;</span><br><span class="line">      </span><br><span class="line"><span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">while</span>((len = bis.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">    bos.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h3><h4 id="字符输入流"><a href="#字符输入流" class="headerlink" title="字符输入流"></a>字符输入流</h4><ul>
+<li><p>Reader：是一个抽象类</p>
+<ol>
+<li>int read()</li>
+<li>int read(char[] cbuf)</li>
+<li>void close()</li>
+</ol>
+</li>
+<li><p>FileReader：文件字符输入流</p>
+<p>构造方法：</p>
+<ol>
+<li>FileReader(File file)</li>
+<li>FileReader(String name)</li>
+</ol>
+</li>
+</ul>
+<h4 id="字符输出流"><a href="#字符输出流" class="headerlink" title="字符输出流"></a>字符输出流</h4><ul>
+<li><p>Writer：是一个抽象类</p>
+<ol>
+<li>void write(int c)：写入单个字符</li>
+<li>void write(char[] cbuf)：写入字符数组</li>
+<li>abstract void write(char[] cbuf,int off,int len)：写入字符数组的某一部分，off表示开始索引，len表示写的字符个数</li>
+<li>void write(String str)：写入字符串</li>
+<li>void write(String str, int off, int len)：写入字符串的某一部分</li>
+<li>void flush()：刷新流的缓冲</li>
+<li>void close()：刷新缓冲后关闭此流</li>
+</ol>
+</li>
+<li><p>字符输出流和字节输出流的最大的区别就是字符输出流要将内容先写到内存缓冲区中（进行 字符——&gt;字节 过程），所以之后必须进行flush或者close。</p>
+</li>
+<li><p>FileWriter构造方法：</p>
+<ol>
+<li>FileWriter(File file)</li>
+<li>FileWriter(String name)</li>
+<li>FileWriter(File file, boolean append)</li>
+<li>FileWriter(String name, boolean append) </li>
+</ol>
+</li>
+<li><p>jdk1.7之前进行异常处理的过程</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//可能产生异常的代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(异常类参数对象)&#123;</span><br><span class="line">    <span class="comment">//异常的处理逻辑</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span>&#123;</span><br><span class="line">    <span class="comment">//资源释放</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>jdk1.7后中进行流异常处理的过程</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(定义流对象)&#123;<span class="comment">//流对象使用完毕自动释放</span></span><br><span class="line">    <span class="comment">//可能产生异常的代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>()&#123;</span><br><span class="line">    <span class="comment">//异常的处理逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="属性集Properties"><a href="#属性集Properties" class="headerlink" title="属性集Properties"></a>属性集Properties</h3><ul>
+<li>唯一一个和io流结合的集合</li>
+<li>store：集合中数据持久化到硬盘存储</li>
+<li>load：硬盘中的键值对读取到集合使用</li>
+<li>Properties是一个双列集合，key和value都默认是字符串</li>
+<li>setProperty方法相当于map中的put方法</li>
+<li>getProperty方法相当于map中的set方法</li>
+<li>stringPropertyNames方法相当于map中的keySet方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;/home/jack1024/a.txt&quot;</span>);</span><br><span class="line">Proterties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">prop.setProperty(<span class="string">&quot;aa&quot;</span>,<span class="string">&quot;11&quot;</span>);</span><br><span class="line">prop.setProperty(<span class="string">&quot;bb&quot;</span>,<span class="string">&quot;22&quot;</span>);</span><br><span class="line">prop.store(fw,<span class="string">&quot;save data&quot;</span>);</span><br><span class="line">fw.close;</span><br><span class="line"></span><br><span class="line">prop.load(fw);</span><br><span class="line">Set&lt;String&gt; set = prop.stringPropertyNames();</span><br><span class="line"><span class="keyword">for</span>(String key : set)&#123;</span><br><span class="line">    String value = prop.getProperty(key+<span class="string">&quot;=&quot;</span>+value);</span><br><span class="line">    System.out.println(key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>properties文件中可以使用等号或者空格来分隔键值对</li>
+<li>对中文进行处理的时候必须使用字符输入/出流</li>
+</ul>
+<h3 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h3><ul>
+<li><p>增强基本流（普通流都是一个一个地传，效率低下）</p>
+</li>
+<li><p>给基本字节输入输出流增加一个缓冲区，提高传输速率</p>
+</li>
+<li><p>BufferedInputStream(InputStream fis)</p>
+<p>BufferedInputStream(InputStream fis, int size)</p>
+</li>
+<li><p>BufferedOutputStream(OutputStream fos)</p>
+<p>BufferedOutputStream(OutputStream fos, int size)</p>
+</li>
+<li><p>BufferedWriter(Writer fw)</p>
+<p>BufferedWriter(Writer fw, int size)</p>
+</li>
+<li><p>BufferedReader(Reader fr)</p>
+<p>BufferedReader(Reader fr, int size)</p>
+</li>
+<li><p><strong>写和读的方法和基本流一致</strong></p>
+<ol>
+<li>BufferedWriter有一个特有的成员方法void newLine：写入一个行分隔符(不同操作系统统一一个方法)</li>
+<li>BufferReader有一个特有的成员方法String readLine：读取一行数据(不同操作系统统一一个方法)</li>
+</ol>
+</li>
+</ul>
+<p>测试复制文件的效率：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入需要复制的文件路径:&quot;</span>);</span><br><span class="line">        String sourcePath = scanner.next();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入粘贴的路径:&quot;</span>);</span><br><span class="line">        String targetPath = scanner.next();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> t1 = System.currentTimeMillis();</span><br><span class="line">        BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(sourcePath));</span><br><span class="line">        BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(targetPath));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>((len = bis.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">            bos.write(len);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        byte[] bytes = new byte[1024];</span></span><br><span class="line"><span class="comment">//        while((len = bis.read(bytes)) != -1)&#123;</span></span><br><span class="line"><span class="comment">//            bos.write(bytes,0,len);</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"></span><br><span class="line">        bis.close();</span><br><span class="line">        bos.close();</span><br><span class="line">        <span class="keyword">long</span> t2 = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> sumT = t2-t1;</span><br><span class="line">        System.out.println(<span class="string">&quot;复制过程总共耗时:&quot;</span>+sumT+<span class="string">&quot;毫秒&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h3><ul>
+<li>编码：字符——&gt;字节</li>
+<li>解码：字节——&gt;字符</li>
+<li>制定了编码，字节文件对应的字符集也就确定了，每个软件也就能根据软件功能转化字节为对应的字符供我们查看了</li>
+<li>常见的字符集有ASCII字符集，GBK字符集，Unicode字符集</li>
+<li>FileReader只能读取系统默认编码utf-8格式的文件，如果读取GBK格式的文件，就会产生乱码</li>
+<li>引入转换流来解决：InputStreamReader和OutputStreamWriter是字节流和字符流的桥梁，可以指定编码表</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223541.png" alt="image-20210311100154292"></p>
+<ul>
+<li><p>InputStreamReader(InputStream fis) //默认编码</p>
+<p>InputStreamReader(InputStream fis, String charsetName) //指定编码</p>
+</li>
+<li><p>OutputStreamWriter(OutputStream fos)</p>
+<p>OutputStreamWriter(OutputStream fos, String charsetName)</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;/home/jack1024/a.txt&quot;</span>,<span class="string">&quot;GBK&quot;</span>));</span><br><span class="line">osw.write(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">osw.close();</span><br><span class="line"></span><br><span class="line">InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;/home/jack1024/a.txt&quot;</span>,<span class="string">&quot;GBK&quot;</span>));</span><br><span class="line"><span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>((len = isr.read())!=-<span class="number">1</span>)&#123;</span><br><span class="line">    System.out.print((<span class="keyword">char</span>)len);</span><br><span class="line">&#125;</span><br><span class="line">isr.close();</span><br></pre></td></tr></table></figure>
+<h3 id="序列化-amp-反序列化流"><a href="#序列化-amp-反序列化流" class="headerlink" title="序列化 &amp; 反序列化流"></a>序列化 &amp; 反序列化流</h3><p>把对象以字节的形式写入到文件中存储 并 从文件中读取对象到内存中继续使用，即是<strong>对象持久化</strong></p>
+<ul>
+<li><p>ObjectOutputStream(OutputStream os)：对象的序列化流</p>
+<ul>
+<li>void writeObject(Object obj)</li>
+</ul>
+</li>
+<li><p>ObjectInputStream(IutputStream is)：对象的反序列化流</p>
+<ul>
+<li>Object readObject()</li>
+</ul>
+</li>
+<li><p>要对对象进行序列化 or 反序列化，必须在类中实现<strong>Serializable</strong>接口</p>
+</li>
+<li><p>序列化的内容都是对象的内容，所以static的变量不能被序列化。如果想让一个成员变量不被序列化但是又没有static的含义，可以使用transient关键字声明变量</p>
+</li>
+<li><p>如果一个类实现了Serializable接口，编译后的.class文件中会带有一个序列号。序列化时，会将这个序号一同写入文件；<strong>当反序列化时，会将文件的序列号和.class文件中的序列号作对比</strong>，如果不同会抛<strong>InvalidClassException</strong>异常。（每次对类修改后都会重新生成一个序列号，为了避免异常，我们可以手动给Serializable实现类加上一个序列号）</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serivalVersionUID = <span class="number">42L</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h3><ul>
+<li>PrintStream：为其他输出流添加功能，使他们能方便打印各种数据值的表示形式<ol>
+<li>print()</li>
+<li>pringln()</li>
+<li>继承自OutputStream的方法（如果使用write方法会查询编码表97-&gt;a；如果使用println or print方法会原样输出）</li>
+</ol>
+</li>
+<li>构造方法：<ol>
+<li>PrintStream(File file)</li>
+<li>PrintStream(OutputStream out)</li>
+<li>PrintStream(String fileName)</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PrintStream ps = <span class="keyword">new</span> PrintStream(<span class="string">&quot;/home/jack1024/a.txt&quot;</span>);</span><br><span class="line">ps.write(<span class="number">97</span>);<span class="comment">//转化为字节</span></span><br><span class="line">ps.println(<span class="number">97</span>);<span class="comment">//原样打印到文件</span></span><br><span class="line">ps.close;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">System.setOut(ps);<span class="comment">//改变输出语句的目的地为ps的目的地</span></span><br><span class="line">System.out.println(<span class="string">&quot;haha&quot;</span>);<span class="comment">//会将haha字符串写到/home/jack1024/a.txt中</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Java网络编程"><a href="#Java网络编程" class="headerlink" title="Java网络编程"></a>Java网络编程</h2><p>TCP/IP协议是Internet中最基本，最广泛的协议，他定义了计算机计算机如何进因特网，数据如何在计算机间传输数据。它的内部包含一系列用于处理数据通信的协议</p>
+<ul>
+<li>UDP协议：无连接，效率更高，不安全</li>
+<li>TCP协议：三次握手建立连接，四次挥手解除连接，效率较低，安全</li>
+</ul>
+<p>网络编程三要素：</p>
+<ol>
+<li>协议</li>
+<li>IP地址：ipv4(32位：8<em>4)，ipv6(128位：16</em>8)，连接两台主机</li>
+<li>端口：两个字节(0—1024—65535)，连接两台主机的两个进程</li>
+</ol>
+<h3 id="TCP通信程序"><a href="#TCP通信程序" class="headerlink" title="TCP通信程序"></a>TCP通信程序</h3><ul>
+<li>客户端主动请求服务端建立连接，连接中包含一个IO对象，这个对象只能是字节流对象</li>
+</ul>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223550.png" alt="image-20210311113110227"></p>
+<p><strong>代码实现：</strong></p>
+<p><strong>客户端</strong></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223558.png" alt="image-20210311113550491"></p>
+<p><strong>服务器</strong></p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223606.png" alt="image-20210311115105384"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TcpClient</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		Socket socket = <span class="keyword">new</span> Socket(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">8888</span>);</span><br><span class="line">		<span class="comment">//往服务器写</span></span><br><span class="line">		OutputStream os = socket.getOutputStream();</span><br><span class="line">		os.write(<span class="string">&quot;你好&quot;</span>.getBytes());</span><br><span class="line">		<span class="comment">//从服务端拿</span></span><br><span class="line">		InputStream is = socket.getInputStream();</span><br><span class="line">		<span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">		<span class="keyword">int</span> len = is.read(bytes);</span><br><span class="line">		System.out.println(<span class="keyword">new</span> String(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">		socket.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//服务端</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TcpServer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">        Socket accept = serverSocket.accept();</span><br><span class="line">        InputStream is = accept.getInputStream();</span><br><span class="line">        OutputStream os = accept.getOutputStream();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len = is.read(bytes);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">        os.write(<span class="string">&quot;收到了&quot;</span>.getBytes());</span><br><span class="line">        accept.close();</span><br><span class="line">        serverSocket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="TCP文件上传案例"><a href="#TCP文件上传案例" class="headerlink" title="TCP文件上传案例"></a>TCP文件上传案例</h3><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223615.png" alt="image-20210311142418192"></p>
+<h3 id="模拟B-S通信案例"><a href="#模拟B-S通信案例" class="headerlink" title="模拟B/S通信案例"></a>模拟B/S通信案例</h3><h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><ul>
+<li>函数式接口：有且仅有一个抽象方法的接口，但是可以包含其他方法（默认，静态，私有）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line">修饰符 <span class="class"><span class="keyword">interface</span> 接口名称</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> 返回值类型 方法名称(可选参数信息)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>lambda是延迟加载的，可以提升部分代码的性能。也就是说只有满足执行lambda中方法的条件，才会执行方法中的内容，否则不会执行。</li>
+<li>函数式接口作为方法的参数，我们可以用lambda表达式 或者 匿名内部类 作为实参</li>
+<li>函数式接口作为方法的返回值，我们可以返回这个接口的匿名内部类 或者 lambda表达式</li>
+</ul>
+<h3 id="常用的函数式接口"><a href="#常用的函数式接口" class="headerlink" title="常用的函数式接口"></a>常用的函数式接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java.util.funciton.Supplier&lt;T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="title">getString</span><span class="params">(Supplier&lt;String&gt; sup)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sup.get();<span class="comment">//用来返回一个指定类型的数据对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    String s = getString(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Sam Smith&quot;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java.util.function.Consumer&lt;T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(String name,Consumer&lt;String&gt; con)</span></span>&#123;</span><br><span class="line">    con.accept(name);<span class="comment">//用来消费name字符串</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    method(<span class="string">&quot;Mariah Carey&quot;</span>,(String name)-&gt;&#123;</span><br><span class="line">        <span class="comment">//对传递的字符串进行处理消费</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//andThen()默认方法，连续组合多个Consumer的accept方法</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java.util.function.Predicate&lt;T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">checkString</span><span class="params">(String s,Predicate&lt;String&gt; pre)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> pre.test(s);<span class="comment">//对传入的参数进行判断，返回真假</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    String s = <span class="string">&quot;abcde&quot;</span>;</span><br><span class="line">    <span class="keyword">boolean</span> b = checkString(s,()-&gt;&#123;</span><br><span class="line">        <span class="keyword">return</span> s.length()&gt;<span class="number">5</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Predicate的and()，or()默认方法可以用来连接两个判断条件</span></span><br><span class="line"><span class="comment">//negate()默认方法可以对一个判断条件取反</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java.util.function.Function&lt;T,R&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(String s,Function&lt;String,Integer&gt; fun)</span></span>&#123;</span><br><span class="line">    Integer in = fun.apply(s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> staic <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    String s = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">    change(s,(String s)-&gt;&#123;<span class="comment">//将一个值从原类型转化为另一个类型</span></span><br><span class="line">    	<span class="keyword">return</span> Ingeter.parseInt(s);    </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//andThen()默认方法，连续组合多个Function的apply方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="Stream流式编程"><a href="#Stream流式编程" class="headerlink" title="Stream流式编程"></a>Stream流式编程</h2><ul>
+<li><strong>Stream和io流</strong>不能说差不多，只能说是<strong>毫无关系</strong></li>
+<li>极大地简化了对集合进行过滤 &amp; 遍历的操作</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list.stream()</span><br><span class="line">    .filter(name-&gt;name.startWith(<span class="string">&quot;杨&quot;</span>))</span><br><span class="line">    .filter(name-&gt;name.length==<span class="number">3</span>)</span><br><span class="line">    .foreach(name-&gt;System.out.println(name));</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>流式操作过程：</strong><ol>
+<li>获取数据源(集合,数组)</li>
+<li>数据转换(把数据源转化为Stream流)</li>
+<li>执行操作获取想要的结果</li>
+</ol>
+</li>
+</ul>
+<h3 id="获得Stream流对象"><a href="#获得Stream流对象" class="headerlink" title="获得Stream流对象"></a>获得Stream流对象</h3><ol>
+<li>所有collection集合可通过stream()方法获得</li>
+<li>Stream接口有一个static方法of()，可以把数组转化为stream流</li>
+</ol>
+<h3 id="Stream对象的方法"><a href="#Stream对象的方法" class="headerlink" title="Stream对象的方法"></a>Stream对象的方法</h3><ul>
+<li>stream属于管道流，只能使用一次，第一个Stream流调用完毕，数据会流到下一个Stream流身上，此时第一个Stream流就不能再调用方法了</li>
+</ul>
+<h4 id="延迟方法"><a href="#延迟方法" class="headerlink" title="延迟方法"></a>延迟方法</h4><ul>
+<li>返回值类型仍然是Stream接口自身类型的方法，支持链式调用</li>
+<li>每个流 流到下一步，上一步的流就关闭了，这个要注意，这也是为什么叫流，它是一个动态的过程</li>
+</ul>
+<p><strong>filter方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Stream&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate)</span></span><br><span class="line">Stream&lt;String&gt; stream = Stream.of(<span class="string">&quot;Jack&quot;</span>,<span class="string">&quot;Sam&quot;</span>,<span class="string">&quot;Tom&quot;</span>);</span><br><span class="line">Stream&lt;String&gt; stream2 = stream.filter(name-&gt;&#123;</span><br><span class="line">    reuturn name.startWith(<span class="string">&quot;J&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>map方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Stream&lt;R&gt; map(Function&lt;? super T, ? extends R&gt; mapper)</span></span><br><span class="line">Stream&lt;String&gt; stream = Stream.of(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>);</span><br><span class="line">Stream&lt;Integer&gt; stream2 = stream.map(String s-&gt;&#123;</span><br><span class="line">    reuturn Integer.parse(s);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>limit方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Stream&lt;T&gt; limit(long maxSize)</span></span><br><span class="line">Stream&lt;String&gt; stream = Stream.of(<span class="string">&quot;哈哈&quot;</span>,<span class="string">&quot;嘿嘿&quot;</span>,<span class="string">&quot;咚咚&quot;</span>);</span><br><span class="line"><span class="comment">//只取前两个元素</span></span><br><span class="line">stream.limit(<span class="number">2</span>).forEach(name-&gt;System.out.println(name));</span><br></pre></td></tr></table></figure>
+<p><strong>skip方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Stream&lt;T&gt; skip(long n)：跳过前n个元素</span></span><br><span class="line">Stream&lt;String&gt; stream = Stream.of(<span class="string">&quot;哈哈&quot;</span>,<span class="string">&quot;嘿嘿&quot;</span>,<span class="string">&quot;咚咚&quot;</span>);</span><br><span class="line"><span class="comment">//只取前两个元素</span></span><br><span class="line">stream.skip(<span class="number">2</span>).forEach(name-&gt;System.out.println(name));</span><br></pre></td></tr></table></figure>
+<p><strong>concat方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//static &lt;T&gt; Stream&lt;T&gt; concat(Stream&lt;? extends T&gt; a, Stream&lt;? extends T&gt; b)</span></span><br><span class="line"><span class="comment">//两个流合并为一个新的流</span></span><br><span class="line">Stream&lt;String&gt; stream1 = Stream.of(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>);</span><br><span class="line">Stream&lt;String&gt; stream2 = Stream.of(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>);</span><br><span class="line">Stream&lt;String&gt; concat = Stream.concat(stream1,stream2);</span><br><span class="line">concat.forEach(name-&gt;System.out.println(name));</span><br></pre></td></tr></table></figure>
+<h4 id="终结方法"><a href="#终结方法" class="headerlink" title="终结方法"></a>终结方法</h4><ul>
+<li>返回值类型不再是Stream接口自身类型的方法，不再支持链式调用</li>
+</ul>
+<p><strong>count方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//long count():统计个数</span></span><br><span class="line">ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="number">1</span>);</span><br><span class="line">list.add(<span class="number">2</span>);</span><br><span class="line">list.add(<span class="number">3</span>);</span><br><span class="line">list.add(<span class="number">4</span>);</span><br><span class="line">Stream&lt;Ingeter&gt; stream = list.stream();</span><br><span class="line"><span class="keyword">long</span> count = stream.count();</span><br><span class="line">System.out.println(count);</span><br></pre></td></tr></table></figure>
+<p><strong>forEach方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//void forEach(Consumer&lt;? super T&gt; con)</span></span><br><span class="line">Stream&lt;String&gt; stream = Stream.of(<span class="string">&quot;Jack&quot;</span>,<span class="string">&quot;Sam&quot;</span>,<span class="string">&quot;Tom&quot;</span>);</span><br><span class="line">stream.forEach(name-&gt;System.out.println(name));</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h2><ul>
+<li>虽然lambda已经很简单了，但是方法引用还可以堆lambda表达式继续简化</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name-&gt;System.out.println(name);<span class="comment">//lambda表达式</span></span><br><span class="line">System.out::println;<span class="comment">//方法引用</span></span><br></pre></td></tr></table></figure>
+<p>几种情况：</p>
+<ol>
+<li>通过对象名引用成员方法</li>
+<li>通过类名引用静态方法</li>
+<li>通过super引用父类成员方法</li>
+<li>通过this引用本类成员方法</li>
+<li>构造方法的方法引用</li>
+<li>数组的构造器引用</li>
+</ol>
+<h2 id="Junit单元测试"><a href="#Junit单元测试" class="headerlink" title="Junit单元测试"></a>Junit单元测试</h2><ul>
+<li>黑盒测试：不需要关注代码，只需要看输入是否能得到输出</li>
+<li>白盒测试：通过代码来测试程序的流程正确性（Junit属于白盒测试）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义测试类</span></span><br><span class="line"><span class="comment">/**几个建议</span></span><br><span class="line"><span class="comment">	1.类名：被测试类名Test</span></span><br><span class="line"><span class="comment">	2.包名：XXX.XXX.test</span></span><br><span class="line"><span class="comment">	3.方法名：test被测试的方法名</span></span><br><span class="line"><span class="comment">	4.返回值：void</span></span><br><span class="line"><span class="comment">	5.参数列表：空参</span></span><br><span class="line"><span class="comment">**/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//之前需要导入junit依赖</span></span><br><span class="line"><span class="keyword">public</span> CaculateTest&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>+<span class="number">2</span>;</span><br><span class="line">        Assert.assertEquals(<span class="number">3</span>,result)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@Before和@After注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//所有测试方法前和后都会执行的两个注解@Before和@After</span></span><br><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@After</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><blockquote>
+<p>查看之前写的一片博客《java-反射》</p>
+</blockquote>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><blockquote>
+<p>查看之前写的一片博客《java-注解》</p>
+</blockquote>
+</div><div class="article-licensing box"><div class="licensing-title"><p>java基础快速回顾-下</p><p><a href="https://yangfanjack.github.io/2021/03/09/java基础快速回顾-下/">https://yangfanjack.github.io/2021/03/09/java基础快速回顾-下/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jack1024</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-03-09</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-22</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a><a class="link-muted mr-2" rel="tag" href="/tags/JavaSE/">JavaSE</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6043a11d32910c0018e217f7&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/03/16/javaWeb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">javaWeb三大组件</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/03/06/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/"><span class="level-item">java基础快速回顾-中</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.6.2/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "284fe033785c221ba911e3af21a727e8",
+            repo: "gitalk-comment",
+            owner: "yangfanjack",
+            clientID: "c12e18c31ac7cd568589",
+            clientSecret: "f381392cab6b4fd6c0526092be05029fbdc00215",
+            admin: ["yangfanjack"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Lambda表达式"><span class="level-left"><span class="level-item">1</span><span class="level-item">Lambda表达式</span></span></a></li><li><a class="level is-mobile" href="#FIle类"><span class="level-left"><span class="level-item">2</span><span class="level-item">FIle类</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#递归"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">递归</span></span></a></li><li><a class="level is-mobile" href="#文件过滤器"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">文件过滤器</span></span></a></li></ul></li><li><a class="level is-mobile" href="#IO流"><span class="level-left"><span class="level-item">3</span><span class="level-item">IO流</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#字节流"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">字节流</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#字节输出流"><span class="level-left"><span class="level-item">3.1.1</span><span class="level-item">字节输出流</span></span></a></li><li><a class="level is-mobile" href="#字节输入流"><span class="level-left"><span class="level-item">3.1.2</span><span class="level-item">字节输入流</span></span></a></li></ul></li><li><a class="level is-mobile" href="#字符流"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">字符流</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#字符输入流"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">字符输入流</span></span></a></li><li><a class="level is-mobile" href="#字符输出流"><span class="level-left"><span class="level-item">3.2.2</span><span class="level-item">字符输出流</span></span></a></li></ul></li><li><a class="level is-mobile" href="#属性集Properties"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">属性集Properties</span></span></a></li><li><a class="level is-mobile" href="#缓冲流"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">缓冲流</span></span></a></li><li><a class="level is-mobile" href="#转换流"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">转换流</span></span></a></li><li><a class="level is-mobile" href="#序列化-amp-反序列化流"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">序列化 &amp; 反序列化流</span></span></a></li><li><a class="level is-mobile" href="#打印流"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">打印流</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Java网络编程"><span class="level-left"><span class="level-item">4</span><span class="level-item">Java网络编程</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#TCP通信程序"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">TCP通信程序</span></span></a></li><li><a class="level is-mobile" href="#TCP文件上传案例"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">TCP文件上传案例</span></span></a></li><li><a class="level is-mobile" href="#模拟B-S通信案例"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">模拟B/S通信案例</span></span></a></li></ul></li><li><a class="level is-mobile" href="#函数式编程"><span class="level-left"><span class="level-item">5</span><span class="level-item">函数式编程</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#常用的函数式接口"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">常用的函数式接口</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Stream流式编程"><span class="level-left"><span class="level-item">6</span><span class="level-item">Stream流式编程</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#获得Stream流对象"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">获得Stream流对象</span></span></a></li><li><a class="level is-mobile" href="#Stream对象的方法"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">Stream对象的方法</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#延迟方法"><span class="level-left"><span class="level-item">6.2.1</span><span class="level-item">延迟方法</span></span></a></li><li><a class="level is-mobile" href="#终结方法"><span class="level-left"><span class="level-item">6.2.2</span><span class="level-item">终结方法</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#方法引用"><span class="level-left"><span class="level-item">7</span><span class="level-item">方法引用</span></span></a></li><li><a class="level is-mobile" href="#Junit单元测试"><span class="level-left"><span class="level-item">8</span><span class="level-item">Junit单元测试</span></span></a></li><li><a class="level is-mobile" href="#反射"><span class="level-left"><span class="level-item">9</span><span class="level-item">反射</span></span></a></li><li><a class="level is-mobile" href="#注解"><span class="level-left"><span class="level-item">10</span><span class="level-item">注解</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521232604.png" alt="win10壁纸bingtoday"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-03-30T00:27:58.000Z">2022-03-30</time></p><p class="title"><a href="/2022/03/30/win10%E5%A3%81%E7%BA%B8bingtoday/">win10壁纸bingtoday</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101160711.jpg" alt="RPM打包初试"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-01T02:44:01.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/RPM%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/">RPM打包初试</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img221251.jpg" alt="国庆北京独游"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-13T00:13:19.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/">国庆北京独游</a></p><p class="categories"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgff.jpg" alt="摄影入门"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-10-10T10:19:17.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/%E6%91%84%E5%BD%B1%E5%85%A5%E9%97%A8/">摄影入门</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/"><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210923201053126.png" alt="工作流Activiti"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-09-23T11:38:06.000Z">2021-09-23</time></p><p class="title"><a href="/2021/09/23/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">工作流Activiti</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/image/logoko.png" alt="JACK&#039;s BLOG" height="28"></a><p class="is-size-7"><span>&copy; 2023 Jack1024</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
