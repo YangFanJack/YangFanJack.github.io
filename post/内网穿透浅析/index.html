@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>内网穿透浅析 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="首先需要明确的是：内网穿透只是目的，不是特指哪一种技术，可以有多种方式来实现通过公网对局域网中的主机的访问。
+内网穿透的技术：目前了解的大致分为以下两种
+基于client和server，利用公网的一个中间服务器实现流量转发 利用UDP打洞来实现P2P 当然，自己能申请公网ip更好。直接做一个端口映射（常见的端口转发有以下三种模式：手动设计端口转发规则，DMZ，UPNP）利用DDNS动态绑定域名即可。 Tips:其实，我觉得如果从实现目的这个层次去说，VPN的正向代理同样也实现了访问企业/学校内部局域网的目的，所以我觉得这也叫实现了内网穿透（不知道准不准确）
+基于C/S架构流量转发实现（传统穿透） 在谈这种方式之前，需要先了解以下计算机网络中的Proxy，既代理。分为正向代理和反向代理
+正向代理： 隐藏了真实的请求客户端。服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求，最典型的例子就是科学上网工具（访问谷歌被墙，于是在国外搭建一台代理服务器，让代理帮我去请求，代理把请求放回的数据再返回给我。此时，Proxy和Client同属一个LAN，对server透明） 反向代理： 反向代理隐藏里真实的服务端，反向代理服务器会帮我们把请求转发到真实的服务器那里去。最典型的就是Nginx这个性能强大的反向代理服务器（当我们访问百度时，百度在全国分布了上万台服务器，你的每次请求具体是哪台服务器处理你的请求你不用知道，只需要Nginx这个反向代理服务器知道就行了，这实际就是负载均衡的实现原理。此时，Proxy和Server同属于一个LAN，对Client透明） 正向代理： 典型例子就是VPN和shadowsocks等代理上网工具，通过安装工具来让本地机器和代理服务器处于同一局域网 反向代理： 典型例子就是nginx和内网穿透，通过在服务端机器安装工具来让服务端机器和代理服务器处于同一局域网，nginx和内网穿透中的反向代理服务器的区别就是nginx可以根据算法策略自动选择服务终端，而内网穿透反向代理服务器直接通过工具和服务终端机做了ip:端口映射绑定
+目前最常用的两个通过公网服务器转发数据实现内网穿透的工具是：frp，ngrok，nat123。远程桌面控制软件TeamViewer也是这样的原理。
+具体流程如下：我们需要一个有公网ip的反向代理服务器C，由C代理本地的A主机（但在这个过程中，代理服务器C和本地A没有在一个网段，因此当公网B向代理服务器发送请求时，代理服务器无法连接到处于内网中的主机A。所以就需要上面提到的工具了，需要安装相应的服务或者客户端软件向Proxy主动发出请求并建立连接）。然后从本地A向C握手，建立稳定连接，同时在Proxy上将A的端口映射到公网IP上。之后，一个公网设备B向C发送请求，C通过刚才建立的稳定信道将请求转发给A。A收到请求后将响应发给C，C再将响应返给B。至此，穿透达成。
+缺陷就是Proxy最为数据转发的唯一跳板，需要消耗服务器带宽和流量，内网穿透过程中的带宽上行取决于中间反向代理服务器。
+利用UDP打洞实现P2P的访问（点对点穿透） 简单说就是：用一个公网服务器当介绍人，直接连接两个不同局域网中的主机，来实现通讯，建立连接后把公网服务器关了，两个不同局域网中的机器依旧可以通信。
+要弄清楚UDP打洞（NAT打洞）原理，必须先搞清楚NAT的4种类型
+先来看个例子：公网上有两个server，ip和端口分别如图。内网中的NAT网关的ip是3.3.3.3，NAT内部需要穿透的电脑的ip如图。此时，192.168.0.2电脑A，已经和NAT网关（3.3.3.3:200）和server1（1.1.1.1:1111）建立了连接
+以下四种方式从上至下的要求愈发严格：
+完全锥形NAT 如上，当A和server1的一条通信连接建立时，其他的所有server，例如server2也可以通过路由上的3.3.3.3:200来访问电脑A
+ip限制型锥形NAT 当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的ip才能访问电脑A，但是堆server1中的不同端口号并不限制
+端口限制型锥形NAT 当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的ip&#43;端口才能访问电脑A
+对称NAT 当A和server1的一条通信连接建立时，在完全满足端口映射锥形NAT的基础上，如果此时电脑A还需要建立和其他server建立连接，比如server2，那么此时不能重复利用3.3.3.3:200，只能重新在路由器上开通一个端口号。
+UDP打洞中不同NAT的组合方式 上述介绍四种NAT的类型对其进行两两组合，总共有10中不同的组合方式，不同的组合方式在进行穿透时的方法也不同，有两种情况的组合无法穿透（也有一些骚操作可以让这两种的组合实现内网穿透，但是由于NAT设计之初就没有考虑到这两种的组合情况，所以理论上他们也是不能穿透的）
+两种内网穿透方式的比较 打洞：Zerotier，Frp（初级），smargate 转发：花生壳，ngrok，Frp " />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="内网穿透浅析" />
+<meta property="og:description" content="首先需要明确的是：内网穿透只是目的，不是特指哪一种技术，可以有多种方式来实现通过公网对局域网中的主机的访问。
+内网穿透的技术：目前了解的大致分为以下两种
+基于client和server，利用公网的一个中间服务器实现流量转发 利用UDP打洞来实现P2P 当然，自己能申请公网ip更好。直接做一个端口映射（常见的端口转发有以下三种模式：手动设计端口转发规则，DMZ，UPNP）利用DDNS动态绑定域名即可。 Tips:其实，我觉得如果从实现目的这个层次去说，VPN的正向代理同样也实现了访问企业/学校内部局域网的目的，所以我觉得这也叫实现了内网穿透（不知道准不准确）
+基于C/S架构流量转发实现（传统穿透） 在谈这种方式之前，需要先了解以下计算机网络中的Proxy，既代理。分为正向代理和反向代理
+正向代理： 隐藏了真实的请求客户端。服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求，最典型的例子就是科学上网工具（访问谷歌被墙，于是在国外搭建一台代理服务器，让代理帮我去请求，代理把请求放回的数据再返回给我。此时，Proxy和Client同属一个LAN，对server透明） 反向代理： 反向代理隐藏里真实的服务端，反向代理服务器会帮我们把请求转发到真实的服务器那里去。最典型的就是Nginx这个性能强大的反向代理服务器（当我们访问百度时，百度在全国分布了上万台服务器，你的每次请求具体是哪台服务器处理你的请求你不用知道，只需要Nginx这个反向代理服务器知道就行了，这实际就是负载均衡的实现原理。此时，Proxy和Server同属于一个LAN，对Client透明） 正向代理： 典型例子就是VPN和shadowsocks等代理上网工具，通过安装工具来让本地机器和代理服务器处于同一局域网 反向代理： 典型例子就是nginx和内网穿透，通过在服务端机器安装工具来让服务端机器和代理服务器处于同一局域网，nginx和内网穿透中的反向代理服务器的区别就是nginx可以根据算法策略自动选择服务终端，而内网穿透反向代理服务器直接通过工具和服务终端机做了ip:端口映射绑定
+目前最常用的两个通过公网服务器转发数据实现内网穿透的工具是：frp，ngrok，nat123。远程桌面控制软件TeamViewer也是这样的原理。
+具体流程如下：我们需要一个有公网ip的反向代理服务器C，由C代理本地的A主机（但在这个过程中，代理服务器C和本地A没有在一个网段，因此当公网B向代理服务器发送请求时，代理服务器无法连接到处于内网中的主机A。所以就需要上面提到的工具了，需要安装相应的服务或者客户端软件向Proxy主动发出请求并建立连接）。然后从本地A向C握手，建立稳定连接，同时在Proxy上将A的端口映射到公网IP上。之后，一个公网设备B向C发送请求，C通过刚才建立的稳定信道将请求转发给A。A收到请求后将响应发给C，C再将响应返给B。至此，穿透达成。
+缺陷就是Proxy最为数据转发的唯一跳板，需要消耗服务器带宽和流量，内网穿透过程中的带宽上行取决于中间反向代理服务器。
+利用UDP打洞实现P2P的访问（点对点穿透） 简单说就是：用一个公网服务器当介绍人，直接连接两个不同局域网中的主机，来实现通讯，建立连接后把公网服务器关了，两个不同局域网中的机器依旧可以通信。
+要弄清楚UDP打洞（NAT打洞）原理，必须先搞清楚NAT的4种类型
+先来看个例子：公网上有两个server，ip和端口分别如图。内网中的NAT网关的ip是3.3.3.3，NAT内部需要穿透的电脑的ip如图。此时，192.168.0.2电脑A，已经和NAT网关（3.3.3.3:200）和server1（1.1.1.1:1111）建立了连接
+以下四种方式从上至下的要求愈发严格：
+完全锥形NAT 如上，当A和server1的一条通信连接建立时，其他的所有server，例如server2也可以通过路由上的3.3.3.3:200来访问电脑A
+ip限制型锥形NAT 当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的ip才能访问电脑A，但是堆server1中的不同端口号并不限制
+端口限制型锥形NAT 当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的ip&#43;端口才能访问电脑A
+对称NAT 当A和server1的一条通信连接建立时，在完全满足端口映射锥形NAT的基础上，如果此时电脑A还需要建立和其他server建立连接，比如server2，那么此时不能重复利用3.3.3.3:200，只能重新在路由器上开通一个端口号。
+UDP打洞中不同NAT的组合方式 上述介绍四种NAT的类型对其进行两两组合，总共有10中不同的组合方式，不同的组合方式在进行穿透时的方法也不同，有两种情况的组合无法穿透（也有一些骚操作可以让这两种的组合实现内网穿透，但是由于NAT设计之初就没有考虑到这两种的组合情况，所以理论上他们也是不能穿透的）
+两种内网穿透方式的比较 打洞：Zerotier，Frp（初级），smargate 转发：花生壳，ngrok，Frp " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-12-28T09:32:58+00:00" />
+<meta property="article:modified_time" content="2020-12-28T09:32:58+00:00" />
+
+  
+  <meta itemprop="name" content="内网穿透浅析">
+<meta itemprop="description" content="首先需要明确的是：内网穿透只是目的，不是特指哪一种技术，可以有多种方式来实现通过公网对局域网中的主机的访问。
+内网穿透的技术：目前了解的大致分为以下两种
+基于client和server，利用公网的一个中间服务器实现流量转发 利用UDP打洞来实现P2P 当然，自己能申请公网ip更好。直接做一个端口映射（常见的端口转发有以下三种模式：手动设计端口转发规则，DMZ，UPNP）利用DDNS动态绑定域名即可。 Tips:其实，我觉得如果从实现目的这个层次去说，VPN的正向代理同样也实现了访问企业/学校内部局域网的目的，所以我觉得这也叫实现了内网穿透（不知道准不准确）
+基于C/S架构流量转发实现（传统穿透） 在谈这种方式之前，需要先了解以下计算机网络中的Proxy，既代理。分为正向代理和反向代理
+正向代理： 隐藏了真实的请求客户端。服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求，最典型的例子就是科学上网工具（访问谷歌被墙，于是在国外搭建一台代理服务器，让代理帮我去请求，代理把请求放回的数据再返回给我。此时，Proxy和Client同属一个LAN，对server透明） 反向代理： 反向代理隐藏里真实的服务端，反向代理服务器会帮我们把请求转发到真实的服务器那里去。最典型的就是Nginx这个性能强大的反向代理服务器（当我们访问百度时，百度在全国分布了上万台服务器，你的每次请求具体是哪台服务器处理你的请求你不用知道，只需要Nginx这个反向代理服务器知道就行了，这实际就是负载均衡的实现原理。此时，Proxy和Server同属于一个LAN，对Client透明） 正向代理： 典型例子就是VPN和shadowsocks等代理上网工具，通过安装工具来让本地机器和代理服务器处于同一局域网 反向代理： 典型例子就是nginx和内网穿透，通过在服务端机器安装工具来让服务端机器和代理服务器处于同一局域网，nginx和内网穿透中的反向代理服务器的区别就是nginx可以根据算法策略自动选择服务终端，而内网穿透反向代理服务器直接通过工具和服务终端机做了ip:端口映射绑定
+目前最常用的两个通过公网服务器转发数据实现内网穿透的工具是：frp，ngrok，nat123。远程桌面控制软件TeamViewer也是这样的原理。
+具体流程如下：我们需要一个有公网ip的反向代理服务器C，由C代理本地的A主机（但在这个过程中，代理服务器C和本地A没有在一个网段，因此当公网B向代理服务器发送请求时，代理服务器无法连接到处于内网中的主机A。所以就需要上面提到的工具了，需要安装相应的服务或者客户端软件向Proxy主动发出请求并建立连接）。然后从本地A向C握手，建立稳定连接，同时在Proxy上将A的端口映射到公网IP上。之后，一个公网设备B向C发送请求，C通过刚才建立的稳定信道将请求转发给A。A收到请求后将响应发给C，C再将响应返给B。至此，穿透达成。
+缺陷就是Proxy最为数据转发的唯一跳板，需要消耗服务器带宽和流量，内网穿透过程中的带宽上行取决于中间反向代理服务器。
+利用UDP打洞实现P2P的访问（点对点穿透） 简单说就是：用一个公网服务器当介绍人，直接连接两个不同局域网中的主机，来实现通讯，建立连接后把公网服务器关了，两个不同局域网中的机器依旧可以通信。
+要弄清楚UDP打洞（NAT打洞）原理，必须先搞清楚NAT的4种类型
+先来看个例子：公网上有两个server，ip和端口分别如图。内网中的NAT网关的ip是3.3.3.3，NAT内部需要穿透的电脑的ip如图。此时，192.168.0.2电脑A，已经和NAT网关（3.3.3.3:200）和server1（1.1.1.1:1111）建立了连接
+以下四种方式从上至下的要求愈发严格：
+完全锥形NAT 如上，当A和server1的一条通信连接建立时，其他的所有server，例如server2也可以通过路由上的3.3.3.3:200来访问电脑A
+ip限制型锥形NAT 当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的ip才能访问电脑A，但是堆server1中的不同端口号并不限制
+端口限制型锥形NAT 当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的ip&#43;端口才能访问电脑A
+对称NAT 当A和server1的一条通信连接建立时，在完全满足端口映射锥形NAT的基础上，如果此时电脑A还需要建立和其他server建立连接，比如server2，那么此时不能重复利用3.3.3.3:200，只能重新在路由器上开通一个端口号。
+UDP打洞中不同NAT的组合方式 上述介绍四种NAT的类型对其进行两两组合，总共有10中不同的组合方式，不同的组合方式在进行穿透时的方法也不同，有两种情况的组合无法穿透（也有一些骚操作可以让这两种的组合实现内网穿透，但是由于NAT设计之初就没有考虑到这两种的组合情况，所以理论上他们也是不能穿透的）
+两种内网穿透方式的比较 打洞：Zerotier，Frp（初级），smargate 转发：花生壳，ngrok，Frp "><meta itemprop="datePublished" content="2020-12-28T09:32:58+00:00" />
+<meta itemprop="dateModified" content="2020-12-28T09:32:58+00:00" />
+<meta itemprop="wordCount" content="37">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="内网穿透浅析"/>
+<meta name="twitter:description" content="首先需要明确的是：内网穿透只是目的，不是特指哪一种技术，可以有多种方式来实现通过公网对局域网中的主机的访问。
+内网穿透的技术：目前了解的大致分为以下两种
+基于client和server，利用公网的一个中间服务器实现流量转发 利用UDP打洞来实现P2P 当然，自己能申请公网ip更好。直接做一个端口映射（常见的端口转发有以下三种模式：手动设计端口转发规则，DMZ，UPNP）利用DDNS动态绑定域名即可。 Tips:其实，我觉得如果从实现目的这个层次去说，VPN的正向代理同样也实现了访问企业/学校内部局域网的目的，所以我觉得这也叫实现了内网穿透（不知道准不准确）
+基于C/S架构流量转发实现（传统穿透） 在谈这种方式之前，需要先了解以下计算机网络中的Proxy，既代理。分为正向代理和反向代理
+正向代理： 隐藏了真实的请求客户端。服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求，最典型的例子就是科学上网工具（访问谷歌被墙，于是在国外搭建一台代理服务器，让代理帮我去请求，代理把请求放回的数据再返回给我。此时，Proxy和Client同属一个LAN，对server透明） 反向代理： 反向代理隐藏里真实的服务端，反向代理服务器会帮我们把请求转发到真实的服务器那里去。最典型的就是Nginx这个性能强大的反向代理服务器（当我们访问百度时，百度在全国分布了上万台服务器，你的每次请求具体是哪台服务器处理你的请求你不用知道，只需要Nginx这个反向代理服务器知道就行了，这实际就是负载均衡的实现原理。此时，Proxy和Server同属于一个LAN，对Client透明） 正向代理： 典型例子就是VPN和shadowsocks等代理上网工具，通过安装工具来让本地机器和代理服务器处于同一局域网 反向代理： 典型例子就是nginx和内网穿透，通过在服务端机器安装工具来让服务端机器和代理服务器处于同一局域网，nginx和内网穿透中的反向代理服务器的区别就是nginx可以根据算法策略自动选择服务终端，而内网穿透反向代理服务器直接通过工具和服务终端机做了ip:端口映射绑定
+目前最常用的两个通过公网服务器转发数据实现内网穿透的工具是：frp，ngrok，nat123。远程桌面控制软件TeamViewer也是这样的原理。
+具体流程如下：我们需要一个有公网ip的反向代理服务器C，由C代理本地的A主机（但在这个过程中，代理服务器C和本地A没有在一个网段，因此当公网B向代理服务器发送请求时，代理服务器无法连接到处于内网中的主机A。所以就需要上面提到的工具了，需要安装相应的服务或者客户端软件向Proxy主动发出请求并建立连接）。然后从本地A向C握手，建立稳定连接，同时在Proxy上将A的端口映射到公网IP上。之后，一个公网设备B向C发送请求，C通过刚才建立的稳定信道将请求转发给A。A收到请求后将响应发给C，C再将响应返给B。至此，穿透达成。
+缺陷就是Proxy最为数据转发的唯一跳板，需要消耗服务器带宽和流量，内网穿透过程中的带宽上行取决于中间反向代理服务器。
+利用UDP打洞实现P2P的访问（点对点穿透） 简单说就是：用一个公网服务器当介绍人，直接连接两个不同局域网中的主机，来实现通讯，建立连接后把公网服务器关了，两个不同局域网中的机器依旧可以通信。
+要弄清楚UDP打洞（NAT打洞）原理，必须先搞清楚NAT的4种类型
+先来看个例子：公网上有两个server，ip和端口分别如图。内网中的NAT网关的ip是3.3.3.3，NAT内部需要穿透的电脑的ip如图。此时，192.168.0.2电脑A，已经和NAT网关（3.3.3.3:200）和server1（1.1.1.1:1111）建立了连接
+以下四种方式从上至下的要求愈发严格：
+完全锥形NAT 如上，当A和server1的一条通信连接建立时，其他的所有server，例如server2也可以通过路由上的3.3.3.3:200来访问电脑A
+ip限制型锥形NAT 当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的ip才能访问电脑A，但是堆server1中的不同端口号并不限制
+端口限制型锥形NAT 当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的ip&#43;端口才能访问电脑A
+对称NAT 当A和server1的一条通信连接建立时，在完全满足端口映射锥形NAT的基础上，如果此时电脑A还需要建立和其他server建立连接，比如server2，那么此时不能重复利用3.3.3.3:200，只能重新在路由器上开通一个端口号。
+UDP打洞中不同NAT的组合方式 上述介绍四种NAT的类型对其进行两两组合，总共有10中不同的组合方式，不同的组合方式在进行穿透时的方法也不同，有两种情况的组合无法穿透（也有一些骚操作可以让这两种的组合实现内网穿透，但是由于NAT设计之初就没有考虑到这两种的组合情况，所以理论上他们也是不能穿透的）
+两种内网穿透方式的比较 打洞：Zerotier，Frp（初级），smargate 转发：花生壳，ngrok，Frp "/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">内网穿透浅析</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Dec 28, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>首先需要明确的是：内网穿透只是目的，不是特指哪一种技术，可以有多种方式来实现通过公网对局域网中的主机的访问。</strong></p>
+<p>内网穿透的技术：目前了解的大致分为以下两种</p>
+<ul>
+<li>基于client和server，利用公网的一个中间服务器实现流量转发</li>
+<li>利用UDP打洞来实现P2P</li>
+<li>当然，自己能申请公网ip更好。直接做一个端口映射（常见的端口转发有以下三种模式：手动设计端口转发规则，DMZ，UPNP）利用DDNS动态绑定域名即可。</li>
+</ul>
+<p>Tips:其实，我觉得如果从实现目的这个层次去说，VPN的正向代理同样也实现了访问企业/学校内部局域网的目的，所以我觉得这也叫实现了内网穿透（不知道准不准确）</p>
+<h3 id="基于cs架构流量转发实现传统穿透">基于C/S架构流量转发实现（传统穿透）</h3>
+<!-- raw HTML omitted -->
+<p>在谈这种方式之前，需要先了解以下计算机网络中的Proxy，既代理。分为正向代理和反向代理</p>
+<ul>
+<li><strong>正向代理：</strong> 隐藏了真实的请求客户端。服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求，最典型的例子就是科学上网工具（访问谷歌被墙，于是在国外搭建一台代理服务器，让代理帮我去请求，代理把请求放回的数据再返回给我。此时，Proxy和Client同属一个LAN，对server透明）</li>
+<li><strong>反向代理：</strong> 反向代理隐藏里真实的服务端，反向代理服务器会帮我们把请求转发到真实的服务器那里去。最典型的就是Nginx这个性能强大的反向代理服务器（当我们访问百度时，百度在全国分布了上万台服务器，你的每次请求具体是哪台服务器处理你的请求你不用知道，只需要Nginx这个反向代理服务器知道就行了，这实际就是负载均衡的实现原理。此时，Proxy和Server同属于一个LAN，对Client透明）</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20190715113403480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyODQ4Nzcz,size_16,color_FFFFFF,t_70" alt="反向代理&amp;正向代理"></p>
+<p><strong>正向代理：</strong> 典型例子就是VPN和shadowsocks等代理上网工具，通过安装工具来让本地机器和代理服务器处于同一局域网
+<strong>反向代理：</strong> 典型例子就是nginx和内网穿透，通过在服务端机器安装工具来让服务端机器和代理服务器处于同一局域网，nginx和内网穿透中的反向代理服务器的区别就是nginx可以根据算法策略自动选择服务终端，而内网穿透反向代理服务器直接通过工具和服务终端机做了ip:端口映射绑定</p>
+<p>目前最常用的两个通过公网服务器转发数据实现内网穿透的工具是：<strong>frp</strong>，<strong>ngrok</strong>，<strong>nat123</strong>。远程桌面控制软件<strong>TeamViewer</strong>也是这样的原理。</p>
+<p><strong>具体流程</strong>如下：我们需要一个有公网ip的反向代理服务器C，由C代理本地的A主机（但在这个过程中，代理服务器C和本地A没有在一个网段，因此当公网B向代理服务器发送请求时，代理服务器无法连接到处于内网中的主机A。所以就需要上面提到的工具了，需要安装相应的服务或者客户端软件向Proxy主动发出请求并建立连接）。然后从本地A向C握手，建立稳定连接，同时在Proxy上将A的端口映射到公网IP上。之后，一个公网设备B向C发送请求，C通过刚才建立的稳定信道将请求转发给A。A收到请求后将响应发给C，C再将响应返给B。至此，穿透达成。</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201229095308.png" alt=""></p>
+<p>缺陷就是Proxy最为数据转发的唯一跳板，需要消耗服务器带宽和流量，内网穿透过程中的带宽上行取决于中间反向代理服务器。</p>
+<h3 id="利用udp打洞实现p2p的访问点对点穿透">利用UDP打洞实现P2P的访问（点对点穿透）</h3>
+<!-- raw HTML omitted -->
+<p>简单说就是：用一个公网服务器当介绍人，直接连接两个不同局域网中的主机，来实现通讯，建立连接后把公网服务器关了，两个不同局域网中的机器依旧可以通信。</p>
+<p>要弄清楚UDP打洞（NAT打洞）原理，必须先搞清楚NAT的4种类型</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>先来看个例子：公网上有两个server，ip和端口分别如图。内网中的NAT网关的ip是3.3.3.3，NAT内部需要穿透的电脑的ip如图。此时，192.168.0.2电脑A，已经和NAT网关（3.3.3.3:200）和server1（1.1.1.1:1111）建立了连接</p>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<p><strong>以下四种方式从上至下的要求愈发严格：</strong></p>
+<h4 id="完全锥形nat">完全锥形NAT</h4>
+<p>如上，当A和server1的一条通信连接建立时，<strong>其他的所有server</strong>，例如server2也可以通过路由上的3.3.3.3:200来访问电脑A</p>
+<h4 id="ip限制型锥形nat">ip限制型锥形NAT</h4>
+<p>当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的<strong>ip</strong>才能访问电脑A，但是堆server1中的<strong>不同端口号并不限制</strong></p>
+<h4 id="端口限制型锥形nat">端口限制型锥形NAT</h4>
+<p>当A和server1的一条通信连接建立时，其他的server，例如server2不能通过路由上的3.3.3.3:200来访问电脑A，只能是此时正在正在连接当中的server1的<strong>ip+端口</strong>才能访问电脑A</p>
+<h4 id="对称nat">对称NAT</h4>
+<p>当A和server1的一条通信连接建立时，<strong>在完全满足端口映射锥形NAT的基础上</strong>，如果此时电脑A还需要建立和其他server建立连接，比如server2，那么此时<strong>不能重复利用3.3.3.3:200</strong>，只能重新在路由器上开通一个端口号。</p>
+<h4 id="udp打洞中不同nat的组合方式">UDP打洞中不同NAT的组合方式</h4>
+<p>上述介绍四种NAT的类型对其进行两两组合，总共有10中不同的组合方式，不同的组合方式在进行穿透时的方法也不同，有两种情况的组合无法穿透（也有一些骚操作可以让这两种的组合实现内网穿透，但是由于NAT设计之初就没有考虑到这两种的组合情况，所以理论上他们也是不能穿透的）</p>
+<!-- raw HTML omitted -->
+<h3 id="两种内网穿透方式的比较">两种内网穿透方式的比较</h3>
+<ul>
+<li>打洞：Zerotier，Frp（初级），smargate</li>
+<li>转发：花生壳，ngrok，Frp</li>
+</ul>
+<!-- raw HTML omitted -->
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/"
+      ><span class="mr-1.5">←</span><span>AJAX局部刷新技术</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/java-gc%E6%9C%BA%E5%88%B6/"
+      ><span>Java-GC机制</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

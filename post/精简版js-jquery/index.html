@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>精简版JS:jQuery - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="JavaScript 和 JQuery jQuery就是一个JavaScript库，里面封装了大量JavaScript函数
+推荐一个各种开源项目CDN服务搜索网站：https://www.bootcdn.cn/
+&lt;a href=&#34;&#34; id=&#34;text-jquery&#34;&gt;click me&lt;/a&gt; &lt;!--JavaScript的在线cdn引入--&gt; &lt;script src=&#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js&#34;&gt;&lt;/script&gt; &lt;script&gt; //公式：$(css的selector).action(); //document.getElementById(&#34;text-jquery&#34;).onclick = function(){} $(&#34;#text-jquery&#34;).click(function(){ alert(&#34;hello,jquery&#34;); }) &lt;/script&gt; $是什么 //jQuery的文件结构：其实是一个自执行函数,引入了jquery的js文件，会执行这个自执行函数。 (function(){ window.jQuery = window.$ = jQuery;//给window对象添加一个jQuery属性和$属性，用JQuery函数赋值给$ //$是一个函数，所以会根据参数的不同进行不同的处理 $(function(){});//入口函数 $(&#34;#div&#34;);//选择器 $(&#34;&lt;div&gt;我是一个div标签&lt;/div&gt;&#34;);//创建div标签 $(dom对象);//把dom对象转化为jquery对象 }) Dom对象和jQuery对象 dom对象：原生js选择器获取到的对象，只能调用dom属性或者方法，但是不能调用jQuery的属性和方法
+var div1 = document.getElementById(&#34;div1&#34;); div1.style.backgroundColor = &#34;red&#34;; jQuery对象：由jQuery选择器获取到的对象，只能调用jQuery的属性或者方法，但是不能调用原生js的属性和方法
+var div1 = $(&#34;#div1&#34;); div1.css(&#34;backgroundColor&#34;,&#34;red&#34;); jquery对象是一个伪数组，其实是dom对象的一个包装集
+jQuery和JavaScript对象的互相转化：
+//JavaScript对象——》jQuery对象 var div1 = document.getElementById(&#34;div1&#34;); var $div1 = $(div1); $div1.css(&#34;backgroundColor&#34;,&#34;red&#34;); //jQuery对象——》JavaScript对象 var $div1 = $(&#34;#div1&#34;); var div1 = $div1[0]; var div2 = $div1." />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="精简版JS:jQuery" />
+<meta property="og:description" content="JavaScript 和 JQuery jQuery就是一个JavaScript库，里面封装了大量JavaScript函数
+推荐一个各种开源项目CDN服务搜索网站：https://www.bootcdn.cn/
+&lt;a href=&#34;&#34; id=&#34;text-jquery&#34;&gt;click me&lt;/a&gt; &lt;!--JavaScript的在线cdn引入--&gt; &lt;script src=&#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js&#34;&gt;&lt;/script&gt; &lt;script&gt; //公式：$(css的selector).action(); //document.getElementById(&#34;text-jquery&#34;).onclick = function(){} $(&#34;#text-jquery&#34;).click(function(){ alert(&#34;hello,jquery&#34;); }) &lt;/script&gt; $是什么 //jQuery的文件结构：其实是一个自执行函数,引入了jquery的js文件，会执行这个自执行函数。 (function(){ window.jQuery = window.$ = jQuery;//给window对象添加一个jQuery属性和$属性，用JQuery函数赋值给$ //$是一个函数，所以会根据参数的不同进行不同的处理 $(function(){});//入口函数 $(&#34;#div&#34;);//选择器 $(&#34;&lt;div&gt;我是一个div标签&lt;/div&gt;&#34;);//创建div标签 $(dom对象);//把dom对象转化为jquery对象 }) Dom对象和jQuery对象 dom对象：原生js选择器获取到的对象，只能调用dom属性或者方法，但是不能调用jQuery的属性和方法
+var div1 = document.getElementById(&#34;div1&#34;); div1.style.backgroundColor = &#34;red&#34;; jQuery对象：由jQuery选择器获取到的对象，只能调用jQuery的属性或者方法，但是不能调用原生js的属性和方法
+var div1 = $(&#34;#div1&#34;); div1.css(&#34;backgroundColor&#34;,&#34;red&#34;); jquery对象是一个伪数组，其实是dom对象的一个包装集
+jQuery和JavaScript对象的互相转化：
+//JavaScript对象——》jQuery对象 var div1 = document.getElementById(&#34;div1&#34;); var $div1 = $(div1); $div1.css(&#34;backgroundColor&#34;,&#34;red&#34;); //jQuery对象——》JavaScript对象 var $div1 = $(&#34;#div1&#34;); var div1 = $div1[0]; var div2 = $div1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-01-13T22:34:34+00:00" />
+<meta property="article:modified_time" content="2021-01-13T22:34:34+00:00" />
+
+  
+  <meta itemprop="name" content="精简版JS:jQuery">
+<meta itemprop="description" content="JavaScript 和 JQuery jQuery就是一个JavaScript库，里面封装了大量JavaScript函数
+推荐一个各种开源项目CDN服务搜索网站：https://www.bootcdn.cn/
+&lt;a href=&#34;&#34; id=&#34;text-jquery&#34;&gt;click me&lt;/a&gt; &lt;!--JavaScript的在线cdn引入--&gt; &lt;script src=&#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js&#34;&gt;&lt;/script&gt; &lt;script&gt; //公式：$(css的selector).action(); //document.getElementById(&#34;text-jquery&#34;).onclick = function(){} $(&#34;#text-jquery&#34;).click(function(){ alert(&#34;hello,jquery&#34;); }) &lt;/script&gt; $是什么 //jQuery的文件结构：其实是一个自执行函数,引入了jquery的js文件，会执行这个自执行函数。 (function(){ window.jQuery = window.$ = jQuery;//给window对象添加一个jQuery属性和$属性，用JQuery函数赋值给$ //$是一个函数，所以会根据参数的不同进行不同的处理 $(function(){});//入口函数 $(&#34;#div&#34;);//选择器 $(&#34;&lt;div&gt;我是一个div标签&lt;/div&gt;&#34;);//创建div标签 $(dom对象);//把dom对象转化为jquery对象 }) Dom对象和jQuery对象 dom对象：原生js选择器获取到的对象，只能调用dom属性或者方法，但是不能调用jQuery的属性和方法
+var div1 = document.getElementById(&#34;div1&#34;); div1.style.backgroundColor = &#34;red&#34;; jQuery对象：由jQuery选择器获取到的对象，只能调用jQuery的属性或者方法，但是不能调用原生js的属性和方法
+var div1 = $(&#34;#div1&#34;); div1.css(&#34;backgroundColor&#34;,&#34;red&#34;); jquery对象是一个伪数组，其实是dom对象的一个包装集
+jQuery和JavaScript对象的互相转化：
+//JavaScript对象——》jQuery对象 var div1 = document.getElementById(&#34;div1&#34;); var $div1 = $(div1); $div1.css(&#34;backgroundColor&#34;,&#34;red&#34;); //jQuery对象——》JavaScript对象 var $div1 = $(&#34;#div1&#34;); var div1 = $div1[0]; var div2 = $div1."><meta itemprop="datePublished" content="2021-01-13T22:34:34+00:00" />
+<meta itemprop="dateModified" content="2021-01-13T22:34:34+00:00" />
+<meta itemprop="wordCount" content="405">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="精简版JS:jQuery"/>
+<meta name="twitter:description" content="JavaScript 和 JQuery jQuery就是一个JavaScript库，里面封装了大量JavaScript函数
+推荐一个各种开源项目CDN服务搜索网站：https://www.bootcdn.cn/
+&lt;a href=&#34;&#34; id=&#34;text-jquery&#34;&gt;click me&lt;/a&gt; &lt;!--JavaScript的在线cdn引入--&gt; &lt;script src=&#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js&#34;&gt;&lt;/script&gt; &lt;script&gt; //公式：$(css的selector).action(); //document.getElementById(&#34;text-jquery&#34;).onclick = function(){} $(&#34;#text-jquery&#34;).click(function(){ alert(&#34;hello,jquery&#34;); }) &lt;/script&gt; $是什么 //jQuery的文件结构：其实是一个自执行函数,引入了jquery的js文件，会执行这个自执行函数。 (function(){ window.jQuery = window.$ = jQuery;//给window对象添加一个jQuery属性和$属性，用JQuery函数赋值给$ //$是一个函数，所以会根据参数的不同进行不同的处理 $(function(){});//入口函数 $(&#34;#div&#34;);//选择器 $(&#34;&lt;div&gt;我是一个div标签&lt;/div&gt;&#34;);//创建div标签 $(dom对象);//把dom对象转化为jquery对象 }) Dom对象和jQuery对象 dom对象：原生js选择器获取到的对象，只能调用dom属性或者方法，但是不能调用jQuery的属性和方法
+var div1 = document.getElementById(&#34;div1&#34;); div1.style.backgroundColor = &#34;red&#34;; jQuery对象：由jQuery选择器获取到的对象，只能调用jQuery的属性或者方法，但是不能调用原生js的属性和方法
+var div1 = $(&#34;#div1&#34;); div1.css(&#34;backgroundColor&#34;,&#34;red&#34;); jquery对象是一个伪数组，其实是dom对象的一个包装集
+jQuery和JavaScript对象的互相转化：
+//JavaScript对象——》jQuery对象 var div1 = document.getElementById(&#34;div1&#34;); var $div1 = $(div1); $div1.css(&#34;backgroundColor&#34;,&#34;red&#34;); //jQuery对象——》JavaScript对象 var $div1 = $(&#34;#div1&#34;); var div1 = $div1[0]; var div2 = $div1."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">精简版JS:jQuery</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Jan 13, 2021</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="javascript-和-jquery">JavaScript 和 JQuery</h2>
+<p>jQuery就是一个JavaScript库，里面封装了大量JavaScript函数</p>
+<p>推荐一个各种开源项目CDN服务搜索网站：<code>https://www.bootcdn.cn/</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-jquery&#34;</span>&gt;click me&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--JavaScript的在线cdn引入--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//公式：$(css的selector).action();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//document.getElementById(&#34;text-jquery&#34;).onclick = function(){}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#text-jquery&#34;</span>).<span style="color:#a6e22e">click</span>(<span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;hello,jquery&#34;</span>);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h2 id="是什么">$是什么</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//jQuery的文件结构：其实是一个自执行函数,引入了jquery的js文件，会执行这个自执行函数。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>(<span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>    window.<span style="color:#a6e22e">jQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jQuery</span>;<span style="color:#75715e">//给window对象添加一个jQuery属性和$属性，用JQuery函数赋值给$
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//$是一个函数，所以会根据参数的不同进行不同的处理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">function</span>(){});<span style="color:#75715e">//入口函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#div&#34;</span>);<span style="color:#75715e">//选择器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;&lt;div&gt;我是一个div标签&lt;/div&gt;&#34;</span>);<span style="color:#75715e">//创建div标签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">dom对象</span>);<span style="color:#75715e">//把dom对象转化为jquery对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>})
+</span></span></code></pre></div><h2 id="dom对象和jquery对象">Dom对象和jQuery对象</h2>
+<p>dom对象：原生js选择器获取到的对象，只能调用dom属性或者方法，但是不能调用jQuery的属性和方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">div1</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;div1&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">div1</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">backgroundColor</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>;
+</span></span></code></pre></div><p>jQuery对象：由jQuery选择器获取到的对象，只能调用jQuery的属性或者方法，但是不能调用原生js的属性和方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">div1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#div1&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">div1</span>.<span style="color:#a6e22e">css</span>(<span style="color:#e6db74">&#34;backgroundColor&#34;</span>,<span style="color:#e6db74">&#34;red&#34;</span>);
+</span></span></code></pre></div><p>jquery对象是一个伪数组，其实是dom对象的一个包装集</p>
+<p>jQuery和JavaScript对象的互相转化：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//JavaScript对象——》jQuery对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">div1</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;div1&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$div1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">div1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">$div1</span>.<span style="color:#a6e22e">css</span>(<span style="color:#e6db74">&#34;backgroundColor&#34;</span>,<span style="color:#e6db74">&#34;red&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//jQuery对象——》JavaScript对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$div1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#div1&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">div1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$div1</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">div2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$div1</span>.<span style="color:#a6e22e">get</span>(<span style="color:#ae81ff">0</span>);
+</span></span></code></pre></div><h2 id="选择器">选择器</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//原生JavaScript
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//标签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementsByTagName</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//id
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementById</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementsByClassName</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//jQuery选择器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;p&#34;</span>);<span style="color:#75715e">//标签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#id1&#34;</span>);<span style="color:#75715e">//id
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;.class1&#34;</span>);<span style="color:#75715e">//类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//......(css中所有选择器都适用：基本选择器，层次选择器，伪类，伪元素，属性选择器...)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//还有一些筛选方法来过滤
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">children</span>(<span style="color:#a6e22e">selector</span>);<span style="color:#75715e">//子类选择器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">selector</span>);<span style="color:#75715e">//后代选择器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">siblings</span>(<span style="color:#a6e22e">selector</span>);<span style="color:#75715e">//兄弟节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">parent</span>();<span style="color:#75715e">//父亲
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">eq</span>(<span style="color:#a6e22e">index</span>);<span style="color:#75715e">//索引
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">next</span>();<span style="color:#75715e">//下一个兄弟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">prev</span>();<span style="color:#75715e">//上一个兄弟
+</span></span></span></code></pre></div><h2 id="事件">事件</h2>
+<p>鼠标事件，键盘事件，其他事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">blur</span>()<span style="color:#75715e">//元素失去焦点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">change</span>()<span style="color:#75715e">//用户改变域的内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">click</span>()<span style="color:#75715e">//鼠标点击某个对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">dbclick</span>()<span style="color:#75715e">//鼠标双击某个对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">error</span>()<span style="color:#75715e">//加载文档或者图形时发生错误
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">focus</span>()<span style="color:#75715e">//元素获得焦点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">keydown</span>()<span style="color:#75715e">//用户摁下摁键时发生
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">keypress</span>()<span style="color:#75715e">//用户摁下摁键，并且产生一个字符时发生
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">keyup</span>()<span style="color:#75715e">//用户释放某一个摁键时触发
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">load</span>()<span style="color:#75715e">//某个页面或图像完成加载
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">mousedown</span>(<span style="color:#75715e">//某个鼠标按键被按下
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">mousemove</span>()<span style="color:#75715e">//鼠标被移动
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">mouseout</span>()<span style="color:#75715e">//鼠标从某元素移开
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">mouseover</span>()<span style="color:#75715e">//鼠标被移到某元素上(子元素也会触发)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">mouseenter</span>()<span style="color:#75715e">//鼠标必须点到选取的元素上才触发，注意和mouseover区别
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">mouseup</span>()<span style="color:#75715e">//某个鼠标按键被松开
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">resize</span>()<span style="color:#75715e">//窗口或者框架被调整大小
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">scroll</span>()<span style="color:#75715e">//滚动文档的可视部分
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">select</span>()<span style="color:#75715e">//文本被选中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">submit</span>()<span style="color:#75715e">//提交按钮被点击
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">unload</span>()<span style="color:#75715e">//用户退出界面
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//有的函数通过回调函数中的参数获取更多操作的细节：键盘鼠标按键wihch，mouse移动横纵坐标
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//入口函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//window.onload() 方法用于在网页加载完毕后立刻执行的操作，即当 HTML 文档加载完毕后，立刻执行某个方法。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>window.<span style="color:#a6e22e">onload</span><span style="color:#f92672">=</span><span style="color:#66d9ef">function</span>(){<span style="color:#75715e">//入口函数唯一
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Func1</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Func2</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Func3</span>();
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//$(document).ready()注意在body中没有onload事件，否则该函数不能执行。在每个页面中可以有很多个函数被加载执行，按照fn的顺序来执行。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(document).<span style="color:#a6e22e">ready</span>(<span style="color:#66d9ef">function</span>(){<span style="color:#75715e">//入口函数可以不唯一
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;网页已经加载完成&#34;</span>);
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//简化为
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;网页已经加载完成&#34;</span>);
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//window.onload和$(function(){})的执行流程是jQuery先执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//$(function(){})要等待页面上dom树加载完毕后执行，window.onload要等待页面上所有资源都加载完毕后再执行
+</span></span></span></code></pre></div><h3 id="on注册事件">on注册事件</h3>
+<p>jQuery1.7之后，jQuery用on统一了所有时间的处理方法，之后都建议使用on来注册事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//on注册简单事件，不支持动态绑定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;click&#34;</span>,<span style="color:#66d9ef">function</span>(){});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//on注册事件委托(selector是子元素的父元素，所以必须是selector的内部子元素才能触发这个事件，支持动态绑定)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;click&#34;</span>,<span style="color:#e6db74">&#34;子元素&#34;</span>,<span style="color:#66d9ef">function</span>(){});
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//使用off()来解绑事件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">off</span>();<span style="color:#75715e">//解绑所有事件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">off</span>(<span style="color:#e6db74">&#34;click&#34;</span>);<span style="color:#75715e">//解绑指定事件
+</span></span></span></code></pre></div><h3 id="事件触发">事件触发</h3>
+<p>自定义事件发生的时机条件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//自定义条件的时候执行click函数内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//两种方法都可以。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">click</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">trigger</span>(<span style="color:#e6db74">&#34;click&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//对于自定义事件，就只能使用触发器来了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;jack&#34;</span>,<span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;hello,jack!&#34;</span>);
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">trigger</span>(<span style="color:#e6db74">&#34;jack&#34;</span>);
+</span></span></code></pre></div><h3 id="事件对象">事件对象</h3>
+<blockquote>
+<p>什么是事件对象</p>
+</blockquote>
+<p>注册一个事件，系统会帮我们生成一个对象记录这个事件触发时候的一些信息</p>
+<p>比如触发事件的时候有没有按住某个键，以及一些坐标信息</p>
+<p>jQuery中的事件对象由形参e来获取，jQuery中的事件对象是对js原生事件对象的封装，处理好了浏览器兼容性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;click&#34;</span>,<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//距离屏幕左上角的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">screenX</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34; : &#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">screenY</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//距离页面坐上角的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">clientX</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34; : &#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">clientY</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//距离页面最顶部左上角的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">pageX</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34; : &#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">pageY</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//阻止事件冒泡
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">stopPropagation</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//阻止浏览器默认行为
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">preventDefault</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//上面两个同时阻止
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//按下的键盘代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">keyCode</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">which</span>;
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h2 id="操作dom">操作DOM</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">ul</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test-ul&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;js&#34;</span>&gt;JavaScript&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;python&#34;</span>&gt;Python&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">text</span>();<span style="color:#75715e">//获得值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">html</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">text</span>(<span style="color:#e6db74">&#34;派森&#34;</span>);<span style="color:#75715e">//获得值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">html</span>(<span style="color:#e6db74">&#34;&lt;em&gt;派森&lt;/em&gt;&#34;</span>);<span style="color:#75715e">//获得值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;input元素名称&#34;</span>).<span style="color:#a6e22e">val</span>();<span style="color:#75715e">//获取input元素的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;input元素名称&#34;</span>).<span style="color:#a6e22e">val</span>(<span style="color:#a6e22e">value</span>);<span style="color:#75715e">//设置input元素的值为value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#34;属性名&#34;</span>);<span style="color:#75715e">//获取属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selectorselector</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#34;属性名&#34;</span>,<span style="color:#e6db74">&#34;属性值&#34;</span>);<span style="color:#75715e">//设置属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">removeAttr</span>(<span style="color:#e6db74">&#34;属性名称&#34;</span>);<span style="color:#75715e">//给某元素删除指定的属性以及该属性的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">addClass</span>(<span style="color:#e6db74">&#34;class1 class2&#34;</span>);<span style="color:#75715e">//给某元素添加指定的样式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">removeClass</span>(<span style="color:#e6db74">&#34;class1 class2&#34;</span>);<span style="color:#75715e">//给某元素删除指定的样式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">toggleClass</span>(<span style="color:#e6db74">&#34;class1 class2&#34;</span>);<span style="color:#75715e">//给某元素切换指定的样式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">hasClass</span>(<span style="color:#e6db74">&#34;class&#34;</span>);<span style="color:#75715e">//判断是否有样式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//对于checked,selected,disabled这类boolean类型的属性来说，不能用attr方法获取属性值，只能用prop方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;input:checked&#34;</span>).<span style="color:#a6e22e">prop</span>(<span style="color:#e6db74">&#34;check&#34;</span>);<span style="color:#75715e">//返回true或false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;input:checked&#34;</span>).<span style="color:#a6e22e">prop</span>(<span style="color:#e6db74">&#34;check&#34;</span>,<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//css操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">css</span>(<span style="color:#e6db74">&#34;color&#34;</span>,<span style="color:#e6db74">&#34;red&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">css</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;width&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;100px&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;backgroundColor&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;red&#34;</span>
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//显示&amp;隐藏（本质是设定display）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">show</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">hide</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test-ul li[name=python]&#34;</span>).<span style="color:#a6e22e">toggle</span>();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//宽高
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//不带padding，margin和border
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">height</span>();<span style="color:#75715e">//直接返回200，没有px，如果用css返回值带px单位
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">height</span>(<span style="color:#ae81ff">100</span>);<span style="color:#75715e">//不带单位默认px
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">widtn</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//带padding
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">innerWidth</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">innerHeight</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//带padding和border
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">outerWidth</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">outerWidth</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//带padding，border和margin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">outerWidth</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">outerWidth</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//获取网页可视区的宽高
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">width</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">height</span>();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//增删改DOM元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//方法1(直接显示在页面上)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;元素&#34;</span>).<span style="color:#a6e22e">html</span>(<span style="color:#e6db74">&#34;html标签内容&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//方法2(通过下列方法追加)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">dom1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;html标签内容&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">after</span>(<span style="color:#a6e22e">content</span>);<span style="color:#75715e">//在匹配元素后面添加内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">content</span>);<span style="color:#75715e">//将content作为元素的内容插入到该元素内的最后
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">appendTo</span>(<span style="color:#a6e22e">content</span>);<span style="color:#75715e">//和append方向相反
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">before</span>(<span style="color:#a6e22e">content</span>);<span style="color:#75715e">//与after方法互换
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">prepend</span>(<span style="color:#a6e22e">content</span>);<span style="color:#75715e">//将content作为该元素的一部分，放到该元素的最前面
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">prependTo</span>(<span style="color:#a6e22e">content</span>);<span style="color:#75715e">//和prepend方向互换
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">insertAfter</span>(<span style="color:#a6e22e">content</span>);<span style="color:#75715e">//将该元素插入到content之后
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">content</span>);<span style="color:#75715e">//将该元素插入到content之前
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">remove</span>();<span style="color:#75715e">//删除所有的指定元素,自杀（本质上还是先找父再删自己）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#34;exp&#34;</span>);<span style="color:#75715e">//删除所有含有exp的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">wrap</span>(<span style="color:#e6db74">&#34;html&#34;</span>);<span style="color:#75715e">//用html来包围该元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">wrap</span>(<span style="color:#a6e22e">element</span>);<span style="color:#75715e">//用element来包围该元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">clone</span>(<span style="color:#a6e22e">布尔表达式</span>);<span style="color:#75715e">//当布尔表达式为真时，克隆元素（无参时，当作true处理）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">empty</span>();<span style="color:#75715e">//将该元素的内容设置为空
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//克隆
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">clone</span>(<span style="color:#66d9ef">true</span><span style="color:#f92672">/</span><span style="color:#66d9ef">false</span>);<span style="color:#75715e">//返回元素的一份副本，参数代表是否把事件一起克隆，默认时false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//offset &amp; position
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//offset获取元素距离document的位置，返回值为对象[left:100,top:100]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">offset</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//position获取相对于其最近的有定位的祖先元素的距离
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">position</span>();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//scrollTop &amp; scrollLeft
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//设置或者获取垂直滚动条的位置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">scrollTop</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">scrollLeft</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//也可以带参数设置滚动条滚动的距离
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h2 id="动画">动画</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>	<span style="color:#75715e">//显示 &amp; 隐藏动画
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">hide</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">toggle</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//其他动画
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">slideDown</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});<span style="color:#75715e">//下滑生成
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">slideUp</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});<span style="color:#75715e">//上滑消失
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">slideToggle</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});<span style="color:#75715e">//反复横跳
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">fadeIn</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});<span style="color:#75715e">//淡入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">fadeOut</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});<span style="color:#75715e">//淡出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">fadeTo</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#a6e22e">透明度</span>,<span style="color:#a6e22e">参数3</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});<span style="color:#75715e">//淡入到哪里
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">selector</span>).<span style="color:#a6e22e">fadeToggle</span>(<span style="color:#a6e22e">参数1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">毫秒数</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;fast&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;normal&#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;slow&#39;</span>,<span style="color:#a6e22e">参数2</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">动画执行完后的回调函数</span>});<span style="color:#75715e">//反复横跳
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//自定义动画
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">/*参数：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	参数1：需要做的动画属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	参数2：执行动画的时长
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	参数3：缓动swing or 匀速linear
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	参数4：动画执行完毕后的回调函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;元素&#34;</span>).<span style="color:#a6e22e">animate</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">left</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">800</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">200</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">opacity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0.5</span>
+</span></span><span style="display:flex;"><span>    },<span style="color:#ae81ff">2000</span>,<span style="color:#e6db74">&#39;linear&#39;</span>,<span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;动画执行完毕了&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//这里面又可以继续animate，无线套娃
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//因为都设置了动画的时间，所以存在一个动画队列，即使操作已经结束，但是动画可能并没有结束，导致交互很糟糕，需要在操作结束时stop动画
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">stop</span>(<span style="color:#66d9ef">true</span>,<span style="color:#66d9ef">true</span>);<span style="color:#75715e">//参数1：是否清除队列；参数2：是否跳转到最终效果
+</span></span></span></code></pre></div><h3 id="多库共存">多库共存</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//查看jQuery版本
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">jQuery</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">jquery</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">jQuery</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">jquery</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">jquery</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">jquery</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//引入多个jQuery文件，使用的是哪个版本的？
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//哪个文件后引入就使用的那个版本的 $对象 和 jQuery对象 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//多库共存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">noConflict</span>();<span style="color:#75715e">//主动把当前自己版本的$控制权释放掉
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">jQuery</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">jquery</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">jquery</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//这样上面就是两个版本的jQuery了，实现了多库共存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//同时noConflict返回原来的版本_$
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">_$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">noConflict</span>();
+</span></span></code></pre></div><h2 id="插件">插件</h2>
+<p>jQuery插件搜索网站：<code>https://www.jq22.com/</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//常用jQuery插件：颜色插件，省市联动插件，jQuery ui插件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*自己开发jQuery插件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	1. 给jQuery原型添加方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	2. 给jQuery直接添加方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//给jQuery原型添加方法(jquery.fn = jquery.prototype )
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">bgColor</span>(<span style="color:#a6e22e">bg_color</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//this是调用这个bgColor方法的jQuery对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">css</span>(<span style="color:#e6db74">&#34;backgroundColor&#34;</span>,<span style="color:#a6e22e">bg_color</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;<span style="color:#75715e">//为了能链式编程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}(<span style="color:#a6e22e">jQuery</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//给jQuery原型添加方法(jquery.fn = jquery.prototype )
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">bgColor</span>(<span style="color:#a6e22e">bg_color</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//this是调用这个bgColor方法的jQuery对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">css</span>(<span style="color:#e6db74">&#34;backgroundColor&#34;</span>,<span style="color:#a6e22e">bg_color</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;<span style="color:#75715e">//为了能链式编程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}(<span style="color:#a6e22e">jQuery</span>))
+</span></span></code></pre></div><p><strong>jQuery支持链式编程</strong></p>
+<p>原因：因为很多jQuery方法直接返回 当前的jQuery对象，所以可以接着 . 出方法；</p>
+<ol>
+<li>
+<p>不返回jQuery对象的方法：val(),html(),text(),attr(), 返回文本字符串；</p>
+</li>
+<li>
+<p>返回新的jQuery对象的方法：next() nextAll() parent() children() prev() &hellip;</p>
+</li>
+<li>
+<p>剩下基本都是返回当前jQuery对象；</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;div&#34;</span>).<span style="color:#a6e22e">width</span>(<span style="color:#ae81ff">200</span><span style="color:#a6e22e">px</span>).<span style="color:#a6e22e">height</span>(<span style="color:#ae81ff">100</span><span style="color:#a6e22e">px</span>).<span style="color:#a6e22e">css</span>(<span style="color:#e6db74">&#34;backgroundColor&#34;</span>,<span style="color:#e6db74">&#34;red&#34;</span>).<span style="color:#a6e22e">text</span>(<span style="color:#e6db74">&#34;哈哈&#34;</span>);
+</span></span></code></pre></div><p><strong>jQuery的很多操作通过实践中自己总结。</strong></p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/web%E5%89%8D%E7%AB%AF-elementui/"
+      ><span class="mr-1.5">←</span><span>web前端-elementUI</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/"
+      ><span>JavaScript快速回顾</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

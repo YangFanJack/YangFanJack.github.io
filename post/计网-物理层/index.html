@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>计网-物理层 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，&#43;5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
+数据：运送消息的实体
+信号：数据的电气或电磁的表现
+模拟信号：消息的参数取值时连续的
+数字信号：消息的参数取值是离散的
+码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度
+码元长度：1码元可以携带的nbit信息量
+信道：向一个方向传送消息的媒体（一条发送的信道&#43;一条接收的信道）
+单工通信：单向高速公路 半双工通信：对讲机 全双工通信：电话 基带信号：来自信源的信号
+带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）
+单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码
+奈氏准则：在任何信道中，码元传输速率是有上限的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特
+香农定理：信道的极限信息传输速率C=W✖log2(1&#43;S/N) b/s
+物理层下面的传输媒体 导向传输媒体 双绞线：STP，UTP 同轴电缆：50Ω，75Ω 光纤 非导向传输媒体 无线电磁波传播（短波，微波） 物理层设备 集线器：是一个很大的冲突域，采用广播的方式 信道复用技术 充分利用一条共享信道
+频分复用技术（FDM） 时分复用技术（TDM） 统计时分复用（STDM） 码分复用技术（CDM） 同一个频率同时传就只能采用码分复用
+数字传输系统 PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路） 宽带接入技术 xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术
+HFC光纤同轴混合网：用有线电视提供internet接入。
+FTTx技术：光纤到户" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="计网-物理层" />
+<meta property="og:description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，&#43;5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
+数据：运送消息的实体
+信号：数据的电气或电磁的表现
+模拟信号：消息的参数取值时连续的
+数字信号：消息的参数取值是离散的
+码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度
+码元长度：1码元可以携带的nbit信息量
+信道：向一个方向传送消息的媒体（一条发送的信道&#43;一条接收的信道）
+单工通信：单向高速公路 半双工通信：对讲机 全双工通信：电话 基带信号：来自信源的信号
+带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）
+单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码
+奈氏准则：在任何信道中，码元传输速率是有上限的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特
+香农定理：信道的极限信息传输速率C=W✖log2(1&#43;S/N) b/s
+物理层下面的传输媒体 导向传输媒体 双绞线：STP，UTP 同轴电缆：50Ω，75Ω 光纤 非导向传输媒体 无线电磁波传播（短波，微波） 物理层设备 集线器：是一个很大的冲突域，采用广播的方式 信道复用技术 充分利用一条共享信道
+频分复用技术（FDM） 时分复用技术（TDM） 统计时分复用（STDM） 码分复用技术（CDM） 同一个频率同时传就只能采用码分复用
+数字传输系统 PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路） 宽带接入技术 xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术
+HFC光纤同轴混合网：用有线电视提供internet接入。
+FTTx技术：光纤到户" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-21T15:06:00+00:00" />
+<meta property="article:modified_time" content="2020-11-21T15:06:00+00:00" />
+
+  
+  <meta itemprop="name" content="计网-物理层">
+<meta itemprop="description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，&#43;5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
+数据：运送消息的实体
+信号：数据的电气或电磁的表现
+模拟信号：消息的参数取值时连续的
+数字信号：消息的参数取值是离散的
+码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度
+码元长度：1码元可以携带的nbit信息量
+信道：向一个方向传送消息的媒体（一条发送的信道&#43;一条接收的信道）
+单工通信：单向高速公路 半双工通信：对讲机 全双工通信：电话 基带信号：来自信源的信号
+带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）
+单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码
+奈氏准则：在任何信道中，码元传输速率是有上限的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特
+香农定理：信道的极限信息传输速率C=W✖log2(1&#43;S/N) b/s
+物理层下面的传输媒体 导向传输媒体 双绞线：STP，UTP 同轴电缆：50Ω，75Ω 光纤 非导向传输媒体 无线电磁波传播（短波，微波） 物理层设备 集线器：是一个很大的冲突域，采用广播的方式 信道复用技术 充分利用一条共享信道
+频分复用技术（FDM） 时分复用技术（TDM） 统计时分复用（STDM） 码分复用技术（CDM） 同一个频率同时传就只能采用码分复用
+数字传输系统 PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路） 宽带接入技术 xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术
+HFC光纤同轴混合网：用有线电视提供internet接入。
+FTTx技术：光纤到户"><meta itemprop="datePublished" content="2020-11-21T15:06:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-21T15:06:00+00:00" />
+<meta itemprop="wordCount" content="48">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计网-物理层"/>
+<meta name="twitter:description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，&#43;5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
+数据：运送消息的实体
+信号：数据的电气或电磁的表现
+模拟信号：消息的参数取值时连续的
+数字信号：消息的参数取值是离散的
+码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度
+码元长度：1码元可以携带的nbit信息量
+信道：向一个方向传送消息的媒体（一条发送的信道&#43;一条接收的信道）
+单工通信：单向高速公路 半双工通信：对讲机 全双工通信：电话 基带信号：来自信源的信号
+带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）
+单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码
+奈氏准则：在任何信道中，码元传输速率是有上限的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特
+香农定理：信道的极限信息传输速率C=W✖log2(1&#43;S/N) b/s
+物理层下面的传输媒体 导向传输媒体 双绞线：STP，UTP 同轴电缆：50Ω，75Ω 光纤 非导向传输媒体 无线电磁波传播（短波，微波） 物理层设备 集线器：是一个很大的冲突域，采用广播的方式 信道复用技术 充分利用一条共享信道
+频分复用技术（FDM） 时分复用技术（TDM） 统计时分复用（STDM） 码分复用技术（CDM） 同一个频率同时传就只能采用码分复用
+数字传输系统 PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路） 宽带接入技术 xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术
+HFC光纤同轴混合网：用有线电视提供internet接入。
+FTTx技术：光纤到户"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">计网-物理层</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Nov 21, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="物理层的基本概念">物理层的基本概念</h2>
+<ul>
+<li>物理层解决如何在连接各种计算机的传输媒体上传输数据比特流</li>
+<li>主要任务时确定与传输媒体接口的一些特性
+<ul>
+<li>机械特性：接口形状，大小，引脚数量</li>
+<li>电气特性：电压范围</li>
+<li>功能特性：例如规定-5V表示0，+5V表示1</li>
+<li>过程特性：连接时各个部件的工作步骤</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据通信的基础知识">数据通信的基础知识</h2>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121195457.png" alt=""></p>
+<ul>
+<li>
+<p>消息：具有意义的数据</p>
+</li>
+<li>
+<p>数据：运送消息的实体</p>
+</li>
+<li>
+<p>信号：数据的电气或电磁的表现</p>
+<ul>
+<li>
+<p>模拟信号：消息的参数取值时连续的</p>
+</li>
+<li>
+<p>数字信号：消息的参数取值是离散的</p>
+</li>
+</ul>
+</li>
+<li>
+<p>码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度</p>
+</li>
+<li>
+<p>码元长度：1码元可以携带的nbit信息量</p>
+</li>
+<li>
+<p>信道：向一个方向传送消息的媒体（一条发送的信道+一条接收的信道）</p>
+<ul>
+<li>单工通信：单向高速公路</li>
+<li>半双工通信：对讲机</li>
+<li>全双工通信：电话</li>
+</ul>
+</li>
+<li>
+<p>基带信号：来自信源的信号</p>
+</li>
+<li>
+<p>带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）</p>
+</li>
+<li>
+<p>单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码</p>
+</li>
+<li>
+<p>奈氏准则：在任何信道中，<strong>码元传输速率是有上限</strong>的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特</p>
+</li>
+<li>
+<p>香农定理：信道的极限信息传输速率C=W✖log2(1+S/N) b/s</p>
+</li>
+</ul>
+<h2 id="物理层下面的传输媒体">物理层下面的传输媒体</h2>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121202938.png" alt=""></p>
+<ul>
+<li>导向传输媒体
+<ul>
+<li>双绞线：STP，UTP</li>
+<li>同轴电缆：50Ω，75Ω</li>
+<li>光纤</li>
+</ul>
+</li>
+<li>非导向传输媒体
+<ul>
+<li>无线电磁波传播（短波，微波）</li>
+</ul>
+</li>
+<li>物理层设备
+<ul>
+<li>集线器：是一个很大的冲突域，采用广播的方式</li>
+</ul>
+</li>
+</ul>
+<h2 id="信道复用技术">信道复用技术</h2>
+<p><strong>充分利用一条共享信道</strong></p>
+<!-- raw HTML omitted -->
+<h3 id="频分复用技术fdm">频分复用技术（FDM）</h3>
+<!-- raw HTML omitted -->
+<h3 id="时分复用技术tdm">时分复用技术（TDM）</h3>
+<!-- raw HTML omitted -->
+<h3 id="统计时分复用stdm">统计时分复用（STDM）</h3>
+<!-- raw HTML omitted -->
+<h3 id="码分复用技术cdm">码分复用技术（CDM）</h3>
+<p><strong>同一个频率同时传就只能采用码分复用</strong></p>
+<!-- raw HTML omitted -->
+<h2 id="数字传输系统">数字传输系统</h2>
+<ul>
+<li>PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路）</li>
+</ul>
+<h2 id="宽带接入技术">宽带接入技术</h2>
+<ul>
+<li>
+<p>xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术</p>
+</li>
+<li>
+<p>HFC光纤同轴混合网：用有线电视提供internet接入。</p>
+</li>
+<li>
+<p>FTTx技术：光纤到户</p>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"
+      ><span class="mr-1.5">←</span><span>计网-数据链路层</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/"
+      ><span>计网-概述</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

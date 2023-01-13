@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>hexo博客优化之图床迁移&amp;google收录 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="前言：
+搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打开时间（更别说我的博客是托管在github上的了）。图床就是一个好的解决方案，顾名思义，图床就是一个存储图片个“床”，一个云端的图片库，它把博客和图片分离开来，更好管理的同时也不会拖慢博客的速度。 我写博客虽然都是给自己看的，但是搜索引擎搜不到自己的文章总感觉缺了点什么:laughing:,让谷歌收录自己的博文，再加上自己博文的质量，就能在google搜索引擎上根据关键词搜索到自己的文章了。（百度的收录我没有弄，不过大同小异） 图床迁移： 我之前的图床用的是路过图床，这是个免费的图床，还不错，免费额度完全够用，但是感觉图片打开速度有点慢。所以就百度了一下，发现了一种同样免费且快捷的方式：gitee(码云)&#43;PicGo。迁移过后，实测效果明显，下面就来总结一下
+现在码云建立一个仓库，按照下面格式来。没有账号的自己注册。
+在gitee的个人设置里选择 私人令牌——&gt;生成新令牌，最后会生成一串密文，保存它，后面和PicGo绑定要用。
+下载PicGo软件下载链接，Windows系统选择exe安装程序下载，macos选择dmg程序安装程序下载。
+进入PicGo界面，插件搜索gitee-uploader，安装，然后重启。
+进入图床设置，选择gitee，然后填入以下信息
+repo：gitee中你建立的仓库地址，例如yangfanjack/image branch：填master token：刚才的密文 path：一般填img customPath：不填 customUrl：不填 然后点击设为默认图床——&gt;确认，即可，enjoy it!
+Google收录： 前提：看到这里的我相信都有办法进google吧
+进入Google Search Console，既然有新的，就选择左边的网域，按照他的格式例如ordinaryman.club填入你的域名，点击继续
+会DNS验证，去你的域名购买商添加一条txt record，如果之前更改过DNS服务器地址，就去DNS代理商添加record，我是cloudflare代理的，所以以此为例：
+点击**&#43;Add record**，然后type选择TXT，Name填@，Content就填Google给你的txt内容，点击save，完成。
+返回Google Search Console界面，点击验证，一般会过一段时间通过，不过我是马上就通过了:neutral_face:。
+然后进入你的本地博客根目录，安装站点地图插件：
+npm install hexo-generator-sitemap --save 安装完后进入根目录的配置文件_config.yml
+在URL下： url: http://XXXXXX //写入你的域名 在最后加上： sitemap: path: sitemap.xml 保存后，hexo三件套：hexo clean hexo g hexo d，访问网页：你的域名/sitemap.xml，出现以下页面说明配置成功
+进入Google Search Console的你的域名管理页面，点击站点地图，添加你的站点地图的网址：你的域名/sitemap.xml，等待一天时间，就可以生效啦。" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="hexo博客优化之图床迁移&amp;google收录" />
+<meta property="og:description" content="前言：
+搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打开时间（更别说我的博客是托管在github上的了）。图床就是一个好的解决方案，顾名思义，图床就是一个存储图片个“床”，一个云端的图片库，它把博客和图片分离开来，更好管理的同时也不会拖慢博客的速度。 我写博客虽然都是给自己看的，但是搜索引擎搜不到自己的文章总感觉缺了点什么:laughing:,让谷歌收录自己的博文，再加上自己博文的质量，就能在google搜索引擎上根据关键词搜索到自己的文章了。（百度的收录我没有弄，不过大同小异） 图床迁移： 我之前的图床用的是路过图床，这是个免费的图床，还不错，免费额度完全够用，但是感觉图片打开速度有点慢。所以就百度了一下，发现了一种同样免费且快捷的方式：gitee(码云)&#43;PicGo。迁移过后，实测效果明显，下面就来总结一下
+现在码云建立一个仓库，按照下面格式来。没有账号的自己注册。
+在gitee的个人设置里选择 私人令牌——&gt;生成新令牌，最后会生成一串密文，保存它，后面和PicGo绑定要用。
+下载PicGo软件下载链接，Windows系统选择exe安装程序下载，macos选择dmg程序安装程序下载。
+进入PicGo界面，插件搜索gitee-uploader，安装，然后重启。
+进入图床设置，选择gitee，然后填入以下信息
+repo：gitee中你建立的仓库地址，例如yangfanjack/image branch：填master token：刚才的密文 path：一般填img customPath：不填 customUrl：不填 然后点击设为默认图床——&gt;确认，即可，enjoy it!
+Google收录： 前提：看到这里的我相信都有办法进google吧
+进入Google Search Console，既然有新的，就选择左边的网域，按照他的格式例如ordinaryman.club填入你的域名，点击继续
+会DNS验证，去你的域名购买商添加一条txt record，如果之前更改过DNS服务器地址，就去DNS代理商添加record，我是cloudflare代理的，所以以此为例：
+点击**&#43;Add record**，然后type选择TXT，Name填@，Content就填Google给你的txt内容，点击save，完成。
+返回Google Search Console界面，点击验证，一般会过一段时间通过，不过我是马上就通过了:neutral_face:。
+然后进入你的本地博客根目录，安装站点地图插件：
+npm install hexo-generator-sitemap --save 安装完后进入根目录的配置文件_config.yml
+在URL下： url: http://XXXXXX //写入你的域名 在最后加上： sitemap: path: sitemap.xml 保存后，hexo三件套：hexo clean hexo g hexo d，访问网页：你的域名/sitemap.xml，出现以下页面说明配置成功
+进入Google Search Console的你的域名管理页面，点击站点地图，添加你的站点地图的网址：你的域名/sitemap.xml，等待一天时间，就可以生效啦。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-11T11:32:08+00:00" />
+<meta property="article:modified_time" content="2020-03-11T11:32:08+00:00" />
+
+  
+  <meta itemprop="name" content="hexo博客优化之图床迁移&amp;google收录">
+<meta itemprop="description" content="前言：
+搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打开时间（更别说我的博客是托管在github上的了）。图床就是一个好的解决方案，顾名思义，图床就是一个存储图片个“床”，一个云端的图片库，它把博客和图片分离开来，更好管理的同时也不会拖慢博客的速度。 我写博客虽然都是给自己看的，但是搜索引擎搜不到自己的文章总感觉缺了点什么:laughing:,让谷歌收录自己的博文，再加上自己博文的质量，就能在google搜索引擎上根据关键词搜索到自己的文章了。（百度的收录我没有弄，不过大同小异） 图床迁移： 我之前的图床用的是路过图床，这是个免费的图床，还不错，免费额度完全够用，但是感觉图片打开速度有点慢。所以就百度了一下，发现了一种同样免费且快捷的方式：gitee(码云)&#43;PicGo。迁移过后，实测效果明显，下面就来总结一下
+现在码云建立一个仓库，按照下面格式来。没有账号的自己注册。
+在gitee的个人设置里选择 私人令牌——&gt;生成新令牌，最后会生成一串密文，保存它，后面和PicGo绑定要用。
+下载PicGo软件下载链接，Windows系统选择exe安装程序下载，macos选择dmg程序安装程序下载。
+进入PicGo界面，插件搜索gitee-uploader，安装，然后重启。
+进入图床设置，选择gitee，然后填入以下信息
+repo：gitee中你建立的仓库地址，例如yangfanjack/image branch：填master token：刚才的密文 path：一般填img customPath：不填 customUrl：不填 然后点击设为默认图床——&gt;确认，即可，enjoy it!
+Google收录： 前提：看到这里的我相信都有办法进google吧
+进入Google Search Console，既然有新的，就选择左边的网域，按照他的格式例如ordinaryman.club填入你的域名，点击继续
+会DNS验证，去你的域名购买商添加一条txt record，如果之前更改过DNS服务器地址，就去DNS代理商添加record，我是cloudflare代理的，所以以此为例：
+点击**&#43;Add record**，然后type选择TXT，Name填@，Content就填Google给你的txt内容，点击save，完成。
+返回Google Search Console界面，点击验证，一般会过一段时间通过，不过我是马上就通过了:neutral_face:。
+然后进入你的本地博客根目录，安装站点地图插件：
+npm install hexo-generator-sitemap --save 安装完后进入根目录的配置文件_config.yml
+在URL下： url: http://XXXXXX //写入你的域名 在最后加上： sitemap: path: sitemap.xml 保存后，hexo三件套：hexo clean hexo g hexo d，访问网页：你的域名/sitemap.xml，出现以下页面说明配置成功
+进入Google Search Console的你的域名管理页面，点击站点地图，添加你的站点地图的网址：你的域名/sitemap.xml，等待一天时间，就可以生效啦。"><meta itemprop="datePublished" content="2020-03-11T11:32:08+00:00" />
+<meta itemprop="dateModified" content="2020-03-11T11:32:08+00:00" />
+<meta itemprop="wordCount" content="54">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="hexo博客优化之图床迁移&amp;google收录"/>
+<meta name="twitter:description" content="前言：
+搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打开时间（更别说我的博客是托管在github上的了）。图床就是一个好的解决方案，顾名思义，图床就是一个存储图片个“床”，一个云端的图片库，它把博客和图片分离开来，更好管理的同时也不会拖慢博客的速度。 我写博客虽然都是给自己看的，但是搜索引擎搜不到自己的文章总感觉缺了点什么:laughing:,让谷歌收录自己的博文，再加上自己博文的质量，就能在google搜索引擎上根据关键词搜索到自己的文章了。（百度的收录我没有弄，不过大同小异） 图床迁移： 我之前的图床用的是路过图床，这是个免费的图床，还不错，免费额度完全够用，但是感觉图片打开速度有点慢。所以就百度了一下，发现了一种同样免费且快捷的方式：gitee(码云)&#43;PicGo。迁移过后，实测效果明显，下面就来总结一下
+现在码云建立一个仓库，按照下面格式来。没有账号的自己注册。
+在gitee的个人设置里选择 私人令牌——&gt;生成新令牌，最后会生成一串密文，保存它，后面和PicGo绑定要用。
+下载PicGo软件下载链接，Windows系统选择exe安装程序下载，macos选择dmg程序安装程序下载。
+进入PicGo界面，插件搜索gitee-uploader，安装，然后重启。
+进入图床设置，选择gitee，然后填入以下信息
+repo：gitee中你建立的仓库地址，例如yangfanjack/image branch：填master token：刚才的密文 path：一般填img customPath：不填 customUrl：不填 然后点击设为默认图床——&gt;确认，即可，enjoy it!
+Google收录： 前提：看到这里的我相信都有办法进google吧
+进入Google Search Console，既然有新的，就选择左边的网域，按照他的格式例如ordinaryman.club填入你的域名，点击继续
+会DNS验证，去你的域名购买商添加一条txt record，如果之前更改过DNS服务器地址，就去DNS代理商添加record，我是cloudflare代理的，所以以此为例：
+点击**&#43;Add record**，然后type选择TXT，Name填@，Content就填Google给你的txt内容，点击save，完成。
+返回Google Search Console界面，点击验证，一般会过一段时间通过，不过我是马上就通过了:neutral_face:。
+然后进入你的本地博客根目录，安装站点地图插件：
+npm install hexo-generator-sitemap --save 安装完后进入根目录的配置文件_config.yml
+在URL下： url: http://XXXXXX //写入你的域名 在最后加上： sitemap: path: sitemap.xml 保存后，hexo三件套：hexo clean hexo g hexo d，访问网页：你的域名/sitemap.xml，出现以下页面说明配置成功
+进入Google Search Console的你的域名管理页面，点击站点地图，添加你的站点地图的网址：你的域名/sitemap.xml，等待一天时间，就可以生效啦。"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">hexo博客优化之图床迁移&amp;google收录</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 11, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p>前言：</p>
+<ul>
+<li>搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打开时间（更别说我的博客是托管在github上的了）。<strong>图床</strong>就是一个好的解决方案，顾名思义，图床就是一个存储图片个“床”，一个<strong>云端的图片库</strong>，它把博客和图片分离开来，更好管理的同时也不会拖慢博客的速度。</li>
+<li>我写博客虽然都是给自己看的，但是搜索引擎搜不到自己的文章总感觉缺了点什么:laughing:,让谷歌收录自己的博文，再加上自己博文的质量，就能在google搜索引擎上根据关键词搜索到自己的文章了。（百度的收录我没有弄，不过大同小异）</li>
+</ul>
+<h1 id="图床迁移">图床迁移：</h1>
+<p><strong>我之前的图床用的是<a href="https://imgchr.com/">路过图床</a>，这是个免费的图床，还不错，免费额度完全够用，但是感觉图片打开速度有点慢。所以就百度了一下，发现了一种同样免费且快捷的方式：gitee(码云)+PicGo。迁移过后，实测效果明显，下面就来总结一下</strong></p>
+<ul>
+<li>
+<p>现在码云建立一个仓库，按照下面格式来。没有账号的自己注册。</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>在gitee的<strong>个人设置</strong>里选择   <strong>私人令牌</strong>——&gt;<strong>生成新令牌</strong>，最后会生成一串密文，保存它，后面和PicGo绑定要用。</p>
+</li>
+<li>
+<p>下载PicGo软件<a href="https://github.com/Molunerfinn/PicGo/releases">下载链接</a>，Windows系统选择exe安装程序下载，macos选择dmg程序安装程序下载。</p>
+</li>
+<li>
+<p>进入PicGo界面，插件搜索gitee-uploader，安装，然后重启。</p>
+</li>
+<li>
+<p>进入图床设置，选择gitee，然后填入以下信息</p>
+<ul>
+<li>repo：gitee中你建立的仓库地址，例如<code>yangfanjack/image</code></li>
+<li>branch：填<code>master</code></li>
+<li>token：刚才的密文</li>
+<li>path：一般填<code>img</code></li>
+<li>customPath：不填</li>
+<li>customUrl：不填</li>
+</ul>
+</li>
+<li>
+<p>然后点击<strong>设为默认图床</strong>——&gt;<strong>确认</strong>，即可，enjoy it!</p>
+</li>
+</ul>
+<h1 id="google收录">Google收录：</h1>
+<p>前提：看到这里的我相信都有办法进google吧</p>
+<ul>
+<li>
+<p>进入<a href="https://www.google.com/webmasters/#?modal_active=none">Google Search Console</a>，既然有新的，就选择左边的网域，按照他的格式例如<code>ordinaryman.club</code>填入你的域名，点击继续</p>
+</li>
+<li>
+<p>会DNS验证，去你的域名购买商添加一条txt record，如果之前更改过DNS服务器地址，就去DNS代理商添加record，我是cloudflare代理的，所以以此为例：</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215859.png" alt=""></p>
+<p>点击**+Add record**，然后<strong>type</strong>选择TXT，<strong>Name</strong>填@，<strong>Content</strong>就填Google给你的txt内容，点击save，完成。</p>
+</li>
+<li>
+<p>返回Google Search Console界面，点击验证，一般会过一段时间通过，不过我是马上就通过了:neutral_face:。</p>
+</li>
+<li>
+<p>然后进入你的本地博客根目录，安装站点地图插件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>npm install hexo-generator-sitemap --save
+</span></span></code></pre></div><p>安装完后进入根目录的配置文件_config.yml</p>
+<ul>
+<li>在URL下：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>url: http://XXXXXX  //写入你的域名
+</span></span></code></pre></div><ul>
+<li>在最后加上：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sitemap:
+</span></span><span style="display:flex;"><span>	path: sitemap.xml
+</span></span></code></pre></div><p>保存后，hexo三件套：<code>hexo clean</code>       <code>hexo g</code>      <code>hexo d</code>，访问网页：<code>你的域名/sitemap.xml</code>，出现以下页面说明配置成功</p>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215929.png" alt=""></p>
+</li>
+<li>
+<p>进入Google Search Console的你的域名管理页面，点击站点地图，添加你的站点地图的网址：<code>你的域名/sitemap.xml</code>，等待一天时间，就可以生效啦。</p>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/"
+      ><span class="mr-1.5">←</span><span>linux启动管理</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/"
+      ><span>linux日志管理</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

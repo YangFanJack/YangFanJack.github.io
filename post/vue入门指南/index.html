@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>vue入门指南 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="**vue：**一款渐进式（逐步实现新特性）JavaScript框架。其特性综合了Angular(模块化MVVM)和React(虚拟DOM)的优点
+**Ajax：**前端通信框架，因为Vue的边界很明确，就是为了处理DOM，所以不具备通信能力，需要额外使用一个通信框架和服务器交互；也可以直接选择使用jQuery提供的Ajax同行功能(只是因为为了使用Ajax要完全导入jQuery的包显得很笨重)
+前端MVVM框架：
+后端中的MVC框架中V：视图层；C：控制层；M：模型层 传统的使用后端模板引擎渲染的方式，V就是指的jsp，freemarker等技术。 前后端分离的概念渐渐出现，特别是在前端框架出现后，前端根据后端的MVC模式，也对前端进行了层次划分，对原来的V转化前端独立渲染。并且也将V扩展为前端自己的MVC三层：V层，M层，VM层。也就是MVVM模式 V：view M：data VM：数据双向绑定 前端UI框架：
+Ant-Desgin：基于React的UI框架 ElementUI，iview，ice：基于Vue的UI框架 Bootstrap：Twitter推出的前端开发工具包 AmazeUI：HTML5跨屏前端框架 JavaScript构建工具：
+Babel：JS编译工具，主要用于浏览器不支持的ES新特性 WebPack：模块打包器 NodeJS
+前端人员为了方便开发也需要掌握一定的后端技术，但是java后端异常庞大。所以为了方便前端人员开发后台应用，出现了NodeJS这样的技术。 NodeJS由于架构问题和笨重的node_modules，作者已经放弃，不久的将来，Deno可能将会取代NodeJS Express：NodeJS框架 Koa：Express简化版 NPM：项目综合管理工具 YARN：NPM的替代方案，类似于Maven和Gradle的关系 vue-element-admin:
+这是一个集成大部分功能的后台管理系统框架，也就是说大多数的组件都帮我们写好了，他是基于vue-element进行开发布局的。
+MVVM框架 源自经典的MVC模式，MVVM的核心是ViewModel层，负责转换Model中的数据对象来让数据变得更容易管理和使用 具体分层： Model：模型层，这里表示JavaScript对象 View：视图层，这里表示DOM ViewModel：连接视图和数据的中间件，Vue.js就是MVVM中的ViewModel层的实现者 ViewModel MVVM架构中，不允许数据和视图直接通信，只能通过ViewModel通信，而ViewModel就是定义了一个Observer观察者 ViewModel能观察到数据的变化，并对视图相应内容进行更新 ViewModel能监听试图的变化，并能够通知数据发生改变 Vue.js的核心是：DOM监听&amp;数据绑定
+**虚拟DOM：**Vue的ViewModel绑定了数据和视图两层，所以无需操作DOM，工作知识修改DOM中的某些数据而已。这让前端资源大大节省了。 View层展现的不是Model层的数据，而是ViewModel的数据，由ViewModel负责和Model层交互，这就完全解耦了View层和Model层，这个解耦是至关重要的，它是前后端分离的关键。 VUE { { } } &amp; v-text,v-cloak &amp; v-html
+这就是前端的浏览器模板引擎渲染生成html页面。Vue在背后做了大量工作，现在数据和DOM已经建立了关系，所有东西都是响应式的。在控制台操作对象属性后界面能实时更新。
+&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue&#34;&gt;&lt;/script&gt; &lt;!--创建一个容器，使用Vue对象绑定该容器就可以控制这个容器中的所有DOM元素--&gt; &lt;div id=&#34;app&#34;&gt; &lt;!--插值表达式中可以写任意合法的JS表达式--&gt; &lt;!--插值表达式会有闪烁问题，用v-cloak解决--&gt; &lt;span&gt;{{ message }}&lt;/span&gt; &lt;span v-text=&#34;message&#34;&gt;&lt;/span&gt; &lt;span v-html=&#34;message2&#34;&gt;&lt;/span&gt; &lt;/div&gt; var app = new Vue({//这个对象app就是MVVM中的VM，核心，提供了双向数据绑定的能力 el: &#39;#app&#39;,//和要控制的容器绑定，MVVM中的V视图层 data: {//要渲染的一些数据，MVVM中的M数据层 message: &#39;Hello Vue!" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="vue入门指南" />
+<meta property="og:description" content="**vue：**一款渐进式（逐步实现新特性）JavaScript框架。其特性综合了Angular(模块化MVVM)和React(虚拟DOM)的优点
+**Ajax：**前端通信框架，因为Vue的边界很明确，就是为了处理DOM，所以不具备通信能力，需要额外使用一个通信框架和服务器交互；也可以直接选择使用jQuery提供的Ajax同行功能(只是因为为了使用Ajax要完全导入jQuery的包显得很笨重)
+前端MVVM框架：
+后端中的MVC框架中V：视图层；C：控制层；M：模型层 传统的使用后端模板引擎渲染的方式，V就是指的jsp，freemarker等技术。 前后端分离的概念渐渐出现，特别是在前端框架出现后，前端根据后端的MVC模式，也对前端进行了层次划分，对原来的V转化前端独立渲染。并且也将V扩展为前端自己的MVC三层：V层，M层，VM层。也就是MVVM模式 V：view M：data VM：数据双向绑定 前端UI框架：
+Ant-Desgin：基于React的UI框架 ElementUI，iview，ice：基于Vue的UI框架 Bootstrap：Twitter推出的前端开发工具包 AmazeUI：HTML5跨屏前端框架 JavaScript构建工具：
+Babel：JS编译工具，主要用于浏览器不支持的ES新特性 WebPack：模块打包器 NodeJS
+前端人员为了方便开发也需要掌握一定的后端技术，但是java后端异常庞大。所以为了方便前端人员开发后台应用，出现了NodeJS这样的技术。 NodeJS由于架构问题和笨重的node_modules，作者已经放弃，不久的将来，Deno可能将会取代NodeJS Express：NodeJS框架 Koa：Express简化版 NPM：项目综合管理工具 YARN：NPM的替代方案，类似于Maven和Gradle的关系 vue-element-admin:
+这是一个集成大部分功能的后台管理系统框架，也就是说大多数的组件都帮我们写好了，他是基于vue-element进行开发布局的。
+MVVM框架 源自经典的MVC模式，MVVM的核心是ViewModel层，负责转换Model中的数据对象来让数据变得更容易管理和使用 具体分层： Model：模型层，这里表示JavaScript对象 View：视图层，这里表示DOM ViewModel：连接视图和数据的中间件，Vue.js就是MVVM中的ViewModel层的实现者 ViewModel MVVM架构中，不允许数据和视图直接通信，只能通过ViewModel通信，而ViewModel就是定义了一个Observer观察者 ViewModel能观察到数据的变化，并对视图相应内容进行更新 ViewModel能监听试图的变化，并能够通知数据发生改变 Vue.js的核心是：DOM监听&amp;数据绑定
+**虚拟DOM：**Vue的ViewModel绑定了数据和视图两层，所以无需操作DOM，工作知识修改DOM中的某些数据而已。这让前端资源大大节省了。 View层展现的不是Model层的数据，而是ViewModel的数据，由ViewModel负责和Model层交互，这就完全解耦了View层和Model层，这个解耦是至关重要的，它是前后端分离的关键。 VUE { { } } &amp; v-text,v-cloak &amp; v-html
+这就是前端的浏览器模板引擎渲染生成html页面。Vue在背后做了大量工作，现在数据和DOM已经建立了关系，所有东西都是响应式的。在控制台操作对象属性后界面能实时更新。
+&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue&#34;&gt;&lt;/script&gt; &lt;!--创建一个容器，使用Vue对象绑定该容器就可以控制这个容器中的所有DOM元素--&gt; &lt;div id=&#34;app&#34;&gt; &lt;!--插值表达式中可以写任意合法的JS表达式--&gt; &lt;!--插值表达式会有闪烁问题，用v-cloak解决--&gt; &lt;span&gt;{{ message }}&lt;/span&gt; &lt;span v-text=&#34;message&#34;&gt;&lt;/span&gt; &lt;span v-html=&#34;message2&#34;&gt;&lt;/span&gt; &lt;/div&gt; var app = new Vue({//这个对象app就是MVVM中的VM，核心，提供了双向数据绑定的能力 el: &#39;#app&#39;,//和要控制的容器绑定，MVVM中的V视图层 data: {//要渲染的一些数据，MVVM中的M数据层 message: &#39;Hello Vue!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-01-05T17:09:07+00:00" />
+<meta property="article:modified_time" content="2021-01-05T17:09:07+00:00" />
+
+  
+  <meta itemprop="name" content="vue入门指南">
+<meta itemprop="description" content="**vue：**一款渐进式（逐步实现新特性）JavaScript框架。其特性综合了Angular(模块化MVVM)和React(虚拟DOM)的优点
+**Ajax：**前端通信框架，因为Vue的边界很明确，就是为了处理DOM，所以不具备通信能力，需要额外使用一个通信框架和服务器交互；也可以直接选择使用jQuery提供的Ajax同行功能(只是因为为了使用Ajax要完全导入jQuery的包显得很笨重)
+前端MVVM框架：
+后端中的MVC框架中V：视图层；C：控制层；M：模型层 传统的使用后端模板引擎渲染的方式，V就是指的jsp，freemarker等技术。 前后端分离的概念渐渐出现，特别是在前端框架出现后，前端根据后端的MVC模式，也对前端进行了层次划分，对原来的V转化前端独立渲染。并且也将V扩展为前端自己的MVC三层：V层，M层，VM层。也就是MVVM模式 V：view M：data VM：数据双向绑定 前端UI框架：
+Ant-Desgin：基于React的UI框架 ElementUI，iview，ice：基于Vue的UI框架 Bootstrap：Twitter推出的前端开发工具包 AmazeUI：HTML5跨屏前端框架 JavaScript构建工具：
+Babel：JS编译工具，主要用于浏览器不支持的ES新特性 WebPack：模块打包器 NodeJS
+前端人员为了方便开发也需要掌握一定的后端技术，但是java后端异常庞大。所以为了方便前端人员开发后台应用，出现了NodeJS这样的技术。 NodeJS由于架构问题和笨重的node_modules，作者已经放弃，不久的将来，Deno可能将会取代NodeJS Express：NodeJS框架 Koa：Express简化版 NPM：项目综合管理工具 YARN：NPM的替代方案，类似于Maven和Gradle的关系 vue-element-admin:
+这是一个集成大部分功能的后台管理系统框架，也就是说大多数的组件都帮我们写好了，他是基于vue-element进行开发布局的。
+MVVM框架 源自经典的MVC模式，MVVM的核心是ViewModel层，负责转换Model中的数据对象来让数据变得更容易管理和使用 具体分层： Model：模型层，这里表示JavaScript对象 View：视图层，这里表示DOM ViewModel：连接视图和数据的中间件，Vue.js就是MVVM中的ViewModel层的实现者 ViewModel MVVM架构中，不允许数据和视图直接通信，只能通过ViewModel通信，而ViewModel就是定义了一个Observer观察者 ViewModel能观察到数据的变化，并对视图相应内容进行更新 ViewModel能监听试图的变化，并能够通知数据发生改变 Vue.js的核心是：DOM监听&amp;数据绑定
+**虚拟DOM：**Vue的ViewModel绑定了数据和视图两层，所以无需操作DOM，工作知识修改DOM中的某些数据而已。这让前端资源大大节省了。 View层展现的不是Model层的数据，而是ViewModel的数据，由ViewModel负责和Model层交互，这就完全解耦了View层和Model层，这个解耦是至关重要的，它是前后端分离的关键。 VUE { { } } &amp; v-text,v-cloak &amp; v-html
+这就是前端的浏览器模板引擎渲染生成html页面。Vue在背后做了大量工作，现在数据和DOM已经建立了关系，所有东西都是响应式的。在控制台操作对象属性后界面能实时更新。
+&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue&#34;&gt;&lt;/script&gt; &lt;!--创建一个容器，使用Vue对象绑定该容器就可以控制这个容器中的所有DOM元素--&gt; &lt;div id=&#34;app&#34;&gt; &lt;!--插值表达式中可以写任意合法的JS表达式--&gt; &lt;!--插值表达式会有闪烁问题，用v-cloak解决--&gt; &lt;span&gt;{{ message }}&lt;/span&gt; &lt;span v-text=&#34;message&#34;&gt;&lt;/span&gt; &lt;span v-html=&#34;message2&#34;&gt;&lt;/span&gt; &lt;/div&gt; var app = new Vue({//这个对象app就是MVVM中的VM，核心，提供了双向数据绑定的能力 el: &#39;#app&#39;,//和要控制的容器绑定，MVVM中的V视图层 data: {//要渲染的一些数据，MVVM中的M数据层 message: &#39;Hello Vue!"><meta itemprop="datePublished" content="2021-01-05T17:09:07+00:00" />
+<meta itemprop="dateModified" content="2021-01-05T17:09:07+00:00" />
+<meta itemprop="wordCount" content="1566">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="vue入门指南"/>
+<meta name="twitter:description" content="**vue：**一款渐进式（逐步实现新特性）JavaScript框架。其特性综合了Angular(模块化MVVM)和React(虚拟DOM)的优点
+**Ajax：**前端通信框架，因为Vue的边界很明确，就是为了处理DOM，所以不具备通信能力，需要额外使用一个通信框架和服务器交互；也可以直接选择使用jQuery提供的Ajax同行功能(只是因为为了使用Ajax要完全导入jQuery的包显得很笨重)
+前端MVVM框架：
+后端中的MVC框架中V：视图层；C：控制层；M：模型层 传统的使用后端模板引擎渲染的方式，V就是指的jsp，freemarker等技术。 前后端分离的概念渐渐出现，特别是在前端框架出现后，前端根据后端的MVC模式，也对前端进行了层次划分，对原来的V转化前端独立渲染。并且也将V扩展为前端自己的MVC三层：V层，M层，VM层。也就是MVVM模式 V：view M：data VM：数据双向绑定 前端UI框架：
+Ant-Desgin：基于React的UI框架 ElementUI，iview，ice：基于Vue的UI框架 Bootstrap：Twitter推出的前端开发工具包 AmazeUI：HTML5跨屏前端框架 JavaScript构建工具：
+Babel：JS编译工具，主要用于浏览器不支持的ES新特性 WebPack：模块打包器 NodeJS
+前端人员为了方便开发也需要掌握一定的后端技术，但是java后端异常庞大。所以为了方便前端人员开发后台应用，出现了NodeJS这样的技术。 NodeJS由于架构问题和笨重的node_modules，作者已经放弃，不久的将来，Deno可能将会取代NodeJS Express：NodeJS框架 Koa：Express简化版 NPM：项目综合管理工具 YARN：NPM的替代方案，类似于Maven和Gradle的关系 vue-element-admin:
+这是一个集成大部分功能的后台管理系统框架，也就是说大多数的组件都帮我们写好了，他是基于vue-element进行开发布局的。
+MVVM框架 源自经典的MVC模式，MVVM的核心是ViewModel层，负责转换Model中的数据对象来让数据变得更容易管理和使用 具体分层： Model：模型层，这里表示JavaScript对象 View：视图层，这里表示DOM ViewModel：连接视图和数据的中间件，Vue.js就是MVVM中的ViewModel层的实现者 ViewModel MVVM架构中，不允许数据和视图直接通信，只能通过ViewModel通信，而ViewModel就是定义了一个Observer观察者 ViewModel能观察到数据的变化，并对视图相应内容进行更新 ViewModel能监听试图的变化，并能够通知数据发生改变 Vue.js的核心是：DOM监听&amp;数据绑定
+**虚拟DOM：**Vue的ViewModel绑定了数据和视图两层，所以无需操作DOM，工作知识修改DOM中的某些数据而已。这让前端资源大大节省了。 View层展现的不是Model层的数据，而是ViewModel的数据，由ViewModel负责和Model层交互，这就完全解耦了View层和Model层，这个解耦是至关重要的，它是前后端分离的关键。 VUE { { } } &amp; v-text,v-cloak &amp; v-html
+这就是前端的浏览器模板引擎渲染生成html页面。Vue在背后做了大量工作，现在数据和DOM已经建立了关系，所有东西都是响应式的。在控制台操作对象属性后界面能实时更新。
+&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue&#34;&gt;&lt;/script&gt; &lt;!--创建一个容器，使用Vue对象绑定该容器就可以控制这个容器中的所有DOM元素--&gt; &lt;div id=&#34;app&#34;&gt; &lt;!--插值表达式中可以写任意合法的JS表达式--&gt; &lt;!--插值表达式会有闪烁问题，用v-cloak解决--&gt; &lt;span&gt;{{ message }}&lt;/span&gt; &lt;span v-text=&#34;message&#34;&gt;&lt;/span&gt; &lt;span v-html=&#34;message2&#34;&gt;&lt;/span&gt; &lt;/div&gt; var app = new Vue({//这个对象app就是MVVM中的VM，核心，提供了双向数据绑定的能力 el: &#39;#app&#39;,//和要控制的容器绑定，MVVM中的V视图层 data: {//要渲染的一些数据，MVVM中的M数据层 message: &#39;Hello Vue!"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">vue入门指南</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Jan 5, 2021</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><ul>
+<li>
+<p>**vue：**一款渐进式（逐步实现新特性）JavaScript框架。其特性综合了Angular(<strong>模块化MVVM</strong>)和React(<strong>虚拟DOM</strong>)的优点</p>
+</li>
+<li>
+<p>**Ajax：**前端通信框架，因为Vue的边界很明确，就是为了处理DOM，所以不具备通信能力，需要额外使用一个通信框架和服务器交互；也可以直接选择使用jQuery提供的Ajax同行功能(只是因为为了使用Ajax要完全导入jQuery的包显得很笨重)</p>
+</li>
+<li>
+<p><strong>前端MVVM框架：</strong></p>
+<ul>
+<li>后端中的MVC框架中V：视图层；C：控制层；M：模型层</li>
+<li>传统的使用后端模板引擎渲染的方式，V就是指的jsp，freemarker等技术。</li>
+<li>前后端分离的概念渐渐出现，特别是在前端框架出现后，前端根据后端的MVC模式，也对前端进行了层次划分，对原来的V转化前端独立渲染。并且也将V扩展为前端自己的MVC三层：V层，M层，VM层。也就是MVVM模式
+<ul>
+<li>V：view</li>
+<li>M：data</li>
+<li>VM：数据双向绑定</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>前端UI框架：</strong></p>
+<ul>
+<li>Ant-Desgin：基于React的UI框架</li>
+<li>ElementUI，iview，ice：基于Vue的UI框架</li>
+<li>Bootstrap：Twitter推出的前端开发工具包</li>
+<li>AmazeUI：HTML5跨屏前端框架</li>
+</ul>
+</li>
+<li>
+<p><strong>JavaScript构建工具：</strong></p>
+<ul>
+<li>Babel：JS编译工具，主要用于浏览器不支持的ES新特性</li>
+<li>WebPack：模块打包器</li>
+</ul>
+</li>
+<li>
+<p><strong>NodeJS</strong></p>
+<ul>
+<li>前端人员为了方便开发也需要掌握一定的后端技术，但是java后端异常庞大。所以为了方便前端人员开发后台应用，出现了NodeJS这样的技术。</li>
+<li>NodeJS由于架构问题和笨重的node_modules，作者已经放弃，不久的将来，Deno可能将会取代NodeJS</li>
+<li>Express：NodeJS框架</li>
+<li>Koa：Express简化版</li>
+<li>NPM：项目综合管理工具</li>
+<li>YARN：NPM的替代方案，类似于Maven和Gradle的关系</li>
+</ul>
+</li>
+<li>
+<p><strong>vue-element-admin:</strong></p>
+<p>这是一个集成大部分功能的后台管理系统框架，也就是说大多数的组件都帮我们写好了，他是基于vue-element进行开发布局的。</p>
+</li>
+</ul>
+<h2 id="mvvm框架">MVVM框架</h2>
+<ul>
+<li>源自经典的MVC模式，MVVM的核心是ViewModel层，负责转换Model中的数据对象来让数据变得更容易管理和使用</li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="具体分层">具体分层：</h3>
+<ul>
+<li>Model：模型层，这里表示JavaScript对象</li>
+<li>View：视图层，这里表示DOM</li>
+<li>ViewModel：连接视图和数据的中间件，Vue.js就是MVVM中的ViewModel层的实现者</li>
+</ul>
+<h3 id="viewmodel">ViewModel</h3>
+<ul>
+<li>MVVM架构中，不允许数据和视图直接通信，只能通过ViewModel通信，<strong>而ViewModel就是定义了一个Observer观察者</strong></li>
+<li>ViewModel能观察到数据的变化，并对视图相应内容进行更新</li>
+<li>ViewModel能监听试图的变化，并能够通知数据发生改变</li>
+</ul>
+<p>Vue.js的核心是：<strong>DOM监听</strong>&amp;<strong>数据绑定</strong></p>
+<ul>
+<li>**虚拟DOM：**Vue的ViewModel绑定了数据和视图两层，所以无需操作DOM，工作知识修改DOM中的某些数据而已。这让前端资源大大节省了。</li>
+<li>View层展现的不是Model层的数据，而是ViewModel的数据，由ViewModel负责和Model层交互，这就完全解耦了View层和Model层，这个解耦是至关重要的，它是前后端分离的关键。</li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="vue">VUE</h2>
+<p><strong>{ { } } &amp; v-text,v-cloak &amp; v-html</strong></p>
+<p>这就是前端的浏览器模板引擎渲染生成html页面。Vue在背后做了大量工作，现在数据和DOM已经建立了关系，所有东西都是响应式的。在控制台操作对象属性后界面能实时更新。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--创建一个容器，使用Vue对象绑定该容器就可以控制这个容器中的所有DOM元素--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!--插值表达式中可以写任意合法的JS表达式--&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!--插值表达式会有闪烁问题，用v-cloak解决--&gt;</span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">span</span>&gt;{{ message }}&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-text</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-html</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message2&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({<span style="color:#75715e">//这个对象app就是MVVM中的VM，核心，提供了双向数据绑定的能力
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>,<span style="color:#75715e">//和要控制的容器绑定，MVVM中的V视图层
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {<span style="color:#75715e">//要渲染的一些数据，MVVM中的M数据层
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Hello Vue!&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">message2</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;h1&gt;Hello&lt;/h1&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h3 id="v-bind--v-ifv-else--v-for">v-bind &amp; v-if,v-else &amp; v-for</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--在html原始标签属性前加上v-bind:可以将属性和vue的data数据单向绑定，也可以简写只留一个冒号--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--v-bind中要用表达式的拼接需要用引号包裹起来--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-bind:title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>v-bind：<strong>v-前缀的被成为</strong>指令</strong>，它们是vue提供的一种<strong>特殊标签属性</strong>。它们会在渲染的DOM上应用特殊的响应式行为。意思就是：将这个元素的节点的title特性和vue实力的message属性保持一致</p>
+</li>
+<li>
+<p><strong>判断</strong>和<strong>循环</strong>指令：<strong>v-if</strong>和<strong>v-else</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ok==&#39;A&#39;&#34;</span>&gt;A&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">v-else-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ok=&#39;B&#39;&#34;</span>&gt;B&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">v-else</span>&gt;C&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--只要涉及到v-for这种循环，推荐给每一项都加上:key属性，并且:key属性只接受number或string类型唯一的数据--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vm&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>     &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(item,i) in items&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;item&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        {{i}}-----{{item.message}}  
+</span></span><span style="display:flex;"><span>     &lt;/<span style="color:#f92672">li</span>&gt; 
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ok</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;B&#39;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#vm&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">items</span><span style="color:#f92672">:</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;哈哈哈&#39;</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;嘿嘿嘿&#39;</span>}
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div></li>
+<li>
+<p>一般而言，v-if 有更高的切换消耗而v-show 有更高的初始渲染消耗。因此如果需要频繁切换,v-show更好，如果在运行时条件不改变v-if较好</p>
+</li>
+</ul>
+<h3 id="事件v-on">事件v-on</h3>
+<ul>
+<li>事件一定要定义在Vue对象中的methods中</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">v-on:click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sayHi&#34;</span>&gt;&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!--简写--&gt;</span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">button</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sayHi2&#34;</span>&gt;&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;人生如梦&#39;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {<span style="color:#75715e">//methods属性中可以定义多个事件处理函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  	<span style="color:#a6e22e">sayHi</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>    	<span style="color:#a6e22e">alert</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span>);<span style="color:#75715e">//要访问data中的值要用this,this代表vm实例app
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//简写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">sayHi2</span>(){
+</span></span><span style="display:flex;"><span>    	<span style="color:#a6e22e">alert</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h3 id="v-model实现双向绑定">v-model实现双向绑定</h3>
+<p><strong>v-bind</strong> 产生的效果<strong>不含有双向绑定</strong>，所以 :value 的效果就是让 input的value属性值等于 data.name 的值，而 <strong>v-model</strong> 的效果是使input和 data.body <strong>建立双向绑定</strong>，因此首先 data.body 的值会给input的value属性，其次，当input中输入的值发生变化的时候，data.body 还会跟着改变。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!--vue中，只有v-model实现了事项绑定--&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!--vue中，v-model只能应用到表单元素中--&gt;</span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message&#34;</span>&gt;{{message}}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;123&#39;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><ul>
+<li>**双向数据绑定目的：**为了修改表单后不用自己操作DOM元素获取表单元素的值。</li>
+<li>**单项数据绑定目的：**为了不用自己操作DOM去渲染数据。</li>
+</ul>
+<h3 id="事件修饰符">事件修饰符</h3>
+<ul>
+<li>@click**.stop**:组织事件冒泡</li>
+<li>@click**.prevent**:组织标签默认行为，例如a的href，form的submit</li>
+<li>@click**.capture**:将默认的冒泡模式改为捕获模式</li>
+<li>@click**.self**:只有事件在该元素身上触发才会调用</li>
+<li>@click**.once**:事件只触发一次</li>
+</ul>
+<h3 id="vue中使用类样式的4种方式">vue中使用类样式的4种方式</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--red，small,thin,italic等是css样式类--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--第一种--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[&#39;red&#39;,&#39;small&#39;]&#34;</span>&gt;Hello,world!&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--第二种--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[&#39;red&#39;,isThin?&#39;thin&#39;:&#39;&#39;]&#34;</span>&gt;Hello,world!&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;变瘦&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;isThin=true&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--第三种--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[&#39;red&#39;,{thin:isThin}]&#34;</span>&gt;Hello,world!&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--第四种--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{red:true,italic:true,thin:isThin}&#34;</span>&gt;Hello,world!&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>var app = new Vue({
+</span></span><span style="display:flex;"><span>  el: &#39;#app&#39;,
+</span></span><span style="display:flex;"><span>  data: {
+</span></span><span style="display:flex;"><span>      isThin: false
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><ul>
+<li><strong>一般最常用第二个和第三个实现CSS类的动态切换</strong></li>
+</ul>
+<h3 id="vue中行内style样式">vue中行内style样式</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">:style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{color:&#39;red&#39;,&#39;font-size&#39;:&#39;italic&#39;}&#34;</span>&gt;Hello,world!&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span></code></pre></div><h3 id="例子">例子</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Document&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;node_modules/bootstrap/dist/css/bootstrap.min.css&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">label</span>&gt;Id:&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;id&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">label</span>&gt;Name:&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">&lt;!--注意键盘keyup修饰符:enter，还有tab,delete,space,esc,up,down,left,right--&gt;</span>
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">keyup</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">enter</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;添加&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">label</span>&gt;按照商品名称检索商品:&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;keyword&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">change</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;searchx&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table table-bordered table-hover table-striped&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;Id&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;Name&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;CTime&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;操作&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">tr</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;item in searchx()&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;item.id&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">td</span>&gt;{{ item.id }}&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">td</span>&gt;{{ item.name }}&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">td</span>&gt;{{ item.ctime }}&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://www.baidu.com&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">prevent</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;del(item.id)&#34;</span>&gt;删除&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">keyword</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">list</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>                    {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;丰田&#39;</span>,<span style="color:#a6e22e">ctime</span><span style="color:#f92672">:</span><span style="color:#66d9ef">new</span> Date()},
+</span></span><span style="display:flex;"><span>                    {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;奔驰&#39;</span>,<span style="color:#a6e22e">ctime</span><span style="color:#f92672">:</span><span style="color:#66d9ef">new</span> Date()}
+</span></span><span style="display:flex;"><span>                ]
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">add</span>(){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">push</span>({<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">id</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>,<span style="color:#a6e22e">ctime</span><span style="color:#f92672">:</span><span style="color:#66d9ef">new</span> Date()});
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">del</span>(<span style="color:#a6e22e">id</span>){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">length</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">id</span><span style="color:#f92672">==</span><span style="color:#a6e22e">id</span>){
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#a6e22e">i</span>,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">searchx</span>(){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span><span style="color:#f92672">=</span>[];
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">length</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">keyword</span>)<span style="color:#f92672">!=-</span><span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>                            <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>]);
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><h3 id="过滤器">过滤器</h3>
+<ul>
+<li>
+<p>Vue.js中允许你自定义过滤器，可以用作常见的文本格式化</p>
+</li>
+<li>
+<p>可以用在两个地方：插值表达式 &amp; v-bind 表达式</p>
+</li>
+<li>
+<p>自定义全局过滤器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--插值表达式中加入管道符--&gt;</span>
+</span></span><span style="display:flex;"><span>{{item.ctime | formatDate}}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--设置全局过滤器--&gt;</span>
+</span></span><span style="display:flex;"><span>Vue.filter({
+</span></span><span style="display:flex;"><span>	&#34;formatDate&#34;,
+</span></span><span style="display:flex;"><span>	function(data){//这个回调函数的第一个参数默认永远是管道符前面的那个值
+</span></span><span style="display:flex;"><span>	    return moment(data).format(&#34;YYYY-MM-DD HH:mm:ss&#34;);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div></li>
+<li>
+<p>私有过滤器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">msg</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;春节&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filters</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">addStr</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>){
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>全局和私有过滤器如果重名，会先用自己私有的。</p>
+</li>
+</ul>
+<h3 id="自定义指令">自定义指令</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//全局自定义获得焦点的on-focus指令
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//注意：Vue自定义指令的名称中，不需要v-前缀，但是在调用自定义指令时，需要在前面加上v-前缀
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">direct</span>(<span style="color:#e6db74">&#39;focus&#39;</span>,{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//参数中的第一个参数永远是被绑定的那个元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">bind</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">el</span>,<span style="color:#a6e22e">binding</span>){<span style="color:#75715e">//当指令绑定的元素被vue实例解析时执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">name</span>;<span style="color:#75715e">//获取指令的名称
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">value</span>;<span style="color:#75715e">//获取指令等号后面的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inserted</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">el</span>){<span style="color:#75715e">//当指令绑定的元素被插到父节点时调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">el</span>.<span style="color:#a6e22e">focus</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//自定义私有属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">filters</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">directives</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">bold</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">el</span>,<span style="color:#a6e22e">binding</span>){
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">inserted</span>(<span style="color:#a6e22e">el</span>){
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h3 id="计算属性">计算属性</h3>
+<ul>
+<li>这是一个有计算能力的属性，用来代替复杂表达式，计算实际上就是一个函数</li>
+<li>实际上是一个<strong>能将计算结果缓存起来的属性</strong>（将行为转化成了静态的属性），可以理解为缓存。</li>
+<li>computed和methods的区别是：一个是方法，一个是属性。</li>
+<li>在浏览器中f12调试：
+<ul>
+<li>vm.currentTime1：每次打印结果都不一样</li>
+<li>vm.currentTime2：每次打印结果都和第一次一样.只有currentTime2计算中有东西发生了改变，才会重新刷新数据，这和缓存一模一样。</li>
+</ul>
+</li>
+<li>计算属性的主要特性就是为了将不经常变化的计算结果进行缓存，以节约我们的系统开销。尤其是高并发系统。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;currentTime1 {{currentTime1()}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;currentTime2 {{currentTime2}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">currentTime1</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> Date.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">computed</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    	<span style="color:#a6e22e">currentTime2</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>    		<span style="color:#66d9ef">return</span> Date.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h3 id="vue生命周期">vue生命周期</h3>
+<ul>
+<li>创建阶段：一个实例整个生命只执行一次</li>
+<li>运行阶段：一个实例在整个生命周期中根据data改变与否有选择地执行0到多次</li>
+<li>销毁阶段：一个实例整个生命只执行一次</li>
+<li>在实例每个阶段中会伴随各种事件，这些事件统称为实例的 <strong>生命周期函数 / 生命周期钩子 / 生命周期事件</strong>，这些函数是vue自己执行，但是内容可能要自己写。</li>
+<li>在new Vue()时，主要做了以下的事：
+<ol>
+<li>初始化data和methods</li>
+<li>根据数据在内存中渲染出一棵DOM树</li>
+<li>把创建好的DOM树挂载到页面上显示给用户【创建页面结束】</li>
+<li>根据data数据的变化，有选择性的渲染DOM树</li>
+<li>把重新渲染的DOM树再次挂载到页面上，从而保持data界面的同步</li>
+</ol>
+</li>
+<li>操作data和methods最早能在created中操作</li>
+<li>操作DOM元素最早能在mounted中操作</li>
+</ul>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">el</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;#app&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">beforeCreate</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;before create&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span>},
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">created</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;created&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span>},
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">beforeMount</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$el</span>);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;before mount&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span>},
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">mounted</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$el</span>);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;mounted&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　</span> },
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">beforeDestroy</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;beforeDestroy&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span>},
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">destroyed</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;destroyed&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span>},
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">beforeUpdate</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;before updated&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span>},
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span><span style="color:#a6e22e">updated</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　　　</span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;updated&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　</span>}
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p><strong>注意：最常用的生命周期函数是created函数，我们会在created钩子函数中：从服务器获取数据，并对数据进行初始化。</strong></p>
+<h3 id="vue常用7大属性">vue常用7大属性</h3>
+<ol>
+<li>el：指示vue编译器从什么地方开始解析vue的语法，可以说是一个占位符</li>
+<li>data：组织从view中抽象出来的属性，可以说将视图的数据抽象出来放到data中</li>
+<li>template：用来设置模板，会替换页面元素，包括占位符</li>
+<li>methods：放置页面中的业务逻辑，js方法一般都放置在methods中</li>
+<li>render：创建真正的Virtual Dom</li>
+<li>computed：用来计算</li>
+<li>watch：
+<ul>
+<li>watch:function(new,old)()</li>
+<li>监听data中数据的变化</li>
+<li>两个参数，一个返回新值，一个返回旧值</li>
+</ul>
+</li>
+</ol>
+<h3 id="vue组件">Vue组件</h3>
+<p>实际开发中，不会用以上方式开发组件，而是采用vue-cli创建.vue模板文件的方式开发，以上方法只是为了说明啥是组件。</p>
+<p>组件实际上就是一个自己定义标签元素的工具</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">comp-jack</span>&gt;&lt;/<span style="color:#f92672">comp-jack</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//全局组件注册
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#34;comp-jack&#34;</span>,{<span style="color:#75715e">//组件名字所有字母小写，不用驼峰命名法（如果两个单词，中间用-连接）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;li&gt;Hello&lt;/li&gt;&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//组件中的data需要定义为函数的原因：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//组件会被多次使用，多以data语法上必须是一个函数，每次使用时返回一个新的对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//组件要在Vue实例中使用，所以最后一定要创建Vue实例
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//组件中template的html语句中只能有一个根标签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>      	<span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        }  
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">increment</span>(){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	    }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//局部组件注册
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;组件名&#34;</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;复用的html片段&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> {}<span style="color:#75715e">//return的对象，类似创建Vue时的data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//用于定义函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//局部组件注册的更合理的写法1（结构更加清晰）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">temp1</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;复用的html片段&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {}<span style="color:#75715e">//return的对象，类似创建Vue时的data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//用于定义函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">temp2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;复用的html片段&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {}<span style="color:#75715e">//return的对象，类似创建Vue时的data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//用于定义函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;组件名1&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">temp1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;组件名2&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">temp2</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//局部组件注册的更合理的写法1（结构更加清晰）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;t1&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">复用的html片段</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/template&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;组件名&#34;</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;#t1&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> {}<span style="color:#75715e">//return的对象，类似创建Vue时的data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//用于定义函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Document&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;大标题&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">jack</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;item in items&#34;</span> <span style="color:#a6e22e">v-bind:j</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;item&#34;</span>&gt;&lt;/<span style="color:#f92672">jack</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#34;jack&#34;</span>,{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;j&#39;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;li&gt;{{j}}&lt;/li&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">items</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;Java&#34;</span>,<span style="color:#e6db74">&#34;Linux&#34;</span>,<span style="color:#e6db74">&#34;Windows&#34;</span>]
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><h4 id="组件的嵌套">组件的嵌套</h4>
+<ul>
+<li>在实际页面开发中很多组件都是存在嵌套行为的</li>
+<li>顶层的组件直接在Vue对象实例中注册</li>
+<li>如果一个组件时组件的组件，那么它应该是在组件的components属性中注册，一次类推可以得到多层组件的嵌套</li>
+<li><strong>注意：Vue中一切皆组件，最大的Vue实例实际也是一个组件</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">my-table</span>&gt;&lt;/<span style="color:#f92672">my-table</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table-head&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>    	&lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        	&lt;<span style="color:#f92672">th</span>&gt;id&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">th</span>&gt;name&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">th</span>&gt;age&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table-body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>    	&lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        	&lt;<span style="color:#f92672">th</span>&gt;1&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">th</span>&gt;Jack Yang&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">th</span>&gt;21&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        	&lt;<span style="color:#f92672">th</span>&gt;2&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">th</span>&gt;Sam Smith&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">th</span>&gt;28&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-table&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">border</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">thead</span> <span style="color:#a6e22e">is</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table-head&#34;</span>&gt;&lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">thead</span> <span style="color:#a6e22e">is</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table-body&#34;</span>&gt;&lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tableHead</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#table-head&#34;</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tableBody</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#table-body&#34;</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myTable</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#my-table&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;table-head&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">tableHead</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;table-body&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">tableBody</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;my-table&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">myTable</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h3 id="组件通信">组件通信</h3>
+<p>一个复杂的界面一定有组件的嵌套，这时一定也会有组件之间通信的需求</p>
+<h4 id="组件通信父传子">组件通信—父传子</h4>
+<ul>
+<li>**props：**父组件向子组件正向传递参数通过props来实现</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">my-table</span> <span style="color:#a6e22e">v-bind:us</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;users&#34;</span>&gt;&lt;/<span style="color:#f92672">my-table</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">my-table</span> <span style="color:#a6e22e">v-bind:us</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;users&#34;</span>&gt;&lt;/<span style="color:#f92672">my-table</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-table&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">border</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>        	&lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        		&lt;<span style="color:#f92672">th</span>&gt;id&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            	&lt;<span style="color:#f92672">th</span>&gt;name&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            	&lt;<span style="color:#f92672">th</span>&gt;age&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>        	&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>        	&lt;<span style="color:#f92672">tr</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;u in us&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;u.id&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        		&lt;<span style="color:#f92672">th</span>&gt;{{ u.id }}&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            	&lt;<span style="color:#f92672">th</span>&gt;{{ u.name }}&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            	&lt;<span style="color:#f92672">th</span>&gt;{{ u.age }}&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>        	&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myTable</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#my-table&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;us&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;my-table&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">myTable</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    	<span style="color:#a6e22e">users</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    		{<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;jack1&#34;</span>,<span style="color:#a6e22e">age</span><span style="color:#f92672">:</span><span style="color:#ae81ff">11</span>},
+</span></span><span style="display:flex;"><span>             {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;jack2&#34;</span>,<span style="color:#a6e22e">age</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>},
+</span></span><span style="display:flex;"><span>             {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;jack3&#34;</span>,<span style="color:#a6e22e">age</span><span style="color:#f92672">:</span><span style="color:#ae81ff">13</span>}
+</span></span><span style="display:flex;"><span>    	]
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h4 id="组件通信子传父">组件通信—子传父</h4>
+<ul>
+<li>父组件的模板中包含子组件，经常会出现子组件的状态发生改变时，要通知到父组件。所有的prop都是的父子prop之间i形成了<strong>单向下行绑定</strong>。父级prop更新会向下更新到子组件中。但是反过来不行</li>
+<li>举个栗子：就是上面中，子组件接收到了us，如果在子组件中改变了us的值，但是父组件中的users不会更改。这种更新只能是上级影响下级，下级不能影响上级。</li>
+<li>**$emit：**子传父只能通过方法来传值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--父组件标签中绑定一个自定义事件,事件处理函数定义在父组件上，并且函数的参数就是子组件的$emit传递来的数据的形参--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">counter</span> <span style="color:#960050;background-color:#1e0010">@自定义事件名=&#34;自定义事件处理函数&#34;</span>&gt;&lt;/<span style="color:#f92672">counter</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--子组件中主动发射--&gt;</span>
+</span></span><span style="display:flex;"><span>methods: {
+</span></span><span style="display:flex;"><span>	increment(){
+</span></span><span style="display:flex;"><span>		方法处理代码;
+</span></span><span style="display:flex;"><span>		this.$emit(&#34;自定义事件名&#34;,传递的数据);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="父子通信实战">父子通信实战：</h4>
+<p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230904.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Document&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">my-table</span> <span style="color:#a6e22e">:us</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;users&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">emit-show-user</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;handleShowUser&#34;</span>&gt;&lt;/<span style="color:#f92672">my-table</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">hr</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">update-form</span> <span style="color:#a6e22e">:u</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">emit-update-user</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;handleUpdateUser&#34;</span>&gt;&lt;/<span style="color:#f92672">update-form</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-table&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">border</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;id&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;name&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;age&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;operation&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">tr</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(user, index) in us&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;index&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;{{ user.id }}&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;{{ user.name }}&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;{{ user.age }}&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">button</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;emitUser(index)&#34;</span>&gt;更新&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;update-form&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">submit</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">prevent</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;handleSubmit&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;u.id&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            名字：&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;u.name&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>            年龄：&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;age&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;u.age&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;更新&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myTable</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#my-table&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;us&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">emitUser</span>(<span style="color:#a6e22e">index</span>){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#34;emit-show-user&#34;</span>,<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">us</span>[<span style="color:#a6e22e">index</span>]);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">updateForm</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#update-form&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;u&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">handleSubmit</span>(){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#34;emit-update-user&#34;</span>,<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">u</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">users</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>                    {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;Jack&#34;</span>,<span style="color:#a6e22e">age</span><span style="color:#f92672">:</span><span style="color:#ae81ff">18</span>},
+</span></span><span style="display:flex;"><span>                    {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;Mariah&#34;</span>,<span style="color:#a6e22e">age</span><span style="color:#f92672">:</span><span style="color:#ae81ff">19</span>},
+</span></span><span style="display:flex;"><span>                    {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>,<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;Sam&#34;</span>,<span style="color:#a6e22e">age</span><span style="color:#f92672">:</span><span style="color:#ae81ff">20</span>}
+</span></span><span style="display:flex;"><span>                ],
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> {}
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;my-table&#34;</span><span style="color:#f92672">:</span><span style="color:#a6e22e">myTable</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;update-form&#34;</span><span style="color:#f92672">:</span><span style="color:#a6e22e">updateForm</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">handleShowUser</span>(<span style="color:#a6e22e">u</span>){
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">u</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">u</span>));
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">handleUpdateUser</span>(<span style="color:#a6e22e">u</span>){
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">u</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">user</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">arr</span>)=&gt;{
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">id</span><span style="color:#f92672">==</span><span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">id</span>){
+</span></span><span style="display:flex;"><span>                            <span style="color:#75715e">//vue监控不到直接通过下标修改元素的操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                            <span style="color:#75715e">// arr[i]=u;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$set</span>(<span style="color:#a6e22e">arr</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">u</span>)));<span style="color:#75715e">//等同于arr[i]=u，但是可以被vue监控到
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                        }
+</span></span><span style="display:flex;"><span>                    })
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><h2 id="路由">路由</h2>
+<ul>
+<li>路由：让请求按照其地址到达目的地</li>
+</ul>
+<h3 id="web路由的发展">web路由的发展</h3>
+<ul>
+<li>
+<p>网站路由的发展实际上和前后端分离的发展是同步的：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<h3 id="vue中路由的作用">Vue中路由的作用：</h3>
+<ul>
+<li>
+<p>在Vue中的一个功能视图就是一个组件，Vue中的路由解决的是但页面中组件的显示切换问题。比如：一个页面中有两个超链接“登录”,“注册”,点击两个连接分别显示对应的表单</p>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<h3 id="第一个路由示例">第一个路由示例：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Document&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/vue-router@3.0.1/dist/vue-router.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">hr</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#/login&#34;</span>&gt;登录&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#/register&#34;</span>&gt;注册&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">hr</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span>&gt;I am a div&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- 使用路由，确定组件切换后显示的位置 --&gt;</span>
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">router-view</span>&gt;&lt;/<span style="color:#f92672">router-view</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 定义组件 --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;login-form&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            Username：&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>            Password：&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Login&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;register-form&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            Username：&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>            Password：&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>            RePassword：&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Register&#34;</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">form</span>&gt;        
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//定义组件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">loginForm</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#login-form&#34;</span>,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">registerForm</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#register-form&#34;</span>,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建路由对象，定义路由规则
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyRouter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">VueRouter</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">routes</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;login&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/login&#34;</span>,<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">loginForm</span>},
+</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;register&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/register&#34;</span>,<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">registerForm</span>}
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//在Vue实例中配置router
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">router</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">MyRouter</span>
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><h3 id="router-link--redirect">router-link &amp; redirect</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--此时，在连接前不用加上#了--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/register&#34;</span>&gt;注册&lt;/<span style="color:#f92672">router-link</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--进入页面默认跳到某个组件--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--在路由对象中定义routes时候--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">routes</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;login&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/&#34;</span>,<span style="color:#a6e22e">redirect</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/login&#34;</span>},<span style="color:#75715e">//进入/时，默认执行/login路由
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;login&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/login&#34;</span>,<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">loginForm</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;register&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/register&#34;</span>,<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">registerForm</span>}
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h3 id="嵌套路由">嵌套路由</h3>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--要使点击第二层的router-link后显示的内容在第二层的router-view里，而不是第一层的router-view里，需要在路由对象中定义routes的时候，将第二层的路由信息写在父路由信息中--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">routes</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;login&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/&#34;</span>,<span style="color:#a6e22e">redirect</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/login&#34;</span>},<span style="color:#75715e">//进入/时，默认执行/login路由
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;login&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/login&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">loginForm</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">children</span><span style="color:#f92672">:</span>[
+</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;phoneLogin&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/phone&#34;</span>,<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">phoneLoginForm</span>},
+</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;accountLogin&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/account&#34;</span>,<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">accountLoginForm</span>},
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;register&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/register&#34;</span>,<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">registerForm</span>}
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h3 id="路由传参">路由传参</h3>
+<h4 id="query传参">query传参</h4>
+<ul>
+<li>
+<p>导航路由地址里用<code>?name=jack&amp;age=18</code>传参，在组件中要获得参数，需要使用内置属性：<code>{{$route.query.name}}</code>,<code>{{$route.query.age}}</code></p>
+</li>
+<li>
+<p>在router-link中还可以只用如下方式动态传参：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">:to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{path:&#39;/login/account&#39;,query:{name:&#39;Jack&#39;,age:18}}&#34;</span>&gt;&lt;/<span style="color:#f92672">router-link</span>&gt;
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="params传参">params传参</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//这个:name代表他能动态地匹配数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//属于restful风格（路径中包含一部分数据）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;product&#34;</span>,<span style="color:#a6e22e">path</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;/product/:name&#34;</span>,<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span><span style="color:#a6e22e">myComponent</span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//通过如下方式获取
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{{ <span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">name</span> }}
+</span></span></code></pre></div><ul>
+<li>在router-link中可使用如下方式传参：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">:to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{name:&#39;product&#39;,params:{name:&#39;Jack&#39;}}&#34;</span>&gt;&lt;/<span style="color:#f92672">router-link</span>&gt;
+</span></span></code></pre></div><h3 id="编程式的路由导航">编程式的路由导航</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#34;/login&#34;</span>);
+</span></span></code></pre></div><h2 id="axios">Axios</h2>
+<ul>
+<li>Axios是一个开源的可以用在浏览器端和NodeJS的异步通信框架，它的主要作用是实现AJAX异步通信。</li>
+<li>由于Vue.js是一个视图层框架，作者严格遵循SoC原则，所以Vue.js没有AJAX通信功能，为了解决通信功能。作者单独开发了一个vue-resource插件。但是进入vue2.0后停止了对该插件的维护并推荐Axios插件。</li>
+<li>对于AJAX通信，要少用JQuery，因为它对DOM的操作过于频繁</li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="针对get的axios请求">针对GET的Axios请求</h3>
+<!-- raw HTML omitted -->
+<h3 id="针对post的axios请求">针对POST的Axios请求</h3>
+<!-- raw HTML omitted -->
+<h3 id="axios的别名方法">Axios的别名方法</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">url</span>,{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">params</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">username</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">password</span><span style="color:#f92672">:</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">password</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">post</span>(<span style="color:#a6e22e">url</span>,<span style="color:#a6e22e">Qs</span>.<span style="color:#a6e22e">stringify</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">username</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">password</span><span style="color:#f92672">:</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">password</span>
+</span></span><span style="display:flex;"><span>}))
+</span></span></code></pre></div><h2 id="vue-cli">vue-cli</h2>
+<ul>
+<li>
+<p>vue-cli（Vue command-line-interface）是官方提供的一个脚手架，用于快速开发生成一个vue的项目模板</p>
+</li>
+<li>
+<p>脚手架就是预先定义好的目录结构和基础代码，就像创建maven项目时可以选择创建一个初始骨架项目。这种脚手架能让我们开发更加迅速。</p>
+</li>
+<li>
+<p>主要功能：</p>
+<ul>
+<li>统一的目录结构</li>
+<li>本地调试</li>
+<li>热部署</li>
+<li>单元测试</li>
+<li>集成打包上线</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cnpm install vue-cli -g
+</span></span><span style="display:flex;"><span>vue init webpack myvueName
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#vue-cli的3.0+以后使用的不是vue-cli了，如果用以上的安装命令安装的并不是最新版的3.0+的，而如果安装3.0的话就需要使用新的</span>
+</span></span><span style="display:flex;"><span>cnpm install @vue/cli -g
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>Vue-cli项目的目录分析：</strong></p>
+<!-- raw HTML omitted -->
+<ul>
+<li>bulid：配置好了的文件，保存的是webpack打包工具的底层配置</li>
+<li>config：关于vue的配置（端口号啥的）</li>
+<li>node_modules：项目依赖的各个包，类似于java的lib目录</li>
+<li>src：代码储存地，我们写代码的地方
+<ul>
+<li>assets：静态资源（图片）</li>
+<li>component：存放一个个的组件，.vue文件表示一个组件</li>
+<li>router：路由文件</li>
+<li>App.vue：根组件vue文件</li>
+<li>main.js：整个项目的入口</li>
+</ul>
+</li>
+<li>static：放一些静态的文件，不建议使用，一般被assets替代</li>
+<li>index.html：vue的入口页面，只有一个div标签</li>
+<li>package.json：相当于maven中的pom.xml文件，包管理文件</li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="vue文件">.vue文件</h3>
+<p>传统的template定义方式：先定义一个template标签，然后全局或者私有地定义一个component。这种方式在很多中小规模的项目中运行的很好，这些项目中JavaScript之被用来加强特定的视图，但是当更加复杂的项目中，当你的前端完全由JavaScript驱动的时候，以下的缺点将会非常明显：</p>
+<ul>
+<li>全局定义会强制要求每个component中的命名不重复</li>
+<li>不支持CSS意味着当HTML和JavaScript组件化时，CSS明显被遗弃</li>
+<li>可读性差，维护难度高，多个组件定义在一起，代码显得更加臃肿复杂</li>
+</ul>
+<p>基于以上传统的vue组件的定义方式，.vue结尾的vue专属文件single-file-components（单文件组件）为以上所有问题提供了解决方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./assets/logo.png&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">router-view</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//使用export标签将组件导出，需要使用组件的文件就可以使用import导入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;App&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">app</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">font</span><span style="color:#f92672">-</span><span style="color:#a6e22e">family</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Avenir&#39;</span>, <span style="color:#a6e22e">Helvetica</span>, <span style="color:#a6e22e">Arial</span>, <span style="color:#a6e22e">sans</span><span style="color:#f92672">-</span><span style="color:#a6e22e">serif</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span><span style="color:#a6e22e">webkit</span><span style="color:#f92672">-</span><span style="color:#a6e22e">font</span><span style="color:#f92672">-</span><span style="color:#a6e22e">smoothing</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">antialiased</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span><span style="color:#a6e22e">moz</span><span style="color:#f92672">-</span><span style="color:#a6e22e">osx</span><span style="color:#f92672">-</span><span style="color:#a6e22e">font</span><span style="color:#f92672">-</span><span style="color:#a6e22e">smoothing</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">grayscale</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">text</span><span style="color:#f92672">-</span><span style="color:#a6e22e">align</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">center</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">2</span><span style="color:#a6e22e">c3e50</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">margin</span><span style="color:#f92672">-</span><span style="color:#a6e22e">top</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">60</span><span style="color:#a6e22e">px</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
+</span></span></code></pre></div><h3 id="总结基于脚手架开发の规约">总结（基于脚手架开发の规约）</h3>
+<ul>
+<li>index.html日后不会被修改</li>
+<li>App.vue作为根组件，定义了页面的基本结构，日后开发中，根据需求修改它</li>
+<li>在components中新建了.vue文件来定义组件</li>
+<li>在router/index.js中定义了路由规则</li>
+<li>在main.js中引入了项目需要的库</li>
+</ul>
+<h3 id="基于vue-cli和ssm搭建前后端分离项目">基于Vue-cli和SSM搭建前后端分离项目</h3>
+<ul>
+<li>
+<p>安装axios和qs库</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>npm install --save axios vue-axios qs
+</span></span></code></pre></div></li>
+<li>
+<p>引入 &amp; 配置包供全局使用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">qs</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;qs&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">axios</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;axios&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">VueAxios</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue-axios&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//在所有的Vue组件中可以通过使用this.$qs使用qs库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">$qs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">qs</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//配置后端服务地址（axios的默认请求前缀）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">defaults</span>.<span style="color:#a6e22e">baseURL</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:8080&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//在Vue中配置axios，在所有Vue组件中可以通过this.axios使用axios库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">VueAxios</span>,<span style="color:#a6e22e">axios</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>跨域问题</strong></p>
+<ul>
+<li>由于浏览器的同源策略限制，当一个请求url（后端部署服务器的地址）的<strong>协议、域名、端口</strong>三者之间任意一个与当前页面url（前端部署服务器的地址）不同即为跨域</li>
+</ul>
+<p>F12控制台报错显示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">Access</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">XMLHttpRequest</span> <span style="color:#a6e22e">at</span> <span style="color:#e6db74">&#39;http://localhost:8080/show?pageNum=1&amp;pageSize=3&#39;</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">origin</span> <span style="color:#e6db74">&#39;http://localhost:8081&#39;</span> <span style="color:#a6e22e">has</span> <span style="color:#a6e22e">been</span> <span style="color:#a6e22e">blocked</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">CORS</span> <span style="color:#a6e22e">policy</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">No</span> <span style="color:#e6db74">&#39;Access-Control-Allow-Origin&#39;</span> <span style="color:#a6e22e">header</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">present</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">requested</span> <span style="color:#a6e22e">resource</span>.
+</span></span></code></pre></div><ul>
+<li>
+<p>跨域问题的解决：（服务端和浏览器端都要做响应配置）</p>
+<ul>
+<li>
+<p>前端配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//main.js中添加如下配置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">defaults</span>.<span style="color:#a6e22e">withCredentials</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div></li>
+<li>
+<p>服务端配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//添加响应头
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//设置允许跨域共享资源的前端地址
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>resp<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Access-Control-Allow-Origin&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;http://localhost:8080&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//允许client跨域请求时携带cookie
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>resp<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Access-Control-Allow-Credentials&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//也可以将以上代码做成过滤器并在web.xml中配置过滤器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccessControlAllowFilter</span> <span style="color:#66d9ef">implements</span> Filter <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span></code></pre></div></li>
+</ul>
+<p>public void init(FilterConfig filterConfig) throws ServletException {</p>
+<pre><code>  }
+
+  @Override
+  public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+      HttpServletResponse response = (HttpServletResponse) servletResponse;
+      //设置允许跨域共享资源的前端地址
+      response.setHeader(&quot;Access-Control-Allow-Origin&quot;,&quot;http://localhost:8081&quot;);
+      //允许client跨域请求时携带cookie
+      response.setHeader(&quot;Access-Control-Allow-Credentials&quot;,&quot;true&quot;);
+
+      filterChain.doFilter(servletRequest,servletResponse);
+  }
+
+  @Override
+  public void destroy() {
+
+  }
+</code></pre>
+<p>}</p>
+<pre tabindex="0"><code>
+```xml
+&lt;filter&gt;
+    &lt;filter-name&gt;AccessControlAllowFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;
+        jack.filter.AccessControlAllowFilter
+    &lt;/filter-class&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;AccessControlAllowFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="webpack">Webpack</h2>
+<ul>
+<li>webpack本质上是一个现代的Javascript应用程序的静态模块打包器。它会递归构建一个依赖关系图，其中包含应用程序所需的每个模块，然后将所有模块构成一个或多个bundle</li>
+<li>webpack是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散耦合的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分离，等到实际需要时再异步加载。通过loader转换，任何形式的资源都可以当作模块。</li>
+<li>移动互联网来临，更多的网页进化到了WebApp模式。它通常是一个SPA（单页面应用），每一个视图通过异步的方式加载，页面初始化和使用过程中会导致越来越多的JavaScript代码，这回给前端的开发流程和资源组织带来巨大压力。</li>
+</ul>
+<h3 id="安装webpack">安装WebPack</h3>
+<p>webpack是一款模块加载器兼打包工具，他能把各种资源：如JavaScript，JSX，ES6，SASS，LESS，图片等资源作为模块来处理和使用。打包后直接把ES6规范降级为ES5了，这样所有浏览器就都支持了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cnpm install webpack -g
+</span></span><span style="display:flex;"><span>cnpm install webpack0-cli -g
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#验证安装是否成功</span>
+</span></span><span style="display:flex;"><span>webpack -v
+</span></span><span style="display:flex;"><span>webpack-cli -v
+</span></span></code></pre></div><ul>
+<li><strong>webpack.config.js</strong>配置文件解析
+<ul>
+<li>entry：入口文件，制定webpack用哪个文件作文项目的入口</li>
+<li>output：输出，制定webpack将处理后的文件放在哪里</li>
+<li>modlule：模块，用于处理各种类型的文件</li>
+<li>plugin：插件，如：热更新，代码重用</li>
+<li>resolve：设置路径指向</li>
+<li>watch：监听，用于设置文件改动后直接打包</li>
+</ul>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/html%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/"
+      ><span class="mr-1.5">←</span><span>HTML快速回顾</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/"
+      ><span>javaweb-前后端分离史</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

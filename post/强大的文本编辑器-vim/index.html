@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>强大的文本编辑器:Vim - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="Vim是linux中的一款使用最广的文本编辑器，全屏幕编辑器。 可以建立，编辑，显示文本文件。 它没有菜单只有命令. 三种模式 命令模式
+插入模式：后：a/A，前：i/I，行：o/O进入
+退出模式
+常用操作 :set ic————搜索时不区分大小写:set nu————显示行号:set nonu————关闭行号:gg————快速定位到第一行:G————快速定位到最后一行:nG————快速定位到第n行:n————快速定位到第n行$————快速定位到行尾0————快速定位到行首x————删除光标后字符X————删除光标前字符4x————删除光标后n个字符dd————删除一行4dd————删除当前行和下面的n-1行dG————删除当前行到文件末尾D————删除光标到行尾:1,8d————删除第1行到第8行yy————复制当前行nyy————复制当前行和下面的n-1行p————粘贴到光标下一行P————粘贴到光标上一行r————替换当前字符R————从当前位置一直往后替换（进入替换模式，esc退出模式）u————恢复ctrl&#43;r————撤销恢复:/string————搜索命令，按n找下一个:%s/old/new/g————全文替换old为new:n1,n2s/old/new/g————n1到n2行替换old为new:w————保存（相当于Windows的ctrl&#43;r）:w filename————另存为:wq————保存并退出ZZ————保存并退出:q!————不保存退出:wq!————强制保存退出，针对只读文件可以强行保存(只有文件所有者和root才可以) 查看命令的执行结果：
+:!命令
+导入内容到文件中：
+:r 导入文件地址：导入文件内容
+:r !命令：导入命令执行结果
+查看命令的地址：
+:!which 命令名
+定义快捷键：
+:map 快捷键 触发命令
+关键词自动替换
+:ab mymail XXXXXXX@gmail.com：输入mymail是自动替换为你的邮箱地址
+所有配置都是临时的，要永久需要写入配置文件里，存放在用户的家目录下，.vimrc，如果没有的话就自己新建一个也ok" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="强大的文本编辑器:Vim" />
+<meta property="og:description" content="Vim是linux中的一款使用最广的文本编辑器，全屏幕编辑器。 可以建立，编辑，显示文本文件。 它没有菜单只有命令. 三种模式 命令模式
+插入模式：后：a/A，前：i/I，行：o/O进入
+退出模式
+常用操作 :set ic————搜索时不区分大小写:set nu————显示行号:set nonu————关闭行号:gg————快速定位到第一行:G————快速定位到最后一行:nG————快速定位到第n行:n————快速定位到第n行$————快速定位到行尾0————快速定位到行首x————删除光标后字符X————删除光标前字符4x————删除光标后n个字符dd————删除一行4dd————删除当前行和下面的n-1行dG————删除当前行到文件末尾D————删除光标到行尾:1,8d————删除第1行到第8行yy————复制当前行nyy————复制当前行和下面的n-1行p————粘贴到光标下一行P————粘贴到光标上一行r————替换当前字符R————从当前位置一直往后替换（进入替换模式，esc退出模式）u————恢复ctrl&#43;r————撤销恢复:/string————搜索命令，按n找下一个:%s/old/new/g————全文替换old为new:n1,n2s/old/new/g————n1到n2行替换old为new:w————保存（相当于Windows的ctrl&#43;r）:w filename————另存为:wq————保存并退出ZZ————保存并退出:q!————不保存退出:wq!————强制保存退出，针对只读文件可以强行保存(只有文件所有者和root才可以) 查看命令的执行结果：
+:!命令
+导入内容到文件中：
+:r 导入文件地址：导入文件内容
+:r !命令：导入命令执行结果
+查看命令的地址：
+:!which 命令名
+定义快捷键：
+:map 快捷键 触发命令
+关键词自动替换
+:ab mymail XXXXXXX@gmail.com：输入mymail是自动替换为你的邮箱地址
+所有配置都是临时的，要永久需要写入配置文件里，存放在用户的家目录下，.vimrc，如果没有的话就自己新建一个也ok" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-05T10:41:52+00:00" />
+<meta property="article:modified_time" content="2020-03-05T10:41:52+00:00" />
+
+  
+  <meta itemprop="name" content="强大的文本编辑器:Vim">
+<meta itemprop="description" content="Vim是linux中的一款使用最广的文本编辑器，全屏幕编辑器。 可以建立，编辑，显示文本文件。 它没有菜单只有命令. 三种模式 命令模式
+插入模式：后：a/A，前：i/I，行：o/O进入
+退出模式
+常用操作 :set ic————搜索时不区分大小写:set nu————显示行号:set nonu————关闭行号:gg————快速定位到第一行:G————快速定位到最后一行:nG————快速定位到第n行:n————快速定位到第n行$————快速定位到行尾0————快速定位到行首x————删除光标后字符X————删除光标前字符4x————删除光标后n个字符dd————删除一行4dd————删除当前行和下面的n-1行dG————删除当前行到文件末尾D————删除光标到行尾:1,8d————删除第1行到第8行yy————复制当前行nyy————复制当前行和下面的n-1行p————粘贴到光标下一行P————粘贴到光标上一行r————替换当前字符R————从当前位置一直往后替换（进入替换模式，esc退出模式）u————恢复ctrl&#43;r————撤销恢复:/string————搜索命令，按n找下一个:%s/old/new/g————全文替换old为new:n1,n2s/old/new/g————n1到n2行替换old为new:w————保存（相当于Windows的ctrl&#43;r）:w filename————另存为:wq————保存并退出ZZ————保存并退出:q!————不保存退出:wq!————强制保存退出，针对只读文件可以强行保存(只有文件所有者和root才可以) 查看命令的执行结果：
+:!命令
+导入内容到文件中：
+:r 导入文件地址：导入文件内容
+:r !命令：导入命令执行结果
+查看命令的地址：
+:!which 命令名
+定义快捷键：
+:map 快捷键 触发命令
+关键词自动替换
+:ab mymail XXXXXXX@gmail.com：输入mymail是自动替换为你的邮箱地址
+所有配置都是临时的，要永久需要写入配置文件里，存放在用户的家目录下，.vimrc，如果没有的话就自己新建一个也ok"><meta itemprop="datePublished" content="2020-03-05T10:41:52+00:00" />
+<meta itemprop="dateModified" content="2020-03-05T10:41:52+00:00" />
+<meta itemprop="wordCount" content="65">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="强大的文本编辑器:Vim"/>
+<meta name="twitter:description" content="Vim是linux中的一款使用最广的文本编辑器，全屏幕编辑器。 可以建立，编辑，显示文本文件。 它没有菜单只有命令. 三种模式 命令模式
+插入模式：后：a/A，前：i/I，行：o/O进入
+退出模式
+常用操作 :set ic————搜索时不区分大小写:set nu————显示行号:set nonu————关闭行号:gg————快速定位到第一行:G————快速定位到最后一行:nG————快速定位到第n行:n————快速定位到第n行$————快速定位到行尾0————快速定位到行首x————删除光标后字符X————删除光标前字符4x————删除光标后n个字符dd————删除一行4dd————删除当前行和下面的n-1行dG————删除当前行到文件末尾D————删除光标到行尾:1,8d————删除第1行到第8行yy————复制当前行nyy————复制当前行和下面的n-1行p————粘贴到光标下一行P————粘贴到光标上一行r————替换当前字符R————从当前位置一直往后替换（进入替换模式，esc退出模式）u————恢复ctrl&#43;r————撤销恢复:/string————搜索命令，按n找下一个:%s/old/new/g————全文替换old为new:n1,n2s/old/new/g————n1到n2行替换old为new:w————保存（相当于Windows的ctrl&#43;r）:w filename————另存为:wq————保存并退出ZZ————保存并退出:q!————不保存退出:wq!————强制保存退出，针对只读文件可以强行保存(只有文件所有者和root才可以) 查看命令的执行结果：
+:!命令
+导入内容到文件中：
+:r 导入文件地址：导入文件内容
+:r !命令：导入命令执行结果
+查看命令的地址：
+:!which 命令名
+定义快捷键：
+:map 快捷键 触发命令
+关键词自动替换
+:ab mymail XXXXXXX@gmail.com：输入mymail是自动替换为你的邮箱地址
+所有配置都是临时的，要永久需要写入配置文件里，存放在用户的家目录下，.vimrc，如果没有的话就自己新建一个也ok"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">强大的文本编辑器:Vim</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 5, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><ul>
+<li>Vim是linux中的一款使用最广的文本编辑器，全屏幕编辑器。</li>
+<li>可以建立，编辑，显示文本文件。</li>
+<li>它没有菜单只有命令.</li>
+</ul>
+<h2 id="三种模式">三种模式</h2>
+<ul>
+<li>
+<p>命令模式</p>
+</li>
+<li>
+<p>插入模式：后：a/A，前：i/I，行：o/O进入</p>
+</li>
+<li>
+<p>退出模式</p>
+</li>
+</ul>
+<h2 id="常用操作">常用操作</h2>
+<pre tabindex="0"><code>:set ic————搜索时不区分大小写
+:set nu————显示行号
+:set nonu————关闭行号
+:gg————快速定位到第一行
+:G————快速定位到最后一行
+:nG————快速定位到第n行
+:n————快速定位到第n行
+$————快速定位到行尾
+0————快速定位到行首
+x————删除光标后字符
+X————删除光标前字符
+4x————删除光标后n个字符
+dd————删除一行
+4dd————删除当前行和下面的n-1行
+dG————删除当前行到文件末尾
+D————删除光标到行尾
+:1,8d————删除第1行到第8行
+yy————复制当前行
+nyy————复制当前行和下面的n-1行
+p————粘贴到光标下一行
+P————粘贴到光标上一行
+r————替换当前字符
+R————从当前位置一直往后替换（进入替换模式，esc退出模式）
+u————恢复
+ctrl+r————撤销恢复
+:/string————搜索命令，按n找下一个
+:%s/old/new/g————全文替换old为new
+:n1,n2s/old/new/g————n1到n2行替换old为new
+:w————保存（相当于Windows的ctrl+r）
+:w filename————另存为
+:wq————保存并退出
+ZZ————保存并退出
+:q!————不保存退出
+:wq!————强制保存退出，针对只读文件可以强行保存(只有文件所有者和root才可以)
+</code></pre><ul>
+<li>
+<p>查看命令的执行结果：</p>
+<p><code>:!命令</code></p>
+</li>
+<li>
+<p>导入内容到文件中：</p>
+<p><code>:r 导入文件地址：导入文件内容</code></p>
+<p><code>:r !命令：导入命令执行结果</code></p>
+</li>
+<li>
+<p>查看命令的地址：</p>
+<p><code>:!which 命令名</code></p>
+</li>
+<li>
+<p>定义快捷键：</p>
+<p><code>:map 快捷键 触发命令</code></p>
+</li>
+<li>
+<p>关键词自动替换</p>
+<p><code>:ab mymail XXXXXXX@gmail.com</code>：输入mymail是自动替换为你的邮箱地址</p>
+</li>
+</ul>
+<p>所有配置都是临时的，要永久需要写入配置文件里，存放在用户的家目录下，<code>.vimrc</code>，如果没有的话就自己新建一个也ok</p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/"
+      ><span class="mr-1.5">←</span><span>linux软件包管理</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+      ><span>linux常用命令</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

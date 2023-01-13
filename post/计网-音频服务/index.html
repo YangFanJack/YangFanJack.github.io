@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>计网-音频服务 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="在Internet上传输音频视频面临的问题？
+音频视频：占用的带宽高，网速需要恒定，延迟要低（尤其是交互性的） 数据信息：对带宽，网速是否恒定，有延迟要求不高 延迟：对需要实时交互的音视频影响大。
+网速是否稳定：对非交互式的音视频也有很大影响，可以通过在客户端设置缓存来实现
+目前因特网提供的音视频服务的三种类型：
+流式存储音视频——边下载边播放 只能在线播放，有利于保护版权 节省客户端硬盘空间 流式实况音视频——边录制边播放 通过网络现场直播 交互式音视频——实时交互式通信 视频/音频聊天 一般的流媒体服务器中存放了所有音视频，通过一个web站点调用这些流媒体，一般顾客通过访问这些web站点就可以访问到流媒体了。
+利用流媒体服务器实现现场直播：
+就近选择流媒体服务器，让就近的流媒体服务器从远处编码器要数据，然后再分发给每台计算机，这样可以极大节省带宽
+IP电话
+传统电话是用电路交换实现面向连接的通信
+IP电话是利用分组交换通过互联网实现通信（交换式音视频），长途电话可以利用语音网关
+改进的“尽最大努力交付”：分组标记，路由器加分类，流量管制，路由器调度，呼叫接纳" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="计网-音频服务" />
+<meta property="og:description" content="在Internet上传输音频视频面临的问题？
+音频视频：占用的带宽高，网速需要恒定，延迟要低（尤其是交互性的） 数据信息：对带宽，网速是否恒定，有延迟要求不高 延迟：对需要实时交互的音视频影响大。
+网速是否稳定：对非交互式的音视频也有很大影响，可以通过在客户端设置缓存来实现
+目前因特网提供的音视频服务的三种类型：
+流式存储音视频——边下载边播放 只能在线播放，有利于保护版权 节省客户端硬盘空间 流式实况音视频——边录制边播放 通过网络现场直播 交互式音视频——实时交互式通信 视频/音频聊天 一般的流媒体服务器中存放了所有音视频，通过一个web站点调用这些流媒体，一般顾客通过访问这些web站点就可以访问到流媒体了。
+利用流媒体服务器实现现场直播：
+就近选择流媒体服务器，让就近的流媒体服务器从远处编码器要数据，然后再分发给每台计算机，这样可以极大节省带宽
+IP电话
+传统电话是用电路交换实现面向连接的通信
+IP电话是利用分组交换通过互联网实现通信（交换式音视频），长途电话可以利用语音网关
+改进的“尽最大努力交付”：分组标记，路由器加分类，流量管制，路由器调度，呼叫接纳" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/%E8%AE%A1%E7%BD%91-%E9%9F%B3%E9%A2%91%E6%9C%8D%E5%8A%A1/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-21T15:08:03+00:00" />
+<meta property="article:modified_time" content="2020-11-21T15:08:03+00:00" />
+
+  
+  <meta itemprop="name" content="计网-音频服务">
+<meta itemprop="description" content="在Internet上传输音频视频面临的问题？
+音频视频：占用的带宽高，网速需要恒定，延迟要低（尤其是交互性的） 数据信息：对带宽，网速是否恒定，有延迟要求不高 延迟：对需要实时交互的音视频影响大。
+网速是否稳定：对非交互式的音视频也有很大影响，可以通过在客户端设置缓存来实现
+目前因特网提供的音视频服务的三种类型：
+流式存储音视频——边下载边播放 只能在线播放，有利于保护版权 节省客户端硬盘空间 流式实况音视频——边录制边播放 通过网络现场直播 交互式音视频——实时交互式通信 视频/音频聊天 一般的流媒体服务器中存放了所有音视频，通过一个web站点调用这些流媒体，一般顾客通过访问这些web站点就可以访问到流媒体了。
+利用流媒体服务器实现现场直播：
+就近选择流媒体服务器，让就近的流媒体服务器从远处编码器要数据，然后再分发给每台计算机，这样可以极大节省带宽
+IP电话
+传统电话是用电路交换实现面向连接的通信
+IP电话是利用分组交换通过互联网实现通信（交换式音视频），长途电话可以利用语音网关
+改进的“尽最大努力交付”：分组标记，路由器加分类，流量管制，路由器调度，呼叫接纳"><meta itemprop="datePublished" content="2020-11-21T15:08:03+00:00" />
+<meta itemprop="dateModified" content="2020-11-21T15:08:03+00:00" />
+<meta itemprop="wordCount" content="20">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计网-音频服务"/>
+<meta name="twitter:description" content="在Internet上传输音频视频面临的问题？
+音频视频：占用的带宽高，网速需要恒定，延迟要低（尤其是交互性的） 数据信息：对带宽，网速是否恒定，有延迟要求不高 延迟：对需要实时交互的音视频影响大。
+网速是否稳定：对非交互式的音视频也有很大影响，可以通过在客户端设置缓存来实现
+目前因特网提供的音视频服务的三种类型：
+流式存储音视频——边下载边播放 只能在线播放，有利于保护版权 节省客户端硬盘空间 流式实况音视频——边录制边播放 通过网络现场直播 交互式音视频——实时交互式通信 视频/音频聊天 一般的流媒体服务器中存放了所有音视频，通过一个web站点调用这些流媒体，一般顾客通过访问这些web站点就可以访问到流媒体了。
+利用流媒体服务器实现现场直播：
+就近选择流媒体服务器，让就近的流媒体服务器从远处编码器要数据，然后再分发给每台计算机，这样可以极大节省带宽
+IP电话
+传统电话是用电路交换实现面向连接的通信
+IP电话是利用分组交换通过互联网实现通信（交换式音视频），长途电话可以利用语音网关
+改进的“尽最大努力交付”：分组标记，路由器加分类，流量管制，路由器调度，呼叫接纳"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">计网-音频服务</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Nov 21, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p>在Internet上传输音频视频面临的问题？</p>
+<ul>
+<li>音频视频：占用的带宽高，网速需要恒定，延迟要低（尤其是交互性的）</li>
+<li>数据信息：对带宽，网速是否恒定，有延迟要求不高</li>
+</ul>
+<p>延迟：对需要实时交互的音视频影响大。</p>
+<p>网速是否稳定：对非交互式的音视频也有很大影响，可以通过在客户端设置缓存来实现</p>
+<p>目前因特网提供的音视频服务的三种类型：</p>
+<ul>
+<li>流式存储音视频——边下载边播放
+<ul>
+<li>只能在线播放，有利于保护版权</li>
+<li>节省客户端硬盘空间</li>
+</ul>
+</li>
+<li>流式实况音视频——边录制边播放
+<ul>
+<li>通过网络现场直播</li>
+</ul>
+</li>
+<li>交互式音视频——实时交互式通信
+<ul>
+<li>视频/音频聊天</li>
+</ul>
+</li>
+</ul>
+<p>一般的流媒体服务器中存放了所有音视频，通过一个web站点调用这些流媒体，一般顾客通过访问这些web站点就可以访问到流媒体了。</p>
+<p>利用流媒体服务器实现现场直播：</p>
+<!-- raw HTML omitted -->
+<p>就近选择流媒体服务器，让就近的流媒体服务器从远处编码器要数据，然后再分发给每台计算机，这样可以极大节省带宽</p>
+<p><strong>IP电话</strong></p>
+<p>传统电话是用电路交换实现面向连接的通信</p>
+<p>IP电话是利用分组交换通过互联网实现通信（交换式音视频），长途电话可以利用语音网关</p>
+<!-- raw HTML omitted -->
+<p>改进的“尽最大努力交付”：分组标记，路由器加分类，流量管制，路由器调度，呼叫接纳</p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E8%AE%A1%E7%BD%91-%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C/"
+      ><span class="mr-1.5">←</span><span>计网-无线网络</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
+      ><span>计网-网络安全</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

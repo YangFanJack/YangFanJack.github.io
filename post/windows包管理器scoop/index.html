@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Windows包管理器scoop - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装一些环境配置软件就会省去手动配置环境变量的步骤，并且里面的软件还很齐全，wonderful!
+安装 管理员身份打开终端，设置用户变量
+[environment]::setEnvironmentVariable(&#39;SCOOP&#39;,&#39;D:\software\scoop&#39;,&#39;User&#39;) 启用
+$env:SCOOP=&#39;D:\software\scoop&#39; install scoop
+iex (new-object net.webclient).downloadstring(&#39;https://get.scoop.sh&#39;) 配置全局变量
+[environment]::setEnvironmentVariable(&#39;SCOOP_GLOBAL&#39;,&#39;D:\software&#39;,&#39;Machine&#39;) 启用
+$env:SCOOP_GLOBAL=&#39;D:\software&#39; 使用 scoop help：查看scoop的使用方式和命令 scoop status：检查scoop是否最新 scoop update：更新scoop库 scoop search XXX：搜索软件 scoop install XXX：安装软件 scoop insrall -g XXX：全局安装软件 scoop uninstall XXX：卸载软件 scoop uninstall -g XXX：全局卸载软件 scoop list：列出安装的软甲 scoop bucket list：列出安装的仓库 scoop bucket add XXX：添加仓库 常用软件 7zip git aria2 vim gcc nodejs oraclejdk tomcat mysql57 #手动开启 mysql --standalone mysql --console #注册mysql为服务 mysqld --install MySQL --defaults-file=&#34;D:\software\apps\mysql57\current\my.ini&#34; #停止服务 sc stop MySQL #删除服务 sc delete MySQL " />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Windows包管理器scoop" />
+<meta property="og:description" content="对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装一些环境配置软件就会省去手动配置环境变量的步骤，并且里面的软件还很齐全，wonderful!
+安装 管理员身份打开终端，设置用户变量
+[environment]::setEnvironmentVariable(&#39;SCOOP&#39;,&#39;D:\software\scoop&#39;,&#39;User&#39;) 启用
+$env:SCOOP=&#39;D:\software\scoop&#39; install scoop
+iex (new-object net.webclient).downloadstring(&#39;https://get.scoop.sh&#39;) 配置全局变量
+[environment]::setEnvironmentVariable(&#39;SCOOP_GLOBAL&#39;,&#39;D:\software&#39;,&#39;Machine&#39;) 启用
+$env:SCOOP_GLOBAL=&#39;D:\software&#39; 使用 scoop help：查看scoop的使用方式和命令 scoop status：检查scoop是否最新 scoop update：更新scoop库 scoop search XXX：搜索软件 scoop install XXX：安装软件 scoop insrall -g XXX：全局安装软件 scoop uninstall XXX：卸载软件 scoop uninstall -g XXX：全局卸载软件 scoop list：列出安装的软甲 scoop bucket list：列出安装的仓库 scoop bucket add XXX：添加仓库 常用软件 7zip git aria2 vim gcc nodejs oraclejdk tomcat mysql57 #手动开启 mysql --standalone mysql --console #注册mysql为服务 mysqld --install MySQL --defaults-file=&#34;D:\software\apps\mysql57\current\my.ini&#34; #停止服务 sc stop MySQL #删除服务 sc delete MySQL " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-03T18:34:53+00:00" />
+<meta property="article:modified_time" content="2020-03-03T18:34:53+00:00" />
+
+  
+  <meta itemprop="name" content="Windows包管理器scoop">
+<meta itemprop="description" content="对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装一些环境配置软件就会省去手动配置环境变量的步骤，并且里面的软件还很齐全，wonderful!
+安装 管理员身份打开终端，设置用户变量
+[environment]::setEnvironmentVariable(&#39;SCOOP&#39;,&#39;D:\software\scoop&#39;,&#39;User&#39;) 启用
+$env:SCOOP=&#39;D:\software\scoop&#39; install scoop
+iex (new-object net.webclient).downloadstring(&#39;https://get.scoop.sh&#39;) 配置全局变量
+[environment]::setEnvironmentVariable(&#39;SCOOP_GLOBAL&#39;,&#39;D:\software&#39;,&#39;Machine&#39;) 启用
+$env:SCOOP_GLOBAL=&#39;D:\software&#39; 使用 scoop help：查看scoop的使用方式和命令 scoop status：检查scoop是否最新 scoop update：更新scoop库 scoop search XXX：搜索软件 scoop install XXX：安装软件 scoop insrall -g XXX：全局安装软件 scoop uninstall XXX：卸载软件 scoop uninstall -g XXX：全局卸载软件 scoop list：列出安装的软甲 scoop bucket list：列出安装的仓库 scoop bucket add XXX：添加仓库 常用软件 7zip git aria2 vim gcc nodejs oraclejdk tomcat mysql57 #手动开启 mysql --standalone mysql --console #注册mysql为服务 mysqld --install MySQL --defaults-file=&#34;D:\software\apps\mysql57\current\my.ini&#34; #停止服务 sc stop MySQL #删除服务 sc delete MySQL "><meta itemprop="datePublished" content="2020-03-03T18:34:53+00:00" />
+<meta itemprop="dateModified" content="2020-03-03T18:34:53+00:00" />
+<meta itemprop="wordCount" content="76">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Windows包管理器scoop"/>
+<meta name="twitter:description" content="对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装一些环境配置软件就会省去手动配置环境变量的步骤，并且里面的软件还很齐全，wonderful!
+安装 管理员身份打开终端，设置用户变量
+[environment]::setEnvironmentVariable(&#39;SCOOP&#39;,&#39;D:\software\scoop&#39;,&#39;User&#39;) 启用
+$env:SCOOP=&#39;D:\software\scoop&#39; install scoop
+iex (new-object net.webclient).downloadstring(&#39;https://get.scoop.sh&#39;) 配置全局变量
+[environment]::setEnvironmentVariable(&#39;SCOOP_GLOBAL&#39;,&#39;D:\software&#39;,&#39;Machine&#39;) 启用
+$env:SCOOP_GLOBAL=&#39;D:\software&#39; 使用 scoop help：查看scoop的使用方式和命令 scoop status：检查scoop是否最新 scoop update：更新scoop库 scoop search XXX：搜索软件 scoop install XXX：安装软件 scoop insrall -g XXX：全局安装软件 scoop uninstall XXX：卸载软件 scoop uninstall -g XXX：全局卸载软件 scoop list：列出安装的软甲 scoop bucket list：列出安装的仓库 scoop bucket add XXX：添加仓库 常用软件 7zip git aria2 vim gcc nodejs oraclejdk tomcat mysql57 #手动开启 mysql --standalone mysql --console #注册mysql为服务 mysqld --install MySQL --defaults-file=&#34;D:\software\apps\mysql57\current\my.ini&#34; #停止服务 sc stop MySQL #删除服务 sc delete MySQL "/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">Windows包管理器scoop</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 3, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装一些环境配置软件就会省去手动配置环境变量的步骤，并且里面的软件还很齐全，wonderful!</strong></p>
+<h2 id="安装">安装</h2>
+<ul>
+<li>
+<p><strong>管理员身份打开终端，设置用户变量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>[<span style="color:#66d9ef">environment</span>]::setEnvironmentVariable(<span style="color:#e6db74">&#39;SCOOP&#39;</span>,<span style="color:#e6db74">&#39;D:\software\scoop&#39;</span>,<span style="color:#e6db74">&#39;User&#39;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>启用</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$env:SCOOP=<span style="color:#e6db74">&#39;D:\software\scoop&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>install scoop</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>iex (new-object net.webclient).downloadstring(<span style="color:#e6db74">&#39;https://get.scoop.sh&#39;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>配置全局变量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>[<span style="color:#66d9ef">environment</span>]::setEnvironmentVariable(<span style="color:#e6db74">&#39;SCOOP_GLOBAL&#39;</span>,<span style="color:#e6db74">&#39;D:\software&#39;</span>,<span style="color:#e6db74">&#39;Machine&#39;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>启用</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$env:SCOOP_GLOBAL=<span style="color:#e6db74">&#39;D:\software&#39;</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="使用">使用</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>scoop help<span style="color:#960050;background-color:#1e0010">：查看</span>scoop<span style="color:#960050;background-color:#1e0010">的使用方式和命令</span>
+</span></span><span style="display:flex;"><span>scoop status<span style="color:#960050;background-color:#1e0010">：检查</span>scoop<span style="color:#960050;background-color:#1e0010">是否最新</span>
+</span></span><span style="display:flex;"><span>scoop update<span style="color:#960050;background-color:#1e0010">：更新</span>scoop<span style="color:#960050;background-color:#1e0010">库</span>
+</span></span><span style="display:flex;"><span>scoop search XXX<span style="color:#960050;background-color:#1e0010">：搜索软件</span>
+</span></span><span style="display:flex;"><span>scoop install XXX<span style="color:#960050;background-color:#1e0010">：安装软件</span>
+</span></span><span style="display:flex;"><span>scoop insrall -g XXX<span style="color:#960050;background-color:#1e0010">：全局安装软件</span>
+</span></span><span style="display:flex;"><span>scoop uninstall XXX<span style="color:#960050;background-color:#1e0010">：卸载软件</span>
+</span></span><span style="display:flex;"><span>scoop uninstall -g XXX<span style="color:#960050;background-color:#1e0010">：全局卸载软件</span> 
+</span></span><span style="display:flex;"><span>scoop list<span style="color:#960050;background-color:#1e0010">：列出安装的软甲</span>
+</span></span><span style="display:flex;"><span>scoop bucket list<span style="color:#960050;background-color:#1e0010">：列出安装的仓库</span>
+</span></span><span style="display:flex;"><span>scoop bucket add XXX<span style="color:#960050;background-color:#1e0010">：添加仓库</span>
+</span></span></code></pre></div><h2 id="常用软件">常用软件</h2>
+<ol>
+<li>7zip</li>
+<li>git</li>
+<li>aria2</li>
+<li>vim</li>
+<li>gcc</li>
+<li>nodejs</li>
+<li>oraclejdk</li>
+<li>tomcat</li>
+</ol>
+<h3 id="mysql57">mysql57</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#手动开启</span>
+</span></span><span style="display:flex;"><span>mysql --standalone
+</span></span><span style="display:flex;"><span>mysql --console
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#注册mysql为服务</span>
+</span></span><span style="display:flex;"><span>mysqld --install MySQL --defaults-file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;D:\software\apps\mysql57\current\my.ini&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#停止服务</span>
+</span></span><span style="display:flex;"><span>sc stop MySQL
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#删除服务</span>
+</span></span><span style="display:flex;"><span>sc delete MySQL
+</span></span></code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/"
+      ><span class="mr-1.5">←</span><span>linux系统简介和安装</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"
+      ><span>hexo博客搭建</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>

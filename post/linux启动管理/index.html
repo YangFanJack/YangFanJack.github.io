@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-US"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>linux启动管理 - My Hugo Site</title>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="CentOS 6的启动管理 运行级别：7个级别
+runlevel：查看运行级别
+init 运行级别：改变当前运行级别
+vim /etc/inittab：永久修改系统默认运行级别，写上id:3:initdefault
+不要把0和6设为默认级别
+CentOS6系统启动过程：（针对MBR模式）
+配合视频食用
+启动引导程序grub Grub配置文件：/boot/grub/grub.conf
+格式：
+default=0 默认启动第一个系统
+timeout=5 等待时间，默认是5秒
+splashimage=(hd0,0)/grub/splash.xpm.gz 指定grub启动时的背景图像文件的保存位置
+hiddenmenu 隐藏菜单
+title CentOS(2.6.32-279.el6.i686) 标题
+root (hd0,0) 指启动程序的保存分区
+kernel /vmlinuz-2.6.32-279.el6.i686 ro 定义了内核加载时的选项
+initrd /initramfs-2.6.32-279.el6.i686.img initramfs内存文件系统镜像文件的所在位置" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://example.org/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://example.org/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://example.org/github.svg" />
+  
+
+  
+  <link rel="icon" href="http://example.org/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.109.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="linux启动管理" />
+<meta property="og:description" content="CentOS 6的启动管理 运行级别：7个级别
+runlevel：查看运行级别
+init 运行级别：改变当前运行级别
+vim /etc/inittab：永久修改系统默认运行级别，写上id:3:initdefault
+不要把0和6设为默认级别
+CentOS6系统启动过程：（针对MBR模式）
+配合视频食用
+启动引导程序grub Grub配置文件：/boot/grub/grub.conf
+格式：
+default=0 默认启动第一个系统
+timeout=5 等待时间，默认是5秒
+splashimage=(hd0,0)/grub/splash.xpm.gz 指定grub启动时的背景图像文件的保存位置
+hiddenmenu 隐藏菜单
+title CentOS(2.6.32-279.el6.i686) 标题
+root (hd0,0) 指启动程序的保存分区
+kernel /vmlinuz-2.6.32-279.el6.i686 ro 定义了内核加载时的选项
+initrd /initramfs-2.6.32-279.el6.i686.img initramfs内存文件系统镜像文件的所在位置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-11T17:26:08+00:00" />
+<meta property="article:modified_time" content="2020-03-11T17:26:08+00:00" />
+
+  
+  <meta itemprop="name" content="linux启动管理">
+<meta itemprop="description" content="CentOS 6的启动管理 运行级别：7个级别
+runlevel：查看运行级别
+init 运行级别：改变当前运行级别
+vim /etc/inittab：永久修改系统默认运行级别，写上id:3:initdefault
+不要把0和6设为默认级别
+CentOS6系统启动过程：（针对MBR模式）
+配合视频食用
+启动引导程序grub Grub配置文件：/boot/grub/grub.conf
+格式：
+default=0 默认启动第一个系统
+timeout=5 等待时间，默认是5秒
+splashimage=(hd0,0)/grub/splash.xpm.gz 指定grub启动时的背景图像文件的保存位置
+hiddenmenu 隐藏菜单
+title CentOS(2.6.32-279.el6.i686) 标题
+root (hd0,0) 指启动程序的保存分区
+kernel /vmlinuz-2.6.32-279.el6.i686 ro 定义了内核加载时的选项
+initrd /initramfs-2.6.32-279.el6.i686.img initramfs内存文件系统镜像文件的所在位置"><meta itemprop="datePublished" content="2020-03-11T17:26:08+00:00" />
+<meta itemprop="dateModified" content="2020-03-11T17:26:08+00:00" />
+<meta itemprop="wordCount" content="35">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux启动管理"/>
+<meta name="twitter:description" content="CentOS 6的启动管理 运行级别：7个级别
+runlevel：查看运行级别
+init 运行级别：改变当前运行级别
+vim /etc/inittab：永久修改系统默认运行级别，写上id:3:initdefault
+不要把0和6设为默认级别
+CentOS6系统启动过程：（针对MBR模式）
+配合视频食用
+启动引导程序grub Grub配置文件：/boot/grub/grub.conf
+格式：
+default=0 默认启动第一个系统
+timeout=5 等待时间，默认是5秒
+splashimage=(hd0,0)/grub/splash.xpm.gz 指定grub启动时的背景图像文件的保存位置
+hiddenmenu 隐藏菜单
+title CentOS(2.6.32-279.el6.i686) 标题
+root (hd0,0) 指启动程序的保存分区
+kernel /vmlinuz-2.6.32-279.el6.i686 ro 定义了内核加载时的选项
+initrd /initramfs-2.6.32-279.el6.i686.img initramfs内存文件系统镜像文件的所在位置"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="http://example.org/"
+      >My Hugo Site</a
+    >
+    <a
+      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+    ></a>
+  </div>
+
+  <a
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+  ></a>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href=" https://github.com/YangFanJack "
+        target="_blank"
+      ></a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">linux启动管理</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Mar 11, 2020</time>
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h1 id="centos-6的启动管理">CentOS 6的启动管理</h1>
+<ul>
+<li>
+<p>运行级别：7个级别</p>
+<p><code>runlevel</code>：查看运行级别</p>
+<p><code>init 运行级别</code>：改变当前运行级别</p>
+<p><code>vim /etc/inittab</code>：永久修改系统默认运行级别，写上<code>id:3:initdefault</code></p>
+<p>不要把0和6设为默认级别</p>
+</li>
+<li>
+<p><strong>CentOS6系统启动过程：</strong>（针对MBR模式）</p>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong><a href="https://www.bilibili.com/video/av18156598/?p=103">配合视频食用</a></strong></p>
+<h1 id="启动引导程序grub">启动引导程序grub</h1>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>Grub配置文件：<code>/boot/grub/grub.conf</code></p>
+<p><strong>格式：</strong></p>
+<p>default=0                          默认启动第一个系统</p>
+<p>timeout=5                         等待时间，默认是5秒</p>
+<p>splashimage=(hd0,0)/grub/splash.xpm.gz                    指定grub启动时的背景图像文件的保存位置</p>
+<p>hiddenmenu                     隐藏菜单</p>
+<p>title CentOS(2.6.32-279.el6.i686)                        标题</p>
+<p>root (hd0,0)                                                             指启动程序的保存分区</p>
+<p>kernel /vmlinuz-2.6.32-279.el6.i686 ro               定义了内核加载时的选项</p>
+<p>initrd /initramfs-2.6.32-279.el6.i686.img           initramfs内存文件系统镜像文件的所在位置</p>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/linux%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"
+      ><span class="mr-1.5">←</span><span>linux备份与恢复</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://example.org/post/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/"
+      ><span>hexo博客优化之图床迁移&amp;google收录</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+  <div class="mt-24" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'Jack';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  
+
+  
+  
+  <div class="mt-24" id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
+      behaviour: {
+        
+      },
+      
+    };
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function () {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src =
+        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(gc);
+    })();
+  </script>
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="http://example.org/">My Hugo Site</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >▷ Paper 6</a
+  >
+</footer>
+
+  </body>
+</html>
