@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>日志随笔 on Jack&#39;s Blog Site</title>
+    <link>http://yangfanjack.top/categories/%E6%97%A5%E5%BF%97%E9%9A%8F%E7%AC%94/</link>
+    <description>Recent content in 日志随笔 on Jack&#39;s Blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 13 Oct 2021 08:13:19 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/categories/%E6%97%A5%E5%BF%97%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>国庆北京独游</title>
+      <link>http://yangfanjack.top/post/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/</link>
+      <pubDate>Wed, 13 Oct 2021 08:13:19 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/</guid>
+      <description>在保定工作的这3个月里，从学校到工作过渡很平稳，学校里做的事和工作中差异不大，总体来说还是很快适应了工作环境。另外，和学校相比，假期确实太少</description>
+    </item>
+    
+    <item>
+      <title>毕业九寨三人游</title>
+      <link>http://yangfanjack.top/post/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/</link>
+      <pubDate>Thu, 08 Jul 2021 17:38:00 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/</guid>
+      <description>6月9号本科毕设答辩后就赶回家了，休息一个月就要开始工作啦。和高中同学联系打算出去玩玩儿。综合考虑后打算到九寨-黄龙-若尔盖一线玩玩儿，我的</description>
+    </item>
+    
+    <item>
+      <title>javaweb-前后端分离史</title>
+      <link>http://yangfanjack.top/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/</link>
+      <pubDate>Sat, 02 Jan 2021 21:55:24 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/</guid>
+      <description>前后端分离演变史 model1(MVC时代)： 以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后</description>
+    </item>
+    
+    <item>
+      <title>一点想法-2021-01-01</title>
+      <link>http://yangfanjack.top/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</link>
+      <pubDate>Fri, 01 Jan 2021 10:59:31 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</guid>
+      <description>这学期期末，连续做了三个小项目，最后一个实习最后，叫写个3000字的总结，没啥写的。就扯了了点自己学java这么久以来的感悟。想想也放在博客</description>
+    </item>
+    
+    <item>
+      <title>初试刷机</title>
+      <link>http://yangfanjack.top/post/%E5%88%9D%E8%AF%95%E5%88%B7%E6%9C%BA/</link>
+      <pubDate>Sat, 05 Dec 2020 22:14:42 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E5%88%9D%E8%AF%95%E5%88%B7%E6%9C%BA/</guid>
+      <description>解BL锁 首先需要确保MIUI处于开发版最新版 连续点击全部参数里的MIUI版本将设备处于开发者模式 退出系统中所有登录的账号（小米账号，谷歌账号</description>
+    </item>
+    
+    <item>
+      <title>Martin Fowler关于微服务架构的论文译文</title>
+      <link>http://yangfanjack.top/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</link>
+      <pubDate>Sat, 21 Nov 2020 13:09:52 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</guid>
+      <description>中文译文地址 Martin Flower原论文地址</description>
+    </item>
+    
+    <item>
+      <title>浅谈日清1894海战（二）</title>
+      <link>http://yangfanjack.top/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%BA%8C/</link>
+      <pubDate>Wed, 24 Jun 2020 16:56:42 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%BA%8C/</guid>
+      <description>上篇文章简单谈了下洋务运动的时代背景，北洋水师就是在19世纪中叶后的这样一个科技，政治大变革时代下诞生的。这次主要谈谈甲午战争中的大东沟海战</description>
+    </item>
+    
+    <item>
+      <title>浅谈日清1894海战（一）</title>
+      <link>http://yangfanjack.top/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%B8%80/</link>
+      <pubDate>Mon, 22 Jun 2020 22:48:01 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%B8%80/</guid>
+      <description>“威海卫陷落，北洋舰队全军覆没标志着洋务运动的失败”，这是历史课本记述的那场战争，语文课本和影视作品中关于邓世昌率致远全舰撞击吉野的描述同样</description>
+    </item>
+    
+  </channel>
+</rss>

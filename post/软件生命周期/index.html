@@ -1,293 +1,179 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>软件生命周期 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>软件生命周期 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软件需求的方法 包含 功能性需求：用户和其他系统完成的功能，提供的服务 非功能性需求：必须遵循的标准，外部界面的细节，实现的约束条件，质量属性等等。 来源：用户目标，领域知识，投资者，运行环境，组织环境 获取方式：采访，设定情景，原型，会议，观察商业过程和工作流 需求获取面临的挑战： 客户说不清需求 需求易变性：在系统设计时，将软件的核心建筑放在稳定的需求上。 问题的复杂度和对问题空间理解的不完备性与不一致性 需求诱导十原则： 倾听 有准备的沟通 需要有人推动 最好当面沟通 记录所有决定 保持同理协作 聚焦并协调话题 采用图形表示 继续前进原则 谈判双赢原则 需求确认 需求获取
-需求提炼：对应用问题及环境的理解和分析，为问题涉及的信息，功能和系统行为建立分析模型，将用户需求精确化，完全化，最终形成下一步的需求规格说明书
-需求描述（需求规格说明书）：对待开发系统的行为的完整描述，包含了功能性需求和非功能性需求，完成的标志是形成一份完整规范的需求规格说明书。
-需求验证：对需求文档进行检查：有效性检查，一致性检查，完备性检查，现实性检查
-需求变更 需求分析的任务 建立分析模型：面向过程，面向对象 面向过程分析模型：用系统工程的思想和工程化的方法，根据用户至上的原则，自始自终按照结构化，模块化，自顶向下地对系统进行分析与设计。
-采用结构化分析方法（面向数据流进行需求分析的方法），用抽象模型的概念，按照软件内部数据传递，变换的关系，自顶向下逐层分解，知道找到满足功能要求的左右可实现的软件为止。 面向对象分析模型：由5个层次（主题层，对象类层，结构层，属性层，服务层）和5个活动（标识对象类，标识结构，定义主题，定义属性，定义服务）组成。
-编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求 IEEE标准对需求文档提出了以下结构：
-引言（需求文档目的，文档约定，预期读者和阅读建议，产品范围，参考文献） 综合描述（产品前景，产品功能与优先级，用户特征，运行环境，设计与实现上的限制，假设与依赖性） 需求描述（功能需求，数据需求，性能需求，外部接口，设计约束，软件质量属性，其他需求） 附录（词汇表，分析模型，特定问题列表） 索引 系统设计 概要设计：描述软件顶层架构和组织，划分不同组件 详细设计：详细描述各组件以便能够编码实现 设计相关概念：
-抽象 体系结构 设计模式 模块化 信息隐藏 功能独立 精化 重构 数据设计
-架构设计
-接口设计
-组件设计
-面向过程架构设计 变换型软件结构图
-事务型软件结构图
-混合型软件结构图
-面向过程组件设计 面向对象架构设计 面向对象组件设计（类设计和用例设计） " />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="软件生命周期" />
-<meta property="og:description" content="需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软件需求的方法 包含 功能性需求：用户和其他系统完成的功能，提供的服务 非功能性需求：必须遵循的标准，外部界面的细节，实现的约束条件，质量属性等等。 来源：用户目标，领域知识，投资者，运行环境，组织环境 获取方式：采访，设定情景，原型，会议，观察商业过程和工作流 需求获取面临的挑战： 客户说不清需求 需求易变性：在系统设计时，将软件的核心建筑放在稳定的需求上。 问题的复杂度和对问题空间理解的不完备性与不一致性 需求诱导十原则： 倾听 有准备的沟通 需要有人推动 最好当面沟通 记录所有决定 保持同理协作 聚焦并协调话题 采用图形表示 继续前进原则 谈判双赢原则 需求确认 需求获取
-需求提炼：对应用问题及环境的理解和分析，为问题涉及的信息，功能和系统行为建立分析模型，将用户需求精确化，完全化，最终形成下一步的需求规格说明书
-需求描述（需求规格说明书）：对待开发系统的行为的完整描述，包含了功能性需求和非功能性需求，完成的标志是形成一份完整规范的需求规格说明书。
-需求验证：对需求文档进行检查：有效性检查，一致性检查，完备性检查，现实性检查
-需求变更 需求分析的任务 建立分析模型：面向过程，面向对象 面向过程分析模型：用系统工程的思想和工程化的方法，根据用户至上的原则，自始自终按照结构化，模块化，自顶向下地对系统进行分析与设计。
-采用结构化分析方法（面向数据流进行需求分析的方法），用抽象模型的概念，按照软件内部数据传递，变换的关系，自顶向下逐层分解，知道找到满足功能要求的左右可实现的软件为止。 面向对象分析模型：由5个层次（主题层，对象类层，结构层，属性层，服务层）和5个活动（标识对象类，标识结构，定义主题，定义属性，定义服务）组成。
-编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求 IEEE标准对需求文档提出了以下结构：
-引言（需求文档目的，文档约定，预期读者和阅读建议，产品范围，参考文献） 综合描述（产品前景，产品功能与优先级，用户特征，运行环境，设计与实现上的限制，假设与依赖性） 需求描述（功能需求，数据需求，性能需求，外部接口，设计约束，软件质量属性，其他需求） 附录（词汇表，分析模型，特定问题列表） 索引 系统设计 概要设计：描述软件顶层架构和组织，划分不同组件 详细设计：详细描述各组件以便能够编码实现 设计相关概念：
-抽象 体系结构 设计模式 模块化 信息隐藏 功能独立 精化 重构 数据设计
-架构设计
-接口设计
-组件设计
-面向过程架构设计 变换型软件结构图
-事务型软件结构图
-混合型软件结构图
-面向过程组件设计 面向对象架构设计 面向对象组件设计（类设计和用例设计） " />
+<meta property="og:title" content="软件生命周期" />
+<meta property="og:description" content="需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-11-14T17:22:32+00:00" />
 <meta property="article:modified_time" content="2020-11-14T17:22:32+00:00" />
-
-  
-  <meta itemprop="name" content="软件生命周期">
-<meta itemprop="description" content="需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软件需求的方法 包含 功能性需求：用户和其他系统完成的功能，提供的服务 非功能性需求：必须遵循的标准，外部界面的细节，实现的约束条件，质量属性等等。 来源：用户目标，领域知识，投资者，运行环境，组织环境 获取方式：采访，设定情景，原型，会议，观察商业过程和工作流 需求获取面临的挑战： 客户说不清需求 需求易变性：在系统设计时，将软件的核心建筑放在稳定的需求上。 问题的复杂度和对问题空间理解的不完备性与不一致性 需求诱导十原则： 倾听 有准备的沟通 需要有人推动 最好当面沟通 记录所有决定 保持同理协作 聚焦并协调话题 采用图形表示 继续前进原则 谈判双赢原则 需求确认 需求获取
-需求提炼：对应用问题及环境的理解和分析，为问题涉及的信息，功能和系统行为建立分析模型，将用户需求精确化，完全化，最终形成下一步的需求规格说明书
-需求描述（需求规格说明书）：对待开发系统的行为的完整描述，包含了功能性需求和非功能性需求，完成的标志是形成一份完整规范的需求规格说明书。
-需求验证：对需求文档进行检查：有效性检查，一致性检查，完备性检查，现实性检查
-需求变更 需求分析的任务 建立分析模型：面向过程，面向对象 面向过程分析模型：用系统工程的思想和工程化的方法，根据用户至上的原则，自始自终按照结构化，模块化，自顶向下地对系统进行分析与设计。
-采用结构化分析方法（面向数据流进行需求分析的方法），用抽象模型的概念，按照软件内部数据传递，变换的关系，自顶向下逐层分解，知道找到满足功能要求的左右可实现的软件为止。 面向对象分析模型：由5个层次（主题层，对象类层，结构层，属性层，服务层）和5个活动（标识对象类，标识结构，定义主题，定义属性，定义服务）组成。
-编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求 IEEE标准对需求文档提出了以下结构：
-引言（需求文档目的，文档约定，预期读者和阅读建议，产品范围，参考文献） 综合描述（产品前景，产品功能与优先级，用户特征，运行环境，设计与实现上的限制，假设与依赖性） 需求描述（功能需求，数据需求，性能需求，外部接口，设计约束，软件质量属性，其他需求） 附录（词汇表，分析模型，特定问题列表） 索引 系统设计 概要设计：描述软件顶层架构和组织，划分不同组件 详细设计：详细描述各组件以便能够编码实现 设计相关概念：
-抽象 体系结构 设计模式 模块化 信息隐藏 功能独立 精化 重构 数据设计
-架构设计
-接口设计
-组件设计
-面向过程架构设计 变换型软件结构图
-事务型软件结构图
-混合型软件结构图
-面向过程组件设计 面向对象架构设计 面向对象组件设计（类设计和用例设计） "><meta itemprop="datePublished" content="2020-11-14T17:22:32+00:00" />
+<meta itemprop="name" content="软件生命周期">
+<meta itemprop="description" content="需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软"><meta itemprop="datePublished" content="2020-11-14T17:22:32+00:00" />
 <meta itemprop="dateModified" content="2020-11-14T17:22:32+00:00" />
-<meta itemprop="wordCount" content="65">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1119">
+<meta itemprop="keywords" content="软件工程理论," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="软件生命周期"/>
-<meta name="twitter:description" content="需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软件需求的方法 包含 功能性需求：用户和其他系统完成的功能，提供的服务 非功能性需求：必须遵循的标准，外部界面的细节，实现的约束条件，质量属性等等。 来源：用户目标，领域知识，投资者，运行环境，组织环境 获取方式：采访，设定情景，原型，会议，观察商业过程和工作流 需求获取面临的挑战： 客户说不清需求 需求易变性：在系统设计时，将软件的核心建筑放在稳定的需求上。 问题的复杂度和对问题空间理解的不完备性与不一致性 需求诱导十原则： 倾听 有准备的沟通 需要有人推动 最好当面沟通 记录所有决定 保持同理协作 聚焦并协调话题 采用图形表示 继续前进原则 谈判双赢原则 需求确认 需求获取
-需求提炼：对应用问题及环境的理解和分析，为问题涉及的信息，功能和系统行为建立分析模型，将用户需求精确化，完全化，最终形成下一步的需求规格说明书
-需求描述（需求规格说明书）：对待开发系统的行为的完整描述，包含了功能性需求和非功能性需求，完成的标志是形成一份完整规范的需求规格说明书。
-需求验证：对需求文档进行检查：有效性检查，一致性检查，完备性检查，现实性检查
-需求变更 需求分析的任务 建立分析模型：面向过程，面向对象 面向过程分析模型：用系统工程的思想和工程化的方法，根据用户至上的原则，自始自终按照结构化，模块化，自顶向下地对系统进行分析与设计。
-采用结构化分析方法（面向数据流进行需求分析的方法），用抽象模型的概念，按照软件内部数据传递，变换的关系，自顶向下逐层分解，知道找到满足功能要求的左右可实现的软件为止。 面向对象分析模型：由5个层次（主题层，对象类层，结构层，属性层，服务层）和5个活动（标识对象类，标识结构，定义主题，定义属性，定义服务）组成。
-编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求 IEEE标准对需求文档提出了以下结构：
-引言（需求文档目的，文档约定，预期读者和阅读建议，产品范围，参考文献） 综合描述（产品前景，产品功能与优先级，用户特征，运行环境，设计与实现上的限制，假设与依赖性） 需求描述（功能需求，数据需求，性能需求，外部接口，设计约束，软件质量属性，其他需求） 附录（词汇表，分析模型，特定问题列表） 索引 系统设计 概要设计：描述软件顶层架构和组织，划分不同组件 详细设计：详细描述各组件以便能够编码实现 设计相关概念：
-抽象 体系结构 设计模式 模块化 信息隐藏 功能独立 精化 重构 数据设计
-架构设计
-接口设计
-组件设计
-面向过程架构设计 变换型软件结构图
-事务型软件结构图
-混合型软件结构图
-面向过程组件设计 面向对象架构设计 面向对象组件设计（类设计和用例设计） "/>
+<meta name="twitter:description" content="需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">软件生命周期</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-14 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 1119 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#需求分析">需求分析</a>
+      <ul>
+        <li><a href="#需求的获取">需求的获取</a></li>
+        <li><a href="#需求确认">需求确认</a></li>
+        <li><a href="#需求变更">需求变更</a></li>
+        <li><a href="#需求分析的任务">需求分析的任务</a>
+          <ul>
+            <li><a href="#建立分析模型面向过程面向对象">建立分析模型：面向过程，面向对象</a></li>
+            <li><a href="#编写需求说明用需求规格说明书规范的额形式准确地表达用户的需求">编写需求说明：用《需求规格说明书》规范的额形式准确地表达用户的需求</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#系统设计">系统设计</a>
+      <ul>
+        <li><a href="#面向过程架构设计">面向过程架构设计</a></li>
+        <li><a href="#面向过程组件设计">面向过程组件设计</a></li>
+        <li><a href="#面向对象架构设计">面向对象架构设计</a></li>
+        <li><a href="#面向对象组件设计类设计和用例设计">面向对象组件设计（类设计和用例设计）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">软件生命周期</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Nov 14, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h1 id="需求分析">需求分析</h1>
+</div>
+    <div class="post-content">
+      <h1 id="需求分析">需求分析</h1>
 <ul>
 <li>概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。</li>
 </ul>
@@ -443,100 +329,100 @@
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114230651.png" alt=""></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114231017.png" alt=""></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201114231101.png" alt=""></p>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
-      ><span class="mr-1.5">←</span><span>Docker入门指南</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/"
-      ><span>软件过程模型</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-14
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%86%E8%AE%BA/">软件工程理论</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Docker入门指南</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
+            <span class="next-text nav-default">软件过程模型</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

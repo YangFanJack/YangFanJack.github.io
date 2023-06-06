@@ -1,264 +1,219 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>shell编程 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>shell编程 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="基础正则表达式
-
-
-正则表达式和通配符区别：
+<meta name="author" content="Jack Yang" /><meta name="description" content="基础正则表达式 正则表达式 和 通配符 区别：
 通配符：在系统中搜索匹配文件名，是完全匹配。支持命令ls，find，cp，他们不认识正则表达式
 正则表达式：用来在文件中匹配符合条件的字符串，是包含匹配。支持命令：grep，awk，sed
+" /><meta name="keywords" content="Hugo, theme, even" />
 
-" />
-  <meta
-    name="author"
-    content=""
-  />
-  
 
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
 
-  
 
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
 
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
 
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
 
-  
-  <meta name="generator" content="Hugo 0.109.0">
+<link rel="canonical" href="http://yangfanjack.top/post/shell%E7%BC%96%E7%A8%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
-  
-  
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="shell编程" />
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="shell编程" />
 <meta property="og:description" content="基础正则表达式
 
 
-正则表达式和通配符区别：
+正则表达式 和 通配符 区别：
 通配符：在系统中搜索匹配文件名，是完全匹配。支持命令ls，find，cp，他们不认识正则表达式
 正则表达式：用来在文件中匹配符合条件的字符串，是包含匹配。支持命令：grep，awk，sed
 
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/shell%E7%BC%96%E7%A8%8B/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/shell%E7%BC%96%E7%A8%8B/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-06T22:51:56+00:00" />
 <meta property="article:modified_time" content="2020-03-06T22:51:56+00:00" />
-
-  
-  <meta itemprop="name" content="shell编程">
+<meta itemprop="name" content="shell编程">
 <meta itemprop="description" content="基础正则表达式
 
 
-正则表达式和通配符区别：
+正则表达式 和 通配符 区别：
 通配符：在系统中搜索匹配文件名，是完全匹配。支持命令ls，find，cp，他们不认识正则表达式
 正则表达式：用来在文件中匹配符合条件的字符串，是包含匹配。支持命令：grep，awk，sed
 
 "><meta itemprop="datePublished" content="2020-03-06T22:51:56+00:00" />
 <meta itemprop="dateModified" content="2020-03-06T22:51:56+00:00" />
-<meta itemprop="wordCount" content="380">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2336">
+<meta itemprop="keywords" content="Linux,Shell," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="shell编程"/>
 <meta name="twitter:description" content="基础正则表达式
 
 
-正则表达式和通配符区别：
+正则表达式 和 通配符 区别：
 通配符：在系统中搜索匹配文件名，是完全匹配。支持命令ls，find，cp，他们不认识正则表达式
 正则表达式：用来在文件中匹配符合条件的字符串，是包含匹配。支持命令：grep，awk，sed
 
 "/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">shell编程</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-06 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 2336 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础正则表达式">基础正则表达式</a></li>
+    <li><a href="#字符截取命令">字符截取命令</a>
+      <ul>
+        <li><a href="#grep命令提取符合条件的行"><strong><code>grep</code>命令</strong>：提取符合条件的行</a></li>
+        <li><a href="#cut命令提取符合条件的列"><strong><code>cut</code>命令</strong>：提取符合条件的列</a></li>
+        <li><a href="#printf命令按找类型输出格式输出内容"><strong><code>printf</code>命令</strong>：按找类型输出格式输出内容</a></li>
+        <li><a href="#awk命令截取列"><strong><code>awk</code>命令</strong>：截取列</a></li>
+        <li><a href="#sed命令数据的流编辑器"><strong><code>sed</code>命令</strong>：数据的流编辑器</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符处理命令">字符处理命令</a>
+      <ul>
+        <li><a href="#sort排序">sort：排序</a></li>
+        <li><a href="#wc统计字符">wc：统计字符</a></li>
+      </ul>
+    </li>
+    <li><a href="#条件判断">条件判断</a>
+      <ul>
+        <li><a href="#按照文件类型判断"><strong>按照文件类型判断：</strong></a></li>
+        <li><a href="#按照文件权限进行判断">按照文件权限进行判断</a></li>
+        <li><a href="#两个文件之间进行比较">两个文件之间进行比较</a></li>
+        <li><a href="#两个整数之间比较">两个整数之间比较</a></li>
+        <li><a href="#字符串的判断">字符串的判断</a></li>
+        <li><a href="#多重条件判断">多重条件判断</a></li>
+      </ul>
+    </li>
+    <li><a href="#流程判断">流程判断</a>
+      <ul>
+        <li><a href="#if语句">if语句：</a></li>
+        <li><a href="#case语句">case语句：</a></li>
+        <li><a href="#for循环">for循环：</a></li>
+        <li><a href="#while循环和until编程">while循环和until编程：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">shell编程</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 6, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h1 id="基础正则表达式">基础正则表达式</h1>
+</div>
+    <div class="post-content">
+      <h1 id="基础正则表达式">基础正则表达式</h1>
 <ul>
 <li>
-<p><strong>正则表达式</strong>和<strong>通配符</strong>区别：</p>
+<p><strong>正则表达式</strong> 和 <strong>通配符</strong> 区别：</p>
 <p>通配符：在系统中搜索匹配文件名，是完全匹配。支持命令ls，find，cp，他们不认识正则表达式</p>
 <p>正则表达式：用来在文件中匹配符合条件的字符串，是包含匹配。支持命令：grep，awk，sed</p>
 </li>
@@ -489,51 +444,86 @@
 </li>
 <li>
 <p><strong>单分支if</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225348.png" style="zoom:50%;" />
 </li>
 <li>
 <p>FOR EXAMPLE:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>rate<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>df -h | grep /dev/sda5 | awk <span style="color:#e6db74">&#39;{print $5}&#39;</span> | cut -d <span style="color:#e6db74">&#34;%&#34;</span> -f 1<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $rate -ge <span style="color:#ae81ff">80</span> <span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">then</span>
-</span></span><span style="display:flex;"><span>		echo <span style="color:#e6db74">&#34;Warning /dev/sda5 is coming full !!!&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nv">rate</span><span class="o">=</span><span class="k">$(</span>df -h <span class="p">|</span> grep /dev/sda5 <span class="p">|</span> awk <span class="s1">&#39;{print $5}&#39;</span> <span class="p">|</span> cut -d <span class="s2">&#34;%&#34;</span> -f 1<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$rate</span> -ge <span class="m">80</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="k">then</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">echo</span> <span class="s2">&#34;Warning /dev/sda5 is coming full !!!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p><strong>多分支判断：</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225355.png" style="zoom:50%;" />
 </li>
 </ul>
 </li>
 <li>
 <h2 id="case语句">case语句：</h2>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225406.png" style="zoom:50%;" />
 </li>
 <li>
 <h2 id="for循环">for循环：</h2>
 <ul>
 <li>
 <p><strong>第一种语法：</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225413.png" style="zoom: 50%;" />
 <p>FOR EXAMPLE：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i in <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>		echo $i
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">done</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">echo</span> <span class="nv">$i</span>
+</span></span><span class="line"><span class="cl">	<span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p><strong>第二种语法：</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225420.png" style="zoom:50%;" />
 <p>FOR EXAMPLE：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>!/bin/bash
-</span></span><span style="display:flex;"><span>s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">((</span>i<span style="color:#f92672">=</span>1;i&lt;<span style="color:#f92672">=</span>100;i<span style="color:#f92672">=</span>i+1<span style="color:#f92672">))</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>		s<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$s<span style="color:#f92672">+</span>$i<span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">done</span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;The sum of 1+2+...+100 is </span>$s<span style="color:#e6db74">&#34;</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">!/bin/bash
+</span></span><span class="line"><span class="cl"><span class="nv">s</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>1<span class="p">;</span>i&lt;<span class="o">=</span>100<span class="p">;</span><span class="nv">i</span><span class="o">=</span>i+1<span class="o">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">s</span><span class="o">=</span><span class="k">$((</span><span class="nv">$s</span><span class="o">+</span><span class="nv">$i</span><span class="k">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;The sum of 1+2+...+100 is </span><span class="nv">$s</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 </li>
 <li>
@@ -541,128 +531,159 @@
 <ul>
 <li>
 <p><strong>while循环：</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225427.png" style="zoom:50%;" />
 <p>FOR EXAMPLE：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>!/bin/bash
-</span></span><span style="display:flex;"><span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#f92672">[</span> $i -le <span style="color:#ae81ff">100</span> <span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>		s<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span> $s<span style="color:#f92672">+</span>$i <span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex;"><span>		i<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span> $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">done</span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;The sum is: </span>$s<span style="color:#e6db74">&#34;</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">!/bin/bash
+</span></span><span class="line"><span class="cl"><span class="nv">i</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">s</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="o">[</span> <span class="nv">$i</span> -le <span class="m">100</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">s</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$s</span><span class="o">+</span><span class="nv">$i</span> <span class="k">))</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">i</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$i</span><span class="o">+</span><span class="m">1</span> <span class="k">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;The sum is: </span><span class="nv">$s</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p><strong>until循环：</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225435.png" style="zoom:50%;" />
 <p>FOR EXAMPLE：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>!/bin/bash
-</span></span><span style="display:flex;"><span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">until</span> <span style="color:#f92672">[</span> $i -gt <span style="color:#ae81ff">100</span> <span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>		s<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span> $s<span style="color:#f92672">+</span>$i <span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex;"><span>		i<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span> $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">done</span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;The sum is: </span>$s<span style="color:#e6db74">&#34;</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">!/bin/bash
+</span></span><span class="line"><span class="cl"><span class="nv">i</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">s</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">until</span> <span class="o">[</span> <span class="nv">$i</span> -gt <span class="m">100</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">s</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$s</span><span class="o">+</span><span class="nv">$i</span> <span class="k">))</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">i</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$i</span><span class="o">+</span><span class="m">1</span> <span class="k">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;The sum is: </span><span class="nv">$s</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 </li>
-</ul></section>
+</ul>
+    </div>
 
-  
-  
-
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/"
-      ><span class="mr-1.5">←</span><span>linux的服务管理</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/shell%E5%9F%BA%E7%A1%80/"
-      ><span>shell基础</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-06
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/shell/">Shell</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">linux的服务管理</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/shell%E5%9F%BA%E7%A1%80/">
+            <span class="next-text nav-default">shell基础</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

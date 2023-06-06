@@ -1,304 +1,233 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>git基础 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="git的安装 ​ 官网下载后，在cmd中输入git验证是否安装完成 git的基本配置 1 2 git config --global user.name &amp;#34;name&amp;#34; git config --global user.email &amp;#34;email&amp;#34; ​ 需要注意的是可以有三种参数，loca" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/git%E5%9F%BA%E7%A1%80/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>git基础 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="git的安装 ​	官网下载后，在cmd中输入git验证是否安装完成
-git的基本配置 git config --global user.name &#34;name&#34;git config --global user.email &#34;email&#34; ​	需要注意的是可以有三种参数，local、global和system，优先级依次降低。global是全局配置，local可以为本地项目添加单独配置
-​	查看配置命令：
-git config -l --global(或其他两个) git配置文件位置
-本地项目配置文件：当前项目/.git/config
-git config --local XXX 全局配置文件：~/.gitconfig
-git config --global XXX 系统配置文件：/etc/.gitconfig（需要root权限）
-git config --system XXX 三种免密登录方式
-URL中体现：
-原来：https://github.com/YangFanJack/DesignPattern.git免密：https://用户名:密码@github.com/YangFanJack/DesignPattern.gitgit remote add origin https://用户名:密码@github.com/YangFanJack/DesignPattern.gitgit push origin master SSH实现：
-//生成公钥和私钥，在用户的.ssh文件夹里面把公钥添加到远程仓库github里面ssh-keygen -t rsa -C &#34;youremail&#34; //生成两把钥匙ssh -T git@github.com //验证ssh配置是否配置好//注意：如果提示找不到ssh-keygen命令的错误，说明你执行这条命令的位置错了，应该在本地的git仓库根目录下执行 git自动管理凭证
-//基于操作系统的功能，不同操作系统的实现方式不一样 git基本操作 ​	第一步
-git init //初始化，让git帮助管理文件夹git status //检测当前目录下文件状态git add //工作区到暂存区git commit -m &#34;注释&#34; //暂存区到版本库，生成版本/快照git diff //查看修改内容 ​	从现在回溯到历史，和从历史回溯到将来" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="git基础" />
-<meta property="og:description" content="git的安装 ​	官网下载后，在cmd中输入git验证是否安装完成
-git的基本配置 git config --global user.name &#34;name&#34;git config --global user.email &#34;email&#34; ​	需要注意的是可以有三种参数，local、global和system，优先级依次降低。global是全局配置，local可以为本地项目添加单独配置
-​	查看配置命令：
-git config -l --global(或其他两个) git配置文件位置
-本地项目配置文件：当前项目/.git/config
-git config --local XXX 全局配置文件：~/.gitconfig
-git config --global XXX 系统配置文件：/etc/.gitconfig（需要root权限）
-git config --system XXX 三种免密登录方式
-URL中体现：
-原来：https://github.com/YangFanJack/DesignPattern.git免密：https://用户名:密码@github.com/YangFanJack/DesignPattern.gitgit remote add origin https://用户名:密码@github.com/YangFanJack/DesignPattern.gitgit push origin master SSH实现：
-//生成公钥和私钥，在用户的.ssh文件夹里面把公钥添加到远程仓库github里面ssh-keygen -t rsa -C &#34;youremail&#34; //生成两把钥匙ssh -T git@github.com //验证ssh配置是否配置好//注意：如果提示找不到ssh-keygen命令的错误，说明你执行这条命令的位置错了，应该在本地的git仓库根目录下执行 git自动管理凭证
-//基于操作系统的功能，不同操作系统的实现方式不一样 git基本操作 ​	第一步
-git init //初始化，让git帮助管理文件夹git status //检测当前目录下文件状态git add //工作区到暂存区git commit -m &#34;注释&#34; //暂存区到版本库，生成版本/快照git diff //查看修改内容 ​	从现在回溯到历史，和从历史回溯到将来" />
+<meta property="og:title" content="git基础" />
+<meta property="og:description" content="git的安装 ​ 官网下载后，在cmd中输入git验证是否安装完成 git的基本配置 1 2 git config --global user.name &#34;name&#34; git config --global user.email &#34;email&#34; ​ 需要注意的是可以有三种参数，loca" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/git%E5%9F%BA%E7%A1%80/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/git%E5%9F%BA%E7%A1%80/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-03T11:53:47+00:00" />
 <meta property="article:modified_time" content="2020-03-03T11:53:47+00:00" />
-
-  
-  <meta itemprop="name" content="git基础">
-<meta itemprop="description" content="git的安装 ​	官网下载后，在cmd中输入git验证是否安装完成
-git的基本配置 git config --global user.name &#34;name&#34;git config --global user.email &#34;email&#34; ​	需要注意的是可以有三种参数，local、global和system，优先级依次降低。global是全局配置，local可以为本地项目添加单独配置
-​	查看配置命令：
-git config -l --global(或其他两个) git配置文件位置
-本地项目配置文件：当前项目/.git/config
-git config --local XXX 全局配置文件：~/.gitconfig
-git config --global XXX 系统配置文件：/etc/.gitconfig（需要root权限）
-git config --system XXX 三种免密登录方式
-URL中体现：
-原来：https://github.com/YangFanJack/DesignPattern.git免密：https://用户名:密码@github.com/YangFanJack/DesignPattern.gitgit remote add origin https://用户名:密码@github.com/YangFanJack/DesignPattern.gitgit push origin master SSH实现：
-//生成公钥和私钥，在用户的.ssh文件夹里面把公钥添加到远程仓库github里面ssh-keygen -t rsa -C &#34;youremail&#34; //生成两把钥匙ssh -T git@github.com //验证ssh配置是否配置好//注意：如果提示找不到ssh-keygen命令的错误，说明你执行这条命令的位置错了，应该在本地的git仓库根目录下执行 git自动管理凭证
-//基于操作系统的功能，不同操作系统的实现方式不一样 git基本操作 ​	第一步
-git init //初始化，让git帮助管理文件夹git status //检测当前目录下文件状态git add //工作区到暂存区git commit -m &#34;注释&#34; //暂存区到版本库，生成版本/快照git diff //查看修改内容 ​	从现在回溯到历史，和从历史回溯到将来"><meta itemprop="datePublished" content="2020-03-03T11:53:47+00:00" />
+<meta itemprop="name" content="git基础">
+<meta itemprop="description" content="git的安装 ​ 官网下载后，在cmd中输入git验证是否安装完成 git的基本配置 1 2 git config --global user.name &#34;name&#34; git config --global user.email &#34;email&#34; ​ 需要注意的是可以有三种参数，loca"><meta itemprop="datePublished" content="2020-03-03T11:53:47+00:00" />
 <meta itemprop="dateModified" content="2020-03-03T11:53:47+00:00" />
-<meta itemprop="wordCount" content="891">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="6416">
+<meta itemprop="keywords" content="Linux,Git," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="git基础"/>
-<meta name="twitter:description" content="git的安装 ​	官网下载后，在cmd中输入git验证是否安装完成
-git的基本配置 git config --global user.name &#34;name&#34;git config --global user.email &#34;email&#34; ​	需要注意的是可以有三种参数，local、global和system，优先级依次降低。global是全局配置，local可以为本地项目添加单独配置
-​	查看配置命令：
-git config -l --global(或其他两个) git配置文件位置
-本地项目配置文件：当前项目/.git/config
-git config --local XXX 全局配置文件：~/.gitconfig
-git config --global XXX 系统配置文件：/etc/.gitconfig（需要root权限）
-git config --system XXX 三种免密登录方式
-URL中体现：
-原来：https://github.com/YangFanJack/DesignPattern.git免密：https://用户名:密码@github.com/YangFanJack/DesignPattern.gitgit remote add origin https://用户名:密码@github.com/YangFanJack/DesignPattern.gitgit push origin master SSH实现：
-//生成公钥和私钥，在用户的.ssh文件夹里面把公钥添加到远程仓库github里面ssh-keygen -t rsa -C &#34;youremail&#34; //生成两把钥匙ssh -T git@github.com //验证ssh配置是否配置好//注意：如果提示找不到ssh-keygen命令的错误，说明你执行这条命令的位置错了，应该在本地的git仓库根目录下执行 git自动管理凭证
-//基于操作系统的功能，不同操作系统的实现方式不一样 git基本操作 ​	第一步
-git init //初始化，让git帮助管理文件夹git status //检测当前目录下文件状态git add //工作区到暂存区git commit -m &#34;注释&#34; //暂存区到版本库，生成版本/快照git diff //查看修改内容 ​	从现在回溯到历史，和从历史回溯到将来"/>
+<meta name="twitter:description" content="git的安装 ​ 官网下载后，在cmd中输入git验证是否安装完成 git的基本配置 1 2 git config --global user.name &#34;name&#34; git config --global user.email &#34;email&#34; ​ 需要注意的是可以有三种参数，loca"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">git基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-03 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 6416 words </span>
+          <span class="more-meta"> 13 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#git的安装">git的安装</a></li>
+        <li><a href="#git的基本配置">git的基本配置</a></li>
+        <li><a href="#git基本操作">git基本操作</a></li>
+        <li><a href="#rebase变基">rebase(变基)</a></li>
+        <li><a href="#beyond-compare冲突解决软件">beyond compare冲突解决软件</a></li>
+        <li><a href="#多人协同开发">多人协同开发</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#如何给开源项目贡献代码">如何给开源项目贡献代码</a></li>
+        <li><a href="#再探">再探：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">git基础</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 3, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h2 id="git的安装">git的安装</h2>
+</div>
+    <div class="post-content">
+      <h2 id="git的安装">git的安装</h2>
 <p>​		<a href="https://git-scm.com/">官网下载</a>后，在cmd中输入git验证是否安装完成</p>
 <h2 id="git的基本配置">git的基本配置</h2>
-<pre tabindex="0"><code>git config --global user.name &#34;name&#34;
-git config --global user.email &#34;email&#34;
-</code></pre><p>​		<strong>需要注意的是可以有三种参数，local、global和system，优先级依次降低。global是全局配置，local可以为本地项目添加单独配置</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global user.name &#34;name&#34;
+</span></span><span class="line"><span class="cl">git config --global user.email &#34;email&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>需要注意的是可以有三种参数，local、global和system，优先级依次降低。global是全局配置，local可以为本地项目添加单独配置</strong></p>
 <p>​		<strong>查看配置命令：</strong></p>
-<pre tabindex="0"><code>git config -l --global(或其他两个)
-</code></pre><blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config -l --global(或其他两个)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>git配置文件位置</p>
 </blockquote>
 <ol>
 <li>
 <p>本地项目配置文件：<code>当前项目/.git/config</code></p>
-<pre tabindex="0"><code>git config --local XXX
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --local XXX
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>全局配置文件：<code>~/.gitconfig</code></p>
-<pre tabindex="0"><code>git config --global XXX
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global XXX
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>系统配置文件：<code>/etc/.gitconfig</code>（需要root权限）</p>
-<pre tabindex="0"><code>git config --system XXX
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --system XXX
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <blockquote>
 <p>三种免密登录方式</p>
@@ -306,83 +235,226 @@ git config --global user.email &#34;email&#34;
 <ol>
 <li>
 <p>URL中体现：</p>
-<pre tabindex="0"><code>原来：https://github.com/YangFanJack/DesignPattern.git
-免密：https://用户名:密码@github.com/YangFanJack/DesignPattern.git
-
-git remote add origin https://用户名:密码@github.com/YangFanJack/DesignPattern.git
-git push origin master
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">原来：https://github.com/YangFanJack/DesignPattern.git
+</span></span><span class="line"><span class="cl">免密：https://用户名:密码@github.com/YangFanJack/DesignPattern.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git remote add origin https://用户名:密码@github.com/YangFanJack/DesignPattern.git
+</span></span><span class="line"><span class="cl">git push origin master
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>SSH实现：</p>
-<pre tabindex="0"><code>//生成公钥和私钥，在用户的.ssh文件夹里面把公钥添加到远程仓库github里面
-ssh-keygen -t rsa -C &#34;youremail&#34;      //生成两把钥匙
-ssh -T git@github.com  //验证ssh配置是否配置好
-
-//注意：如果提示找不到ssh-keygen命令的错误，说明你执行这条命令的位置错了，应该在本地的git仓库根目录下执行
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//生成公钥和私钥，在用户的.ssh文件夹里面把公钥添加到远程仓库github里面
+</span></span><span class="line"><span class="cl">ssh-keygen -t rsa -C &#34;youremail&#34;      //生成两把钥匙
+</span></span><span class="line"><span class="cl">ssh -T git@github.com  //验证ssh配置是否配置好
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//注意：如果提示找不到ssh-keygen命令的错误，说明你执行这条命令的位置错了，应该在本地的git仓库根目录下执行
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>git自动管理凭证</p>
-<pre tabindex="0"><code>//基于操作系统的功能，不同操作系统的实现方式不一样
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//基于操作系统的功能，不同操作系统的实现方式不一样
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <h2 id="git基本操作">git基本操作</h2>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204745.png" alt=""></p>
 <p>​		<strong>第一步</strong></p>
-<pre tabindex="0"><code>git init //初始化，让git帮助管理文件夹
-git status //检测当前目录下文件状态
-git add //工作区到暂存区
-git commit -m &#34;注释&#34; //暂存区到版本库，生成版本/快照
-git diff //查看修改内容
-</code></pre><p>​		<strong>从现在回溯到历史，和从历史回溯到将来</strong></p>
-<pre tabindex="0"><code>git log //查看提交历史
-git log --pretty=oneline --graph --abbrev-commit //以图线的方式精简显示版本历史
-
-//git中使用HEAD表示当前版本
-git reset --hard 版本号(HEAD^,HEAD^^,HEAD~n) //回滚
-
-//如果想从前面回到后面，使用git reflog查看你的每一次操作，然后使用git reset --hard
-git reflog //查看命令历史
-git reset --hard 版本号
-</code></pre><p>​		<strong>git reset 三种模式</strong></p>
-<pre tabindex="0"><code>git reset --hard 版本号：重置stage区和工作目录
-
-git reset --soft 版本号：保留工作目录，并把重置 HEAD 所带来的新的差异放进暂存区
-
-git reset --mixed(默认) 版本号：保留工作目录，并清空暂存区
-</code></pre><p>​		<strong>与版本库内容进行比较</strong></p>
-<pre tabindex="0"><code>//显示暂存区和工作区的差异
-git diff 文件名
-//显示暂存区和上一次提交(commit)的差异
-git diff --cached 文件名
-git diff --staged 文件名
-</code></pre><p>​		<strong>暂存区文件撤销</strong></p>
-<pre tabindex="0"><code>git reset HEAD 文件名
-git rm --cached 文件名
-git restore --staged 文件名
-
-//如果暂存区有该文件，工作区和暂存区统一，如果没有，工作区和版本库统一
-git checkout -- 文件名
-</code></pre><p>​		<strong>git的分支操作</strong></p>
-<pre tabindex="0"><code>git branch //显示本地所有分支
-git branch -r //显示远程所有分支
-git branch -a //显示本地和远程所有分支
-git branch 分支名 //创建分支
-git checkout 分支名 //切换分支
-git checkout -b 分支名 //创建并切换分支
-git branch -d 分支名 //删除分支
-git merge 其他分支名 //合并其他分支到当前分支，可能产生冲突，手动修改冲突文件
-</code></pre><p>​		<strong>git的删除操作</strong></p>
-<pre tabindex="0"><code>//手动删除工作区的文件后可以恢复
-//git restore指令使得在工作空间但是不在暂存区的文件撤销更改(内容恢复到没修改之前的状态)
-git restore 文件名
-
-git rm (-r -f) XX
-git commit -m &#34;直接同步删除操作到本地仓库&#34;
-
-rm (-r -f) XX
-git add XX
-git commit -m &#34;需要先add，再同步删除操作到本地仓库&#34;
-</code></pre><blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git init //初始化，让git帮助管理文件夹
+</span></span><span class="line"><span class="cl">git status //检测当前目录下文件状态
+</span></span><span class="line"><span class="cl">git add //工作区到暂存区
+</span></span><span class="line"><span class="cl">git commit -m &#34;注释&#34; //暂存区到版本库，生成版本/快照
+</span></span><span class="line"><span class="cl">git diff //查看修改内容
+</span></span><span class="line"><span class="cl"># git status显示不了中文解决方法
+</span></span><span class="line"><span class="cl">git config --global core.quotepath false
+</span></span><span class="line"><span class="cl"># 解决git-bash终端乱码问题
+</span></span><span class="line"><span class="cl">git-bash的设置-文本-locale-zh_CN-utf-8
+</span></span><span class="line"><span class="cl"># 启动bash.exe的命令加上参数-i -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>从现在回溯到历史，和从历史回溯到将来</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git log //查看提交历史
+</span></span><span class="line"><span class="cl">git log --pretty=oneline --graph --abbrev-commit //以图线的方式精简显示版本历史
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//git中使用HEAD表示当前版本
+</span></span><span class="line"><span class="cl">git reset --hard 版本号(HEAD^,HEAD^^,HEAD~n) //回滚
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//如果想从前面回到后面，使用git reflog查看你的每一次操作，然后使用git reset --hard
+</span></span><span class="line"><span class="cl">git reflog //查看命令历史
+</span></span><span class="line"><span class="cl">git reset --hard 版本号
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>git reset 三种模式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git reset --hard 版本号：重置stage区和工作目录
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git reset --soft 版本号：保留工作目录，并把重置 HEAD 所带来的新的差异放进暂存区
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git reset --mixed(默认) 版本号：保留工作目录，并清空暂存区
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的
+</span></span><span class="line"><span class="cl">为了撤销更改并分享给别人，我们需要使用 git revert，revert是一个commit一个commit地提交
+</span></span><span class="line"><span class="cl">git revert commitID
+</span></span><span class="line"><span class="cl"># 比较常见的一种场景是：merge了一个分支后需要恢复到merge前的状态，我们可以git revert 新生成的merge commitID，不通的一点是父ID不止一个，需要指定。1和2根据merge的log里的commitID的先后顺序
+</span></span><span class="line"><span class="cl">git revert commitID -m 1/2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>与版本库内容进行比较</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//显示暂存区和工作区的差异
+</span></span><span class="line"><span class="cl">git diff 文件名
+</span></span><span class="line"><span class="cl">//显示暂存区和上一次提交(commit)的差异
+</span></span><span class="line"><span class="cl">git diff --cached 文件名
+</span></span><span class="line"><span class="cl">git diff --staged 文件名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>暂存区文件撤销</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git reset HEAD 文件名
+</span></span><span class="line"><span class="cl">git rm --cached 文件名
+</span></span><span class="line"><span class="cl">git restore --staged 文件名
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//如果暂存区有该文件，工作区和暂存区统一，如果没有，工作区和版本库统一
+</span></span><span class="line"><span class="cl">git checkout -- 文件名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>git的分支操作</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git branch //显示本地所有分支
+</span></span><span class="line"><span class="cl">git branch -r //显示远程所有分支
+</span></span><span class="line"><span class="cl">git branch -a //显示本地和远程所有分支
+</span></span><span class="line"><span class="cl">git branch 分支名 //创建分支
+</span></span><span class="line"><span class="cl">git checkout 分支名 //切换分支
+</span></span><span class="line"><span class="cl">git checkout -b 分支名 //创建并切换分支
+</span></span><span class="line"><span class="cl">git branch -d 分支名 //删除分支
+</span></span><span class="line"><span class="cl">git merge 其他分支名 //合并其他分支到当前分支，可能产生冲突，手动修改冲突文件
+</span></span><span class="line"><span class="cl">git branch -f main HEAD~3：将 main 分支强制指向 HEAD 的第 3 级父提交，git checkout只能移动HEAD到某个分支的最后一个commit，但是git branch -f能自定义某个分支的最后一个commit到任意节点
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>git的删除操作</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//手动删除工作区的文件后可以恢复
+</span></span><span class="line"><span class="cl">//git restore指令使得在工作空间但是不在暂存区的文件撤销更改(内容恢复到没修改之前的状态)
+</span></span><span class="line"><span class="cl">git restore 文件名
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git rm (-r -f) XX
+</span></span><span class="line"><span class="cl">git commit -m &#34;直接同步删除操作到本地仓库&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rm (-r -f) XX
+</span></span><span class="line"><span class="cl">git add XX
+</span></span><span class="line"><span class="cl">git commit -m &#34;需要先add，再同步删除操作到本地仓库&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p><strong>问题：</strong>
 远程已经修改，然后你没pull就修改了本地，push时发生了错误
 <strong>解决：</strong>
@@ -391,78 +463,177 @@ git commit -m &#34;需要先add，再同步删除操作到本地仓库&#34;
 <p><strong>经过上述步骤已经能实现本地多分支开发，假设目前开发进度如下图所示：</strong></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgusachwRCOLndJli.png" alt="gnome-shell-screenshot-9CZIY0.png"></p>
 <p>​		<strong>远程仓库操作（以github为例）</strong></p>
-<pre tabindex="0"><code>//查看关联的远程仓库
-git remote
-git remote -v
-git remote show origin
-
-//连接可以是http，也可以是ssh
-git remote add origin http://github.com/YangFanJack/xxxxx.git
-git remote rm origin
-//-u表示以后默认都是origin这个地址
-git push -u origin master
-
-//git clone已经包含了remote add origin操作
-git clone http://github.com/YangFanJack/xxxxx.git
-
-//接上图继续开发
-git checkout dev //切换到需要拉取并合并的分支
-git merge master //将dev更新为最新版本[仅1次]（上次开发结束时最新版本在master主分支上）
-（继续开发...）
-git add .
-git commit -m XXX
-git push origin dev
-
-//异地拉取代码继续开发
-git checkout dev
-git pull origin dev
-（继续开发...）
-git add .
-git commit -m XXX
-git push origin dev
-
-//某一个阶段代码开发完后，合并dev到master
-git checkout master
-git merge dev
-git push origin master
-
-git checkout dev
-git merge master
-git push origin dev
-</code></pre><p>​		<strong>pull=fetch+merge</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//查看关联的远程仓库
+</span></span><span class="line"><span class="cl">git remote
+</span></span><span class="line"><span class="cl">git remote -v
+</span></span><span class="line"><span class="cl">git remote show origin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//连接可以是http，也可以是ssh
+</span></span><span class="line"><span class="cl">git remote add origin http://github.com/YangFanJack/xxxxx.git
+</span></span><span class="line"><span class="cl">git remote rm origin
+</span></span><span class="line"><span class="cl">//-u表示以后默认都是origin这个地址
+</span></span><span class="line"><span class="cl">git push -u origin master
+</span></span><span class="line"><span class="cl">//刷新远程跟踪分支
+</span></span><span class="line"><span class="cl">git remote update origin --prune
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//git clone已经包含了remote add origin操作
+</span></span><span class="line"><span class="cl">git clone http://github.com/YangFanJack/xxxxx.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//接上图继续开发
+</span></span><span class="line"><span class="cl">git checkout dev //切换到需要拉取并合并的分支
+</span></span><span class="line"><span class="cl">git merge master //将dev更新为最新版本[仅1次]（上次开发结束时最新版本在master主分支上）
+</span></span><span class="line"><span class="cl">（继续开发...）
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m XXX
+</span></span><span class="line"><span class="cl">git push origin dev
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//异地拉取代码继续开发
+</span></span><span class="line"><span class="cl">git checkout dev
+</span></span><span class="line"><span class="cl">git pull origin dev
+</span></span><span class="line"><span class="cl">（继续开发...）
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m XXX
+</span></span><span class="line"><span class="cl">git push origin dev
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//某一个阶段代码开发完后，合并dev到master
+</span></span><span class="line"><span class="cl">git checkout master
+</span></span><span class="line"><span class="cl">git merge dev
+</span></span><span class="line"><span class="cl">git push origin master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git checkout dev
+</span></span><span class="line"><span class="cl">git merge master
+</span></span><span class="line"><span class="cl">git push origin dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>pull=fetch+merge</strong></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204911.png" alt=""></p>
-<pre tabindex="0"><code>git pull origin dev
-
-git fetch origin dev
-git merge origin/dev
-</code></pre><h2 id="rebase变基">rebase(变基)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git pull origin dev
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git fetch origin dev
+</span></span><span class="line"><span class="cl">git merge origin/dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="rebase变基">rebase(变基)</h2>
 <p>​		<strong>应用场景一：多版本记录合并为一个版本记录</strong></p>
-<pre tabindex="0"><code>git rebase -i HEAD~2 //HEAD和之前的1个合并
-git rebase -i 版本号 //HEAD到该版本之前合并
-
-//注意：合并版本的时候不要包含已经push到远程仓库的版本
-</code></pre><p>​		<strong>应用场景二：将另一个分支(dev)的版本强插到当前版本(master)中</strong></p>
-<pre tabindex="0"><code>git checkout dev
-git rebase master
-git checkout master
-git merge dev
-</code></pre><p>​		<strong>应用场景三：pull后产生冲突（公司上次开发没提交，在家继续开发，去公司pull代码时）</strong></p>
-<pre tabindex="0"><code>//会产生分支
-git pull origin dev = 
-git fetch origin dev + git merge origin/dev
-
-//不会产生分支
-git fetch
-git fetch origin dev + git rebase origin/dev
-
-//git fetch这个命令会把远程的commits拉取到本地的repo中，但是，它不是直接把commits接在分支的最后面，而是从你最后一次push的那个commit节点，再拉取一个新的分支出来，类似这样：
-   * git fetch拉下来的节点，建立在一个新的分支上
-* /  你还没push的节点
-|/
-* 你最后一次push的节点
-|
-*
-</code></pre><p><strong>注意：git rebase可能有冲突，解决后 git add，然后 git rebase &ndash;continue 就可以</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git rebase -i HEAD~2 //HEAD和之前的1个合并
+</span></span><span class="line"><span class="cl">git rebase -i 版本号 //HEAD到该版本之前合并
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//注意：合并版本的时候不要包含已经push到远程仓库的版本
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>应用场景二：将另一个分支(dev)的版本强插到当前版本(master)中</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git checkout dev
+</span></span><span class="line"><span class="cl">git rebase master
+</span></span><span class="line"><span class="cl">git checkout master
+</span></span><span class="line"><span class="cl">git merge dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		<strong>应用场景三：pull后产生冲突（公司上次开发没提交，在家继续开发，去公司pull代码时）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//会产生分支
+</span></span><span class="line"><span class="cl">git pull origin dev = 
+</span></span><span class="line"><span class="cl">git fetch origin dev + git merge origin/dev
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//不会产生分支
+</span></span><span class="line"><span class="cl">git pull origin dev --rebase = 
+</span></span><span class="line"><span class="cl">git fetch origin dev + git rebase origin/dev
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//git fetch这个命令会把远程的commits拉取到本地的repo中，但是，它不是直接把commits接在分支的最后面，而是从你最后一次push的那个commit节点，再拉取一个新的分支出来，类似这样：
+</span></span><span class="line"><span class="cl">   * git fetch拉下来的节点，建立在一个新的分支上
+</span></span><span class="line"><span class="cl">* /  你还没push的节点
+</span></span><span class="line"><span class="cl">|/
+</span></span><span class="line"><span class="cl">* 你最后一次push的节点
+</span></span><span class="line"><span class="cl">|
+</span></span><span class="line"><span class="cl">*
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：git rebase可能有冲突，解决后 git add，然后 git rebase &ndash;continue 就可以</strong></p>
 <h2 id="beyond-compare冲突解决软件">beyond compare冲突解决软件</h2>
 <ol>
 <li>
@@ -470,14 +641,30 @@ git fetch origin dev + git rebase origin/dev
 </li>
 <li>
 <p>在git中配置</p>
-<pre tabindex="0"><code>git config --local merge.tool bc3
-git config --local mergetool.path &#39;usr/bin/bcompare&#39;
-git config --local mergetool.keepBackup false
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --local merge.tool bc3
+</span></span><span class="line"><span class="cl">git config --local mergetool.path &#39;usr/bin/bcompare&#39;
+</span></span><span class="line"><span class="cl">git config --local mergetool.keepBackup false
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>调用beyond compare解决冲突</p>
-<pre tabindex="0"><code>git mergetool
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git mergetool
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <h2 id="多人协同开发">多人协同开发</h2>
 <h4 id="gitflow工作流">gitflow工作流</h4>
@@ -488,60 +675,129 @@ git config --local mergetool.keepBackup false
 <li>建立组织，在组织下创建仓库，再邀请其他github用户参与项目</li>
 </ol>
 <p>​		<strong>建立tag标签：</strong></p>
-<pre tabindex="0"><code>git tag -a v1 -m &#34;第一版&#34; //默认是HEAD处创建tag
-git tag -a v1.2 9fceb02 -m &#34;my tag&#34;
-git tag -d v1 //删除版本
-
-git tag //列出本地所有tag
-
-git push origin --tags
-
-git show v1.0 //显示标签处的commit
-
-git tag -d &lt;tagname&gt; //删除一个本地标签；
-git push origin :refs/tags/&lt;tagname&gt; //删除一个远程标签。
-</code></pre><h4 id="协同开发第一步master分支建立">协同开发第一步：master分支建立</h4>
-<pre tabindex="0"><code>git init
-git touch TestClass.java
-vim TestClass.java
-javac TestClass.java
-java TestClass
-
-git add .
-git commit -m &#34;Hello,world!&#34;
-git remote add origin git@github.com:queer-coder/test.git
-git push -u origin master
-
-git tag -a v1 -m &#34;第一版&#34;
-git tag
-
-git push origin v1.0
-git push origin --tags
-</code></pre><h4 id="协同开发第二步dev分支ddz分支建立">协同开发第二步：dev分支，ddz分支建立</h4>
-<pre tabindex="0"><code>git branch
-git checkout -b dev
-
-//邀请另外用户进组织
-//组织中setting可设置成员权限，默认是只读
-//项目中setting可以单独设置成员拥有写权限
-
-//另一个用户clone代码到本地开发斗地主分支
-git checkout -b ddz
-touch Doudizhu.java
-vim Doudizhu.java
-javac Doudizhu.java
-java Doudizhu
-git add .
-git commit -m &#34;斗地主&#34;
-git push origin ddz
-
-vim Doudizhu.java
-javac Doudizhu.java
-java Doudizhu
-git add .
-git commit -m &#34;斗地主开发完毕&#34;
-git push origin ddz
-</code></pre><h4 id="协同开发第三步dev管理者review-ddz开发者代码">协同开发第三步：dev管理者review ddz开发者代码</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git tag -a v1 -m &#34;第一版&#34; //默认是HEAD处创建tag
+</span></span><span class="line"><span class="cl">git tag -a v1.2 9fceb02 -m &#34;my tag&#34;
+</span></span><span class="line"><span class="cl">git tag -d v1 //删除版本
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git tag //列出本地所有tag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git push origin --tags
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git show v1.0 //显示标签处的commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git tag -d &lt;tagname&gt; //删除一个本地标签；
+</span></span><span class="line"><span class="cl">git push origin :refs/tags/&lt;tagname&gt; //删除一个远程标签。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="协同开发第一步master分支建立">协同开发第一步：master分支建立</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git touch TestClass.java
+</span></span><span class="line"><span class="cl">vim TestClass.java
+</span></span><span class="line"><span class="cl">javac TestClass.java
+</span></span><span class="line"><span class="cl">java TestClass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m &#34;Hello,world!&#34;
+</span></span><span class="line"><span class="cl">git remote add origin git@github.com:queer-coder/test.git
+</span></span><span class="line"><span class="cl">git push -u origin master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git tag -a v1 -m &#34;第一版&#34;
+</span></span><span class="line"><span class="cl">git tag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git push origin v1.0
+</span></span><span class="line"><span class="cl">git push origin --tags
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="协同开发第二步dev分支ddz分支建立">协同开发第二步：dev分支，ddz分支建立</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git branch
+</span></span><span class="line"><span class="cl">git checkout -b dev
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//邀请另外用户进组织
+</span></span><span class="line"><span class="cl">//组织中setting可设置成员权限，默认是只读
+</span></span><span class="line"><span class="cl">//项目中setting可以单独设置成员拥有写权限
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//另一个用户clone代码到本地开发斗地主分支
+</span></span><span class="line"><span class="cl">git checkout -b ddz
+</span></span><span class="line"><span class="cl">touch Doudizhu.java
+</span></span><span class="line"><span class="cl">vim Doudizhu.java
+</span></span><span class="line"><span class="cl">javac Doudizhu.java
+</span></span><span class="line"><span class="cl">java Doudizhu
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m &#34;斗地主&#34;
+</span></span><span class="line"><span class="cl">git push origin ddz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vim Doudizhu.java
+</span></span><span class="line"><span class="cl">javac Doudizhu.java
+</span></span><span class="line"><span class="cl">java Doudizhu
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m &#34;斗地主开发完毕&#34;
+</span></span><span class="line"><span class="cl">git push origin ddz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="协同开发第三步dev管理者review-ddz开发者代码">协同开发第三步：dev管理者review ddz开发者代码</h4>
 <blockquote>
 <p>注意：</p>
 <p>release——》master分支具体是需要线上代码review还是直接本地merge要看项目需求</p>
@@ -550,24 +806,52 @@ git push origin ddz
 <p><strong>通过github的pull request来实现代码review</strong></p>
 <p>​	**dev成员(owner)：**打开项目的setting——》branches——》add rule（跟dev合并必须要经过review）——》(开发成员pull request后)在pull request中add your review，然后merge pull request就实现了review后的同意合并，最后可删除ddz开发分支</p>
 <p>​	**斗地主开发成员(member)：**new pull request——》compare to base</p>
-<pre tabindex="0"><code>//在线上github中同意merge后，线上dev已经最新了
-//dev管理者owner本地再pull一下，本地就也就最新了
-git pull origin dev
-</code></pre><h4 id="协同开发第四步测试">协同开发第四步：测试</h4>
-<pre tabindex="0"><code>//代码测试分支由owner创建push到github
-git checkout dev
-git checkout -b release
-git push origin release
-
-//代码测试人员从github拉取release分支来进行代码测试
-
-//测试完后，将release版本merge到master分支和dev分支（同样采用review的方式来pull request）
-//删除release分支
-
-//本地的master拉取线上master，打上第二版标签
-git pull origin master
-git tag -a v2 -m &#34;第二版&#34;
-</code></pre><h2 id="如何给开源项目贡献代码">如何给开源项目贡献代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//在线上github中同意merge后，线上dev已经最新了
+</span></span><span class="line"><span class="cl">//dev管理者owner本地再pull一下，本地就也就最新了
+</span></span><span class="line"><span class="cl">git pull origin dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="协同开发第四步测试">协同开发第四步：测试</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//代码测试分支由owner创建push到github
+</span></span><span class="line"><span class="cl">git checkout dev
+</span></span><span class="line"><span class="cl">git checkout -b release
+</span></span><span class="line"><span class="cl">git push origin release
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//代码测试人员从github拉取release分支来进行代码测试
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//测试完后，将release版本merge到master分支和dev分支（同样采用review的方式来pull request）
+</span></span><span class="line"><span class="cl">//删除release分支
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//本地的master拉取线上master，打上第二版标签
+</span></span><span class="line"><span class="cl">git pull origin master
+</span></span><span class="line"><span class="cl">git tag -a v2 -m &#34;第二版&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="如何给开源项目贡献代码">如何给开源项目贡献代码</h2>
 <blockquote>
 <p>fork + pull request</p>
 </blockquote>
@@ -619,39 +903,79 @@ git tag -a v2 -m &#34;第二版&#34;
 <p>通常，合并分支时，如果可能，Git会用<code>Fast forward</code>模式，但这种模式下，删除分支后，会丢掉分支信息。</p>
 <p>如果要强制禁用<code>Fast forward</code>模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
 <p>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去</span>
-</span></span><span style="display:flex;"><span>git merge --no-ff -m <span style="color:#e6db74">&#34;merge with no-ff&#34;</span> dev
-</span></span></code></pre></div><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img0" alt="git-br-policy"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去</span>
+</span></span><span class="line"><span class="cl">git merge --no-ff -m <span class="s2">&#34;merge with no-ff&#34;</span> dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img0" alt="git-br-policy"></p>
 </li>
 <li>
 <p>你正在开发一个新功能，突然接到一个bug，必须优先解决bug，此时可以使用stash把当前工作区现场“储藏”起来，然后新建分支改bug再合并后，恢复之前”储藏“的工作现场就行了</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git stash //储藏工作现场
-</span></span><span style="display:flex;"><span>... //改bug
-</span></span><span style="display:flex;"><span>git stash list //查看工作现场列表
-</span></span><span style="display:flex;"><span>//有两种方法恢复
-</span></span><span style="display:flex;"><span>//1. 一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除
-</span></span><span style="display:flex;"><span>git stash apply
-</span></span><span style="display:flex;"><span>git stash drop
-</span></span><span style="display:flex;"><span>//2. 另一种方式是用git stash pop，恢复的同时把stash内容也删了
-</span></span><span style="display:flex;"><span>git stash pop
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash //储藏工作现场
+</span></span><span class="line"><span class="cl">... //改bug
+</span></span><span class="line"><span class="cl">git stash list //查看工作现场列表
+</span></span><span class="line"><span class="cl">//有两种方法恢复
+</span></span><span class="line"><span class="cl">//1. 一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除
+</span></span><span class="line"><span class="cl">git stash apply
+</span></span><span class="line"><span class="cl">git stash drop
+</span></span><span class="line"><span class="cl">//2. 另一种方式是用git stash pop，恢复的同时把stash内容也删了
+</span></span><span class="line"><span class="cl">git stash pop
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>为了方便操作，Git专门提供了一个<code>cherry-pick</code>命令，让我们能复制一个特定的提交到当前分支</p>
 </li>
 <li>
 <p>多人协作开发：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone git@github.com:michaelliao/learngit.git
-</span></span><span style="display:flex;"><span>git checkout -b dev origin/dev
-</span></span><span style="display:flex;"><span>git add env.txt
-</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;add env&#34;</span>
-</span></span><span style="display:flex;"><span>git push origin dev
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#push发现有冲突</span>
-</span></span><span style="display:flex;"><span>git pull
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#pull也失败，因为没有建立远程和本地的关闭</span>
-</span></span><span style="display:flex;"><span>git branch --set-upstream-to<span style="color:#f92672">=</span>origin/dev dev
-</span></span><span style="display:flex;"><span>git pull
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#解决冲突后最后push成功</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone git@github.com:michaelliao/learngit.git
+</span></span><span class="line"><span class="cl">git checkout -b dev origin/dev
+</span></span><span class="line"><span class="cl">git add env.txt
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;add env&#34;</span>
+</span></span><span class="line"><span class="cl">git push origin dev
+</span></span><span class="line"><span class="cl"><span class="c1">#push发现有冲突</span>
+</span></span><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl"><span class="c1">#pull也失败，因为没有建立远程和本地的关闭</span>
+</span></span><span class="line"><span class="cl">git branch --set-upstream-to<span class="o">=</span>origin/dev dev
+</span></span><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl"><span class="c1">#解决冲突后最后push成功</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>标签是指向commit的死指针，分支是指向commit的活指针</p>
 </li>
@@ -672,23 +996,45 @@ git tag -a v2 -m &#34;第二版&#34;
 </ol>
 </li>
 </ul>
-<pre tabindex="0"><code># Windows:
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Python:
-*.py[cod]
-*.so
-*.egg
-*.egg-info
-dist
-build
-
-# My configurations:
-db.ini
-deploy_key_rsa
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Windows:
+</span></span><span class="line"><span class="cl">Thumbs.db
+</span></span><span class="line"><span class="cl">ehthumbs.db
+</span></span><span class="line"><span class="cl">Desktop.ini
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Python:
+</span></span><span class="line"><span class="cl">*.py[cod]
+</span></span><span class="line"><span class="cl">*.so
+</span></span><span class="line"><span class="cl">*.egg
+</span></span><span class="line"><span class="cl">*.egg-info
+</span></span><span class="line"><span class="cl">dist
+</span></span><span class="line"><span class="cl">build
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># My configurations:
+</span></span><span class="line"><span class="cl">db.ini
+</span></span><span class="line"><span class="cl">deploy_key_rsa
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>
 <p>检验<code>.gitignore</code>的标准是<code>git status</code>命令是不是说<code>working directory clean</code></p>
 </li>
@@ -697,25 +1043,49 @@ deploy_key_rsa
 </li>
 <li>
 <p>把指定文件排除在<code>.gitignore</code>规则外的写法就是<code>!</code>+文件名，所以，只需把例外文件添加进去即可。</p>
-<pre tabindex="0"><code># 排除所有.开头的隐藏文件:
-.*
-# 排除所有.class文件:
-*.class
-
-# 不排除.gitignore和App.class:
-!.gitignore
-!App.class
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 排除所有.开头的隐藏文件:
+</span></span><span class="line"><span class="cl">.*
+</span></span><span class="line"><span class="cl"># 排除所有.class文件:
+</span></span><span class="line"><span class="cl">*.class
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 不排除.gitignore和App.class:
+</span></span><span class="line"><span class="cl">!.gitignore
+</span></span><span class="line"><span class="cl">!App.class
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 </li>
 <li>
 <p>配置别名</p>
 <p>git config &ndash;global alias.st status</p>
-<pre tabindex="0"><code>git config --global alias.st status
-git config --global alias.co checkout
-git config --global alias.ci commit
-git config --global alias.br branch
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global alias.st status
+</span></span><span class="line"><span class="cl">git config --global alias.co checkout
+</span></span><span class="line"><span class="cl">git config --global alias.ci commit
+</span></span><span class="line"><span class="cl">git config --global alias.br branch
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 </li>
 <li>
@@ -727,108 +1097,143 @@ git config --global alias.br branch
 <p><strong>致命问题：两个分支合并后为什么还存在不同？</strong></p>
 <p>答：首先需要明确的是：git的merge以来的不是不同分支文件内容的对比，而是不同分支的commit的对比</p>
 <p>举个例子：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git merge test //在dev上合并test，此时dev包含test
-</span></span><span style="display:flex;"><span>... //然后在dev上新建一个分支hotfix，把刚刚从test合并来的内容中，删除一些新增文件，增加一些删除文件，增删改一些修改行，然后将hotfix合并到dev
-</span></span><span style="display:flex;"><span>git merge test //再进行一次第一步操作，此时发现虽然merge了，但是dev并不包含test中修改的内容了，因为此时dev包含了test的所有commit，此足矣。
-</span></span></code></pre></div><p><strong>如何改进工作中对git使用来避免此类问题的发生？</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git merge <span class="nb">test</span> //在dev上合并test，此时dev包含test
+</span></span><span class="line"><span class="cl">... //然后在dev上新建一个分支hotfix，把刚刚从test合并来的内容中，删除一些新增文件，增加一些删除文件，增删改一些修改行，然后将hotfix合并到dev
+</span></span><span class="line"><span class="cl">git merge <span class="nb">test</span> //再进行一次第一步操作，此时发现虽然merge了，但是dev并不包含test中修改的内容了，因为此时dev包含了test的所有commit，此足矣。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>如何改进工作中对git使用来避免此类问题的发生？</strong></p>
 <p>工作中的产生原因：公司中项目分为test、dev、release、master分支，pull到本地新建xx-test、xx-dev分支进行修改，然后合并到对应的test、dev分支。经常还在线上的test、dev、release之间相互merge，导致问题出现的原因就是这个”相互“。</p>
 <p>要避免这样的问题就要强制要求提交顺序，应该按照功能新建分支来完成</p>
 </li>
+<li>
+<p>只需要部分commit中的内容？
+git rebase -i xx
+git cherry-pick xx</p>
+</li>
+<li>
+<p>Git的一些奇技淫巧</p>
+</li>
 </ol>
-</section>
+<ul>
+<li>git stash save &ldquo;XXX&rdquo;</li>
+<li>git log &ndash;oneline &ndash;graph</li>
+<li>git push :branch_name</li>
+<li>git rm &ndash;cached filename</li>
+<li>git commit &ndash;amend</li>
+<li>git cherry-pick commit-id</li>
+<li>git archive-o archive.zip master</li>
+</ul>
+<ol start="16">
+<li>压缩提交记录的三种方法：</li>
+</ol>
+<ul>
+<li>git reset commit-id</li>
+<li>git commit &ndash;amend &ldquo;xxx&rdquo;</li>
+<li>git rebase -i commit-id</li>
+</ul>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
-      ><span class="mr-1.5">←</span><span>markdown基础语法</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
-      ><span>JavaScript类型转换</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-03
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/git/">Git</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">markdown基础语法</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+            <span class="next-text nav-default">JavaScript类型转换</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

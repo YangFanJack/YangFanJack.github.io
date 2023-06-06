@@ -1,333 +1,252 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>linux常用命令 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>linux常用命令 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命令在系统中有两种类型：内置Shell命令和Linux命令 linux各目录的作用 /bin/：存放系统命令
-/sbin/：存放系统目录，只有超级用户能用
-/usr/bin/：存放系统命令，单用户模式不能执行
-/usr/sbin/ ：存放系统命令，只有超级用户能用，单用户模式不能执行
-/boot/ ：系统启动目录，内核和启动引导程序
-/dev/ ：硬件设备文件目录
-/etc/ ：linux默认的配置文件保存目录
-/home/：普通用户家目录
-/root/：超级用户家目录
-/lib/：系统调用的函数库
-/lost&#43;found/：当系统意外崩溃时，每个分区都含有的存放的文件碎片用来修复
-/media/：挂载目录，挂载媒体设备
-/mnt/：挂载目录，挂载U盘，移动硬盘，和其他操作系统的分区
-/misc/：挂载目录，挂载NFS服务的共享目录
-/opt/：第三方安装的软件的保存目录，也可以放到/usr/local/下
-/proc/：存放在内存里面，存放系统的内核，进程，外部设备
-/sys/：存放在内存里面，存放系统的内核相关的东西
-/srv/：服务数据目录
-/tmp/ ：临时目录，可以清空
-/usr/：系统资源目录
-/var/：动态资源保存目录，日志，邮件，数据库
-服务器注意事项 远程服务器不允许关机，只能重启 重启时应该关闭服务 不要在服务器访问高峰运行高负载命令 远程配置防火墙时不要把自己踢出服务器 指定合理的密码规范和定期更新 合理分配权限 定期备份重要数据和日志 Linux常用命令 文件处理命令 ls ls -l：查看文件所有属性 ls -d：查看目录本身 ls -i：查看文件的inode号 ls -h：人性化显示 ls -s：显示文件占用的块的数量 ls -a：查看隐藏文件 mkdir mkdir -p：递归创建目录 cd&amp;pwd rmdir cp cp -r：复制目录
-cp -p：原文件和新文件属性完全一致
-注：复制的同时可以改名
-mv ​	注：移动的同时可以改名
-rm rm -r：文件夹递归删除 rm -f：强制删除，不询问 touch cat&amp;tac cat -n：显示行号，tac没有-n选项 more ​	空格翻页，回车换行，q退出" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="linux常用命令" />
-<meta property="og:description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命令在系统中有两种类型：内置Shell命令和Linux命令 linux各目录的作用 /bin/：存放系统命令
-/sbin/：存放系统目录，只有超级用户能用
-/usr/bin/：存放系统命令，单用户模式不能执行
-/usr/sbin/ ：存放系统命令，只有超级用户能用，单用户模式不能执行
-/boot/ ：系统启动目录，内核和启动引导程序
-/dev/ ：硬件设备文件目录
-/etc/ ：linux默认的配置文件保存目录
-/home/：普通用户家目录
-/root/：超级用户家目录
-/lib/：系统调用的函数库
-/lost&#43;found/：当系统意外崩溃时，每个分区都含有的存放的文件碎片用来修复
-/media/：挂载目录，挂载媒体设备
-/mnt/：挂载目录，挂载U盘，移动硬盘，和其他操作系统的分区
-/misc/：挂载目录，挂载NFS服务的共享目录
-/opt/：第三方安装的软件的保存目录，也可以放到/usr/local/下
-/proc/：存放在内存里面，存放系统的内核，进程，外部设备
-/sys/：存放在内存里面，存放系统的内核相关的东西
-/srv/：服务数据目录
-/tmp/ ：临时目录，可以清空
-/usr/：系统资源目录
-/var/：动态资源保存目录，日志，邮件，数据库
-服务器注意事项 远程服务器不允许关机，只能重启 重启时应该关闭服务 不要在服务器访问高峰运行高负载命令 远程配置防火墙时不要把自己踢出服务器 指定合理的密码规范和定期更新 合理分配权限 定期备份重要数据和日志 Linux常用命令 文件处理命令 ls ls -l：查看文件所有属性 ls -d：查看目录本身 ls -i：查看文件的inode号 ls -h：人性化显示 ls -s：显示文件占用的块的数量 ls -a：查看隐藏文件 mkdir mkdir -p：递归创建目录 cd&amp;pwd rmdir cp cp -r：复制目录
-cp -p：原文件和新文件属性完全一致
-注：复制的同时可以改名
-mv ​	注：移动的同时可以改名
-rm rm -r：文件夹递归删除 rm -f：强制删除，不询问 touch cat&amp;tac cat -n：显示行号，tac没有-n选项 more ​	空格翻页，回车换行，q退出" />
+<meta property="og:title" content="linux常用命令" />
+<meta property="og:description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-04T15:17:31+00:00" />
 <meta property="article:modified_time" content="2020-03-04T15:17:31+00:00" />
-
-  
-  <meta itemprop="name" content="linux常用命令">
-<meta itemprop="description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命令在系统中有两种类型：内置Shell命令和Linux命令 linux各目录的作用 /bin/：存放系统命令
-/sbin/：存放系统目录，只有超级用户能用
-/usr/bin/：存放系统命令，单用户模式不能执行
-/usr/sbin/ ：存放系统命令，只有超级用户能用，单用户模式不能执行
-/boot/ ：系统启动目录，内核和启动引导程序
-/dev/ ：硬件设备文件目录
-/etc/ ：linux默认的配置文件保存目录
-/home/：普通用户家目录
-/root/：超级用户家目录
-/lib/：系统调用的函数库
-/lost&#43;found/：当系统意外崩溃时，每个分区都含有的存放的文件碎片用来修复
-/media/：挂载目录，挂载媒体设备
-/mnt/：挂载目录，挂载U盘，移动硬盘，和其他操作系统的分区
-/misc/：挂载目录，挂载NFS服务的共享目录
-/opt/：第三方安装的软件的保存目录，也可以放到/usr/local/下
-/proc/：存放在内存里面，存放系统的内核，进程，外部设备
-/sys/：存放在内存里面，存放系统的内核相关的东西
-/srv/：服务数据目录
-/tmp/ ：临时目录，可以清空
-/usr/：系统资源目录
-/var/：动态资源保存目录，日志，邮件，数据库
-服务器注意事项 远程服务器不允许关机，只能重启 重启时应该关闭服务 不要在服务器访问高峰运行高负载命令 远程配置防火墙时不要把自己踢出服务器 指定合理的密码规范和定期更新 合理分配权限 定期备份重要数据和日志 Linux常用命令 文件处理命令 ls ls -l：查看文件所有属性 ls -d：查看目录本身 ls -i：查看文件的inode号 ls -h：人性化显示 ls -s：显示文件占用的块的数量 ls -a：查看隐藏文件 mkdir mkdir -p：递归创建目录 cd&amp;pwd rmdir cp cp -r：复制目录
-cp -p：原文件和新文件属性完全一致
-注：复制的同时可以改名
-mv ​	注：移动的同时可以改名
-rm rm -r：文件夹递归删除 rm -f：强制删除，不询问 touch cat&amp;tac cat -n：显示行号，tac没有-n选项 more ​	空格翻页，回车换行，q退出"><meta itemprop="datePublished" content="2020-03-04T15:17:31+00:00" />
+<meta itemprop="name" content="linux常用命令">
+<meta itemprop="description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命"><meta itemprop="datePublished" content="2020-03-04T15:17:31+00:00" />
 <meta itemprop="dateModified" content="2020-03-04T15:17:31+00:00" />
-<meta itemprop="wordCount" content="344">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="3238">
+<meta itemprop="keywords" content="Linux," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="linux常用命令"/>
-<meta name="twitter:description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命令在系统中有两种类型：内置Shell命令和Linux命令 linux各目录的作用 /bin/：存放系统命令
-/sbin/：存放系统目录，只有超级用户能用
-/usr/bin/：存放系统命令，单用户模式不能执行
-/usr/sbin/ ：存放系统命令，只有超级用户能用，单用户模式不能执行
-/boot/ ：系统启动目录，内核和启动引导程序
-/dev/ ：硬件设备文件目录
-/etc/ ：linux默认的配置文件保存目录
-/home/：普通用户家目录
-/root/：超级用户家目录
-/lib/：系统调用的函数库
-/lost&#43;found/：当系统意外崩溃时，每个分区都含有的存放的文件碎片用来修复
-/media/：挂载目录，挂载媒体设备
-/mnt/：挂载目录，挂载U盘，移动硬盘，和其他操作系统的分区
-/misc/：挂载目录，挂载NFS服务的共享目录
-/opt/：第三方安装的软件的保存目录，也可以放到/usr/local/下
-/proc/：存放在内存里面，存放系统的内核，进程，外部设备
-/sys/：存放在内存里面，存放系统的内核相关的东西
-/srv/：服务数据目录
-/tmp/ ：临时目录，可以清空
-/usr/：系统资源目录
-/var/：动态资源保存目录，日志，邮件，数据库
-服务器注意事项 远程服务器不允许关机，只能重启 重启时应该关闭服务 不要在服务器访问高峰运行高负载命令 远程配置防火墙时不要把自己踢出服务器 指定合理的密码规范和定期更新 合理分配权限 定期备份重要数据和日志 Linux常用命令 文件处理命令 ls ls -l：查看文件所有属性 ls -d：查看目录本身 ls -i：查看文件的inode号 ls -h：人性化显示 ls -s：显示文件占用的块的数量 ls -a：查看隐藏文件 mkdir mkdir -p：递归创建目录 cd&amp;pwd rmdir cp cp -r：复制目录
-cp -p：原文件和新文件属性完全一致
-注：复制的同时可以改名
-mv ​	注：移动的同时可以改名
-rm rm -r：文件夹递归删除 rm -f：强制删除，不询问 touch cat&amp;tac cat -n：显示行号，tac没有-n选项 more ​	空格翻页，回车换行，q退出"/>
+<meta name="twitter:description" content="Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">linux常用命令</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-04 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 3238 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#linux各目录的作用">linux各目录的作用</a></li>
+    <li><a href="#服务器注意事项">服务器注意事项</a></li>
+    <li><a href="#linux常用命令">Linux常用命令</a>
+      <ul>
+        <li><a href="#文件处理命令">文件处理命令</a>
+          <ul>
+            <li><a href="#ls">ls</a></li>
+            <li><a href="#mkdir">mkdir</a></li>
+            <li><a href="#cdpwd">cd&amp;pwd</a></li>
+            <li><a href="#rmdir">rmdir</a></li>
+            <li><a href="#cp">cp</a></li>
+            <li><a href="#mv">mv</a></li>
+            <li><a href="#rm">rm</a></li>
+            <li><a href="#touch">touch</a></li>
+            <li><a href="#cattac">cat&amp;tac</a></li>
+            <li><a href="#more">more</a></li>
+            <li><a href="#less">less</a></li>
+            <li><a href="#head">head</a></li>
+            <li><a href="#tail">tail</a></li>
+            <li><a href="#ln">ln</a></li>
+          </ul>
+        </li>
+        <li><a href="#权限管理命令">权限管理命令</a>
+          <ul>
+            <li><a href="#chmod">chmod</a></li>
+            <li><a href="#chown">chown</a></li>
+            <li><a href="#chgrp">chgrp</a></li>
+            <li><a href="#umask">umask</a></li>
+          </ul>
+        </li>
+        <li><a href="#文件搜索命令">文件搜索命令</a>
+          <ul>
+            <li><a href="#find精准搜索">find：精准搜索</a></li>
+            <li><a href="#locate模糊查找">locate：模糊查找</a></li>
+            <li><a href="#which">which</a></li>
+            <li><a href="#whereis">whereis</a></li>
+            <li><a href="#grep在文件里面查找">grep：在文件里面查找</a></li>
+          </ul>
+        </li>
+        <li><a href="#帮助命令">帮助命令</a>
+          <ul>
+            <li><a href="#man和info">man和info</a></li>
+            <li><a href="#whatis">whatis</a></li>
+            <li><a href="#apropos">apropos</a></li>
+            <li><a href="#--help">&ndash;help</a></li>
+            <li><a href="#help">help</a></li>
+          </ul>
+        </li>
+        <li><a href="#用户管理命令">用户管理命令</a>
+          <ul>
+            <li><a href="#useradd和passwd">useradd和passwd</a></li>
+            <li><a href="#who和w">who和w</a></li>
+          </ul>
+        </li>
+        <li><a href="#压缩解压命令">压缩解压命令</a>
+          <ul>
+            <li><a href="#gzip和gunzipgzip--d">gzip和gunzip/gzip -d</a></li>
+            <li><a href="#tar">tar</a></li>
+            <li><a href="#zip和unzip压缩比不高">zip和unzip：压缩比不高</a></li>
+            <li><a href="#bzip2和bunzip2gzip的升级版本压缩比较好">bzip2和bunzip2：gzip的升级版本，压缩比较好</a></li>
+          </ul>
+        </li>
+        <li><a href="#网络命令">网络命令</a>
+          <ul>
+            <li><a href="#write">write</a></li>
+            <li><a href="#wall">wall</a></li>
+            <li><a href="#ping">ping</a></li>
+            <li><a href="#ifconfig">ifconfig</a></li>
+            <li><a href="#mail">mail</a></li>
+            <li><a href="#last">last</a></li>
+            <li><a href="#lastlog">lastlog</a></li>
+            <li><a href="#traceroute">traceroute</a></li>
+            <li><a href="#netstat显示网络相关信息">netstat：显示网络相关信息</a></li>
+            <li><a href="#setupredhat系linux独有">setup：redhat系linux独有</a></li>
+          </ul>
+        </li>
+        <li><a href="#挂载命令">挂载命令</a>
+          <ul>
+            <li><a href="#mount">mount</a></li>
+            <li><a href="#umount">umount</a></li>
+          </ul>
+        </li>
+        <li><a href="#关机重启命令">关机重启命令</a>
+          <ul>
+            <li><a href="#shutdown">shutdown</a></li>
+            <li><a href="#其他关机命令haltpoweroffinit-0">其他关机命令：halt,poweroff,init 0</a></li>
+            <li><a href="#其他重启命令rebootinit-6">其他重启命令：reboot,init 6</a></li>
+            <li><a href="#init">init</a></li>
+            <li><a href="#runlevel查询系统运行级别">runlevel:查询系统运行级别</a></li>
+            <li><a href="#logout和exit">logout和exit</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">linux常用命令</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 4, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><ul>
+</div>
+    <div class="post-content">
+      <ul>
 <li><strong>Linux作为一个网络操作系统，命令行才是王道，而不是图形。</strong></li>
 <li><strong>Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。</strong></li>
 <li><strong>linux命令在系统中有两种类型：内置Shell命令和Linux命令</strong></li>
@@ -496,10 +415,19 @@ rm rm -r：文件夹递归删除 rm -f：强制删除，不询问 touch cat&amp;
 <li>
 <p><code>chgrp [组名]</code>：只有管理员root能执行</p>
 <p><strong>注：每个文件都只有一个user和一个group，某些others拥有拥有共同的权限，这些others在一个组里，也就是group所属组。所属者user可以不在所属组group里面，并且一个用户可以在不同的组里。</strong> 相关的命令是：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>groupadd YYY          //<span style="color:#960050;background-color:#1e0010">创建组</span>
-</span></span><span style="display:flex;"><span>useradd -g YYY XXX    //<span style="color:#960050;background-color:#1e0010">创建用户并将</span>YYY<span style="color:#960050;background-color:#1e0010">设置为其主要组</span>
-</span></span><span style="display:flex;"><span>usermod -g ZZZ XXX    //<span style="color:#960050;background-color:#1e0010">修改用户</span>XXX<span style="color:#960050;background-color:#1e0010">的主要组为</span>ZZZ
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">groupadd</span> <span class="n">YYY</span>          <span class="p">//</span><span class="err">创建组</span>
+</span></span><span class="line"><span class="cl"><span class="n">useradd</span> <span class="n">-g</span> <span class="n">YYY</span> <span class="n">XXX</span>    <span class="p">//</span><span class="err">创建用户并将</span><span class="n">YYY</span><span class="err">设置为其主要组</span>
+</span></span><span class="line"><span class="cl"><span class="n">usermod</span> <span class="n">-g</span> <span class="n">ZZZ</span> <span class="n">XXX</span>    <span class="p">//</span><span class="err">修改用户</span><span class="n">XXX</span><span class="err">的主要组为</span><span class="n">ZZZ</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 <h3 id="umask">umask</h3>
 <ul>
@@ -750,100 +678,100 @@ rm rm -r：文件夹递归删除 rm -f：强制删除，不询问 touch cat&amp;
 <ul>
 <li>都是退出登录：logout退出是把因为你注销了登陆机而把你踢出的退出，exit是你直接退出连接的机器。</li>
 </ul>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/"
-      ><span class="mr-1.5">←</span><span>强大的文本编辑器:Vim</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/"
-      ><span>linux系统简介和安装</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-04
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">强大的文本编辑器:Vim</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/">
+            <span class="next-text nav-default">linux系统简介和安装</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

@@ -1,245 +1,216 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SSM框架-Mybatis - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下： 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-mybatis/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>SSM框架-Mybatis - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下：
-数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变java代码。 查询操作时，需要手动将结果集中的数据手动封装到实体中。插入操作时，需要手动将实体的数据设置到sql语句的占位符位置 应对上述问题给出的解决方案：
-使用数据库连接池初始化连接资源 将sql语句抽取到xml配置文件中 使用反射、内省等底层技术，自动将实体与表进行属性与字段的自动映射 什么是Mybatis mybatis 是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。 mybatis通过xml或注解的方式将要执行的各种 statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。 最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM（对象关系映射）思想解决了实体和数据库映射的问题，对jdbc 进行了封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。 开发步骤 MyBatis开发步骤：
-添加MyBatis的坐标 创建user数据表 编写User实体类 编写映射文件UserMapper.xml 编写核心文件SqlMapConfig.xml 编写测试类 &lt;!--mybatis坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;org.mybatis&lt;/groupId&gt; &lt;artifactId&gt;mybatis&lt;/artifactId&gt; &lt;version&gt;3.4.5&lt;/version&gt; &lt;/dependency&gt; &lt;!--mysql驱动坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.6&lt;/version&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;/dependency&gt; &lt;!--单元测试坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;4.12&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;!--日志坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.12&lt;/version&gt; &lt;/dependency&gt; public class User { private int id; private String username; private String password; //省略get个set方法 } &lt;?" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="SSM框架-Mybatis" />
-<meta property="og:description" content="开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下：
-数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变java代码。 查询操作时，需要手动将结果集中的数据手动封装到实体中。插入操作时，需要手动将实体的数据设置到sql语句的占位符位置 应对上述问题给出的解决方案：
-使用数据库连接池初始化连接资源 将sql语句抽取到xml配置文件中 使用反射、内省等底层技术，自动将实体与表进行属性与字段的自动映射 什么是Mybatis mybatis 是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。 mybatis通过xml或注解的方式将要执行的各种 statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。 最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM（对象关系映射）思想解决了实体和数据库映射的问题，对jdbc 进行了封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。 开发步骤 MyBatis开发步骤：
-添加MyBatis的坐标 创建user数据表 编写User实体类 编写映射文件UserMapper.xml 编写核心文件SqlMapConfig.xml 编写测试类 &lt;!--mybatis坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;org.mybatis&lt;/groupId&gt; &lt;artifactId&gt;mybatis&lt;/artifactId&gt; &lt;version&gt;3.4.5&lt;/version&gt; &lt;/dependency&gt; &lt;!--mysql驱动坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.6&lt;/version&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;/dependency&gt; &lt;!--单元测试坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;4.12&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;!--日志坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.12&lt;/version&gt; &lt;/dependency&gt; public class User { private int id; private String username; private String password; //省略get个set方法 } &lt;?" />
+<meta property="og:title" content="SSM框架-Mybatis" />
+<meta property="og:description" content="开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下： 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-mybatis/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-mybatis/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-01-22T22:40:39+00:00" />
 <meta property="article:modified_time" content="2021-01-22T22:40:39+00:00" />
-
-  
-  <meta itemprop="name" content="SSM框架-Mybatis">
-<meta itemprop="description" content="开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下：
-数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变java代码。 查询操作时，需要手动将结果集中的数据手动封装到实体中。插入操作时，需要手动将实体的数据设置到sql语句的占位符位置 应对上述问题给出的解决方案：
-使用数据库连接池初始化连接资源 将sql语句抽取到xml配置文件中 使用反射、内省等底层技术，自动将实体与表进行属性与字段的自动映射 什么是Mybatis mybatis 是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。 mybatis通过xml或注解的方式将要执行的各种 statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。 最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM（对象关系映射）思想解决了实体和数据库映射的问题，对jdbc 进行了封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。 开发步骤 MyBatis开发步骤：
-添加MyBatis的坐标 创建user数据表 编写User实体类 编写映射文件UserMapper.xml 编写核心文件SqlMapConfig.xml 编写测试类 &lt;!--mybatis坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;org.mybatis&lt;/groupId&gt; &lt;artifactId&gt;mybatis&lt;/artifactId&gt; &lt;version&gt;3.4.5&lt;/version&gt; &lt;/dependency&gt; &lt;!--mysql驱动坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.6&lt;/version&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;/dependency&gt; &lt;!--单元测试坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;4.12&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;!--日志坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.12&lt;/version&gt; &lt;/dependency&gt; public class User { private int id; private String username; private String password; //省略get个set方法 } &lt;?"><meta itemprop="datePublished" content="2021-01-22T22:40:39+00:00" />
+<meta itemprop="name" content="SSM框架-Mybatis">
+<meta itemprop="description" content="开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下： 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成"><meta itemprop="datePublished" content="2021-01-22T22:40:39+00:00" />
 <meta itemprop="dateModified" content="2021-01-22T22:40:39+00:00" />
-<meta itemprop="wordCount" content="965">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="6036">
+<meta itemprop="keywords" content="后端,JavaWeb," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SSM框架-Mybatis"/>
-<meta name="twitter:description" content="开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下：
-数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变java代码。 查询操作时，需要手动将结果集中的数据手动封装到实体中。插入操作时，需要手动将实体的数据设置到sql语句的占位符位置 应对上述问题给出的解决方案：
-使用数据库连接池初始化连接资源 将sql语句抽取到xml配置文件中 使用反射、内省等底层技术，自动将实体与表进行属性与字段的自动映射 什么是Mybatis mybatis 是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。 mybatis通过xml或注解的方式将要执行的各种 statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。 最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM（对象关系映射）思想解决了实体和数据库映射的问题，对jdbc 进行了封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。 开发步骤 MyBatis开发步骤：
-添加MyBatis的坐标 创建user数据表 编写User实体类 编写映射文件UserMapper.xml 编写核心文件SqlMapConfig.xml 编写测试类 &lt;!--mybatis坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;org.mybatis&lt;/groupId&gt; &lt;artifactId&gt;mybatis&lt;/artifactId&gt; &lt;version&gt;3.4.5&lt;/version&gt; &lt;/dependency&gt; &lt;!--mysql驱动坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.6&lt;/version&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;/dependency&gt; &lt;!--单元测试坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;4.12&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;!--日志坐标--&gt; &lt;dependency&gt; &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.12&lt;/version&gt; &lt;/dependency&gt; public class User { private int id; private String username; private String password; //省略get个set方法 } &lt;?"/>
+<meta name="twitter:description" content="开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下： 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">SSM框架-Mybatis</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-22 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 6036 words </span>
+          <span class="more-meta"> 13 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#开始">开始</a>
+          <ul>
+            <li><a href="#原始jdbc操作的分析">原始jdbc操作的分析</a></li>
+            <li><a href="#什么是mybatis">什么是Mybatis</a></li>
+            <li><a href="#开发步骤">开发步骤</a></li>
+          </ul>
+        </li>
+        <li><a href="#mybatis的增删改查操作">Mybatis的增删改查操作</a>
+          <ul>
+            <li><a href="#查询操作">查询操作</a></li>
+            <li><a href="#插入操作">插入操作</a></li>
+            <li><a href="#修改操作">修改操作</a></li>
+            <li><a href="#删除操作">删除操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#mybatis核心配置文件">Mybatis核心配置文件</a>
+          <ul>
+            <li><a href="#environments标签">environments标签</a></li>
+            <li><a href="#mapper标签">mapper标签</a></li>
+            <li><a href="#properties标签">Properties标签</a></li>
+            <li><a href="#typealiases标签">typeAliases标签</a></li>
+          </ul>
+        </li>
+        <li><a href="#mybatis相应api">Mybatis相应API</a>
+          <ul>
+            <li><a href="#sqlsession工厂构建器sqlsessionfactorybuilder">SqlSession工厂构建器SqlSessionFactoryBuilder</a></li>
+            <li><a href="#sqlsession工厂对象sqlsessionfactory">SqlSession工厂对象SqlSessionFactory</a></li>
+            <li><a href="#sqlsession会话对象">SqlSession会话对象</a></li>
+          </ul>
+        </li>
+        <li><a href="#mybatis的dao层实现">Mybatis的Dao层实现</a>
+          <ul>
+            <li><a href="#传统方式实现">传统方式实现</a></li>
+            <li><a href="#接口代理方式实现">接口代理方式实现</a></li>
+          </ul>
+        </li>
+        <li><a href="#mybatis映射文件深入">Mybatis映射文件深入</a>
+          <ul>
+            <li><a href="#动态sql语句">动态sql语句</a></li>
+            <li><a href="#sql片段抽取">SQL片段抽取</a></li>
+          </ul>
+        </li>
+        <li><a href="#mybatis核心配置文件深入">Mybatis核心配置文件深入</a>
+          <ul>
+            <li><a href="#typehandlers标签">typeHandlers标签</a></li>
+            <li><a href="#plugins标签">plugins标签</a></li>
+          </ul>
+        </li>
+        <li><a href="#mybatis多表操作">Mybatis多表操作</a>
+          <ul>
+            <li><a href="#xml配置">xml配置</a></li>
+            <li><a href="#注解配置">注解配置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">SSM框架-Mybatis</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Jan 22, 2021</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h2 id="开始">开始</h2>
+</div>
+    <div class="post-content">
+      <h2 id="开始">开始</h2>
 <h3 id="原始jdbc操作的分析">原始jdbc操作的分析</h3>
 <p>原始jdbc开发<strong>存在的问题</strong>如下：</p>
 <ol>
@@ -269,94 +240,219 @@
 <li>编写核心文件SqlMapConfig.xml</li>
 <li>编写测试类</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--mybatis坐标--&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>org.mybatis<span style="color:#f92672">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>mybatis<span style="color:#f92672">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>3.4.5<span style="color:#f92672">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--mysql驱动坐标--&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>mysql<span style="color:#f92672">&lt;/groupId&gt;</span>   
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>mysql-connector-java<span style="color:#f92672">&lt;/artifactId&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>5.1.6<span style="color:#f92672">&lt;/version&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;scope&gt;</span>runtime<span style="color:#f92672">&lt;/scope&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--单元测试坐标--&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>junit<span style="color:#f92672">&lt;/groupId&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>junit<span style="color:#f92672">&lt;/artifactId&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>4.12<span style="color:#f92672">&lt;/version&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;scope&gt;</span>test<span style="color:#f92672">&lt;/scope&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--日志坐标--&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>log4j<span style="color:#f92672">&lt;/groupId&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>log4j<span style="color:#f92672">&lt;/artifactId&gt;</span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>1.2.12<span style="color:#f92672">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">{</span>    
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> id<span style="color:#f92672">;</span>    
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> String username<span style="color:#f92672">;</span>    
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> String password<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//省略get个set方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE mapper        
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;        
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	&#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;userMapper&#34;</span><span style="color:#f92672">&gt;</span>    
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findAll&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;com.itheima.domain.User&#34;</span><span style="color:#f92672">&gt;</span>        
-</span></span><span style="display:flex;"><span>		select * from User
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/select&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mapper&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN“ &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;configuration&gt;</span>    
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;environments</span> <span style="color:#a6e22e">default=</span><span style="color:#e6db74">&#34;development&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;environment</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;development&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;transactionManager</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;JDBC&#34;</span><span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;dataSource</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;POOLED&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;driver&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;com.mysql.jdbc.Driver&#34;</span><span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;url&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;jdbc:mysql:///test&#34;</span><span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;root&#34;</span><span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;root&#34;</span><span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;/dataSource&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/environment&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/environments&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;mappers&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">resource=</span><span style="color:#e6db74">&#34;com/itheima/mapper/UserMapper.xml&#34;</span><span style="color:#f92672">/&gt;</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/mappers&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/configuration&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//加载核心配置文件
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>InputStream resourceAsStream <span style="color:#f92672">=</span> Resources<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SqlMapConfig.xml&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//获得sqlSession工厂对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>SqlSessionFactory sqlSessionFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SqlSessionFactoryBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span>resourceAsStream<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//获得sqlSession对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>SqlSession sqlSession <span style="color:#f92672">=</span> sqlSessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//执行sql语句
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> userList <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">selectList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;userMapper.findAll&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//打印结果
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>userList<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//释放资源
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div><h2 id="mybatis的增删改查操作">Mybatis的增删改查操作</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--mybatis坐标--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.mybatis<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>mybatis<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>3.4.5<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--mysql驱动坐标--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>   
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>5.1.6<span class="nt">&lt;/version&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--单元测试坐标--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--日志坐标--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>log4j<span class="nt">&lt;/groupId&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>log4j<span class="nt">&lt;/artifactId&gt;</span>    
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>1.2.12<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>    
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>    
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>    
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//省略get个set方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE mapper        
+</span></span></span><span class="line"><span class="cl"><span class="cp">	PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;        
+</span></span></span><span class="line"><span class="cl"><span class="cp">	&#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;userMapper&#34;</span><span class="nt">&gt;</span>    
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;findAll&#34;</span> <span class="na">resultType=</span><span class="s">&#34;com.itheima.domain.User&#34;</span><span class="nt">&gt;</span>        
+</span></span><span class="line"><span class="cl">		select * from User
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/select&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN“ &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;configuration&gt;</span>    
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">&#34;development&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">&#34;development&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;JDBC&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">&#34;POOLED&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;com.mysql.jdbc.Driver&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;jdbc:mysql:///test&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;/dataSource&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/environment&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/environments&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;mappers&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;com/itheima/mapper/UserMapper.xml&#34;</span><span class="nt">/&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/mappers&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//加载核心配置文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">InputStream</span> <span class="n">resourceAsStream</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&#34;SqlMapConfig.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//获得sqlSession工厂对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">resourceAsStream</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//获得sqlSession对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//执行sql语句
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userList</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;userMapper.findAll&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//打印结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">userList</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//释放资源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="mybatis的增删改查操作">Mybatis的增删改查操作</h2>
 <h3 id="查询操作">查询操作</h3>
 <p>上面那个例子就是查询操作</p>
 <h3 id="插入操作">插入操作</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;userMapper&#34;</span><span style="color:#f92672">&gt;</span>    
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;insert</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;add&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;com.itheima.domain.User&#34;</span><span style="color:#f92672">&gt;</span>        
-</span></span><span style="display:flex;"><span>		insert into user values(#{id},#{username},#{password})    
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/insert&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mapper&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>InputStream resourceAsStream <span style="color:#f92672">=</span> Resources<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SqlMapConfig.xml&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>SqlSessionFactory sqlSessionFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SqlSessionFactoryBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span>resourceAsStream<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>SqlSession sqlSession <span style="color:#f92672">=</span> sqlSessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> insert <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;userMapper.add&#34;</span><span style="color:#f92672">,</span> user<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>insert<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//提交事务（JDBC事务默认提交，Mybatis事务默认不提交）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div><p><strong>需要注意：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;userMapper&#34;</span><span class="nt">&gt;</span>    
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;add&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.itheima.domain.User&#34;</span><span class="nt">&gt;</span>        
+</span></span><span class="line"><span class="cl">		insert into user values(#{id},#{username},#{password})    
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/insert&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">InputStream</span> <span class="n">resourceAsStream</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&#34;SqlMapConfig.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">resourceAsStream</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">insert</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="s">&#34;userMapper.add&#34;</span><span class="o">,</span> <span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//提交事务（JDBC事务默认提交，Mybatis事务默认不提交）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sqlSession</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>需要注意：</strong></p>
 <ol>
 <li>插入语句使用insert标签</li>
 <li>在映射文件中使用parameterType属性指定要插入的数据类型</li>
@@ -365,44 +461,92 @@
 <li>插入操作涉及数据库数据变化，所以要使用sqlSession对象显式的提交事务，即sqlSession.commit()</li>
 </ol>
 <h3 id="修改操作">修改操作</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;userMapper&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;update</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;update&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;com.itheima.domain.User&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>        update user set username=#{username},password=#{password} where id=#{id}
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/update&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mapper&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>InputStream resourceAsStream <span style="color:#f92672">=</span> Resources<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SqlMapConfig.xml&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>SqlSessionFactory sqlSessionFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SqlSessionFactoryBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span>resourceAsStream<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>SqlSession sqlSession <span style="color:#f92672">=</span> sqlSessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> update <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">update</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;userMapper.update&#34;</span><span style="color:#f92672">,</span> user<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>update<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div><p><strong>需要注意：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;userMapper&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">&#34;update&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.itheima.domain.User&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        update user set username=#{username},password=#{password} where id=#{id}
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/update&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">InputStream</span> <span class="n">resourceAsStream</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&#34;SqlMapConfig.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">resourceAsStream</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">update</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">&#34;userMapper.update&#34;</span><span class="o">,</span> <span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">update</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">sqlSession</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>需要注意：</strong></p>
 <ol>
 <li>修改语句使用update标签</li>
 <li>修改操作使用的API是sqlSession.update(“命名空间.id”,实体对象);</li>
 </ol>
 <h3 id="删除操作">删除操作</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;userMapper&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;delete</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;delete&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;java.lang.Integer&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>        delete from user where id=#{id}
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/delete&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mapper&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>InputStream resourceAsStream <span style="color:#f92672">=</span> Resources<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SqlMapConfig.xml&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>SqlSessionFactory sqlSessionFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SqlSessionFactoryBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span>resourceAsStream<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>SqlSession sqlSession <span style="color:#f92672">=</span> sqlSessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> delete <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">delete</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;userMapper.delete&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>delete<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div><p><strong>需要注意：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;userMapper&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;delete</span> <span class="na">id=</span><span class="s">&#34;delete&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;java.lang.Integer&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        delete from user where id=#{id}
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/delete&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">InputStream</span> <span class="n">resourceAsStream</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&#34;SqlMapConfig.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">resourceAsStream</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">delete</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">&#34;userMapper.delete&#34;</span><span class="o">,</span><span class="mi">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">delete</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">sqlSession</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>需要注意：</strong></p>
 <ol>
 <li>删除语句使用delete标签</li>
 <li>Sql语句中使用#{任意字符串}方式引用传递的单个参数</li>
 <li>删除操作使用的API是sqlSession.delete(“命名空间.id”,Object);</li>
 </ol>
 <h2 id="mybatis核心配置文件">Mybatis核心配置文件</h2>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220522094845.png" alt="image-20210321155721489" style="zoom:67%;" />
 <h3 id="environments标签">environments标签</h3>
 <p>数据库环境的配置，支持多环境配置</p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225805.png" alt="image-20210321160006282"></p>
@@ -450,47 +594,113 @@
 <h3 id="sqlsession工厂构建器sqlsessionfactorybuilder">SqlSession工厂构建器SqlSessionFactoryBuilder</h3>
 <p>常用API：SqlSessionFactory  build(InputStream inputStream)</p>
 <p>通过加载mybatis的核心文件的输入流的形式构建一个SqlSessionFactory对象</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String resource <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;org/mybatis/builder/mybatis-config.xml&#34;</span><span style="color:#f92672">;</span> 
-</span></span><span style="display:flex;"><span>InputStream inputStream <span style="color:#f92672">=</span> Resources<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span>resource<span style="color:#f92672">);</span> 
-</span></span><span style="display:flex;"><span>SqlSessionFactoryBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SqlSessionFactoryBuilder<span style="color:#f92672">();</span> 
-</span></span><span style="display:flex;"><span>SqlSessionFactory factory <span style="color:#f92672">=</span> builder<span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span>inputStream<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p>其中， Resources 工具类，这个类在 org.apache.ibatis.io 包中。Resources 类帮助你从类路径下、文件系统或一个 web URL 中加载资源文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span> <span class="n">resource</span> <span class="o">=</span> <span class="s">&#34;org/mybatis/builder/mybatis-config.xml&#34;</span><span class="o">;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="n">resource</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl"><span class="n">SqlSessionFactoryBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">();</span> 
+</span></span><span class="line"><span class="cl"><span class="n">SqlSessionFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中， Resources 工具类，这个类在 org.apache.ibatis.io 包中。Resources 类帮助你从类路径下、文件系统或一个 web URL 中加载资源文件。</p>
 <h3 id="sqlsession工厂对象sqlsessionfactory">SqlSession工厂对象SqlSessionFactory</h3>
 <p>SqlSessionFactory 有多个个方法创建SqlSession 实例。常用的有如下两个：</p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225947.png" alt="image-20210321162020518"></p>
 <h3 id="sqlsession会话对象">SqlSession会话对象</h3>
 <p>SqlSession 实例在 MyBatis 中是非常强大的一个类。在这里你会看到所有执行语句、提交或回滚事务和获取映射器实例的方法。</p>
 <p>执行语句的方法主要有：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">selectOne</span><span style="color:#f92672">(</span>String statement<span style="color:#f92672">,</span> Object parameter<span style="color:#f92672">)</span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> List<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">selectList</span><span style="color:#f92672">(</span>String statement<span style="color:#f92672">,</span> Object parameter<span style="color:#f92672">)</span> 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span>String statement<span style="color:#f92672">,</span> Object parameter<span style="color:#f92672">)</span> 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">update</span><span style="color:#f92672">(</span>String statement<span style="color:#f92672">,</span> Object parameter<span style="color:#f92672">)</span> 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">delete</span><span style="color:#f92672">(</span>String statement<span style="color:#f92672">,</span> Object parameter<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>操作事务的方法主要有：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">commit</span><span style="color:#f92672">()</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rollback</span><span style="color:#f92672">()</span> 
-</span></span></code></pre></div><h2 id="mybatis的dao层实现">Mybatis的Dao层实现</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">selectOne</span><span class="o">(</span><span class="n">String</span> <span class="n">statement</span><span class="o">,</span> <span class="n">Object</span> <span class="n">parameter</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">selectList</span><span class="o">(</span><span class="n">String</span> <span class="n">statement</span><span class="o">,</span> <span class="n">Object</span> <span class="n">parameter</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">insert</span><span class="o">(</span><span class="n">String</span> <span class="n">statement</span><span class="o">,</span> <span class="n">Object</span> <span class="n">parameter</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">update</span><span class="o">(</span><span class="n">String</span> <span class="n">statement</span><span class="o">,</span> <span class="n">Object</span> <span class="n">parameter</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">delete</span><span class="o">(</span><span class="n">String</span> <span class="n">statement</span><span class="o">,</span> <span class="n">Object</span> <span class="n">parameter</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>操作事务的方法主要有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">commit</span><span class="o">()</span>  
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">rollback</span><span class="o">()</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="mybatis的dao层实现">Mybatis的Dao层实现</h2>
 <h3 id="传统方式实现">传统方式实现</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">UserDao</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findAll</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserDaoImpl</span> <span style="color:#66d9ef">implements</span> UserDao <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findAll</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        InputStream resourceAsStream <span style="color:#f92672">=</span> Resources<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SqlMapConfig.xml&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        SqlSessionFactory sqlSessionFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SqlSessionFactoryBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span>resourceAsStream<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        SqlSession sqlSession <span style="color:#f92672">=</span> sqlSessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> userList <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">selectList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;userMapper.findAll&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> userList<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testTraditionDao</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    UserDao userDao <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UserDaoImpl<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> all <span style="color:#f92672">=</span> userDao<span style="color:#f92672">.</span><span style="color:#a6e22e">findAll</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>all<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h3 id="接口代理方式实现">接口代理方式实现</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserDao</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDaoImpl</span> <span class="kd">implements</span> <span class="n">UserDao</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InputStream</span> <span class="n">resourceAsStream</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&#34;SqlMapConfig.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">resourceAsStream</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userList</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;userMapper.findAll&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">userList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testTraditionDao</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UserDao</span> <span class="n">userDao</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDaoImpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">all</span> <span class="o">=</span> <span class="n">userDao</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">all</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="接口代理方式实现">接口代理方式实现</h3>
 <p><strong>代理开发方式介绍</strong></p>
 <p>采用 Mybatis 的代理开发方式实现 DAO 层的开发，这种方式是我们后面进入企业的主流。</p>
 <p>Mapper 接口开发方法只需要程序员编写Mapper 接口（相当于Dao 接口），由Mybatis 框架根据接口定义<strong>创建接口的动态代理对象</strong>，代理对象的方法体同上边Dao接口实现类方法。</p>
@@ -504,64 +714,146 @@
 <p><strong>编写UserMapper接口</strong></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225954.png" alt="image-20210321193412070"></p>
 <p><strong>测试代理方式</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testProxyDao</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    InputStream resourceAsStream <span style="color:#f92672">=</span> Resources<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SqlMapConfig.xml&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    SqlSessionFactory sqlSessionFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SqlSessionFactoryBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span>resourceAsStream<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    SqlSession sqlSession <span style="color:#f92672">=</span> sqlSessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//获得MyBatis框架生成的UserMapper接口的实现类
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  	UserMapper userMapper <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">getMapper</span><span style="color:#f92672">(</span>UserMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    User user <span style="color:#f92672">=</span> userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>user<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h2 id="mybatis映射文件深入">Mybatis映射文件深入</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testProxyDao</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">InputStream</span> <span class="n">resourceAsStream</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&#34;SqlMapConfig.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">resourceAsStream</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//获得MyBatis框架生成的UserMapper接口的实现类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  	<span class="n">UserMapper</span> <span class="n">userMapper</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userMapper</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="mybatis映射文件深入">Mybatis映射文件深入</h2>
 <h3 id="动态sql语句">动态sql语句</h3>
 <p><strong>动态sql语句概述</strong></p>
 <p>Mybatis 的映射文件中，前面我们的 SQL 都是比较简单的，有些时候业务逻辑复杂时，我们的 SQL是动态变化的，此时在前面的学习中我们的 SQL 就不能满足要求了。</p>
 <p><strong>动态 SQL  之<code>&lt;if&gt;</code></strong></p>
 <p>我们根据实体类的不同取值，使用不同的 SQL语句来进行查询。比如在 id如果不为空时可以根据id查询，如果username 不同空时还要加入用户名作为条件。这种情况在我们的多条件组合查询中经常会碰到。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findByCondition&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;user&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    select * from User
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;where&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;if</span> <span style="color:#a6e22e">test=</span><span style="color:#e6db74">&#34;id!=0&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>            and id=#{id}
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/if&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;if</span> <span style="color:#a6e22e">test=</span><span style="color:#e6db74">&#34;username!=null&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>            and username=#{username}
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/if&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/where&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
-</span></span></code></pre></div><p>当查询条件id和username都存在时，控制台打印的sql语句如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获得MyBatis框架生成的UserMapper接口的实现类
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>UserMapper userMapper <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">getMapper</span><span style="color:#f92672">(</span>UserMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>User condition <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>condition<span style="color:#f92672">.</span><span style="color:#a6e22e">setId</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>condition<span style="color:#f92672">.</span><span style="color:#a6e22e">setUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;lucy&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>User user <span style="color:#f92672">=</span> userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findByCondition</span><span style="color:#f92672">(</span>condition<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p>当查询条件只有id存在时，控制台打印的sql语句如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获得MyBatis框架生成的UserMapper接口的实现类
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>UserMapper userMapper <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">getMapper</span><span style="color:#f92672">(</span>UserMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>User condition <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>condition<span style="color:#f92672">.</span><span style="color:#a6e22e">setId</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>User user <span style="color:#f92672">=</span> userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findByCondition</span><span style="color:#f92672">(</span>condition<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p><strong>动态 SQL  之<code>&lt;foreach&gt;</code></strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;findByCondition&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;user&#34;</span> <span class="na">resultType=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    select * from User
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;where&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;id!=0&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            and id=#{id}
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/if&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;username!=null&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            and username=#{username}
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/if&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/where&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/select&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当查询条件id和username都存在时，控制台打印的sql语句如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获得MyBatis框架生成的UserMapper接口的实现类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">UserMapper</span> <span class="n">userMapper</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">User</span> <span class="n">condition</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">condition</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">condition</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&#34;lucy&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userMapper</span><span class="o">.</span><span class="na">findByCondition</span><span class="o">(</span><span class="n">condition</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当查询条件只有id存在时，控制台打印的sql语句如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获得MyBatis框架生成的UserMapper接口的实现类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">UserMapper</span> <span class="n">userMapper</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">User</span> <span class="n">condition</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">condition</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userMapper</span><span class="o">.</span><span class="na">findByCondition</span><span class="o">(</span><span class="n">condition</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>动态 SQL  之<code>&lt;foreach&gt;</code></strong></p>
 <p>循环执行sql的拼接操作，例如：SELECT * FROM USER WHERE id IN (1,2,5)。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findByIds&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;list&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>   select * from User
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;where&gt;</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">&lt;foreach</span> <span style="color:#a6e22e">collection=</span><span style="color:#e6db74">&#34;array&#34;</span> <span style="color:#a6e22e">open=</span><span style="color:#e6db74">&#34;id in(&#34;</span> <span style="color:#a6e22e">close=</span><span style="color:#e6db74">&#34;)&#34;</span> <span style="color:#a6e22e">item=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">separator=</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>           #{id}
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">&lt;/foreach&gt;</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;/where&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
-</span></span></code></pre></div><p>测试代码片段如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获得MyBatis框架生成的UserMapper接口的实现类
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>UserMapper userMapper <span style="color:#f92672">=</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">getMapper</span><span style="color:#f92672">(</span>UserMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> ids <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span><span style="color:#ae81ff">2</span><span style="color:#f92672">,</span><span style="color:#ae81ff">5</span><span style="color:#f92672">};</span>
-</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> userList <span style="color:#f92672">=</span> userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findByIds</span><span style="color:#f92672">(</span>ids<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>userList<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p>foreach标签的属性含义如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;findByIds&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;list&#34;</span> <span class="na">resultType=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">   select * from User
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;where&gt;</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;foreach</span> <span class="na">collection=</span><span class="s">&#34;array&#34;</span> <span class="na">open=</span><span class="s">&#34;id in(&#34;</span> <span class="na">close=</span><span class="s">&#34;)&#34;</span> <span class="na">item=</span><span class="s">&#34;id&#34;</span> <span class="na">separator=</span><span class="s">&#34;,&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">           #{id}
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;/foreach&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;/where&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/select&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试代码片段如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获得MyBatis框架生成的UserMapper接口的实现类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">UserMapper</span> <span class="n">userMapper</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[]</span> <span class="n">ids</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">2</span><span class="o">,</span><span class="mi">5</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userList</span> <span class="o">=</span> <span class="n">userMapper</span><span class="o">.</span><span class="na">findByIds</span><span class="o">(</span><span class="n">ids</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">userList</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>foreach标签的属性含义如下：</p>
 <p><code>&lt;foreach&gt;</code>标签用于遍历集合，它的属性：</p>
 <ol>
 <li>collection：代表要遍历的集合元素，注意编写时不要写#{}</li>
@@ -572,20 +864,39 @@
 </ol>
 <h3 id="sql片段抽取">SQL片段抽取</h3>
 <p>Sql 中可将重复的 sql 提取出来，使用时用 include 引用即可，最终达到 sql 重用的目的</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--抽取sql片段简化编写--&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;sql</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;selectUser&#34;</span><span style="color:#f92672">&gt;</span>select * from User<span style="color:#f92672">&lt;/sql&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findById&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;include</span> <span style="color:#a6e22e">refid=</span><span style="color:#e6db74">&#34;selectUser&#34;</span><span style="color:#f92672">&gt;&lt;/include&gt;</span> where id=#{id}
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findByIds&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;list&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;include</span> <span style="color:#a6e22e">refid=</span><span style="color:#e6db74">&#34;selectUser&#34;</span><span style="color:#f92672">&gt;&lt;/include&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;where&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;foreach</span> <span style="color:#a6e22e">collection=</span><span style="color:#e6db74">&#34;array&#34;</span> <span style="color:#a6e22e">open=</span><span style="color:#e6db74">&#34;id in(&#34;</span> <span style="color:#a6e22e">close=</span><span style="color:#e6db74">&#34;)&#34;</span> <span style="color:#a6e22e">item=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">separator=</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>            #{id}
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/foreach&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/where&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
-</span></span></code></pre></div><h2 id="mybatis核心配置文件深入">Mybatis核心配置文件深入</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--抽取sql片段简化编写--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;sql</span> <span class="na">id=</span><span class="s">&#34;selectUser&#34;</span><span class="nt">&gt;</span>select * from User<span class="nt">&lt;/sql&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;findById&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;int&#34;</span> <span class="na">resultType=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;include</span> <span class="na">refid=</span><span class="s">&#34;selectUser&#34;</span><span class="nt">&gt;&lt;/include&gt;</span> where id=#{id}
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/select&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;findByIds&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;list&#34;</span> <span class="na">resultType=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;include</span> <span class="na">refid=</span><span class="s">&#34;selectUser&#34;</span><span class="nt">&gt;&lt;/include&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;where&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;foreach</span> <span class="na">collection=</span><span class="s">&#34;array&#34;</span> <span class="na">open=</span><span class="s">&#34;id in(&#34;</span> <span class="na">close=</span><span class="s">&#34;)&#34;</span> <span class="na">item=</span><span class="s">&#34;id&#34;</span> <span class="na">separator=</span><span class="s">&#34;,&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            #{id}
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/foreach&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/where&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/select&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="mybatis核心配置文件深入">Mybatis核心配置文件深入</h2>
 <h3 id="typehandlers标签">typeHandlers标签</h3>
 <p>无论是 MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，还是从结果集中取出一个值时， 都会用类型处理器将获取的值以合适的方式转换成 Java 类型。下表描述了一些默认的类型处理器（截取部分）。</p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230002.png" alt="image-20210321170520947"></p>
@@ -597,28 +908,66 @@
 <li>在MyBatis核心配置文件中进行注册</li>
 </ol>
 <p>测试转换是否正确</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyDateTypeHandler</span> <span style="color:#66d9ef">extends</span> BaseTypeHandler<span style="color:#f92672">&lt;</span>Date<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setNonNullParameter</span><span style="color:#f92672">(</span>PreparedStatement preparedStatement<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> i<span style="color:#f92672">,</span> Date date<span style="color:#f92672">,</span> JdbcType type<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        preparedStatement<span style="color:#f92672">.</span><span style="color:#a6e22e">setString</span><span style="color:#f92672">(</span>i<span style="color:#f92672">,</span>date<span style="color:#f92672">.</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Date <span style="color:#a6e22e">getNullableResult</span><span style="color:#f92672">(</span>ResultSet resultSet<span style="color:#f92672">,</span> String s<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">(</span>resultSet<span style="color:#f92672">.</span><span style="color:#a6e22e">getLong</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Date <span style="color:#a6e22e">getNullableResult</span><span style="color:#f92672">(</span>ResultSet resultSet<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> i<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">(</span>resultSet<span style="color:#f92672">.</span><span style="color:#a6e22e">getLong</span><span style="color:#f92672">(</span>i<span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Date <span style="color:#a6e22e">getNullableResult</span><span style="color:#f92672">(</span>CallableStatement callableStatement<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> i<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> callableStatement<span style="color:#f92672">.</span><span style="color:#a6e22e">getDate</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--注册类型自定义转换器--&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;typeHandlers&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;typeHandler</span> <span style="color:#a6e22e">handler=</span><span style="color:#e6db74">&#34;com.itheima.typeHandlers.MyDateTypeHandler&#34;</span><span style="color:#f92672">&gt;&lt;/typeHandler&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/typeHandlers&gt;</span>
-</span></span></code></pre></div><p>测试添加操作：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>user<span style="color:#f92672">.</span><span style="color:#a6e22e">setBirthday</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">add2</span><span style="color:#f92672">(</span>user<span style="color:#f92672">);</span>
-</span></span></code></pre></div><h4 id="java数据类型和mysql数据类型对应表">Java数据类型和MySql数据类型对应表</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyDateTypeHandler</span> <span class="kd">extends</span> <span class="n">BaseTypeHandler</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNonNullParameter</span><span class="o">(</span><span class="n">PreparedStatement</span> <span class="n">preparedStatement</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="n">Date</span> <span class="n">date</span><span class="o">,</span> <span class="n">JdbcType</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">preparedStatement</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">date</span><span class="o">.</span><span class="na">getTime</span><span class="o">()+</span><span class="s">&#34;&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Date</span> <span class="nf">getNullableResult</span><span class="o">(</span><span class="n">ResultSet</span> <span class="n">resultSet</span><span class="o">,</span> <span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">resultSet</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Date</span> <span class="nf">getNullableResult</span><span class="o">(</span><span class="n">ResultSet</span> <span class="n">resultSet</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">resultSet</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Date</span> <span class="nf">getNullableResult</span><span class="o">(</span><span class="n">CallableStatement</span> <span class="n">callableStatement</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">callableStatement</span><span class="o">.</span><span class="na">getDate</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--注册类型自定义转换器--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;typeHandlers&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;typeHandler</span> <span class="na">handler=</span><span class="s">&#34;com.itheima.typeHandlers.MyDateTypeHandler&#34;</span><span class="nt">&gt;&lt;/typeHandler&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/typeHandlers&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试添加操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">user</span><span class="o">.</span><span class="na">setBirthday</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">userMapper</span><span class="o">.</span><span class="na">add2</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="java数据类型和mysql数据类型对应表">Java数据类型和MySql数据类型对应表</h4>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230009.png" alt="这里写图片描述"></p>
 <h3 id="plugins标签">plugins标签</h3>
 <p>MyBatis可以使用<strong>第三方的插件来对功能进行扩展</strong>，分页助手PageHelper是将分页的复杂操作进行封装，使用简单的方式即可获得分页的相关数据</p>
@@ -629,73 +978,166 @@
 <li>测试分页数据获取</li>
 </ol>
 <p><strong>导入通用PageHelper坐标</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 分页助手 --&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>com.github.pagehelper<span style="color:#f92672">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>pagehelper<span style="color:#f92672">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>3.7.5<span style="color:#f92672">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>com.github.jsqlparser<span style="color:#f92672">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>jsqlparser<span style="color:#f92672">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>0.9.1<span style="color:#f92672">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><p><strong>在mybatis核心配置文件中配置PageHelper插件</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 注意：分页助手的插件  配置在通用馆mapper之前 --&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;plugin</span> <span style="color:#a6e22e">interceptor=</span><span style="color:#e6db74">&#34;com.github.pagehelper.PageHelper&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 指定方言 --&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;dialect&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;mysql&#34;</span><span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/plugin&gt;</span>
-</span></span></code></pre></div><p><strong>测试分页代码实现</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testPageHelper</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//设置分页参数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    PageHelper<span style="color:#f92672">.</span><span style="color:#a6e22e">startPage</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span><span style="color:#ae81ff">2</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> userList <span style="color:#f92672">=</span> userMapper2<span style="color:#f92672">.</span><span style="color:#a6e22e">select</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>User user <span style="color:#f92672">:</span> userList<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>user<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p><strong>获得分页相关的其他参数</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//其他分页的数据
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>PageInfo<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> pageInfo <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PageInfo<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;(</span>userList<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;总条数：&#34;</span><span style="color:#f92672">+</span>pageInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">getTotal</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;总页数：&#34;</span><span style="color:#f92672">+</span>pageInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">getPages</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;当前页：&#34;</span><span style="color:#f92672">+</span>pageInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">getPageNum</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;每页显示长度：&#34;</span><span style="color:#f92672">+</span>pageInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">getPageSize</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;上一页:&#34;</span><span style="color:#f92672">+</span>pageInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">getPrePage</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;上一页:&#34;</span><span style="color:#f92672">+</span>pageInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">getNextPage</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;是否第一页：&#34;</span><span style="color:#f92672">+</span>pageInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">isIsFirstPage</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;是否最后一页：&#34;</span><span style="color:#f92672">+</span>pageInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">isIsLastPage</span><span style="color:#f92672">());</span>
-</span></span></code></pre></div><h2 id="mybatis多表操作">Mybatis多表操作</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 分页助手 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.github.pagehelper<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>pagehelper<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>3.7.5<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.github.jsqlparser<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>jsqlparser<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>0.9.1<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>在mybatis核心配置文件中配置PageHelper插件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 注意：分页助手的插件  配置在通用馆mapper之前 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;plugin</span> <span class="na">interceptor=</span><span class="s">&#34;com.github.pagehelper.PageHelper&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 指定方言 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dialect&#34;</span> <span class="na">value=</span><span class="s">&#34;mysql&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plugin&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>测试分页代码实现</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPageHelper</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//设置分页参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">PageHelper</span><span class="o">.</span><span class="na">startPage</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userList</span> <span class="o">=</span> <span class="n">userMapper2</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span> <span class="o">:</span> <span class="n">userList</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>获得分页相关的其他参数</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//其他分页的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">PageInfo</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">pageInfo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageInfo</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;(</span><span class="n">userList</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;总条数：&#34;</span><span class="o">+</span><span class="n">pageInfo</span><span class="o">.</span><span class="na">getTotal</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;总页数：&#34;</span><span class="o">+</span><span class="n">pageInfo</span><span class="o">.</span><span class="na">getPages</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;当前页：&#34;</span><span class="o">+</span><span class="n">pageInfo</span><span class="o">.</span><span class="na">getPageNum</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;每页显示长度：&#34;</span><span class="o">+</span><span class="n">pageInfo</span><span class="o">.</span><span class="na">getPageSize</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;上一页:&#34;</span><span class="o">+</span><span class="n">pageInfo</span><span class="o">.</span><span class="na">getPrePage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;上一页:&#34;</span><span class="o">+</span><span class="n">pageInfo</span><span class="o">.</span><span class="na">getNextPage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;是否第一页：&#34;</span><span class="o">+</span><span class="n">pageInfo</span><span class="o">.</span><span class="na">isIsFirstPage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;是否最后一页：&#34;</span><span class="o">+</span><span class="n">pageInfo</span><span class="o">.</span><span class="na">isIsLastPage</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="mybatis多表操作">Mybatis多表操作</h2>
 <h3 id="xml配置">xml配置</h3>
 <p><strong>一对一</strong></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230016.png" alt="image-20210321184552993"></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230021.png" alt="image-20210321184610801"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;com.itheima.mapper.OrderMapper&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;resultMap</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;orderMap&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;com.itheima.domain.Order&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;uid&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;user.id&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;user.username&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;user.password&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;birthday&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;user.birthday&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/resultMap&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findAll&#34;</span> <span style="color:#a6e22e">resultMap=</span><span style="color:#e6db74">&#34;orderMap&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    	select * from orders o,user u where o.uid=u.id
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/select&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mapper&gt;</span>
-</span></span></code></pre></div><p>或</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;resultMap</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;orderMap&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;com.itheima.domain.Order&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;ordertime&#34;</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;ordertime&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;total&#34;</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;total&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;association</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;user&#34;</span> <span style="color:#a6e22e">javaType=</span><span style="color:#e6db74">&#34;com.itheima.domain.User&#34;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;uid&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;birthday&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;birthday&#34;</span><span style="color:#f92672">&gt;&lt;/result&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/association&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/resultMap&gt;</span>
-</span></span></code></pre></div><p><strong>一对多</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.itheima.mapper.OrderMapper&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;orderMap&#34;</span> <span class="na">type=</span><span class="s">&#34;com.itheima.domain.Order&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;uid&#34;</span> <span class="na">property=</span><span class="s">&#34;user.id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;username&#34;</span> <span class="na">property=</span><span class="s">&#34;user.username&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;password&#34;</span> <span class="na">property=</span><span class="s">&#34;user.password&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;birthday&#34;</span> <span class="na">property=</span><span class="s">&#34;user.birthday&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/resultMap&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;findAll&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;orderMap&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    	select * from orders o,user u where o.uid=u.id
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/select&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;orderMap&#34;</span> <span class="na">type=</span><span class="s">&#34;com.itheima.domain.Order&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;id&#34;</span> <span class="na">column=</span><span class="s">&#34;id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;ordertime&#34;</span> <span class="na">column=</span><span class="s">&#34;ordertime&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;total&#34;</span> <span class="na">column=</span><span class="s">&#34;total&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">&#34;user&#34;</span> <span class="na">javaType=</span><span class="s">&#34;com.itheima.domain.User&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;uid&#34;</span> <span class="na">property=</span><span class="s">&#34;id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;username&#34;</span> <span class="na">property=</span><span class="s">&#34;username&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;password&#34;</span> <span class="na">property=</span><span class="s">&#34;password&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;birthday&#34;</span> <span class="na">property=</span><span class="s">&#34;birthday&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/association&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/resultMap&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>一对多</strong></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230029.png" alt="image-20210321190045301"></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230035.png" alt="image-20210321190058689"></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230042.png" alt="image-20210321190140515"></p>
@@ -717,27 +1159,64 @@
 <li>@Many：实现一对多结果集封装</li>
 </ol>
 <h4 id="基础增删改查">基础增删改查</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;mappers&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--扫描使用注解的类--&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.itheima.mapper.UserMapper&#34;</span><span style="color:#f92672">&gt;&lt;/mapper&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mappers&gt;</span>
-</span></span></code></pre></div><p>或</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;mappers&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--扫描使用注解的类所在的包--&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;com.itheima.mapper&#34;</span><span style="color:#f92672">&gt;&lt;/package&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mappers&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Insert</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;insert into user values(#{id},#{username},#{password},#{birthday})&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>User user<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Update</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;update user set username=#{username},password=#{password} where id=#{id}&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">update</span><span style="color:#f92672">(</span>User user<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Delete</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;delete from user where id=#{id}&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">delete</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Select</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;select * from user where id=#{id}&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">);</span>
-</span></span></code></pre></div><h4 id="复杂关系查询">复杂关系查询</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mappers&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--扫描使用注解的类--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;mapper</span> <span class="na">class=</span><span class="s">&#34;com.itheima.mapper.UserMapper&#34;</span><span class="nt">&gt;&lt;/mapper&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mappers&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mappers&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--扫描使用注解的类所在的包--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;package</span> <span class="na">name=</span><span class="s">&#34;com.itheima.mapper&#34;</span><span class="nt">&gt;&lt;/package&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mappers&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Insert</span><span class="o">(</span><span class="s">&#34;insert into user values(#{id},#{username},#{password},#{birthday})&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Update</span><span class="o">(</span><span class="s">&#34;update user set username=#{username},password=#{password} where id=#{id}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Delete</span><span class="o">(</span><span class="s">&#34;delete from user where id=#{id}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Select</span><span class="o">(</span><span class="s">&#34;select * from user where id=#{id}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">User</span> <span class="nf">findById</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="复杂关系查询">复杂关系查询</h4>
 <p>实现复杂关系映射之前我们可以在映射文件中通过配置<code>&lt;resultMap&gt;</code>来实现，使用注解开发后，我们可以使用@Results注解，@Result注解，@One注解，@Many注解组合完成复杂关系的配置</p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230112.png" alt="image-20210321195005295"></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230206.png" alt="image-20210321195021427"></p>
@@ -747,100 +1226,101 @@
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230225.png" alt="image-20210321195240470"></p>
 <p><strong>多对多</strong></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521230232.png" alt="image-20210321195312897"></p>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/"
-      ><span class="mr-1.5">←</span><span>玩儿转MySQL</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/ssm%E6%A1%86%E6%9E%B6-springmvc/"
-      ><span>SSM框架-SpringMVC</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-01-22
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+          <a href="/tags/javaweb/">JavaWeb</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">玩儿转MySQL</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/ssm%E6%A1%86%E6%9E%B6-springmvc/">
+            <span class="next-text nav-default">SSM框架-SpringMVC</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

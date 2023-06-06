@@ -1,301 +1,175 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>计网-物理层 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>计网-物理层 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，&#43;5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
-数据：运送消息的实体
-信号：数据的电气或电磁的表现
-模拟信号：消息的参数取值时连续的
-数字信号：消息的参数取值是离散的
-码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度
-码元长度：1码元可以携带的nbit信息量
-信道：向一个方向传送消息的媒体（一条发送的信道&#43;一条接收的信道）
-单工通信：单向高速公路 半双工通信：对讲机 全双工通信：电话 基带信号：来自信源的信号
-带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）
-单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码
-奈氏准则：在任何信道中，码元传输速率是有上限的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特
-香农定理：信道的极限信息传输速率C=W✖log2(1&#43;S/N) b/s
-物理层下面的传输媒体 导向传输媒体 双绞线：STP，UTP 同轴电缆：50Ω，75Ω 光纤 非导向传输媒体 无线电磁波传播（短波，微波） 物理层设备 集线器：是一个很大的冲突域，采用广播的方式 信道复用技术 充分利用一条共享信道
-频分复用技术（FDM） 时分复用技术（TDM） 统计时分复用（STDM） 码分复用技术（CDM） 同一个频率同时传就只能采用码分复用
-数字传输系统 PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路） 宽带接入技术 xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术
-HFC光纤同轴混合网：用有线电视提供internet接入。
-FTTx技术：光纤到户" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="计网-物理层" />
-<meta property="og:description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，&#43;5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
-数据：运送消息的实体
-信号：数据的电气或电磁的表现
-模拟信号：消息的参数取值时连续的
-数字信号：消息的参数取值是离散的
-码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度
-码元长度：1码元可以携带的nbit信息量
-信道：向一个方向传送消息的媒体（一条发送的信道&#43;一条接收的信道）
-单工通信：单向高速公路 半双工通信：对讲机 全双工通信：电话 基带信号：来自信源的信号
-带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）
-单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码
-奈氏准则：在任何信道中，码元传输速率是有上限的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特
-香农定理：信道的极限信息传输速率C=W✖log2(1&#43;S/N) b/s
-物理层下面的传输媒体 导向传输媒体 双绞线：STP，UTP 同轴电缆：50Ω，75Ω 光纤 非导向传输媒体 无线电磁波传播（短波，微波） 物理层设备 集线器：是一个很大的冲突域，采用广播的方式 信道复用技术 充分利用一条共享信道
-频分复用技术（FDM） 时分复用技术（TDM） 统计时分复用（STDM） 码分复用技术（CDM） 同一个频率同时传就只能采用码分复用
-数字传输系统 PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路） 宽带接入技术 xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术
-HFC光纤同轴混合网：用有线电视提供internet接入。
-FTTx技术：光纤到户" />
+<meta property="og:title" content="计网-物理层" />
+<meta property="og:description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-11-21T15:06:00+00:00" />
 <meta property="article:modified_time" content="2020-11-21T15:06:00+00:00" />
-
-  
-  <meta itemprop="name" content="计网-物理层">
-<meta itemprop="description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，&#43;5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
-数据：运送消息的实体
-信号：数据的电气或电磁的表现
-模拟信号：消息的参数取值时连续的
-数字信号：消息的参数取值是离散的
-码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度
-码元长度：1码元可以携带的nbit信息量
-信道：向一个方向传送消息的媒体（一条发送的信道&#43;一条接收的信道）
-单工通信：单向高速公路 半双工通信：对讲机 全双工通信：电话 基带信号：来自信源的信号
-带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）
-单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码
-奈氏准则：在任何信道中，码元传输速率是有上限的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特
-香农定理：信道的极限信息传输速率C=W✖log2(1&#43;S/N) b/s
-物理层下面的传输媒体 导向传输媒体 双绞线：STP，UTP 同轴电缆：50Ω，75Ω 光纤 非导向传输媒体 无线电磁波传播（短波，微波） 物理层设备 集线器：是一个很大的冲突域，采用广播的方式 信道复用技术 充分利用一条共享信道
-频分复用技术（FDM） 时分复用技术（TDM） 统计时分复用（STDM） 码分复用技术（CDM） 同一个频率同时传就只能采用码分复用
-数字传输系统 PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路） 宽带接入技术 xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术
-HFC光纤同轴混合网：用有线电视提供internet接入。
-FTTx技术：光纤到户"><meta itemprop="datePublished" content="2020-11-21T15:06:00+00:00" />
+<meta itemprop="name" content="计网-物理层">
+<meta itemprop="description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚"><meta itemprop="datePublished" content="2020-11-21T15:06:00+00:00" />
 <meta itemprop="dateModified" content="2020-11-21T15:06:00+00:00" />
-<meta itemprop="wordCount" content="48">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="838">
+<meta itemprop="keywords" content="计算机网络," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="计网-物理层"/>
-<meta name="twitter:description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚数量 电气特性：电压范围 功能特性：例如规定-5V表示0，&#43;5V表示1 过程特性：连接时各个部件的工作步骤 数据通信的基础知识 消息：具有意义的数据
-数据：运送消息的实体
-信号：数据的电气或电磁的表现
-模拟信号：消息的参数取值时连续的
-数字信号：消息的参数取值是离散的
-码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度
-码元长度：1码元可以携带的nbit信息量
-信道：向一个方向传送消息的媒体（一条发送的信道&#43;一条接收的信道）
-单工通信：单向高速公路 半双工通信：对讲机 全双工通信：电话 基带信号：来自信源的信号
-带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）
-单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码
-奈氏准则：在任何信道中，码元传输速率是有上限的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特
-香农定理：信道的极限信息传输速率C=W✖log2(1&#43;S/N) b/s
-物理层下面的传输媒体 导向传输媒体 双绞线：STP，UTP 同轴电缆：50Ω，75Ω 光纤 非导向传输媒体 无线电磁波传播（短波，微波） 物理层设备 集线器：是一个很大的冲突域，采用广播的方式 信道复用技术 充分利用一条共享信道
-频分复用技术（FDM） 时分复用技术（TDM） 统计时分复用（STDM） 码分复用技术（CDM） 同一个频率同时传就只能采用码分复用
-数字传输系统 PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路） 宽带接入技术 xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术
-HFC光纤同轴混合网：用有线电视提供internet接入。
-FTTx技术：光纤到户"/>
+<meta name="twitter:description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">计网-物理层</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 838 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#物理层的基本概念">物理层的基本概念</a></li>
+        <li><a href="#数据通信的基础知识">数据通信的基础知识</a></li>
+        <li><a href="#物理层下面的传输媒体">物理层下面的传输媒体</a></li>
+        <li><a href="#信道复用技术">信道复用技术</a>
+          <ul>
+            <li><a href="#频分复用技术fdm">频分复用技术（FDM）</a></li>
+            <li><a href="#时分复用技术tdm">时分复用技术（TDM）</a></li>
+            <li><a href="#统计时分复用stdm">统计时分复用（STDM）</a></li>
+            <li><a href="#码分复用技术cdm">码分复用技术（CDM）</a></li>
+          </ul>
+        </li>
+        <li><a href="#数字传输系统">数字传输系统</a></li>
+        <li><a href="#宽带接入技术">宽带接入技术</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">计网-物理层</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Nov 21, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h2 id="物理层的基本概念">物理层的基本概念</h2>
+</div>
+    <div class="post-content">
+      <h2 id="物理层的基本概念">物理层的基本概念</h2>
 <ul>
 <li>物理层解决如何在连接各种计算机的传输媒体上传输数据比特流</li>
 <li>主要任务时确定与传输媒体接口的一些特性
@@ -380,16 +254,16 @@ FTTx技术：光纤到户"/>
 </ul>
 <h2 id="信道复用技术">信道复用技术</h2>
 <p><strong>充分利用一条共享信道</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121220043.png" style="zoom:67%;" />
 <h3 id="频分复用技术fdm">频分复用技术（FDM）</h3>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121220341.png" style="zoom:50%;" />
 <h3 id="时分复用技术tdm">时分复用技术（TDM）</h3>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121220518.png" style="zoom:67%;" />
 <h3 id="统计时分复用stdm">统计时分复用（STDM）</h3>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121221519.png" style="zoom:67%;" />
 <h3 id="码分复用技术cdm">码分复用技术（CDM）</h3>
 <p><strong>同一个频率同时传就只能采用码分复用</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121223627.png" style="zoom: 80%;" />
 <h2 id="数字传输系统">数字传输系统</h2>
 <ul>
 <li>PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路）</li>
@@ -406,100 +280,100 @@ FTTx技术：光纤到户"/>
 <p>FTTx技术：光纤到户</p>
 </li>
 </ul>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"
-      ><span class="mr-1.5">←</span><span>计网-数据链路层</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/"
-      ><span>计网-概述</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-21
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">计网-数据链路层</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/">
+            <span class="next-text nav-default">计网-概述</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

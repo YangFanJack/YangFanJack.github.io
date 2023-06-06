@@ -1,233 +1,205 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>java基础快速回顾-中 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名&#43;@&#43;hashcode”值 看" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>java基础快速回顾-中 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名&#43;@&#43;hashcode”值 看一个类是否重写了toString方法，可以通过直接打印对象名字，没有重写的显示对象地址值，重写的按照toString重写内容自定义打印 equals() Object类的equals()方法默认就是用==来进行比较 public class Person{ public String name; public int age; @Override public boolean equals(Object obj){ Person p = (Person)obj; return this.name.equals(p.name) &amp;&amp; this.age==p.age; } } public class Test{ public static void main(String[] args){ Person p1 = new Person(); p1.name = &#34;jack&#34;; p1.age = 10; Person p2 = new Person(); p2.name = &#34;sam&#34;; p2.age = 14; p1.equals(p2); } } Objects类 Objectsq工具类提供了一些静态方法来操作对象，这些方法是空指针安全，容忍空指针的 String s1 = null; String s2 = &#34;jack&#34;; System." />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="java基础快速回顾-中" />
-<meta property="og:description" content="Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名&#43;@&#43;hashcode”值 看一个类是否重写了toString方法，可以通过直接打印对象名字，没有重写的显示对象地址值，重写的按照toString重写内容自定义打印 equals() Object类的equals()方法默认就是用==来进行比较 public class Person{ public String name; public int age; @Override public boolean equals(Object obj){ Person p = (Person)obj; return this.name.equals(p.name) &amp;&amp; this.age==p.age; } } public class Test{ public static void main(String[] args){ Person p1 = new Person(); p1.name = &#34;jack&#34;; p1.age = 10; Person p2 = new Person(); p2.name = &#34;sam&#34;; p2.age = 14; p1.equals(p2); } } Objects类 Objectsq工具类提供了一些静态方法来操作对象，这些方法是空指针安全，容忍空指针的 String s1 = null; String s2 = &#34;jack&#34;; System." />
+<meta property="og:title" content="java基础快速回顾-中" />
+<meta property="og:description" content="Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名&#43;@&#43;hashcode”值 看" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-06T09:36:20+00:00" />
 <meta property="article:modified_time" content="2021-03-06T09:36:20+00:00" />
-
-  
-  <meta itemprop="name" content="java基础快速回顾-中">
-<meta itemprop="description" content="Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名&#43;@&#43;hashcode”值 看一个类是否重写了toString方法，可以通过直接打印对象名字，没有重写的显示对象地址值，重写的按照toString重写内容自定义打印 equals() Object类的equals()方法默认就是用==来进行比较 public class Person{ public String name; public int age; @Override public boolean equals(Object obj){ Person p = (Person)obj; return this.name.equals(p.name) &amp;&amp; this.age==p.age; } } public class Test{ public static void main(String[] args){ Person p1 = new Person(); p1.name = &#34;jack&#34;; p1.age = 10; Person p2 = new Person(); p2.name = &#34;sam&#34;; p2.age = 14; p1.equals(p2); } } Objects类 Objectsq工具类提供了一些静态方法来操作对象，这些方法是空指针安全，容忍空指针的 String s1 = null; String s2 = &#34;jack&#34;; System."><meta itemprop="datePublished" content="2021-03-06T09:36:20+00:00" />
+<meta itemprop="name" content="java基础快速回顾-中">
+<meta itemprop="description" content="Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名&#43;@&#43;hashcode”值 看"><meta itemprop="datePublished" content="2021-03-06T09:36:20+00:00" />
 <meta itemprop="dateModified" content="2021-03-06T09:36:20+00:00" />
-<meta itemprop="wordCount" content="1098">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="7183">
+<meta itemprop="keywords" content="后端,Java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="java基础快速回顾-中"/>
-<meta name="twitter:description" content="Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名&#43;@&#43;hashcode”值 看一个类是否重写了toString方法，可以通过直接打印对象名字，没有重写的显示对象地址值，重写的按照toString重写内容自定义打印 equals() Object类的equals()方法默认就是用==来进行比较 public class Person{ public String name; public int age; @Override public boolean equals(Object obj){ Person p = (Person)obj; return this.name.equals(p.name) &amp;&amp; this.age==p.age; } } public class Test{ public static void main(String[] args){ Person p1 = new Person(); p1.name = &#34;jack&#34;; p1.age = 10; Person p2 = new Person(); p2.name = &#34;sam&#34;; p2.age = 14; p1.equals(p2); } } Objects类 Objectsq工具类提供了一些静态方法来操作对象，这些方法是空指针安全，容忍空指针的 String s1 = null; String s2 = &#34;jack&#34;; System."/>
+<meta name="twitter:description" content="Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名&#43;@&#43;hashcode”值 看"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">java基础快速回顾-中</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-06 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 7183 words </span>
+          <span class="more-meta"> 15 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#java某些类">Java某些类</a>
+          <ul>
+            <li><a href="#object类">Object类</a></li>
+            <li><a href="#objects类">Objects类</a></li>
+            <li><a href="#date类">Date类</a></li>
+            <li><a href="#dateformat类">DateFormat类</a></li>
+            <li><a href="#calendar类">Calendar类</a></li>
+            <li><a href="#system类">System类</a></li>
+            <li><a href="#stringbuilder类">StringBuilder类</a></li>
+            <li><a href="#基本数据类型的包装类">基本数据类型的包装类</a></li>
+          </ul>
+        </li>
+        <li><a href="#java集合">Java集合</a>
+          <ul>
+            <li><a href="#collection集合单列集合">Collection集合（单列集合）</a></li>
+            <li><a href="#list接口collection的第一个子类">List接口：Collection的第一个子类</a></li>
+            <li><a href="#set接口collection的第二个子类">Set接口：Collection的第二个子类</a></li>
+            <li><a href="#collections工具类">Collections工具类</a></li>
+            <li><a href="#map集合双列集合">Map集合（双列集合）</a></li>
+            <li><a href="#jdk9中集合添加的优化">JDK9中集合添加的优化</a></li>
+          </ul>
+        </li>
+        <li><a href="#可变参数">可变参数</a></li>
+        <li><a href="#异常">异常</a>
+          <ul>
+            <li><a href="#异常分类">异常分类</a></li>
+            <li><a href="#异常产生过程">异常产生过程</a></li>
+            <li><a href="#异常的处理">异常的处理</a></li>
+            <li><a href="#异常处理时注意">异常处理时注意：</a></li>
+            <li><a href="#自定义异常类">自定义异常类</a></li>
+          </ul>
+        </li>
+        <li><a href="#多线程">多线程</a>
+          <ul>
+            <li><a href="#thread类">Thread类</a></li>
+            <li><a href="#runnable类创建多线程的第二种方式">Runnable类：创建多线程的第二种方式</a></li>
+            <li><a href="#使用匿名内部类的方式创建线程">使用匿名内部类的方式创建线程</a></li>
+            <li><a href="#线程安全问题">线程安全问题</a></li>
+            <li><a href="#线程状态">线程状态</a></li>
+            <li><a href="#线程间通信等待唤醒机制">线程间通信（等待唤醒机制）</a></li>
+            <li><a href="#线程池">线程池</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">java基础快速回顾-中</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 6, 2021</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h2 id="java某些类">Java某些类</h2>
+</div>
+    <div class="post-content">
+      <h2 id="java某些类">Java某些类</h2>
 <h3 id="object类">Object类</h3>
 <ul>
 <li>java的根类</li>
@@ -241,95 +213,204 @@
 <ul>
 <li>Object类的equals()方法默认就是用==来进行比较</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String name<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>Object obj<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        Person p <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Person<span style="color:#f92672">)</span>obj<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>p<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">==</span>p<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        Person p1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        p1<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        p1<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        Person p2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        p2<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sam&#34;</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        p2<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        p1<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>p2<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h3 id="objects类">Objects类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="n">Person</span><span class="o">)</span><span class="n">obj</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">name</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span><span class="o">==</span><span class="n">p</span><span class="o">.</span><span class="na">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Person</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p1</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&#34;jack&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p1</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Person</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p2</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&#34;sam&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p2</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="mi">14</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">p2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="objects类">Objects类</h3>
 <ul>
 <li>Objectsq工具类提供了一些静态方法来操作对象，这些方法是空指针安全，容忍空指针的</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String s1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>String s2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>s2<span style="color:#f92672">));</span><span style="color:#75715e">//会报空指针异常
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">,</span>s2<span style="color:#f92672">));</span><span style="color:#75715e">//一切正常
-</span></span></span></code></pre></div><h3 id="date类">Date类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="s">&#34;jack&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">s2</span><span class="o">));</span><span class="c1">//会报空指针异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">s1</span><span class="o">,</span><span class="n">s2</span><span class="o">));</span><span class="c1">//一切正常
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="date类">Date类</h3>
 <ul>
 <li>毫秒是日期计算的最小单位</li>
 <li>0毫秒点：1970年1月1日00:00:00（中国属于东八区，会+8小时）</li>
 <li>日期转化为时间戳，就是距离0毫秒点经过了多少毫秒</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Date<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>Date date <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">();</span><span style="color:#75715e">//获取系统当前日期时间
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Date date <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">(</span><span style="color:#66d9ef">long</span> ms<span style="color:#f92672">);</span><span style="color:#75715e">//时间戳转化为日期时间
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">long</span> ms <span style="color:#f92672">=</span> date<span style="color:#f92672">.</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">();</span><span style="color:#75715e">//把日期转化为毫秒时间戳
-</span></span></span></code></pre></div><h3 id="dateformat类">DateFormat类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span><span class="c1">//获取系统当前日期时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="kt">long</span> <span class="n">ms</span><span class="o">);</span><span class="c1">//时间戳转化为日期时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span><span class="c1">//把日期转化为毫秒时间戳
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dateformat类">DateFormat类</h3>
 <ul>
 <li>根据自定义格式相互转化Date &amp; String</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//是抽象类，无法直接使用
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">import</span> java.text.DateFormat<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//使用SimpleDateFormat
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">import</span> java.text.SimpleDateFormat<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//参数是格式(y年，M月，d日，H时，m分，s秒)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>DateFormat sdf <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SimpleDateFormat<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//两个方法：format(Date d)和parse(String s)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>DateFormat sdf <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SimpleDateFormat<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Date date <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>String text <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span>date<span style="color:#f92672">);</span><span style="color:#75715e">//Date——&gt;String
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Date date2 <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span><span style="color:#a6e22e">parse</span><span style="color:#f92672">(</span>text<span style="color:#f92672">);</span><span style="color:#75715e">//String——&gt;Date，这是一个抛异常的方
-</span></span></span></code></pre></div><h3 id="calendar类">Calendar类</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//是抽象类，无法直接使用
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">import</span> java.util.Calendar<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//获得Calendar类的子类对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Calendar c <span style="color:#f92672">=</span> Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">YEAR</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">MONTH</span><span style="color:#f92672">);</span><span style="color:#75715e">//0——11
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> d <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">Date</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> h <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">HOUR</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">MINUTE</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> s <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">SECOND</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">YEAR</span><span style="color:#f92672">,</span><span style="color:#ae81ff">1999</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">YEAR</span><span style="color:#f92672">,</span><span style="color:#ae81ff">2</span><span style="color:#f92672">);</span><span style="color:#75715e">//2001
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>c<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">YEAR</span><span style="color:#f92672">,-</span><span style="color:#ae81ff">4</span><span style="color:#f92672">);</span><span style="color:#75715e">//1997
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>Date date <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">();</span><span style="color:#75715e">//Calendar——&gt;Date
-</span></span></span></code></pre></div><h3 id="system类">System类</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">long</span> s <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">();</span><span style="color:#75715e">//一般用来测试程序执行时间
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//arraycopy(源数组，源数组中的起始位置，目标数组，目标数组中的起始位置，要复制的数组元素数量);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> src <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span><span style="color:#ae81ff">2</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">,</span><span style="color:#ae81ff">4</span><span style="color:#f92672">,</span><span style="color:#ae81ff">5</span><span style="color:#f92672">};</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> dest <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#ae81ff">6</span><span style="color:#f92672">,</span><span style="color:#ae81ff">7</span><span style="color:#f92672">,</span><span style="color:#ae81ff">8</span><span style="color:#f92672">,</span><span style="color:#ae81ff">9</span><span style="color:#f92672">,</span><span style="color:#ae81ff">10</span><span style="color:#f92672">};</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">arraycopy</span><span style="color:#f92672">(</span>src<span style="color:#f92672">,</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span>dest<span style="color:#f92672">,</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">);</span><span style="color:#75715e">//复制后dest={1,2,3,9,10}
-</span></span></span></code></pre></div><h3 id="stringbuilder类">StringBuilder类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//是抽象类，无法直接使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.text.DateFormat</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//使用SimpleDateFormat
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//参数是格式(y年，M月，d日，H时，m分，s秒)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">DateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//两个方法：format(Date d)和parse(String s)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">DateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">date</span><span class="o">);</span><span class="c1">//Date——&gt;String
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Date</span> <span class="n">date2</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">text</span><span class="o">);</span><span class="c1">//String——&gt;Date，这是一个抛异常的方
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="calendar类">Calendar类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//是抽象类，无法直接使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.Calendar</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//获得Calendar类的子类对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Calendar</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">MONTH</span><span class="o">);</span><span class="c1">//0——11
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">Date</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">HOUR</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">MINUTE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">SECOND</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">,</span><span class="mi">1999</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span><span class="c1">//2001
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">c</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">,-</span><span class="mi">4</span><span class="o">);</span><span class="c1">//1997
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span><span class="c1">//Calendar——&gt;Date
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="system类">System类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">s</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span><span class="c1">//一般用来测试程序执行时间
+</span></span></span><span class="line"><span class="cl"><span class="c1">//arraycopy(源数组，源数组中的起始位置，目标数组，目标数组中的起始位置，要复制的数组元素数量);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span><span class="o">[]</span> <span class="n">src</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[]</span> <span class="n">dest</span> <span class="o">=</span> <span class="o">{</span><span class="mi">6</span><span class="o">,</span><span class="mi">7</span><span class="o">,</span><span class="mi">8</span><span class="o">,</span><span class="mi">9</span><span class="o">,</span><span class="mi">10</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">src</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">dest</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">3</span><span class="o">);</span><span class="c1">//复制后dest={1,2,3,9,10}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="stringbuilder类">StringBuilder类</h3>
 <ul>
 <li>字符串底层是一个final常亮，每次对String修改后都需要新建一个String类型的对象，效率很低，为了应对这种情况，StringBuilder应运而生。</li>
 <li>StringBuiler是字符串缓冲区，可以提高字符串操作效率，可以看做是长度可以变化的字符串，底层是一个不被final修饰的byte数组，初始容量16，在修改过程中如果不够会自动扩容</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ab&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>StringBuilder sb2 <span style="color:#f92672">=</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;cde&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">//返回sb自己，内部return this
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sb <span style="color:#f92672">==</span> sb2<span style="color:#f92672">);</span><span style="color:#75715e">//true
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//String——&gt;StringBuilder
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ab&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//StringBuilder——&gt;String
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String s <span style="color:#f92672">=</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div><h3 id="基本数据类型的包装类">基本数据类型的包装类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="s">&#34;ab&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">StringBuilder</span> <span class="n">sb2</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;cde&#34;</span><span class="o">);</span><span class="c1">//返回sb自己，内部return this
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sb</span> <span class="o">==</span> <span class="n">sb2</span><span class="o">);</span><span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1">//String——&gt;StringBuilder
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="s">&#34;ab&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//StringBuilder——&gt;String
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="基本数据类型的包装类">基本数据类型的包装类</h3>
 <ul>
 <li>目的是提供一些方法来操作数据类型</li>
 </ul>
@@ -362,19 +443,43 @@
 <ul>
 <li>
 <p>装箱：基本类型——&gt;包装类：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Integer i <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Integer i <span style="color:#f92672">=</span> Interger<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Interger</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>拆箱：包装类——&gt;基本类型：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> ii <span style="color:#f92672">=</span> i<span style="color:#f92672">.</span><span style="color:#a6e22e">intValue</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">ii</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="na">intValue</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>自动装拆箱</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ArrayList<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span><span style="color:#75715e">//自动装箱
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">);</span><span style="color:#75715e">//自动拆箱
-</span></span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span><span class="c1">//自动装箱
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span><span class="c1">//自动拆箱
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>基本类型和字符串之间转换：</p>
 <ul>
@@ -419,63 +524,150 @@
 <li>boolean hasNext()</li>
 <li>E next()</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//通过Collection中的iterator()方法获得
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> coll <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>coll<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>coll<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;sam&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> coll<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()){</span>
-</span></span><span style="display:flex;"><span>    String s <span style="color:#f92672">=</span> it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h4 id="增强for">增强for</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> coll <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>coll<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>coll<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;sam&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>String s <span style="color:#f92672">:</span> coll<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h4 id="泛型">泛型</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//含有泛型的类
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ArrayList</span><span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>E e<span style="color:#f92672">){}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index<span style="color:#f92672">){}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//通过Collection中的iterator()方法获得
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">coll</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">coll</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;jack&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">coll</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;sam&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">coll</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="增强for">增强for</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Collection</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">coll</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">coll</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;jack&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">coll</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;sam&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">coll</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="泛型">泛型</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//含有泛型的类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">){}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">E</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">){}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>集合如果不使用泛型，默认就是Object类型</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//含有泛型的方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//修饰符 &lt;泛型&gt; 返回值类型 方法名(参数列表){方法体}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>M<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">(</span>M m<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>m<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//调用的时候传递什么参数就调用什么类型的方法
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//含有泛型的接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenericInterface</span><span style="color:#f92672">&lt;</span>I<span style="color:#f92672">&gt;{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">(</span>I i<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//第一种用法：实现的时候确定泛型
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GenericInterfaceImpl</span> <span style="color:#66d9ef">implements</span> GenericInterface<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">(</span>String s<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//第二种用法：创建对象的时候确定泛型
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GenericInterfaceImpl</span><span style="color:#f92672">&lt;</span>I<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> GenericInterface<span style="color:#f92672">&lt;</span>I<span style="color:#f92672">&gt;{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">(</span>I i<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//传值的时候：泛型通配符
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printArray</span><span style="color:#f92672">(</span>ArrayList<span style="color:#f92672">&lt;?&gt;</span> list<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>	Iterator<span style="color:#f92672">&lt;?&gt;</span> it <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//上限限定：? extends E：?只能是E的子类或本身
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//下限限定：? super E：?只能是E的父类或本身
-</span></span></span></code></pre></div><h3 id="list接口collection的第一个子类">List接口：Collection的第一个子类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//含有泛型的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1">//修饰符 &lt;泛型&gt; 返回值类型 方法名(参数列表){方法体}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">M</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(</span><span class="n">M</span> <span class="n">m</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">m</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//调用的时候传递什么参数就调用什么类型的方法
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//含有泛型的接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">GenericInterface</span><span class="o">&lt;</span><span class="n">I</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(</span><span class="n">I</span> <span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//第一种用法：实现的时候确定泛型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericInterfaceImpl</span> <span class="kd">implements</span> <span class="n">GenericInterface</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//第二种用法：创建对象的时候确定泛型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericInterfaceImpl</span><span class="o">&lt;</span><span class="n">I</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">GenericInterface</span><span class="o">&lt;</span><span class="n">I</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(</span><span class="n">I</span> <span class="n">i</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//传值的时候：泛型通配符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printArray</span><span class="o">(</span><span class="n">ArrayList</span><span class="o">&lt;?&gt;</span> <span class="n">list</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Iterator</span><span class="o">&lt;?&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//上限限定：? extends E：?只能是E的子类或本身
+</span></span></span><span class="line"><span class="cl"><span class="c1">//下限限定：? super E：?只能是E的父类或本身
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="list接口collection的第一个子类">List接口：Collection的第一个子类</h3>
 <ul>
 <li>有序的集合</li>
 <li>允许存储重复的元素</li>
@@ -531,15 +723,29 @@
 <li>底层是<code>哈希表(数组+红黑树)+链表</code>实现的，<strong>可以保证存取顺序</strong></li>
 </ul>
 <h3 id="collections工具类">Collections工具类</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">(</span>list<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">//同时加多个
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">shuffle</span><span style="color:#f92672">(</span>list<span style="color:#f92672">);</span><span style="color:#75715e">//打乱顺序
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>list<span style="color:#f92672">);</span><span style="color:#75715e">//按照默认顺序排序；要排序自定义类型，元素类必须实现Comparable接口，重写compareto方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>list<span style="color:#f92672">,</span><span style="color:#66d9ef">new</span> Comparator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>Student o1<span style="color:#f92672">,</span> Student o2<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> o1<span style="color:#f92672">.</span><span style="color:#a6e22e">getAge</span><span style="color:#f92672">()-</span>o2<span style="color:#f92672">.</span><span style="color:#a6e22e">getAge</span><span style="color:#f92672">();</span><span style="color:#75715e">//升序
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">})</span>
-</span></span></code></pre></div><h3 id="map集合双列集合">Map集合（双列集合）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Collections</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">list</span><span class="o">,</span><span class="s">&#34;a&#34;</span><span class="o">,</span><span class="s">&#34;b&#34;</span><span class="o">,</span><span class="s">&#34;c&#34;</span><span class="o">,</span><span class="s">&#34;d&#34;</span><span class="o">);</span><span class="c1">//同时加多个
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">list</span><span class="o">);</span><span class="c1">//打乱顺序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">);</span><span class="c1">//按照默认顺序排序；要排序自定义类型，元素类必须实现Comparable接口，重写compareto方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">,</span><span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Student</span> <span class="n">o1</span><span class="o">,</span> <span class="n">Student</span> <span class="n">o2</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">o1</span><span class="o">.</span><span class="na">getAge</span><span class="o">()-</span><span class="n">o2</span><span class="o">.</span><span class="na">getAge</span><span class="o">();</span><span class="c1">//升序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="map集合双列集合">Map集合（双列集合）</h3>
 <ul>
 <li>
 <p>Map&lt; K,V &gt;</p>
@@ -560,26 +766,54 @@
 <li>public boolean containsValue(Object value)：判断是否包含指定value</li>
 <li>keySet：Map集合的第一种遍历方式</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">();</span><span style="color:#75715e">//获得map集合的所有key，存在set集合中
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> set<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()){</span>
-</span></span><span style="display:flex;"><span>    String key <span style="color:#f92672">=</span> it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    Integer value <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>value<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>String key <span style="color:#f92672">:</span> set<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>    Integer value <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>value<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><ol start="7">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span><span class="c1">//获得map集合的所有key，存在set集合中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">set</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Integer</span> <span class="n">value</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span> <span class="o">:</span> <span class="n">set</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Integer</span> <span class="n">value</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="7">
 <li>entryset：Map集合的第二种遍历方式</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Set<span style="color:#f92672">&lt;</span>Map<span style="color:#f92672">.</span><span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>Integer<span style="color:#f92672">&gt;&gt;</span> set <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">entrySet</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>Map<span style="color:#f92672">.</span><span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>Integer<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">:</span> set<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>e<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>e<span style="color:#f92672">.</span><span style="color:#a6e22e">getValue</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">entrySet</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">e</span> <span class="o">:</span> <span class="n">set</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getKey</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>如果要存储自定义元素，对于key的元素，必须重写hashCode和equals方法来保证key唯一</li>
 </ul>
 <h4 id="hashmap">HashMap</h4>
@@ -603,22 +837,42 @@
 <li>of返回值是一个不能改变的集合，之后不能再使用add，put等方法</li>
 <li>Set和Map在调用of方法时，不能有重复的元素，否则会报错</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>Integer<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> Map<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">14</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;赵四&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">12</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;刘能&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">20</span><span style="color:#f92672">);</span>
-</span></span></code></pre></div><h2 id="可变参数">可变参数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span><span class="s">&#34;b&#34;</span><span class="o">,</span><span class="s">&#34;c&#34;</span><span class="o">,</span><span class="s">&#34;d&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span><span class="s">&#34;b&#34;</span><span class="o">,</span><span class="s">&#34;c&#34;</span><span class="o">,</span><span class="s">&#34;d&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;张三&#34;</span><span class="o">,</span><span class="mi">14</span><span class="o">,</span><span class="s">&#34;赵四&#34;</span><span class="o">,</span><span class="mi">12</span><span class="o">,</span><span class="s">&#34;刘能&#34;</span><span class="o">,</span><span class="mi">20</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="可变参数">可变参数</h2>
 <ul>
 <li>当参数列表数据类型确定，但是参数个数不确定，就可以使用可变参数</li>
 <li>底层会根据传递参数的不同创建不同长度的数组（0到多个）</li>
 <li>一个方法中最多有一个可变参数</li>
 <li>如果参数有多个，可变参数必须写在参数列表最后</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//实际上传递的是数组
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">...</span><span style="color:#a6e22e">arr</span><span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h2 id="异常">异常</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//实际上传递的是数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span><span class="o">...</span><span class="na">arr</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="异常">异常</h2>
 <ul>
 <li>语法错误——&gt;编译失败</li>
 <li>异常——&gt;编译/运行失败</li>
@@ -660,21 +914,41 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>常见的编译期异常和运行期异常
-</span></span><span style="display:flex;"><span>a)编译期异常：
-</span></span><span style="display:flex;"><span>          1.ClassNotFoundException(类找不到异常)
-</span></span><span style="display:flex;"><span>          2.FileNotFoundException（编译文件夹中找不到，就是发布到tomcat中的，不是工程中）
-</span></span><span style="display:flex;"><span>          3.SQLException ：提供有关数据库访问错误或其他错误的信息的异常。（ 比如SQL语句写错，访问的表不存在，连接数据库失败等等）
-</span></span><span style="display:flex;"><span>          4.IOexception：IO流异常。一般在读写数据的时候会出现这种问题。
-</span></span><span style="display:flex;"><span>          5.EOFException:当输入过程中意外到达文件或流的末尾时，抛出此异常。
-</span></span><span style="display:flex;"><span>b)运行期异常：
-</span></span><span style="display:flex;"><span>          1.NullPointerException(空指针异常)
-</span></span><span style="display:flex;"><span>          2.ArithmeticException（运算非法异常）
-</span></span><span style="display:flex;"><span>          3.IndexOutOfBoundsException(数组越界异常)
-</span></span><span style="display:flex;"><span>          4.ClassCastException(类转换异常)
-</span></span><span style="display:flex;"><span>          5.ArrayStoreException(数据存储异常，操作数组时类型不一致)
-</span></span><span style="display:flex;"><span>          6.BufferOverflowException(字节溢出异常—IO流操作)
-</span></span></code></pre></div><h4 id="throws">throws</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">常见的编译期异常和运行期异常
+</span></span><span class="line"><span class="cl">a)编译期异常：
+</span></span><span class="line"><span class="cl">          1.ClassNotFoundException(类找不到异常)
+</span></span><span class="line"><span class="cl">          2.FileNotFoundException（编译文件夹中找不到，就是发布到tomcat中的，不是工程中）
+</span></span><span class="line"><span class="cl">          3.SQLException ：提供有关数据库访问错误或其他错误的信息的异常。（ 比如SQL语句写错，访问的表不存在，连接数据库失败等等）
+</span></span><span class="line"><span class="cl">          4.IOexception：IO流异常。一般在读写数据的时候会出现这种问题。
+</span></span><span class="line"><span class="cl">          5.EOFException:当输入过程中意外到达文件或流的末尾时，抛出此异常。
+</span></span><span class="line"><span class="cl">b)运行期异常：
+</span></span><span class="line"><span class="cl">          1.NullPointerException(空指针异常)
+</span></span><span class="line"><span class="cl">          2.ArithmeticException（运算非法异常）
+</span></span><span class="line"><span class="cl">          3.IndexOutOfBoundsException(数组越界异常)
+</span></span><span class="line"><span class="cl">          4.ClassCastException(类转换异常)
+</span></span><span class="line"><span class="cl">          5.ArrayStoreException(数据存储异常，操作数组时类型不一致)
+</span></span><span class="line"><span class="cl">          6.BufferOverflowException(字节溢出异常—IO流操作)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="throws">throws</h4>
 <ul>
 <li>一步一步往上抛</li>
 <li>如果同时throw多个异常且含有父子关系，throws后面只需写 父类</li>
@@ -709,25 +983,49 @@
 <li>继承Exception：编译时异常</li>
 <li>继承RuntimeException：运行时异常</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyException</span> <span style="color:#66d9ef">extends</span> Exception <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//异常信息
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> String message<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//构造函数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyException</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyException</span><span style="color:#f92672">(</span>String message<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> message<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//获取异常信息,由于构造函数调用了super(message),不用重写此方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//public String getMessage(){
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//    return message;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h2 id="多线程">多线程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyException</span> <span class="kd">extends</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//异常信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="nf">MyException</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">MyException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//获取异常信息,由于构造函数调用了super(message),不用重写此方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//public String getMessage(){
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    return message;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="多线程">多线程</h2>
 <ul>
 <li>进程是操作系统资源分配的基本单位，负责为程序分配内存空间</li>
 <li>而线程是任务调度和执行的基本单位，负责程序实际的执行</li>
@@ -739,71 +1037,150 @@
 <ul>
 <li>java程序属于抢占式调度，哪个线程优先级高就会优先执行哪个线程；同一优先级会随机选择一个执行</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrimeThread</span> <span style="color:#66d9ef">extends</span> Thread<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">(){</span><span style="color:#75715e">//重写Thread类的run方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">20</span><span style="color:#f92672">;</span>i<span style="color:#f92672">++){</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;prime-----&gt;&#34;</span><span style="color:#f92672">+</span>i<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainTest</span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        PrimeThread p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PrimeThread<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        p<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span><span style="color:#75715e">//会调用线程的run方法，只能调用一次
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">20</span><span style="color:#f92672">;</span>i<span style="color:#f92672">++){</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;main-----&gt;&#34;</span><span style="color:#f92672">+</span>i<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223647.png" alt="image-20210308165029075"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">PrimeThread</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span><span class="c1">//重写Thread类的run方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;prime-----&gt;&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MainTest</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PrimeThread</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrimeThread</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span><span class="o">.</span><span class="na">start</span><span class="o">();</span><span class="c1">//会调用线程的run方法，只能调用一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;main-----&gt;&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223647.png" alt="image-20210308165029075"></p>
 <p><strong>多线程内存图</strong></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223654.png" alt="image-20210308165656672"></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223701.png" alt="image-20210308173426698"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获得指定线程名称
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>PrimeThread primeThread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PrimeThread<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>primeThread<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//获得当前线程名称
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//修改线程名称
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>primeThread<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;线程0&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//也可以修改PrimeThread构造函数直接修改名字
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrimeThread</span> <span style="color:#66d9ef">extends</span> Thread<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">PrimeThread</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">PrimeThread</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>name<span style="color:#f92672">);</span><span style="color:#75715e">//让父类Thread构造方法给子线程起名字
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h4 id="sleep方法">sleep方法</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获得指定线程名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">PrimeThread</span> <span class="n">primeThread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrimeThread</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">primeThread</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//获得当前线程名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//修改线程名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">primeThread</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;线程0&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//也可以修改PrimeThread构造函数直接修改名字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">class</span> <span class="nc">PrimeThread</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">PrimeThread</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">PrimeThread</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">name</span><span class="o">);</span><span class="c1">//让父类Thread构造方法给子线程起名字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="sleep方法">sleep方法</h4>
 <ul>
 <li>是当前正在执行的线程暂停</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrimeThread</span> <span style="color:#66d9ef">extends</span> Thread<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">(){</span><span style="color:#75715e">//重写Thread类的run方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">20</span><span style="color:#f92672">;</span>i<span style="color:#f92672">++){</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;prime-----&gt;&#34;</span><span style="color:#f92672">+</span>i<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">);</span><span style="color:#75715e">//1000毫秒==1秒
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h3 id="runnable类创建多线程的第二种方式">Runnable类：创建多线程的第二种方式</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RunnableImpl</span> <span style="color:#66d9ef">implements</span> Runnable<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;prime-----&gt;&#34;</span><span style="color:#f92672">+</span>i<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainTest</span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        RunnableImpl ri <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RunnableImpl<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        Thread t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>ri<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>        t<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span><span style="color:#75715e">//会调用线程的run方法，只能调用一次
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">20</span><span style="color:#f92672">;</span>i<span style="color:#f92672">++){</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;main-----&gt;&#34;</span><span style="color:#f92672">+</span>i<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">PrimeThread</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span><span class="c1">//重写Thread类的run方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;prime-----&gt;&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span><span class="c1">//1000毫秒==1秒
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="runnable类创建多线程的第二种方式">Runnable类：创建多线程的第二种方式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RunnableImpl</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;prime-----&gt;&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MainTest</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RunnableImpl</span> <span class="n">ri</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RunnableImpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">ri</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span><span class="c1">//会调用线程的run方法，只能调用一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;main-----&gt;&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>好处：
 <ol>
 <li>Runnable方式避免了单继承的局限性</li>
@@ -824,10 +1201,19 @@
 <ol>
 <li>
 <p><strong>同步代码块</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">synchronized</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">同步锁</span><span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//多线程访问共享数据的代码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">synchronized</span><span class="o">(</span><span class="err">同步锁</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//多线程访问共享数据的代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223712.png" alt="image-20210308180822199"></p>
 <ol start="2">
@@ -836,16 +1222,31 @@
 <ul>
 <li>方法修饰符：synchronized</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//多线程访问共享数据的代码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//锁对象是this对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//静态同步方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//多线程访问共享数据的代码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//锁对象是本类的class属性对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span> 
-</span></span></code></pre></div><ol start="3">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//多线程访问共享数据的代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//锁对象是this对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//静态同步方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//多线程访问共享数据的代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//锁对象是本类的class属性对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
 <li><strong>Lock锁机制</strong></li>
 </ol>
 <ul>
@@ -856,15 +1257,34 @@
 </ol>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Lock l <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ReentrantLock<span style="color:#f92672">();</span><span style="color:#75715e">//创建类的成员变量l
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//在某个方法中
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>l<span style="color:#f92672">.</span><span style="color:#a6e22e">lock</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//多线程访问共享数据的代码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>l<span style="color:#f92672">.</span><span style="color:#a6e22e">unlock</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div><h3 id="线程状态">线程状态</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">State</span><span style="color:#960050;background-color:#1e0010">：</span>Thread<span style="color:#960050;background-color:#1e0010">类的内部类</span>State
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Lock</span> <span class="n">l</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">();</span><span class="c1">//创建类的成员变量l
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//在某个方法中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">l</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//多线程访问共享数据的代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">l</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="线程状态">线程状态</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Thread</span><span class="o">.</span><span class="na">State</span><span class="err">：</span><span class="n">Thread</span><span class="err">类的内部类</span><span class="n">State</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li><strong>一共6种状态</strong></li>
 </ul>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223720.png" alt="image-20210308214423553"></p>
@@ -884,198 +1304,304 @@
 <li>以包子铺为例</li>
 </ul>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223727.png" alt="image-20210308230625128"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//包子类（锁对象）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BaoZi</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    String pi<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    String xian<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">boolean</span> flag <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//包子铺类（生产者）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BaoZiPu</span> <span style="color:#66d9ef">extends</span> Thread<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> BaoZi bz<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">BaoZiPu</span><span style="color:#f92672">(</span>BaoZi bz<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bz</span> <span style="color:#f92672">=</span> bz<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span>bz<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>bz<span style="color:#f92672">.</span><span style="color:#a6e22e">flag</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                        bz<span style="color:#f92672">.</span><span style="color:#a6e22e">wait</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>                bz<span style="color:#f92672">.</span><span style="color:#a6e22e">pi</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;薄皮&#34;</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>                bz<span style="color:#f92672">.</span><span style="color:#a6e22e">xian</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;三鲜馅&#34;</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;包子铺正在生产&#34;</span><span style="color:#f92672">+</span>bz<span style="color:#f92672">.</span><span style="color:#a6e22e">pi</span><span style="color:#f92672">+</span>bz<span style="color:#f92672">.</span><span style="color:#a6e22e">xian</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;的包子&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                    Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#ae81ff">3000</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>                bz<span style="color:#f92672">.</span><span style="color:#a6e22e">flag</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>                bz<span style="color:#f92672">.</span><span style="color:#a6e22e">notify</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;包子铺已经生产好了包子&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//吃货类（消费者类）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChiHuo</span> <span style="color:#66d9ef">extends</span> Thread<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> BaoZi bz<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ChiHuo</span><span style="color:#f92672">(</span>BaoZi bz<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bz</span> <span style="color:#f92672">=</span> bz<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span>bz<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>bz<span style="color:#f92672">.</span><span style="color:#a6e22e">flag</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                        bz<span style="color:#f92672">.</span><span style="color:#a6e22e">wait</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;吃货正在吃&#34;</span><span style="color:#f92672">+</span>bz<span style="color:#f92672">.</span><span style="color:#a6e22e">pi</span><span style="color:#f92672">+</span>bz<span style="color:#f92672">.</span><span style="color:#a6e22e">xian</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;的包子&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                    Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#ae81ff">3000</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>                bz<span style="color:#f92672">.</span><span style="color:#a6e22e">flag</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>                bz<span style="color:#f92672">.</span><span style="color:#a6e22e">notify</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;吃货已经吃完了包子&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;*************************************&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//测试类
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainTest</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        BaoZi bz <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BaoZi<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> BaoZiPu<span style="color:#f92672">(</span>bz<span style="color:#f92672">).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> ChiHuo<span style="color:#f92672">(</span>bz<span style="color:#f92672">).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h3 id="线程池">线程池</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//包子类（锁对象）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BaoZi</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">pi</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">xian</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">flag</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//包子铺类（生产者）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BaoZiPu</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">BaoZi</span> <span class="n">bz</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">BaoZiPu</span><span class="o">(</span><span class="n">BaoZi</span> <span class="n">bz</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">bz</span> <span class="o">=</span> <span class="n">bz</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">bz</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">bz</span><span class="o">.</span><span class="na">flag</span> <span class="o">==</span> <span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">bz</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bz</span><span class="o">.</span><span class="na">pi</span> <span class="o">=</span> <span class="s">&#34;薄皮&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bz</span><span class="o">.</span><span class="na">xian</span> <span class="o">=</span> <span class="s">&#34;三鲜馅&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;包子铺正在生产&#34;</span><span class="o">+</span><span class="n">bz</span><span class="o">.</span><span class="na">pi</span><span class="o">+</span><span class="n">bz</span><span class="o">.</span><span class="na">xian</span><span class="o">+</span><span class="s">&#34;的包子&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">3000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bz</span><span class="o">.</span><span class="na">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bz</span><span class="o">.</span><span class="na">notify</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;包子铺已经生产好了包子&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//吃货类（消费者类）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ChiHuo</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">BaoZi</span> <span class="n">bz</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">ChiHuo</span><span class="o">(</span><span class="n">BaoZi</span> <span class="n">bz</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">bz</span> <span class="o">=</span> <span class="n">bz</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">bz</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">bz</span><span class="o">.</span><span class="na">flag</span> <span class="o">==</span> <span class="kc">false</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">bz</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;吃货正在吃&#34;</span><span class="o">+</span><span class="n">bz</span><span class="o">.</span><span class="na">pi</span><span class="o">+</span><span class="n">bz</span><span class="o">.</span><span class="na">xian</span><span class="o">+</span><span class="s">&#34;的包子&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">3000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bz</span><span class="o">.</span><span class="na">flag</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bz</span><span class="o">.</span><span class="na">notify</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;吃货已经吃完了包子&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;*************************************&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//测试类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">BaoZi</span> <span class="n">bz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BaoZi</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">BaoZiPu</span><span class="o">(</span><span class="n">bz</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">ChiHuo</span><span class="o">(</span><span class="n">bz</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="线程池">线程池</h3>
 <ul>
 <li>线程池就是一个容纳多个线程的容器，其中的线程可以反复使用，省去了频繁创建对象的操作，无需反复创建线程而消耗过多资源</li>
 </ul>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521223737.png" alt="image-20210308232553076"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//java.util.concurrent.Executors:线程池的工厂类
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//生产一个指定线程数量的线程池
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ExecutorService es <span style="color:#f92672">=</span> Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">newFixedThreadPool</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//实现一个Runnable实现类
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//调用ExecutorService中的方法submit，执行线程
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>es<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> RunnableImpl<span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>es<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> RunnableImpl<span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>es<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> RunnableImpl<span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//调用ExecutorService中的方法shutdown销毁线程池
-</span></span></span></code></pre></div></section>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//java.util.concurrent.Executors:线程池的工厂类
+</span></span></span><span class="line"><span class="cl"><span class="c1">//生产一个指定线程数量的线程池
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ExecutorService</span> <span class="n">es</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//实现一个Runnable实现类
+</span></span></span><span class="line"><span class="cl"><span class="c1">//调用ExecutorService中的方法submit，执行线程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">es</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="n">RunnableImpl</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">es</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="n">RunnableImpl</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">es</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="n">RunnableImpl</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//调用ExecutorService中的方法shutdown销毁线程池
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
 
-  
-  
-
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/"
-      ><span class="mr-1.5">←</span><span>java基础快速回顾-下</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/"
-      ><span>我的Linux工作平台搭建</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-03-06
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">java基础快速回顾-下</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/">
+            <span class="next-text nav-default">我的Linux工作平台搭建</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

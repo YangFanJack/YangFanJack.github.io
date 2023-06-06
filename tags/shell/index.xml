@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on Jack&#39;s Blog Site</title>
+    <link>http://yangfanjack.top/tags/shell/</link>
+    <description>Recent content in Shell on Jack&#39;s Blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 06 Mar 2020 22:51:56 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>shell编程</title>
+      <link>http://yangfanjack.top/post/shell%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Fri, 06 Mar 2020 22:51:56 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/shell%E7%BC%96%E7%A8%8B/</guid>
+      <description>&lt;h1 id=&#34;基础正则表达式&#34;&gt;基础正则表达式&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;正则表达式&lt;/strong&gt; 和 &lt;strong&gt;通配符&lt;/strong&gt; 区别：&lt;/p&gt;
+&lt;p&gt;通配符：在系统中搜索匹配文件名，是完全匹配。支持命令ls，find，cp，他们不认识正则表达式&lt;/p&gt;
+&lt;p&gt;正则表达式：用来在文件中匹配符合条件的字符串，是包含匹配。支持命令：grep，awk，sed&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>shell基础</title>
+      <link>http://yangfanjack.top/post/shell%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 06 Mar 2020 22:51:25 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/shell%E5%9F%BA%E7%A1%80/</guid>
+      <description>shell就是Linux中的命令解释器，说白了，就是一个命令行的交互界面。与Linux不同Windows中就是图形的交互界面。shell还是</description>
+    </item>
+    
+  </channel>
+</rss>

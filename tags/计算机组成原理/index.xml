@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>计算机组成原理 on Jack&#39;s Blog Site</title>
+    <link>http://yangfanjack.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
+    <description>Recent content in 计算机组成原理 on Jack&#39;s Blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 24 Mar 2023 09:27:16 +0800</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计算机组成原理概记</title>
+      <link>http://yangfanjack.top/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0/</link>
+      <pubDate>Fri, 24 Mar 2023 09:27:16 +0800</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0/</guid>
+      <description>概论 计算机系统硬件结构 CPU 系统总线 存储器 I/O CPU CPU的结构和功能 运算器（核心是ALU） 计算机中数的表示 计算机中的运算方法和运算器 控制器（核心是C</description>
+    </item>
+    
+  </channel>
+</rss>

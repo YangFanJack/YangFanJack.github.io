@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arch on Jack&#39;s Blog Site</title>
+    <link>http://yangfanjack.top/tags/arch/</link>
+    <description>Recent content in Arch on Jack&#39;s Blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 14 Jun 2021 09:18:48 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/arch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>实体机安装Arch</title>
+      <link>http://yangfanjack.top/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</link>
+      <pubDate>Mon, 14 Jun 2021 09:18:48 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</guid>
+      <description>准备： 机器：华硕飞行堡垒fx-60vm 第一系统：win10 Arch镜像 https://archlinux.org/download/ 镜像考录工具：Rufus U盘 安装系统 联网 1 2 3 4 5 6 7 8 9 10 11 12 13 14</description>
+    </item>
+    
+    <item>
+      <title>Arch入教路</title>
+      <link>http://yangfanjack.top/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</link>
+      <pubDate>Wed, 17 Mar 2021 10:29:41 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</guid>
+      <description>我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kub</description>
+    </item>
+    
+  </channel>
+</rss>

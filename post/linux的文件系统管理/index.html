@@ -1,285 +1,173 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>linux的文件系统管理 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&amp;lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>linux的文件系统管理 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
-挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
-mkdir /mnt/cdrom/：建立挂载点
-mount -t iso9660 /dev/cdrom /mnt/cdrom/或者mount /dev/sr0 /mnt/cdrom：挂载
-cd /mnt/cdrom/：去挂载点访问
-umount 设备文件名或挂载点：在拿走光盘之前需要先卸载光盘
-挂载U盘步骤：（U盘的设备文件名是自动识别的，用fdisk -l查看）
-mkdir /mnt/usb/：建立挂载点
-mount -t vfat /dev/sdb1 /mnt/usb/：挂载
-cd /mnt/usb/：去挂载点访问
-umount 设备文件名或挂载点：在拔U盘之前需要先卸载光盘
-注意：挂载U盘只能用本机或者虚拟机，不能用远程工具
-​	Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的
-Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="linux的文件系统管理" />
-<meta property="og:description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
-挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
-mkdir /mnt/cdrom/：建立挂载点
-mount -t iso9660 /dev/cdrom /mnt/cdrom/或者mount /dev/sr0 /mnt/cdrom：挂载
-cd /mnt/cdrom/：去挂载点访问
-umount 设备文件名或挂载点：在拿走光盘之前需要先卸载光盘
-挂载U盘步骤：（U盘的设备文件名是自动识别的，用fdisk -l查看）
-mkdir /mnt/usb/：建立挂载点
-mount -t vfat /dev/sdb1 /mnt/usb/：挂载
-cd /mnt/usb/：去挂载点访问
-umount 设备文件名或挂载点：在拔U盘之前需要先卸载光盘
-注意：挂载U盘只能用本机或者虚拟机，不能用远程工具
-​	Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的
-Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。" />
+<meta property="og:title" content="linux的文件系统管理" />
+<meta property="og:description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-06T20:30:32+00:00" />
 <meta property="article:modified_time" content="2020-03-06T20:30:32+00:00" />
-
-  
-  <meta itemprop="name" content="linux的文件系统管理">
-<meta itemprop="description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
-挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
-mkdir /mnt/cdrom/：建立挂载点
-mount -t iso9660 /dev/cdrom /mnt/cdrom/或者mount /dev/sr0 /mnt/cdrom：挂载
-cd /mnt/cdrom/：去挂载点访问
-umount 设备文件名或挂载点：在拿走光盘之前需要先卸载光盘
-挂载U盘步骤：（U盘的设备文件名是自动识别的，用fdisk -l查看）
-mkdir /mnt/usb/：建立挂载点
-mount -t vfat /dev/sdb1 /mnt/usb/：挂载
-cd /mnt/usb/：去挂载点访问
-umount 设备文件名或挂载点：在拔U盘之前需要先卸载光盘
-注意：挂载U盘只能用本机或者虚拟机，不能用远程工具
-​	Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的
-Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。"><meta itemprop="datePublished" content="2020-03-06T20:30:32+00:00" />
+<meta itemprop="name" content="linux的文件系统管理">
+<meta itemprop="description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI"><meta itemprop="datePublished" content="2020-03-06T20:30:32+00:00" />
 <meta itemprop="dateModified" content="2020-03-06T20:30:32+00:00" />
-<meta itemprop="wordCount" content="125">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1714">
+<meta itemprop="keywords" content="Linux," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="linux的文件系统管理"/>
-<meta name="twitter:description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区 对于GPT分区形式而言，没有上述限制 Windows文件系统为FAT16、FAT32、FAT64和NTFS。而Linux的文件系统可分为ext2、ext3、ext4、swap和vfat。 格式化的目的就是写入文件系统 文件系统常用命令 df命令，du命令，fsck命令，dumpe2fs命令 df -a -h：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小) du -a -h -s：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小) **df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间） fsck -a -y 分区设备文件名：文件系统修复命令，不需要自己手动执行 dumpe2fs 分区设备文件名：显示ext2、ext3、ext4文件系统的超级块和块组信息 挂载命令 将设备文件名和绑定到盘符(挂载点)上，Windows是自动，Linux默认是手动分配 mount -l：查询异已挂载的设备，加-l会显示卷标名 mount -a：依据配置文件/etc/fstab中的内容，自动挂载 mount [-t 文件系统] [-L 卷标名] [-o 特殊选项] 设备文件名 挂载点 挂载光盘和U盘 Linux中的分区时开机自动挂载，但是光盘和U盘时手动挂载，系统准备了/mnt/和/media/来挂载
-挂载光盘步骤：（sr0和cdrom都可以作为设备文件名）
-mkdir /mnt/cdrom/：建立挂载点
-mount -t iso9660 /dev/cdrom /mnt/cdrom/或者mount /dev/sr0 /mnt/cdrom：挂载
-cd /mnt/cdrom/：去挂载点访问
-umount 设备文件名或挂载点：在拿走光盘之前需要先卸载光盘
-挂载U盘步骤：（U盘的设备文件名是自动识别的，用fdisk -l查看）
-mkdir /mnt/usb/：建立挂载点
-mount -t vfat /dev/sdb1 /mnt/usb/：挂载
-cd /mnt/usb/：去挂载点访问
-umount 设备文件名或挂载点：在拔U盘之前需要先卸载光盘
-注意：挂载U盘只能用本机或者虚拟机，不能用远程工具
-​	Linux默认是不支持NTFS文件系统的外设的，U盘只能FAT格式的
-Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常见的驱动包括了，所以安装系统后一般不需要安装驱动，Linux会自动匹配识别，如果Linux默认没有把一个文件系统的驱动加载进来，我们就需要手动去安装驱动。"/>
+<meta name="twitter:description" content="分区和系统文件 对于硬盘分区形式是MBR的，主分区&#43;扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">linux的文件系统管理</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-06 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 1714 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#分区和系统文件">分区和系统文件</a></li>
+    <li><a href="#文件系统常用命令">文件系统常用命令</a>
+      <ul>
+        <li><a href="#df命令du命令fsck命令dumpe2fs命令">df命令，du命令，fsck命令，dumpe2fs命令</a></li>
+        <li><a href="#挂载命令">挂载命令</a></li>
+        <li><a href="#挂载光盘和u盘">挂载光盘和U盘</a></li>
+        <li><a href="#linux如何支持ntfs文件系统">Linux如何支持NTFS文件系统</a></li>
+      </ul>
+    </li>
+    <li><a href="#fdisk分区">fdisk分区</a>
+      <ul>
+        <li><a href="#fdisk命令分区过程">fdisk命令分区过程</a></li>
+        <li><a href="#分区自动挂载和etcfstab文件修复">分区自动挂载和/etc/fstab文件修复</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">linux的文件系统管理</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 6, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h1 id="分区和系统文件">分区和系统文件</h1>
+</div>
+    <div class="post-content">
+      <h1 id="分区和系统文件">分区和系统文件</h1>
 <ul>
 <li>对于硬盘分区形式是<strong>MBR</strong>的，主分区+扩展分区&lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI硬盘，Linux最多支持11个逻辑分区</li>
 <li>对于<strong>GPT</strong>分区形式而言，没有上述限制</li>
@@ -291,7 +179,7 @@ Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常�
 <ul>
 <li><code>df -a -h</code>：显示所有分区&amp;人性化显示。(一般用来统计系统空间大小)</li>
 <li><code>du -a -h -s</code>：弥补ls命令的不足，可以统计文件夹包括里面的内容的大小而不是单单文件夹的大小。(一般用来统计文件大小)</li>
-<li>**df和du的区别：**du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间）</li>
+<li><strong>df和du的区别：</strong> du只是面向文件的，只会计算文件或目录占用的空间；df是从文件系统角度考虑的，不光要考虑文件占用的空间，还要统计被命令或程序占用的空间（最常见的就是文件已经删除但是程序并没有释放空间）</li>
 <li><code>fsck -a -y 分区设备文件名</code>：文件系统修复命令，不需要自己手动执行</li>
 <li><code>dumpe2fs 分区设备文件名</code>：显示ext2、ext3、ext4文件系统的超级块和块组信息</li>
 </ul>
@@ -357,7 +245,7 @@ Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常�
 </li>
 <li>
 <p>若已识别新硬盘/dev/sdb/，就开始为新硬盘分区，<code>fdisk /dev/sdb/</code>进入fdisk交互模式</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224418.png" style="zoom: 80%;" />
 </li>
 <li>
 <p>partprobe：分完区后必须执行这个命令，重新读取分区表信息</p>
@@ -376,7 +264,7 @@ Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常�
 <ul>
 <li>
 <p>上面的mount命令挂载只能临时生效，每次重启都要手动挂载硬盘，要想永久生效，就要修改/etc/fstab配置文件的内容。</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224424.png" style="zoom:80%;" />
 </li>
 <li>
 <p>添加了挂载信息后，执行mount -a，依据配置文件<code>/etc/fstab</code>中的内容，自动挂载</p>
@@ -388,100 +276,100 @@ Linux如何支持NTFS文件系统 Linux系统的内核中已经把市面上常�
 <p><strong>/etc/fstab文件修复</strong>：出错后按提示进入root操作界面，发现<code>/etc/fstab</code>文件是只读，执行<code>mount -o remount,rw /</code>，就可以修改<code>/etc/fstab</code>文件了，就可以修复了。</p>
 </li>
 </ul>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/shell%E5%9F%BA%E7%A1%80/"
-      ><span class="mr-1.5">←</span><span>shell基础</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/"
-      ><span>linux权限管理</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-06
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/shell%E5%9F%BA%E7%A1%80/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">shell基础</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
+            <span class="next-text nav-default">linux权限管理</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

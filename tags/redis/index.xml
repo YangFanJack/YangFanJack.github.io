@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on Jack&#39;s Blog Site</title>
+    <link>http://yangfanjack.top/tags/redis/</link>
+    <description>Recent content in Redis on Jack&#39;s Blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 16 Mar 2021 10:54:17 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>redis缓存技术</title>
+      <link>http://yangfanjack.top/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</link>
+      <pubDate>Tue, 16 Mar 2021 10:54:17 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</guid>
+      <description>Redis简介： 概念： redis是一款高性能的NOSQL（Not Only SQL）系列的菲关系型数据库 Redis特点： Redis 是一个开源的使用 ANSI、C</description>
+    </item>
+    
+  </channel>
+</rss>

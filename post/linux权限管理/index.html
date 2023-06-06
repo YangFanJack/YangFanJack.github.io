@@ -1,343 +1,182 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>linux权限管理 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>linux权限管理 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
-setfacl 选项 文件名
-setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
-最大有效权限与删除ACL权限 最大有效权限mask：可以通过getfacl 文件名来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。 需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限 setfacl -x u/g:用户名/组名 文件名：删除文件指定的ACL权限 setfacl -b 文件名：删除文件所有ACL权限 默认ACL和递归ACL权限（只能针对目录） setfacl -m d:u/g:用户名/组名:权限 文件名：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限
-setfacl -k：删除父目录的默认ACL权限
-setfacl -m -R ...：递归设定文件夹的ACL权限
-文件特殊权限 SetUID：在所有者的x位置上变成了s 四个条件缺一不可：
-只有二进制文件（例如命令和脚本文件）才能设定SUID权限
-命令执行者必须对该程序有x权限
-命令执行者会在执行的时候获得该程序文件的属主身份
-SUID权限只在该程序执行过程中生效，也就是身份改变旨在程序执行过程中有效
-passwd命令拥有SetUID权限，所以普通用户能修改自己密码
-我们通常会看到4777，2777，1777的权限标识，依次是加了SUID，SGID，SBIT权限
-可以用chmod来赋予和删除SUID
-SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。
-SetGID：在所属组的x位置上变成了s 针对二进制文件，三个条件缺一不可：
-命令执行者必须对该程序有x权限
-命令执行者会在执行的时候获得该程序文件的所属组身份
-SUID权限只在该程序执行过程中生效，也就是所属组身份改变旨在程序执行过程中有效
-注：例如/usr/bin/locate命令
-针对目录，三个条件缺一不可：
-普通用户必须对此目录拥有r和x权限，才能进入该目录
-普通用户在此目录中的有效组会变成此目录的所著组
-若普通用户对此目录拥有w权限时，新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组
-可以用chmod来赋予和删除SGID
-Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一不可：
-只有目录才能设定SBIT权限" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="linux权限管理" />
-<meta property="og:description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
-setfacl 选项 文件名
-setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
-最大有效权限与删除ACL权限 最大有效权限mask：可以通过getfacl 文件名来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。 需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限 setfacl -x u/g:用户名/组名 文件名：删除文件指定的ACL权限 setfacl -b 文件名：删除文件所有ACL权限 默认ACL和递归ACL权限（只能针对目录） setfacl -m d:u/g:用户名/组名:权限 文件名：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限
-setfacl -k：删除父目录的默认ACL权限
-setfacl -m -R ...：递归设定文件夹的ACL权限
-文件特殊权限 SetUID：在所有者的x位置上变成了s 四个条件缺一不可：
-只有二进制文件（例如命令和脚本文件）才能设定SUID权限
-命令执行者必须对该程序有x权限
-命令执行者会在执行的时候获得该程序文件的属主身份
-SUID权限只在该程序执行过程中生效，也就是身份改变旨在程序执行过程中有效
-passwd命令拥有SetUID权限，所以普通用户能修改自己密码
-我们通常会看到4777，2777，1777的权限标识，依次是加了SUID，SGID，SBIT权限
-可以用chmod来赋予和删除SUID
-SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。
-SetGID：在所属组的x位置上变成了s 针对二进制文件，三个条件缺一不可：
-命令执行者必须对该程序有x权限
-命令执行者会在执行的时候获得该程序文件的所属组身份
-SUID权限只在该程序执行过程中生效，也就是所属组身份改变旨在程序执行过程中有效
-注：例如/usr/bin/locate命令
-针对目录，三个条件缺一不可：
-普通用户必须对此目录拥有r和x权限，才能进入该目录
-普通用户在此目录中的有效组会变成此目录的所著组
-若普通用户对此目录拥有w权限时，新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组
-可以用chmod来赋予和删除SGID
-Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一不可：
-只有目录才能设定SBIT权限" />
+<meta property="og:title" content="linux权限管理" />
+<meta property="og:description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-06T10:00:13+00:00" />
 <meta property="article:modified_time" content="2020-03-06T10:00:13+00:00" />
-
-  
-  <meta itemprop="name" content="linux权限管理">
-<meta itemprop="description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
-setfacl 选项 文件名
-setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
-最大有效权限与删除ACL权限 最大有效权限mask：可以通过getfacl 文件名来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。 需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限 setfacl -x u/g:用户名/组名 文件名：删除文件指定的ACL权限 setfacl -b 文件名：删除文件所有ACL权限 默认ACL和递归ACL权限（只能针对目录） setfacl -m d:u/g:用户名/组名:权限 文件名：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限
-setfacl -k：删除父目录的默认ACL权限
-setfacl -m -R ...：递归设定文件夹的ACL权限
-文件特殊权限 SetUID：在所有者的x位置上变成了s 四个条件缺一不可：
-只有二进制文件（例如命令和脚本文件）才能设定SUID权限
-命令执行者必须对该程序有x权限
-命令执行者会在执行的时候获得该程序文件的属主身份
-SUID权限只在该程序执行过程中生效，也就是身份改变旨在程序执行过程中有效
-passwd命令拥有SetUID权限，所以普通用户能修改自己密码
-我们通常会看到4777，2777，1777的权限标识，依次是加了SUID，SGID，SBIT权限
-可以用chmod来赋予和删除SUID
-SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。
-SetGID：在所属组的x位置上变成了s 针对二进制文件，三个条件缺一不可：
-命令执行者必须对该程序有x权限
-命令执行者会在执行的时候获得该程序文件的所属组身份
-SUID权限只在该程序执行过程中生效，也就是所属组身份改变旨在程序执行过程中有效
-注：例如/usr/bin/locate命令
-针对目录，三个条件缺一不可：
-普通用户必须对此目录拥有r和x权限，才能进入该目录
-普通用户在此目录中的有效组会变成此目录的所著组
-若普通用户对此目录拥有w权限时，新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组
-可以用chmod来赋予和删除SGID
-Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一不可：
-只有目录才能设定SBIT权限"><meta itemprop="datePublished" content="2020-03-06T10:00:13+00:00" />
+<meta itemprop="name" content="linux权限管理">
+<meta itemprop="description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要"><meta itemprop="datePublished" content="2020-03-06T10:00:13+00:00" />
 <meta itemprop="dateModified" content="2020-03-06T10:00:13+00:00" />
-<meta itemprop="wordCount" content="119">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1825">
+<meta itemprop="keywords" content="Linux,JavaWeb," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="linux权限管理"/>
-<meta name="twitter:description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统 ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限 查看与设定ACL权限 getfacl 文件名：查看ACL的权限
-setfacl 选项 文件名
-setfacl -m u/g/m:用户名/组名/不写:权限 文件名：设定文件的ACL权限
-最大有效权限与删除ACL权限 最大有效权限mask：可以通过getfacl 文件名来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。 需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限 setfacl -x u/g:用户名/组名 文件名：删除文件指定的ACL权限 setfacl -b 文件名：删除文件所有ACL权限 默认ACL和递归ACL权限（只能针对目录） setfacl -m d:u/g:用户名/组名:权限 文件名：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限
-setfacl -k：删除父目录的默认ACL权限
-setfacl -m -R ...：递归设定文件夹的ACL权限
-文件特殊权限 SetUID：在所有者的x位置上变成了s 四个条件缺一不可：
-只有二进制文件（例如命令和脚本文件）才能设定SUID权限
-命令执行者必须对该程序有x权限
-命令执行者会在执行的时候获得该程序文件的属主身份
-SUID权限只在该程序执行过程中生效，也就是身份改变旨在程序执行过程中有效
-passwd命令拥有SetUID权限，所以普通用户能修改自己密码
-我们通常会看到4777，2777，1777的权限标识，依次是加了SUID，SGID，SBIT权限
-可以用chmod来赋予和删除SUID
-SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。
-SetGID：在所属组的x位置上变成了s 针对二进制文件，三个条件缺一不可：
-命令执行者必须对该程序有x权限
-命令执行者会在执行的时候获得该程序文件的所属组身份
-SUID权限只在该程序执行过程中生效，也就是所属组身份改变旨在程序执行过程中有效
-注：例如/usr/bin/locate命令
-针对目录，三个条件缺一不可：
-普通用户必须对此目录拥有r和x权限，才能进入该目录
-普通用户在此目录中的有效组会变成此目录的所著组
-若普通用户对此目录拥有w权限时，新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组
-可以用chmod来赋予和删除SGID
-Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一不可：
-只有目录才能设定SBIT权限"/>
+<meta name="twitter:description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">linux权限管理</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-06 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 1825 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#acl权限">ACL权限</a>
+      <ul>
+        <li><a href="#acl权限的简介和开启方式">ACL权限的简介和开启方式</a></li>
+        <li><a href="#查看与设定acl权限">查看与设定ACL权限</a></li>
+        <li><a href="#最大有效权限与删除acl权限">最大有效权限与删除ACL权限</a></li>
+        <li><a href="#默认acl和递归acl权限只能针对目录">默认ACL和递归ACL权限（只能针对目录）</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件特殊权限">文件特殊权限</a>
+      <ul>
+        <li><a href="#setuid在所有者的x位置上变成了s">SetUID：在所有者的x位置上变成了s</a></li>
+        <li><a href="#setgid在所属组的x位置上变成了s">SetGID：在所属组的x位置上变成了s</a></li>
+        <li><a href="#sticky-bit黏着位在其他人的x位置上变成了t">Sticky BIT(黏着位)：在其他人的x位置上变成了t</a></li>
+        <li><a href="#需要注意的安全性">需要注意的安全性：</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件系统属性chattr权限">文件系统属性chattr权限</a></li>
+    <li><a href="#系统命令sudo权限">系统命令sudo权限</a></li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">linux权限管理</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 6, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h1 id="acl权限">ACL权限</h1>
+</div>
+    <div class="post-content">
+      <h1 id="acl权限">ACL权限</h1>
 <h2 id="acl权限的简介和开启方式">ACL权限的简介和开启方式</h2>
 <ul>
 <li>任何一个文件在一个时刻只能有一个所有者和所属组</li>
 <li>ACL权限用来解决文件的权限身份不够用的情况</li>
 </ul>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224537.png" style="zoom:80%;" />
 <ul>
 <li>ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统</li>
 <li>ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限</li>
@@ -383,7 +222,7 @@ Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一�
 </li>
 <li>
 <p>passwd命令拥有SetUID权限，所以普通用户能修改自己密码</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224547.png" style="zoom:80%;" />
 </li>
 <li>
 <p>我们通常会看到<strong>4777，2777，1777</strong>的权限标识，依次是加了<strong>SUID，SGID，SBIT</strong>权限</p>
@@ -430,7 +269,7 @@ Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一�
 <h1 id="文件系统属性chattr权限">文件系统属性chattr权限</h1>
 <ul>
 <li>
-<p>**chattr：**change file attributes on a linux file system</p>
+<p><strong>chattr：</strong> change file attributes on a linux file system</p>
 </li>
 <li>
 <p><code>chattr [+-=] [选项] 文件或目录名</code>：增加，减去，等于chattr权限</p>
@@ -462,100 +301,101 @@ Sticky BIT(黏着位)：在其他人的x位置上变成了t 四个条件缺一�
 <p>然后相应用户或者用户组用<code>sudo -l</code>查看自己能用那些sudo命令，然后<code>sudo 命令</code>执行</p>
 </li>
 </ul>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
-      ><span class="mr-1.5">←</span><span>linux的文件系统管理</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
-      ><span>linux中的用户管理</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-06
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/javaweb/">JavaWeb</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">linux的文件系统管理</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/">
+            <span class="next-text nav-default">linux中的用户管理</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

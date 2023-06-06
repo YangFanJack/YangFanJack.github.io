@@ -1,297 +1,200 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>javaWeb核心:servlet细节 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>javaWeb核心:servlet细节 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间相互独立，不能交互数据 历史版本： 1.0版本：每次请求都会建立新的连接 1.1版本：每次连接建立后会等一会儿，如果有新的请求会复用 请求消息数据格式 请求行
-请求方式 请求url 请求协议/版本 GET /login.html HTTP/1.1 HTTP协议有7中请求方式，常用的就是GET和POST
-GET：请求参数在请求行中；请求url长度有限制；相对不安全 POST：请求参数在请求体中；请求url长度没有限制；相对安全 请求头
-请求头名称: 请求头值 常见请求头：
-**User-Agent：**浏览器告诉服务器浏览器的版本信息 **Accept：**浏览器告诉服务器可以给我响应什么格式的信息 **Referer：**浏览器告诉服务器我从哪里来（防盗链 &amp; 统计） **Connection：**这个请求连接此时的状态（1.0和1.1有区别） 请求空行
-用来分隔请求头和请求体
-请求体
-只有POST请求方式有请求体，
-请求参数=请求参数值 username=zhangsan 响应消息数据格式 响应行
-协议/版本 响应状态码 状态码描述 HTTP/1.1 200 OK 响应状态码：服务器告诉客户端本次请求和响应的一个状态
-1xx：服务端正在接收客户端信息，没有接收完全，等待一段时间后，发送1xx状态码 2xx：成功 3xx：302重定向，304访问本地缓存 4xx：404客户端错误（请求路径没有对应的资源）；405请求方式没有对应的doXXX方法 5xx：500服务器端错误（服务器内部出现异常，控制台和网页一般都会报错） 响应头
-响应头名: 响应头值 常见的响应头：
-Content-type：服务器告诉浏览器本次响应体数据格式以及编码格式 Content-disposition：服务器告诉客户端以什么格式打开响应体数据 默认：in-line attachment;filename=xxx：以附件形式打开响应体（文件下载） 响应空行
-用来分隔响应头和响应体
-响应体
-网页文件 &amp; 其他打回浏览器的数据（图片，视频等）
-&lt;html&gt; &lt;head&gt; &lt;title&gt;&lt;/title&gt; &lt;/head&gt; &lt;body&gt; hello,world!" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="javaWeb核心:servlet细节" />
-<meta property="og:description" content="HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间相互独立，不能交互数据 历史版本： 1.0版本：每次请求都会建立新的连接 1.1版本：每次连接建立后会等一会儿，如果有新的请求会复用 请求消息数据格式 请求行
-请求方式 请求url 请求协议/版本 GET /login.html HTTP/1.1 HTTP协议有7中请求方式，常用的就是GET和POST
-GET：请求参数在请求行中；请求url长度有限制；相对不安全 POST：请求参数在请求体中；请求url长度没有限制；相对安全 请求头
-请求头名称: 请求头值 常见请求头：
-**User-Agent：**浏览器告诉服务器浏览器的版本信息 **Accept：**浏览器告诉服务器可以给我响应什么格式的信息 **Referer：**浏览器告诉服务器我从哪里来（防盗链 &amp; 统计） **Connection：**这个请求连接此时的状态（1.0和1.1有区别） 请求空行
-用来分隔请求头和请求体
-请求体
-只有POST请求方式有请求体，
-请求参数=请求参数值 username=zhangsan 响应消息数据格式 响应行
-协议/版本 响应状态码 状态码描述 HTTP/1.1 200 OK 响应状态码：服务器告诉客户端本次请求和响应的一个状态
-1xx：服务端正在接收客户端信息，没有接收完全，等待一段时间后，发送1xx状态码 2xx：成功 3xx：302重定向，304访问本地缓存 4xx：404客户端错误（请求路径没有对应的资源）；405请求方式没有对应的doXXX方法 5xx：500服务器端错误（服务器内部出现异常，控制台和网页一般都会报错） 响应头
-响应头名: 响应头值 常见的响应头：
-Content-type：服务器告诉浏览器本次响应体数据格式以及编码格式 Content-disposition：服务器告诉客户端以什么格式打开响应体数据 默认：in-line attachment;filename=xxx：以附件形式打开响应体（文件下载） 响应空行
-用来分隔响应头和响应体
-响应体
-网页文件 &amp; 其他打回浏览器的数据（图片，视频等）
-&lt;html&gt; &lt;head&gt; &lt;title&gt;&lt;/title&gt; &lt;/head&gt; &lt;body&gt; hello,world!" />
+<meta property="og:title" content="javaWeb核心:servlet细节" />
+<meta property="og:description" content="HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-25T16:42:00+00:00" />
 <meta property="article:modified_time" content="2020-03-25T16:42:00+00:00" />
-
-  
-  <meta itemprop="name" content="javaWeb核心:servlet细节">
-<meta itemprop="description" content="HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间相互独立，不能交互数据 历史版本： 1.0版本：每次请求都会建立新的连接 1.1版本：每次连接建立后会等一会儿，如果有新的请求会复用 请求消息数据格式 请求行
-请求方式 请求url 请求协议/版本 GET /login.html HTTP/1.1 HTTP协议有7中请求方式，常用的就是GET和POST
-GET：请求参数在请求行中；请求url长度有限制；相对不安全 POST：请求参数在请求体中；请求url长度没有限制；相对安全 请求头
-请求头名称: 请求头值 常见请求头：
-**User-Agent：**浏览器告诉服务器浏览器的版本信息 **Accept：**浏览器告诉服务器可以给我响应什么格式的信息 **Referer：**浏览器告诉服务器我从哪里来（防盗链 &amp; 统计） **Connection：**这个请求连接此时的状态（1.0和1.1有区别） 请求空行
-用来分隔请求头和请求体
-请求体
-只有POST请求方式有请求体，
-请求参数=请求参数值 username=zhangsan 响应消息数据格式 响应行
-协议/版本 响应状态码 状态码描述 HTTP/1.1 200 OK 响应状态码：服务器告诉客户端本次请求和响应的一个状态
-1xx：服务端正在接收客户端信息，没有接收完全，等待一段时间后，发送1xx状态码 2xx：成功 3xx：302重定向，304访问本地缓存 4xx：404客户端错误（请求路径没有对应的资源）；405请求方式没有对应的doXXX方法 5xx：500服务器端错误（服务器内部出现异常，控制台和网页一般都会报错） 响应头
-响应头名: 响应头值 常见的响应头：
-Content-type：服务器告诉浏览器本次响应体数据格式以及编码格式 Content-disposition：服务器告诉客户端以什么格式打开响应体数据 默认：in-line attachment;filename=xxx：以附件形式打开响应体（文件下载） 响应空行
-用来分隔响应头和响应体
-响应体
-网页文件 &amp; 其他打回浏览器的数据（图片，视频等）
-&lt;html&gt; &lt;head&gt; &lt;title&gt;&lt;/title&gt; &lt;/head&gt; &lt;body&gt; hello,world!"><meta itemprop="datePublished" content="2020-03-25T16:42:00+00:00" />
+<meta itemprop="name" content="javaWeb核心:servlet细节">
+<meta itemprop="description" content="HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间"><meta itemprop="datePublished" content="2020-03-25T16:42:00+00:00" />
 <meta itemprop="dateModified" content="2020-03-25T16:42:00+00:00" />
-<meta itemprop="wordCount" content="575">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="7520">
+<meta itemprop="keywords" content="后端,JavaWeb,Java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="javaWeb核心:servlet细节"/>
-<meta name="twitter:description" content="HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间相互独立，不能交互数据 历史版本： 1.0版本：每次请求都会建立新的连接 1.1版本：每次连接建立后会等一会儿，如果有新的请求会复用 请求消息数据格式 请求行
-请求方式 请求url 请求协议/版本 GET /login.html HTTP/1.1 HTTP协议有7中请求方式，常用的就是GET和POST
-GET：请求参数在请求行中；请求url长度有限制；相对不安全 POST：请求参数在请求体中；请求url长度没有限制；相对安全 请求头
-请求头名称: 请求头值 常见请求头：
-**User-Agent：**浏览器告诉服务器浏览器的版本信息 **Accept：**浏览器告诉服务器可以给我响应什么格式的信息 **Referer：**浏览器告诉服务器我从哪里来（防盗链 &amp; 统计） **Connection：**这个请求连接此时的状态（1.0和1.1有区别） 请求空行
-用来分隔请求头和请求体
-请求体
-只有POST请求方式有请求体，
-请求参数=请求参数值 username=zhangsan 响应消息数据格式 响应行
-协议/版本 响应状态码 状态码描述 HTTP/1.1 200 OK 响应状态码：服务器告诉客户端本次请求和响应的一个状态
-1xx：服务端正在接收客户端信息，没有接收完全，等待一段时间后，发送1xx状态码 2xx：成功 3xx：302重定向，304访问本地缓存 4xx：404客户端错误（请求路径没有对应的资源）；405请求方式没有对应的doXXX方法 5xx：500服务器端错误（服务器内部出现异常，控制台和网页一般都会报错） 响应头
-响应头名: 响应头值 常见的响应头：
-Content-type：服务器告诉浏览器本次响应体数据格式以及编码格式 Content-disposition：服务器告诉客户端以什么格式打开响应体数据 默认：in-line attachment;filename=xxx：以附件形式打开响应体（文件下载） 响应空行
-用来分隔响应头和响应体
-响应体
-网页文件 &amp; 其他打回浏览器的数据（图片，视频等）
-&lt;html&gt; &lt;head&gt; &lt;title&gt;&lt;/title&gt; &lt;/head&gt; &lt;body&gt; hello,world!"/>
+<meta name="twitter:description" content="HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">javaWeb核心:servlet细节</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-25 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 7520 words </span>
+          <span class="more-meta"> 16 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#http协议">HTTP协议：</a>
+          <ul>
+            <li><a href="#请求消息数据格式">请求消息数据格式</a></li>
+            <li><a href="#响应消息数据格式">响应消息数据格式</a></li>
+          </ul>
+        </li>
+        <li><a href="#request对象">Request对象</a></li>
+        <li><a href="#response对象">Response对象</a></li>
+        <li><a href="#web整个过程的中文编码问题解析">web整个过程的中文编码问题解析</a></li>
+        <li><a href="#servletcontext对象">ServletContext对象</a></li>
+        <li><a href="#会话技术">会话技术</a>
+          <ul>
+            <li><a href="#cookie客户端会话技术">Cookie：客户端会话技术</a></li>
+            <li><a href="#session服务器端会话技术">Session：服务器端会话技术</a></li>
+          </ul>
+        </li>
+        <li><a href="#jsp">JSP</a>
+          <ul>
+            <li><a href="#脚本">脚本</a></li>
+            <li><a href="#指令">指令</a></li>
+            <li><a href="#注释">注释</a></li>
+            <li><a href="#el表达式">EL表达式</a></li>
+            <li><a href="#jstl标签">JSTL标签</a></li>
+            <li><a href="#jsp中9大内置对象">JSP中9大内置对象</a></li>
+          </ul>
+        </li>
+        <li><a href="#mvc开发模式">MVC开发模式</a>
+          <ul>
+            <li><a href="#jsp历史">jsp历史</a></li>
+            <li><a href="#mvc">MVC：</a></li>
+            <li><a href="#mvc优缺点">MVC优缺点：</a></li>
+          </ul>
+        </li>
+        <li><a href="#三层架构">三层架构</a>
+          <ul>
+            <li><a href="#分层">分层</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">javaWeb核心:servlet细节</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 25, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h2 id="http协议">HTTP协议：</h2>
+</div>
+    <div class="post-content">
+      <h2 id="http协议">HTTP协议：</h2>
 <ul>
 <li>概念：<strong>Hyper Text Transfer Protocol</strong></li>
 <li>特点：
@@ -313,9 +216,17 @@ Content-type：服务器告诉浏览器本次响应体数据格式以及编码�
 <ol>
 <li>
 <p><strong>请求行</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>请求方式 请求url 请求协议/版本
-</span></span><span style="display:flex;"><span>GET /login.html HTTP/1.1
-</span></span></code></pre></div><p>HTTP协议有7中请求方式，常用的就是GET和POST</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">请求方式 请求url 请求协议/版本
+</span></span><span class="line"><span class="cl">GET /login.html HTTP/1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>HTTP协议有7中请求方式，常用的就是GET和POST</p>
 <ul>
 <li>GET：请求参数在请求行中；请求url长度有限制；相对不安全</li>
 <li>POST：请求参数在请求体中；请求url长度没有限制；相对安全</li>
@@ -323,13 +234,20 @@ Content-type：服务器告诉浏览器本次响应体数据格式以及编码�
 </li>
 <li>
 <p><strong>请求头</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>请求头名称: 请求头值
-</span></span></code></pre></div><p>常见请求头：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">请求头名称: 请求头值
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常见请求头：</p>
 <ul>
-<li>**User-Agent：**浏览器告诉服务器浏览器的版本信息</li>
-<li>**Accept：**浏览器告诉服务器可以给我响应什么格式的信息</li>
-<li>**Referer：**浏览器告诉服务器我从哪里来（防盗链 &amp; 统计）</li>
-<li>**Connection：**这个请求连接此时的状态（1.0和1.1有区别）</li>
+<li><strong>User-Agent：</strong> 浏览器告诉服务器浏览器的版本信息</li>
+<li><strong>Accept：</strong> 浏览器告诉服务器可以给我响应什么格式的信息</li>
+<li><strong>Referer：</strong> 浏览器告诉服务器我从哪里来（防盗链 &amp; 统计）</li>
+<li><strong>Connection：</strong> 这个请求连接此时的状态（1.0和1.1有区别）</li>
 </ul>
 </li>
 <li>
@@ -339,17 +257,33 @@ Content-type：服务器告诉浏览器本次响应体数据格式以及编码�
 <li>
 <p><strong>请求体</strong></p>
 <p>只有POST请求方式有请求体，</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>请求参数=请求参数值
-</span></span><span style="display:flex;"><span>username=zhangsan
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">请求参数=请求参数值
+</span></span><span class="line"><span class="cl">username=zhangsan
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <h3 id="响应消息数据格式">响应消息数据格式</h3>
 <ol>
 <li>
 <p>响应行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>协议/版本 响应状态码 状态码描述
-</span></span><span style="display:flex;"><span>HTTP/1.1 200 OK
-</span></span></code></pre></div><p><strong>响应状态码：服务器告诉客户端本次请求和响应的一个状态</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">协议/版本 响应状态码 状态码描述
+</span></span><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>响应状态码：服务器告诉客户端本次请求和响应的一个状态</strong></p>
 <ol>
 <li>1xx：服务端正在接收客户端信息，没有接收完全，等待一段时间后，发送1xx状态码</li>
 <li>2xx：成功</li>
@@ -360,8 +294,15 @@ Content-type：服务器告诉浏览器本次响应体数据格式以及编码�
 </li>
 <li>
 <p>响应头</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>响应头名: 响应头值
-</span></span></code></pre></div><p>常见的响应头：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">响应头名: 响应头值
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常见的响应头：</p>
 <ol>
 <li>Content-type：服务器告诉浏览器本次响应体数据格式以及编码格式</li>
 <li>Content-disposition：服务器告诉客户端以什么格式打开响应体数据
@@ -379,15 +320,29 @@ Content-type：服务器告诉浏览器本次响应体数据格式以及编码�
 <li>
 <p>响应体</p>
 <p>网页文件 &amp; 其他打回浏览器的数据（图片，视频等）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">head</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">title</span>&gt;&lt;/<span style="color:#f92672">title</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">head</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">body</span>&gt;
-</span></span><span style="display:flex;"><span>        hello,world!
-</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">body</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        hello,world!
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <p><strong>HTTPS和HTTP的区别主要如下：</strong></p>
 <ol>
@@ -404,53 +359,120 @@ Content-type：服务器告诉浏览器本次响应体数据格式以及编码�
 <ul>
 <li>
 <p>request对象继承体系结构</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>ServletRequest  --接口
-</span></span><span style="display:flex;"><span>      |
-</span></span><span style="display:flex;"><span>HttpServletRequest  --接口
-</span></span><span style="display:flex;"><span>      |
-</span></span><span style="display:flex;"><span>org.apache.catalina.connector.RequestFacade 类（tomcat）
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">ServletRequest  --接口
+</span></span><span class="line"><span class="cl">      |
+</span></span><span class="line"><span class="cl">HttpServletRequest  --接口
+</span></span><span class="line"><span class="cl">      |
+</span></span><span class="line"><span class="cl">org.apache.catalina.connector.RequestFacade 类（tomcat）
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>request功能</p>
 <ol>
 <li>
 <p>获取请求行数据</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>请求方式 请求url 请求协议/版本
-</span></span><span style="display:flex;"><span>GET /bbs/login.html?username=jack HTTP/1.1
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String <span style="color:#a6e22e">getMethod</span><span style="color:#f92672">();</span><span style="color:#75715e">//请求方式GET
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getContextPath</span><span style="color:#f92672">();</span><span style="color:#75715e">//虚拟目录/bbs
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getServletPath</span><span style="color:#f92672">();</span><span style="color:#75715e">//srevlet资源路径 /login.html
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getQueryString</span><span style="color:#f92672">();</span><span style="color:#75715e">//获得请求参数 username=jack
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getRequestURI</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取请求uri /bbs/login.html
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getRequestURL</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取请求url http://localhost:8080/bbs/login.html
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getProtocol</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取协议，版本 HTTP/1.1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getRemoteAddr</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取客户端ip地址
-</span></span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">请求方式 请求url 请求协议/版本
+</span></span><span class="line"><span class="cl">GET /bbs/login.html?username=jack HTTP/1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span> <span class="nf">getMethod</span><span class="o">();</span><span class="c1">//请求方式GET
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getContextPath</span><span class="o">();</span><span class="c1">//虚拟目录/bbs
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getServletPath</span><span class="o">();</span><span class="c1">//srevlet资源路径 /login.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getQueryString</span><span class="o">();</span><span class="c1">//获得请求参数 username=jack
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getRequestURI</span><span class="o">();</span><span class="c1">//获取请求uri /bbs/login.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getRequestURL</span><span class="o">();</span><span class="c1">//获取请求url http://localhost:8080/bbs/login.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getProtocol</span><span class="o">();</span><span class="c1">//获取协议，版本 HTTP/1.1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getRemoteAddr</span><span class="o">();</span><span class="c1">//获取客户端ip地址
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>获取请求头数据</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String <span style="color:#a6e22e">getHeader</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span><span style="color:#75715e">//根据请求头名称获得请求头值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Enumeration<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getHeaderName</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取所有请求头名称
-</span></span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span> <span class="nf">getHeader</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span><span class="c1">//根据请求头名称获得请求头值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Enumeration</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getHeaderName</span><span class="o">();</span><span class="c1">//获取所有请求头名称
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>获取请求体数据</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>BufferedReader <span style="color:#a6e22e">getReader</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取字符输入流，只能操作字符数据
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ServletInputStream <span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取字节输入流，可以操作所有类型数据
-</span></span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">BufferedReader</span> <span class="nf">getReader</span><span class="o">();</span><span class="c1">//获取字符输入流，只能操作字符数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ServletInputStream</span> <span class="nf">getInputStream</span><span class="o">();</span><span class="c1">//获取字节输入流，可以操作所有类型数据
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>其他功能</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获取请求参数通用方式（get和post通用）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span><span style="color:#75715e">//根据参数名获得参数值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String<span style="color:#f92672">[]</span> <span style="color:#a6e22e">getParameterValues</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span><span style="color:#75715e">//根据参数名称获得参数值的数组
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getParameterNames</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取所有请求的参数名称
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>String<span style="color:#f92672">[]&gt;</span> <span style="color:#a6e22e">getParameterMap</span><span style="color:#f92672">();</span><span style="color:#75715e">//获取所有参数的map集合，使用BeanUtils工具类的populate方法能把map直接转化为javabean对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//BeanUtils工具类操作的是属性，不是成员变量
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//请求转发：服务器内部的资源跳转方式
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RequestDispatcher <span style="color:#a6e22e">getRequestDispatcher</span><span style="color:#f92672">(</span>String path<span style="color:#f92672">);</span><span style="color:#75715e">//获得请求转发器对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">forward</span><span style="color:#f92672">(</span>ServletRequest request<span style="color:#f92672">,</span> ServletResponse response<span style="color:#f92672">);</span><span style="color:#75715e">//请求转发,dispatcher类的方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//共享数据：request域代表一次请求的范围，一般用于请求转发的多个资源共享数据
-</span></span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获取请求参数通用方式（get和post通用）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getParameter</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span><span class="c1">//根据参数名获得参数值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span><span class="o">[]</span> <span class="nf">getParameterValues</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span><span class="c1">//根据参数名称获得参数值的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getParameterNames</span><span class="o">();</span><span class="c1">//获取所有请求的参数名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">String</span><span class="o">[]&gt;</span> <span class="nf">getParameterMap</span><span class="o">();</span><span class="c1">//获取所有参数的map集合，使用BeanUtils工具类的populate方法能把map直接转化为javabean对象
+</span></span></span><span class="line"><span class="cl"><span class="c1">//BeanUtils工具类操作的是属性，不是成员变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//请求转发：服务器内部的资源跳转方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">RequestDispatcher</span> <span class="nf">getRequestDispatcher</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">);</span><span class="c1">//获得请求转发器对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">forward</span><span class="o">(</span><span class="n">ServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ServletResponse</span> <span class="n">response</span><span class="o">);</span><span class="c1">//请求转发,dispatcher类的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//共享数据：request域代表一次请求的范围，一般用于请求转发的多个资源共享数据
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 </li>
 </ul>
@@ -468,19 +490,43 @@ void removeAttribute(String name);</p>
  3. 转发只有一次请求
 </code></pre>
 <h2 id="response对象">Response对象</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//设置响应行
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setStatus</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> sc<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//设置响应头
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span>String value<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//设置响应体
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>PrintWriter <span style="color:#a6e22e">getWriter</span><span style="color:#f92672">();</span><span style="color:#75715e">//字符输出流
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ServletOutputStream <span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">();</span><span style="color:#75715e">//字节输出流
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//重定向1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">setStatus</span><span style="color:#f92672">(</span><span style="color:#ae81ff">302</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;location&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;/jack/responseDemo2&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//重定向简单方式
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">sendRedirect</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack/responseDemo2&#34;</span><span style="color:#f92672">);</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//设置响应行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">setStatus</span><span class="o">(</span><span class="kt">int</span> <span class="n">sc</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//设置响应头
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">setHeader</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span><span class="n">String</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//设置响应体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">PrintWriter</span> <span class="nf">getWriter</span><span class="o">();</span><span class="c1">//字符输出流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ServletOutputStream</span> <span class="nf">getOutputStream</span><span class="o">();</span><span class="c1">//字节输出流
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//重定向1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">response</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="mi">302</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;location&#34;</span><span class="o">,</span><span class="s">&#34;/jack/responseDemo2&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//重定向简单方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">response</span><span class="o">.</span><span class="na">sendRedirect</span><span class="o">(</span><span class="s">&#34;jack/responseDemo2&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>
 <p><strong>重定向的特点：</strong></p>
 <ol>
@@ -512,14 +558,27 @@ void removeAttribute(String name);</p>
 </ul>
 <h2 id="web整个过程的中文编码问题解析">web整个过程的中文编码问题解析</h2>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224100.png" alt="image-20210315143354798"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//post请求参数通过getParameter方式乱码，设置request的编码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>request<span style="color:#f92672">.</span><span style="color:#a6e22e">setCharacterEncoding</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//写会数据到浏览器的汉字编码问题解决
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">setCharacterEncoding</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;content-type&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;text/html;charset=utf-8&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//简单形式设置ContentType
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">setContentType</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;text/html;charset=utf-8&#34;</span><span style="color:#f92672">);</span>
-</span></span></code></pre></div><h2 id="servletcontext对象">ServletContext对象</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//post请求参数通过getParameter方式乱码，设置request的编码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">request</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">&#34;utf-8&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//写会数据到浏览器的汉字编码问题解决
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">response</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">&#34;utf-8&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;content-type&#34;</span><span class="o">,</span><span class="s">&#34;text/html;charset=utf-8&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//简单形式设置ContentType
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&#34;text/html;charset=utf-8&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="servletcontext对象">ServletContext对象</h2>
 <ul>
 <li><strong>代表整个web应用</strong>，可以和程序的容器（tomcat）来通信</li>
 <li>功能：
@@ -530,41 +589,77 @@ void removeAttribute(String name);</p>
 </ol>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//通过request对象获取
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>request<span style="color:#f92672">.</span><span style="color:#a6e22e">getServletContext</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//通过HttpServlet实现类中方法获取
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getServletContext</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//获得MIME类型：互联网通信中一种定义的文件数据类型（text/html,text/css,text/jpeg...）,所有文件后缀和mime的对应关系都存在tomcat服务器的web.xml中
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getMimeType</span><span style="color:#f92672">(</span>String file<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//域对象：共享所有用户所有请求的数据
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAttribute</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span>Object obj<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Object <span style="color:#a6e22e">getAttribute</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">removeAttribute</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//获取文件的真实路径
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getRealPath</span><span style="color:#f92672">(</span>String path<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>context<span style="color:#f92672">.</span><span style="color:#a6e22e">getRealPath</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/a.html&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">//web目录下
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>context<span style="color:#f92672">.</span><span style="color:#a6e22e">getRealPath</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/WEB-INF/b.html&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">//WEB-INF目录下
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>context<span style="color:#f92672">.</span><span style="color:#a6e22e">getRealPath</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/WEB-INF/classes/c.java&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">//src目录下
-</span></span></span></code></pre></div><h2 id="会话技术">会话技术</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//通过request对象获取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">request</span><span class="o">.</span><span class="na">getServletContext</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//通过HttpServlet实现类中方法获取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">this</span><span class="o">.</span><span class="na">getServletContext</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//获得MIME类型：互联网通信中一种定义的文件数据类型（text/html,text/css,text/jpeg...）,所有文件后缀和mime的对应关系都存在tomcat服务器的web.xml中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getMimeType</span><span class="o">(</span><span class="n">String</span> <span class="n">file</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//域对象：共享所有用户所有请求的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">setAttribute</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span><span class="n">Object</span> <span class="n">obj</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Object</span> <span class="nf">getAttribute</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">removeAttribute</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//获取文件的真实路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="nf">getRealPath</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="na">getRealPath</span><span class="o">(</span><span class="s">&#34;/a.html&#34;</span><span class="o">);</span><span class="c1">//web目录下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">context</span><span class="o">.</span><span class="na">getRealPath</span><span class="o">(</span><span class="s">&#34;/WEB-INF/b.html&#34;</span><span class="o">);</span><span class="c1">//WEB-INF目录下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">context</span><span class="o">.</span><span class="na">getRealPath</span><span class="o">(</span><span class="s">&#34;/WEB-INF/classes/c.java&#34;</span><span class="o">);</span><span class="c1">//src目录下
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="会话技术">会话技术</h2>
 <ul>
-<li>**会话：**浏览器第一次给服务器发送请求会话建立，直到一方断开连接会话结束。</li>
+<li><strong>会话：</strong> 浏览器第一次给服务器发送请求会话建立，直到一方断开连接会话结束。</li>
 <li>一次会话包含到了多次请求&amp;响应</li>
-<li>**功能：**在一次会话范围内共享数据，弥补http协议无状态特点的不足。</li>
+<li><strong>功能：</strong> 在一次会话范围内共享数据，弥补http协议无状态特点的不足。</li>
 </ul>
 <h3 id="cookie客户端会话技术">Cookie：客户端会话技术</h3>
 <ul>
-<li>**作用：**将数据保存在客户端</li>
+<li><strong>作用：</strong> 将数据保存在客户端</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//创建cookie对象，绑定数据
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">new</span> Cookie<span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span>String value<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//发送cookie对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">addCookie</span><span style="color:#f92672">(</span>Cookie cookie<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//获取cookie，拿到数据
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Cookie<span style="color:#f92672">[]</span> cookies <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span><span style="color:#a6e22e">getCookies</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//创建cookie对象，绑定数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">new</span> <span class="n">Cookie</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span><span class="n">String</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//发送cookie对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">Cookie</span> <span class="n">cookie</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//获取cookie，拿到数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Cookie</span><span class="o">[]</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getCookies</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li><strong>Cookie原理：</strong></li>
 </ul>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224109.png" alt="image-20210315205705956"></p>
@@ -617,15 +712,27 @@ void removeAttribute(String name);</p>
 </ul>
 <h3 id="session服务器端会话技术">Session：服务器端会话技术</h3>
 <ul>
-<li>**作用：**将数据保存在服务器端</li>
+<li><strong>作用：</strong> 将数据保存在服务器端</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获得session
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>HttpSession session <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span><span style="color:#a6e22e">getSession</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//操作共享数据
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAttribute</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span>Object obj<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Object <span style="color:#a6e22e">getAttribute</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">removeAttribute</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获得session
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">HttpSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//操作共享数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">setAttribute</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span><span class="n">Object</span> <span class="n">obj</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Object</span> <span class="nf">getAttribute</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">removeAttribute</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>原理：（Session的实现依赖于Cookie）</li>
 </ul>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224122.png" alt="image-20210316082529471"></p>
@@ -640,11 +747,21 @@ void removeAttribute(String name);</p>
 <p>默认不是</p>
 </li>
 <li>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//手动设置session cookie可以延长session cookie存活时间，持久化
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Cookie c <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Cookie<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;JSESSIONID&#34;</span><span style="color:#f92672">,</span>session<span style="color:#f92672">.</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span><span style="color:#a6e22e">setMaxAge</span><span style="color:#f92672">(</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>reponse<span style="color:#f92672">.</span><span style="color:#a6e22e">addCookie</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//手动设置session cookie可以延长session cookie存活时间，持久化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Cookie</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cookie</span><span class="o">(</span><span class="s">&#34;JSESSIONID&#34;</span><span class="o">,</span><span class="n">session</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="na">setMaxAge</span><span class="o">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">reponse</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 </li>
 <li>
@@ -703,11 +820,21 @@ void removeAttribute(String name);</p>
 <li>用于配置jsp页面 &amp; 导入资源文件</li>
 <li>格式：<code>&lt;%@ 指令名称 属性名1=属性值1 属性名2=属性值2%&gt;</code></li>
 </ul>
-<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;%@ taglib prefix=&#34;c&#34; uri=&#34;http://java.sun.com/jsp/jstl/core&#34; %&gt;
-&lt;%@ taglib prefix=&#34;fn&#34; uri=&#34;http://java.sun.com/jsp/jstl/functions&#34;%&gt;
-&lt;%@ page contentType=&#34;text/html;charset=UTF-8&#34; language=&#34;java&#34; isELIgnored=&#34;false&#34; %&gt;
-&lt;%@ include file=&#34;test.jsp&#34;%&gt;
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;%@ taglib prefix=&#34;c&#34; uri=&#34;http://java.sun.com/jsp/jstl/core&#34; %&gt;
+</span></span><span class="line"><span class="cl">&lt;%@ taglib prefix=&#34;fn&#34; uri=&#34;http://java.sun.com/jsp/jstl/functions&#34;%&gt;
+</span></span><span class="line"><span class="cl">&lt;%@ page contentType=&#34;text/html;charset=UTF-8&#34; language=&#34;java&#34; isELIgnored=&#34;false&#34; %&gt;
+</span></span><span class="line"><span class="cl">&lt;%@ include file=&#34;test.jsp&#34;%&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>分类：
 <ol>
 <li>page：配置jsp页面
@@ -754,8 +881,15 @@ void removeAttribute(String name);</p>
 <ol>
 <li>
 <p>JSP中默认支持el表达式</p>
-<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;%@ page contentType=&#34;text/html;charset=UTF-8&#34; language=&#34;java&#34; isELIgnored=&#34;false&#34; %&gt;
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;%@ page contentType=&#34;text/html;charset=UTF-8&#34; language=&#34;java&#34; isELIgnored=&#34;false&#34; %&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 </li>
 <li>
@@ -796,46 +930,97 @@ void removeAttribute(String name);</p>
 </ol>
 </li>
 </ul>
-<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;%@ taglib prefix=&#34;c&#34; uri=&#34;http://java.sun.com/jsp/jstl/core&#34; %&gt;
-&lt;%@ taglib prefix=&#34;fn&#34; uri=&#34;http://java.sun.com/jsp/jstl/functions&#34;%&gt;
-</code></pre><h4 id="if">if</h4>
-<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;c:if test=&#34;表达式&#34;&gt;
-	标签体内容
-&lt;/c:if&gt;
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;%@ taglib prefix=&#34;c&#34; uri=&#34;http://java.sun.com/jsp/jstl/core&#34; %&gt;
+</span></span><span class="line"><span class="cl">&lt;%@ taglib prefix=&#34;fn&#34; uri=&#34;http://java.sun.com/jsp/jstl/functions&#34;%&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="if">if</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;c:if test=&#34;表达式&#34;&gt;
+</span></span><span class="line"><span class="cl">	标签体内容
+</span></span><span class="line"><span class="cl">&lt;/c:if&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>如果表达式为true，则显示if标签体内容，如果为false，则不显示标签体内容</li>
 <li>一般情况下，test属性值会结合el表达式一起使用，test后的表达式一般用的是el表达式接收域对象动态数据做判断</li>
 </ul>
 <h4 id="choose">choose</h4>
-<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;c:choose&gt;
-    &lt;c:when test=&#34;${number==1}&#34;&gt;星期一&lt;/c:when&gt;
-    &lt;c:when test=&#34;${number==2}&#34;&gt;星期二&lt;/c:when&gt;
-    &lt;c:when test=&#34;${number==3}&#34;&gt;星期三&lt;/c:when&gt;
-    &lt;c:when test=&#34;${number==4}&#34;&gt;星期四&lt;/c:when&gt;
-    &lt;c:when test=&#34;${number==5}&#34;&gt;星期五&lt;/c:when&gt;
-    &lt;c:when test=&#34;${number==6}&#34;&gt;星期六&lt;/c:when&gt;
-    &lt;c:when test=&#34;${number==7}&#34;&gt;星期日&lt;/c:when&gt;
-    &lt;c:otherwise&gt;数字数据有误&lt;/c:otherwise&gt;
-&lt;/c:choose&gt;
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;c:choose&gt;
+</span></span><span class="line"><span class="cl">    &lt;c:when test=&#34;${number==1}&#34;&gt;星期一&lt;/c:when&gt;
+</span></span><span class="line"><span class="cl">    &lt;c:when test=&#34;${number==2}&#34;&gt;星期二&lt;/c:when&gt;
+</span></span><span class="line"><span class="cl">    &lt;c:when test=&#34;${number==3}&#34;&gt;星期三&lt;/c:when&gt;
+</span></span><span class="line"><span class="cl">    &lt;c:when test=&#34;${number==4}&#34;&gt;星期四&lt;/c:when&gt;
+</span></span><span class="line"><span class="cl">    &lt;c:when test=&#34;${number==5}&#34;&gt;星期五&lt;/c:when&gt;
+</span></span><span class="line"><span class="cl">    &lt;c:when test=&#34;${number==6}&#34;&gt;星期六&lt;/c:when&gt;
+</span></span><span class="line"><span class="cl">    &lt;c:when test=&#34;${number==7}&#34;&gt;星期日&lt;/c:when&gt;
+</span></span><span class="line"><span class="cl">    &lt;c:otherwise&gt;数字数据有误&lt;/c:otherwise&gt;
+</span></span><span class="line"><span class="cl">&lt;/c:choose&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>使用choose标签声明         			相当于switch声明</li>
 <li>使用when标签做判断         			相当于case</li>
 <li>使用otherwise标签做其他情况的声明    	相当于default</li>
 </ul>
 <h4 id="foreach">foreach</h4>
-<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;c:forEach items=&#34;${departmentPageBean.list}&#34; var=&#34;keyword&#34; varStatus=&#34;id&#34;&gt;
-    for循环体
-&lt;/c:forEach&gt;
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;c:forEach items=&#34;${departmentPageBean.list}&#34; var=&#34;keyword&#34; varStatus=&#34;id&#34;&gt;
+</span></span><span class="line"><span class="cl">    for循环体
+</span></span><span class="line"><span class="cl">&lt;/c:forEach&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>begin：开始值</li>
 <li>end：结束值</li>
 <li>var：临时变量</li>
 <li>step：步长</li>
 </ul>
-<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;c:forEach begin=&#34;1&#34; end=&#34;10&#34; var=&#34;i&#34; step=&#34;2&#34;&gt;
-    ${i}&lt;br&gt;
-&lt;/c:forEach&gt;
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;c:forEach begin=&#34;1&#34; end=&#34;10&#34; var=&#34;i&#34; step=&#34;2&#34;&gt;
+</span></span><span class="line"><span class="cl">    ${i}&lt;br&gt;
+</span></span><span class="line"><span class="cl">&lt;/c:forEach&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>items：容器对象</li>
 <li>var：容器中元素的临时变量</li>
 <li>varStatus：循环状态对象，属性index和count
@@ -845,12 +1030,23 @@ void removeAttribute(String name);</p>
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;c:forEach items=&#34;${departmentPageBean.list}&#34; var=&#34;keyword&#34; varStatus=&#34;id&#34;&gt;
-    &lt;td&gt;${keyword.id}&lt;/td&gt;
-    &lt;td&gt;${keyword.name}&lt;/td&gt;
-    &lt;td&gt;${keyword.phone}&lt;/td&gt;
-&lt;/c:forEach&gt;
-</code></pre><h3 id="jsp中9大内置对象">JSP中9大内置对象</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;c:forEach items=&#34;${departmentPageBean.list}&#34; var=&#34;keyword&#34; varStatus=&#34;id&#34;&gt;
+</span></span><span class="line"><span class="cl">    &lt;td&gt;${keyword.id}&lt;/td&gt;
+</span></span><span class="line"><span class="cl">    &lt;td&gt;${keyword.name}&lt;/td&gt;
+</span></span><span class="line"><span class="cl">    &lt;td&gt;${keyword.phone}&lt;/td&gt;
+</span></span><span class="line"><span class="cl">&lt;/c:forEach&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="jsp中9大内置对象">JSP中9大内置对象</h3>
 <ul>
 <li>jsp页面中不需要获取和创建，可以直接使用的对象</li>
 </ul>
@@ -937,105 +1133,107 @@ void removeAttribute(String name);</p>
 </ul>
 <h3 id="分层">分层</h3>
 <ol>
-<li><strong>view表现层：</strong>  用于显示数据和接收用户输入的数据，为用户提供一种交互式操作的界面</li>
-<li>**service业务逻辑层：**实现业务的主要逻辑，是系统架构中体现核心价值的部分。</li>
-<li>**Dao数据访问层：**有时候也称为是持久层，其功能主要是负责数据库的访问。可以访问数据库、二进制文件、文本文件等。简单的说法就是实现对数据表的Select，Insert，Update，Delete的操作。如果要加入ORM的元素，那么就会包括对象和数据表之间的mapping，以及对象实体的持久化。</li>
+<li><strong>view表现层：</strong> 用于显示数据和接收用户输入的数据，为用户提供一种交互式操作的界面</li>
+<li><strong>service业务逻辑层：</strong> 实现业务的主要逻辑，是系统架构中体现核心价值的部分。</li>
+<li><strong>Dao数据访问层：</strong> 有时候也称为是持久层，其功能主要是负责数据库的访问。可以访问数据库、二进制文件、文本文件等。简单的说法就是实现对数据表的Select，Insert，Update，Delete的操作。如果要加入ORM的元素，那么就会包括对象和数据表之间的mapping，以及对象实体的持久化。</li>
 </ol>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224147.png" alt="image-20210316104928444"></p>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%B8%80/"
-      ><span class="mr-1.5">←</span><span>浅谈日清1894海战（一）</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/"
-      ><span>JavaWeb核心:理解servlet</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-25
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+          <a href="/tags/javaweb/">JavaWeb</a>
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E6%B5%85%E8%B0%88%E6%97%A5%E6%B8%851894%E6%B5%B7%E6%88%98%E4%B8%80/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">浅谈日清1894海战（一）</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/">
+            <span class="next-text nav-default">JavaWeb核心:理解servlet</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

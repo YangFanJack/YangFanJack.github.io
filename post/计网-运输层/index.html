@@ -1,357 +1,169 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>计网-运输层 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="传输层两个协议的应用场景： TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手) QQ传文件，访问网站，下载文件 UDP：基" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>计网-运输层 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="传输层两个协议的应用场景：
-TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手)
-QQ传文件，访问网站，下载文件 UDP：基于不可靠传输，一个数据包就能完成数据通信，不建立会话，支持多播
-QQ聊天， UDP中IP分片是在IP层完成的， 而TCP分段是在TCP层完成的，TCP在ip层会尽量避免分片
-MTU = IP头&#43;【TCP头&#43;(MSS)】
-TCP层提前完成了分段， 而且， 两个TCP包中都有TCP头， 这是必然的。 所以到了IP层后， 都保留了TCP头， 当然就有了端口信息啊。 这一点与IP层次的分片是不同的。
-​ 而且我们应该看到， 因为TCP包在TCP层已经做了限制， 这就决定了， 等TCP包达到IP层的时候， IP层的数据绝对不会超过MTU, 因此， 对于TCP传输来说， IP层是没有必要分片的， 因为TCP层分段的时候， 已经考虑到了这个限制。
-​ 所以， 我们经常会说， UDP传输中， IP分片， 是受到了MTU的限制， TCP传输中， TCP分段， 是受到了MSS的限制（实际上最终还是受到了MTU的限制）
-http=TCP&#43;80
-https=TCP&#43;443
-ftp=TCP&#43;25
-SMTP=TCP&#43;25
-POP3=TCP&#43;110
-RDP=TCP&#43;3389
-smb=TCP&#43;445
-SQL Server=TCP&#43;1433
-MySQL=TCP&#43;3306
-DNS=UDP&#43;53 or TCP&#43;53
-Telnet=TCP&#43;23
-SSH=TCP&#43;22
-应用层协议和服务之间的关系：
-用ip地址定位计算机，用端口来定位服务，服务本质上是运行在TCP或UDP的某个端口侦听客户端请求的软件
-查看自己计算机侦听的端口：netstat -an
-测试远程计算机打开的端口：telnet xxx.xxx.xxx.xxx
-可以更改服务的端口和只打开必要的端口来增加服务器安全
-Windows防火墙安全：
-在网卡上加一层过滤器：只允许某些端口的数据进来 防火墙是单向的，只拦截来的，不管出去的，出去的时候自动打开端口，出去了就关了，外面的就不要想进来的。 Windows防火墙程序防不了灰鸽子木马程序
-防火墙是严进宽出，灰鸽子利用了这一点，让中木马的计算机灰鸽子客户端主动连到服务端。所以防火墙防不了灰鸽子木马。
-解决灰鸽子木马的问题：用IPsec的网络层安全严格控制网络流量
-运输层的功能 TCP传送的协议数据的那元是TCP报文段
-UDP传送的协议数据单元是UDP报文或者用户数据报
-运输层协议UDP和TCP UDP是无连接的，即是发送数据之前不需要建立连接" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="计网-运输层" />
-<meta property="og:description" content="传输层两个协议的应用场景：
-TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手)
-QQ传文件，访问网站，下载文件 UDP：基于不可靠传输，一个数据包就能完成数据通信，不建立会话，支持多播
-QQ聊天， UDP中IP分片是在IP层完成的， 而TCP分段是在TCP层完成的，TCP在ip层会尽量避免分片
-MTU = IP头&#43;【TCP头&#43;(MSS)】
-TCP层提前完成了分段， 而且， 两个TCP包中都有TCP头， 这是必然的。 所以到了IP层后， 都保留了TCP头， 当然就有了端口信息啊。 这一点与IP层次的分片是不同的。
-​ 而且我们应该看到， 因为TCP包在TCP层已经做了限制， 这就决定了， 等TCP包达到IP层的时候， IP层的数据绝对不会超过MTU, 因此， 对于TCP传输来说， IP层是没有必要分片的， 因为TCP层分段的时候， 已经考虑到了这个限制。
-​ 所以， 我们经常会说， UDP传输中， IP分片， 是受到了MTU的限制， TCP传输中， TCP分段， 是受到了MSS的限制（实际上最终还是受到了MTU的限制）
-http=TCP&#43;80
-https=TCP&#43;443
-ftp=TCP&#43;25
-SMTP=TCP&#43;25
-POP3=TCP&#43;110
-RDP=TCP&#43;3389
-smb=TCP&#43;445
-SQL Server=TCP&#43;1433
-MySQL=TCP&#43;3306
-DNS=UDP&#43;53 or TCP&#43;53
-Telnet=TCP&#43;23
-SSH=TCP&#43;22
-应用层协议和服务之间的关系：
-用ip地址定位计算机，用端口来定位服务，服务本质上是运行在TCP或UDP的某个端口侦听客户端请求的软件
-查看自己计算机侦听的端口：netstat -an
-测试远程计算机打开的端口：telnet xxx.xxx.xxx.xxx
-可以更改服务的端口和只打开必要的端口来增加服务器安全
-Windows防火墙安全：
-在网卡上加一层过滤器：只允许某些端口的数据进来 防火墙是单向的，只拦截来的，不管出去的，出去的时候自动打开端口，出去了就关了，外面的就不要想进来的。 Windows防火墙程序防不了灰鸽子木马程序
-防火墙是严进宽出，灰鸽子利用了这一点，让中木马的计算机灰鸽子客户端主动连到服务端。所以防火墙防不了灰鸽子木马。
-解决灰鸽子木马的问题：用IPsec的网络层安全严格控制网络流量
-运输层的功能 TCP传送的协议数据的那元是TCP报文段
-UDP传送的协议数据单元是UDP报文或者用户数据报
-运输层协议UDP和TCP UDP是无连接的，即是发送数据之前不需要建立连接" />
+<meta property="og:title" content="计网-运输层" />
+<meta property="og:description" content="传输层两个协议的应用场景： TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手) QQ传文件，访问网站，下载文件 UDP：基" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-11-21T15:07:07+00:00" />
 <meta property="article:modified_time" content="2020-11-21T15:07:07+00:00" />
-
-  
-  <meta itemprop="name" content="计网-运输层">
-<meta itemprop="description" content="传输层两个协议的应用场景：
-TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手)
-QQ传文件，访问网站，下载文件 UDP：基于不可靠传输，一个数据包就能完成数据通信，不建立会话，支持多播
-QQ聊天， UDP中IP分片是在IP层完成的， 而TCP分段是在TCP层完成的，TCP在ip层会尽量避免分片
-MTU = IP头&#43;【TCP头&#43;(MSS)】
-TCP层提前完成了分段， 而且， 两个TCP包中都有TCP头， 这是必然的。 所以到了IP层后， 都保留了TCP头， 当然就有了端口信息啊。 这一点与IP层次的分片是不同的。
-​ 而且我们应该看到， 因为TCP包在TCP层已经做了限制， 这就决定了， 等TCP包达到IP层的时候， IP层的数据绝对不会超过MTU, 因此， 对于TCP传输来说， IP层是没有必要分片的， 因为TCP层分段的时候， 已经考虑到了这个限制。
-​ 所以， 我们经常会说， UDP传输中， IP分片， 是受到了MTU的限制， TCP传输中， TCP分段， 是受到了MSS的限制（实际上最终还是受到了MTU的限制）
-http=TCP&#43;80
-https=TCP&#43;443
-ftp=TCP&#43;25
-SMTP=TCP&#43;25
-POP3=TCP&#43;110
-RDP=TCP&#43;3389
-smb=TCP&#43;445
-SQL Server=TCP&#43;1433
-MySQL=TCP&#43;3306
-DNS=UDP&#43;53 or TCP&#43;53
-Telnet=TCP&#43;23
-SSH=TCP&#43;22
-应用层协议和服务之间的关系：
-用ip地址定位计算机，用端口来定位服务，服务本质上是运行在TCP或UDP的某个端口侦听客户端请求的软件
-查看自己计算机侦听的端口：netstat -an
-测试远程计算机打开的端口：telnet xxx.xxx.xxx.xxx
-可以更改服务的端口和只打开必要的端口来增加服务器安全
-Windows防火墙安全：
-在网卡上加一层过滤器：只允许某些端口的数据进来 防火墙是单向的，只拦截来的，不管出去的，出去的时候自动打开端口，出去了就关了，外面的就不要想进来的。 Windows防火墙程序防不了灰鸽子木马程序
-防火墙是严进宽出，灰鸽子利用了这一点，让中木马的计算机灰鸽子客户端主动连到服务端。所以防火墙防不了灰鸽子木马。
-解决灰鸽子木马的问题：用IPsec的网络层安全严格控制网络流量
-运输层的功能 TCP传送的协议数据的那元是TCP报文段
-UDP传送的协议数据单元是UDP报文或者用户数据报
-运输层协议UDP和TCP UDP是无连接的，即是发送数据之前不需要建立连接"><meta itemprop="datePublished" content="2020-11-21T15:07:07+00:00" />
+<meta itemprop="name" content="计网-运输层">
+<meta itemprop="description" content="传输层两个协议的应用场景： TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手) QQ传文件，访问网站，下载文件 UDP：基"><meta itemprop="datePublished" content="2020-11-21T15:07:07+00:00" />
 <meta itemprop="dateModified" content="2020-11-21T15:07:07+00:00" />
-<meta itemprop="wordCount" content="160">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2248">
+<meta itemprop="keywords" content="计算机网络," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="计网-运输层"/>
-<meta name="twitter:description" content="传输层两个协议的应用场景：
-TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手)
-QQ传文件，访问网站，下载文件 UDP：基于不可靠传输，一个数据包就能完成数据通信，不建立会话，支持多播
-QQ聊天， UDP中IP分片是在IP层完成的， 而TCP分段是在TCP层完成的，TCP在ip层会尽量避免分片
-MTU = IP头&#43;【TCP头&#43;(MSS)】
-TCP层提前完成了分段， 而且， 两个TCP包中都有TCP头， 这是必然的。 所以到了IP层后， 都保留了TCP头， 当然就有了端口信息啊。 这一点与IP层次的分片是不同的。
-​ 而且我们应该看到， 因为TCP包在TCP层已经做了限制， 这就决定了， 等TCP包达到IP层的时候， IP层的数据绝对不会超过MTU, 因此， 对于TCP传输来说， IP层是没有必要分片的， 因为TCP层分段的时候， 已经考虑到了这个限制。
-​ 所以， 我们经常会说， UDP传输中， IP分片， 是受到了MTU的限制， TCP传输中， TCP分段， 是受到了MSS的限制（实际上最终还是受到了MTU的限制）
-http=TCP&#43;80
-https=TCP&#43;443
-ftp=TCP&#43;25
-SMTP=TCP&#43;25
-POP3=TCP&#43;110
-RDP=TCP&#43;3389
-smb=TCP&#43;445
-SQL Server=TCP&#43;1433
-MySQL=TCP&#43;3306
-DNS=UDP&#43;53 or TCP&#43;53
-Telnet=TCP&#43;23
-SSH=TCP&#43;22
-应用层协议和服务之间的关系：
-用ip地址定位计算机，用端口来定位服务，服务本质上是运行在TCP或UDP的某个端口侦听客户端请求的软件
-查看自己计算机侦听的端口：netstat -an
-测试远程计算机打开的端口：telnet xxx.xxx.xxx.xxx
-可以更改服务的端口和只打开必要的端口来增加服务器安全
-Windows防火墙安全：
-在网卡上加一层过滤器：只允许某些端口的数据进来 防火墙是单向的，只拦截来的，不管出去的，出去的时候自动打开端口，出去了就关了，外面的就不要想进来的。 Windows防火墙程序防不了灰鸽子木马程序
-防火墙是严进宽出，灰鸽子利用了这一点，让中木马的计算机灰鸽子客户端主动连到服务端。所以防火墙防不了灰鸽子木马。
-解决灰鸽子木马的问题：用IPsec的网络层安全严格控制网络流量
-运输层的功能 TCP传送的协议数据的那元是TCP报文段
-UDP传送的协议数据单元是UDP报文或者用户数据报
-运输层协议UDP和TCP UDP是无连接的，即是发送数据之前不需要建立连接"/>
+<meta name="twitter:description" content="传输层两个协议的应用场景： TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手) QQ传文件，访问网站，下载文件 UDP：基"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">计网-运输层</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 2248 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#运输层的功能">运输层的功能</a></li>
+        <li><a href="#运输层协议udp和tcp">运输层协议UDP和TCP</a></li>
+        <li><a href="#tcp可靠传输的实现">TCP可靠传输的实现</a></li>
+        <li><a href="#tcp协议连接管理三次握手四次挥手协议的大致执行流程">TCP协议连接管理：三次握手/四次挥手协议的大致执行流程</a></li>
+        <li><a href="#tcp实际上的可靠传输实现以字节为单位的滑动窗口">TCP实际上的可靠传输实现：以字节为单位的滑动窗口</a></li>
+        <li><a href="#tcp的流量控制">TCP的流量控制</a></li>
+        <li><a href="#tcp的拥塞控制">TCP的拥塞控制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">计网-运输层</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Nov 21, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><p><strong>传输层两个协议</strong>的应用场景：</p>
+</div>
+    <div class="post-content">
+      <p><strong>传输层两个协议</strong>的应用场景：</p>
 <ul>
 <li>
 <p><strong>TCP</strong>：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手)</p>
@@ -421,16 +233,16 @@ UDP传送的协议数据单元是UDP报文或者用户数据报
 </li>
 <li>
 <p>UDP传送的协议数据单元是UDP报文或者用户数据报</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125125536.png" style="zoom:100%;margin-left:0px;" />
 </li>
 <li>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125125723.png" style="zoom:80%;margin-left:0px;" />
 </li>
 </ul>
 <h2 id="运输层协议udp和tcp">运输层协议UDP和TCP</h2>
 <ul>
 <li>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125130057.png" style="zoom:80%;margin-left:0px;" />
 <p>UDP是无连接的，即是发送数据之前不需要建立连接</p>
 <p>UDP使用尽最大努力交付数据，既不保证可靠交付，同时也不使用拥塞控制</p>
 <p>UDP是面向报文的，UDP没有拥塞控制，很适合多媒体通信的要求</p>
@@ -438,7 +250,7 @@ UDP传送的协议数据单元是UDP报文或者用户数据报
 <p>UDP的首部开销小，只有8个字节</p>
 </li>
 <li>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125133249.png" style="zoom:67%;margin-left:0px;" />
 <p><strong>TCP中的几个标志位的作用</strong></p>
 <ul>
 <li><strong>URG</strong> 紧急指针，告诉接收TCP模块<strong>紧要指针域</strong>指着紧要数据。</li>
@@ -460,29 +272,47 @@ UDP传送的协议数据单元是UDP报文或者用户数据报
 <ul>
 <li>
 <p>可靠传输的工作原理：停止等待，超时重传，确认丢失，确认迟到，自动重传</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125133753.png" style="zoom: 67%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125133858.png" style="zoom:67%;margin-left:0px;" />
 <p>使用ARQ机制的优点是简单，但是信道利用率太低（发送所用的时间占比太小）；基于此可以采用<strong>流水线传输（连续ARQ协议），可以得到更高的信道利用率，采用滑动窗口设计实现流水线的可靠传输</strong></p>
 <p>发一个确认一个</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125134408.png" style="zoom: 67%;margin-left:0px;" />
 <p>累计确认</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125134612.png" style="zoom:67%;margin-left:0px;" />
 </li>
 </ul>
 <p><strong>netstat命令</strong>用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>-a <span style="color:#f92672">(</span>all<span style="color:#f92672">)</span>显示所有连接和监听端口选项，默认不显示LISTEN相关
-</span></span><span style="display:flex;"><span>-t <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span>仅显示tcp相关选项
-</span></span><span style="display:flex;"><span>-o 显示与每个连接相关的所属进程 ID
-</span></span><span style="display:flex;"><span>-u <span style="color:#f92672">(</span>udp<span style="color:#f92672">)</span>仅显示udp相关选项
-</span></span><span style="display:flex;"><span>-n 以数字形式显示地址和端口号。
-</span></span><span style="display:flex;"><span>-l 仅列出有在 Listen <span style="color:#f92672">(</span>监听<span style="color:#f92672">)</span> 的服務状态
-</span></span><span style="display:flex;"><span>-p 显示 proto 指定的协议的连接
-</span></span><span style="display:flex;"><span>-r 显示路由信息，路由表
-</span></span><span style="display:flex;"><span>-e 显示以太网统计信息。此选项可以与 -s选项组合使用，例如uid等
-</span></span><span style="display:flex;"><span>-s 按各个协议进行统计
-</span></span><span style="display:flex;"><span>-c 每隔一个固定时间，执行该netstat命令。
-</span></span><span style="display:flex;"><span>提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">-a <span class="o">(</span>all<span class="o">)</span>显示所有连接和监听端口选项，默认不显示LISTEN相关
+</span></span><span class="line"><span class="cl">-t <span class="o">(</span>tcp<span class="o">)</span>仅显示tcp相关选项
+</span></span><span class="line"><span class="cl">-o 显示与每个连接相关的所属进程 ID
+</span></span><span class="line"><span class="cl">-u <span class="o">(</span>udp<span class="o">)</span>仅显示udp相关选项
+</span></span><span class="line"><span class="cl">-n 以数字形式显示地址和端口号。
+</span></span><span class="line"><span class="cl">-l 仅列出有在 Listen <span class="o">(</span>监听<span class="o">)</span> 的服務状态
+</span></span><span class="line"><span class="cl">-p 显示 proto 指定的协议的连接
+</span></span><span class="line"><span class="cl">-r 显示路由信息，路由表
+</span></span><span class="line"><span class="cl">-e 显示以太网统计信息。此选项可以与 -s选项组合使用，例如uid等
+</span></span><span class="line"><span class="cl">-s 按各个协议进行统计
+</span></span><span class="line"><span class="cl">-c 每隔一个固定时间，执行该netstat命令。
+</span></span><span class="line"><span class="cl">提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>
 <p><strong>Wireshark抓包后的网络层次说明：</strong></p>
 <ul>
@@ -497,11 +327,11 @@ UDP传送的协议数据单元是UDP报文或者用户数据报
 </li>
 </ul>
 <h2 id="tcp协议连接管理三次握手四次挥手协议的大致执行流程">TCP协议连接管理：三次握手/四次挥手协议的大致执行流程</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125164801.png" style="zoom: 67%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125164802.png" style="zoom:67%;margin-left:0px;" />
 <p>STP协议默认采用<strong>滑动窗口累计确认</strong>的机制：</p>
 <p><strong>利用TCP的三次握手协议实现对XP系统的攻击：SYN攻击和LAND攻击</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125151050.png" style="zoom: 33%;margin-left:0px;" />
 <h2 id="tcp实际上的可靠传输实现以字节为单位的滑动窗口">TCP实际上的可靠传输实现：以字节为单位的滑动窗口</h2>
 <ul>
 <li>
@@ -509,20 +339,20 @@ UDP传送的协议数据单元是UDP报文或者用户数据报
 </li>
 <li>
 <p>TCP传输过程中<strong>无数据包丢失</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125165726.png" style="zoom: 80%;margin-left:0px;" />
 </li>
 <li>
 <p>TCP传输过程中<strong>有数据包丢失</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125165727.png" style="zoom: 80%;margin-left:0px;" />
 </li>
 </ul>
 <p><strong>超时重传时间确认：</strong></p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125162814.png" style="zoom: 67%;margin-left:0px;" />
 <h2 id="tcp的流量控制">TCP的流量控制</h2>
 <ul>
 <li>
 <p>TCP的流量控制是基于<strong>滑动窗口机制</strong>的</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125172256.png" style="zoom: 80%;margin-left:0px;" />
 </li>
 </ul>
 <h2 id="tcp的拥塞控制">TCP的拥塞控制</h2>
@@ -532,109 +362,109 @@ UDP传送的协议数据单元是UDP报文或者用户数据报
 </li>
 <li>
 <p>当资源的需求综合&gt;可用的资源时，将产生资源拥塞。</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125173907.png" style="zoom:80%;margin-left:0px;" />
 </li>
 <li>
 <p>拥塞控制的四种算法：慢开始，拥塞避免，快重传，快恢复</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127101954.png" style="zoom: 50%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127101955.png" style="zoom:50%;margin-left:0px;" />
 <p>A发送窗口的上限值=Min[A的拥塞窗口,B的接收窗口]</p>
 </li>
 </ul>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/"
-      ><span class="mr-1.5">←</span><span>计网-应用层</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/"
-      ><span>计网-网络层</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-21
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">计网-应用层</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/">
+            <span class="next-text nav-default">计网-网络层</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

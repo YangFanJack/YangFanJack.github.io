@@ -1,312 +1,191 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>计网-网络层 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。 网络层应" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>计网-网络层 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。
-网络层应该向运输层提供怎样的服务？分组交换网提供两种传输服务:
-虚电路服务：面向连接的，虚电路表示这只是一条逻辑上的连接，和电路交换的一真正的连接只是类似，但并不完全一样。是一种使所有分组顺序到达目的端的可靠性数据传输服务。 数据报服务：无连接的，网络在发送分组时不需要先建立连接，每一个分组独立发送，与其前后的分组无关。是一种使分组按照独立路由到达目的端的数据传输服务，比虚电路更加灵活。 网际协议IP 虚拟互连网 网络互联的中间设备
-物理层中继系统：转发器，集线器 数据链路层终极系统：网桥，交换机 网络层中中继系统：路由器 网络层以上的中继系统：网关 虚拟互连网也就是逻辑互联网络，就是互连起来的各种物理网络的异构性本来就是客观存在的，但是我们利用IP协议就可以使这些性能各异的网络从用户看起来就好像是一个统一的网络。
-网络层4个协议
-IP协议： ARP/RARP协议： ICMP协议： IGMP协议： IP地址 分层：分网络部分和主机部分
-分类：A类（8&#43;24），B类（16&#43;16），C类（24&#43;8），D类（组播），E类（研究）
-二进制，十进制
-1 1 10 2 100 4 1000 8 10000 16 100000 32 1000000 64 10000000 128 11000000 192 11100000 224 11110000 240 11111000 248 11111100 252 11111110 254 11111111 255 A类 从1.0.0.0 到126.255.255.255 B类 从128.0.0.0到191.255.255.255 C类 从192.0.0.0到223.255.255.255
-在IP地址3种主要类型里，各保留了3个区域作为私有地址，其地址范围如下：
-A类地址：10.0.0.0～10.255.255.255
-B类地址：172.16.0.0～172.31.255.255
-C类地址：192.168.0.0～192.168.255.255
-注意：网段中主机部分不全为1，不全为0；全0代表这个网段，全1代表网段中的广播
-几个特殊ip地址：
-0.0.0.0：不是一个真正意义上的IP地址了。它表示的是这样一个集合：所有不清楚的主机和目的网络。 255.255.255.255：限制广播地址
-244.0.0.1：组播地址
-127.0.0.1：本地回环地址
-169.254.0.0：一般开启了dhcp服务的设备但又无法获取到dhcp的会随机使用这个网段的ip" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="计网-网络层" />
-<meta property="og:description" content="网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。
-网络层应该向运输层提供怎样的服务？分组交换网提供两种传输服务:
-虚电路服务：面向连接的，虚电路表示这只是一条逻辑上的连接，和电路交换的一真正的连接只是类似，但并不完全一样。是一种使所有分组顺序到达目的端的可靠性数据传输服务。 数据报服务：无连接的，网络在发送分组时不需要先建立连接，每一个分组独立发送，与其前后的分组无关。是一种使分组按照独立路由到达目的端的数据传输服务，比虚电路更加灵活。 网际协议IP 虚拟互连网 网络互联的中间设备
-物理层中继系统：转发器，集线器 数据链路层终极系统：网桥，交换机 网络层中中继系统：路由器 网络层以上的中继系统：网关 虚拟互连网也就是逻辑互联网络，就是互连起来的各种物理网络的异构性本来就是客观存在的，但是我们利用IP协议就可以使这些性能各异的网络从用户看起来就好像是一个统一的网络。
-网络层4个协议
-IP协议： ARP/RARP协议： ICMP协议： IGMP协议： IP地址 分层：分网络部分和主机部分
-分类：A类（8&#43;24），B类（16&#43;16），C类（24&#43;8），D类（组播），E类（研究）
-二进制，十进制
-1 1 10 2 100 4 1000 8 10000 16 100000 32 1000000 64 10000000 128 11000000 192 11100000 224 11110000 240 11111000 248 11111100 252 11111110 254 11111111 255 A类 从1.0.0.0 到126.255.255.255 B类 从128.0.0.0到191.255.255.255 C类 从192.0.0.0到223.255.255.255
-在IP地址3种主要类型里，各保留了3个区域作为私有地址，其地址范围如下：
-A类地址：10.0.0.0～10.255.255.255
-B类地址：172.16.0.0～172.31.255.255
-C类地址：192.168.0.0～192.168.255.255
-注意：网段中主机部分不全为1，不全为0；全0代表这个网段，全1代表网段中的广播
-几个特殊ip地址：
-0.0.0.0：不是一个真正意义上的IP地址了。它表示的是这样一个集合：所有不清楚的主机和目的网络。 255.255.255.255：限制广播地址
-244.0.0.1：组播地址
-127.0.0.1：本地回环地址
-169.254.0.0：一般开启了dhcp服务的设备但又无法获取到dhcp的会随机使用这个网段的ip" />
+<meta property="og:title" content="计网-网络层" />
+<meta property="og:description" content="网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。 网络层应" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-11-21T15:06:46+00:00" />
 <meta property="article:modified_time" content="2020-11-21T15:06:46+00:00" />
-
-  
-  <meta itemprop="name" content="计网-网络层">
-<meta itemprop="description" content="网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。
-网络层应该向运输层提供怎样的服务？分组交换网提供两种传输服务:
-虚电路服务：面向连接的，虚电路表示这只是一条逻辑上的连接，和电路交换的一真正的连接只是类似，但并不完全一样。是一种使所有分组顺序到达目的端的可靠性数据传输服务。 数据报服务：无连接的，网络在发送分组时不需要先建立连接，每一个分组独立发送，与其前后的分组无关。是一种使分组按照独立路由到达目的端的数据传输服务，比虚电路更加灵活。 网际协议IP 虚拟互连网 网络互联的中间设备
-物理层中继系统：转发器，集线器 数据链路层终极系统：网桥，交换机 网络层中中继系统：路由器 网络层以上的中继系统：网关 虚拟互连网也就是逻辑互联网络，就是互连起来的各种物理网络的异构性本来就是客观存在的，但是我们利用IP协议就可以使这些性能各异的网络从用户看起来就好像是一个统一的网络。
-网络层4个协议
-IP协议： ARP/RARP协议： ICMP协议： IGMP协议： IP地址 分层：分网络部分和主机部分
-分类：A类（8&#43;24），B类（16&#43;16），C类（24&#43;8），D类（组播），E类（研究）
-二进制，十进制
-1 1 10 2 100 4 1000 8 10000 16 100000 32 1000000 64 10000000 128 11000000 192 11100000 224 11110000 240 11111000 248 11111100 252 11111110 254 11111111 255 A类 从1.0.0.0 到126.255.255.255 B类 从128.0.0.0到191.255.255.255 C类 从192.0.0.0到223.255.255.255
-在IP地址3种主要类型里，各保留了3个区域作为私有地址，其地址范围如下：
-A类地址：10.0.0.0～10.255.255.255
-B类地址：172.16.0.0～172.31.255.255
-C类地址：192.168.0.0～192.168.255.255
-注意：网段中主机部分不全为1，不全为0；全0代表这个网段，全1代表网段中的广播
-几个特殊ip地址：
-0.0.0.0：不是一个真正意义上的IP地址了。它表示的是这样一个集合：所有不清楚的主机和目的网络。 255.255.255.255：限制广播地址
-244.0.0.1：组播地址
-127.0.0.1：本地回环地址
-169.254.0.0：一般开启了dhcp服务的设备但又无法获取到dhcp的会随机使用这个网段的ip"><meta itemprop="datePublished" content="2020-11-21T15:06:46+00:00" />
+<meta itemprop="name" content="计网-网络层">
+<meta itemprop="description" content="网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。 网络层应"><meta itemprop="datePublished" content="2020-11-21T15:06:46+00:00" />
 <meta itemprop="dateModified" content="2020-11-21T15:06:46+00:00" />
-<meta itemprop="wordCount" content="185">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="4657">
+<meta itemprop="keywords" content="计算机网络," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="计网-网络层"/>
-<meta name="twitter:description" content="网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。
-网络层应该向运输层提供怎样的服务？分组交换网提供两种传输服务:
-虚电路服务：面向连接的，虚电路表示这只是一条逻辑上的连接，和电路交换的一真正的连接只是类似，但并不完全一样。是一种使所有分组顺序到达目的端的可靠性数据传输服务。 数据报服务：无连接的，网络在发送分组时不需要先建立连接，每一个分组独立发送，与其前后的分组无关。是一种使分组按照独立路由到达目的端的数据传输服务，比虚电路更加灵活。 网际协议IP 虚拟互连网 网络互联的中间设备
-物理层中继系统：转发器，集线器 数据链路层终极系统：网桥，交换机 网络层中中继系统：路由器 网络层以上的中继系统：网关 虚拟互连网也就是逻辑互联网络，就是互连起来的各种物理网络的异构性本来就是客观存在的，但是我们利用IP协议就可以使这些性能各异的网络从用户看起来就好像是一个统一的网络。
-网络层4个协议
-IP协议： ARP/RARP协议： ICMP协议： IGMP协议： IP地址 分层：分网络部分和主机部分
-分类：A类（8&#43;24），B类（16&#43;16），C类（24&#43;8），D类（组播），E类（研究）
-二进制，十进制
-1 1 10 2 100 4 1000 8 10000 16 100000 32 1000000 64 10000000 128 11000000 192 11100000 224 11110000 240 11111000 248 11111100 252 11111110 254 11111111 255 A类 从1.0.0.0 到126.255.255.255 B类 从128.0.0.0到191.255.255.255 C类 从192.0.0.0到223.255.255.255
-在IP地址3种主要类型里，各保留了3个区域作为私有地址，其地址范围如下：
-A类地址：10.0.0.0～10.255.255.255
-B类地址：172.16.0.0～172.31.255.255
-C类地址：192.168.0.0～192.168.255.255
-注意：网段中主机部分不全为1，不全为0；全0代表这个网段，全1代表网段中的广播
-几个特殊ip地址：
-0.0.0.0：不是一个真正意义上的IP地址了。它表示的是这样一个集合：所有不清楚的主机和目的网络。 255.255.255.255：限制广播地址
-244.0.0.1：组播地址
-127.0.0.1：本地回环地址
-169.254.0.0：一般开启了dhcp服务的设备但又无法获取到dhcp的会随机使用这个网段的ip"/>
+<meta name="twitter:description" content="网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。 网络层应"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">计网-网络层</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 4657 words </span>
+          <span class="more-meta"> 10 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#网络层提供的两种服务">网络层提供的两种服务</a></li>
+        <li><a href="#网际协议ip">网际协议IP</a>
+          <ul>
+            <li><a href="#虚拟互连网">虚拟互连网</a></li>
+            <li><a href="#ip地址">IP地址</a></li>
+            <li><a href="#划分子网和构建超网">划分子网和构建超网</a></li>
+            <li><a href="#ip地址和硬件mac地址">IP地址和硬件mac地址</a></li>
+            <li><a href="#ip数据报格式">IP数据报格式</a></li>
+            <li><a href="#ip转发分组的流程">IP转发分组的流程</a></li>
+          </ul>
+        </li>
+        <li><a href="#网际控制报文协议icmp协议">网际控制报文协议ICMP协议</a></li>
+        <li><a href="#路由协议">路由协议</a>
+          <ul>
+            <li><a href="#igp内部网关协议">IGP(内部网关协议)</a></li>
+            <li><a href="#egp外部网关协议和igp外部网关协议">EGP(外部网关协议)和IGP(外部网关协议)</a></li>
+          </ul>
+        </li>
+        <li><a href="#主机a135242523第一次和不同网段的主机b1352452123通信完整过程数据链路层和网络层">主机A（135.24.25.23）第一次和不同网段的主机B（135.24.52.123）通信完整过程（数据链路层和网络层）</a></li>
+        <li><a href="#ip组播">IP组播</a></li>
+        <li><a href="#虚拟专用网vpn">虚拟专用网VPN</a></li>
+        <li><a href="#网络地址转换nat">网络地址转换NAT</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">计网-网络层</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Nov 21, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h2 id="网络层提供的两种服务">网络层提供的两种服务</h2>
+</div>
+    <div class="post-content">
+      <h2 id="网络层提供的两种服务">网络层提供的两种服务</h2>
 <p>争论的焦点是<strong>可靠交付应当有谁来负责</strong>？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。</p>
 <p>网络层应该向运输层提供怎样的服务？分组交换网提供两种传输服务:</p>
 <ul>
 <li><strong>虚电路服务</strong>：面向连接的，虚电路表示这只是一条逻辑上的连接，和电路交换的一真正的连接只是类似，但并不完全一样。是一种<strong>使所有分组顺序到达目的端</strong>的<strong>可靠性</strong>数据传输服务。</li>
 <li><strong>数据报服务</strong>：无连接的，网络在发送分组时不需要先建立连接，每一个分组独立发送，与其前后的分组无关。是一种<strong>使分组按照独立路由到达目的端</strong>的数据传输服务，比虚电路更加灵活。</li>
 <li>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201122213200.png" style="zoom:80%;margin-left:0px;" />
 </li>
 </ul>
 <h2 id="网际协议ip">网际协议IP</h2>
@@ -332,7 +211,7 @@ C类地址：192.168.0.0～192.168.255.255
 <li>ICMP协议：</li>
 <li>IGMP协议：</li>
 </ul>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201122215345.png" style="zoom:50%;margin-left:0px;" />
 </li>
 </ul>
 <h3 id="ip地址">IP地址</h3>
@@ -456,34 +335,34 @@ C类 从192.0.0.0到223.255.255.255</p>
 </li>
 <li>
 <p><strong>子网划分</strong>：解决IPV4不够用的情况</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124084545.png" style="zoom:67%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124083233.png" style="zoom:67%;margin-left:0px;" />
 </li>
 <li>
 <p>C类地址分成四个子网：</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124083233.png" style="zoom:67%;margin-left:0px;" />
 <p>点到点网络的子网掩码是X.X.X.252</p>
 </li>
 <li>
-<p>**变长子网划分：**允许把子网继续划分为更小的网络</p>
-<!-- raw HTML omitted -->
+<p><strong>变长子网划分：</strong> 允许把子网继续划分为更小的网络</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124093444.png" style="zoom:67%;margin-left:0px;" />
 </li>
 <li>
 <p>超网：</p>
 <p>将多个子网合并为一个网</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124094613.png" style="zoom:80%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124094617.png" style="zoom:80%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124101306.png" style="zoom:67%;margin-left:0px;" />
 </li>
 </ul>
 <h3 id="ip地址和硬件mac地址">IP地址和硬件mac地址</h3>
 <ul>
 <li>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124101437.png" style="zoom:50%;margin-left:0px;" />
 </li>
 <li>
 <p>ip地址决定了数据包最终要到哪一个计算机，mac地址决定了下一跳给谁</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124102027.png" style="zoom:80%;margin-left:0px;" />
 </li>
 <li>
 <p><strong>同一子网和同一网段可以看作一个意思</strong></p>
@@ -493,9 +372,9 @@ C类 从192.0.0.0到223.255.255.255</p>
 </li>
 <li>
 <p><strong>ARP协议：</strong></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124153154.png" style="zoom: 67%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124130747.png" style="zoom: 50%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124153158.png" style="zoom:67%;margin-left:0px;" />
 </li>
 <li>
 <p><strong>ARP欺骗：</strong></p>
@@ -509,7 +388,7 @@ C类 从192.0.0.0到223.255.255.255</p>
 <ul>
 <li>
 <p>由<strong>首部</strong>和<strong>数据</strong>两部分组成</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124160215.jpg" style="zoom:100%;margin-left:0px;" />
 </li>
 </ul>
 <h3 id="ip转发分组的流程">IP转发分组的流程</h3>
@@ -526,11 +405,11 @@ C类 从192.0.0.0到223.255.255.255</p>
 <ul>
 <li>
 <p>为了提高IP数据包交付成功的机会，在网络层使用了网际控制报文协议ICMP</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124204747.png" style="zoom:80%;margin-left:0px;" />
 </li>
 <li>
 <p>报告的错误：终点不可达；原点抑制；时间超过；参数问题；改变路由（重定向）</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124205206.png" style="zoom:80%;margin-left:0px;" />
 </li>
 <li>
 <p>ping和pathping命令</p>
@@ -565,7 +444,7 @@ C类 从192.0.0.0到223.255.255.255</p>
 </ul>
 <p>router rip</p>
 <p>network （注意这里的ip地址要看该路由器所连接的几个网段具体属于ABC哪类网，来决定要配置几次）</p>
-<!-- raw HTML omitted -->
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124212811.png" style="zoom: 50%;margin-left:0px;" />
 <h4 id="动态路由协议ospf链路状态路由算法是传输层协议">动态路由协议OSPF：链路状态路由算法，是传输层协议</h4>
 <ul>
 <li>
@@ -637,7 +516,7 @@ C类 从192.0.0.0到223.255.255.255</p>
 <li>VPN：Virtual Private Network，目的是建立更加安全私密的远程连接</li>
 <li>形象解释就是在巨大的错综复杂的互联网环境中建立一条两个路由器之间的直通隧道</li>
 <li>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125090725.png" style="zoom:80%;margin-left:0px;" />
 </li>
 </ul>
 <h2 id="网络地址转换nat">网络地址转换NAT</h2>
@@ -667,115 +546,114 @@ C类 从192.0.0.0到223.255.255.255</p>
 </li>
 <li>
 <p>NAT原理图</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124233628.png" style="zoom: 33%;margin-left:0px;" />
 </li>
 <li>
 <p>端口映射：</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124233635.png" style="zoom:33%;margin-left:0px;" />
 </li>
 <li>
 <p>内网穿透</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124233640.png" style="zoom:33%;margin-left:0px;" />
 </li>
 <li>
 <p>可见，端口映射和内网穿透技术都可以实现非同网段访问局域网ip，但是因为国内的网络环境是如图所示的套娃情况。NAT的实现往往不是一层，而是多层，所以基本不可能用端口映射的方式实现本地局域网PC的外雇访问。有什么解决方法呢？一.让ISP给你的第一层路由器分配一个公网ip，很难，几乎不可能。二.花钱买内网穿透服务，很贵且限流。</p>
-<!-- raw HTML omitted -->
-</li>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124233704.png" style="zoom:33%;margin-left:0px;" /></li>
 </ul>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/"
-      ><span class="mr-1.5">←</span><span>计网-运输层</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"
-      ><span>计网-数据链路层</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-21
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">计网-运输层</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">
+            <span class="next-text nav-default">计网-数据链路层</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Debian安装软件记录 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="Debian系统安装后的一些配置 配置软件源 1 2 3 4 5 6 7 8 9 10 11 12 13 14 vim /etc/apt/sources.list deb http://repo.huaweicloud.com/ubuntu jammy main restricted deb http://repo.huaweicloud.com/ubuntu jammy-updates main restricted deb http://repo.huaweicloud.com/ubuntu jammy universe deb http://repo.huaweicloud.com/ubuntu jammy-updates universe deb http://repo.huaweicloud.com/ubuntu jammy multiverse deb http://repo.huaweicloud.com/ubuntu jammy-updates multiverse deb http://repo.huaweicloud.com/ubuntu jammy-backports main restricted universe multiverse" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
+
+
+<link rel="canonical" href="http://yangfanjack.top/post/debian%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Debian安装软件记录" />
+<meta property="og:description" content="Debian系统安装后的一些配置 配置软件源 1 2 3 4 5 6 7 8 9 10 11 12 13 14 vim /etc/apt/sources.list deb http://repo.huaweicloud.com/ubuntu jammy main restricted deb http://repo.huaweicloud.com/ubuntu jammy-updates main restricted deb http://repo.huaweicloud.com/ubuntu jammy universe deb http://repo.huaweicloud.com/ubuntu jammy-updates universe deb http://repo.huaweicloud.com/ubuntu jammy multiverse deb http://repo.huaweicloud.com/ubuntu jammy-updates multiverse deb http://repo.huaweicloud.com/ubuntu jammy-backports main restricted universe multiverse" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/post/debian%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-10T21:42:52+08:00" />
+<meta property="article:modified_time" content="2023-03-10T21:42:52+08:00" />
+<meta itemprop="name" content="Debian安装软件记录">
+<meta itemprop="description" content="Debian系统安装后的一些配置 配置软件源 1 2 3 4 5 6 7 8 9 10 11 12 13 14 vim /etc/apt/sources.list deb http://repo.huaweicloud.com/ubuntu jammy main restricted deb http://repo.huaweicloud.com/ubuntu jammy-updates main restricted deb http://repo.huaweicloud.com/ubuntu jammy universe deb http://repo.huaweicloud.com/ubuntu jammy-updates universe deb http://repo.huaweicloud.com/ubuntu jammy multiverse deb http://repo.huaweicloud.com/ubuntu jammy-updates multiverse deb http://repo.huaweicloud.com/ubuntu jammy-backports main restricted universe multiverse"><meta itemprop="datePublished" content="2023-03-10T21:42:52+08:00" />
+<meta itemprop="dateModified" content="2023-03-10T21:42:52+08:00" />
+<meta itemprop="wordCount" content="708">
+<meta itemprop="keywords" content="Linux," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Debian安装软件记录"/>
+<meta name="twitter:description" content="Debian系统安装后的一些配置 配置软件源 1 2 3 4 5 6 7 8 9 10 11 12 13 14 vim /etc/apt/sources.list deb http://repo.huaweicloud.com/ubuntu jammy main restricted deb http://repo.huaweicloud.com/ubuntu jammy-updates main restricted deb http://repo.huaweicloud.com/ubuntu jammy universe deb http://repo.huaweicloud.com/ubuntu jammy-updates universe deb http://repo.huaweicloud.com/ubuntu jammy multiverse deb http://repo.huaweicloud.com/ubuntu jammy-updates multiverse deb http://repo.huaweicloud.com/ubuntu jammy-backports main restricted universe multiverse"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Debian安装软件记录</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-03-10 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"> 实用工具 </a>
+            </div>
+          <span class="more-meta"> 708 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#debian系统安装后的一些配置">Debian系统安装后的一些配置</a></li>
+    <li><a href="#hugo部署">Hugo部署</a></li>
+    <li><a href="#安装mysql">安装MySQL</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="debian系统安装后的一些配置">Debian系统安装后的一些配置</h1>
+<ol>
+<li>配置软件源</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim /etc/apt/sources.list
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy main restricted
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-updates main restricted
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy universe
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-updates universe
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy multiverse
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-updates multiverse
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-backports main restricted universe multiverse
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-security main restricted
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-security universe
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-security multiverse
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">apt upgrade
+</span></span><span class="line"><span class="cl">apt update
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="hugo部署">Hugo部署</h1>
+<ol>
+<li>安装git</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install git
+</span></span><span class="line"><span class="cl">git config --global user.name <span class="s2">&#34;yangfanjack&#34;</span>
+</span></span><span class="line"><span class="cl">git config --global user.email <span class="s2">&#34;1144536063@qq.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建博客目录</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /root
+</span></span><span class="line"><span class="cl">mkdir blog
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> blog
+</span></span><span class="line"><span class="cl">mkdir hugo
+</span></span><span class="line"><span class="cl">mkdir repo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> repo
+</span></span><span class="line"><span class="cl">git init --bare hugo.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建一个新的Git钩子用于自动部署</span>
+</span></span><span class="line"><span class="cl">vim /root/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">git --work-tree<span class="o">=</span>/root/blog/hugo --git-dir<span class="o">=</span>/root/blog/repo/hugo.git checkout -f
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chown -R root:root /root/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl">chmod +x /root/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置本地计算机的git</span>
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git remote add origin root@114.116.115.171:/root/blog/repo/hugo.git
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first&#34;</span>
+</span></span><span class="line"><span class="cl">git push -u orgin master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>安装nginx</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install nginx
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> nginx
+</span></span><span class="line"><span class="cl">systemctl start nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改/etc/nginx/nginx.conf</span>
+</span></span><span class="line"><span class="cl">user root
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改/etc/nginx/sites-enabled/default</span>
+</span></span><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        listen <span class="m">80</span> default_server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        listen <span class="o">[</span>::<span class="o">]</span>:80 default_server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># SSL configuration</span>
+</span></span><span class="line"><span class="cl">        listen <span class="m">443</span> ssl default_server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        listen <span class="o">[</span>::<span class="o">]</span>:443 ssl default_server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        server_name yagnfanjack.top<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        root /root/blog/hugo<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_certificate <span class="s2">&#34;/etc/nginx/cert/server.crt&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_certificate_key <span class="s2">&#34;/etc/nginx/cert/server.key&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_session_cache shared:SSL:1m<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_session_timeout 10m<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_ciphers DHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_protocols TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>ssl_prefer_server_ciphers on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        error_page <span class="m">404</span> /404.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">location</span> <span class="o">=</span> /40x.html<span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        error_page <span class="m">500</span> <span class="m">502</span> <span class="m">503</span> <span class="m">504</span> /50x.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">location</span> <span class="o">=</span> /50x.html<span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Add index.php to the list if you are using PHP</span>
+</span></span><span class="line"><span class="cl">        index index.html index.htm index.nginx-debian.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 华为云下载SSL证书放到服务器/etc/nginx/cert文件夹内</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关于git的设置，还可以新建一个git用户，这样能使用SSH免密登录</span>
+</span></span><span class="line"><span class="cl">adduser git
+</span></span><span class="line"><span class="cl">apt install sudo
+</span></span><span class="line"><span class="cl">chmod <span class="m">740</span> /etc/sudoers
+</span></span><span class="line"><span class="cl">vim /etc/sudoers
+</span></span><span class="line"><span class="cl">root    <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span>   ALL
+</span></span><span class="line"><span class="cl">git     <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span>   ALL
+</span></span><span class="line"><span class="cl">chmod <span class="m">400</span> /etc/sudoers
+</span></span><span class="line"><span class="cl">sudo passwd git
+</span></span><span class="line"><span class="cl">su - git
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置SSH认证，将本地计算机的SSH公匙加进去</span>
+</span></span><span class="line"><span class="cl">mkdir ~/.ssh
+</span></span><span class="line"><span class="cl">vim ~/.ssh/authorized_keys <span class="c1">#粘贴进去</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">700</span> .ssh
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> .ssh/authorized_keys
+</span></span><span class="line"><span class="cl"><span class="c1">#验证</span>
+</span></span><span class="line"><span class="cl">ssh -v git@114.116.115.171
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir /home/git/blog/hugo
+</span></span><span class="line"><span class="cl">mkdir /home/git/blog/repo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/git/blog/repo
+</span></span><span class="line"><span class="cl">git init --bare hugo.git
+</span></span><span class="line"><span class="cl"><span class="c1"># 重复上面的Git钩子配置</span>
+</span></span><span class="line"><span class="cl">vim /home/git/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">git --work-tree<span class="o">=</span>/home/git/blog/hugo --git-dir<span class="o">=</span>/home/git/blog/repo/hugo.git checkout -f
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo chown -R git:git /home/git/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl">sudo chmod +x /home/git/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Nginx配置文件修改</span>
+</span></span><span class="line"><span class="cl">user git
+</span></span><span class="line"><span class="cl"><span class="c1"># 本地git项目修改</span>
+</span></span><span class="line"><span class="cl">git remote add origin git@114.116.115.171:/home/git/blog/repo/hugo.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="安装mysql">安装MySQL</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install mysql-server mysql-client
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> mysql.service
+</span></span><span class="line"><span class="cl">systemctl start mysql.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 进行mysql初始化设置，root密码</span>
+</span></span><span class="line"><span class="cl">mysql_secure_installation
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">update user <span class="nb">set</span> <span class="nv">host</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span> where <span class="nv">user</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-03-10
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/openeuler%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/">
+            <span class="next-text nav-default">OpenEuler安装软件记录</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

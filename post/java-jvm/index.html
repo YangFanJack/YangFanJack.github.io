@@ -1,277 +1,175 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>java-JVM - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="JVM重点问题 JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/java-jvm/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>java-JVM - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="JVM重点问题
-JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制（常用算法） JMM 单点登录（SSO） JVM位置 JVM体系结构（JVM内存模型） jvm内存模型主要分为5个部分，是java在运行时，jvm虚拟机拿到了自己能支配的内存之后，将内存进行了割分
-栈：存储函数运行中的一些引用类型的变量&amp;基础类型变量 堆：存储对象，被栈中的引用类型变量所指向 本地方法栈：存储C&#43;&#43;的native方法运行时的栈区 java中有两种方法：java方法和本地方法 java方法由java语言编写，编译为class文件，运行时放在jvm中 本地方法由其他语言编写，编译成和处理器相关的机器代码，本地方法保存在动态链接库中，在windows系统中就是.dll文件中，各个平台都有自己独有的 程序计数器：指向程序当前运行的位置 方法区：存储元数据信息。static，cloader等 类加载器 .class文件经过类加载器，初始化，在方法中形成一个Class类型的对象用来做实例化操作
-类加载器分类：（层次从低到高）
-应用程序加载器：AppClassLoader：记载自定义的类 扩展加载器：ExtClassCloader：加载java扩展库中的类 引导类(根)加载器：由C&#43;&#43;实现，加载java核心库rt.jar，创建扩展类加载器和应用程序类加载器 虚拟机自带的加载器： 双亲委派机制 目的：为了保证安全，重点理解委派 双亲委派机制原理：类加载器收到类加载请求——》一直向上(父类)委托，直到根加载器——》引导类加载器检查是否能加载当前这个类——》能加载就是用当前加载器，否则就通知子加载器进行加载——》重复上个步骤知道将类进行加载 如果最终都没有找到的话，那么会报异常：Class Not Found 用一个classLoader一直重复getCloader，如果出现了null的情况，那么有两种情况：要么不存在，要么就是C&#43;&#43;写的native方法(java无法获取到) APP——》EXT——》BOOT（最终执行） 沙箱安全机制 沙箱机制就是一个限制程序运行的环境，通过设置相应的权限。
-组成沙箱的基本组件：
-字节码校验器：确保java类文件遵循java语言规范，帮助java实现内存保护。核心类不会经过字节码校验。
-类加载器：
-在3个方面对java沙箱起作用
-防止恶意代码干涉善意代码，例如双亲委派（自定义String类根本不会生效） 守护被信任的类库边界 将代码归入保护域，确定了代码可以进行哪些操作（例如自己的代码调不了C&#43;&#43;的库） JVM为不同的类加载器载入的类提供不同的命名空间
-包含哪些关于沙箱机制类：
-存取控制器（access controller） 安全管理器（security manager） 安全软件包（security package） Native关键字 凡是带了native关键字的方法，这个方法会调用C库 带native关键字的方法在执行时会进入本地方法栈，然后调用本地方法接口JNI JNI作用：扩展java的使用，融合不同编程语言为java所用。最初融合的是java诞生时如日中天的C和C&#43;&#43; PC寄存器 Program Counter Register 线程私有 就是一个指针，指向方法区中的方法字节码（用来存储指向一条即将要执行的指令的地址），在执行引擎读取下一条指令。 如果执行的是一个native方法，计数器是空的 方法区 Method Area 所有线程共有：所有字段，方法字节码，构造函数，接口代码 静态变量static，常量final，类信息Class模板(构造方法，接口定义)，运行时的常量池fianl Pool也存在内存中。 实例变量存在堆内存中 栈 先进后出，后进先出" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="java-JVM" />
-<meta property="og:description" content="JVM重点问题
-JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制（常用算法） JMM 单点登录（SSO） JVM位置 JVM体系结构（JVM内存模型） jvm内存模型主要分为5个部分，是java在运行时，jvm虚拟机拿到了自己能支配的内存之后，将内存进行了割分
-栈：存储函数运行中的一些引用类型的变量&amp;基础类型变量 堆：存储对象，被栈中的引用类型变量所指向 本地方法栈：存储C&#43;&#43;的native方法运行时的栈区 java中有两种方法：java方法和本地方法 java方法由java语言编写，编译为class文件，运行时放在jvm中 本地方法由其他语言编写，编译成和处理器相关的机器代码，本地方法保存在动态链接库中，在windows系统中就是.dll文件中，各个平台都有自己独有的 程序计数器：指向程序当前运行的位置 方法区：存储元数据信息。static，cloader等 类加载器 .class文件经过类加载器，初始化，在方法中形成一个Class类型的对象用来做实例化操作
-类加载器分类：（层次从低到高）
-应用程序加载器：AppClassLoader：记载自定义的类 扩展加载器：ExtClassCloader：加载java扩展库中的类 引导类(根)加载器：由C&#43;&#43;实现，加载java核心库rt.jar，创建扩展类加载器和应用程序类加载器 虚拟机自带的加载器： 双亲委派机制 目的：为了保证安全，重点理解委派 双亲委派机制原理：类加载器收到类加载请求——》一直向上(父类)委托，直到根加载器——》引导类加载器检查是否能加载当前这个类——》能加载就是用当前加载器，否则就通知子加载器进行加载——》重复上个步骤知道将类进行加载 如果最终都没有找到的话，那么会报异常：Class Not Found 用一个classLoader一直重复getCloader，如果出现了null的情况，那么有两种情况：要么不存在，要么就是C&#43;&#43;写的native方法(java无法获取到) APP——》EXT——》BOOT（最终执行） 沙箱安全机制 沙箱机制就是一个限制程序运行的环境，通过设置相应的权限。
-组成沙箱的基本组件：
-字节码校验器：确保java类文件遵循java语言规范，帮助java实现内存保护。核心类不会经过字节码校验。
-类加载器：
-在3个方面对java沙箱起作用
-防止恶意代码干涉善意代码，例如双亲委派（自定义String类根本不会生效） 守护被信任的类库边界 将代码归入保护域，确定了代码可以进行哪些操作（例如自己的代码调不了C&#43;&#43;的库） JVM为不同的类加载器载入的类提供不同的命名空间
-包含哪些关于沙箱机制类：
-存取控制器（access controller） 安全管理器（security manager） 安全软件包（security package） Native关键字 凡是带了native关键字的方法，这个方法会调用C库 带native关键字的方法在执行时会进入本地方法栈，然后调用本地方法接口JNI JNI作用：扩展java的使用，融合不同编程语言为java所用。最初融合的是java诞生时如日中天的C和C&#43;&#43; PC寄存器 Program Counter Register 线程私有 就是一个指针，指向方法区中的方法字节码（用来存储指向一条即将要执行的指令的地址），在执行引擎读取下一条指令。 如果执行的是一个native方法，计数器是空的 方法区 Method Area 所有线程共有：所有字段，方法字节码，构造函数，接口代码 静态变量static，常量final，类信息Class模板(构造方法，接口定义)，运行时的常量池fianl Pool也存在内存中。 实例变量存在堆内存中 栈 先进后出，后进先出" />
+<meta property="og:title" content="java-JVM" />
+<meta property="og:description" content="JVM重点问题 JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/java-jvm/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/java-jvm/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-01-02T15:59:28+00:00" />
-<meta property="article:modified_time" content="2021-01-02T15:59:28+00:00" />
-
-  
-  <meta itemprop="name" content="java-JVM">
-<meta itemprop="description" content="JVM重点问题
-JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制（常用算法） JMM 单点登录（SSO） JVM位置 JVM体系结构（JVM内存模型） jvm内存模型主要分为5个部分，是java在运行时，jvm虚拟机拿到了自己能支配的内存之后，将内存进行了割分
-栈：存储函数运行中的一些引用类型的变量&amp;基础类型变量 堆：存储对象，被栈中的引用类型变量所指向 本地方法栈：存储C&#43;&#43;的native方法运行时的栈区 java中有两种方法：java方法和本地方法 java方法由java语言编写，编译为class文件，运行时放在jvm中 本地方法由其他语言编写，编译成和处理器相关的机器代码，本地方法保存在动态链接库中，在windows系统中就是.dll文件中，各个平台都有自己独有的 程序计数器：指向程序当前运行的位置 方法区：存储元数据信息。static，cloader等 类加载器 .class文件经过类加载器，初始化，在方法中形成一个Class类型的对象用来做实例化操作
-类加载器分类：（层次从低到高）
-应用程序加载器：AppClassLoader：记载自定义的类 扩展加载器：ExtClassCloader：加载java扩展库中的类 引导类(根)加载器：由C&#43;&#43;实现，加载java核心库rt.jar，创建扩展类加载器和应用程序类加载器 虚拟机自带的加载器： 双亲委派机制 目的：为了保证安全，重点理解委派 双亲委派机制原理：类加载器收到类加载请求——》一直向上(父类)委托，直到根加载器——》引导类加载器检查是否能加载当前这个类——》能加载就是用当前加载器，否则就通知子加载器进行加载——》重复上个步骤知道将类进行加载 如果最终都没有找到的话，那么会报异常：Class Not Found 用一个classLoader一直重复getCloader，如果出现了null的情况，那么有两种情况：要么不存在，要么就是C&#43;&#43;写的native方法(java无法获取到) APP——》EXT——》BOOT（最终执行） 沙箱安全机制 沙箱机制就是一个限制程序运行的环境，通过设置相应的权限。
-组成沙箱的基本组件：
-字节码校验器：确保java类文件遵循java语言规范，帮助java实现内存保护。核心类不会经过字节码校验。
-类加载器：
-在3个方面对java沙箱起作用
-防止恶意代码干涉善意代码，例如双亲委派（自定义String类根本不会生效） 守护被信任的类库边界 将代码归入保护域，确定了代码可以进行哪些操作（例如自己的代码调不了C&#43;&#43;的库） JVM为不同的类加载器载入的类提供不同的命名空间
-包含哪些关于沙箱机制类：
-存取控制器（access controller） 安全管理器（security manager） 安全软件包（security package） Native关键字 凡是带了native关键字的方法，这个方法会调用C库 带native关键字的方法在执行时会进入本地方法栈，然后调用本地方法接口JNI JNI作用：扩展java的使用，融合不同编程语言为java所用。最初融合的是java诞生时如日中天的C和C&#43;&#43; PC寄存器 Program Counter Register 线程私有 就是一个指针，指向方法区中的方法字节码（用来存储指向一条即将要执行的指令的地址），在执行引擎读取下一条指令。 如果执行的是一个native方法，计数器是空的 方法区 Method Area 所有线程共有：所有字段，方法字节码，构造函数，接口代码 静态变量static，常量final，类信息Class模板(构造方法，接口定义)，运行时的常量池fianl Pool也存在内存中。 实例变量存在堆内存中 栈 先进后出，后进先出"><meta itemprop="datePublished" content="2021-01-02T15:59:28+00:00" />
-<meta itemprop="dateModified" content="2021-01-02T15:59:28+00:00" />
-<meta itemprop="wordCount" content="173">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta property="article:modified_time" content="2023-01-15T11:26:32+08:00" />
+<meta itemprop="name" content="java-JVM">
+<meta itemprop="description" content="JVM重点问题 JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制"><meta itemprop="datePublished" content="2021-01-02T15:59:28+00:00" />
+<meta itemprop="dateModified" content="2023-01-15T11:26:32+08:00" />
+<meta itemprop="wordCount" content="3447">
+<meta itemprop="keywords" content="后端,Java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="java-JVM"/>
-<meta name="twitter:description" content="JVM重点问题
-JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制（常用算法） JMM 单点登录（SSO） JVM位置 JVM体系结构（JVM内存模型） jvm内存模型主要分为5个部分，是java在运行时，jvm虚拟机拿到了自己能支配的内存之后，将内存进行了割分
-栈：存储函数运行中的一些引用类型的变量&amp;基础类型变量 堆：存储对象，被栈中的引用类型变量所指向 本地方法栈：存储C&#43;&#43;的native方法运行时的栈区 java中有两种方法：java方法和本地方法 java方法由java语言编写，编译为class文件，运行时放在jvm中 本地方法由其他语言编写，编译成和处理器相关的机器代码，本地方法保存在动态链接库中，在windows系统中就是.dll文件中，各个平台都有自己独有的 程序计数器：指向程序当前运行的位置 方法区：存储元数据信息。static，cloader等 类加载器 .class文件经过类加载器，初始化，在方法中形成一个Class类型的对象用来做实例化操作
-类加载器分类：（层次从低到高）
-应用程序加载器：AppClassLoader：记载自定义的类 扩展加载器：ExtClassCloader：加载java扩展库中的类 引导类(根)加载器：由C&#43;&#43;实现，加载java核心库rt.jar，创建扩展类加载器和应用程序类加载器 虚拟机自带的加载器： 双亲委派机制 目的：为了保证安全，重点理解委派 双亲委派机制原理：类加载器收到类加载请求——》一直向上(父类)委托，直到根加载器——》引导类加载器检查是否能加载当前这个类——》能加载就是用当前加载器，否则就通知子加载器进行加载——》重复上个步骤知道将类进行加载 如果最终都没有找到的话，那么会报异常：Class Not Found 用一个classLoader一直重复getCloader，如果出现了null的情况，那么有两种情况：要么不存在，要么就是C&#43;&#43;写的native方法(java无法获取到) APP——》EXT——》BOOT（最终执行） 沙箱安全机制 沙箱机制就是一个限制程序运行的环境，通过设置相应的权限。
-组成沙箱的基本组件：
-字节码校验器：确保java类文件遵循java语言规范，帮助java实现内存保护。核心类不会经过字节码校验。
-类加载器：
-在3个方面对java沙箱起作用
-防止恶意代码干涉善意代码，例如双亲委派（自定义String类根本不会生效） 守护被信任的类库边界 将代码归入保护域，确定了代码可以进行哪些操作（例如自己的代码调不了C&#43;&#43;的库） JVM为不同的类加载器载入的类提供不同的命名空间
-包含哪些关于沙箱机制类：
-存取控制器（access controller） 安全管理器（security manager） 安全软件包（security package） Native关键字 凡是带了native关键字的方法，这个方法会调用C库 带native关键字的方法在执行时会进入本地方法栈，然后调用本地方法接口JNI JNI作用：扩展java的使用，融合不同编程语言为java所用。最初融合的是java诞生时如日中天的C和C&#43;&#43; PC寄存器 Program Counter Register 线程私有 就是一个指针，指向方法区中的方法字节码（用来存储指向一条即将要执行的指令的地址），在执行引擎读取下一条指令。 如果执行的是一个native方法，计数器是空的 方法区 Method Area 所有线程共有：所有字段，方法字节码，构造函数，接口代码 静态变量static，常量final，类信息Class模板(构造方法，接口定义)，运行时的常量池fianl Pool也存在内存中。 实例变量存在堆内存中 栈 先进后出，后进先出"/>
+<meta name="twitter:description" content="JVM重点问题 JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">java-JVM</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-02 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 3447 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#jvm位置">JVM位置</a></li>
+        <li><a href="#jvm体系结构jvm内存模型">JVM体系结构（JVM内存模型）</a></li>
+        <li><a href="#类加载器">类加载器</a></li>
+        <li><a href="#双亲委派机制">双亲委派机制</a></li>
+        <li><a href="#沙箱安全机制">沙箱安全机制</a></li>
+        <li><a href="#native关键字">Native关键字</a></li>
+        <li><a href="#pc寄存器">PC寄存器</a></li>
+        <li><a href="#方法区">方法区</a></li>
+        <li><a href="#栈">栈</a></li>
+        <li><a href="#堆">堆</a></li>
+        <li><a href="#oom故障排除">OOM故障排除</a></li>
+        <li><a href="#gc垃圾回收机制见博客java-gc机制httpsjack1024club20201221java-gce69cbae588b6">GC垃圾回收机制见博客<a href="https://jack1024.club/2020/12/21/Java-GC%E6%9C%BA%E5%88%B6/">Java-GC机制</a></a></li>
+        <li><a href="#jmm">JMM</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">java-JVM</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Jan 2, 2021</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><p><strong>JVM重点问题</strong></p>
+</div>
+    <div class="post-content">
+      <p><strong>JVM重点问题</strong></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184141.png" alt=""></p>
 <ol>
 <li>JVM位置</li>
@@ -314,7 +212,7 @@ JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Nat
 <ul>
 <li>
 <p>.class文件经过类加载器，初始化，在方法中形成一个Class类型的对象用来做实例化操作</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210102093505.png" style="zoom:80%;" />
 </li>
 <li>
 <p>类加载器分类：（层次从低到高）</p>
@@ -334,7 +232,7 @@ JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Nat
 <li>用一个classLoader一直重复getCloader，如果出现了null的情况，那么有两种情况：要么不存在，要么就是C++写的native方法(java无法获取到)</li>
 <li>APP——》EXT——》BOOT（最终执行）</li>
 <li>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210102093505.png" style="zoom: 50%;" />
 </li>
 </ul>
 <h2 id="沙箱安全机制">沙箱安全机制</h2>
@@ -423,7 +321,7 @@ JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Nat
 </li>
 <li>
 <p>栈帧：一帧一帧地存储</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210102113520.png" style="zoom: 67%;" />
 </li>
 <li>
 <p>栈满了会报错：StackOverFLowError</p>
@@ -475,20 +373,43 @@ JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Nat
 <p>使用Jprofiler工具剖析java代码运行过程</p>
 </li>
 <li>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">#-Xms:设置初始化内存分配大小，默认1/64</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#-Xmx:设置最大分配内存，默认1/4</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#-XX:+PrintGCDetails:打印GC垃圾回收信息</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#-XX:+HeapDumpOnOutOfMemoryError:打印OOM信息</span>
-</span></span><span style="display:flex;"><span>-Xms8m -Xmx8m -XX:+HeapDumpOnOutOfMemoryError
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">#-Xms:设置初始化内存分配大小，默认1/64</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-Xmx:设置最大分配内存，默认1/4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-XX:+PrintGCDetails:打印GC垃圾回收信息</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-XX:+HeapDumpOnOutOfMemoryError:打印OOM信息</span>
+</span></span><span class="line"><span class="cl">-Xms8m -Xmx8m -XX:+HeapDumpOnOutOfMemoryError
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//RunTime类（代表应用程序的运行环境）常用方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>getRuntime<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>exec<span style="color:#f92672">(</span>String command<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>freeMemory<span style="color:#f92672">();</span><span style="color:#75715e">//返回java虚拟机中的空闲内存区，字节为单位
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>maxMemory<span style="color:#f92672">();</span><span style="color:#75715e">//返回java虚拟机试图使用的最大内存量，字节为单位
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>totalMemory<span style="color:#f92672">();</span><span style="color:#75715e">//返回java虚拟机内存总量，字节为单位
-</span></span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//RunTime类（代表应用程序的运行环境）常用方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">getRuntime</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="o">(</span><span class="n">String</span> <span class="n">command</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">freeMemory</span><span class="o">();</span><span class="c1">//返回java虚拟机中的空闲内存区，字节为单位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">maxMemory</span><span class="o">();</span><span class="c1">//返回java虚拟机试图使用的最大内存量，字节为单位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">totalMemory</span><span class="o">();</span><span class="c1">//返回java虚拟机内存总量，字节为单位
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 <h2 id="gc垃圾回收机制见博客java-gc机制httpsjack1024club20201221java-gce69cbae588b6">GC垃圾回收机制见博客<a href="https://jack1024.club/2020/12/21/Java-GC%E6%9C%BA%E5%88%B6/">Java-GC机制</a></h2>
 <h2 id="jmm">JMM</h2>
@@ -528,100 +449,101 @@ JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Nat
 </li>
 </ul>
 <p>说白了，JMM就是一个关于操作系统读写操作控制的机制，说到这里，过几天要回顾操作系统的知识了。。。。哎</p>
-</section>
 
-  
-  
+    </div>
 
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-01-15
+        <a href="#ZgotmplZ/commit/cec08838cacc1ff336ba358989815514bb6ed677" title="change">(cec0883)</a>
+    </span>
+  </p>
   
   
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/"
-      ><span class="mr-1.5">←</span><span>javaweb-前后端分离史</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/"
-      ><span>一点想法-2021-01-01</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">javaweb-前后端分离史</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/">
+            <span class="next-text nav-default">一点想法-2021-01-01</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
         
-      },
-      
-    };
 
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
   
-</article>
 
+  
 
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

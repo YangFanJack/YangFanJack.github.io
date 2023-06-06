@@ -1,273 +1,175 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JavaWeb核心:理解servlet - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="Servlet定义 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>JavaWeb核心:理解servlet - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="Servlet定义
-物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java类被tomcat识别的规则
-我们需要自定义一个类，来实现servlet接口，复写接口的的方法，tomcat就可以识别这个类，我们就称这个类是个servlet
-实际操作：
-创建JavaEE项目 定义一个类，实现servlet接口 重写接口中的抽象方法 在web.xml中配置servlet Servlet的执行原理 servlet中的java类和javase中的普通java类是不一样的，它的运行依赖tomcat这个web容器，自己没有main方法。实现的servlet方法不需要自己调用，服务器会自己按照需要调用
-当服务器接收到客户端浏览器的请求后，会解析请求的URL路径，获取访问的servlet的资源路径 查找web.xml文件，是否有对应的标签体内容 如果有，则会找到对应的全类名 tomcat会将字节码文件内加载进内存，并且创建其对象 tomcat按照需要自己调用方法 Servlet中的生命周期 sevlet中的方法 init方法：servlet被创建时执行 service方法：每一次servlet被访问时执行 destroy方法：在服务器正常关闭时执行 上面三个方法对应servlet的三个生命周期
-servletConfig方法：获得servletconfig对象，就是servlet的配置对象 getServletInfo方法：获得servlet的一些信息，版本，作者&hellip; Servlet被创建 默认情况下，第一次被访问时，servlet被创建，加载资源 非默认时，可以子啊web.xml中指定servlet的创建时机，配置标签的值，正数表示在服务器启动时创建，负数表示第一次被访问时创建 一个servlet类在内存中只有一个对象，是单例模式。多用户同时访问时，可能不安全，但是加锁会严重影响性能，所有尽量不要在servlet中定义成员变量线程公共资源，定义局部变量就没有安全问题了，因为局部变量在栈中，线程私有。 Servlet提供服务 每次访问都会执行service方法 Servlet被销毁 服务器关闭时，Servlet被销毁，释放资源。但是只有服务器正常关闭，才会执行destroy方法。 Servlet3.0 选择JavaEE时，选择servlet版本3.0以上，可以不选择web.xml了 可以通过注解配置：@WebServlet，不需要web.xml配置文件中配置了 Servlet体系结构 Servlet接口，GenericServlet抽象类，HttpServlet抽象类
-GenericServlet抽象类继承Servlet抽象类，已经空实现了除了service方法之外的所有抽象方法。所以，可以让自定义的servelt类继承GenricServlet类，减少工作量。
-HttpServlet抽象类也是继承于Servlet接口，并且由doPost和doGet方法，我们可以让自定义的Servlet类继承HttpServlet类复写doGet和doPost方法，但是service方法不用复写了，HttpServlet抽象类已经帮你写好了。用来根据post和get的请求方式做出不同判断。
-Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定义多个访问路径：@webServlet({&ldquo;d4&rdquo;,&ldquo;d44&rdquo;,&ldquo;d444&rdquo;}) 路径定义规则： /XXX /XXX/XX：多层路径，目录结构 *.do Servlet和JSP？ 先上一张图： 要理解servlet和jsp的区别与联系，我们需要回顾javaWeb的发展历史：
-最开始的web，用户使用浏览器向web服务器发送的请求都是静态的资源（html,css,javascript）。为了能够根据不同用户的不同请求来动态的处理并且返回资源，servlet就出现了。 前面提到了servlet是在服务器端的java代码，通过java这个高级语言就能动态的处理数据和资源，然后把经过动态处理后的静态资源再打回浏览器客户端。但是有一个问题，servlet类中需要写大量的冗余的out.write代码写html，这就导致后端人员都想骂娘，然后，jsp就诞生了。 jsp是sun公司借鉴微软的asp后，推出的直接在原来的静态页面html中嵌入java代码的技术。但是，这样虽然可以避免冗余，但是前端人员必须要懂后端知识，并且在html中插入大量的java代码会是jsp文件代码看起来凌乱不堪，自己写完了都看不懂，更不要说多人协作了。所以再后来，基于MVC模式的JSP&#43;Servlet&#43;JavaBean就应运而生了（也就是上面图中所表达的） 所以，总结就是： 一个java类必须是serevlet类才能被浏览器访问到，jsp本质上就是一个servlet，jsp简化servlet的繁琐写html代码的操作 servlet是在java代码中写html，jsp是在html中写java代码 注：关于MVC的具体以及Web发展后期框架的出现以及前后端分离的知识现在还在学习中，以后会陆续写出来。" />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="JavaWeb核心:理解servlet" />
-<meta property="og:description" content="Servlet定义
-物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java类被tomcat识别的规则
-我们需要自定义一个类，来实现servlet接口，复写接口的的方法，tomcat就可以识别这个类，我们就称这个类是个servlet
-实际操作：
-创建JavaEE项目 定义一个类，实现servlet接口 重写接口中的抽象方法 在web.xml中配置servlet Servlet的执行原理 servlet中的java类和javase中的普通java类是不一样的，它的运行依赖tomcat这个web容器，自己没有main方法。实现的servlet方法不需要自己调用，服务器会自己按照需要调用
-当服务器接收到客户端浏览器的请求后，会解析请求的URL路径，获取访问的servlet的资源路径 查找web.xml文件，是否有对应的标签体内容 如果有，则会找到对应的全类名 tomcat会将字节码文件内加载进内存，并且创建其对象 tomcat按照需要自己调用方法 Servlet中的生命周期 sevlet中的方法 init方法：servlet被创建时执行 service方法：每一次servlet被访问时执行 destroy方法：在服务器正常关闭时执行 上面三个方法对应servlet的三个生命周期
-servletConfig方法：获得servletconfig对象，就是servlet的配置对象 getServletInfo方法：获得servlet的一些信息，版本，作者&hellip; Servlet被创建 默认情况下，第一次被访问时，servlet被创建，加载资源 非默认时，可以子啊web.xml中指定servlet的创建时机，配置标签的值，正数表示在服务器启动时创建，负数表示第一次被访问时创建 一个servlet类在内存中只有一个对象，是单例模式。多用户同时访问时，可能不安全，但是加锁会严重影响性能，所有尽量不要在servlet中定义成员变量线程公共资源，定义局部变量就没有安全问题了，因为局部变量在栈中，线程私有。 Servlet提供服务 每次访问都会执行service方法 Servlet被销毁 服务器关闭时，Servlet被销毁，释放资源。但是只有服务器正常关闭，才会执行destroy方法。 Servlet3.0 选择JavaEE时，选择servlet版本3.0以上，可以不选择web.xml了 可以通过注解配置：@WebServlet，不需要web.xml配置文件中配置了 Servlet体系结构 Servlet接口，GenericServlet抽象类，HttpServlet抽象类
-GenericServlet抽象类继承Servlet抽象类，已经空实现了除了service方法之外的所有抽象方法。所以，可以让自定义的servelt类继承GenricServlet类，减少工作量。
-HttpServlet抽象类也是继承于Servlet接口，并且由doPost和doGet方法，我们可以让自定义的Servlet类继承HttpServlet类复写doGet和doPost方法，但是service方法不用复写了，HttpServlet抽象类已经帮你写好了。用来根据post和get的请求方式做出不同判断。
-Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定义多个访问路径：@webServlet({&ldquo;d4&rdquo;,&ldquo;d44&rdquo;,&ldquo;d444&rdquo;}) 路径定义规则： /XXX /XXX/XX：多层路径，目录结构 *.do Servlet和JSP？ 先上一张图： 要理解servlet和jsp的区别与联系，我们需要回顾javaWeb的发展历史：
-最开始的web，用户使用浏览器向web服务器发送的请求都是静态的资源（html,css,javascript）。为了能够根据不同用户的不同请求来动态的处理并且返回资源，servlet就出现了。 前面提到了servlet是在服务器端的java代码，通过java这个高级语言就能动态的处理数据和资源，然后把经过动态处理后的静态资源再打回浏览器客户端。但是有一个问题，servlet类中需要写大量的冗余的out.write代码写html，这就导致后端人员都想骂娘，然后，jsp就诞生了。 jsp是sun公司借鉴微软的asp后，推出的直接在原来的静态页面html中嵌入java代码的技术。但是，这样虽然可以避免冗余，但是前端人员必须要懂后端知识，并且在html中插入大量的java代码会是jsp文件代码看起来凌乱不堪，自己写完了都看不懂，更不要说多人协作了。所以再后来，基于MVC模式的JSP&#43;Servlet&#43;JavaBean就应运而生了（也就是上面图中所表达的） 所以，总结就是： 一个java类必须是serevlet类才能被浏览器访问到，jsp本质上就是一个servlet，jsp简化servlet的繁琐写html代码的操作 servlet是在java代码中写html，jsp是在html中写java代码 注：关于MVC的具体以及Web发展后期框架的出现以及前后端分离的知识现在还在学习中，以后会陆续写出来。" />
+<meta property="og:title" content="JavaWeb核心:理解servlet" />
+<meta property="og:description" content="Servlet定义 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-18T19:37:53+00:00" />
 <meta property="article:modified_time" content="2020-03-18T19:37:53+00:00" />
-
-  
-  <meta itemprop="name" content="JavaWeb核心:理解servlet">
-<meta itemprop="description" content="Servlet定义
-物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java类被tomcat识别的规则
-我们需要自定义一个类，来实现servlet接口，复写接口的的方法，tomcat就可以识别这个类，我们就称这个类是个servlet
-实际操作：
-创建JavaEE项目 定义一个类，实现servlet接口 重写接口中的抽象方法 在web.xml中配置servlet Servlet的执行原理 servlet中的java类和javase中的普通java类是不一样的，它的运行依赖tomcat这个web容器，自己没有main方法。实现的servlet方法不需要自己调用，服务器会自己按照需要调用
-当服务器接收到客户端浏览器的请求后，会解析请求的URL路径，获取访问的servlet的资源路径 查找web.xml文件，是否有对应的标签体内容 如果有，则会找到对应的全类名 tomcat会将字节码文件内加载进内存，并且创建其对象 tomcat按照需要自己调用方法 Servlet中的生命周期 sevlet中的方法 init方法：servlet被创建时执行 service方法：每一次servlet被访问时执行 destroy方法：在服务器正常关闭时执行 上面三个方法对应servlet的三个生命周期
-servletConfig方法：获得servletconfig对象，就是servlet的配置对象 getServletInfo方法：获得servlet的一些信息，版本，作者&hellip; Servlet被创建 默认情况下，第一次被访问时，servlet被创建，加载资源 非默认时，可以子啊web.xml中指定servlet的创建时机，配置标签的值，正数表示在服务器启动时创建，负数表示第一次被访问时创建 一个servlet类在内存中只有一个对象，是单例模式。多用户同时访问时，可能不安全，但是加锁会严重影响性能，所有尽量不要在servlet中定义成员变量线程公共资源，定义局部变量就没有安全问题了，因为局部变量在栈中，线程私有。 Servlet提供服务 每次访问都会执行service方法 Servlet被销毁 服务器关闭时，Servlet被销毁，释放资源。但是只有服务器正常关闭，才会执行destroy方法。 Servlet3.0 选择JavaEE时，选择servlet版本3.0以上，可以不选择web.xml了 可以通过注解配置：@WebServlet，不需要web.xml配置文件中配置了 Servlet体系结构 Servlet接口，GenericServlet抽象类，HttpServlet抽象类
-GenericServlet抽象类继承Servlet抽象类，已经空实现了除了service方法之外的所有抽象方法。所以，可以让自定义的servelt类继承GenricServlet类，减少工作量。
-HttpServlet抽象类也是继承于Servlet接口，并且由doPost和doGet方法，我们可以让自定义的Servlet类继承HttpServlet类复写doGet和doPost方法，但是service方法不用复写了，HttpServlet抽象类已经帮你写好了。用来根据post和get的请求方式做出不同判断。
-Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定义多个访问路径：@webServlet({&ldquo;d4&rdquo;,&ldquo;d44&rdquo;,&ldquo;d444&rdquo;}) 路径定义规则： /XXX /XXX/XX：多层路径，目录结构 *.do Servlet和JSP？ 先上一张图： 要理解servlet和jsp的区别与联系，我们需要回顾javaWeb的发展历史：
-最开始的web，用户使用浏览器向web服务器发送的请求都是静态的资源（html,css,javascript）。为了能够根据不同用户的不同请求来动态的处理并且返回资源，servlet就出现了。 前面提到了servlet是在服务器端的java代码，通过java这个高级语言就能动态的处理数据和资源，然后把经过动态处理后的静态资源再打回浏览器客户端。但是有一个问题，servlet类中需要写大量的冗余的out.write代码写html，这就导致后端人员都想骂娘，然后，jsp就诞生了。 jsp是sun公司借鉴微软的asp后，推出的直接在原来的静态页面html中嵌入java代码的技术。但是，这样虽然可以避免冗余，但是前端人员必须要懂后端知识，并且在html中插入大量的java代码会是jsp文件代码看起来凌乱不堪，自己写完了都看不懂，更不要说多人协作了。所以再后来，基于MVC模式的JSP&#43;Servlet&#43;JavaBean就应运而生了（也就是上面图中所表达的） 所以，总结就是： 一个java类必须是serevlet类才能被浏览器访问到，jsp本质上就是一个servlet，jsp简化servlet的繁琐写html代码的操作 servlet是在java代码中写html，jsp是在html中写java代码 注：关于MVC的具体以及Web发展后期框架的出现以及前后端分离的知识现在还在学习中，以后会陆续写出来。"><meta itemprop="datePublished" content="2020-03-18T19:37:53+00:00" />
+<meta itemprop="name" content="JavaWeb核心:理解servlet">
+<meta itemprop="description" content="Servlet定义 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java"><meta itemprop="datePublished" content="2020-03-18T19:37:53+00:00" />
 <meta itemprop="dateModified" content="2020-03-18T19:37:53+00:00" />
-<meta itemprop="wordCount" content="56">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2145">
+<meta itemprop="keywords" content="前端,JavaScript," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JavaWeb核心:理解servlet"/>
-<meta name="twitter:description" content="Servlet定义
-物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java类被tomcat识别的规则
-我们需要自定义一个类，来实现servlet接口，复写接口的的方法，tomcat就可以识别这个类，我们就称这个类是个servlet
-实际操作：
-创建JavaEE项目 定义一个类，实现servlet接口 重写接口中的抽象方法 在web.xml中配置servlet Servlet的执行原理 servlet中的java类和javase中的普通java类是不一样的，它的运行依赖tomcat这个web容器，自己没有main方法。实现的servlet方法不需要自己调用，服务器会自己按照需要调用
-当服务器接收到客户端浏览器的请求后，会解析请求的URL路径，获取访问的servlet的资源路径 查找web.xml文件，是否有对应的标签体内容 如果有，则会找到对应的全类名 tomcat会将字节码文件内加载进内存，并且创建其对象 tomcat按照需要自己调用方法 Servlet中的生命周期 sevlet中的方法 init方法：servlet被创建时执行 service方法：每一次servlet被访问时执行 destroy方法：在服务器正常关闭时执行 上面三个方法对应servlet的三个生命周期
-servletConfig方法：获得servletconfig对象，就是servlet的配置对象 getServletInfo方法：获得servlet的一些信息，版本，作者&hellip; Servlet被创建 默认情况下，第一次被访问时，servlet被创建，加载资源 非默认时，可以子啊web.xml中指定servlet的创建时机，配置标签的值，正数表示在服务器启动时创建，负数表示第一次被访问时创建 一个servlet类在内存中只有一个对象，是单例模式。多用户同时访问时，可能不安全，但是加锁会严重影响性能，所有尽量不要在servlet中定义成员变量线程公共资源，定义局部变量就没有安全问题了，因为局部变量在栈中，线程私有。 Servlet提供服务 每次访问都会执行service方法 Servlet被销毁 服务器关闭时，Servlet被销毁，释放资源。但是只有服务器正常关闭，才会执行destroy方法。 Servlet3.0 选择JavaEE时，选择servlet版本3.0以上，可以不选择web.xml了 可以通过注解配置：@WebServlet，不需要web.xml配置文件中配置了 Servlet体系结构 Servlet接口，GenericServlet抽象类，HttpServlet抽象类
-GenericServlet抽象类继承Servlet抽象类，已经空实现了除了service方法之外的所有抽象方法。所以，可以让自定义的servelt类继承GenricServlet类，减少工作量。
-HttpServlet抽象类也是继承于Servlet接口，并且由doPost和doGet方法，我们可以让自定义的Servlet类继承HttpServlet类复写doGet和doPost方法，但是service方法不用复写了，HttpServlet抽象类已经帮你写好了。用来根据post和get的请求方式做出不同判断。
-Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定义多个访问路径：@webServlet({&ldquo;d4&rdquo;,&ldquo;d44&rdquo;,&ldquo;d444&rdquo;}) 路径定义规则： /XXX /XXX/XX：多层路径，目录结构 *.do Servlet和JSP？ 先上一张图： 要理解servlet和jsp的区别与联系，我们需要回顾javaWeb的发展历史：
-最开始的web，用户使用浏览器向web服务器发送的请求都是静态的资源（html,css,javascript）。为了能够根据不同用户的不同请求来动态的处理并且返回资源，servlet就出现了。 前面提到了servlet是在服务器端的java代码，通过java这个高级语言就能动态的处理数据和资源，然后把经过动态处理后的静态资源再打回浏览器客户端。但是有一个问题，servlet类中需要写大量的冗余的out.write代码写html，这就导致后端人员都想骂娘，然后，jsp就诞生了。 jsp是sun公司借鉴微软的asp后，推出的直接在原来的静态页面html中嵌入java代码的技术。但是，这样虽然可以避免冗余，但是前端人员必须要懂后端知识，并且在html中插入大量的java代码会是jsp文件代码看起来凌乱不堪，自己写完了都看不懂，更不要说多人协作了。所以再后来，基于MVC模式的JSP&#43;Servlet&#43;JavaBean就应运而生了（也就是上面图中所表达的） 所以，总结就是： 一个java类必须是serevlet类才能被浏览器访问到，jsp本质上就是一个servlet，jsp简化servlet的繁琐写html代码的操作 servlet是在java代码中写html，jsp是在html中写java代码 注：关于MVC的具体以及Web发展后期框架的出现以及前后端分离的知识现在还在学习中，以后会陆续写出来。"/>
+<meta name="twitter:description" content="Servlet定义 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">JavaWeb核心:理解servlet</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-18 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 2145 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#servlet的执行原理">Servlet的执行原理</a></li>
+        <li><a href="#servlet中的生命周期">Servlet中的生命周期</a>
+          <ul>
+            <li><a href="#sevlet中的方法">sevlet中的方法</a></li>
+            <li><a href="#servlet被创建">Servlet被创建</a></li>
+            <li><a href="#servlet提供服务">Servlet提供服务</a></li>
+            <li><a href="#servlet被销毁">Servlet被销毁</a></li>
+          </ul>
+        </li>
+        <li><a href="#servlet30">Servlet3.0</a></li>
+        <li><a href="#servlet体系结构">Servlet体系结构</a></li>
+        <li><a href="#servlet相关配置">Servlet相关配置</a></li>
+        <li><a href="#servlet和jsp">Servlet和JSP？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">JavaWeb核心:理解servlet</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 18, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><p>Servlet定义</p>
+</div>
+    <div class="post-content">
+      <p>Servlet定义</p>
 <ul>
 <li>
 <p><strong>物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java类被tomcat识别的规则</strong></p>
@@ -288,8 +190,8 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
 <p>servlet中的java类和javase中的普通java类是不一样的，它的运行依赖tomcat这个web容器，自己没有main方法。实现的servlet方法不需要自己调用，服务器会自己按照需要调用</p>
 <ol>
 <li>当服务器接收到客户端浏览器的请求后，会解析请求的URL路径，获取访问的servlet的资源路径</li>
-<li>查找web.xml文件，是否有对应的<!-- raw HTML omitted -->标签体内容</li>
-<li>如果有，则会找到对应的<!-- raw HTML omitted -->全类名</li>
+<li>查找web.xml文件，是否有对应的<url-pattern>标签体内容</li>
+<li>如果有，则会找到对应的<servlet-class>全类名</li>
 <li>tomcat会将字节码文件内加载进内存，并且创建其对象</li>
 <li>tomcat按照需要自己调用方法</li>
 </ol>
@@ -309,7 +211,7 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
 <h3 id="servlet被创建">Servlet被创建</h3>
 <ul>
 <li>默认情况下，第一次被访问时，servlet被创建，加载资源</li>
-<li>非默认时，可以子啊web.xml中指定servlet的创建时机，配置<!-- raw HTML omitted --><!-- raw HTML omitted -->标签的值，<strong>正数</strong>表示在服务器<strong>启动时创建</strong>，<strong>负数</strong>表示<strong>第一次被访问时创建</strong></li>
+<li>非默认时，可以子啊web.xml中指定servlet的创建时机，配置<load-on-startup></load-on-startup>标签的值，<strong>正数</strong>表示在服务器<strong>启动时创建</strong>，<strong>负数</strong>表示<strong>第一次被访问时创建</strong></li>
 <li>一个servlet类在内存中只有一个对象，是单例模式。多用户同时访问时，可能不安全，但是加锁会严重影响性能，所有尽量不要在servlet中定义<strong>成员变量线程公共资源</strong>，定义局部变量就没有安全问题了，因为局部变量在栈中，线程私有。</li>
 </ul>
 <h3 id="servlet提供服务">Servlet提供服务</h3>
@@ -374,100 +276,101 @@ Servlet相关配置 urlpartten：Servlet的访问路径 一个Servlet可以定�
 <p><strong>注：关于MVC的具体以及Web发展后期框架的出现以及前后端分离的知识现在还在学习中，以后会陆续写出来。</strong></p>
 </li>
 </ul>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/"
-      ><span class="mr-1.5">←</span><span>javaWeb核心:servlet细节</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/"
-      ><span>IDEA中tomcat的神奇走位</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-18
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+          <a href="/tags/javascript/">JavaScript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">javaWeb核心:servlet细节</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/">
+            <span class="next-text nav-default">IDEA中tomcat的神奇走位</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

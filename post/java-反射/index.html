@@ -1,281 +1,181 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>java-反射 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C&#43;&#43;、Ja" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/java-%E5%8F%8D%E5%B0%84/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>java-反射 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C&#43;&#43;、Java、Delphi、C#等。
-动态语言（弱类型语言） 动态语言是在运行时确定数据类型的语言。变量使用之前不需要类型声明，通常变量的类型是被赋值的那个值的类型。 例如PHP/ASP/Ruby/Python/Perl/ABAP/SQL/JavaScript/Unix Shell等等。
-强类型定义语言 强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。
-弱类型定义语言 数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋不同数据类型的值。强类型定义语言在速度上可能略逊色于弱类型定义语言，但是强类型定义语言带来的严谨性能够有效的避免许多错误。
-什么是反射（反射机制） Java时静态语言，通过反射，Java成为了准动态语言
-反射禁止允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。
-加载完类之后，在堆内存的方法区中就产生了一个Class类型的对象（一个类只有一个Class对象），这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构。
-Class c = Class.forName(&#34;java.lang.String&#34;) 这个存在内存中的Class类型的对象就是一面镜子，我们通过镜子的反射能看到类的结构。
-反射机制的功能：
-在运行时判断任意一个对象所属的类 在运行时构造任意一个类的对象 在运行时判断任意一个类所具有的成员变量和方法 在运行时获取泛型信息 在运行时调用任意一个对象的成员变量和方法 在运行时处理注解 生成动态代理 反射的优点和缺点：
-可以实现动态创建对象和编译，很灵活 对性能有影响，反射基本上是一种解释操作 理解Class类并获取Class实例 发射相关的主要API
-java.lang.Class：代表一个类 java.lang.reflect.Method：代表类的方法 java.lang.reflect.Field：代表类的成员变量 java.lang.reflect.Constructor：代表类的构造器 例子：
-class User{ private String name; private int id; private itn age; public User(){} public User(String name,int id,int age){ this.name = name; this.id = id; this.age = age; } //省略get,set方法，toString()方法 } public class Test{ public static void main(String[] args){ Class c1 = Class." />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="java-反射" />
-<meta property="og:description" content="静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C&#43;&#43;、Java、Delphi、C#等。
-动态语言（弱类型语言） 动态语言是在运行时确定数据类型的语言。变量使用之前不需要类型声明，通常变量的类型是被赋值的那个值的类型。 例如PHP/ASP/Ruby/Python/Perl/ABAP/SQL/JavaScript/Unix Shell等等。
-强类型定义语言 强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。
-弱类型定义语言 数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋不同数据类型的值。强类型定义语言在速度上可能略逊色于弱类型定义语言，但是强类型定义语言带来的严谨性能够有效的避免许多错误。
-什么是反射（反射机制） Java时静态语言，通过反射，Java成为了准动态语言
-反射禁止允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。
-加载完类之后，在堆内存的方法区中就产生了一个Class类型的对象（一个类只有一个Class对象），这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构。
-Class c = Class.forName(&#34;java.lang.String&#34;) 这个存在内存中的Class类型的对象就是一面镜子，我们通过镜子的反射能看到类的结构。
-反射机制的功能：
-在运行时判断任意一个对象所属的类 在运行时构造任意一个类的对象 在运行时判断任意一个类所具有的成员变量和方法 在运行时获取泛型信息 在运行时调用任意一个对象的成员变量和方法 在运行时处理注解 生成动态代理 反射的优点和缺点：
-可以实现动态创建对象和编译，很灵活 对性能有影响，反射基本上是一种解释操作 理解Class类并获取Class实例 发射相关的主要API
-java.lang.Class：代表一个类 java.lang.reflect.Method：代表类的方法 java.lang.reflect.Field：代表类的成员变量 java.lang.reflect.Constructor：代表类的构造器 例子：
-class User{ private String name; private int id; private itn age; public User(){} public User(String name,int id,int age){ this.name = name; this.id = id; this.age = age; } //省略get,set方法，toString()方法 } public class Test{ public static void main(String[] args){ Class c1 = Class." />
+<meta property="og:title" content="java-反射" />
+<meta property="og:description" content="静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C&#43;&#43;、Ja" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/java-%E5%8F%8D%E5%B0%84/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/java-%E5%8F%8D%E5%B0%84/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-12-19T12:56:10+00:00" />
 <meta property="article:modified_time" content="2020-12-19T12:56:10+00:00" />
-
-  
-  <meta itemprop="name" content="java-反射">
-<meta itemprop="description" content="静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C&#43;&#43;、Java、Delphi、C#等。
-动态语言（弱类型语言） 动态语言是在运行时确定数据类型的语言。变量使用之前不需要类型声明，通常变量的类型是被赋值的那个值的类型。 例如PHP/ASP/Ruby/Python/Perl/ABAP/SQL/JavaScript/Unix Shell等等。
-强类型定义语言 强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。
-弱类型定义语言 数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋不同数据类型的值。强类型定义语言在速度上可能略逊色于弱类型定义语言，但是强类型定义语言带来的严谨性能够有效的避免许多错误。
-什么是反射（反射机制） Java时静态语言，通过反射，Java成为了准动态语言
-反射禁止允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。
-加载完类之后，在堆内存的方法区中就产生了一个Class类型的对象（一个类只有一个Class对象），这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构。
-Class c = Class.forName(&#34;java.lang.String&#34;) 这个存在内存中的Class类型的对象就是一面镜子，我们通过镜子的反射能看到类的结构。
-反射机制的功能：
-在运行时判断任意一个对象所属的类 在运行时构造任意一个类的对象 在运行时判断任意一个类所具有的成员变量和方法 在运行时获取泛型信息 在运行时调用任意一个对象的成员变量和方法 在运行时处理注解 生成动态代理 反射的优点和缺点：
-可以实现动态创建对象和编译，很灵活 对性能有影响，反射基本上是一种解释操作 理解Class类并获取Class实例 发射相关的主要API
-java.lang.Class：代表一个类 java.lang.reflect.Method：代表类的方法 java.lang.reflect.Field：代表类的成员变量 java.lang.reflect.Constructor：代表类的构造器 例子：
-class User{ private String name; private int id; private itn age; public User(){} public User(String name,int id,int age){ this.name = name; this.id = id; this.age = age; } //省略get,set方法，toString()方法 } public class Test{ public static void main(String[] args){ Class c1 = Class."><meta itemprop="datePublished" content="2020-12-19T12:56:10+00:00" />
+<meta itemprop="name" content="java-反射">
+<meta itemprop="description" content="静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C&#43;&#43;、Ja"><meta itemprop="datePublished" content="2020-12-19T12:56:10+00:00" />
 <meta itemprop="dateModified" content="2020-12-19T12:56:10+00:00" />
-<meta itemprop="wordCount" content="509">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="3112">
+<meta itemprop="keywords" content="后端,Java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="java-反射"/>
-<meta name="twitter:description" content="静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C&#43;&#43;、Java、Delphi、C#等。
-动态语言（弱类型语言） 动态语言是在运行时确定数据类型的语言。变量使用之前不需要类型声明，通常变量的类型是被赋值的那个值的类型。 例如PHP/ASP/Ruby/Python/Perl/ABAP/SQL/JavaScript/Unix Shell等等。
-强类型定义语言 强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。
-弱类型定义语言 数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋不同数据类型的值。强类型定义语言在速度上可能略逊色于弱类型定义语言，但是强类型定义语言带来的严谨性能够有效的避免许多错误。
-什么是反射（反射机制） Java时静态语言，通过反射，Java成为了准动态语言
-反射禁止允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。
-加载完类之后，在堆内存的方法区中就产生了一个Class类型的对象（一个类只有一个Class对象），这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构。
-Class c = Class.forName(&#34;java.lang.String&#34;) 这个存在内存中的Class类型的对象就是一面镜子，我们通过镜子的反射能看到类的结构。
-反射机制的功能：
-在运行时判断任意一个对象所属的类 在运行时构造任意一个类的对象 在运行时判断任意一个类所具有的成员变量和方法 在运行时获取泛型信息 在运行时调用任意一个对象的成员变量和方法 在运行时处理注解 生成动态代理 反射的优点和缺点：
-可以实现动态创建对象和编译，很灵活 对性能有影响，反射基本上是一种解释操作 理解Class类并获取Class实例 发射相关的主要API
-java.lang.Class：代表一个类 java.lang.reflect.Method：代表类的方法 java.lang.reflect.Field：代表类的成员变量 java.lang.reflect.Constructor：代表类的构造器 例子：
-class User{ private String name; private int id; private itn age; public User(){} public User(String name,int id,int age){ this.name = name; this.id = id; this.age = age; } //省略get,set方法，toString()方法 } public class Test{ public static void main(String[] args){ Class c1 = Class."/>
+<meta name="twitter:description" content="静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C&#43;&#43;、Ja"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">java-反射</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-12-19 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 3112 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#什么是反射反射机制">什么是反射（反射机制）</a></li>
+        <li><a href="#理解class类并获取class实例">理解Class类并获取Class实例</a></li>
+        <li><a href="#类的加载与classcloader">类的加载与ClassCloader</a></li>
+        <li><a href="#类加载内存分析">类加载内存分析</a></li>
+        <li><a href="#类初始化的时机">类初始化的时机</a></li>
+        <li><a href="#类加载器classloader">类加载器ClassLoader</a>
+          <ul>
+            <li><a href="#双亲委派机制">双亲委派机制</a></li>
+          </ul>
+        </li>
+        <li><a href="#创建运行时类的对象">创建运行时类的对象</a></li>
+        <li><a href="#动态创建对象执行方法">动态创建对象执行方法</a></li>
+        <li><a href="#通过反射操作泛型">通过反射操作泛型</a></li>
+        <li><a href="#通过注解反射操作注解">通过注解反射操作注解</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">java-反射</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Dec 19, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h4 id="静态语言强类型语言">静态语言（强类型语言）</h4>
+</div>
+    <div class="post-content">
+      <h4 id="静态语言强类型语言">静态语言（强类型语言）</h4>
 <p>静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。
 例如：C++、Java、Delphi、C#等。</p>
 <h4 id="动态语言弱类型语言">动态语言（弱类型语言）</h4>
@@ -295,8 +195,15 @@ class User{ private String name; private int id; private itn age; public User(){
 </li>
 <li>
 <p>加载完类之后，在堆内存的方法区中就产生了一个Class类型的对象（一个类只有一个Class对象），这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Class c <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;java.lang.String&#34;</span><span style="color:#f92672">)</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Class</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;java.lang.String&#34;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>这个存在内存中的Class类型的对象就是一面镜子，我们通过镜子的反射能看到类的结构。</p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201218155009.png" alt=""></p>
@@ -334,29 +241,54 @@ class User{ private String name; private int id; private itn age; public User(){
 </li>
 <li>
 <p>例子：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> id<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> itn age<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(){}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> age<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//省略get,set方法，toString()方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        Class c1 <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;com.jack.User&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        c1<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">User</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">itn</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">User</span><span class="o">(){}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span><span class="kt">int</span> <span class="n">age</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//省略get,set方法，toString()方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Class</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;com.jack.User&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c1</span><span class="o">.</span><span class="na">get</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>Class类是Java反射的源头。所谓反射实际就是：可以通过对象反射求出类的名称</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201218162814.png" style="zoom: 80%; margin-left:0px"/>
 </li>
 </ul>
 <h2 id="类的加载与classcloader">类的加载与ClassCloader</h2>
@@ -375,26 +307,57 @@ class User{ private String name; private int id; private itn age; public User(){
 <li>通过Class可以完整地得到一个类中的所有被加载的结构</li>
 <li>Class类是Reflection地根源，针对任何逆向动态加载，运行的类，唯有先获得相应的Class对象</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Class类的常用方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> Class <span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Object <span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>getName<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>Class <span style="color:#a6e22e">getSuperClass</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>Class<span style="color:#f92672">[]</span> <span style="color:#a6e22e">getinterfaces</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>ClassLoader <span style="color:#a6e22e">getClassLoader</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>Constructor<span style="color:#f92672">[]</span> <span style="color:#a6e22e">getConstructor</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>Method <span style="color:#a6e22e">getMethod</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span>Class T<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>Field<span style="color:#f92672">[]</span> <span style="color:#a6e22e">getDeclaredFields</span><span style="color:#f92672">();</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获取Class类的实例
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//通过类的clas属性获取（多用于传参）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Class c1 <span style="color:#f92672">=</span> Person<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//用类的实例的getClass获取Class对象（多用于对象获取字节码）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Class c2 <span style="color:#f92672">=</span> person<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//用Class类的静态方法forName通过一个类的全类名获取Class对象（多用于读取配置文件）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Class c3 <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack.Person&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//内置基本数据类型的包装类可以直接用类名.Type
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//还可以利用ClassLoader
-</span></span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//Class类的常用方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">static</span> <span class="n">Class</span> <span class="nf">forName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Object</span> <span class="nf">newInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Class</span> <span class="nf">getSuperClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Class</span><span class="o">[]</span> <span class="nf">getinterfaces</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">ClassLoader</span> <span class="nf">getClassLoader</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Constructor</span><span class="o">[]</span> <span class="nf">getConstructor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Method</span> <span class="nf">getMethod</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span><span class="n">Class</span> <span class="n">T</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Field</span><span class="o">[]</span> <span class="nf">getDeclaredFields</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获取Class类的实例
+</span></span></span><span class="line"><span class="cl"><span class="c1">//通过类的clas属性获取（多用于传参）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Class</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//用类的实例的getClass获取Class对象（多用于对象获取字节码）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Class</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">getClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//用Class类的静态方法forName通过一个类的全类名获取Class对象（多用于读取配置文件）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Class</span> <span class="n">c3</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;jack.Person&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//内置基本数据类型的包装类可以直接用类名.Type
+</span></span></span><span class="line"><span class="cl"><span class="c1">//还可以利用ClassLoader
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 <h2 id="类加载内存分析">类加载内存分析</h2>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201219101125.png" alt=""></p>
@@ -405,9 +368,17 @@ class User{ private String name; private int id; private itn age; public User(){
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201219102507.png" alt=""></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201219113843.png" alt=""></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201219113851.png" alt=""></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获取系统类加载器可以加载的路径
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;java.class.path&#34;</span><span style="color:#f92672">));</span>
-</span></span></code></pre></div><h3 id="双亲委派机制">双亲委派机制</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获取系统类加载器可以加载的路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;java.class.path&#34;</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="双亲委派机制">双亲委派机制</h3>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201219114522.png" alt=""></p>
 <h2 id="创建运行时类的对象">创建运行时类的对象</h2>
 <ul>
@@ -422,48 +393,97 @@ class User{ private String name; private int id; private itn age; public User(){
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test01</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ClassNotFoundException<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        Class c1 <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;com.jack.User&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getSimpleName</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getFields</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredFields</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getFields</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;age&#34;</span><span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getMethods</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredMethods</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getMethod</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getName&#34;</span><span style="color:#f92672">,</span><span style="color:#66d9ef">null</span><span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getMethod</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;setName&#34;</span><span style="color:#f92672">,</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredMethod</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getName&#34;</span><span style="color:#f92672">,</span><span style="color:#66d9ef">null</span><span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getConstructors</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredConstructors</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getConstructor</span><span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span><span style="color:#66d9ef">int</span><span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span><span style="color:#66d9ef">int</span><span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h2 id="动态创建对象执行方法">动态创建对象执行方法</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test02</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ClassNotFoundException<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        Class c1 <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;com.jack.User&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        User user1 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>User<span style="color:#f92672">)</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span><span style="color:#75715e">//本质上调用无参构造器
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//通过构造器创建对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Constructor constructor <span style="color:#f92672">=</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredConstructor</span><span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span><span style="color:#66d9ef">int</span><span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span><span style="color:#66d9ef">int</span><span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        User user2 <span style="color:#f92672">=</span> constructor<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Jack&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">001</span><span style="color:#f92672">,</span><span style="color:#ae81ff">18</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//通过反射调用方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        User user3 <span style="color:#f92672">=</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        Method setName <span style="color:#f92672">=</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredMethod</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;setName&#34;</span><span style="color:#f92672">,</span>String<span style="color:#f92672">,</span>class<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        setName<span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>user3<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Sam&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//通过反射操作属性
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        User user4 <span style="color:#f92672">=</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        Field name <span style="color:#f92672">=</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        name<span style="color:#f92672">.</span><span style="color:#a6e22e">setAccessible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span><span style="color:#75715e">//暴力反射：不能直接访问私有属性，我们要关闭程序的安全检测。这里如果设置为false则指示反射的对象实施Java语言的语言访问检查
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        name<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>user4<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Mariah&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nf">Test01</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Class</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;com.jack.User&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getFields</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredFields</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getFields</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;age&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getMethods</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredMethods</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;getName&#34;</span><span class="o">,</span><span class="kc">null</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;setName&#34;</span><span class="o">,</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&#34;getName&#34;</span><span class="o">,</span><span class="kc">null</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getConstructors</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredConstructors</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">getConstructor</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="动态创建对象执行方法">动态创建对象执行方法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nf">Test02</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Class</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;com.jack.User&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">user1</span> <span class="o">=</span> <span class="o">(</span><span class="n">User</span><span class="o">)</span><span class="n">c1</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span><span class="c1">//本质上调用无参构造器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//通过构造器创建对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Constructor</span> <span class="n">constructor</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredConstructor</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">constructor</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&#34;Jack&#34;</span><span class="o">,</span><span class="mo">001</span><span class="o">,</span><span class="mi">18</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//通过反射调用方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">User</span> <span class="n">user3</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Method</span> <span class="n">setName</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&#34;setName&#34;</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setName</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">user3</span><span class="o">,</span><span class="s">&#34;Sam&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//通过反射操作属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">User</span> <span class="n">user4</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Field</span> <span class="n">name</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span><span class="c1">//暴力反射：不能直接访问私有属性，我们要关闭程序的安全检测。这里如果设置为false则指示反射的对象实施Java语言的语言访问检查
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">name</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">user4</span><span class="o">,</span><span class="s">&#34;Mariah&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>
 <p>反复执行类中获取名字的方法的三种方式的效率对比：</p>
-<!-- raw HTML omitted -->
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201219122112.png" style="zoom: 80%;" />
 </li>
 </ul>
 <h2 id="通过反射操作泛型">通过反射操作泛型</h2>
@@ -475,51 +495,101 @@ class User{ private String name; private int id; private itn age; public User(){
 <li>TypeVaraible：是各种类型变量的公共父接口</li>
 <li>WildcaredType：代表一种通配符类型表达式</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span><span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//定义两个带泛型的方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test01</span><span style="color:#f92672">(</span>Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>Person<span style="color:#f92672">&gt;</span> map<span style="color:#f92672">,</span>List<span style="color:#f92672">&lt;</span>Person<span style="color:#f92672">&gt;</span> list<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Demo.test01()&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>   
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span>Person<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">test02</span><span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Demo.test02()&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>   
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>           
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//获得指定方法参数泛型信息
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            Method m <span style="color:#f92672">=</span> Demo<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getMethod</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test01&#34;</span><span style="color:#f92672">,</span> Map<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span>List<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>            Type<span style="color:#f92672">[]</span> t <span style="color:#f92672">=</span> m<span style="color:#f92672">.</span><span style="color:#a6e22e">getGenericParameterTypes</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Type paramType <span style="color:#f92672">:</span> t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;#&#34;</span><span style="color:#f92672">+</span>paramType<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>paramType <span style="color:#66d9ef">instanceof</span> ParameterizedType<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">//获取泛型中的具体信息
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    Type<span style="color:#f92672">[]</span> genericTypes <span style="color:#f92672">=</span> <span style="color:#f92672">((</span>ParameterizedType<span style="color:#f92672">)</span> paramType<span style="color:#f92672">).</span><span style="color:#a6e22e">getActualTypeArguments</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Type genericType <span style="color:#f92672">:</span> genericTypes<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型类型：&#34;</span><span style="color:#f92672">+</span>genericType<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>   
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//获得指定方法返回值泛型信息
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            Method m2 <span style="color:#f92672">=</span> Demo<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getMethod</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test02&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>            Type returnType <span style="color:#f92672">=</span> m2<span style="color:#f92672">.</span><span style="color:#a6e22e">getGenericReturnType</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>returnType <span style="color:#66d9ef">instanceof</span> ParameterizedType<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>                    Type<span style="color:#f92672">[]</span> genericTypes <span style="color:#f92672">=</span> <span style="color:#f92672">((</span>ParameterizedType<span style="color:#f92672">)</span> returnType<span style="color:#f92672">).</span><span style="color:#a6e22e">getActualTypeArguments</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Type genericType <span style="color:#f92672">:</span> genericTypes<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>                        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;返回值，泛型类型：&#34;</span><span style="color:#f92672">+</span>genericType<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">}</span>                   
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>       
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>   
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h2 id="通过注解反射操作注解">通过注解反射操作注解</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span><span class="o">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">//定义两个带泛型的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test01</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">,</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Demo.test01()&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>   
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">test02</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Demo.test02()&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>           
+</span></span><span class="line"><span class="cl">            <span class="c1">//获得指定方法参数泛型信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Method</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Demo</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;test01&#34;</span><span class="o">,</span> <span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">List</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Type</span><span class="o">[]</span> <span class="n">t</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="na">getGenericParameterTypes</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="n">Type</span> <span class="n">paramType</span> <span class="o">:</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;#&#34;</span><span class="o">+</span><span class="n">paramType</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">paramType</span> <span class="k">instanceof</span> <span class="n">ParameterizedType</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//获取泛型中的具体信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">Type</span><span class="o">[]</span> <span class="n">genericTypes</span> <span class="o">=</span> <span class="o">((</span><span class="n">ParameterizedType</span><span class="o">)</span> <span class="n">paramType</span><span class="o">).</span><span class="na">getActualTypeArguments</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">for</span> <span class="o">(</span><span class="n">Type</span> <span class="n">genericType</span> <span class="o">:</span> <span class="n">genericTypes</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;泛型类型：&#34;</span><span class="o">+</span><span class="n">genericType</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//获得指定方法返回值泛型信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Method</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">Demo</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;test02&#34;</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Type</span> <span class="n">returnType</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="na">getGenericReturnType</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="o">(</span><span class="n">returnType</span> <span class="k">instanceof</span> <span class="n">ParameterizedType</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Type</span><span class="o">[]</span> <span class="n">genericTypes</span> <span class="o">=</span> <span class="o">((</span><span class="n">ParameterizedType</span><span class="o">)</span> <span class="n">returnType</span><span class="o">).</span><span class="na">getActualTypeArguments</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="k">for</span> <span class="o">(</span><span class="n">Type</span> <span class="n">genericType</span> <span class="o">:</span> <span class="n">genericTypes</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;返回值，泛型类型：&#34;</span><span class="o">+</span><span class="n">genericType</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>                   
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>       
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>   
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="通过注解反射操作注解">通过注解反射操作注解</h2>
 <p>**小例子：**通过注解和反射完成类和表结构的映射关系</p>
 <p>ORM：Object Relationship Mapping——》对象关系映射</p>
 <ul>
@@ -527,159 +597,225 @@ class User{ private String name; private int id; private itn age; public User(){
 <li>睡醒和字段对应</li>
 <li>对象和记录对应</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">test12</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ClassNotFoundException<span style="color:#f92672">,</span> NoSuchFieldException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        Class c1 <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dome_05_注解.Student2&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//通过反射 获得注解
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Annotation<span style="color:#f92672">[]</span> annotations <span style="color:#f92672">=</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getAnnotations</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Annotation annotation <span style="color:#f92672">:</span> annotations<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>annotation<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 获得 注解 value 的值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Tablekuang annotation <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Tablekuang<span style="color:#f92672">)</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getAnnotation</span><span style="color:#f92672">(</span>Tablekuang<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>annotation<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 获得类指定的注解
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Field name <span style="color:#f92672">=</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        Fieldkuang annotation2 <span style="color:#f92672">=</span> name<span style="color:#f92672">.</span><span style="color:#a6e22e">getAnnotation</span><span style="color:#f92672">(</span>Fieldkuang<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>annotation2<span style="color:#f92672">.</span><span style="color:#a6e22e">Columname</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>annotation2<span style="color:#f92672">.</span><span style="color:#a6e22e">type</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>annotation2<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 类名的注解
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">TYPE</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">RUNTIME</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@interface</span> Tablekuang <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">value</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 属性的注解
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">FIELD</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">RUNTIME</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@interface</span> Fieldkuang <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">Columname</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">type</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student2</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> id<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student2</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">,</span> String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>    <span style="color:#66d9ef">return</span> id<span style="color:#f92672">;</span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setId</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id<span style="color:#f92672">;</span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAge</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>    <span style="color:#66d9ef">return</span> age<span style="color:#f92672">;</span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAge</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> age<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>    <span style="color:#66d9ef">return</span> name<span style="color:#f92672">;</span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div></section>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">test12</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">,</span> <span class="n">NoSuchFieldException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Class</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;dome_05_注解.Student2&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//通过反射 获得注解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Annotation</span><span class="o">[]</span> <span class="n">annotations</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">getAnnotations</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Annotation</span> <span class="n">annotation</span> <span class="o">:</span> <span class="n">annotations</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获得 注解 value 的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Tablekuang</span> <span class="n">annotation</span> <span class="o">=</span> <span class="o">(</span><span class="n">Tablekuang</span><span class="o">)</span> <span class="n">c1</span><span class="o">.</span><span class="na">getAnnotation</span><span class="o">(</span><span class="n">Tablekuang</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation</span><span class="o">.</span><span class="na">value</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获得类指定的注解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Field</span> <span class="n">name</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Fieldkuang</span> <span class="n">annotation2</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="na">getAnnotation</span><span class="o">(</span><span class="n">Fieldkuang</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation2</span><span class="o">.</span><span class="na">Columname</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation2</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation2</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 类名的注解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">TYPE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">Tablekuang</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">value</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 属性的注解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">FIELD</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">Fieldkuang</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">Columname</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">type</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">length</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Student2</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Student2</span><span class="o">()</span> <span class="o">{</span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Student2</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>    <span class="k">return</span> <span class="n">id</span><span class="o">;</span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>    <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>    <span class="k">return</span> <span class="n">age</span><span class="o">;</span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>    <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>    <span class="k">return</span> <span class="n">name</span><span class="o">;</span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
 
-  
-  
-
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/"
-      ><span class="mr-1.5">←</span><span>java基础快速回顾-上</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/java-%E6%B3%A8%E8%A7%A3/"
-      ><span>java-注解</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-12-19
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">java基础快速回顾-上</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java-%E6%B3%A8%E8%A7%A3/">
+            <span class="next-text nav-default">java-注解</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

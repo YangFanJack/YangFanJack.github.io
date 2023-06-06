@@ -1,245 +1,173 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>javaWeb三大组件 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>javaWeb三大组件 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦截请求：完成通用操作（登录验证，统一编码，敏感字符过滤） @WebFilter(&#34;/*&#34;)//访问所有资源之前，都会执行该过滤器 public class FilterDemo1 implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { System.out.println(&#34;filterDemo1被执行了....&#34;); //放行 filterChain.doFilter(servletRequest,servletResponse); } @Override public void destroy() { } } web.xml配置 &lt;filter&gt; &lt;filter-name&gt;demo1&lt;/filter-name&gt; &lt;filter-class&gt;cn.itcast.web.filter.FilterDemo1&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;demo1&lt;/filter-name&gt; &lt;!-- 拦截路径 --&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; 过滤器执行流程
-执行放行前的代码 执行放行后的资源 回来执行过滤器放行代码下边的代码（一般是对response对象做增强） 过滤器生命周期方法
-**init:**在服务器启动后，会创建Filter对象，然后调用init方法。只执行一次。用于加载资源 **doFilter:**每一次请求被拦截资源时，会执行。执行多次 **destroy:**在服务器关闭后，Filter对象被销毁。如果服务器是正常关闭，则会执行destroy方法。只执行一次。用于释放资源 过滤器配置详解
-拦截路径配置： 1. 具体资源路径： /index.jsp 只有访问index.jsp资源时，过滤器才会被执行 2." />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="javaWeb三大组件" />
-<meta property="og:description" content="Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦截请求：完成通用操作（登录验证，统一编码，敏感字符过滤） @WebFilter(&#34;/*&#34;)//访问所有资源之前，都会执行该过滤器 public class FilterDemo1 implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { System.out.println(&#34;filterDemo1被执行了....&#34;); //放行 filterChain.doFilter(servletRequest,servletResponse); } @Override public void destroy() { } } web.xml配置 &lt;filter&gt; &lt;filter-name&gt;demo1&lt;/filter-name&gt; &lt;filter-class&gt;cn.itcast.web.filter.FilterDemo1&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;demo1&lt;/filter-name&gt; &lt;!-- 拦截路径 --&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; 过滤器执行流程
-执行放行前的代码 执行放行后的资源 回来执行过滤器放行代码下边的代码（一般是对response对象做增强） 过滤器生命周期方法
-**init:**在服务器启动后，会创建Filter对象，然后调用init方法。只执行一次。用于加载资源 **doFilter:**每一次请求被拦截资源时，会执行。执行多次 **destroy:**在服务器关闭后，Filter对象被销毁。如果服务器是正常关闭，则会执行destroy方法。只执行一次。用于释放资源 过滤器配置详解
-拦截路径配置： 1. 具体资源路径： /index.jsp 只有访问index.jsp资源时，过滤器才会被执行 2." />
+<meta property="og:title" content="javaWeb三大组件" />
+<meta property="og:description" content="Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-16T10:51:26+00:00" />
 <meta property="article:modified_time" content="2021-03-16T10:51:26+00:00" />
-
-  
-  <meta itemprop="name" content="javaWeb三大组件">
-<meta itemprop="description" content="Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦截请求：完成通用操作（登录验证，统一编码，敏感字符过滤） @WebFilter(&#34;/*&#34;)//访问所有资源之前，都会执行该过滤器 public class FilterDemo1 implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { System.out.println(&#34;filterDemo1被执行了....&#34;); //放行 filterChain.doFilter(servletRequest,servletResponse); } @Override public void destroy() { } } web.xml配置 &lt;filter&gt; &lt;filter-name&gt;demo1&lt;/filter-name&gt; &lt;filter-class&gt;cn.itcast.web.filter.FilterDemo1&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;demo1&lt;/filter-name&gt; &lt;!-- 拦截路径 --&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; 过滤器执行流程
-执行放行前的代码 执行放行后的资源 回来执行过滤器放行代码下边的代码（一般是对response对象做增强） 过滤器生命周期方法
-**init:**在服务器启动后，会创建Filter对象，然后调用init方法。只执行一次。用于加载资源 **doFilter:**每一次请求被拦截资源时，会执行。执行多次 **destroy:**在服务器关闭后，Filter对象被销毁。如果服务器是正常关闭，则会执行destroy方法。只执行一次。用于释放资源 过滤器配置详解
-拦截路径配置： 1. 具体资源路径： /index.jsp 只有访问index.jsp资源时，过滤器才会被执行 2."><meta itemprop="datePublished" content="2021-03-16T10:51:26+00:00" />
+<meta itemprop="name" content="javaWeb三大组件">
+<meta itemprop="description" content="Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦"><meta itemprop="datePublished" content="2021-03-16T10:51:26+00:00" />
 <meta itemprop="dateModified" content="2021-03-16T10:51:26+00:00" />
-<meta itemprop="wordCount" content="208">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1838">
+<meta itemprop="keywords" content="后端,JavaWeb,Java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="javaWeb三大组件"/>
-<meta name="twitter:description" content="Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦截请求：完成通用操作（登录验证，统一编码，敏感字符过滤） @WebFilter(&#34;/*&#34;)//访问所有资源之前，都会执行该过滤器 public class FilterDemo1 implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { System.out.println(&#34;filterDemo1被执行了....&#34;); //放行 filterChain.doFilter(servletRequest,servletResponse); } @Override public void destroy() { } } web.xml配置 &lt;filter&gt; &lt;filter-name&gt;demo1&lt;/filter-name&gt; &lt;filter-class&gt;cn.itcast.web.filter.FilterDemo1&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;demo1&lt;/filter-name&gt; &lt;!-- 拦截路径 --&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; 过滤器执行流程
-执行放行前的代码 执行放行后的资源 回来执行过滤器放行代码下边的代码（一般是对response对象做增强） 过滤器生命周期方法
-**init:**在服务器启动后，会创建Filter对象，然后调用init方法。只执行一次。用于加载资源 **doFilter:**每一次请求被拦截资源时，会执行。执行多次 **destroy:**在服务器关闭后，Filter对象被销毁。如果服务器是正常关闭，则会执行destroy方法。只执行一次。用于释放资源 过滤器配置详解
-拦截路径配置： 1. 具体资源路径： /index.jsp 只有访问index.jsp资源时，过滤器才会被执行 2."/>
+<meta name="twitter:description" content="Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">javaWeb三大组件</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-16 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 1838 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#servlet">Servlet</a></li>
+        <li><a href="#filter过滤器">Filter：过滤器</a>
+          <ul>
+            <li><a href="#敏感词汇过滤">敏感词汇过滤</a></li>
+          </ul>
+        </li>
+        <li><a href="#listener监听器">Listener：监听器</a>
+          <ul>
+            <li><a href="#事件监听机制">事件监听机制</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">javaWeb三大组件</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Mar 16, 2021</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h2 id="servlet">Servlet</h2>
+</div>
+    <div class="post-content">
+      <h2 id="servlet">Servlet</h2>
 <ul>
 <li>见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细</li>
 </ul>
@@ -247,39 +175,80 @@
 <ul>
 <li>拦截请求：完成通用操作（登录验证，统一编码，敏感字符过滤）</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@WebFilter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/*&#34;</span><span style="color:#f92672">)</span><span style="color:#75715e">//访问所有资源之前，都会执行该过滤器
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FilterDemo1</span> <span style="color:#66d9ef">implements</span> Filter <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span><span style="color:#f92672">(</span>FilterConfig filterConfig<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doFilter</span><span style="color:#f92672">(</span>ServletRequest servletRequest<span style="color:#f92672">,</span> ServletResponse servletResponse<span style="color:#f92672">,</span> FilterChain filterChain<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ServletException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;filterDemo1被执行了....&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//放行
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        filterChain<span style="color:#f92672">.</span><span style="color:#a6e22e">doFilter</span><span style="color:#f92672">(</span>servletRequest<span style="color:#f92672">,</span>servletResponse<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">destroy</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@WebFilter</span><span class="o">(</span><span class="s">&#34;/*&#34;</span><span class="o">)</span><span class="c1">//访问所有资源之前，都会执行该过滤器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FilterDemo1</span> <span class="kd">implements</span> <span class="n">Filter</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">FilterConfig</span> <span class="n">filterConfig</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="n">ServletRequest</span> <span class="n">servletRequest</span><span class="o">,</span> <span class="n">ServletResponse</span> <span class="n">servletResponse</span><span class="o">,</span> <span class="n">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ServletException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;filterDemo1被执行了....&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//放行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">servletRequest</span><span class="o">,</span><span class="n">servletResponse</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroy</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li><strong>web.xml配置</strong></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;filter&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;filter-name&gt;</span>demo1<span style="color:#f92672">&lt;/filter-name&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;filter-class&gt;</span>cn.itcast.web.filter.FilterDemo1<span style="color:#f92672">&lt;/filter-class&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/filter&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;filter-mapping&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;filter-name&gt;</span>demo1<span style="color:#f92672">&lt;/filter-name&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 拦截路径 --&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;url-pattern&gt;</span>/*<span style="color:#f92672">&lt;/url-pattern&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/filter-mapping&gt;</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;filter&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;filter-name&gt;</span>demo1<span class="nt">&lt;/filter-name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;filter-class&gt;</span>cn.itcast.web.filter.FilterDemo1<span class="nt">&lt;/filter-class&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/filter&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;filter-mapping&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;filter-name&gt;</span>demo1<span class="nt">&lt;/filter-name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 拦截路径 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/filter-mapping&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>
 <p><strong>过滤器执行流程</strong></p>
 <ol>
@@ -398,39 +367,72 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">接口类</span> proxy <span style="color:#f92672">=</span> Proxy<span style="color:#f92672">.</span><span style="color:#a6e22e">newProxyInstance</span><span style="color:#f92672">(</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 参数1：真实对象的类加载器
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    myBeanpostProcessor<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getClassLoader</span><span style="color:#f92672">(),</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//参数2：真实对象实现的所有的接口,接口是特殊的类，使用Class[]装载多个接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    bean<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getInterfaces</span><span style="color:#f92672">(),</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//参数3： 接口，传递一个匿名内部类对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">new</span> InvocationHandler<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//proxy 代理对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//method:代理的方法对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//args:方法调用时参数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>Object proxy<span style="color:#f92672">,</span> Method method<span style="color:#f92672">,</span> Object<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Throwable <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;开启事务&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>            Object obj<span style="color:#f92672">=</span>method<span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>bean<span style="color:#f92672">,</span> args<span style="color:#f92672">);</span><span style="color:#75715e">//代理类，参数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;关闭事务&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> obj<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">接口类</span> <span class="n">proxy</span> <span class="o">=</span> <span class="n">Proxy</span><span class="o">.</span><span class="na">newProxyInstance</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 参数1：真实对象的类加载器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">myBeanpostProcessor</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//参数2：真实对象实现的所有的接口,接口是特殊的类，使用Class[]装载多个接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">bean</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getInterfaces</span><span class="o">(),</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//参数3： 接口，传递一个匿名内部类对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">new</span> <span class="n">InvocationHandler</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//proxy 代理对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//method:代理的方法对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//args:方法调用时参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;开启事务&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Object</span> <span class="n">obj</span><span class="o">=</span><span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">bean</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span><span class="c1">//代理类，参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;关闭事务&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 <h2 id="listener监听器">Listener：监听器</h2>
 <h3 id="事件监听机制">事件监听机制</h3>
 <ul>
-<li>**事件：**一件事情</li>
-<li>**事件源：**事件发生的地方</li>
-<li>**监听器：**一个对象</li>
-<li>**注册监听：**将事件，事件源绑定在一起。当事件源发生某个事件时，执行监听器代码</li>
+<li><strong>事件：</strong> 一件事情</li>
+<li><strong>事件源：</strong> 事件发生的地方</li>
+<li><strong>监听器：</strong> 一个对象</li>
+<li><strong>注册监听：</strong> 将事件，事件源绑定在一起。当事件源发生某个事件时，执行监听器代码</li>
 </ul>
 <p><strong>说一个用来加载配置文件的监听器类</strong>（web框架中这种监听器已经写好，我们只需要配置即可）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ServletContextListener<span style="color:#960050;background-color:#1e0010">类</span> <span style="color:#75715e">//监听ServletContext对象的创建和销毁
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">contextDestroyed</span><span style="color:#f92672">(</span>ServletContextEvent sce<span style="color:#f92672">)</span> <span style="color:#75715e">//服务器启动后自动调用
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">contextInitialized</span><span style="color:#f92672">(</span>ServletContextEvent sce<span style="color:#f92672">)</span> <span style="color:#75715e">//ServletContext对象创建后会调用该方法
-</span></span></span></code></pre></div><p>步骤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ServletContextListener</span><span class="err">类</span> <span class="c1">//监听ServletContext对象的创建和销毁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">contextDestroyed</span><span class="o">(</span><span class="n">ServletContextEvent</span> <span class="n">sce</span><span class="o">)</span> <span class="c1">//服务器启动后自动调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">contextInitialized</span><span class="o">(</span><span class="n">ServletContextEvent</span> <span class="n">sce</span><span class="o">)</span> <span class="c1">//ServletContext对象创建后会调用该方法
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>步骤：</p>
 <ol>
 <li>
 <p>定义一个类，实现ServletContextListener接口</p>
@@ -441,113 +443,136 @@
 <li>
 <p>配置
 web.xml</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;listener&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;listener-class&gt;</span>cn.itcast.web.listener.ContextLoaderListener<span style="color:#f92672">&lt;/listener-class&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/listener&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--指定初始化参数--&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;context-param&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;param-name&gt;</span>XXX<span style="color:#f92672">&lt;/param-name&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;param-value&gt;</span>XXX<span style="color:#f92672">&lt;/param-value&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/context-param&gt;</span>
-</span></span></code></pre></div><p>注解：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@WebListener</span>
-</span></span></code></pre></div><p>​</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;listener&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;listener-class&gt;</span>cn.itcast.web.listener.ContextLoaderListener<span class="nt">&lt;/listener-class&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/listener&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--指定初始化参数--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;context-param&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;param-name&gt;</span>XXX<span class="nt">&lt;/param-name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;param-value&gt;</span>XXX<span class="nt">&lt;/param-value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/context-param&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注解：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@WebListener</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​</p>
 </li>
 </ol>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/"
-      ><span class="mr-1.5">←</span><span>redis缓存技术</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/"
-      ><span>java基础快速回顾-下</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-03-16
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+          <a href="/tags/javaweb/">JavaWeb</a>
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">redis缓存技术</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/">
+            <span class="next-text nav-default">java基础快速回顾-下</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

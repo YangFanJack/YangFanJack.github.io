@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>实用工具 on Jack&#39;s Blog Site</title>
+    <link>http://yangfanjack.top/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 实用工具 on Jack&#39;s Blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 10 Mar 2023 21:42:52 +0800</lastBuildDate><atom:link href="http://yangfanjack.top/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu Server安装软件记录</title>
+      <link>http://yangfanjack.top/post/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Fri, 10 Mar 2023 21:42:52 +0800</pubDate>
+      
+      <guid>http://yangfanjack.top/post/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
+      <description>Debian系统安装后的一些配置 CentOS社区版的死亡，不成熟的EulerOS，导致目前选择红帽系的Linux发行版不是一个好主意。还是老</description>
+    </item>
+    
+    <item>
+      <title>Euler Server安装软件记录</title>
+      <link>http://yangfanjack.top/post/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Fri, 10 Mar 2023 11:10:58 +0800</pubDate>
+      
+      <guid>http://yangfanjack.top/post/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
+      <description>MySQL MySQL官网下载RedHat版本的MySQL安装包：https://dev.mysql.com/downloads/mysql/ 按顺序安</description>
+    </item>
+    
+    <item>
+      <title>win10壁纸bingtoday</title>
+      <link>http://yangfanjack.top/post/win10%E5%A3%81%E7%BA%B8bingtoday/</link>
+      <pubDate>Wed, 30 Mar 2022 08:27:58 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/win10%E5%A3%81%E7%BA%B8bingtoday/</guid>
+      <description>注册表指定壁纸路径 WIN+R打开运行对话框：输入regedit打开注册表 到达路径：计算机\HKEY_CURRENT_USER\Softwar</description>
+    </item>
+    
+    <item>
+      <title>Win10桌面美化</title>
+      <link>http://yangfanjack.top/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</link>
+      <pubDate>Wed, 11 Mar 2020 19:42:16 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</guid>
+      <description>先放上一张我的桌面： 前言：Windows操作系统经过几十年的发展，到目前已经相当成熟，在个人桌面操作系统中也是处于霸主地位，但是对于我而言，</description>
+    </item>
+    
+    <item>
+      <title>Windows包管理器scoop</title>
+      <link>http://yangfanjack.top/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</link>
+      <pubDate>Tue, 03 Mar 2020 18:34:53 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</guid>
+      <description>对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装</description>
+    </item>
+    
+    <item>
+      <title>markdown基础语法</title>
+      <link>http://yangfanjack.top/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Tue, 03 Mar 2020 12:13:04 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+      <description>markdown基础——博客必备 推荐编辑器 typora vscode 语法 1. 标题 markdown的标题一共分为六个级别，从大到小依次是： 1 2 3 4 5 6 # 这是一级标题 ##</description>
+    </item>
+    
+  </channel>
+</rss>

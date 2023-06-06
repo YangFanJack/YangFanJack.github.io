@@ -1,298 +1,331 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>linux网络配置 - Jack&#39;s Blog Site</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Jack Yang" /><meta name="description" content="网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
+<meta name="generator" content="Hugo 0.109.0 with theme even" />
 
 
+<link rel="canonical" href="http://yangfanjack.top/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script>
+
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html
-  class="not-ready text-sm lg:text-base"
-  style="--bg: #faf6f1"
-  lang="en-US"
->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>linux网络配置 - My Hugo Site</title>
-
-  
-  <meta name="theme-color" />
-  
-  <meta name="description" content="网络命令 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0 up #禁用设备 ifconfig eth0 down 网络配置 #查看相应设备名称对应的设备信息 ethtool eth0 #查看相应设备名称对应的设备位置(回车后与eth0 相对应的网卡接口旁边的指示灯就会闪烁，这样你就能很快确定eth0 网口的位置啦) ethtool -p eth0 #Linux里面有两套管理网络连接的方案,两套方案是冲突的，不能同时共存。 /etc/network/interfaces（/etc/init.d/networking） Network-Manager 都是基于单网卡单ip的配置
-静态配置 Redhat类 sudo vim /etc/sysconfig/network-scripts/ifcfg-eth[x]文件([x]为使用的网卡) # xxxxxxx(网卡名称，不用改) DEVICE=eth0 BOOTPROTO=static TYPE=ether HWADDR=xx:xx:xx:xx:xx:xx (网卡mac地址，不用改) IPADDR=x.x.x.x(ip地址) NETMASK=x.x.x.x(子网掩码) BROADCAST=x.x.x.x.(广播地址) NETWORK=x.x.x.x(网络地址) GATEWAY=x.x.x.x(网关地址) ONBOOT=yes(开机自启动) DNS1=x.x.x.x(域名服务器地址) DNS2=x.x.x.x Ubuntu类 sudo vim /etc/network/interfaces # The primary network interface (配置主网络接口) auto eth0 #开机自动激活eth0接口 iface eth0 inet static #配置eth0接口为静态地址 address 192." />
-  <meta
-    name="author"
-    content=""
-  />
-  
-
-  
-  
-  
-  
-  
-  
-  <link rel="preload stylesheet" as="style" href="https://yangfanjack.github.io/main.min.css" />
-
-  
-
-  
-     
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/theme.png" />
-
-  
-  
-  
-  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/44813701?v=4" />
-  
-  
-
-  
-  <link rel="preload" as="image" href="https://yangfanjack.github.io/github.svg" />
-  
-
-  
-  <link rel="icon" href="https://yangfanjack.github.io/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://yangfanjack.github.io/apple-touch-icon.png" />
-
-  
-  <meta name="generator" content="Hugo 0.109.0">
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="linux网络配置" />
-<meta property="og:description" content="网络命令 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0 up #禁用设备 ifconfig eth0 down 网络配置 #查看相应设备名称对应的设备信息 ethtool eth0 #查看相应设备名称对应的设备位置(回车后与eth0 相对应的网卡接口旁边的指示灯就会闪烁，这样你就能很快确定eth0 网口的位置啦) ethtool -p eth0 #Linux里面有两套管理网络连接的方案,两套方案是冲突的，不能同时共存。 /etc/network/interfaces（/etc/init.d/networking） Network-Manager 都是基于单网卡单ip的配置
-静态配置 Redhat类 sudo vim /etc/sysconfig/network-scripts/ifcfg-eth[x]文件([x]为使用的网卡) # xxxxxxx(网卡名称，不用改) DEVICE=eth0 BOOTPROTO=static TYPE=ether HWADDR=xx:xx:xx:xx:xx:xx (网卡mac地址，不用改) IPADDR=x.x.x.x(ip地址) NETMASK=x.x.x.x(子网掩码) BROADCAST=x.x.x.x.(广播地址) NETWORK=x.x.x.x(网络地址) GATEWAY=x.x.x.x(网关地址) ONBOOT=yes(开机自启动) DNS1=x.x.x.x(域名服务器地址) DNS2=x.x.x.x Ubuntu类 sudo vim /etc/network/interfaces # The primary network interface (配置主网络接口) auto eth0 #开机自动激活eth0接口 iface eth0 inet static #配置eth0接口为静态地址 address 192." />
+<meta property="og:title" content="linux网络配置" />
+<meta property="og:description" content="网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yangfanjack.github.io/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="http://yangfanjack.top/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-11-20T10:02:31+00:00" />
 <meta property="article:modified_time" content="2020-11-20T10:02:31+00:00" />
-
-  
-  <meta itemprop="name" content="linux网络配置">
-<meta itemprop="description" content="网络命令 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0 up #禁用设备 ifconfig eth0 down 网络配置 #查看相应设备名称对应的设备信息 ethtool eth0 #查看相应设备名称对应的设备位置(回车后与eth0 相对应的网卡接口旁边的指示灯就会闪烁，这样你就能很快确定eth0 网口的位置啦) ethtool -p eth0 #Linux里面有两套管理网络连接的方案,两套方案是冲突的，不能同时共存。 /etc/network/interfaces（/etc/init.d/networking） Network-Manager 都是基于单网卡单ip的配置
-静态配置 Redhat类 sudo vim /etc/sysconfig/network-scripts/ifcfg-eth[x]文件([x]为使用的网卡) # xxxxxxx(网卡名称，不用改) DEVICE=eth0 BOOTPROTO=static TYPE=ether HWADDR=xx:xx:xx:xx:xx:xx (网卡mac地址，不用改) IPADDR=x.x.x.x(ip地址) NETMASK=x.x.x.x(子网掩码) BROADCAST=x.x.x.x.(广播地址) NETWORK=x.x.x.x(网络地址) GATEWAY=x.x.x.x(网关地址) ONBOOT=yes(开机自启动) DNS1=x.x.x.x(域名服务器地址) DNS2=x.x.x.x Ubuntu类 sudo vim /etc/network/interfaces # The primary network interface (配置主网络接口) auto eth0 #开机自动激活eth0接口 iface eth0 inet static #配置eth0接口为静态地址 address 192."><meta itemprop="datePublished" content="2020-11-20T10:02:31+00:00" />
+<meta itemprop="name" content="linux网络配置">
+<meta itemprop="description" content="网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0"><meta itemprop="datePublished" content="2020-11-20T10:02:31+00:00" />
 <meta itemprop="dateModified" content="2020-11-20T10:02:31+00:00" />
-<meta itemprop="wordCount" content="141">
-<meta itemprop="keywords" content="" />
-  
-  <meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1117">
+<meta itemprop="keywords" content="Linux,JavaWeb," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="linux网络配置"/>
-<meta name="twitter:description" content="网络命令 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0 up #禁用设备 ifconfig eth0 down 网络配置 #查看相应设备名称对应的设备信息 ethtool eth0 #查看相应设备名称对应的设备位置(回车后与eth0 相对应的网卡接口旁边的指示灯就会闪烁，这样你就能很快确定eth0 网口的位置啦) ethtool -p eth0 #Linux里面有两套管理网络连接的方案,两套方案是冲突的，不能同时共存。 /etc/network/interfaces（/etc/init.d/networking） Network-Manager 都是基于单网卡单ip的配置
-静态配置 Redhat类 sudo vim /etc/sysconfig/network-scripts/ifcfg-eth[x]文件([x]为使用的网卡) # xxxxxxx(网卡名称，不用改) DEVICE=eth0 BOOTPROTO=static TYPE=ether HWADDR=xx:xx:xx:xx:xx:xx (网卡mac地址，不用改) IPADDR=x.x.x.x(ip地址) NETMASK=x.x.x.x(子网掩码) BROADCAST=x.x.x.x.(广播地址) NETWORK=x.x.x.x(网络地址) GATEWAY=x.x.x.x(网关地址) ONBOOT=yes(开机自启动) DNS1=x.x.x.x(域名服务器地址) DNS2=x.x.x.x Ubuntu类 sudo vim /etc/network/interfaces # The primary network interface (配置主网络接口) auto eth0 #开机自动激活eth0接口 iface eth0 inet static #配置eth0接口为静态地址 address 192."/>
+<meta name="twitter:description" content="网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0"/>
 
-  
-  
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body class="text-black duration-200 ease-out dark:text-white">
-    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
-  <div class="relative z-50 mr-auto flex items-center">
-    <a
-      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
-      href="https://yangfanjack.github.io"
-      >My Hugo Site</a
-    >
-    <a
-      class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-    ></a>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Jack&#39;s Blog Site</a>
   </div>
-
-  <a
-    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
-  ></a>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
 
   
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
 
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
 
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `"#faf6f1"`.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+</nav>
 
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Jack&#39;s Blog Site</a>
+</div>
 
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
 
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
 
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
-  >
-    
-    
 
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
     
-    <nav
-      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
-    >
-      
-      <a
-        class="h-8 w-8 [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href=" https://github.com/YangFanJack "
-        target="_blank"
-      ></a>
-      
-    </nav>
-    
+    <header class="post-header">
+      <h1 class="post-title">linux网络配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-20 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 学习笔记 </a>
+            </div>
+          <span class="more-meta"> 1117 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#网络命令">网络命令</a></li>
+        <li><a href="#网络配置">网络配置</a>
+          <ul>
+            <li><a href="#静态配置">静态配置</a></li>
+            <li><a href="#动态配置">动态配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#vm的三种网络模式">VM的三种网络模式</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
-</header>
-
-
-    <main
-      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-20 pb-32 dark:prose-invert"
-    >
-      
-
-<article>
-  <header class="mb-20">
-    <h1 class="!my-0 pb-2.5">linux网络配置</h1>
-
-    
-    <div class="text-sm opacity-60">
-      
-      <time>Nov 20, 2020</time>
-      
-      
-    </div>
-    
-  </header>
-
-  <section><h2 id="网络命令">网络命令</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#配置eth0的IP地址， 同时激活该设备</span>
-</span></span><span style="display:flex;"><span>sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#添加默认网关 </span>
-</span></span><span style="display:flex;"><span>sudo route add default gw 192.168.1.1
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#配置DNS</span>
-</span></span><span style="display:flex;"><span>sudo vi /etc/resolv.conf
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#激活设备</span>
-</span></span><span style="display:flex;"><span>ifconfig eth0 up
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#禁用设备</span>
-</span></span><span style="display:flex;"><span>ifconfig eth0 down
-</span></span></code></pre></div><h2 id="网络配置">网络配置</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#查看相应设备名称对应的设备信息</span>
-</span></span><span style="display:flex;"><span>ethtool eth0
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#查看相应设备名称对应的设备位置(回车后与eth0 相对应的网卡接口旁边的指示灯就会闪烁，这样你就能很快确定eth0 网口的位置啦)</span>
-</span></span><span style="display:flex;"><span>ethtool -p eth0
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#Linux里面有两套管理网络连接的方案,两套方案是冲突的，不能同时共存。</span>
-</span></span><span style="display:flex;"><span>	/etc/network/interfaces（/etc/init.d/networking）
-</span></span><span style="display:flex;"><span>	Network-Manager
-</span></span></code></pre></div><p><strong>都是基于单网卡单ip的配置</strong></p>
+</div>
+    <div class="post-content">
+      <h2 id="网络命令">网络命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#配置eth0的IP地址， 同时激活该设备</span>
+</span></span><span class="line"><span class="cl">sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up
+</span></span><span class="line"><span class="cl"><span class="c1">#添加默认网关 </span>
+</span></span><span class="line"><span class="cl">sudo route add default gw 192.168.1.1
+</span></span><span class="line"><span class="cl"><span class="c1">#配置DNS</span>
+</span></span><span class="line"><span class="cl">sudo vi /etc/resolv.conf
+</span></span><span class="line"><span class="cl"><span class="c1">#激活设备</span>
+</span></span><span class="line"><span class="cl">ifconfig eth0 up
+</span></span><span class="line"><span class="cl"><span class="c1">#禁用设备</span>
+</span></span><span class="line"><span class="cl">ifconfig eth0 down
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="网络配置">网络配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#查看相应设备名称对应的设备信息</span>
+</span></span><span class="line"><span class="cl">ethtool eth0
+</span></span><span class="line"><span class="cl"><span class="c1">#查看相应设备名称对应的设备位置(回车后与eth0 相对应的网卡接口旁边的指示灯就会闪烁，这样你就能很快确定eth0 网口的位置啦)</span>
+</span></span><span class="line"><span class="cl">ethtool -p eth0
+</span></span><span class="line"><span class="cl"><span class="c1">#Linux里面有两套管理网络连接的方案,两套方案是冲突的，不能同时共存。</span>
+</span></span><span class="line"><span class="cl">	/etc/network/interfaces（/etc/init.d/networking）
+</span></span><span class="line"><span class="cl">	Network-Manager
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>都是基于单网卡单ip的配置</strong></p>
 <h3 id="静态配置">静态配置</h3>
 <h4 id="redhat类">Redhat类</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo vim /etc/sysconfig/network-scripts/ifcfg-eth<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span>文件<span style="color:#f92672">([</span>x<span style="color:#f92672">]</span>为使用的网卡<span style="color:#f92672">)</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># xxxxxxx(网卡名称，不用改)</span>
-</span></span><span style="display:flex;"><span>DEVICE<span style="color:#f92672">=</span>eth0
-</span></span><span style="display:flex;"><span>BOOTPROTO<span style="color:#f92672">=</span>static
-</span></span><span style="display:flex;"><span>TYPE<span style="color:#f92672">=</span>ether
-</span></span><span style="display:flex;"><span>HWADDR<span style="color:#f92672">=</span>xx:xx:xx:xx:xx:xx <span style="color:#f92672">(</span>网卡mac地址，不用改<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>IPADDR<span style="color:#f92672">=</span>x.x.x.x<span style="color:#f92672">(</span>ip地址<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>NETMASK<span style="color:#f92672">=</span>x.x.x.x<span style="color:#f92672">(</span>子网掩码<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>BROADCAST<span style="color:#f92672">=</span>x.x.x.x.<span style="color:#f92672">(</span>广播地址<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>NETWORK<span style="color:#f92672">=</span>x.x.x.x<span style="color:#f92672">(</span>网络地址<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>GATEWAY<span style="color:#f92672">=</span>x.x.x.x<span style="color:#f92672">(</span>网关地址<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>ONBOOT<span style="color:#f92672">=</span>yes<span style="color:#f92672">(</span>开机自启动<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>DNS1<span style="color:#f92672">=</span>x.x.x.x<span style="color:#f92672">(</span>域名服务器地址<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>DNS2<span style="color:#f92672">=</span>x.x.x.x 
-</span></span></code></pre></div><h4 id="ubuntu类">Ubuntu类</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo vim /etc/network/interfaces
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># The primary network interface (配置主网络接口)</span>
-</span></span><span style="display:flex;"><span>　　auto eth0 <span style="color:#75715e">#开机自动激活eth0接口</span>
-</span></span><span style="display:flex;"><span>　　iface eth0 inet static <span style="color:#75715e">#配置eth0接口为静态地址</span>
-</span></span><span style="display:flex;"><span>　　address 192.168.1.10
-</span></span><span style="display:flex;"><span>　　gateway 192.168.1.254
-</span></span><span style="display:flex;"><span>　　Netmask 255.255.255.0
-</span></span><span style="display:flex;"><span>　　network 192.168.1.0
-</span></span><span style="display:flex;"><span>　　broadcast 192.168.1.255 
-</span></span></code></pre></div><h3 id="动态配置">动态配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo vim /etc/sysconfig/network-scripts/ifcfg-eth<span class="o">[</span>x<span class="o">]</span>文件<span class="o">([</span>x<span class="o">]</span>为使用的网卡<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># xxxxxxx(网卡名称，不用改)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DEVICE</span><span class="o">=</span>eth0
+</span></span><span class="line"><span class="cl"><span class="nv">BOOTPROTO</span><span class="o">=</span>static
+</span></span><span class="line"><span class="cl"><span class="nv">TYPE</span><span class="o">=</span>ether
+</span></span><span class="line"><span class="cl"><span class="nv">HWADDR</span><span class="o">=</span>xx:xx:xx:xx:xx:xx <span class="o">(</span>网卡mac地址，不用改<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IPADDR</span><span class="o">=</span>x.x.x.x<span class="o">(</span>ip地址<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NETMASK</span><span class="o">=</span>x.x.x.x<span class="o">(</span>子网掩码<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BROADCAST</span><span class="o">=</span>x.x.x.x.<span class="o">(</span>广播地址<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NETWORK</span><span class="o">=</span>x.x.x.x<span class="o">(</span>网络地址<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GATEWAY</span><span class="o">=</span>x.x.x.x<span class="o">(</span>网关地址<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ONBOOT</span><span class="o">=</span>yes<span class="o">(</span>开机自启动<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DNS1</span><span class="o">=</span>x.x.x.x<span class="o">(</span>域名服务器地址<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DNS2</span><span class="o">=</span>x.x.x.x 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ubuntu类">Ubuntu类</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo vim /etc/network/interfaces
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># The primary network interface (配置主网络接口)</span>
+</span></span><span class="line"><span class="cl">　　auto eth0 <span class="c1">#开机自动激活eth0接口</span>
+</span></span><span class="line"><span class="cl">　　iface eth0 inet static <span class="c1">#配置eth0接口为静态地址</span>
+</span></span><span class="line"><span class="cl">　　address 192.168.1.10
+</span></span><span class="line"><span class="cl">　　gateway 192.168.1.254
+</span></span><span class="line"><span class="cl">　　Netmask 255.255.255.0
+</span></span><span class="line"><span class="cl">　　network 192.168.1.0
+</span></span><span class="line"><span class="cl">　　broadcast 192.168.1.255 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="动态配置">动态配置</h3>
 <h4 id="redhat类-1">Redhat类</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># xxxxxxx(网卡名称，不用改)</span>
-</span></span><span style="display:flex;"><span>DEVICE<span style="color:#f92672">=</span>eth0
-</span></span><span style="display:flex;"><span>BOOTPROTO<span style="color:#f92672">=</span>dhcp
-</span></span><span style="display:flex;"><span>TYPE<span style="color:#f92672">=</span>ether
-</span></span><span style="display:flex;"><span>HWADDR<span style="color:#f92672">=</span>xx:xx:xx:xx:xx:xx <span style="color:#f92672">(</span>网卡mac地址，不用改<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>ONBOOT<span style="color:#f92672">=</span>yes<span style="color:#f92672">(</span>开机自启动<span style="color:#f92672">)</span> 
-</span></span></code></pre></div><h4 id="ubuntu类-1">Ubuntu类</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># The loopback network interface (配置环回口)</span>
-</span></span><span style="display:flex;"><span>　　auto lo <span style="color:#75715e"># 开机自动激lo接口</span>
-</span></span><span style="display:flex;"><span>　　iface lo inet loopback <span style="color:#75715e"># 配置lo接口为环回口</span>
-</span></span><span style="display:flex;"><span>　　# The primary network interface <span style="color:#75715e">#配置主网络接口</span>
-</span></span><span style="display:flex;"><span>　　auto eth0 <span style="color:#75715e">#开机自动激活eth0接口</span>
-</span></span><span style="display:flex;"><span>　　iface eth0 inet dhcp <span style="color:#75715e">#配置eth0接口为DHCP自动获取</span>
-</span></span></code></pre></div><h2 id="vm的三种网络模式">VM的三种网络模式</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># xxxxxxx(网卡名称，不用改)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DEVICE</span><span class="o">=</span>eth0
+</span></span><span class="line"><span class="cl"><span class="nv">BOOTPROTO</span><span class="o">=</span>dhcp
+</span></span><span class="line"><span class="cl"><span class="nv">TYPE</span><span class="o">=</span>ether
+</span></span><span class="line"><span class="cl"><span class="nv">HWADDR</span><span class="o">=</span>xx:xx:xx:xx:xx:xx <span class="o">(</span>网卡mac地址，不用改<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ONBOOT</span><span class="o">=</span>yes<span class="o">(</span>开机自启动<span class="o">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ubuntu类-1">Ubuntu类</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># The loopback network interface (配置环回口)</span>
+</span></span><span class="line"><span class="cl">　　auto lo <span class="c1"># 开机自动激lo接口</span>
+</span></span><span class="line"><span class="cl">　　iface lo inet loopback <span class="c1"># 配置lo接口为环回口</span>
+</span></span><span class="line"><span class="cl">　　# The primary network interface <span class="c1">#配置主网络接口</span>
+</span></span><span class="line"><span class="cl">　　auto eth0 <span class="c1">#开机自动激活eth0接口</span>
+</span></span><span class="line"><span class="cl">　　iface eth0 inet dhcp <span class="c1">#配置eth0接口为DHCP自动获取</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vm的三种网络模式">VM的三种网络模式</h2>
 <ul>
 <li>
 <p>打开vmware虚拟机，我们可以在选项栏的“编辑”下的“虚拟网络编辑器”中看到VMnet0（桥接模式）、VMnet1（仅主机模式）、VMnet8（NAT模式），那么这些都是有什么作用呢？其实，我们现在看到的VMnet0表示的是用于桥接模式下的虚拟交换机；VMnet1表示的是用于仅主机模式下的虚拟交换机；VMnet8表示的是用于NAT模式下的虚拟交换机。</p>
@@ -304,100 +337,101 @@
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224626.png" alt=""></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224633.png" alt=""></p>
 <p><img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224641.png" alt=""></p>
-</section>
 
-  
-  
+    </div>
 
-  
-  
-  
-  <nav
-    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
-  >
-    
-    <a
-      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/"
-      ><span class="mr-1.5">←</span><span>docker进阶指南</span></a
-    >
-    
-    
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
-      href="https://yangfanjack.github.io/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/"
-      ><span>linux服务器搭建ssm项目环境</span><span class="ml-1.5">→</span></a
-    >
-    
-  </nav>
-  
-
-  
-  
-  <div class="mt-24" id="disqus_thread"></div>
-  <script>
-    const disqusShortname = 'Jack';
-    const script = document.createElement('script');
-    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', +new Date());
-    document.head.appendChild(script);
-  </script>
-  
-
-  
-  
-  <div class="mt-24" id="graphcomment"></div>
-  <script type="text/javascript">
-    var __semio__params = {
-      graphcommentId: 'YOUR_GRAPH_COMMENT_ID',
-      behaviour: {
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Jack Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-20
         
-      },
-      
-    };
-
-    function __semio__onload() {
-      __semio__gc_graphlogin(__semio__params);
-    }
-
-    (function () {
-      var gc = document.createElement('script');
-      gc.type = 'text/javascript';
-      gc.async = true;
-      gc.onload = __semio__onload;
-      gc.defer = true;
-      gc.src =
-        'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(gc);
-    })();
-  </script>
+    </span>
+  </p>
   
-</article>
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/javaweb/">JavaWeb</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">docker进阶指南</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/">
+            <span class="next-text nav-default">linux服务器搭建ssm项目环境</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  
 
+  
+
+      </div>
     </main>
 
-    <footer
-  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
->
-  <div class="mr-auto">
-    &copy; 2023
-    <a class="link" href="https://yangfanjack.github.io">My Hugo Site</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >▷ Paper 6</a
-  >
-</footer>
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yangfanjack1024@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/yangfanjack" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/383186587" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://yangfanjack.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
 
-  </body>
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>Jack Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>解决方案 on Jack&#39;s Blog Site</title>
+    <link>http://yangfanjack.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+    <description>Recent content in 解决方案 on Jack&#39;s Blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 17 Jan 2023 17:18:55 +0800</lastBuildDate><atom:link href="http://yangfanjack.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从hugo重新启程</title>
+      <link>http://yangfanjack.top/post/%E4%BB%8Ehugo%E9%87%8D%E6%96%B0%E5%90%AF%E7%A8%8B/</link>
+      <pubDate>Tue, 17 Jan 2023 17:18:55 +0800</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E4%BB%8Ehugo%E9%87%8D%E6%96%B0%E5%90%AF%E7%A8%8B/</guid>
+      <description>工作一年半了，从工作后就没怎么写过博客了，当然这一年发生了很多事，但是作为IT人不应该忘记提升自己，就从给博客换一个生成框架开始新的一年，新</description>
+    </item>
+    
+    <item>
+      <title>实体机安装Arch</title>
+      <link>http://yangfanjack.top/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</link>
+      <pubDate>Mon, 14 Jun 2021 09:18:48 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</guid>
+      <description>准备： 机器：华硕飞行堡垒fx-60vm 第一系统：win10 Arch镜像 https://archlinux.org/download/ 镜像考录工具：Rufus U盘 安装系统 联网 1 2 3 4 5 6 7 8 9 10 11 12 13 14</description>
+    </item>
+    
+    <item>
+      <title>Arch入教路</title>
+      <link>http://yangfanjack.top/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</link>
+      <pubDate>Wed, 17 Mar 2021 10:29:41 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</guid>
+      <description>我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kub</description>
+    </item>
+    
+    <item>
+      <title>我的Linux工作平台搭建</title>
+      <link>http://yangfanjack.top/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Sat, 06 Mar 2021 09:35:39 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</guid>
+      <description>Mint LInux安装概述 rufus录入iso镜像到U盘 进入bios界面调节启动位置为U盘 开机进入安装界面，下一步&amp;hellip; efi分区自动放</description>
+    </item>
+    
+    <item>
+      <title>旧手机搭建linux服务器</title>
+      <link>http://yangfanjack.top/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Fri, 19 Feb 2021 20:43:01 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>硬件&amp;amp;软件准备： 硬件： 一台已root的安卓手机 软件： Linux Deploy：https://github.com/meefik/linuxd</description>
+    </item>
+    
+    <item>
+      <title>IDEA中tomcat的神奇走位</title>
+      <link>http://yangfanjack.top/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/</link>
+      <pubDate>Wed, 18 Mar 2020 13:27:32 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/</guid>
+      <description>tomcat服务器的三种部署方式： 直接将项目放进webapps目录下即可 /项目名就是访问路径 可以简化部署：将项目里的全部文件打一个war包，</description>
+    </item>
+    
+    <item>
+      <title>hexo博客优化之图床迁移&amp;google收录</title>
+      <link>http://yangfanjack.top/post/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/</link>
+      <pubDate>Wed, 11 Mar 2020 11:32:08 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/</guid>
+      <description>前言： 搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打</description>
+    </item>
+    
+    <item>
+      <title>hexo博客搭建</title>
+      <link>http://yangfanjack.top/post/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Tue, 03 Mar 2020 17:40:54 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
+      <description>注：推荐观看bilibili的up主codesheep的hexo视频教程，本博客是参考该视频 1. 部署环境 安装nodejs: 官网下载,下载完包括</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;程序实现演讲比赛成绩打分程序</title>
+      <link>http://yangfanjack.top/post/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%88%90%E7%BB%A9%E6%89%93%E5%88%86%E7%A8%8B%E5%BA%8F/</link>
+      <pubDate>Tue, 26 Nov 2019 23:29:39 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%88%90%E7%BB%A9%E6%89%93%E5%88%86%E7%A8%8B%E5%BA%8F/</guid>
+      <description>程序总体框架 1.speaker类：演讲选手类 1 2 3 4 5 6 7 8 9 class Speaker { public: string m_Name; //严格意义上这俩数据成员应该是私有的，用set和get函数来调用</description>
+    </item>
+    
+  </channel>
+</rss>

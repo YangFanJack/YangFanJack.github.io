@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Jack&#39;s Blog Site</title>
+    <link>http://yangfanjack.top/tags/git/</link>
+    <description>Recent content in Git on Jack&#39;s Blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 03 Mar 2020 11:53:47 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git基础</title>
+      <link>http://yangfanjack.top/post/git%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 03 Mar 2020 11:53:47 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/post/git%E5%9F%BA%E7%A1%80/</guid>
+      <description>git的安装 ​ 官网下载后，在cmd中输入git验证是否安装完成 git的基本配置 1 2 git config --global user.name &amp;#34;name&amp;#34; git config --global user.email &amp;#34;email&amp;#34; ​ 需要注意的是可以有三种参数，loca</description>
+    </item>
+    
+  </channel>
+</rss>
