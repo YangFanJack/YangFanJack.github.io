@@ -1050,4 +1050,11 @@
     <priority>0.5</priority>
   </url>
   
+  <url>
+    <loc>http://yangfanjack.top/search/</loc>
+    <lastmod>2023-06-06T17:30:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  
 </urlset>

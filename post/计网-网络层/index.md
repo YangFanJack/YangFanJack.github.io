@@ -1,0 +1,285 @@
+
+## 网络层提供的两种服务
+
+争论的焦点是**可靠交付应当有谁来负责**？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。
+
+网络层应该向运输层提供怎样的服务？分组交换网提供两种传输服务:
+
+* **虚电路服务**：面向连接的，虚电路表示这只是一条逻辑上的连接，和电路交换的一真正的连接只是类似，但并不完全一样。是一种**使所有分组顺序到达目的端**的**可靠性**数据传输服务。
+* **数据报服务**：无连接的，网络在发送分组时不需要先建立连接，每一个分组独立发送，与其前后的分组无关。是一种**使分组按照独立路由到达目的端**的数据传输服务，比虚电路更加灵活。
+* <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201122213200.png" style="zoom:80%;margin-left:0px;" />
+
+## 网际协议IP
+
+### 虚拟互连网
+
+* 网络互联的中间设备
+
+  * 物理层中继系统：转发器，集线器
+  * 数据链路层终极系统：网桥，交换机
+  * 网络层中中继系统：路由器
+  * 网络层以上的中继系统：网关
+
+* 虚拟互连网也就是逻辑互联网络，就是互连起来的各种物理网络的异构性本来就是客观存在的，但是我们利用IP协议就可以使这些性能各异的网络从用户看起来就好像是一个统一的网络。
+
+* **网络层4个协议**
+
+  * IP协议：
+  * ARP/RARP协议：
+  * ICMP协议：
+  * IGMP协议：
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201122215345.png" style="zoom:50%;margin-left:0px;" />
+
+### IP地址
+
+* 分层：分网络部分和主机部分
+
+* 分类：A类（8+24），B类（16+16），C类（24+8），D类（组播），E类（研究）
+
+* 二进制，十进制
+
+  * | 1        | 1    |
+    | -------- | ---- |
+    | 10       | 2    |
+    | 100      | 4    |
+    | 1000     | 8    |
+    | 10000    | 16   |
+    | 100000   | 32   |
+    | 1000000  | 64   |
+    | 10000000 | 128  |
+    | 11000000 | 192  |
+    | 11100000 | 224  |
+    | 11110000 | 240  |
+    | 11111000 | 248  |
+    | 11111100 | 252  |
+    | 11111110 | 254  |
+    | 11111111 | 255  |
+
+  * A类 从1.0.0.0 到126.255.255.255
+    B类 从128.0.0.0到191.255.255.255
+    C类 从192.0.0.0到223.255.255.255
+
+  * 在IP地址3种主要类型里，各保留了3个区域作为**私有地址**，其地址范围如下：
+
+    A类地址：10.0.0.0～10.255.255.255
+
+    B类地址：172.16.0.0～172.31.255.255
+
+    C类地址：192.168.0.0～192.168.255.255
+
+    **注意：网段中主机部分不全为1，不全为0；全0代表这个网段，全1代表网段中的广播**
+
+  * 几个特殊ip地址：
+  
+    * 0.0.0.0：不是一个真正意义上的IP地址了。它表示的是这样一个集合：所有不清楚的主机和目的网络。
+  * 255.255.255.255：限制广播地址
+    * 244.0.0.1：组播地址
+  
+    * 127.0.0.1：本地回环地址
+    * 169.254.0.0：一般开启了dhcp服务的设备但又无法获取到dhcp的会随机使用这个网段的ip
+
+### 划分子网和构建超网
+
+* 子网掩码是一个32位地址，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在[局域网](https://baike.baidu.com/item/局域网/98626)上，还是在[广域网](https://baike.baidu.com/item/广域网/422004)上。用来判断自己和目标地址是否在一个网段、
+
+* **子网划分**：解决IPV4不够用的情况
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124084545.png" style="zoom:67%;margin-left:0px;" />
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124083233.png" style="zoom:67%;margin-left:0px;" />
+
+* C类地址分成四个子网：
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124083233.png" style="zoom:67%;margin-left:0px;" />
+
+  点到点网络的子网掩码是X.X.X.252
+
+* **变长子网划分：** 允许把子网继续划分为更小的网络
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124093444.png" style="zoom:67%;margin-left:0px;" />
+
+* 超网：
+
+  将多个子网合并为一个网
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124094613.png" style="zoom:80%;margin-left:0px;" />
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124094617.png" style="zoom:80%;margin-left:0px;" />
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124101306.png" style="zoom:67%;margin-left:0px;" />
+
+### IP地址和硬件mac地址
+
+* <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124101437.png" style="zoom:50%;margin-left:0px;" />
+
+* ip地址决定了数据包最终要到哪一个计算机，mac地址决定了下一跳给谁
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124102027.png" style="zoom:80%;margin-left:0px;" />
+
+* **同一子网和同一网段可以看作一个意思**
+
+* 代理服务器控制那些计算机能上网：同一网段可以用mac地址控制，但是不同网段只能通过ip地址控制。
+
+* **ARP协议：**
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124153154.png" style="zoom: 67%;margin-left:0px;" />
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124130747.png" style="zoom: 50%;margin-left:0px;" />
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124153158.png" style="zoom:67%;margin-left:0px;" />
+
+* **ARP欺骗：**
+
+  同一局域网里面的两台主机之间相互通信是通过Mac地址寻址的，而如果两台主机若不是处于同一子网里面，则在通信的时候会相互将数据发送给各自的路由器网关，通过网关的IP寻址以达到通信目的。但是网关和自己局域网里面的主机通信的时候还是依靠Mac地址寻址的，所以如果我们要把自己攻击机伪造成网关达到欺骗作用，就应该把目标主机上的网关Mac地址缓存改为攻击机的Mac地址（这就可以通过伪造ARP报文来实现）
+  
+* 逆向ARP：计算机请求ip地址的过程
+
+### IP数据报格式
+
+* 由**首部**和**数据**两部分组成
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124160215.jpg" style="zoom:100%;margin-left:0px;" />
+
+### IP转发分组的流程
+
+* 数据路由：路由器在不同网段转发数据包
+* 网络畅通的条件：能去能回
+  * 沿途路由器必须知道到目标网络下一跳给哪个接口
+  * 沿途路由器必须知道到源网络下一跳给哪个接口
+
+## 网际控制报文协议ICMP协议
+
+* 为了提高IP数据包交付成功的机会，在网络层使用了网际控制报文协议ICMP
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124204747.png" style="zoom:80%;margin-left:0px;" />
+
+* 报告的错误：终点不可达；原点抑制；时间超过；参数问题；改变路由（重定向）
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124205206.png" style="zoom:80%;margin-left:0px;" />
+
+* ping和pathping命令
+
+## 路由协议
+
+### IGP(内部网关协议)
+
+#### 静态路由协议：管理员手工配置路由信息
+
+#### 动态路由协议RIP：距离向量路由算法，是应用层协议
+
+* 周期性广播(30s)，可以根据路由器状态变化动态的改变路由表
+
+* 路由器只掌握物理相连的邻居及链路费用
+
+* 动态地选择最佳路径
+
+* 依据路由器跳数选择最佳路径
+
+* 最大跳数16跳
+
+* 网关就是默认路由
+
+*  用命令来配置动态路由协议RIP：
+
+  router rip
+
+  network （注意这里的ip地址要看该路由器所连接的几个网段具体属于ABC哪类网，来决定要配置几次）
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124212811.png" style="zoom: 50%;margin-left:0px;" />
+
+#### 动态路由协议OSPF：链路状态路由算法，是传输层协议
+
+* 所有路由器掌握完整的网路拓扑和链路费用信息
+
+* 依据带宽来选择最佳路径
+
+* 支持多区域，触发式更新
+
+* 三个表：邻居表，链路状态表，计算路由表
+
+* 用命令来配置动态路由协议OSPF：
+
+  router rip
+
+  network （注意这里的ip地址要看该路由器所连接的几个网段具体属于ABC哪类网，来决定要配置几次）
+
+### EGP(外部网关协议)和IGP(外部网关协议)
+
+* IGP：一个自治系统AS内使用的路由选择协议
+  * BGP协议 ：发言人机制
+* EGP：在自治系统AS之间使用的路由选择协议
+  * RIP协议
+  * OSPF协议
+
+## 主机A（135.24.25.23）第一次和不同网段的主机B（135.24.52.123）通信完整过程（数据链路层和网络层）
+
+* A封装好要发送的数据，在要写目的地址时
+* A会用子网掩码将自己和目的的ip地址做与运算，判断A和B是否在一个网段，如果不在一个网段，A就知道该用网关把自己的数据传递给B，所以A会广播一个ARP包（连带A自己的ip和mac地址）来获取网关的mac地址
+* 网关收到ARP包后，先把A的ip和mac地址记录下来，然后把自己的ip和mac地址封装在ARP包中，发送给A
+* A封装报文，源mac地址写A自己的mac地址，目标mac地址写网关mac地址，源ip地址写A自己的ip地址，目标ip地址写B的ip地址。
+* 网关收到报文后，发现是给我自己发的，就开始解包，解开后，通过目标ip地址发现是给另一个网段的主机发送的
+* 此时如果网关本身就是路由器就直接把数据报把送给吓一跳路由器，如果网关是普通的PC，那么就发送给路由器，由路由器发送给下一跳路由器，目标mac地址写下一跳路由器的mac地址。
+* （注意：在公网环境中，从源主机向目标主机请求发送数据时，源ip地址和目的ip地址在传输过程中是不需要改变的，但是由于大部分的情况是源主机是位于局域网环境中，所以，考虑NAT的因素，需要在从保留地址到公网ip的变化中同时也要改变源ip的地址。此时，对于目标ip地址，肯定是公网ip，因为不可能用局域网ip去访问另一个网段中的局域网ip）
+* 历经千辛万苦，报文段终于到达了B的主机的路由器，路由器发送报文到B所在的网段的网关
+* C网段的网关解包后发现不是给自己的，而是给自己网段内的B主机（这里再次用arp协议来实现同一个网段内的通信，先用arp发送一个广播，得到主机B的ip和mac地址，然后就可以在数据链路层中完成同一个网段的通信），就发送给了C主机
+
+**另一个个差不多的过程说明，差不多：**
+
+* 广播只有2层的。跨网段访问是寻址。
+  给你举一个例子，详细说一下数据包的转发流程，环境是三层交换机有两个网段，10.0.0.1/24和192.168.0.1/24，pc1是10段的，pc2是192段的。pc1要与pc2通信。过程如下
+  1.pc1将要与pc2通信，首先根据网卡的ip地址与掩码算出pc2是否与pc1是同网段，如果是同网段直接二层转发，如果不是将跨网段转发
+  2.pc1算出pc2和自己不是同网段，所以要将数据包发送到网关由网关进行三层寻址转发。
+  3.pc1到网关为二层转发，也就是数据帧转发，数据帧转发需要知道对方mac地址，首先pc1会读电脑的arp缓存，看是否有网关ip与mac地址的对应关系，如果有将直接封装帧转发；如果没有将使用arp协议也就是广播，携带自己的ip地址与mac地址，目的地址为网关ip，mac地址为ffff-ffff-ffff。网关收到此arp广播后，将回复pc1自己的mac地址，数据包为源网关ip和mac地址目的为pc1ip和mac地址。
+  4.pc1收到数据包后会将此ip和mac地址写入到电脑的arp缓存表里，并直接封装数据包，三层ip头为源pc1-ip，目的为pc2-ip，二层帧格式为源pc1-mac，目的为网关mac地址（记住此包头）。
+  5.网关将收到pc1发来的数据包，进行拆包，根据其目的ip地址进行寻址（路由表），找到对应的路径（也就是192段vlan）。
+  6.三层交换机会根据其目的ip地址进行本机的arp缓存查找，如果查找到ip和mac地址的对应关系将直接封装转发，如果没有交换机将发送arp广播包获取目的ip地址的mac地址（广播包将只发送192段vlan，其他vlan不广播）。
+  7.三层交换机得知pc2-mac地址后将转发数据，三层包头为源pc1-ip，目的为pc2-i，二层帧包头为源192段网关mac，目的为pc2-mac。
+  8.pc2将收到三层交换发来的数据包，进行拆封即可获取数据，并回复pc1过程同上。
+
+  三层交换机等同于路由器。也就是说源ip和目的ip在数据包里一直不变（不经过nat的情况），mac地址将时刻改变。广播只存在二层。三层情况下是路由寻址。
+
+## IP组播
+
+* IGMP协议：是TCP/IP 协议族中负责IP组播成员管理的协议，用来在IP主机和与其直接相邻的组播路由器之间建立、维护组播组成员关系。
+
+## 虚拟专用网VPN
+
+* VPN：Virtual Private Network，目的是建立更加安全私密的远程连接
+* 形象解释就是在巨大的错综复杂的互联网环境中建立一条两个路由器之间的直通隧道
+* <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125090725.png" style="zoom:80%;margin-left:0px;" />
+
+## 网络地址转换NAT
+
+* 从局域网地址到公网地址的转化，可以大大缓解ipv4不够用的情况
+
+* NAT分为静态NAT，动态NAT和PAT，前两种NAT都是针对ip而言的对应，只不过一个是一对一，一个是多对多，现在所说的NAT实际上是PAT（Port Address Translation：端口地址转换）：
+
+  * NAT的地址转换是指每个内网地址都被转换成ip地址+源端口的方式，这需要公网ip地址为多个。
+  * 而PAT由于ip地址不足够，就会出现内网地址被转换成ip地址+端口段的形式，这样的公网ip地址通常只是一个。
+  * 举个例子：
+    * NAT
+      　　192.168.0.2：4444 ----〉202.116.100.5：4444
+        　　192.168.0.3：5555 ----〉202.116.100.6：5555
+        　　192.168.0.10：1233 ---〉202.116.100.5：1233
+    * PAT
+      　　192.168.0.2：4444 ----〉202.116.100.5：50003
+        　　192.168.0.3：5555----〉202.116.100.5：50004
+        　　192.168.0.10：1233 ---〉202.116.100.5：50005
+    * **简单来说，PAT是多对1，NAT是多对多.**
+
+* NAT原理图
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124233628.png" style="zoom: 33%;margin-left:0px;" />
+
+* 端口映射：
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124233635.png" style="zoom:33%;margin-left:0px;" />
+
+* 内网穿透
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124233640.png" style="zoom:33%;margin-left:0px;" />
+
+* 可见，端口映射和内网穿透技术都可以实现非同网段访问局域网ip，但是因为国内的网络环境是如图所示的套娃情况。NAT的实现往往不是一层，而是多层，所以基本不可能用端口映射的方式实现本地局域网PC的外雇访问。有什么解决方法呢？一.让ISP给你的第一层路由器分配一个公网ip，很难，几乎不可能。二.花钱买内网穿透服务，很贵且限流。
+
+  <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201124233704.png" style="zoom:33%;margin-left:0px;" />

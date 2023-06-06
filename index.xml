@@ -860,5 +860,14 @@
       <description>列表初始化 作为C++11新标准的一部分，用花括号来初始化变量得到了全面应用。 但有局限性：当对内置对象使用列表初始化的时候，若初始值存在丢失的</description>
     </item>
     
+    <item>
+      <title>Search Results</title>
+      <link>http://yangfanjack.top/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://yangfanjack.top/search/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
