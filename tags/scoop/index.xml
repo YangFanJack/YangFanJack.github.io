@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Scoop on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/scoop/</link>
-    <description>Recent content in Scoop on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 03 Mar 2020 18:34:53 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/scoop/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Windows包管理器scoop</title>
-      <link>http://yangfanjack.top/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</link>
-      <pubDate>Tue, 03 Mar 2020 18:34:53 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</guid>
-      <description>对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Scoop - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/scoop/</link>
+        <description>Scoop - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Tue, 03 Mar 2020 18:34:53 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/scoop/" rel="self" type="application/rss+xml" /><item>
+    <title>Windows包管理器scoop</title>
+    <link>http://yangfanjack.top/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</link>
+    <pubDate>Tue, 03 Mar 2020 18:34:53 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8scoop/</guid>
+    <description><![CDATA[对于熟悉linux的同学，apt和yum等等这些包管理器肯定很熟悉，Windows下也有一个类似的好用的包管理器scoop，用scoop安装]]></description>
+</item>
+</channel>
 </rss>

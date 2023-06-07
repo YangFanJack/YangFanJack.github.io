@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>计网-应用层 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="计网-应用层" />
+<meta property="og:description" content="域名系统DNS QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了 域名服务器采用分布式的域名查询解析 我个人认为这里的本机缓存指的是本" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-21T15:07:18+00:00" />
+<meta property="article:modified_time" content="2020-11-21T15:07:18+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="计网-应用层"/>
+<meta name="twitter:description" content="域名系统DNS QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了 域名服务器采用分布式的域名查询解析 我个人认为这里的本机缓存指的是本"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" /><link rel="prev" href="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" /><link rel="next" href="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计网-应用层",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82\/"
+        },"genre": "posts","keywords": "计算机网络","wordcount":  1430 ,
+        "url": "http:\/\/yangfanjack.top\/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82\/","datePublished": "2020-11-21T15:07:18+00:00","dateModified": "2020-11-21T15:07:18+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计网-应用层</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-11-21">2020-11-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1430 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#域名系统dns">域名系统DNS</a></li>
+        <li><a href="#动态主机配置协议dhcp">动态主机配置协议DHCP</a></li>
+        <li><a href="#文件传送协议ftp">文件传送协议FTP</a></li>
+        <li><a href="#远程终端协议telnet">远程终端协议TELNET</a></li>
+        <li><a href="#远程桌面rdp">远程桌面RDP</a></li>
+        <li><a href="#万维网www">万维网WWW</a>
+          <ul>
+            <li><a href="#http协议">http协议</a></li>
+            <li><a href="#web代理服务器">web代理服务器</a></li>
+          </ul>
+        </li>
+        <li><a href="#电子邮件smtppop3imap">电子邮件（SMTP，POP3，IMAP）</a>
+          <ul>
+            <li><a href="#发送协议smtp">发送协议：SMTP</a></li>
+            <li><a href="#接收邮件协议pop3imap">接收邮件协议：POP3，IMAP</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="域名系统dns">域名系统DNS</h2>
+<ul>
+<li>
+<p>QQ客户端能登录，但是QQ网站打不开，可能说明DNS出问题了</p>
+</li>
+<li>
+<p>域名服务器采用分布式的域名查询解析</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127112636.png" style="zoom: 67%;margin-left:0px;" />
+</li>
+<li>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127112635.png" style="zoom: 67%;margin-left:0px;" />
+</li>
+<li>
+<p>我个人认为这里的<strong>本机缓存</strong>指的是本机的DNS缓存，访问网站的时候是先查询本机缓存，再查询<strong>hosts配置</strong>，之后才去请求<strong>本地DNS缓存</strong>。</p>
+</li>
+</ul>
+<h2 id="动态主机配置协议dhcp">动态主机配置协议DHCP</h2>
+<ul>
+<li>
+<p>静态IP地址：手动配置</p>
+<p>一般固定的台式机</p>
+</li>
+<li>
+<p>动态IP地址：通过DHCP协议自动获得</p>
+<p>一般的移动的设备，例如wifi连接的笔记本电脑</p>
+<ul>
+<li>计算机通过广播向DHCP服务器发送广播请求，DHCP服务器从地址池里选择一个地址给计算机发过去。如果同时有多个DHCP服务器应答，计算机还要选择一个DHCP服务器发一个确认信息，然后DHCP服务器才能把所有设置给计算机。</li>
+<li>DHCP服务器要是静态地址，一般只给本网段的计算机分配地址。</li>
+<li>了解租期和续约</li>
+<li>除了同网段的DHCP分配，还可以跨网段DHCP分配</li>
+</ul>
+</li>
+<li>
+<p><strong>对比RARP</strong> 逆向地址解析协议：从功能上说，RARP只能实现简单的从MAC地址到IP地址的查询工作，RARP server上的MAC地址和IP地址是必须事先静态配置好的。但DHCP却可以实现除静态分配外的动态IP地址分配以及IP地址租期管理等等相对复杂的功能。</p>
+</li>
+<li>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127140344.png" style="zoom:80%;margin-left:0px;" />
+</li>
+</ul>
+<h2 id="文件传送协议ftp">文件传送协议FTP</h2>
+<ul>
+<li>控制连接：标准端口21，用于发送ftp命令信息</li>
+<li>数据连接：标准端口22，用于上传下载数据</li>
+<li>数据连接的建立类型：
+<ul>
+<li>主动模式：ftp客户端告诉ftp服务器使用什么端口侦听，ftp服务器和ftp客户端的这个端口建立连接</li>
+<li>被动模式：ftp服务器打开一个端口等待客户端来连接</li>
+</ul>
+</li>
+<li>FTP服务器端如果有防火墙，需要在防火墙上开21和20端口，需要使用主动模式进行连接</li>
+</ul>
+<h2 id="远程终端协议telnet">远程终端协议TELNET</h2>
+<ul>
+<li>默认使用TCP 的23端口</li>
+<li>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127142955.png" style="zoom:50%;margin-left:0px;" />
+</li>
+</ul>
+<h2 id="远程桌面rdp">远程桌面RDP</h2>
+<ul>
+<li>net user administrator all 更改用户密码</li>
+<li>net user han all /add 添加用户</li>
+<li>将用户添加到远程桌面组 Remote Desktop Users组</li>
+<li>Server多用户操作系统，启用远程桌面可以都用户同时使用服务器</li>
+<li>XP和Windows 7是单用户操作系统，不支持多用户同时登录</li>
+<li>远程时可以将本地的硬盘资源映射到远程计算机上</li>
+</ul>
+<h2 id="万维网www">万维网WWW</h2>
+<ul>
+<li>一个网站的标志：可以通过不同端口，不同的IP地址，不同的主机头（域名）来区分；
+<ul>
+<li>tomcat服务器部署了多个项目，阿里云的域名解析到服务器ip，可以通过配置，让不同域名解析访问不同的项目。</li>
+</ul>
+</li>
+</ul>
+<h3 id="http协议">http协议</h3>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127154738.png" style="zoom:100%;margin-left:0px;" />
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127154742.png" style="zoom:80%;margin-left:0px;" />
+<h3 id="web代理服务器">web代理服务器</h3>
+<ol>
+<li>节省内网访问Internet的带宽</li>
+<li>使用代理服务器连网关，DNS都不需要，只需要和代理的服务器通信就行了，所有访问Internet的工作都是代理服务器做的。</li>
+<li>能绕过防火墙直接访问墙外的网站，这是一种正向代理</li>
+</ol>
+<h2 id="电子邮件smtppop3imap">电子邮件（SMTP，POP3，IMAP）</h2>
+<h3 id="发送协议smtp">发送协议：SMTP</h3>
+<h3 id="接收邮件协议pop3imap">接收邮件协议：POP3，IMAP</h3>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201127160235.png" style="zoom: 50%;margin-left:0px;" />
+<p><strong>注意：</strong></p>
+<p>DNS占用53号端口，同时使用TCP和UDP协议。DNS在<strong>区域传输</strong>的时候使用TCP协议，<strong>其他时候</strong>使用UDP协议。</p>
+<p><strong>DNS区域传输的时候使用TCP协议：</strong></p>
+<p>1.辅域名服务器会定时（一般3小时）向主域名服务器进行查询以便了解数据是否有变动。如有变动，会执行一次区域传送，进行数据同步。区域传送使用TCP而不是UDP，因为数据同步传送的数据量比一个请求应答的数据量要多得多。</p>
+<p>2.TCP是一种可靠连接，保证了数据的准确性。</p>
+<p><strong>域名解析时使用UDP协议：</strong></p>
+<p>客户端向DNS服务器查询域名，一般返回的内容都不超过512字节，用UDP传输即可。不用经过三次握手，这样DNS服务器负载更低，响应更快。理论上说，客户端也可以指定向DNS服务器查询时用TCP，但事实上，很多DNS服务器进行配置的时候，仅支持UDP查询包。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-11-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" data-title="计网-应用层" data-hashtags="计算机网络"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" data-hashtag="计算机网络"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" data-title="计网-应用层"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" data-title="计网-应用层"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" data-title="计网-应用层"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" class="prev" rel="prev" title="计网-运输层"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计网-运输层</a>
+            <a href="/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="next" rel="next" title="计网-网络安全">计网-网络安全<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

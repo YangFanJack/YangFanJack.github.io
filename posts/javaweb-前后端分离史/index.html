@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>javaweb-前后端分离史 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="javaweb-前后端分离史" />
+<meta property="og:description" content="前后端分离演变史 model1(MVC时代)： 以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-02T21:55:24+00:00" />
+<meta property="article:modified_time" content="2021-01-02T21:55:24+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="javaweb-前后端分离史"/>
+<meta name="twitter:description" content="前后端分离演变史 model1(MVC时代)： 以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" /><link rel="prev" href="http://yangfanjack.top/posts/java-jvm/" /><link rel="next" href="http://yangfanjack.top/posts/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "javaweb-前后端分离史",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2\/"
+        },"genre": "posts","keywords": "WEB开发","wordcount":  2193 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2\/","datePublished": "2021-01-02T21:55:24+00:00","dateModified": "2021-01-02T21:55:24+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">javaweb-前后端分离史</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%97%A5%E5%BF%97%E9%9A%8F%E7%AC%94/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>日志随笔</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-02">2021-01-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2193 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前后端分离演变史">前后端分离演变史</a>
+      <ul>
+        <li><a href="#model1mvc时代"><strong>model1(MVC时代)：</strong></a></li>
+        <li><a href="#基于ajax的spa时代">基于AJAX的SPA时代</a></li>
+        <li><a href="#大前端mv时代">大前端MV*时代</a></li>
+        <li><a href="#nodejs带来的全栈时代">NodeJS带来的全栈时代</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前后端分离演变史">前后端分离演变史</h2>
+<h3 id="model1mvc时代"><strong>model1(MVC时代)：</strong></h3>
+<ul>
+<li>以前一篇博客讲了为了开发开发复杂度，后端开发从model2(MVC)逐渐演变了很多基于MVC的后端框架，例如SSH，SSM</li>
+<li><strong>优点：</strong> MVC是一个很好的协作模式，能后有效降低代码的耦合度，从架构上能让开发者明白代码应该写在哪里。为了让View试图层更加存粹，还可以将JSP替换为Thymeleaf，Freemarker等模板引擎，使模板里无法写入java代码，让前后端分工更加清晰</li>
+<li><strong>缺点：</strong>
+<ol>
+<li>前端开发重度依赖开发环境，开发效率低。这种架构下，前后端协作主要有两种模式：
+<ol>
+<li>前端写Demo，写好后，让后端去套模板。好处是Demo可以本地开发，很高效。不足时需要后端套模板，套完后还需要前端人员确定，来回沟通调整的成本很大。</li>
+<li>另一种协作模式是前端负责浏览器端的所有开发和服务器端的View层模板开发。好处是UI相关的代码都是前端去写就好了，后端不用管前端的数据。不足就是前端开发重度绑定开发环境，环境成为影响前端开发效率的重要因素。</li>
+</ol>
+</li>
+<li>前后端职责纠缠不清，模板引擎功能强大，依旧可以通过拿到的上下文变量来实现各种业务逻辑。这样，只要前端弱势一点，往往就会被后端要求在模板层写入不少业务代码。还有个很大的灰色地带是Controller，页面路由等功能本应该是前端最关注的，但却是由后端来实现的。Controller和Model往往也会纠缠不清，看了让人咬牙的业务逻辑代码经常会出现在Controller层，这些问题不能全纠结于程序员的素养，否则JSP就够了。</li>
+<li>对前端发挥的局限性：性能优化如果只在前端做空间非常有限，于是我们经常需要后端合作，但由于后端框架限制，我们很难使用【Comet】，【BigPipe】等技术来优化性能</li>
+</ol>
+</li>
+</ul>
+<h3 id="基于ajax的spa时代">基于AJAX的SPA时代</h3>
+<ul>
+<li>
+<p>使用CDN作为静态资源存储，JavaScript网站归来，Single Page Application</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>优点：前后端分工清晰，关键是AJAX接口。复杂度从基于服务器引擎的JSP转移到了基于浏览器引擎的JavaScript。这个时代出现了类似后端MVC模式的分层架构</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>缺点：前后端接口的约定。需要通过接口规则和接口平台等方式来实现前后端的搞笑并行并发。前端由于JavaScript可能出现大量JS代码的组织。</p>
+</li>
+</ul>
+<h3 id="大前端mv时代">大前端MV*时代</h3>
+<ul>
+<li>MVC：同步通信：View，Controller，Model</li>
+<li>MVP：异步通信：View，Presenter，Model</li>
+<li>MVVM：异步通信：View，ViewModel，Model</li>
+</ul>
+<p>为了降低前端开发的复杂度，涌现了大量前端框架：AngularJS，React，Vue.js，EmberJS等，这些框架按类型分为：Templates，Controllers，Models三层，然后在层能分层</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>优点：
+<ol>
+<li>前后端职责很清晰：前端工作在浏览器端，后端工作在服务器端，开发并行。前后端独立开发，独立运行，甚至独立部署上线。</li>
+<li>前端开发的复杂度可控：前端代码很重，很合理的分层，让前端代码能各司其职。</li>
+</ol>
+</li>
+<li>缺点：
+<ol>
+<li>代码不能复用，例如后端依旧需要对数据各种校验，无法直接复用浏览器端的代码</li>
+<li>全异步，对SEO不利，往往还需要服务器端做同步渲染的降级方式</li>
+<li>性能并非最佳，特别是移动互联网下</li>
+<li>SPA不能满足所有需求，依旧存在大量多页面应用。URL Design需要后端配合，前端无法完全掌握。</li>
+</ol>
+</li>
+</ul>
+<h3 id="nodejs带来的全栈时代">NodeJS带来的全栈时代</h3>
+<p>前端的MVC模式解决了很多问题，但是也有很多不足。随着NodeJS的兴起，JavaScript开始有能力运行在服务端。这意味着可以有一种全新的研发模式。</p>
+<!-- raw HTML omitted -->
+<p>在这种研发模式下，前后端职责很清晰了。</p>
+<p>对前端来说，两个UI层各司其职：</p>
+<ol>
+<li>Front-end UI layer：处理浏览器层的展现逻辑，通过CSS渲染样式，通过Javascript添加交互式功能。</li>
+<li>Back-end UI layer：处理路由，模板，数据获取，Cookie等。通过路由，前端终于可以自主把控URL Design了。这样无论是单页面应用还是多页面应用，前端都可以自由调控。后端也终于可以拜托对崭新啊的强关注，转而可以专心业务逻辑层的开发。</li>
+</ol>
+<p>通过 Node，Web Server 层也是 JavaScript 代码，这意味着部分代码可前后复用，需要 SEO 的场景可以在服务端同步渲染，由于异步请求太多导致的性能问题也可以通过服务端来缓解。前一种模式的不足，通过这种模式几乎都能完美解决掉。</p>
+<p>与 JSP 模式相比，全栈模式看起来是一种回归，也的确是一种向原始开发模式的回归，不过是一种螺旋上升式的回归。</p>
+<p>基于 Node 的全栈模式，依旧面临很多挑战：</p>
+<ol>
+<li>需要前端对服务端编程有更进一步的认识。比如 network/tcp、PE 等知识的掌握。</li>
+<li>Node 层与 Java 层的高效通信。Node 模式下，都在服务器端，RESTful HTTP 通信未必高效，</li>
+<li>过 SOAP 等方式通信更高效。一切需要在验证中前行。</li>
+<li>对部署、运维层面的熟练了解，需要更多知识点和实操经验。</li>
+<li>大量历史遗留问题如何过渡。这可能是最大最大的阻力。</li>
+</ol>
+<h2 id="总结">总结</h2>
+<ol>
+<li>模式没有好坏高下之分，只有合不合适。</li>
+<li>Ajax 给前端开发带来了一次质的飞跃，Node 很可能是第二次。</li>
+<li>SoC（关注度分离：关注点分离是日常生活和生产中广泛使用的解决复杂问题的一种系统思维方法。大体思路是,先将复杂问题做合理的分解,再分别仔细研究问题的不同侧面(关注点)，最后综合各方面的结果，合成整体的解决方案。） 是一条伟大的原则。上面种种模式，都是让前后端的职责更清晰，分工更合理高效。</li>
+<li>还有个原则，让合适的人做合适的事。比如 Web Server 层的 UI Layer 开发，前端是更合适的人选。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-01-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" data-title="javaweb-前后端分离史" data-hashtags="WEB开发"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" data-hashtag="WEB开发"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" data-title="javaweb-前后端分离史"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" data-title="javaweb-前后端分离史"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" data-title="javaweb-前后端分离史"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/web%E5%BC%80%E5%8F%91/">WEB开发</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/java-jvm/" class="prev" rel="prev" title="java-JVM"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>java-JVM</a>
+            <a href="/posts/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" class="next" rel="next" title="vue入门指南">vue入门指南<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

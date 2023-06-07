@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>设计模式浅析 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="设计模式浅析" />
+<meta property="og:description" content="what is design pattern? 设计模式Design Pattern是一套代码设计经验的总结 代码中合理的运用设计模式可以解决很多问题 设计模式的三大类： 创建型模式(Cr" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-17T08:34:33+08:00" />
+<meta property="article:modified_time" content="2023-05-17T08:34:33+08:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="设计模式浅析"/>
+<meta name="twitter:description" content="what is design pattern? 设计模式Design Pattern是一套代码设计经验的总结 代码中合理的运用设计模式可以解决很多问题 设计模式的三大类： 创建型模式(Cr"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" /><link rel="prev" href="http://yangfanjack.top/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "设计模式浅析",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90\/"
+        },"genre": "posts","keywords": "设计模式, Java","wordcount":  1841 ,
+        "url": "http:\/\/yangfanjack.top\/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90\/","datePublished": "2023-05-17T08:34:33+08:00","dateModified": "2023-05-17T08:34:33+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">设计模式浅析</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-17">2023-05-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1841 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-design-pattern">what is design pattern?</a></li>
+    <li><a href="#设计原则">设计原则：</a></li>
+    <li><a href="#creational-pattern">Creational Pattern</a>
+      <ul>
+        <li><a href="#simple-factory">Simple Factory</a></li>
+        <li><a href="#factory">Factory</a></li>
+        <li><a href="#abstract-factory">Abstract Factory</a></li>
+        <li><a href="#singleton">Singleton</a></li>
+        <li><a href="#builder">Builder</a></li>
+        <li><a href="#prototype">ProtoType</a></li>
+      </ul>
+    </li>
+    <li><a href="#structural-pattern">Structural Pattern</a>
+      <ul>
+        <li><a href="#adapter">Adapter</a></li>
+        <li><a href="#bridge">Bridge</a></li>
+        <li><a href="#composite">Composite</a></li>
+        <li><a href="#decorator">Decorator</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="what-is-design-pattern">what is design pattern?</h1>
+<p>设计模式Design Pattern是一套代码设计经验的总结</p>
+<p>代码中合理的运用设计模式可以解决很多问题</p>
+<p>设计模式的三大类：</p>
+<ol>
+<li>
+<p>创建型模式(Creational Pattern)：在软件设计中对象的创建和对象的使用是分开的，因为对象的创建会消耗掉系统的很多资源，所以单独对对象的创建进行研究，从而能够高效地创建对象就是创建型模式要探讨的问题。</p>
+<p>单例、工厂方法、抽象工厂、建造者、原型</p>
+</li>
+<li>
+<p>结构型模式(Structural Pattern)：在解决了对象的创建问题之后，对象的组成以及对象之间的依赖关系就成了开发人员关注的焦点，因为如何设计对象的结构、继承和依赖关系会影响到后续程序的维护性、代码的健壮性、耦合性等。</p>
+<p>适配器、桥接、组合、装饰、外观、享元、代理</p>
+</li>
+<li>
+<p>行为型模式(Behavioral Pattern)：类和对象如何交互&amp;划分责任</p>
+<p>访问者、模板、策略、状态、观察者、备忘录、中介者、迭代器、解释器、命令、责任链</p>
+</li>
+</ol>
+<h1 id="设计原则">设计原则：</h1>
+<ol>
+<li>开闭：开放扩展，关闭修改</li>
+<li>里氏替换：任何地方子类都能替换父类</li>
+<li>依赖倒置：高层低层都依赖于抽象</li>
+<li>单一职责：一个类只负责一项职责</li>
+<li>接口隔离：使用多个专门的接口比使用单一的总接口要好</li>
+<li>迪米特：将模块间的依赖和相互影响降到最低</li>
+<li>合成复用：能用关联就别用继承</li>
+</ol>
+<h1 id="creational-pattern">Creational Pattern</h1>
+<h2 id="simple-factory">Simple Factory</h2>
+<ul>
+<li>实质：由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例</li>
+<li>包含的角色&amp;职责：
+<ol>
+<li>工厂(Creator)：负责实现创建所有实例的内部逻辑。工厂类的创建产品类的方法可以被外界直接调用，创建所需的产品对象</li>
+<li>抽象产品(Product)：所有具体产品类的父类，它负责描述所有实例所共有的公共接口</li>
+<li>具体产品(Concrete Product)：该模式的创建目标，创建的具体实例对象</li>
+</ol>
+</li>
+<li>代码实现：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Digital</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">void</span> <span class="nf">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PadDigital</span> <span class="kd">implements</span> <span class="n">Digital</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product pad...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PhoneDigital</span> <span class="kd">implements</span> <span class="n">Digital</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product phone...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Factory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">Digital</span> <span class="nf">product</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">          <span class="k">switch</span> <span class="o">(</span><span class="n">name</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">              <span class="k">case</span> <span class="s">&#34;pad&#34;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">return</span> <span class="k">new</span> <span class="n">PadDigital</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">              <span class="k">case</span> <span class="s">&#34;phone&#34;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">return</span> <span class="k">new</span> <span class="n">PhoneDigital</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">              <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMain</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Factory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Factory</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Digital</span> <span class="n">pad</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">product</span><span class="o">(</span><span class="s">&#34;pad&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Digital</span> <span class="n">phone</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">product</span><span class="o">(</span><span class="s">&#34;phone&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="n">pad</span><span class="o">.</span><span class="na">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">phone</span><span class="o">.</span><span class="na">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>适用场景：
+<ol>
+<li>工厂类创建的对象较少,种类比较固定的场景</li>
+<li>客户端对具体创建的对象没有特殊要求,只需要使用对象的场景</li>
+<li>对象创建仅需要一两个参数,依赖关系较简单的场景</li>
+<li>存在一对一的对应关系,一个参数对应一个具体产品的场景</li>
+<li>将来可能增加对象的概率较低,新增对象也较少的场景</li>
+</ol>
+</li>
+</ul>
+<h2 id="factory">Factory</h2>
+<ul>
+<li>实质：定义一个创建产品对象的工厂接口，将实际创建工作推迟到子工厂类当中。核心工厂类不再负责产品的创建，这样核心类成为一个抽象工厂角色，仅负责具体工厂子类必须实现的接口，这样进一步抽象化的好处是使得工厂方法模式可以使系统不修改具体工厂角色的情况下引进新的产品。</li>
+<li>包含的角色&amp;职责：
+<ol>
+<li>抽象工厂(Creator)：核心，任何具体工厂类都必须实现这个接口</li>
+<li>具体工厂(Concrete Creator)：抽象工厂的一个实现，负责实例化产品对象</li>
+<li>抽象产品(Product)：所有具体产品类的父类，它负责描述所有实例所共有的公共接口</li>
+<li>具体产品(Concrete Product)：创建的具体实例对象</li>
+</ol>
+</li>
+<li>代码实现；
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Digital</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">void</span> <span class="nf">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PadDigital</span> <span class="kd">implements</span> <span class="n">Digital</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product pad...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PhoneDigital</span> <span class="kd">implements</span> <span class="n">Digital</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product phone...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Factory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Digital</span> <span class="nf">product</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PadFactory</span> <span class="kd">implements</span> <span class="n">Factory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">Digital</span> <span class="nf">product</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product pad...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">new</span> <span class="n">PadDigital</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PhoneFactory</span> <span class="kd">implements</span> <span class="n">Factory</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">Digital</span> <span class="nf">product</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product phone...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">new</span> <span class="n">PhoneDigital</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMain</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Factory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PadFactory</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Digital</span> <span class="n">pad</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">product</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PhoneFactory</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Digital</span> <span class="n">phone</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">product</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">pad</span><span class="o">.</span><span class="na">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">phone</span><span class="o">.</span><span class="na">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>适用场景：
+<ol>
+<li>适用于创建对象种类较多的场景。通过定义多个工厂子类来创建不同的对象,更易扩展</li>
+<li>可以有更加复杂的判断逻辑来决定创建何种具体产品。可以根据复杂的参数或配置来决定具体创建的产品类型</li>
+<li>通过定义抽象工厂类和多个具体工厂子类,很容易增加新的具体工厂和产品来扩展系统</li>
+</ol>
+</li>
+<li>对比：
+<ul>
+<li>简单工厂模式适用于产品种类较少、创建逻辑简单、对扩展性要求不高的场景。用户可以直接使用,无需知晓具体产品信息</li>
+<li>工厂方法模式更加灵活和扩展性强,可以根据复杂的判断逻辑来创建不同的产品对象。适用于产品种类较多且需要灵活扩展的场景。用户一般需要知晓具体的产品和工厂类型</li>
+</ul>
+</li>
+</ul>
+<h2 id="abstract-factory">Abstract Factory</h2>
+<ul>
+<li>实质：</li>
+<li>包含的角色&amp;职责：</li>
+<li>代码实现：</li>
+<li>适用场景：</li>
+<li>对比：</li>
+</ul>
+<h2 id="singleton">Singleton</h2>
+<ul>
+<li>实质：</li>
+<li>包含的角色&amp;职责：</li>
+<li>代码实现：</li>
+<li>适用场景：</li>
+<li>对比：</li>
+</ul>
+<h2 id="builder">Builder</h2>
+<ul>
+<li>实质：</li>
+<li>包含的角色&amp;职责：</li>
+<li>代码实现：</li>
+<li>适用场景：</li>
+<li>对比：</li>
+</ul>
+<h2 id="prototype">ProtoType</h2>
+<ul>
+<li>实质：</li>
+<li>包含的角色&amp;职责：</li>
+<li>代码实现：</li>
+<li>适用场景：</li>
+<li>对比：</li>
+</ul>
+<h1 id="structural-pattern">Structural Pattern</h1>
+<h2 id="adapter">Adapter</h2>
+<h2 id="bridge">Bridge</h2>
+<h2 id="composite">Composite</h2>
+<h2 id="decorator">Decorator</h2>
+<p>##辅导费</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-05-17</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" data-title="设计模式浅析" data-hashtags="设计模式,Java"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" data-hashtag="设计模式"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" data-title="设计模式浅析"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" data-title="设计模式浅析"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" data-title="设计模式浅析"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>,&nbsp;<a href="/tags/java/">Java</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8/" class="prev" rel="prev" title="汇编入门"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>汇编入门</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

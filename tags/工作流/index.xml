@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>工作流 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
-    <description>Recent content in 工作流 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Thu, 23 Sep 2021 19:38:06 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>工作流Activiti</title>
-      <link>http://yangfanjack.top/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</link>
-      <pubDate>Thu, 23 Sep 2021 19:38:06 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</guid>
-      <description>工作流的作用是：对系统的业务流程进行自动化管理。一个软件的系统核心是系统的业务流程，工作流只是协助进行业务流程管理。工作流能更好的管理业务流</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>工作流 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
+        <description>工作流 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Thu, 23 Sep 2021 19:38:06 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="self" type="application/rss+xml" /><item>
+    <title>工作流Activiti</title>
+    <link>http://yangfanjack.top/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</link>
+    <pubDate>Thu, 23 Sep 2021 19:38:06 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</guid>
+    <description><![CDATA[工作流的作用是：对系统的业务流程进行自动化管理。一个软件的系统核心是系统的业务流程，工作流只是协助进行业务流程管理。工作流能更好的管理业务流]]></description>
+</item>
+</channel>
 </rss>

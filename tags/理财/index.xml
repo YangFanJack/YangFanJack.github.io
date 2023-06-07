@@ -1,29 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>理财 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E7%90%86%E8%B4%A2/</link>
-    <description>Recent content in 理财 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 15 May 2021 21:49:01 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E7%90%86%E8%B4%A2/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>经济学原理学习</title>
-      <link>http://yangfanjack.top/post/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Sat, 15 May 2021 21:49:01 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</guid>
-      <description>经济学入门 宗旨：没有对的经济学理论，只有好的经济学理论 Let‘s Go 经济学演变 自给自足，没有交换 开始分工，根据劳动量交换产品 随着生产力发展，更</description>
-    </item>
-    
-    <item>
-      <title>股票入门</title>
-      <link>http://yangfanjack.top/post/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</link>
-      <pubDate>Sat, 15 May 2021 14:58:12 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</guid>
-      <description>理财的几种投资渠道： 银行利息 年利率1.5% 银行的利率跑不赢通货膨胀 证券投资：股票 收益高 波动很大，技术要求大 房地产投资 基金 收益低点：货币基金，</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>理财 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E7%90%86%E8%B4%A2/</link>
+        <description>理财 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Sat, 15 May 2021 21:49:01 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E7%90%86%E8%B4%A2/" rel="self" type="application/rss+xml" /><item>
+    <title>经济学原理学习</title>
+    <link>http://yangfanjack.top/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Sat, 15 May 2021 21:49:01 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[经济学入门 宗旨：没有对的经济学理论，只有好的经济学理论 Let‘s Go 经济学演变 自给自足，没有交换 开始分工，根据劳动量交换产品 随着生产力发展，更]]></description>
+</item>
+<item>
+    <title>股票入门</title>
+    <link>http://yangfanjack.top/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</link>
+    <pubDate>Sat, 15 May 2021 14:58:12 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</guid>
+    <description><![CDATA[理财的几种投资渠道： 银行利息 年利率1.5% 银行的利率跑不赢通货膨胀 证券投资：股票 收益高 波动很大，技术要求大 房地产投资 基金 收益低点：货币基金，]]></description>
+</item>
+</channel>
 </rss>

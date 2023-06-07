@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Markdown on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/markdown/</link>
-    <description>Recent content in Markdown on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 03 Mar 2020 12:13:04 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>markdown基础语法</title>
-      <link>http://yangfanjack.top/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
-      <pubDate>Tue, 03 Mar 2020 12:13:04 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
-      <description>markdown基础——博客必备 推荐编辑器 typora vscode 语法 1. 标题 markdown的标题一共分为六个级别，从大到小依次是： 1 2 3 4 5 6 # 这是一级标题 ##</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Markdown - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/markdown/</link>
+        <description>Markdown - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Tue, 03 Mar 2020 12:13:04 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/markdown/" rel="self" type="application/rss+xml" /><item>
+    <title>markdown基础语法</title>
+    <link>http://yangfanjack.top/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Tue, 03 Mar 2020 12:13:04 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[markdown基础——博客必备 推荐编辑器 typora vscode 语法 1. 标题 markdown的标题一共分为六个级别，从大到小依次是： 1 2 3 4 5 6 # 这是一级标题 ##]]></description>
+</item>
+</channel>
 </rss>

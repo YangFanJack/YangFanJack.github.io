@@ -1,47 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>JavaScript on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/javascript/</link>
-    <description>Recent content in JavaScript on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 13 Jan 2021 22:34:34 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>精简版JS:jQuery</title>
-      <link>http://yangfanjack.top/post/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/</link>
-      <pubDate>Wed, 13 Jan 2021 22:34:34 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/</guid>
-      <description>JavaScript 和 JQuery jQuery就是一个JavaScript库，里面封装了大量JavaScript函数 推荐一个各种开源项目CDN服务搜索网站：https:</description>
-    </item>
-    
-    <item>
-      <title>JavaScript快速回顾</title>
-      <link>http://yangfanjack.top/post/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</link>
-      <pubDate>Fri, 08 Jan 2021 15:27:36 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</guid>
-      <description>再次回顾前端三件套 HTML（结构）：超文本标记语言，决定网页的结构和内容 CSS（表现）：层叠样式表，设定网页的表现样式 JavaScript（</description>
-    </item>
-    
-    <item>
-      <title>JavaWeb核心:理解servlet</title>
-      <link>http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</link>
-      <pubDate>Wed, 18 Mar 2020 19:37:53 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</guid>
-      <description>Servlet定义 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java</description>
-    </item>
-    
-    <item>
-      <title>JavaScript类型转换</title>
-      <link>http://yangfanjack.top/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
-      <pubDate>Mon, 16 Dec 2019 21:57:57 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
-      <description>强类型定义语言和弱类型定义语言 1）强类型定义语言： 强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>JavaScript - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/javascript/</link>
+        <description>JavaScript - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Wed, 13 Jan 2021 22:34:34 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/javascript/" rel="self" type="application/rss+xml" /><item>
+    <title>精简版JS:jQuery</title>
+    <link>http://yangfanjack.top/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/</link>
+    <pubDate>Wed, 13 Jan 2021 22:34:34 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E7%B2%BE%E7%AE%80%E7%89%88js-jquery/</guid>
+    <description><![CDATA[JavaScript 和 JQuery jQuery就是一个JavaScript库，里面封装了大量JavaScript函数 推荐一个各种开源项目CDN服务搜索网站：https:]]></description>
+</item>
+<item>
+    <title>JavaScript快速回顾</title>
+    <link>http://yangfanjack.top/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</link>
+    <pubDate>Fri, 08 Jan 2021 15:27:36 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/javascript%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE/</guid>
+    <description><![CDATA[再次回顾前端三件套 HTML（结构）：超文本标记语言，决定网页的结构和内容 CSS（表现）：层叠样式表，设定网页的表现样式 JavaScript（]]></description>
+</item>
+<item>
+    <title>JavaWeb核心:理解servlet</title>
+    <link>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</link>
+    <pubDate>Wed, 18 Mar 2020 19:37:53 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</guid>
+    <description><![CDATA[Servlet定义 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java]]></description>
+</item>
+<item>
+    <title>JavaScript类型转换</title>
+    <link>http://yangfanjack.top/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
+    <pubDate>Mon, 16 Dec 2019 21:57:57 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
+    <description><![CDATA[强类型定义语言和弱类型定义语言 1）强类型定义语言： 强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那]]></description>
+</item>
+</channel>
 </rss>

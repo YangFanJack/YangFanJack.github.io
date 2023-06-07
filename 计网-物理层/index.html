@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>计网-物理层 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="计网-物理层" />
+<meta property="og:description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-21T15:06:00+00:00" />
+<meta property="article:modified_time" content="2020-11-21T15:06:00+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="计网-物理层"/>
+<meta name="twitter:description" content="物理层的基本概念 物理层解决如何在连接各种计算机的传输媒体上传输数据比特流 主要任务时确定与传输媒体接口的一些特性 机械特性：接口形状，大小，引脚"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" /><link rel="prev" href="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/" /><link rel="next" href="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计网-物理层",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82\/"
+        },"genre": "posts","keywords": "计算机网络","wordcount":  838 ,
+        "url": "http:\/\/yangfanjack.top\/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82\/","datePublished": "2020-11-21T15:06:00+00:00","dateModified": "2020-11-21T15:06:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计网-物理层</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-11-21">2020-11-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;838 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#物理层的基本概念">物理层的基本概念</a></li>
+        <li><a href="#数据通信的基础知识">数据通信的基础知识</a></li>
+        <li><a href="#物理层下面的传输媒体">物理层下面的传输媒体</a></li>
+        <li><a href="#信道复用技术">信道复用技术</a>
+          <ul>
+            <li><a href="#频分复用技术fdm">频分复用技术（FDM）</a></li>
+            <li><a href="#时分复用技术tdm">时分复用技术（TDM）</a></li>
+            <li><a href="#统计时分复用stdm">统计时分复用（STDM）</a></li>
+            <li><a href="#码分复用技术cdm">码分复用技术（CDM）</a></li>
+          </ul>
+        </li>
+        <li><a href="#数字传输系统">数字传输系统</a></li>
+        <li><a href="#宽带接入技术">宽带接入技术</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="物理层的基本概念">物理层的基本概念</h2>
+<ul>
+<li>物理层解决如何在连接各种计算机的传输媒体上传输数据比特流</li>
+<li>主要任务时确定与传输媒体接口的一些特性
+<ul>
+<li>机械特性：接口形状，大小，引脚数量</li>
+<li>电气特性：电压范围</li>
+<li>功能特性：例如规定-5V表示0，+5V表示1</li>
+<li>过程特性：连接时各个部件的工作步骤</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据通信的基础知识">数据通信的基础知识</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121195457.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121195457.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121195457.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121195457.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121195457.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121195457.png" /></p>
+<ul>
+<li>
+<p>消息：具有意义的数据</p>
+</li>
+<li>
+<p>数据：运送消息的实体</p>
+</li>
+<li>
+<p>信号：数据的电气或电磁的表现</p>
+<ul>
+<li>
+<p>模拟信号：消息的参数取值时连续的</p>
+</li>
+<li>
+<p>数字信号：消息的参数取值是离散的</p>
+</li>
+</ul>
+</li>
+<li>
+<p>码元：在数字通信中常常用时间间隔相同的符号来表示一个二进制数字，这样的时间间隔内的信号称为二进制码元，而这个间隔被称为码元长度</p>
+</li>
+<li>
+<p>码元长度：1码元可以携带的nbit信息量</p>
+</li>
+<li>
+<p>信道：向一个方向传送消息的媒体（一条发送的信道+一条接收的信道）</p>
+<ul>
+<li>单工通信：单向高速公路</li>
+<li>半双工通信：对讲机</li>
+<li>全双工通信：电话</li>
+</ul>
+</li>
+<li>
+<p>基带信号：来自信源的信号</p>
+</li>
+<li>
+<p>带通信号：将基带信号经过载波调制（调幅，调频，调相）后（加频）</p>
+</li>
+<li>
+<p>单极性不归零码，双极性不归零码，单极性归零码，双极性归零码，曼彻斯特编码，差分曼彻斯特编码</p>
+</li>
+<li>
+<p>奈氏准则：在任何信道中，<strong>码元传输速率是有上限</strong>的，否则会出现码间串扰导致的干扰和失真，理想的信道的最高码元传输速率=2✖W(信道带宽:Hz) 波特</p>
+</li>
+<li>
+<p>香农定理：信道的极限信息传输速率C=W✖log2(1+S/N) b/s</p>
+</li>
+</ul>
+<h2 id="物理层下面的传输媒体">物理层下面的传输媒体</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121202938.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121202938.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121202938.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121202938.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121202938.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121202938.png" /></p>
+<ul>
+<li>导向传输媒体
+<ul>
+<li>双绞线：STP，UTP</li>
+<li>同轴电缆：50Ω，75Ω</li>
+<li>光纤</li>
+</ul>
+</li>
+<li>非导向传输媒体
+<ul>
+<li>无线电磁波传播（短波，微波）</li>
+</ul>
+</li>
+<li>物理层设备
+<ul>
+<li>集线器：是一个很大的冲突域，采用广播的方式</li>
+</ul>
+</li>
+</ul>
+<h2 id="信道复用技术">信道复用技术</h2>
+<p><strong>充分利用一条共享信道</strong></p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121220043.png" style="zoom:67%;" />
+<h3 id="频分复用技术fdm">频分复用技术（FDM）</h3>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121220341.png" style="zoom:50%;" />
+<h3 id="时分复用技术tdm">时分复用技术（TDM）</h3>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121220518.png" style="zoom:67%;" />
+<h3 id="统计时分复用stdm">统计时分复用（STDM）</h3>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121221519.png" style="zoom:67%;" />
+<h3 id="码分复用技术cdm">码分复用技术（CDM）</h3>
+<p><strong>同一个频率同时传就只能采用码分复用</strong></p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121223627.png" style="zoom: 80%;" />
+<h2 id="数字传输系统">数字传输系统</h2>
+<ul>
+<li>PCM（脉码调制）：电话通信局用的，有两个标准（24路和32路）</li>
+</ul>
+<h2 id="宽带接入技术">宽带接入技术</h2>
+<ul>
+<li>
+<p>xDSL技术：用电话线提供internet接入。低频留给传统电话，高频给上网用，打电话和上网互不影响。采用频分复用技术</p>
+</li>
+<li>
+<p>HFC光纤同轴混合网：用有线电视提供internet接入。</p>
+</li>
+<li>
+<p>FTTx技术：光纤到户</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-11-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" data-title="计网-物理层" data-hashtags="计算机网络"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" data-hashtag="计算机网络"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" data-title="计网-物理层"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" data-title="计网-物理层"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%89%A9%E7%90%86%E5%B1%82/" data-title="计网-物理层"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E8%AE%A1%E7%BD%91-%E6%A6%82%E8%BF%B0/" class="prev" rel="prev" title="计网-概述"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计网-概述</a>
+            <a href="/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="next" rel="next" title="计网-数据链路层">计网-数据链路层<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

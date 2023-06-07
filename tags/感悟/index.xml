@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>感悟 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E6%84%9F%E6%82%9F/</link>
-    <description>Recent content in 感悟 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 01 Jan 2021 10:59:31 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E6%84%9F%E6%82%9F/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>一点想法-2021-01-01</title>
-      <link>http://yangfanjack.top/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</link>
-      <pubDate>Fri, 01 Jan 2021 10:59:31 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</guid>
-      <description>这学期期末，连续做了三个小项目，最后一个实习最后，叫写个3000字的总结，没啥写的。就扯了了点自己学java这么久以来的感悟。想想也放在博客</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>感悟 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E6%84%9F%E6%82%9F/</link>
+        <description>感悟 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Fri, 01 Jan 2021 10:59:31 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E6%84%9F%E6%82%9F/" rel="self" type="application/rss+xml" /><item>
+    <title>一点想法-2021-01-01</title>
+    <link>http://yangfanjack.top/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</link>
+    <pubDate>Fri, 01 Jan 2021 10:59:31 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/</guid>
+    <description><![CDATA[这学期期末，连续做了三个小项目，最后一个实习最后，叫写个3000字的总结，没啥写的。就扯了了点自己学java这么久以来的感悟。想想也放在博客]]></description>
+</item>
+</channel>
 </rss>

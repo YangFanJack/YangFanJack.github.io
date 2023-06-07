@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>linux的服务管理 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="linux的服务管理" />
+<meta property="og:description" content="服务简介与分类 Linux服务分类 RPM包默认安装的服务 独立的服务 基于xinetd（超级守护进程）服务 源码包安装的服务（第三方源码包） 服务的启" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-10T17:56:48+00:00" />
+<meta property="article:modified_time" content="2020-03-10T17:56:48+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="linux的服务管理"/>
+<meta name="twitter:description" content="服务简介与分类 Linux服务分类 RPM包默认安装的服务 独立的服务 基于xinetd（超级守护进程）服务 源码包安装的服务（第三方源码包） 服务的启"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" /><link rel="prev" href="http://yangfanjack.top/shell%E7%BC%96%E7%A8%8B/" /><link rel="next" href="http://yangfanjack.top/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "linux的服务管理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86\/"
+        },"genre": "posts","keywords": "Linux","wordcount":  987 ,
+        "url": "http:\/\/yangfanjack.top\/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86\/","datePublished": "2020-03-10T17:56:48+00:00","dateModified": "2020-03-10T17:56:48+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">linux的服务管理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-10">2020-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;987 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#服务简介与分类">服务简介与分类</a>
+      <ul>
+        <li><a href="#linux服务分类">Linux服务分类</a></li>
+        <li><a href="#服务的启动与自启动">服务的启动与自启动</a></li>
+      </ul>
+    </li>
+    <li><a href="#rpm包安装服务的管理">RPM包安装服务的管理</a>
+      <ul>
+        <li><a href="#独立服务的管理">独立服务的管理</a></li>
+        <li><a href="#基于xinetd超级守护进程服务的管理">基于xinetd(超级守护进程)服务的管理</a></li>
+      </ul>
+    </li>
+    <li><a href="#源码包安装服务的管理">源码包安装服务的管理</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="服务简介与分类">服务简介与分类</h1>
+<ul>
+<li>
+<h2 id="linux服务分类">Linux服务分类</h2>
+<ul>
+<li>RPM包默认安装的服务
+<ul>
+<li>独立的服务</li>
+<li>基于xinetd（超级守护进程）服务</li>
+</ul>
+</li>
+<li>源码包安装的服务（第三方源码包）</li>
+</ul>
+</li>
+<li>
+<h2 id="服务的启动与自启动">服务的启动与自启动</h2>
+<ul>
+<li>
+<p>查询已安装的服务</p>
+<ul>
+<li>
+<p><strong>RPM包安装的服务</strong>：<code>chkconfig --list</code>：查看RPM包安装的服务按照运行级别的自启动状态。如果查询当前启动的服务，用<code>ps aux</code>或者<code>netstat</code>或者<code>service --status-all</code></p>
+</li>
+<li>
+<p><strong>源码包安装的服务</strong>：没有命令，只能去服务安装位置查看，一般在<code>/usr/local/</code>下</p>
+</li>
+<li>
+<p>其实源码包和RPM包安装的服务在Linux中的区别就是安装位置不同</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="rpm包安装服务的管理">RPM包安装服务的管理</h1>
+<p>​		<strong>RPM包安装的服务默认保存位置：</strong>(特殊文件有自己的默认保存位置)</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224329.png" style="zoom:50%;" />
+<ul>
+<li>
+<h2 id="独立服务的管理">独立服务的管理</h2>
+<ul>
+<li>启动方式：<code>/etc/init.d/独立服务名</code>和<code>service 独立服务名</code></li>
+<li>自启动方式：
+<ul>
+<li><code>chkconfig --level 运行级别 独立服务名</code>：打开自启动</li>
+<li><code>chkconfig 独立服务名 off</code>：关闭自启动</li>
+<li>修改<code>/etc/rc.d/rc.local</code>文件,加入需要自启动的服务名</li>
+<li>使用<code>ntsysv</code>命令管理自启动，图形界面很直观</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="基于xinetd超级守护进程服务的管理">基于xinetd(超级守护进程)服务的管理</h2>
+<ul>
+<li>默认情况下Linux是没有xinted的，需要手动安装<code>yum -y install xinetd</code></li>
+<li>然后用<code>chkconfig --list</code>查看，基于xinetd的服务不占用内存，但是需要的响应时间更长</li>
+<li>基于xinetd的服务的启动，修改<code>/etc/xinetd.d/</code>下对应的服务的配置文件,然后<code>service xinetd restart</code></li>
+<li>基于xinetd的服务的自启动：
+<ul>
+<li><code>chkconfig 服务名 on</code>和<code>chkconfig 服务名 off</code></li>
+<li>图形界面工具：ntsysv</li>
+</ul>
+</li>
+<li>基于xinetd的启动和自启动是通用的，两者区分不是很严格，这种设置不利于管理，所以现在基于xinetd的服务越来越少了</li>
+</ul>
+</li>
+</ul>
+<h1 id="源码包安装服务的管理">源码包安装服务的管理</h1>
+<p>​		<strong>RPM包安装的服务默认保存位置：</strong>/usr/local/</p>
+<ul>
+<li>源码包安装服务的启动和关闭(用绝对路径的启动脚本启动)：<code>/usr/local/apache2/bin/apachectl start|stop</code></li>
+<li>一般每一个源码包都有安装说明INSTALL，应该查看里面的启动方法</li>
+<li>源码包安装服务的自启动：
+<ul>
+<li><code>vim /etc/rc.d/rc.local</code>加入<code>/usr/local/apache2/bin/apachectl start</code></li>
+</ul>
+</li>
+<li>把源码包服务的启动脚本软连接到<code>/etc/init.d/</code>目录下和<code>chkconfig --add 服务名</code>，就可以实现<code>service</code>，<code>chkconfig</code>和<code>ntsysv</code>命令管理源码包安装服务，<strong>但是并不推荐</strong>，容易混乱。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-03-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" data-title="linux的服务管理" data-hashtags="Linux"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" data-title="linux的服务管理"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" data-title="linux的服务管理"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/" data-title="linux的服务管理"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/shell%E7%BC%96%E7%A8%8B/" class="prev" rel="prev" title="shell编程"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>shell编程</a>
+            <a href="/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" class="next" rel="next" title="linux系统管理">linux系统管理<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

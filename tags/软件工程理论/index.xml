@@ -1,29 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>软件工程理论 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%86%E8%AE%BA/</link>
-    <description>Recent content in 软件工程理论 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 14 Nov 2020 17:22:32 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>软件生命周期</title>
-      <link>http://yangfanjack.top/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
-      <pubDate>Sat, 14 Nov 2020 17:22:32 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
-      <description>需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软</description>
-    </item>
-    
-    <item>
-      <title>软件过程模型</title>
-      <link>http://yangfanjack.top/post/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/</link>
-      <pubDate>Sat, 14 Nov 2020 14:33:54 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/</guid>
-      <description>软件工程 三要素： 方法：软件工程方法为软件开发提供了“如何做”的技术。软件工程方法分为两类：结构化方法和面向对象方法。 工具：软件工具为软件工程</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>软件工程理论 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%86%E8%AE%BA/</link>
+        <description>软件工程理论 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Sat, 14 Nov 2020 17:22:32 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%86%E8%AE%BA/" rel="self" type="application/rss+xml" /><item>
+    <title>软件生命周期</title>
+    <link>http://yangfanjack.top/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+    <pubDate>Sat, 14 Nov 2020 17:22:32 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
+    <description><![CDATA[需求分析 概念：确定系统必须具有的功能和性能，系统要求的运行环境，并且预测系统发展的前景。 需求的获取 概念：软件需求的来源，软件工程师收集这些软]]></description>
+</item>
+<item>
+    <title>软件过程模型</title>
+    <link>http://yangfanjack.top/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/</link>
+    <pubDate>Sat, 14 Nov 2020 14:33:54 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/</guid>
+    <description><![CDATA[软件工程 三要素： 方法：软件工程方法为软件开发提供了“如何做”的技术。软件工程方法分为两类：结构化方法和面向对象方法。 工具：软件工具为软件工程]]></description>
+</item>
+</channel>
 </rss>

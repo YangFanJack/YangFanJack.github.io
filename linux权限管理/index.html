@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>linux权限管理 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="linux权限管理" />
+<meta property="og:description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-06T10:00:13+00:00" />
+<meta property="article:modified_time" content="2020-03-06T10:00:13+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="linux权限管理"/>
+<meta name="twitter:description" content="ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" /><link rel="prev" href="http://yangfanjack.top/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" /><link rel="next" href="http://yangfanjack.top/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "linux权限管理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86\/"
+        },"genre": "posts","keywords": "Linux, JavaWeb","wordcount":  1825 ,
+        "url": "http:\/\/yangfanjack.top\/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86\/","datePublished": "2020-03-06T10:00:13+00:00","dateModified": "2020-03-06T10:00:13+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">linux权限管理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-06">2020-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1825 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#acl权限">ACL权限</a>
+      <ul>
+        <li><a href="#acl权限的简介和开启方式">ACL权限的简介和开启方式</a></li>
+        <li><a href="#查看与设定acl权限">查看与设定ACL权限</a></li>
+        <li><a href="#最大有效权限与删除acl权限">最大有效权限与删除ACL权限</a></li>
+        <li><a href="#默认acl和递归acl权限只能针对目录">默认ACL和递归ACL权限（只能针对目录）</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件特殊权限">文件特殊权限</a>
+      <ul>
+        <li><a href="#setuid在所有者的x位置上变成了s">SetUID：在所有者的x位置上变成了s</a></li>
+        <li><a href="#setgid在所属组的x位置上变成了s">SetGID：在所属组的x位置上变成了s</a></li>
+        <li><a href="#sticky-bit黏着位在其他人的x位置上变成了t">Sticky BIT(黏着位)：在其他人的x位置上变成了t</a></li>
+        <li><a href="#需要注意的安全性">需要注意的安全性：</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件系统属性chattr权限">文件系统属性chattr权限</a></li>
+    <li><a href="#系统命令sudo权限">系统命令sudo权限</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="acl权限">ACL权限</h1>
+<h2 id="acl权限的简介和开启方式">ACL权限的简介和开启方式</h2>
+<ul>
+<li>任何一个文件在一个时刻只能有一个所有者和所属组</li>
+<li>ACL权限用来解决文件的权限身份不够用的情况</li>
+</ul>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224537.png" style="zoom:80%;" />
+<ul>
+<li>ACL权限需要分区支持：dumpe2fs -h /dev/sda5/查看是否支持acl选项，如果不支持。可以临时开启：mount -o remount,acl/ 或者永久开启：vim /etc/fstab然后重启系统</li>
+<li>ACL权限类似于windows的权限设置方法，就是不考虑user，group和others的权限设置，单独添加一个用户或者一个用户组对一个文件或者目录的权限</li>
+</ul>
+<h2 id="查看与设定acl权限">查看与设定ACL权限</h2>
+<ul>
+<li>
+<p><code>getfacl 文件名</code>：查看ACL的权限</p>
+</li>
+<li>
+<p><code>setfacl 选项 文件名</code></p>
+<p><code>setfacl -m u/g/m:用户名/组名/不写:权限 文件名</code>：设定文件的ACL权限</p>
+</li>
+</ul>
+<h2 id="最大有效权限与删除acl权限">最大有效权限与删除ACL权限</h2>
+<ul>
+<li>最大有效权限mask：可以通过<code>getfacl 文件名</code>来查看ACL的权限，里面有mask，可以通过控制mask的值来修改默认最大有效权限。</li>
+<li>需要注意的是mask权限不会影响当前文件所有者，只会影响ACL权限和所属组的权限</li>
+<li><code>setfacl -x u/g:用户名/组名 文件名</code>：删除文件指定的ACL权限</li>
+<li><code>setfacl -b 文件名</code>：删除文件所有ACL权限</li>
+</ul>
+<h2 id="默认acl和递归acl权限只能针对目录">默认ACL和递归ACL权限（只能针对目录）</h2>
+<ul>
+<li>
+<p><code>setfacl -m d:u/g:用户名/组名:权限 文件名</code>：设定父目录的默认ACL权限，父目录里所有的新建文件都会继承父目录的ACL权限</p>
+</li>
+<li>
+<p><code>setfacl -k</code>：删除父目录的默认ACL权限</p>
+</li>
+<li>
+<p><code>setfacl -m -R ...</code>：递归设定文件夹的ACL权限</p>
+</li>
+</ul>
+<h1 id="文件特殊权限">文件特殊权限</h1>
+<h2 id="setuid在所有者的x位置上变成了s">SetUID：在所有者的x位置上变成了s</h2>
+<ul>
+<li>
+<p><strong>四个条件缺一不可：</strong></p>
+<p>只有<strong>二进制文件</strong>（例如命令和脚本文件）才能设定SUID权限</p>
+<p>命令执行者必须对该程序<strong>有x权限</strong></p>
+<p>命令执行者会在执行的时候获得该程序文件的<strong>属主身份</strong></p>
+<p>SUID权限只在该程序执行<strong>过程中生效</strong>，也就是身份改变旨在程序执行过程中有效</p>
+</li>
+<li>
+<p>passwd命令拥有SetUID权限，所以普通用户能修改自己密码</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521224547.png" style="zoom:80%;" />
+</li>
+<li>
+<p>我们通常会看到<strong>4777，2777，1777</strong>的权限标识，依次是加了<strong>SUID，SGID，SBIT</strong>权限</p>
+</li>
+<li>
+<p>可以用<code>chmod</code>来赋予和删除SUID</p>
+</li>
+<li>
+<p><strong>SetUID是非常危险的，一个命令只要有了s权限，例如passwd命令，普通用户就可以通过执行这个命令获得passwd的属主身份，也就是进入root权限。</strong></p>
+</li>
+</ul>
+<h2 id="setgid在所属组的x位置上变成了s">SetGID：在所属组的x位置上变成了s</h2>
+<ul>
+<li>
+<p><strong>针对二进制文件，三个条件缺一不可：</strong></p>
+<p>命令执行者必须对该程序<strong>有x权限</strong></p>
+<p>命令执行者会在执行的时候获得该程序文件的<strong>所属组身份</strong></p>
+<p>SUID权限只在该程序执行<strong>过程中生效</strong>，也就是所属组身份改变旨在程序执行过程中有效</p>
+<p>注：例如/usr/bin/locate命令</p>
+</li>
+<li>
+<p><strong>针对目录，三个条件缺一不可：</strong></p>
+<p>普通用户必须对此目录<strong>拥有r和x权限</strong>，才能进入该目录</p>
+<p>普通用户在此目录中的<strong>有效组会变成此目录的所著组</strong></p>
+<p>若普通用户对此目录拥有<strong>w权限</strong>时，<strong>新建的文件的默认组不是文件自己的初始组，而是这个目录自己的所属组</strong></p>
+</li>
+<li>
+<p>可以用<code>chmod</code>来赋予和删除SGID</p>
+</li>
+</ul>
+<h2 id="sticky-bit黏着位在其他人的x位置上变成了t">Sticky BIT(黏着位)：在其他人的x位置上变成了t</h2>
+<ul>
+<li>
+<p><strong>四个条件缺一不可：</strong></p>
+<p>只有目录才能设定SBIT权限</p>
+<p><strong>普通用户</strong>必须对该目录<strong>有x和w权限</strong></p>
+<p>有了SBIT，<strong>普通用户</strong>即使有目录的w权限，也不能删除其他用户建立的文件</p>
+</li>
+</ul>
+<h2 id="需要注意的安全性">需要注意的安全性：</h2>
+<ul>
+<li><strong>需要定期对系统中含有SUID或者SGID权限的文件进行检查，如果有异常多出来的含有该权限的文件，如果多出来了，是一个极大的安全隐患，需要手工清除。</strong></li>
+</ul>
+<h1 id="文件系统属性chattr权限">文件系统属性chattr权限</h1>
+<ul>
+<li>
+<p><strong>chattr：</strong> change file attributes on a linux file system</p>
+</li>
+<li>
+<p><code>chattr [+-=] [选项] 文件或目录名</code>：增加，减去，等于chattr权限</p>
+<p>i选项：</p>
+<p>​	1.对文件：不允许任何用户（包括root用户）对文件进行任何修改，只能读</p>
+<p>​	2.对目录：任何用户（包括root用户）只能在目录下修改文件内容，但是不能删除和创建文件</p>
+<p>a选项：</p>
+<p>​	1.对文件：任何用户（包括root用户）只能对文件增加数据，但是不能删除和修改现有数据</p>
+<p>​	2.对目录：任何用户（包括root用户）只能在目录中建立和修改文件里的内容，但是不能删除文件</p>
+</li>
+<li>
+<p>查看文件系统属性：lsattr</p>
+<p>lsattr 选项 文件名</p>
+<p>​	-a选项：显示所有文件和目录</p>
+<p>​	-d选项：若文件时目录，仅列出目录自己的属性</p>
+</li>
+</ul>
+<h1 id="系统命令sudo权限">系统命令sudo权限</h1>
+<ul>
+<li>
+<p>之前学的是对文件的操作权限，sudo是对系统命令的权限。sudo权限是root把本来只能超级用户执行的命令赋予普通用户的执行</p>
+</li>
+<li>
+<p>root权限先执行命令visudo命令修改/etc/sudoers文件</p>
+<p>在这一行<code>root   ALL=(ALL)    ALL</code>下面添加例如：</p>
+<p>​               <code> jack   ALL=/sbin/shutdown -r now</code>：授权jack能重启服务器的权限</p>
+</li>
+<li>
+<p>然后相应用户或者用户组用<code>sudo -l</code>查看自己能用那些sudo命令，然后<code>sudo 命令</code>执行</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-03-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-title="linux权限管理" data-hashtags="Linux,JavaWeb"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-title="linux权限管理"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-title="linux权限管理"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-title="linux权限管理"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/javaweb/">JavaWeb</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="prev" rel="prev" title="linux中的用户管理"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>linux中的用户管理</a>
+            <a href="/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" class="next" rel="next" title="linux的文件系统管理">linux的文件系统管理<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

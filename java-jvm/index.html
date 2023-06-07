@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>java-JVM - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="java-JVM" />
+<meta property="og:description" content="JVM重点问题 JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/java-jvm/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-02T15:59:28+00:00" />
+<meta property="article:modified_time" content="2021-01-02T15:59:28+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="java-JVM"/>
+<meta name="twitter:description" content="JVM重点问题 JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/java-jvm/" /><link rel="prev" href="http://yangfanjack.top/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/" /><link rel="next" href="http://yangfanjack.top/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "java-JVM",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/java-jvm\/"
+        },"genre": "posts","keywords": "后端, Java","wordcount":  3447 ,
+        "url": "http:\/\/yangfanjack.top\/java-jvm\/","datePublished": "2021-01-02T15:59:28+00:00","dateModified": "2021-01-02T15:59:28+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">java-JVM</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-02">2021-01-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3447 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#jvm位置">JVM位置</a></li>
+        <li><a href="#jvm体系结构jvm内存模型">JVM体系结构（JVM内存模型）</a></li>
+        <li><a href="#类加载器">类加载器</a></li>
+        <li><a href="#双亲委派机制">双亲委派机制</a></li>
+        <li><a href="#沙箱安全机制">沙箱安全机制</a></li>
+        <li><a href="#native关键字">Native关键字</a></li>
+        <li><a href="#pc寄存器">PC寄存器</a></li>
+        <li><a href="#方法区">方法区</a></li>
+        <li><a href="#栈">栈</a></li>
+        <li><a href="#堆">堆</a></li>
+        <li><a href="#oom故障排除">OOM故障排除</a></li>
+        <li><a href="#gc垃圾回收机制见博客java-gc机制httpsjack1024club20201221java-gce69cbae588b6">GC垃圾回收机制见博客<a href="https://jack1024.club/2020/12/21/Java-GC%E6%9C%BA%E5%88%B6/">Java-GC机制</a></a></li>
+        <li><a href="#jmm">JMM</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><strong>JVM重点问题</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184141.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184141.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184141.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184141.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184141.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184141.png" /></p>
+<ol>
+<li>JVM位置</li>
+<li>JVM体系结构</li>
+<li>类加载器</li>
+<li>双亲委派机制</li>
+<li>沙箱安全机制</li>
+<li>Native</li>
+<li>PC寄存器</li>
+<li>方法区</li>
+<li>三种JVM</li>
+<li>栈</li>
+<li>堆</li>
+<li>新生区，老年区</li>
+<li>永久区</li>
+<li>堆内存调优</li>
+<li>GC机制（常用算法）</li>
+<li>JMM</li>
+<li>单点登录（SSO）</li>
+</ol>
+<h2 id="jvm位置">JVM位置</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184005.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184005.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184005.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184005.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184005.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101184005.png" /></p>
+<h2 id="jvm体系结构jvm内存模型">JVM体系结构（JVM内存模型）</h2>
+<p>jvm内存模型主要分为5个部分，是java在运行时，jvm虚拟机拿到了自己能支配的内存之后，将内存进行了割分</p>
+<ul>
+<li>栈：存储函数运行中的一些引用类型的变量&amp;基础类型变量</li>
+<li>堆：存储对象，被栈中的引用类型变量所指向</li>
+<li>本地方法栈：存储C++的native方法运行时的栈区
+<ul>
+<li>java中有两种方法：java方法和本地方法</li>
+<li>java方法由java语言编写，编译为class文件，运行时放在jvm中</li>
+<li>本地方法由其他语言编写，编译成和处理器相关的机器代码，本地方法保存在动态链接库中，在windows系统中就是.dll文件中，各个平台都有自己独有的</li>
+</ul>
+</li>
+<li>程序计数器：指向程序当前运行的位置</li>
+<li>方法区：存储元数据信息。static，cloader等</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101183226.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101183226.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101183226.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101183226.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101183226.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210101183226.png" /></p>
+<h2 id="类加载器">类加载器</h2>
+<ul>
+<li>
+<p>.class文件经过类加载器，初始化，在方法中形成一个Class类型的对象用来做实例化操作</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210102093505.png" style="zoom:80%;" />
+</li>
+<li>
+<p>类加载器分类：（层次从低到高）</p>
+<ul>
+<li>应用程序加载器：AppClassLoader：<strong>记载自定义的类</strong></li>
+<li>扩展加载器：ExtClassCloader：<strong>加载java扩展库中的类</strong></li>
+<li>引导类(根)加载器：由C++实现，<strong>加载java核心库rt.jar，创建扩展类加载器和应用程序类加载器</strong></li>
+<li>虚拟机自带的加载器：</li>
+</ul>
+</li>
+</ul>
+<h2 id="双亲委派机制">双亲委派机制</h2>
+<ul>
+<li>目的：为了保证安全，重点理解委派</li>
+<li>双亲<strong>委派</strong>机制原理：类加载器收到类加载请求——》一直向上(父类)委托，直到根加载器——》引导类加载器检查是否能加载当前这个类——》能加载就是用当前加载器，否则就通知子加载器进行加载——》重复上个步骤知道将类进行加载</li>
+<li>如果最终都没有找到的话，那么会报异常：Class Not Found</li>
+<li>用一个classLoader一直重复getCloader，如果出现了null的情况，那么有两种情况：要么不存在，要么就是C++写的native方法(java无法获取到)</li>
+<li>APP——》EXT——》BOOT（最终执行）</li>
+<li>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210102093505.png" style="zoom: 50%;" />
+</li>
+</ul>
+<h2 id="沙箱安全机制">沙箱安全机制</h2>
+<ul>
+<li>
+<p>沙箱机制就是一个限制程序运行的环境，通过设置相应的权限。</p>
+</li>
+<li>
+<p>组成沙箱的基本组件：</p>
+<ul>
+<li>
+<p>字节码校验器：确保java类文件遵循java语言规范，帮助java实现内存保护。核心类不会经过字节码校验。</p>
+</li>
+<li>
+<p>类加载器：</p>
+<ul>
+<li>
+<p>在3个方面对java沙箱起作用</p>
+<ul>
+<li>防止恶意代码干涉善意代码，例如双亲委派（自定义String类根本不会生效）</li>
+<li>守护被信任的类库边界</li>
+<li>将代码归入保护域，确定了代码可以进行哪些操作（例如自己的代码调不了C++的库）</li>
+</ul>
+</li>
+<li>
+<p>JVM为不同的类加载器载入的类提供不同的命名空间</p>
+</li>
+<li>
+<p>包含哪些关于沙箱机制类：</p>
+<ul>
+<li>存取控制器（access controller）</li>
+<li>安全管理器（security manager）</li>
+<li>安全软件包（security package）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="native关键字">Native关键字</h2>
+<ul>
+<li>凡是带了native关键字的方法，这个方法会调用C库</li>
+<li>带native关键字的方法在执行时会进入本地方法栈，然后调用本地方法接口JNI</li>
+<li>JNI作用：扩展java的使用，融合不同编程语言为java所用。最初融合的是java诞生时如日中天的C和C++</li>
+</ul>
+<h2 id="pc寄存器">PC寄存器</h2>
+<ul>
+<li>Program Counter Register</li>
+<li>线程私有</li>
+<li>就是一个指针，指向方法区中的方法字节码（用来存储指向一条即将要执行的指令的地址），在执行引擎读取下一条指令。</li>
+<li>如果执行的是一个native方法，计数器是空的</li>
+</ul>
+<h2 id="方法区">方法区</h2>
+<ul>
+<li>Method Area</li>
+<li>所有线程共有：所有字段，方法字节码，构造函数，接口代码</li>
+<li>静态变量<code>static</code>，常量<code>final</code>，类信息<code>Class模板</code>(构造方法，接口定义)，运行时的常量池<code>fianl Pool</code>也存在内存中。</li>
+<li>实例变量存在堆内存中</li>
+</ul>
+<h2 id="栈">栈</h2>
+<ul>
+<li>
+<p>先进后出，后进先出</p>
+</li>
+<li>
+<p>举个栗子：</p>
+<ul>
+<li>栈：喝多了吐</li>
+<li>队列：吃多了拉</li>
+</ul>
+</li>
+<li>
+<p>栈内存：主管程序的运行，生命周期，线程同步</p>
+</li>
+<li>
+<p>线程结束，栈内存也就是释放了，程序也就结束了</p>
+</li>
+<li>
+<p>栈中放哪些类型：</p>
+<ul>
+<li>8大基本类型</li>
+<li>对象引用</li>
+<li>实例的方法</li>
+</ul>
+</li>
+<li>
+<p>栈帧：一帧一帧地存储</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210102113520.png" style="zoom: 67%;" />
+</li>
+<li>
+<p>栈满了会报错：StackOverFLowError</p>
+</li>
+</ul>
+<h2 id="堆">堆</h2>
+<ul>
+<li>三种JVM：
+<ul>
+<li>SUN公司：HotSpot(TM)，我们学习的</li>
+<li>BEA公司：：JRockit</li>
+<li>IBM公司：J0 VM</li>
+</ul>
+</li>
+<li>Heap</li>
+<li>一个JVM只有一个堆内存，堆内存的大小是可以调节的</li>
+<li>类加载器读取的类文件后，一般把什么东西放进堆中？
+<ul>
+<li>类的实例，实例中的方法，变量，（jdk1.8后的常量）</li>
+<li>保存所有引用类型的真实对象</li>
+</ul>
+</li>
+<li>堆中还要细分为三个区域：
+<ul>
+<li>新生区（有三个：Eden Space，Survivor1，Survivor2）：轻量级垃圾回收</li>
+<li>养老区：重量级垃圾回收</li>
+<li>永久区</li>
+</ul>
+</li>
+<li>GC垃圾回收主要发生在伊甸园区&amp;养老区</li>
+<li>假设内存满了，会有OOM（java.out.OutOfMemoryError:Java heap space）错误，说明堆内存满了</li>
+<li>JDK8后，永久存储区更名为：元空间</li>
+</ul>
+<h2 id="oom故障排除">OOM故障排除</h2>
+<ul>
+<li>
+<p>DEBUG太慢了，所以最好能直接定位代码出错行数，可以使用内存快照分析工具：MAT，Jprofiler</p>
+</li>
+<li>
+<p>MAT，Jprofiler作用：</p>
+<ul>
+<li>分析Dump内存文件，快速定位内存泄漏问题</li>
+<li>获得堆中的数据</li>
+<li>获得大的对象</li>
+<li>&hellip;&hellip;</li>
+</ul>
+</li>
+<li>
+<p>使用Jprofiler工具剖析java代码运行过程</p>
+</li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">#-Xms:设置初始化内存分配大小，默认1/64</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-Xmx:设置最大分配内存，默认1/4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-XX:+PrintGCDetails:打印GC垃圾回收信息</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-XX:+HeapDumpOnOutOfMemoryError:打印OOM信息</span>
+</span></span><span class="line"><span class="cl">-Xms8m -Xmx8m -XX:+HeapDumpOnOutOfMemoryError
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//RunTime类（代表应用程序的运行环境）常用方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">getRuntime</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="o">(</span><span class="n">String</span> <span class="n">command</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">freeMemory</span><span class="o">();</span><span class="c1">//返回java虚拟机中的空闲内存区，字节为单位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">maxMemory</span><span class="o">();</span><span class="c1">//返回java虚拟机试图使用的最大内存量，字节为单位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">totalMemory</span><span class="o">();</span><span class="c1">//返回java虚拟机内存总量，字节为单位
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="gc垃圾回收机制见博客java-gc机制httpsjack1024club20201221java-gce69cbae588b6">GC垃圾回收机制见博客<a href="https://jack1024.club/2020/12/21/Java-GC%E6%9C%BA%E5%88%B6/" target="_blank" rel="noopener noreffer ">Java-GC机制</a></h2>
+<h2 id="jmm">JMM</h2>
+<ul>
+<li>什么是JMM？Java Memory Model</li>
+<li>究竟什么是JMM，其实JMM和栈，堆这些JVM内存模型的东西完全不是一个概念的东西。当你第一次听到Java Memory Medel时候，肯定会首先想到这些吧，但是不对。</li>
+<li><strong>实际上JMM是一个抽象的概念，</strong></li>
+<li><strong>在物理实现上，java采用volatile关键字</strong>，该关键字用于修饰变量表示该变量在不同线程中共享。导致编译器和运行时都会注意到该变量是共享的，因此不会对该变量进行重排序。</li>
+</ul>
+<p><strong>JMM实际上就时缓存一致性协议，用于定义数据读写规则</strong></p>
+<ul>
+<li>
+<p><strong>JMM的8种交互操作：</strong></p>
+<ul>
+<li><strong>lock</strong> （锁定）：作用于主内存的变量，把一个变量标识为线程独占状态</li>
+<li><strong>unlock</strong> （解锁）：作用于主内存的变量，它把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定</li>
+<li><strong>read</strong> （读取）：作用于主内存变量，它把一个变量的值从主内存传输到线程的工作内存中，以便随后的load动作使用</li>
+<li><strong>load</strong> （载入）：作用于工作内存的变量，它把read操作从主存中变量放入工作内存中</li>
+<li><strong>use</strong> （使用）：作用于工作内存中的变量，它把工作内存中的变量传输给执行引擎，每当虚拟机遇到一个需要使用到变量的值，就会使用到这个指令</li>
+<li><strong>assign</strong> （赋值）：作用于工作内存中的变量，它把一个从执行引擎中接受到的值放入工作内存的变量副本中</li>
+<li><strong>store</strong> （存储）：作用于主内存中的变量，它把一个从工作内存中一个变量的值传送到主内存中，以便后续的write使用</li>
+<li><strong>write</strong> （写入）：作用于主内存中的变量，它把store操作从工作内存中得到的变量的值放入主内存的变量中</li>
+</ul>
+</li>
+<li>
+<p><strong>JVM对这8种指令定义了如下的规则：</strong></p>
+<ul>
+<li>不允许read和load、store和write操作之一单独出现。即使用了read必须load，使用了store必须write</li>
+<li>不允许线程丢弃他最近的assign操作，即工作变量的数据改变了之后，必须告知主存</li>
+<li>不允许一个线程将没有assign的数据从工作内存同步回主内存</li>
+<li>一个新的变量必须在主内存中诞生，不允许工作内存直接使用一个未被初始化的变量。就是怼变量实施use、store操作之前，必须经过assign和load操作</li>
+<li>一个变量同一时间只有一个线程能对其进行lock。多次lock后，必须执行相同次数的unlock才能解锁</li>
+<li>如果对一个变量进行lock操作，会清空所有工作内存中此变量的值，在执行引擎使用这个变量前，必须重新load或assign操作初始化变量的值</li>
+<li>如果一个变量没有被lock，就不能对其进行unlock操作。也不能unlock一个被其他线程锁住的变量</li>
+<li>对一个变量进行unlock操作之前，必须把此变量同步回主内存</li>
+</ul>
+</li>
+</ul>
+<p>说白了，JMM就是一个关于操作系统读写操作控制的机制，说到这里，过几天要回顾操作系统的知识了。。。。哎</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-01-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/java-jvm/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/java-jvm/" data-title="java-JVM" data-hashtags="后端,Java"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/java-jvm/" data-hashtag="后端"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/java-jvm/" data-title="java-JVM"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/java-jvm/" data-title="java-JVM"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/java-jvm/" data-title="java-JVM"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>,&nbsp;<a href="/tags/java/">Java</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-2021-01-01/" class="prev" rel="prev" title="一点想法-2021-01-01"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>一点想法-2021-01-01</a>
+            <a href="/javaweb-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8F%B2/" class="next" rel="next" title="javaweb-前后端分离史">javaweb-前后端分离史<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

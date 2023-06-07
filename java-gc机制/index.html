@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Java-GC机制 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="Java-GC机制" />
+<meta property="og:description" content="背景： Java的内存管理实际上就是对象的管理，其中包括对象的分配和释放。对于程序员来说，分配对象使用new关键字；释放对象时，只要将对象所有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/java-gc%E6%9C%BA%E5%88%B6/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-21T09:55:07+00:00" />
+<meta property="article:modified_time" content="2020-12-21T09:55:07+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="Java-GC机制"/>
+<meta name="twitter:description" content="背景： Java的内存管理实际上就是对象的管理，其中包括对象的分配和释放。对于程序员来说，分配对象使用new关键字；释放对象时，只要将对象所有"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/java-gc%E6%9C%BA%E5%88%B6/" /><link rel="prev" href="http://yangfanjack.top/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/" /><link rel="next" href="http://yangfanjack.top/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Java-GC机制",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/java-gc%E6%9C%BA%E5%88%B6\/"
+        },"genre": "posts","keywords": "后端, Java","wordcount":  1642 ,
+        "url": "http:\/\/yangfanjack.top\/java-gc%E6%9C%BA%E5%88%B6\/","datePublished": "2020-12-21T09:55:07+00:00","dateModified": "2020-12-21T09:55:07+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Java-GC机制</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-12-21">2020-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1642 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#背景">背景：</a></li>
+        <li><a href="#gcroot">GCRoot</a></li>
+        <li><a href="#gc机制清理堆中垃圾的思路">GC机制清理堆中垃圾的思路</a></li>
+        <li><a href="#相关题目">相关题目</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="背景">背景：</h2>
+<ul>
+<li>Java的内存管理实际上就是对象的管理，其中包括对象的分配和释放。对于程序员来说，分配对象使用new关键字；释放对象时，只要将对象所有引用赋值为null，让程序不能够再访问到这个对象，我们称该对象为&quot;不可达的&quot;.GC将负责回收所有&quot;不可达&quot;对象的内存空间。</li>
+<li>堆空间是用来存储new出来的对象的，当new出来的对象填充满时，会让堆爆掉，程序就挂了，这显然时不被允许的。</li>
+<li>Garbage Collection的机制就是判断堆内存中哪些对象能被删除，判断的标准就是GCRoot</li>
+</ul>
+<h2 id="gcroot">GCRoot</h2>
+<ul>
+<li><strong>GCRoot</strong>：指向堆中的对象的引用，包含：
+<ul>
+<li>栈上的引用直接或者间接地被引用</li>
+<li>方法区上全局的的Static变量&amp;常量直接或者间接被引用</li>
+<li>本地方法栈上的的C++直接或者间接被引用</li>
+</ul>
+</li>
+<li>那些可以直接存在的，没有和GCRoot有相连的关系的对象可以被删除</li>
+</ul>
+<h2 id="gc机制清理堆中垃圾的思路">GC机制清理堆中垃圾的思路</h2>
+<ul>
+<li>
+<p>**标记-清理：**在堆中要删除对象后面打标</p>
+<ul>
+<li>缺点：标记和清除两次扫描会严重浪费时间，同时会产生内存碎片</li>
+<li>优点：不需要额外空间</li>
+</ul>
+</li>
+<li>
+<p>**标记-整理：**堆中删除的对象留下的空间能聚集在一起</p>
+<ul>
+<li>缺点：代价太大，除了两次扫描还要把所有整理后的对象前移</li>
+<li>优点：减少了内存碎片</li>
+</ul>
+</li>
+<li>
+<p>**复制算法：**将整个内存一分为二，将1区需要删除的标记，然后将没打标记的对象紧凑复制到2区，既避免了内存碎片问题，整个内存开销又不是很大。</p>
+<ul>
+<li>缺点：需要两倍内存空间</li>
+<li>优点：不会产生碎片问题</li>
+<li>最佳使用场景：对象的成活率较低（新生区就是这样）</li>
+</ul>
+</li>
+<li>
+<p><strong>实际的GC：将堆区划分</strong></p>
+<ul>
+<li>
+<p>新new的对象都会在Eden（伊甸园）出生，当Eden快满的时候会触发<strong>young区域的GC</strong>，采用复制算法，将Eden中没有标记的对象复制到Survivor0（幸存0）区域</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201221102717.png" style="zoom:50%;" />
+</li>
+<li>
+<p>Eden很大，Survivor更小。因为对象都有一个特点：<strong>朝生夕死</strong>，很容易就夭折了，生死率大概是1：8</p>
+</li>
+<li>
+<p>需要两块Survivor区交替工作（From和To的反复交替：谁空谁是To）</p>
+<ul>
+<li>E+S1 复制到 S0</li>
+<li>E+S0 复制到 S1</li>
+<li>E+S1 复制到 S0</li>
+<li>&hellip;（如此交替工作）</li>
+</ul>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210102153958.png" style="zoom: 50%;" />
+</li>
+<li>
+<p>一个对象每幸存1次，其年龄就会+1，如果满了6岁，（满了6岁基本60岁都不会清理了）就不会复制到Survivor区了，就会直接到Old区了</p>
+</li>
+<li>
+<p>大对象（例：1000万个元素的int数组）会直接存放到Old区。</p>
+</li>
+<li>
+<p>Old区满了也会触放<strong>GC</strong>，OldGC一般也会伴随YoungGC，所以，Old区满了会触发<strong>FullGC</strong>，此时会触发stoptheworld，java程序全部暂停，报错OOM（java.lang.OutOfMemory :Java heap space），全力进行垃圾回收（采用标记清理 or 标记整理算法）</p>
+</li>
+<li>
+<p><strong>总结：</strong></p>
+</li>
+<li>
+<p>标记-清理和标记-整理 主要用在 FullGC机制</p>
+<ul>
+<li>复制算法只要用在 YoungGC机制</li>
+</ul>
+</li>
+<li>
+<p><strong>内存效率(时间复杂度)：</strong> 复制算法&gt;标记清除&gt;标记整理</p>
+<ul>
+<li><strong>内存整齐度：</strong> 复制算法=标记整理&gt;标记清除</li>
+<li><strong>内存利用率：</strong> 标记整理=标记清除&gt;复制算法</li>
+<li><strong>没有最好的算法，只有最合适的算法</strong></li>
+</ul>
+</li>
+<li>
+<p>垃圾收集器：</p>
+<ul>
+<li><strong>年轻代：ParNew：复制算法</strong></li>
+<li><strong>老年代：CMS：标记-清理</strong></li>
+<li><strong>最新版的JDK采用的是：G1垃圾收集器</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>永久区</strong></p>
+<p>该区域常驻内存，用来存放JDK自身携带的Class对象等。存储的是java运行时的一些环境。</p>
+<p>该区域不存在垃圾回收，关闭虚拟机就会释放该区域的内存</p>
+<ul>
+<li>jdk1.6之前：永久代，常量池在方法区</li>
+<li>jdk1.7：永久代慢慢退化了，常量池在堆中</li>
+<li>jdk1.8之后：无永久代，整个方法区（包含常量池）都在元空间</li>
+</ul>
+<p>JDK8之后的堆内存模型：</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210102141906.png" style="zoom:80%;" />
+<p>这个元空间：逻辑上存在，物理上不存在</p>
+<p>堆内存参数调优初识：在IDEA中，VM options中添加几个参数，可以指定最大内存，最小内存，和是否打印GC的详细信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">-Xms8m -Xmx8m -XX:+PrintGCDetails
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="相关题目">相关题目</h2>
+<ol>
+<li>JVM的内存模型和分区~详细到每个区都放什么？</li>
+<li>堆里面的分区有哪些？Eden，from，to，老年区，说说他们的特点？</li>
+<li>GC的算法有哪些：标记清除法，标记整理，引用计数法</li>
+<li>轻GC和中GC分别在什么时候发生？</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">#定义对象进入老年区的时间，默认是15</span>
+</span></span><span class="line"><span class="cl">-XX:MaxTenuringThreshold<span class="o">=</span><span class="m">15</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-12-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/java-gc%E6%9C%BA%E5%88%B6/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/java-gc%E6%9C%BA%E5%88%B6/" data-title="Java-GC机制" data-hashtags="后端,Java"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/java-gc%E6%9C%BA%E5%88%B6/" data-hashtag="后端"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/java-gc%E6%9C%BA%E5%88%B6/" data-title="Java-GC机制"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/java-gc%E6%9C%BA%E5%88%B6/" data-title="Java-GC机制"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/java-gc%E6%9C%BA%E5%88%B6/" data-title="Java-GC机制"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>,&nbsp;<a href="/tags/java/">Java</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/" class="prev" rel="prev" title="java基础快速回顾-上"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>java基础快速回顾-上</a>
+            <a href="/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/" class="next" rel="next" title="内网穿透浅析">内网穿透浅析<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

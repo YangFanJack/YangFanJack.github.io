@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>redis缓存技术 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="redis缓存技术" />
+<meta property="og:description" content="Redis简介： 概念： redis是一款高性能的NOSQL（Not Only SQL）系列的菲关系型数据库 Redis特点： Redis 是一个开源的使用 ANSI、C" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-16T10:54:17+00:00" />
+<meta property="article:modified_time" content="2021-03-16T10:54:17+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="redis缓存技术"/>
+<meta name="twitter:description" content="Redis简介： 概念： redis是一款高性能的NOSQL（Not Only SQL）系列的菲关系型数据库 Redis特点： Redis 是一个开源的使用 ANSI、C"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/" /><link rel="prev" href="http://yangfanjack.top/posts/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/" /><link rel="next" href="http://yangfanjack.top/posts/arch%E5%85%A5%E6%95%99%E8%B7%AF/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "redis缓存技术",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF\/"
+        },"genre": "posts","keywords": "后端, Redis","wordcount":  2428 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF\/","datePublished": "2021-03-16T10:54:17+00:00","dateModified": "2021-03-16T10:54:17+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">redis缓存技术</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-16">2021-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2428 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#redis简介">Redis简介：</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#命令操作">命令操作</a></li>
+    <li><a href="#持久化">持久化：</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#redis的java客户端jedis">Redis的java客户端：Jedis</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="redis简介">Redis简介：</h2>
+<p><strong>概念：</strong> redis是一款高性能的NOSQL（Not Only SQL）系列的菲关系型数据库</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220522094933.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220522094933.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220522094933.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220522094933.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220522094933.png"
+        title="image-20210316153023744" /></p>
+<p><strong>Redis特点：</strong></p>
+<ul>
+<li>
+<p>Redis 是一个开源的使用 ANSI、C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种语言的 API。</p>
+</li>
+<li>
+<p>Redis 通常被称为数据结构服务器，因为值（value）可以是字符串(String)、哈希(Hash)、列表(list)、集合(sets)和有序集合(sorted sets)等类型。</p>
+</li>
+<li>
+<p>关系型数据库和非关系数据库是<strong>互补的关系</strong>，通常情况下使用关系型数据库，在适合的情况下使用NOSQL数据库能够堆关系型数据库的不足进行弥补从而提高网站的性能。</p>
+</li>
+<li>
+<p>一般会将数据存储在关系型数据库中，在nosql数据库中备份关系型数据库的数据</p>
+</li>
+</ul>
+<p><strong>目前Redis支持的键值数据类型如下：</strong></p>
+<ol>
+<li>字符串类型：string</li>
+<li>哈希类型：hash</li>
+<li>列表类型：list</li>
+<li>集合类型：set</li>
+<li>有序集合类型：sortedset</li>
+</ol>
+<p><strong>Redis的应用场景：</strong></p>
+<ol>
+<li>缓存（数据查询，短连接，新闻内容，商品内容）</li>
+<li>聊天室的在线好友列表</li>
+<li>任务队列（秒杀，抢购，12306抢票）</li>
+<li>应用排行榜</li>
+<li>网站访问统计</li>
+<li>数据过期处理（可以精确到毫秒级别）</li>
+<li>分布式集群架构中的session分离</li>
+</ol>
+<h2 id="安装">安装</h2>
+<p>debian：<code>sudo apt install redis</code></p>
+<p>启动服务：执行<code>sudo systemctl start redis</code></p>
+<p>关闭服务：执行<code>sudo systemctl stop redis</code></p>
+<p>进入客户端：<code>redis-cli</code></p>
+<h2 id="命令操作">命令操作</h2>
+<ol>
+<li>
+<p>字符串类型：string</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> key value
+</span></span><span class="line"><span class="cl">get key
+</span></span><span class="line"><span class="cl">del key
+</span></span></code></pre></div></li>
+<li>
+<p>哈希类型：hash</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hset key field value
+</span></span><span class="line"><span class="cl">hget key field
+</span></span><span class="line"><span class="cl">hgetall key
+</span></span><span class="line"><span class="cl">hdel key field
+</span></span></code></pre></div></li>
+<li>
+<p>列表类型：list</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lpush key value
+</span></span><span class="line"><span class="cl">rpush key value
+</span></span><span class="line"><span class="cl">lrange key start end
+</span></span><span class="line"><span class="cl">lpop key
+</span></span><span class="line"><span class="cl">rpop key
+</span></span></code></pre></div></li>
+<li>
+<p>集合类型：set</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sadd key value
+</span></span><span class="line"><span class="cl">smembers key
+</span></span><span class="line"><span class="cl">srem key value
+</span></span></code></pre></div></li>
+<li>
+<p>有序集合类型：sortedset</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zadd key score value
+</span></span><span class="line"><span class="cl">zrange key start end <span class="o">[</span>withscores<span class="o">]</span>
+</span></span><span class="line"><span class="cl">zrem key value
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>通用命令：</strong></p>
+<ol>
+<li><code>keys *</code>：查询所有的键</li>
+<li><code>type key</code>：获取键对应的value的类型</li>
+<li><code>del key</code>：删除指定的key value</li>
+</ol>
+<h2 id="持久化">持久化：</h2>
+<ul>
+<li>redis是一个内存数据库，当redis服务器重启，获取电脑重启，数据会丢失，我们可以将redis内存中的数据持久化保存到硬盘的文件中。</li>
+</ul>
+<h4 id="redis的持久化机制">Redis的持久化机制</h4>
+<ul>
+<li>
+<p><strong>RDB：</strong> 默认方式，不需要进行配置，默认就使用这种机制</p>
+<p>在一定的间隔时间中，检测key的变化情况，然后持久化数据</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">编辑/etc/redis/redis.conf文件
+</span></span><span class="line"><span class="cl"><span class="gh"># after 900 sec (15 min) if at least 1 key changed
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>save 900 1
+</span></span><span class="line"><span class="cl"><span class="gh"># after 300 sec (5 min) if at least 10 keys changed
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>save 300 10
+</span></span><span class="line"><span class="cl"><span class="gh"># after 60 sec if at least 10000 keys changed
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>save 60 10000
+</span></span></code></pre></div><p>重新启动redis服务器，并指定redis.conf：<code>redis-server /etc/redis/redis.conf</code></p>
+<p><strong>注意：</strong> 在linux上通过apt安装的redis，关闭服务器后重启默认会重现之前数据，也就是默认使用了RDB的方式。配置文件在<code>/etc/redis/redis.conf</code>，rdb存储文件在<code>/var/lib/redis</code>目录下。</p>
+</li>
+<li>
+<p><strong>AOF：</strong> 日志记录的方式，可以记录每一条命令的操作。可以每一次命令操作后，持久化数据</p>
+<p>编辑redis.windwos.conf文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">appendonly no（关闭aof） --&gt; appendonly yes （开启aof）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># appendfsync always ： 每一次操作都进行持久化
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>appendfsync everysec ： 每隔一秒进行一次持久化
+</span></span><span class="line"><span class="cl"><span class="gh"># appendfsync no	 ： 不进行持久化
+</span></span></span></code></pre></div></li>
+</ul>
+<h2 id="redis的java客户端jedis">Redis的java客户端：Jedis</h2>
+<p>使用步骤：</p>
+<ol>
+<li>
+<p><strong>导入Jedis相关jar包</strong></p>
+</li>
+<li>
+<p><strong>使用</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1. 获取连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jedis</span><span class="o">(</span><span class="s">&#34;localhost&#34;</span><span class="o">,</span><span class="mi">6379</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//2. 操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;username&#34;</span><span class="o">,</span><span class="s">&#34;zhangsan&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 关闭连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Jedis对于String，hash，list，set，linkedset的操</strong>作</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1. 获取连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jedis</span><span class="o">();</span><span class="c1">//如果使用空参构造，默认值 &#34;localhost&#34;,6379端口
+</span></span></span><span class="line"><span class="cl"><span class="c1">//2. 操作
+</span></span></span><span class="line"><span class="cl"><span class="c1">//存储
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;username&#34;</span><span class="o">,</span><span class="s">&#34;zhangsan&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//获取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;username&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//可以使用setex()方法存储可以指定过期时间的 key value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">setex</span><span class="o">(</span><span class="s">&#34;activecode&#34;</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="s">&#34;hehe&#34;</span><span class="o">);</span><span class="c1">//将activecode：hehe键值对存入redis，并且20秒后自动删除该键值对
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 关闭连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1. 获取连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jedis</span><span class="o">();</span><span class="c1">//如果使用空参构造，默认值 &#34;localhost&#34;,6379端口
+</span></span></span><span class="line"><span class="cl"><span class="c1">//2. 操作
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 存储hash
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">hset</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">,</span><span class="s">&#34;name&#34;</span><span class="o">,</span><span class="s">&#34;lisi&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">jedis</span><span class="o">.</span><span class="na">hset</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">,</span><span class="s">&#34;age&#34;</span><span class="o">,</span><span class="s">&#34;23&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">jedis</span><span class="o">.</span><span class="na">hset</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">,</span><span class="s">&#34;gender&#34;</span><span class="o">,</span><span class="s">&#34;female&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 获取hash
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">hget</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">,</span> <span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 获取hash的所有map中的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">hgetAll</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// keyset
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keySet</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">key</span> <span class="o">:</span> <span class="n">keySet</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//获取value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">key</span> <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 关闭连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1. 获取连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jedis</span><span class="o">();</span><span class="c1">//如果使用空参构造，默认值 &#34;localhost&#34;,6379端口
+</span></span></span><span class="line"><span class="cl"><span class="c1">//2. 操作
+</span></span></span><span class="line"><span class="cl"><span class="c1">// list 存储
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">lpush</span><span class="o">(</span><span class="s">&#34;mylist&#34;</span><span class="o">,</span><span class="s">&#34;a&#34;</span><span class="o">,</span><span class="s">&#34;b&#34;</span><span class="o">,</span><span class="s">&#34;c&#34;</span><span class="o">);</span><span class="c1">//从左边存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">rpush</span><span class="o">(</span><span class="s">&#34;mylist&#34;</span><span class="o">,</span><span class="s">&#34;a&#34;</span><span class="o">,</span><span class="s">&#34;b&#34;</span><span class="o">,</span><span class="s">&#34;c&#34;</span><span class="o">);</span><span class="c1">//从右边存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// list 范围获取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mylist</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">lrange</span><span class="o">(</span><span class="s">&#34;mylist&#34;</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">mylist</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// list 弹出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">element1</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">lpop</span><span class="o">(</span><span class="s">&#34;mylist&#34;</span><span class="o">);</span><span class="c1">//c
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">element1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">element2</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">rpop</span><span class="o">(</span><span class="s">&#34;mylist&#34;</span><span class="o">);</span><span class="c1">//c
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">element2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// list 范围获取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mylist2</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">lrange</span><span class="o">(</span><span class="s">&#34;mylist&#34;</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">mylist2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 关闭连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1. 获取连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jedis</span><span class="o">();</span><span class="c1">//如果使用空参构造，默认值 &#34;localhost&#34;,6379端口
+</span></span></span><span class="line"><span class="cl"><span class="c1">//2. 操作
+</span></span></span><span class="line"><span class="cl"><span class="c1">// set 存储
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">sadd</span><span class="o">(</span><span class="s">&#34;myset&#34;</span><span class="o">,</span><span class="s">&#34;java&#34;</span><span class="o">,</span><span class="s">&#34;php&#34;</span><span class="o">,</span><span class="s">&#34;c++&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// set 获取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">myset</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">smembers</span><span class="o">(</span><span class="s">&#34;myset&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myset</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 关闭连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1. 获取连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jedis</span><span class="o">();</span><span class="c1">//如果使用空参构造，默认值 &#34;localhost&#34;,6379端口
+</span></span></span><span class="line"><span class="cl"><span class="c1">//2. 操作
+</span></span></span><span class="line"><span class="cl"><span class="c1">// sortedset 存储
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">zadd</span><span class="o">(</span><span class="s">&#34;mysortedset&#34;</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="s">&#34;亚瑟&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">jedis</span><span class="o">.</span><span class="na">zadd</span><span class="o">(</span><span class="s">&#34;mysortedset&#34;</span><span class="o">,</span><span class="mi">30</span><span class="o">,</span><span class="s">&#34;后裔&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">jedis</span><span class="o">.</span><span class="na">zadd</span><span class="o">(</span><span class="s">&#34;mysortedset&#34;</span><span class="o">,</span><span class="mi">55</span><span class="o">,</span><span class="s">&#34;孙悟空&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// sortedset 获取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mysortedset</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">zrange</span><span class="o">(</span><span class="s">&#34;mysortedset&#34;</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">mysortedset</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 关闭连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Jedis连接池</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//0.创建一个配置对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">JedisPoolConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JedisPoolConfig</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">config</span><span class="o">.</span><span class="na">setMaxTotal</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">config</span><span class="o">.</span><span class="na">setMaxIdle</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1.创建Jedis连接池对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">JedisPool</span> <span class="n">jedisPool</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JedisPool</span><span class="o">(</span><span class="n">config</span><span class="o">,</span><span class="s">&#34;localhost&#34;</span><span class="o">,</span><span class="mi">6379</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//2.获取连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="n">jedisPool</span><span class="o">.</span><span class="na">getResource</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;hehe&#34;</span><span class="o">,</span><span class="s">&#34;heihei&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//4. 关闭 归还到连接池中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jedis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span></code></pre></div><p>连接池工具类：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JedisPoolUtils</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">JedisPool</span> <span class="n">jedisPool</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//读取配置文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">InputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="n">JedisPoolUtils</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&#34;jedis.properties&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//创建Properties对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Properties</span> <span class="n">pro</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//关联文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pro</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">is</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//获取数据，设置到JedisPoolConfig中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">JedisPoolConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JedisPoolConfig</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span><span class="o">.</span><span class="na">setMaxTotal</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">pro</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;maxTotal&#34;</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span><span class="o">.</span><span class="na">setMaxIdle</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">pro</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;maxIdle&#34;</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//初始化JedisPool
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">jedisPool</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JedisPool</span><span class="o">(</span><span class="n">config</span><span class="o">,</span><span class="n">pro</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;host&#34;</span><span class="o">),</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">pro</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;port&#34;</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">	* 获取连接方法
+</span></span></span><span class="line"><span class="cl"><span class="cm">	*/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Jedis</span> <span class="nf">getJedis</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">jedisPool</span><span class="o">.</span><span class="na">getResource</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/" data-title="redis缓存技术" data-hashtags="后端,Redis"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/" data-hashtag="后端"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/" data-title="redis缓存技术"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/" data-title="redis缓存技术"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/" data-title="redis缓存技术"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>,&nbsp;<a href="/tags/redis/">Redis</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/" class="prev" rel="prev" title="javaWeb三大组件"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>javaWeb三大组件</a>
+            <a href="/posts/arch%E5%85%A5%E6%95%99%E8%B7%AF/" class="next" rel="next" title="Arch入教路">Arch入教路<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

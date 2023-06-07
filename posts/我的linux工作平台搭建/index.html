@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>我的Linux工作平台搭建 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="我的Linux工作平台搭建" />
+<meta property="og:description" content="Mint LInux安装概述 rufus录入iso镜像到U盘 进入bios界面调节启动位置为U盘 开机进入安装界面，下一步&hellip; efi分区自动放" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-06T09:35:39+00:00" />
+<meta property="article:modified_time" content="2021-03-06T09:35:39+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我的Linux工作平台搭建"/>
+<meta name="twitter:description" content="Mint LInux安装概述 rufus录入iso镜像到U盘 进入bios界面调节启动位置为U盘 开机进入安装界面，下一步&hellip; efi分区自动放"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" /><link rel="prev" href="http://yangfanjack.top/posts/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/" /><link rel="next" href="http://yangfanjack.top/posts/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "我的Linux工作平台搭建",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA\/"
+        },"genre": "posts","keywords": "Linux, Mint","wordcount":  2905 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA\/","datePublished": "2021-03-06T09:35:39+00:00","dateModified": "2021-03-06T09:35:39+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">我的Linux工作平台搭建</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>解决方案</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-06">2021-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2905 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mint-linux安装概述">Mint LInux安装概述</a></li>
+    <li><a href="#安装后配置">安装后配置</a>
+      <ul>
+        <li><a href="#双系统时间不同步">双系统时间不同步</a></li>
+        <li><a href="#输入法里安装ficix--安装搜狗输入法">输入法里安装ficix &amp; 安装搜狗输入法</a></li>
+        <li><a href="#完善mint的中文支持">完善mint的中文支持</a></li>
+        <li><a href="#安装typora">安装typora</a></li>
+        <li><a href="#安装qv2ray">安装Qv2ray</a></li>
+        <li><a href="#主题美化">主题美化</a></li>
+        <li><a href="#安装各种软件">安装各种软件</a></li>
+        <li><a href="#配置各种环境">配置各种环境</a></li>
+      </ul>
+    </li>
+    <li><a href="#软件">软件：</a>
+      <ul>
+        <li><a href="#日常">日常：</a></li>
+        <li><a href="#开发">开发</a></li>
+        <li><a href="#小工具">小工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#环境">环境</a></li>
+    <li><a href="#插件">插件</a>
+      <ul>
+        <li><a href="#扩展">扩展</a></li>
+        <li><a href="#小程序">小程序</a></li>
+      </ul>
+    </li>
+    <li><a href="#linux系统卸载">Linux系统卸载</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="mint-linux安装概述">Mint LInux安装概述</h2>
+<ol>
+<li>rufus录入iso镜像到U盘</li>
+<li>进入bios界面调节启动位置为U盘</li>
+<li>开机进入安装界面，下一步&hellip;</li>
+<li>efi分区自动放入win10的efi分区，/分区45G，/home分区300G，swap分区1G</li>
+</ol>
+<h2 id="安装后配置">安装后配置</h2>
+<h3 id="双系统时间不同步">双系统时间不同步</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用Ubuntu的UTC</span>
+</span></span><span class="line"><span class="cl">timedatectl set-local-rtc <span class="m">1</span> --adjust-system-clock
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新本地时间</span>
+</span></span><span class="line"><span class="cl">sudo apt install ntpdate
+</span></span><span class="line"><span class="cl">sudo ntpdate time.windows.com
+</span></span><span class="line"><span class="cl"><span class="c1"># 将本地时间更新到硬件上</span>
+</span></span><span class="line"><span class="cl">sudo hwclock --localtime --systohc
+</span></span></code></pre></div><h3 id="输入法里安装ficix--安装搜狗输入法">输入法里安装ficix &amp; 安装搜狗输入法</h3>
+<ul>
+<li>IDEA等jetbrain公司的IDE的搜狗输入法不跟随问题可以采用更改这些IDE的运行环境解决</li>
+</ul>
+<h3 id="完善mint的中文支持">完善mint的中文支持</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get install language-pack-zh-hans language-pack-gnome-zh-hans
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#添加微软雅黑字体</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#雅黑字体文件放在 Windows/fonts/ 文件夹，或者在控制面板-字体中查找，两个文件名分别为：msyh.ttf和msyhbd.ttf。字体</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在Linux mint 系统字体文件夹中创建对应的字体文件夹：</span>
+</span></span><span class="line"><span class="cl">sudo  mkdir  /usr/share/fonts/msyh
+</span></span><span class="line"><span class="cl"><span class="c1"># 移动字体文件到对应的文件夹下：</span>
+</span></span><span class="line"><span class="cl">udo  mv  msyh.ttf msyhbd.ttf  /usr/share/fonts/msyh
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新字体：</span>
+</span></span><span class="line"><span class="cl">sudo  fc-cache  -fv
+</span></span></code></pre></div><h3 id="安装typora">安装typora</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget -qO - https://typora.io/linux/public-key.asc <span class="p">|</span> sudo apt-key add - <span class="c1"># 添加公钥</span>
+</span></span><span class="line"><span class="cl">sudo add-apt-repository <span class="s1">&#39;deb https://typora.io/linux ./&#39;</span> <span class="c1"># 添加typora仓库</span>
+</span></span><span class="line"><span class="cl">sudo apt-get update 
+</span></span><span class="line"><span class="cl">sudo apt-get install typora <span class="c1"># 安装typora</span>
+</span></span></code></pre></div><h3 id="安装qv2ray">安装Qv2ray</h3>
+<p><a href="https://github.com/Qv2ray/Qv2ray" target="_blank" rel="noopener noreffer ">Qv2ray下载</a></p>
+<p><a href="https://github.com/v2ray/v2ray-core" target="_blank" rel="noopener noreffer ">插件下载</a></p>
+<ul>
+<li>
+<p>制作启动项：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>Desktop Entry<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Name</span><span class="o">=</span>qv2ray
+</span></span><span class="line"><span class="cl"><span class="nv">Comment</span><span class="o">=</span>network ladder
+</span></span><span class="line"><span class="cl"><span class="nv">Exec</span><span class="o">=</span>/home/jack1024/Programs/Qv2ray/Qv2ray.v2.6.3.AppImage
+</span></span><span class="line"><span class="cl"><span class="nv">Icon</span><span class="o">=</span>/home/jack1024/Programs/Qv2ray/qv2ray.png
+</span></span><span class="line"><span class="cl"><span class="nv">Terminal</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>Application
+</span></span><span class="line"><span class="cl"><span class="nv">Categories</span><span class="o">=</span>Network<span class="p">;</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="主题美化">主题美化</h3>
+<ul>
+<li><a href="https://www.pling.com/s/Cinnamon/" target="_blank" rel="noopener noreffer ">Cinnamon主题</a>：选择Full Icon Themes 和 Cinnamon Themes分别下载图标包<strong>Papirus</strong>和主题包<strong>Adapta Colorpack Normal</strong></li>
+<li>在Gnome主题的GRUB Thmes中选一个开机引导的主题下载安装</li>
+<li>面板移到顶部，调整面板控件摆放</li>
+<li>安装<strong>扩展、小程序、桌面小工具</strong>等插件</li>
+<li>选一张好看的壁纸</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imggdfs.jpg"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imggdfs.jpg, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imggdfs.jpg 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imggdfs.jpg 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imggdfs.jpg"
+        title="Linux Mint美化后桌面" /></p>
+<h3 id="安装各种软件">安装各种软件</h3>
+<h4 id="vim简单配置">vim简单配置</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ~
+</span></span><span class="line"><span class="cl">vim .vimrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> nu
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">tabstop</span><span class="o">=</span><span class="m">4</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> nobackup
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> cursorline
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> ruler
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> autoindent
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">mouse</span><span class="o">=</span>c
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> showmode    
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> hlsearch
+</span></span></code></pre></div><h4 id="安装配置git">安装&amp;配置git</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global user.name <span class="s2">&#34;yangfanjack&#34;</span>
+</span></span><span class="line"><span class="cl">git config --global user.email <span class="s2">&#34;1144536063@qq.com&#34;</span>
+</span></span><span class="line"><span class="cl">ssh-keygen -t rsa      <span class="c1"># 生成两把钥匙</span>
+</span></span><span class="line"><span class="cl">ssh -T git@github.com  <span class="c1"># 验证ssh配置是否配置好</span>
+</span></span></code></pre></div><h4 id="安装postman">安装postman</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>Desktop Entry<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Name</span><span class="o">=</span>postman
+</span></span><span class="line"><span class="cl"><span class="nv">Comment</span><span class="o">=</span>API development
+</span></span><span class="line"><span class="cl"><span class="nv">Exec</span><span class="o">=</span>/home/jack1024/Programs/Postman/Postman
+</span></span><span class="line"><span class="cl"><span class="nv">Icon</span><span class="o">=</span>/home/jack1024/Programs/Postman/app/resources/app/assets/icon.png
+</span></span><span class="line"><span class="cl"><span class="nv">Terminal</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>Application
+</span></span><span class="line"><span class="cl"><span class="nv">Categories</span><span class="o">=</span>Network,Development<span class="p">;</span>
+</span></span></code></pre></div><h4 id="安装wireshark">安装wireshark</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用usermod命令将您自己添加到wirehark组</span>
+</span></span><span class="line"><span class="cl">sudo usermod -aG wireshark <span class="k">$(</span>whoami<span class="k">)</span>
+</span></span></code></pre></div><h4 id="安装picgo-core并配置">安装picgo-core并配置</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装nvm和nodejs</span>
+</span></span><span class="line"><span class="cl">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh <span class="p">|</span> bash
+</span></span><span class="line"><span class="cl">wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh <span class="p">|</span> bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nvm --version
+</span></span><span class="line"><span class="cl">nvm ls-remote
+</span></span><span class="line"><span class="cl">nvm install v12.18.0
+</span></span><span class="line"><span class="cl">nvm ls
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装gitee插件</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/jack1024/.config/Typora/picgo/linux
+</span></span><span class="line"><span class="cl">./picgo install gitee-uploader
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置picgo-core</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;picBed&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;current&#34;</span>: <span class="s2">&#34;gitee&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;uploader&#34;</span>: <span class="s2">&#34;gitee&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;gitee&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;repo&#34;</span>: <span class="s2">&#34;gitee用户名/仓库名&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;branch&#34;</span>: <span class="s2">&#34;master&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;token&#34;</span>: <span class="s2">&#34;你的私人令牌&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;path&#34;</span>: <span class="s2">&#34;img/  #你的仓库下的路径&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;customPath&#34;</span>: <span class="s2">&#34;default&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;customUrl&#34;</span>: <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;transformer&#34;</span>: <span class="s2">&#34;path&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;picgoPlugins&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;picgo-plugin-gitee-uploader&#34;</span>: <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>,
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h4 id="安装zsh--oh-my-zsh">安装zsh &amp; oh-my-zsh</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装zsh</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install zsh
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装oh-my-zsh</span>
+</span></span><span class="line"><span class="cl">curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh <span class="p">|</span> sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 移动配置文件到home</span>
+</span></span><span class="line"><span class="cl">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置zsh为默认shell</span>
+</span></span><span class="line"><span class="cl">chsh -s /bin/zsh
+</span></span><span class="line"><span class="cl"><span class="c1"># 优化zsh</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加nvm环境变量到.zshrc</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvm&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -s <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span>  <span class="c1"># This loads nvm</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -s <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion&#34;</span>  <span class="c1"># This loads nvm bash_completion</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># zsh速度优化</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Add default node to path</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.nvm/versions/node/v10.22.0/bin:<span class="nv">$PATH</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># load nvm</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvm&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[[</span> -s <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span> --no-use
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 插件安装</span>
+</span></span><span class="line"><span class="cl">apt install bat
+</span></span><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git clone git://github.com/zsh-users/zsh-autosuggestions <span class="nv">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git clone https://github.com/paulirish/git-open.git <span class="nv">$ZSH_CUSTOM</span>/plugins/git-open
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=(</span>其他的插件 zsh-autosuggestions zsh-syntax-highlighting git-open Z<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HIST_STAMPS</span><span class="o">=</span><span class="s2">&#34;yyyy-mm-dd&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.zshrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 对于powerline主题的字体要求,进入fonts后bash .install.sh</span>
+</span></span><span class="line"><span class="cl">https://github.com/powerline/fonts
+</span></span></code></pre></div><h4 id="安装powerlevel10k--zsh主题">安装Powerlevel10k  zsh主题</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载Powerlevel10k</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/romkatv/powerlevel10k.git <span class="nv">$ZSH_CUSTOM</span>/themes/powerlevel10k
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置.zshrc</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&#34;powerlevel10k/powerlevel10k&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装MesloLGS NF字体文件</span>
+</span></span><span class="line"><span class="cl">https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自定义主题</span>
+</span></span><span class="line"><span class="cl">p10k configure
+</span></span></code></pre></div><h4 id="安装wps缺失字体">安装wps缺失字体</h4>
+<p><a href="https://pan.baidu.com/s/1fn2sTNaqNmbK8BcS9iMSGw" target="_blank" rel="noopener noreffer ">字体下载地址</a>：密码n9xc</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo unzip wps_symbol_fonts.zip -d /usr/share/fonts/wps-office
+</span></span></code></pre></div><p>进入wps-office目录，一个一个地安装</p>
+<h3 id="配置各种环境">配置各种环境</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install openjdk-8-jdk gcc g++ cmake
+</span></span></code></pre></div><h4 id="安装mysql">安装mysql</h4>
+<p><a href="https://downloads.mysql.com/archives/community/" target="_blank" rel="noopener noreffer ">官网下载</a>：安装5.7.31</p>
+<p>解压，得到13个包，删除两个test包</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dpkg -i mysql-*.deb
+</span></span><span class="line"><span class="cl">sudo apt install -f
+</span></span><span class="line"><span class="cl">sudo dpkg -i mysql-*.deb
+</span></span><span class="line"><span class="cl">mysql -uroot -proot
+</span></span><span class="line"><span class="cl">show databases<span class="p">;</span>
+</span></span></code></pre></div><p>因为基于ubuntu20.04的mint20.1的默认mysql版本是mysql8，所以需要锁定版本</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 锁定软件包版本</span>
+</span></span><span class="line"><span class="cl">sudo apt-mark hold mysql-common
+</span></span><span class="line"><span class="cl">sudo apt-mark hold mysql-client
+</span></span><span class="line"><span class="cl">sudo apt-mark hold mysql-server
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查标记为锁定的包</span>
+</span></span><span class="line"><span class="cl">sudo apt-mark showhold
+</span></span><span class="line"><span class="cl"><span class="c1"># 接触锁定</span>
+</span></span><span class="line"><span class="cl">sudo apt-mark xxx
+</span></span></code></pre></div><h4 id="安装tomcat">安装tomcat</h4>
+<p><a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="noopener noreffer ">官网下载</a>：安装9.0.43</p>
+<p>解压后移动：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mv apache-tomcat-9.0.43 /opt/
+</span></span></code></pre></div><h4 id="安装maven">安装maven</h4>
+<p><a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener noreffer ">官网下载</a>：安装3.6.3</p>
+<p>解压后移动</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mv apache-maven-3.6.3 /opt/
+</span></span></code></pre></div><p>配置环境变量</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/profile.d
+</span></span><span class="line"><span class="cl">sudo vim maven.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">M2_HOME</span><span class="o">=</span>/opt/apache-maven-3.6.3
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span><span class="nv">$CLASSPATH</span>:<span class="nv">$M2_HOME</span>/lib
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$M2_HOME</span>/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> maven.sh
+</span></span></code></pre></div><p>拷贝setting.xml到~/.m2下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 修改respository--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;localRepository&gt;</span>/home/jack1024/.m2/repository<span class="nt">&lt;/localRepository&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 修改源--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;mirror&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;id&gt;</span>alimaven<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>aliyun maven<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;url&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mirror&gt;</span>
+</span></span></code></pre></div><p>IDEA和Clion配置</p>
+<ul>
+<li>大小写不敏感：Editor，General，Code Completion，取消Match case</li>
+<li>取消打开默认项目：Appearanc&amp;Behavior，System Settings，取消Reopen</li>
+<li>主题：Appearanc&amp;Behavior，Appearance，Theme</li>
+<li>编辑区主题：Editor，Color Scheme，Color Scheme Font</li>
+<li>字体：Editor，Font</li>
+<li>自动导包：Editor，General，Auto Import</li>
+<li>自动编译：Build，Compiler，Build Project Auto，Compile independent</li>
+</ul>
+<h2 id="软件">软件：</h2>
+<h3 id="日常">日常：</h3>
+<p>搜狗输入法：中文输入法</p>
+<p>edge：微软浏览器</p>
+<p>chrome：谷歌浏览器</p>
+<p>qv2ray：科学冲浪</p>
+<p>xdm：下载</p>
+<p>utools：让你效率倍增的快速启动软件</p>
+<p>每日英语听力：学英语</p>
+<p>网易云音乐：在线听歌</p>
+<p>1music：一个聚合听歌开源软件</p>
+<p>audacious：本地听歌</p>
+<p>gimp：图片处理</p>
+<p>shotcut：视频剪辑</p>
+<p>steam：游戏</p>
+<p>vlc：视频播放器</p>
+<p>telegram：加密聊天</p>
+<p>qq for linux：复古风qq</p>
+<p>wps：办公套件</p>
+<p>百度网盘：限速达人</p>
+<p>mindmaster：思维导图</p>
+<h3 id="开发">开发</h3>
+<p>clion：C/C++开发IDE</p>
+<p>idea：Java开发IDE</p>
+<p>dbeaver：数据库管理客户端</p>
+<p>filezilla：ftp客户端</p>
+<p>smartgit：git客户端</p>
+<p>typora：markdown笔记</p>
+<p>virtualbox：虚拟机</p>
+<p>vscode：强大拓展性文本编辑器</p>
+<p>wireshark：网络抓包</p>
+<p>zeal：离线文档</p>
+<p>ARDM：redis管理客户端</p>
+<p>postman：http调试</p>
+<h3 id="小工具">小工具</h3>
+<p>keepassXC：密码管理</p>
+<p>copyQ：剪切板历史</p>
+<p>caffeine：屏幕常亮</p>
+<p>keepassxc：密码管理</p>
+<p>新立得：apt包管理客户端</p>
+<p>Gparted：磁盘管理</p>
+<p>bleachbit：清理垃圾</p>
+<p>zsh：舒服的shell</p>
+<p>oh-my-zsh：zsh快速配置</p>
+<p>tldr：查看命令帮助文档</p>
+<p>htop：系统监视</p>
+<p>kdeconnect：电脑手机强大交互软件</p>
+<p>plank：dock栏</p>
+<p>obs-studio：录屏</p>
+<p>etcher：U盘镜像制作</p>
+<p>Qredshift：根据时区自动调整屏幕亮度，温感</p>
+<h2 id="环境">环境</h2>
+<p>jdk1.8</p>
+<p>gcc g++</p>
+<p>maven3.6.3</p>
+<p>mysql5.7</p>
+<p>cmake</p>
+<p>tomcat9</p>
+<p>nvm</p>
+<p>node</p>
+<h2 id="插件">插件</h2>
+<h3 id="扩展">扩展</h3>
+<p>watermark</p>
+<p>透明面板</p>
+<h3 id="小程序">小程序</h3>
+<p>Qredshift</p>
+<p>系统监视器</p>
+<h2 id="linux系统卸载">Linux系统卸载</h2>
+<p>在win10+linux双系统的环境下，如果要卸载linux系统，采用以下方式：</p>
+<ol>
+<li>进入win10系统，磁盘管理中直接清空linux的/分区和/home对应的磁盘分区</li>
+<li>如果安装linux系统时新建了linux的efi分区，在win10的磁盘管理工具中是删除不了的，推荐使用Genuis这款windows下的第三方磁盘管理软件来清除efi分区。</li>
+<li>如果安装linux系统时将linux的efi分区和win10的efi放在了一起，那么需要进行如下操作：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以管理员身份进入PowerShell</span>
+</span></span><span class="line"><span class="cl">diskpart <span class="c1">#进入diskpart</span>
+</span></span><span class="line"><span class="cl">list disk <span class="c1">#列出所有磁盘</span>
+</span></span><span class="line"><span class="cl"><span class="k">select</span> disk <span class="m">0</span> <span class="c1">#根据自己的情况选择efi分区对应的磁盘</span>
+</span></span><span class="line"><span class="cl">list partition <span class="c1">#列出该磁盘所有分区</span>
+</span></span><span class="line"><span class="cl"><span class="k">select</span> partition <span class="m">1</span> <span class="c1">#根据自己的情况选择efi分区对应的分区</span>
+</span></span><span class="line"><span class="cl">assign <span class="nv">letter</span><span class="o">=</span>p: <span class="c1">#为所选分区分配盘符p</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="c1">#退出diskpart</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p: <span class="c1">#进入p盘</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> efi <span class="c1">#进入efi文件夹，然后根据自己的情况删除相应的文件夹</span>
+</span></span></code></pre></div><ol start="4">
+<li>但是这个时候bios中还是有ubuntu的选项，可以通过easyUEFI或者Bootice来删除</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-03-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-title="我的Linux工作平台搭建" data-hashtags="Linux,Mint"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-title="我的Linux工作平台搭建"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-title="我的Linux工作平台搭建"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-title="我的Linux工作平台搭建"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/mint/">Mint</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="prev" rel="prev" title="旧手机搭建linux服务器"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>旧手机搭建linux服务器</a>
+            <a href="/posts/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/" class="next" rel="next" title="java基础快速回顾-中">java基础快速回顾-中<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,261 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Linux on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/linux/</link>
-    <description>Recent content in Linux on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 10 Mar 2023 21:42:52 +0800</lastBuildDate><atom:link href="http://yangfanjack.top/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Ubuntu Server安装软件记录</title>
-      <link>http://yangfanjack.top/post/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Fri, 10 Mar 2023 21:42:52 +0800</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
-      <description>Debian系统安装后的一些配置 CentOS社区版的死亡，不成熟的EulerOS，导致目前选择红帽系的Linux发行版不是一个好主意。还是老</description>
-    </item>
-    
-    <item>
-      <title>Euler Server安装软件记录</title>
-      <link>http://yangfanjack.top/post/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Fri, 10 Mar 2023 11:10:58 +0800</pubDate>
-      
-      <guid>http://yangfanjack.top/post/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
-      <description>MySQL MySQL官网下载RedHat版本的MySQL安装包：https://dev.mysql.com/downloads/mysql/ 按顺序安</description>
-    </item>
-    
-    <item>
-      <title>RPM打包初试</title>
-      <link>http://yangfanjack.top/post/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</link>
-      <pubDate>Wed, 01 Dec 2021 10:44:01 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</guid>
-      <description>rpm打包需要一个独立的打包目录 BUILD：编译rpm包的临时目录 BUILDROOT：编译后生成的软件临时安装目录 RPMS：最终生成的可安装</description>
-    </item>
-    
-    <item>
-      <title>实体机安装Arch</title>
-      <link>http://yangfanjack.top/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</link>
-      <pubDate>Mon, 14 Jun 2021 09:18:48 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</guid>
-      <description>准备： 机器：华硕飞行堡垒fx-60vm 第一系统：win10 Arch镜像 https://archlinux.org/download/ 镜像考录工具：Rufus U盘 安装系统 联网 1 2 3 4 5 6 7 8 9 10 11 12 13 14</description>
-    </item>
-    
-    <item>
-      <title>Arch入教路</title>
-      <link>http://yangfanjack.top/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</link>
-      <pubDate>Wed, 17 Mar 2021 10:29:41 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/arch%E5%85%A5%E6%95%99%E8%B7%AF/</guid>
-      <description>我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kub</description>
-    </item>
-    
-    <item>
-      <title>我的Linux工作平台搭建</title>
-      <link>http://yangfanjack.top/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Sat, 06 Mar 2021 09:35:39 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</guid>
-      <description>Mint LInux安装概述 rufus录入iso镜像到U盘 进入bios界面调节启动位置为U盘 开机进入安装界面，下一步&amp;hellip; efi分区自动放</description>
-    </item>
-    
-    <item>
-      <title>旧手机搭建linux服务器</title>
-      <link>http://yangfanjack.top/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
-      <pubDate>Fri, 19 Feb 2021 20:43:01 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
-      <description>硬件&amp;amp;软件准备： 硬件： 一台已root的安卓手机 软件： Linux Deploy：https://github.com/meefik/linuxd</description>
-    </item>
-    
-    <item>
-      <title>docker进阶指南</title>
-      <link>http://yangfanjack.top/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</link>
-      <pubDate>Fri, 20 Nov 2020 15:51:50 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</guid>
-      <description>docker可视化 1 2 3 4 # Portainer:利用Portainer可以轻松构建，管理及维护Docker环境，它基于容器安装，高效部署 docker run</description>
-    </item>
-    
-    <item>
-      <title>linux网络配置</title>
-      <link>http://yangfanjack.top/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
-      <pubDate>Fri, 20 Nov 2020 10:02:31 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
-      <description>网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0</description>
-    </item>
-    
-    <item>
-      <title>linux服务器搭建ssm项目环境</title>
-      <link>http://yangfanjack.top/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
-      <pubDate>Thu, 19 Nov 2020 20:42:26 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
-      <description>购买服务器 阿里云云翼计划：9.5块钱/月 配置环境 jdk环境 1 2 yum -y install java-1.8.0-openjdk.x86_64 java -version mysql环境 安装mysql 1 2 3 4 cd /tmp wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm rpm -ivh mysql-community-release-el7-5.noarch.rpm yum install mysql mysql-server mysql-devel -y 启动</description>
-    </item>
-    
-    <item>
-      <title>Docker入门指南</title>
-      <link>http://yangfanjack.top/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
-      <pubDate>Thu, 19 Nov 2020 18:09:16 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
-      <description>docker介绍 下载docker依赖环境 1 2 想安装Docker，需要先将依赖的环境全部下载下来，就像Maven依赖JDK一样 yum -y install yum-utils device-mapper-persistent-data lvm2 指定</description>
-    </item>
-    
-    <item>
-      <title>linux备份与恢复</title>
-      <link>http://yangfanjack.top/post/linux%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
-      <pubDate>Wed, 11 Mar 2020 17:26:23 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
-      <description>备份概述 Linux中需要备份的数据：/root/目录，/home/目录，/var/spool/mail/目录，/etc/目录，其他目录 安装的</description>
-    </item>
-    
-    <item>
-      <title>linux启动管理</title>
-      <link>http://yangfanjack.top/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Wed, 11 Mar 2020 17:26:08 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/</guid>
-      <description>CentOS 6的启动管理 运行级别：7个级别 runlevel：查看运行级别 init 运行级别：改变当前运行级别 vim /etc/inittab：永久修改系统默认运行级</description>
-    </item>
-    
-    <item>
-      <title>linux日志管理</title>
-      <link>http://yangfanjack.top/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Tue, 10 Mar 2020 22:54:07 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</guid>
-      <description>日志管理简介 百度百科简介：系统日志是记录系统中硬件、软件和系统问题的信息，同时还可以监视系统中发生的事件。用户可以通过它来检查错误发生的原因</description>
-    </item>
-    
-    <item>
-      <title>linux系统管理</title>
-      <link>http://yangfanjack.top/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Tue, 10 Mar 2020 21:21:48 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
-      <description>进程管理的作用：（下面优先级由高到低） 判断服务器的健康状态 查看系统中的所有进程 杀死进程 进程查看 ps aux：查看系统中所有进程，查看BSD操作系</description>
-    </item>
-    
-    <item>
-      <title>linux的服务管理</title>
-      <link>http://yangfanjack.top/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Tue, 10 Mar 2020 17:56:48 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/</guid>
-      <description>服务简介与分类 Linux服务分类 RPM包默认安装的服务 独立的服务 基于xinetd（超级守护进程）服务 源码包安装的服务（第三方源码包） 服务的启</description>
-    </item>
-    
-    <item>
-      <title>shell编程</title>
-      <link>http://yangfanjack.top/post/shell%E7%BC%96%E7%A8%8B/</link>
-      <pubDate>Fri, 06 Mar 2020 22:51:56 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/shell%E7%BC%96%E7%A8%8B/</guid>
-      <description>&lt;h1 id=&#34;基础正则表达式&#34;&gt;基础正则表达式&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;正则表达式&lt;/strong&gt; 和 &lt;strong&gt;通配符&lt;/strong&gt; 区别：&lt;/p&gt;
-&lt;p&gt;通配符：在系统中搜索匹配文件名，是完全匹配。支持命令ls，find，cp，他们不认识正则表达式&lt;/p&gt;
-&lt;p&gt;正则表达式：用来在文件中匹配符合条件的字符串，是包含匹配。支持命令：grep，awk，sed&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-    
-    <item>
-      <title>shell基础</title>
-      <link>http://yangfanjack.top/post/shell%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Fri, 06 Mar 2020 22:51:25 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/shell%E5%9F%BA%E7%A1%80/</guid>
-      <description>shell就是Linux中的命令解释器，说白了，就是一个命令行的交互界面。与Linux不同Windows中就是图形的交互界面。shell还是</description>
-    </item>
-    
-    <item>
-      <title>linux的文件系统管理</title>
-      <link>http://yangfanjack.top/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Fri, 06 Mar 2020 20:30:32 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
-      <description>分区和系统文件 对于硬盘分区形式是MBR的，主分区+扩展分区&amp;lt;=4个。如果是IDE硬盘，Linux最多支持59个逻辑分区；如果是SCSI</description>
-    </item>
-    
-    <item>
-      <title>linux权限管理</title>
-      <link>http://yangfanjack.top/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Fri, 06 Mar 2020 10:00:13 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
-      <description>ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要</description>
-    </item>
-    
-    <item>
-      <title>linux中的用户管理</title>
-      <link>http://yangfanjack.top/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Thu, 05 Mar 2020 21:10:44 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</guid>
-      <description>用户配置文件 越是安全性要求高的服务器越需要对用户权限等级制度和服务器操作规范有很高的要求，linux中主要通过用户配置文件来查看和修改用户信</description>
-    </item>
-    
-    <item>
-      <title>linux软件包管理</title>
-      <link>http://yangfanjack.top/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Thu, 05 Mar 2020 12:20:07 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/</guid>
-      <description>软件包管理简介 ​ 软件包分类： 源码包：包括脚本安装包 二进制包：RPM包，系统默认包（ubuntu中是deb包） 源码包的优点 开源 可以自由选择所需</description>
-    </item>
-    
-    <item>
-      <title>强大的文本编辑器:Vim</title>
-      <link>http://yangfanjack.top/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/</link>
-      <pubDate>Thu, 05 Mar 2020 10:41:52 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/</guid>
-      <description>Vim是linux中的一款使用最广的文本编辑器，全屏幕编辑器。 可以建立，编辑，显示文本文件。 它没有菜单只有命令. 三种模式 命令模式 插入模式：后</description>
-    </item>
-    
-    <item>
-      <title>linux常用命令</title>
-      <link>http://yangfanjack.top/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Wed, 04 Mar 2020 15:17:31 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
-      <description>Linux作为一个网络操作系统，命令行才是王道，而不是图形。 Linux系统管理的命令是它正常运行的核心，与之前的DOS命令类似。 linux命</description>
-    </item>
-    
-    <item>
-      <title>linux系统简介和安装</title>
-      <link>http://yangfanjack.top/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/</link>
-      <pubDate>Wed, 04 Mar 2020 10:41:10 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/</guid>
-      <description>UNIX和Linux发展史 ​ 1965年，贝尔实验室：MULTICS计划 ​ 69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统 ​</description>
-    </item>
-    
-    <item>
-      <title>makefile基础语法</title>
-      <link>http://yangfanjack.top/post/makefile%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
-      <pubDate>Tue, 03 Mar 2020 16:53:57 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/makefile%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
-      <description>C/C++文件到可执行文件的过程 1 2 3 4 gcc -E xx.c -o xx.i 预处理 gcc -s xx.i -o xx.s 编译 gcc -c xx.s -o xx.o 汇编 gcc xx.o -o xx 链接 ​ 对于单个文件的编译，可以浓缩为一条命令 1 gcc</description>
-    </item>
-    
-    <item>
-      <title>git基础</title>
-      <link>http://yangfanjack.top/post/git%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Tue, 03 Mar 2020 11:53:47 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/git%E5%9F%BA%E7%A1%80/</guid>
-      <description>git的安装 ​ 官网下载后，在cmd中输入git验证是否安装完成 git的基本配置 1 2 git config --global user.name &amp;#34;name&amp;#34; git config --global user.email &amp;#34;email&amp;#34; ​ 需要注意的是可以有三种参数，loca</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/linux/</link>
+        <description>Linux - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Fri, 10 Mar 2023 21:42:52 &#43;0800</lastBuildDate><atom:link href="http://yangfanjack.top/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>Ubuntu Server安装软件记录</title>
+    <link>http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
+    <pubDate>Fri, 10 Mar 2023 21:42:52 &#43;0800</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
+    <description><![CDATA[Debian系统安装后的一些配置 CentOS社区版的死亡，不成熟的EulerOS，导致目前选择红帽系的Linux发行版不是一个好主意。还是老]]></description>
+</item>
+<item>
+    <title>Euler Server安装软件记录</title>
+    <link>http://yangfanjack.top/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
+    <pubDate>Fri, 10 Mar 2023 11:10:58 &#43;0800</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
+    <description><![CDATA[MySQL MySQL官网下载RedHat版本的MySQL安装包：https://dev.mysql.com/downloads/mysql/ 按顺序安]]></description>
+</item>
+<item>
+    <title>RPM打包初试</title>
+    <link>http://yangfanjack.top/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</link>
+    <pubDate>Wed, 01 Dec 2021 10:44:01 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</guid>
+    <description><![CDATA[rpm打包需要一个独立的打包目录 BUILD：编译rpm包的临时目录 BUILDROOT：编译后生成的软件临时安装目录 RPMS：最终生成的可安装]]></description>
+</item>
+<item>
+    <title>实体机安装Arch</title>
+    <link>http://yangfanjack.top/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</link>
+    <pubDate>Mon, 14 Jun 2021 09:18:48 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/</guid>
+    <description><![CDATA[准备： 机器：华硕飞行堡垒fx-60vm 第一系统：win10 Arch镜像 https://archlinux.org/download/ 镜像考录工具：Rufus U盘 安装系统 联网 1 2 3 4 5 6 7 8 9 10 11 12 13 14]]></description>
+</item>
+<item>
+    <title>Arch入教路</title>
+    <link>http://yangfanjack.top/arch%E5%85%A5%E6%95%99%E8%B7%AF/</link>
+    <pubDate>Wed, 17 Mar 2021 10:29:41 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/arch%E5%85%A5%E6%95%99%E8%B7%AF/</guid>
+    <description><![CDATA[我的linux入门是redhat系，跟着兄弟连用的centos。之后一直用的debian系，包括桌面日用，ubuntu，deepin，kub]]></description>
+</item>
+<item>
+    <title>我的Linux工作平台搭建</title>
+    <link>http://yangfanjack.top/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</link>
+    <pubDate>Sat, 06 Mar 2021 09:35:39 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E6%88%91%E7%9A%84linux%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/</guid>
+    <description><![CDATA[Mint LInux安装概述 rufus录入iso镜像到U盘 进入bios界面调节启动位置为U盘 开机进入安装界面，下一步&hellip; efi分区自动放]]></description>
+</item>
+<item>
+    <title>旧手机搭建linux服务器</title>
+    <link>http://yangfanjack.top/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <pubDate>Fri, 19 Feb 2021 20:43:01 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E6%97%A7%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+    <description><![CDATA[硬件&amp;软件准备： 硬件： 一台已root的安卓手机 软件： Linux Deploy：https://github.com/meefik/linuxd]]></description>
+</item>
+<item>
+    <title>docker进阶指南</title>
+    <link>http://yangfanjack.top/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</link>
+    <pubDate>Fri, 20 Nov 2020 15:51:50 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</guid>
+    <description><![CDATA[docker可视化 1 2 3 4 # Portainer:利用Portainer可以轻松构建，管理及维护Docker环境，它基于容器安装，高效部署 docker run]]></description>
+</item>
+<item>
+    <title>linux网络配置</title>
+    <link>http://yangfanjack.top/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
+    <pubDate>Fri, 20 Nov 2020 10:02:31 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
+    <description><![CDATA[网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0]]></description>
+</item>
+<item>
+    <title>linux服务器搭建ssm项目环境</title>
+    <link>http://yangfanjack.top/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Thu, 19 Nov 2020 20:42:26 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[购买服务器 阿里云云翼计划：9.5块钱/月 配置环境 jdk环境 1 2 yum -y install java-1.8.0-openjdk.x86_64 java -version mysql环境 安装mysql 1 2 3 4 cd /tmp wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm rpm -ivh mysql-community-release-el7-5.noarch.rpm yum install mysql mysql-server mysql-devel -y 启动]]></description>
+</item>
+</channel>
 </rss>

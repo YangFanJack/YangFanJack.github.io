@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Ubuntu Server安装软件记录 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="Ubuntu Server安装软件记录" />
+<meta property="og:description" content="Debian系统安装后的一些配置 CentOS社区版的死亡，不成熟的EulerOS，导致目前选择红帽系的Linux发行版不是一个好主意。还是老" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-10T21:42:52+08:00" />
+<meta property="article:modified_time" content="2023-03-10T21:42:52+08:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="Ubuntu Server安装软件记录"/>
+<meta name="twitter:description" content="Debian系统安装后的一些配置 CentOS社区版的死亡，不成熟的EulerOS，导致目前选择红帽系的Linux发行版不是一个好主意。还是老"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" /><link rel="prev" href="http://yangfanjack.top/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" /><link rel="next" href="http://yangfanjack.top/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ubuntu Server安装软件记录",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95\/"
+        },"genre": "posts","keywords": "Linux","wordcount":  1543 ,
+        "url": "http:\/\/yangfanjack.top\/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95\/","datePublished": "2023-03-10T21:42:52+08:00","dateModified": "2023-03-10T21:42:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Ubuntu Server安装软件记录</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>实用工具</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-10">2023-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1543 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#debian系统安装后的一些配置">Debian系统安装后的一些配置</a></li>
+    <li><a href="#hugo部署">Hugo部署</a></li>
+    <li><a href="#安装mysql">安装MySQL</a></li>
+    <li><a href="#安装docker">安装docker</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="debian系统安装后的一些配置">Debian系统安装后的一些配置</h1>
+<p>CentOS社区版的死亡，不成熟的EulerOS，导致目前选择红帽系的Linux发行版不是一个好主意。还是老老实实用Debian吧&hellip;</p>
+<ol>
+<li>配置软件源</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim /etc/apt/sources.list
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy main restricted
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-updates main restricted
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy universe
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-updates universe
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy multiverse
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-updates multiverse
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-backports main restricted universe multiverse
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-security main restricted
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-security universe
+</span></span><span class="line"><span class="cl">deb http://repo.huaweicloud.com/ubuntu jammy-security multiverse
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">apt upgrade
+</span></span><span class="line"><span class="cl">apt update
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="hugo部署">Hugo部署</h1>
+<ol>
+<li>安装git</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install git
+</span></span><span class="line"><span class="cl">git config --global user.name <span class="s2">&#34;yangfanjack&#34;</span>
+</span></span><span class="line"><span class="cl">git config --global user.email <span class="s2">&#34;1144536063@qq.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建git用户</span>
+</span></span><span class="line"><span class="cl">adduser git
+</span></span><span class="line"><span class="cl">apt install sudo
+</span></span><span class="line"><span class="cl">chmod <span class="m">740</span> /etc/sudoers
+</span></span><span class="line"><span class="cl">vim /etc/sudoers
+</span></span><span class="line"><span class="cl">root    <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span>   ALL
+</span></span><span class="line"><span class="cl">git     <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span>   ALL
+</span></span><span class="line"><span class="cl">chmod <span class="m">400</span> /etc/sudoers
+</span></span><span class="line"><span class="cl">sudo passwd git
+</span></span><span class="line"><span class="cl">su - git
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置SSH认证，将本地计算机的SSH公匙加进去</span>
+</span></span><span class="line"><span class="cl">mkdir ~/.ssh
+</span></span><span class="line"><span class="cl">vim ~/.ssh/authorized_keys <span class="c1">#粘贴进去</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">700</span> .ssh
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> .ssh/authorized_keys
+</span></span><span class="line"><span class="cl"><span class="c1">#本机验证</span>
+</span></span><span class="line"><span class="cl">ssh -v git@114.116.115.171
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir /home/git/blog/hugo
+</span></span><span class="line"><span class="cl">mkdir /home/git/blog/repo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/git/blog/repo
+</span></span><span class="line"><span class="cl">git init --bare hugo.git
+</span></span><span class="line"><span class="cl"><span class="c1"># Git钩子配置</span>
+</span></span><span class="line"><span class="cl">vim /home/git/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">git --work-tree<span class="o">=</span>/home/git/blog/hugo --git-dir<span class="o">=</span>/home/git/blog/repo/hugo.git checkout -f
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo chown -R git:git /home/git/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl">sudo chmod +x /home/git/blog/repo/hugo.git/hooks/post-receive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Nginx配置文件修改</span>
+</span></span><span class="line"><span class="cl">user git
+</span></span><span class="line"><span class="cl"><span class="c1"># 本地git项目修改</span>
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git remote add origin git@114.116.115.171:/home/git/blog/repo/hugo.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>安装nginx</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install nginx
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> nginx
+</span></span><span class="line"><span class="cl">systemctl start nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改/etc/nginx/nginx.conf</span>
+</span></span><span class="line"><span class="cl">user git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改/etc/nginx/sites-enabled/default</span>
+</span></span><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        listen 80<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        listen <span class="o">[</span>::<span class="o">]</span>:80<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># SSL configuration</span>
+</span></span><span class="line"><span class="cl">        listen <span class="m">443</span> ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        listen <span class="o">[</span>::<span class="o">]</span>:443 ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        server_name yangfanjack.top<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        root /home/git/blog/hugo<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_certificate <span class="s2">&#34;/etc/nginx/cert/server.crt&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_certificate_key <span class="s2">&#34;/etc/nginx/cert/server.key&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_session_cache shared:SSL:1m<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_session_timeout 10m<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_ciphers DHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_protocols TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        ssl_prefer_server_ciphers on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        error_page <span class="m">404</span> /404.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">location</span> <span class="o">=</span> /40x.html<span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        error_page <span class="m">500</span> <span class="m">502</span> <span class="m">503</span> <span class="m">504</span> /50x.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">location</span> <span class="o">=</span> /50x.html<span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Add index.php to the list if you are using PHP</span>
+</span></span><span class="line"><span class="cl">        index index.html index.htm index.nginx-debian.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 华为云下载SSL证书放到服务器/etc/nginx/cert文件夹内</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="安装mysql">安装MySQL</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install mysql-server
+</span></span><span class="line"><span class="cl">apt install mysql-client
+</span></span><span class="line"><span class="cl">mysql_secure_installation
+</span></span><span class="line"><span class="cl"><span class="c1"># 上面命令如果设置密码陷入死循环，执行：</span>
+</span></span><span class="line"><span class="cl">alter user <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;localhost&#39;</span> identified with mysql_native_password by <span class="s1">&#39;密码&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl status mysql.service
+</span></span><span class="line"><span class="cl">systemctl start mysql.service
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> mysql.service
+</span></span><span class="line"><span class="cl">systemctl disable mysql.service
+</span></span><span class="line"><span class="cl">systemctl stop mysql.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># mysql的配置文件,开启远程登录</span>
+</span></span><span class="line"><span class="cl">vim /etc/mysql/mysql.conf.d/mysqld.cnf
+</span></span><span class="line"><span class="cl"><span class="c1"># 找到bind-address = 127.0.0.1这一行,改为bind-address = 0.0.0.0即可或简单一点注释掉也行，重启生效</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MySQL用户管理</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># mysql8 初次安装后，需要先通过cat /var/log/mysqld.log | grep password 命令查看密码，修改密码时，需要 符合长度，且含有数字、小写或大写字母、特殊字符</span>
+</span></span><span class="line"><span class="cl">mysql -uroot -p
+</span></span><span class="line"><span class="cl">alter user <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;localhost&#39;</span> identified by <span class="s1">&#39;这里填你要的密码&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建用户</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># username：你将创建的用户名</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># host：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># password：该用户的登陆密码，密码可以为空，如果为空则该用户可以不需要密码登陆服务器</span>
+</span></span><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span> IDENTIFIED BY <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 远程登录</span>
+</span></span><span class="line"><span class="cl">mysql -u <span class="nb">test</span> -h 115.28.203.224 -p
+</span></span><span class="line"><span class="cl"><span class="c1"># 用户授权</span>
+</span></span><span class="line"><span class="cl">GRANT privileges ON databasename.tablename TO <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意:用以上命令授权的用户不能给其它用户授权，如果想让被授权的用户可以将他的拥有的权限授给其他用户，用以下命令</span>
+</span></span><span class="line"><span class="cl">GRANT privileges ON databasename.tablename TO <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span> WITH GRANT OPTION<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 刷新授权</span>
+</span></span><span class="line"><span class="cl">flush privileges<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 更改用户密码</span>
+</span></span><span class="line"><span class="cl">ALTER USER <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span> IDENTIFIED BY <span class="s1">&#39;password&#39;</span> PASSWORD EXPIRE NEVER<span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="c1"># 撤销用户权限</span>
+</span></span><span class="line"><span class="cl">REVOKE privileges ON databasename.tablename FROM <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除用户</span>
+</span></span><span class="line"><span class="cl">DROP USER <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询用户表</span>
+</span></span><span class="line"><span class="cl">use mysql<span class="p">;</span>
+</span></span><span class="line"><span class="cl">show grants <span class="k">for</span> <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看加密规则</span>
+</span></span><span class="line"><span class="cl"><span class="k">select</span> Host,User,plugin from mysql.user<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改加密方式</span>
+</span></span><span class="line"><span class="cl">ALTER USER <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span> IDENTIFIED WITH mysql_native_password BY <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除MySQL</span>
+</span></span><span class="line"><span class="cl">systemctl stop mysql.service
+</span></span><span class="line"><span class="cl">apt remove --purge mysql-*
+</span></span><span class="line"><span class="cl">apt autoremove
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询是否有残余,如果还存在一些依赖，则继续用“apt remove 依赖包名称”命令删除；</span>
+</span></span><span class="line"><span class="cl">dpkg --list <span class="p">|</span> grep mysql
+</span></span><span class="line"><span class="cl"><span class="c1"># 确认删除完整后，清理残余文件：</span>
+</span></span><span class="line"><span class="cl">dpkg -l <span class="p">|</span>grep ^rc<span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span>sudo xargs dpkg -P
+</span></span><span class="line"><span class="cl">sudo rm -rf /etc/mysql
+</span></span><span class="line"><span class="cl">sudo rm -rf /var/lib/mysql
+</span></span><span class="line"><span class="cl"><span class="c1">#最后用 dpkg -l | grep mysql 检查，如无返回即干净卸载</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="安装docker">安装docker</h1>
+<p><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank" rel="noopener noreffer ">官方安装教程</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 删除旧版本</span>
+</span></span><span class="line"><span class="cl">apt remove docker docker-engine docker.io containerd runc
+</span></span><span class="line"><span class="cl">rm -rf /var/lib/docker
+</span></span><span class="line"><span class="cl">rm -rf /var/lib/containerd
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装证书</span>
+</span></span><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install ca-certificates <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    curl <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    gnupg <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    lsb_release
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加Docker的官方GPG密钥：</span>
+</span></span><span class="line"><span class="cl">mkdir -m <span class="m">0755</span> -p /etc/apt/keyrings
+</span></span><span class="line"><span class="cl">curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg <span class="p">|</span> sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="s2">&#34;deb [arch=</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&#34;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装docker engine community</span>
+</span></span><span class="line"><span class="cl">chmod a+r /etc/apt/keyrings/docker.gpg
+</span></span><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者安装特定版本</span>
+</span></span><span class="line"><span class="cl">apt-cache madison docker-ce
+</span></span><span class="line"><span class="cl">apt install docker-ce<span class="o">=</span>&lt;VERSION_STRING&gt; docker-ce-cli<span class="o">=</span>&lt;VERSION_STRING&gt; containerd.io
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置阿里云镜像加速</span>
+</span></span><span class="line"><span class="cl">vim /etc/docker/daemon.json
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;registry-mirrors&#34;</span>: <span class="o">[</span><span class="s2">&#34;https://axvfsf7e.mirror.aliyuncs.com&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">systemctl daemon-reload
+</span></span><span class="line"><span class="cl">systemctl restart docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试Docker是否安装成功</span>
+</span></span><span class="line"><span class="cl">docker run hello-world
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-03-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" data-title="Ubuntu Server安装软件记录" data-hashtags="Linux"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" data-title="Ubuntu Server安装软件记录"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" data-title="Ubuntu Server安装软件记录"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" data-title="Ubuntu Server安装软件记录"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/" class="prev" rel="prev" title="Euler Server安装软件记录"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Euler Server安装软件记录</a>
+            <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0/" class="next" rel="next" title="计算机组成原理概记">计算机组成原理概记<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

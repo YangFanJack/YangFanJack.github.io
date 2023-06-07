@@ -1,47 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Spring on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/spring/</link>
-    <description>Recent content in Spring on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Thu, 21 Jan 2021 22:40:31 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/spring/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>SSM框架-SpringMVC</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</link>
-      <pubDate>Thu, 21 Jan 2021 22:40:31 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</guid>
-      <description>SpringMVC的简介 SpringMVC概述 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于SpringFrameWork</description>
-    </item>
-    
-    <item>
-      <title>SSM框架-Spring</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-spring/</link>
-      <pubDate>Wed, 20 Jan 2021 22:40:22 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-spring/</guid>
-      <description>Spring简介 Spring前身：EJB框架 Spring优点 方便解耦，简化开发：IOC容器使对象的依赖关系由Spring控制，编程者更专注于</description>
-    </item>
-    
-    <item>
-      <title>linux服务器搭建ssm项目环境</title>
-      <link>http://yangfanjack.top/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
-      <pubDate>Thu, 19 Nov 2020 20:42:26 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
-      <description>购买服务器 阿里云云翼计划：9.5块钱/月 配置环境 jdk环境 1 2 yum -y install java-1.8.0-openjdk.x86_64 java -version mysql环境 安装mysql 1 2 3 4 cd /tmp wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm rpm -ivh mysql-community-release-el7-5.noarch.rpm yum install mysql mysql-server mysql-devel -y 启动</description>
-    </item>
-    
-    <item>
-      <title>SSM框架整合</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</link>
-      <pubDate>Mon, 19 Oct 2020 12:31:09 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</guid>
-      <description>​ Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Desig</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Spring - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/spring/</link>
+        <description>Spring - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Thu, 21 Jan 2021 22:40:31 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/spring/" rel="self" type="application/rss+xml" /><item>
+    <title>SSM框架-SpringMVC</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-springmvc/</link>
+    <pubDate>Thu, 21 Jan 2021 22:40:31 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-springmvc/</guid>
+    <description><![CDATA[SpringMVC的简介 SpringMVC概述 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于SpringFrameWork]]></description>
+</item>
+<item>
+    <title>SSM框架-Spring</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-spring/</link>
+    <pubDate>Wed, 20 Jan 2021 22:40:22 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-spring/</guid>
+    <description><![CDATA[Spring简介 Spring前身：EJB框架 Spring优点 方便解耦，简化开发：IOC容器使对象的依赖关系由Spring控制，编程者更专注于]]></description>
+</item>
+<item>
+    <title>linux服务器搭建ssm项目环境</title>
+    <link>http://yangfanjack.top/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Thu, 19 Nov 2020 20:42:26 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[购买服务器 阿里云云翼计划：9.5块钱/月 配置环境 jdk环境 1 2 yum -y install java-1.8.0-openjdk.x86_64 java -version mysql环境 安装mysql 1 2 3 4 cd /tmp wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm rpm -ivh mysql-community-release-el7-5.noarch.rpm yum install mysql mysql-server mysql-devel -y 启动]]></description>
+</item>
+<item>
+    <title>SSM框架整合</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</link>
+    <pubDate>Mon, 19 Oct 2020 12:31:09 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</guid>
+    <description><![CDATA[​ Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Desig]]></description>
+</item>
+</channel>
 </rss>

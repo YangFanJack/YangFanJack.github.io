@@ -1,29 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>美化 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E7%BE%8E%E5%8C%96/</link>
-    <description>Recent content in 美化 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 30 Mar 2022 08:27:58 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E7%BE%8E%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>win10壁纸bingtoday</title>
-      <link>http://yangfanjack.top/post/win10%E5%A3%81%E7%BA%B8bingtoday/</link>
-      <pubDate>Wed, 30 Mar 2022 08:27:58 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/win10%E5%A3%81%E7%BA%B8bingtoday/</guid>
-      <description>注册表指定壁纸路径 WIN+R打开运行对话框：输入regedit打开注册表 到达路径：计算机\HKEY_CURRENT_USER\Softwar</description>
-    </item>
-    
-    <item>
-      <title>Win10桌面美化</title>
-      <link>http://yangfanjack.top/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</link>
-      <pubDate>Wed, 11 Mar 2020 19:42:16 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</guid>
-      <description>先放上一张我的桌面： 前言：Windows操作系统经过几十年的发展，到目前已经相当成熟，在个人桌面操作系统中也是处于霸主地位，但是对于我而言，</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>美化 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E7%BE%8E%E5%8C%96/</link>
+        <description>美化 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Wed, 30 Mar 2022 08:27:58 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E7%BE%8E%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+    <title>win10壁纸bingtoday</title>
+    <link>http://yangfanjack.top/win10%E5%A3%81%E7%BA%B8bingtoday/</link>
+    <pubDate>Wed, 30 Mar 2022 08:27:58 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/win10%E5%A3%81%E7%BA%B8bingtoday/</guid>
+    <description><![CDATA[注册表指定壁纸路径 WIN+R打开运行对话框：输入regedit打开注册表 到达路径：计算机\HKEY_CURRENT_USER\Softwar]]></description>
+</item>
+<item>
+    <title>Win10桌面美化</title>
+    <link>http://yangfanjack.top/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</link>
+    <pubDate>Wed, 11 Mar 2020 19:42:16 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</guid>
+    <description><![CDATA[先放上一张我的桌面： 前言：Windows操作系统经过几十年的发展，到目前已经相当成熟，在个人桌面操作系统中也是处于霸主地位，但是对于我而言，]]></description>
+</item>
+</channel>
 </rss>

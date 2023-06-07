@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>微服务 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
-    <description>Recent content in 微服务 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 21 Nov 2020 13:09:52 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Martin Fowler关于微服务架构的论文译文</title>
-      <link>http://yangfanjack.top/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</link>
-      <pubDate>Sat, 21 Nov 2020 13:09:52 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</guid>
-      <description>中文译文地址 Martin Flower原论文地址</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>微服务 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+        <description>微服务 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Sat, 21 Nov 2020 13:09:52 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="self" type="application/rss+xml" /><item>
+    <title>Martin Fowler关于微服务架构的论文译文</title>
+    <link>http://yangfanjack.top/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</link>
+    <pubDate>Sat, 21 Nov 2020 13:09:52 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</guid>
+    <description><![CDATA[中文译文地址 Martin Flower原论文地址]]></description>
+</item>
+</channel>
 </rss>

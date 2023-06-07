@@ -1,164 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>JavaWeb on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/javaweb/</link>
-    <description>Recent content in JavaWeb on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Thu, 12 Aug 2021 21:30:04 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/javaweb/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>shiro权限管理</title>
-      <link>http://yangfanjack.top/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Thu, 12 Aug 2021 21:30:04 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
-      <description>shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。 只要有人参与的系统都需要进行权</description>
-    </item>
-    
-    <item>
-      <title>javaWeb三大组件</title>
-      <link>http://yangfanjack.top/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</link>
-      <pubDate>Tue, 16 Mar 2021 10:51:26 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</guid>
-      <description>Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦</description>
-    </item>
-    
-    <item>
-      <title>SSM框架-Mybatis</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-mybatis/</link>
-      <pubDate>Fri, 22 Jan 2021 22:40:39 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-mybatis/</guid>
-      <description>开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下： 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成</description>
-    </item>
-    
-    <item>
-      <title>SSM框架-SpringMVC</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</link>
-      <pubDate>Thu, 21 Jan 2021 22:40:31 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</guid>
-      <description>SpringMVC的简介 SpringMVC概述 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于SpringFrameWork</description>
-    </item>
-    
-    <item>
-      <title>SSM框架-Spring</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-spring/</link>
-      <pubDate>Wed, 20 Jan 2021 22:40:22 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-spring/</guid>
-      <description>Spring简介 Spring前身：EJB框架 Spring优点 方便解耦，简化开发：IOC容器使对象的依赖关系由Spring控制，编程者更专注于</description>
-    </item>
-    
-    <item>
-      <title>Martin Fowler关于微服务架构的论文译文</title>
-      <link>http://yangfanjack.top/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</link>
-      <pubDate>Sat, 21 Nov 2020 13:09:52 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</guid>
-      <description>中文译文地址 Martin Flower原论文地址</description>
-    </item>
-    
-    <item>
-      <title>linux网络配置</title>
-      <link>http://yangfanjack.top/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
-      <pubDate>Fri, 20 Nov 2020 10:02:31 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
-      <description>网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0</description>
-    </item>
-    
-    <item>
-      <title>linux服务器搭建ssm项目环境</title>
-      <link>http://yangfanjack.top/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
-      <pubDate>Thu, 19 Nov 2020 20:42:26 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
-      <description>购买服务器 阿里云云翼计划：9.5块钱/月 配置环境 jdk环境 1 2 yum -y install java-1.8.0-openjdk.x86_64 java -version mysql环境 安装mysql 1 2 3 4 cd /tmp wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm rpm -ivh mysql-community-release-el7-5.noarch.rpm yum install mysql mysql-server mysql-devel -y 启动</description>
-    </item>
-    
-    <item>
-      <title>SSM框架整合</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</link>
-      <pubDate>Mon, 19 Oct 2020 12:31:09 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</guid>
-      <description>​ Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Desig</description>
-    </item>
-    
-    <item>
-      <title>javaWeb核心:servlet细节</title>
-      <link>http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</link>
-      <pubDate>Wed, 25 Mar 2020 16:42:00 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</guid>
-      <description>HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间</description>
-    </item>
-    
-    <item>
-      <title>linux启动管理</title>
-      <link>http://yangfanjack.top/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Wed, 11 Mar 2020 17:26:08 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/</guid>
-      <description>CentOS 6的启动管理 运行级别：7个级别 runlevel：查看运行级别 init 运行级别：改变当前运行级别 vim /etc/inittab：永久修改系统默认运行级</description>
-    </item>
-    
-    <item>
-      <title>linux日志管理</title>
-      <link>http://yangfanjack.top/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Tue, 10 Mar 2020 22:54:07 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</guid>
-      <description>日志管理简介 百度百科简介：系统日志是记录系统中硬件、软件和系统问题的信息，同时还可以监视系统中发生的事件。用户可以通过它来检查错误发生的原因</description>
-    </item>
-    
-    <item>
-      <title>linux系统管理</title>
-      <link>http://yangfanjack.top/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Tue, 10 Mar 2020 21:21:48 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
-      <description>进程管理的作用：（下面优先级由高到低） 判断服务器的健康状态 查看系统中的所有进程 杀死进程 进程查看 ps aux：查看系统中所有进程，查看BSD操作系</description>
-    </item>
-    
-    <item>
-      <title>linux权限管理</title>
-      <link>http://yangfanjack.top/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Fri, 06 Mar 2020 10:00:13 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
-      <description>ACL权限 ACL权限的简介和开启方式 任何一个文件在一个时刻只能有一个所有者和所属组 ACL权限用来解决文件的权限身份不够用的情况 ACL权限需要</description>
-    </item>
-    
-    <item>
-      <title>linux中的用户管理</title>
-      <link>http://yangfanjack.top/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Thu, 05 Mar 2020 21:10:44 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</guid>
-      <description>用户配置文件 越是安全性要求高的服务器越需要对用户权限等级制度和服务器操作规范有很高的要求，linux中主要通过用户配置文件来查看和修改用户信</description>
-    </item>
-    
-    <item>
-      <title>linux软件包管理</title>
-      <link>http://yangfanjack.top/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Thu, 05 Mar 2020 12:20:07 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/</guid>
-      <description>软件包管理简介 ​ 软件包分类： 源码包：包括脚本安装包 二进制包：RPM包，系统默认包（ubuntu中是deb包） 源码包的优点 开源 可以自由选择所需</description>
-    </item>
-    
-    <item>
-      <title>linux系统简介和安装</title>
-      <link>http://yangfanjack.top/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/</link>
-      <pubDate>Wed, 04 Mar 2020 10:41:10 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B%E5%92%8C%E5%AE%89%E8%A3%85/</guid>
-      <description>UNIX和Linux发展史 ​ 1965年，贝尔实验室：MULTICS计划 ​ 69年，贝尔实验室的肯汤普森：为了游戏开发UNICS/UNIX系统 ​</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>JavaWeb - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/javaweb/</link>
+        <description>JavaWeb - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Thu, 12 Aug 2021 21:30:04 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/javaweb/" rel="self" type="application/rss+xml" /><item>
+    <title>shiro权限管理</title>
+    <link>http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Thu, 12 Aug 2021 21:30:04 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
+    <description><![CDATA[shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。 只要有人参与的系统都需要进行权]]></description>
+</item>
+<item>
+    <title>javaWeb三大组件</title>
+    <link>http://yangfanjack.top/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</link>
+    <pubDate>Tue, 16 Mar 2021 10:51:26 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</guid>
+    <description><![CDATA[Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦]]></description>
+</item>
+<item>
+    <title>SSM框架-Mybatis</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-mybatis/</link>
+    <pubDate>Fri, 22 Jan 2021 22:40:39 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-mybatis/</guid>
+    <description><![CDATA[开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下： 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成]]></description>
+</item>
+<item>
+    <title>SSM框架-SpringMVC</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-springmvc/</link>
+    <pubDate>Thu, 21 Jan 2021 22:40:31 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-springmvc/</guid>
+    <description><![CDATA[SpringMVC的简介 SpringMVC概述 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于SpringFrameWork]]></description>
+</item>
+<item>
+    <title>SSM框架-Spring</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-spring/</link>
+    <pubDate>Wed, 20 Jan 2021 22:40:22 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-spring/</guid>
+    <description><![CDATA[Spring简介 Spring前身：EJB框架 Spring优点 方便解耦，简化开发：IOC容器使对象的依赖关系由Spring控制，编程者更专注于]]></description>
+</item>
+<item>
+    <title>Martin Fowler关于微服务架构的论文译文</title>
+    <link>http://yangfanjack.top/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</link>
+    <pubDate>Sat, 21 Nov 2020 13:09:52 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/</guid>
+    <description><![CDATA[中文译文地址 Martin Flower原论文地址]]></description>
+</item>
+<item>
+    <title>linux网络配置</title>
+    <link>http://yangfanjack.top/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
+    <pubDate>Fri, 20 Nov 2020 10:02:31 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
+    <description><![CDATA[网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0]]></description>
+</item>
+<item>
+    <title>linux服务器搭建ssm项目环境</title>
+    <link>http://yangfanjack.top/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Thu, 19 Nov 2020 20:42:26 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[购买服务器 阿里云云翼计划：9.5块钱/月 配置环境 jdk环境 1 2 yum -y install java-1.8.0-openjdk.x86_64 java -version mysql环境 安装mysql 1 2 3 4 cd /tmp wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm rpm -ivh mysql-community-release-el7-5.noarch.rpm yum install mysql mysql-server mysql-devel -y 启动]]></description>
+</item>
+<item>
+    <title>SSM框架整合</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</link>
+    <pubDate>Mon, 19 Oct 2020 12:31:09 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</guid>
+    <description><![CDATA[​ Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Desig]]></description>
+</item>
+<item>
+    <title>javaWeb核心:servlet细节</title>
+    <link>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</link>
+    <pubDate>Wed, 25 Mar 2020 16:42:00 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</guid>
+    <description><![CDATA[HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间]]></description>
+</item>
+</channel>
 </rss>

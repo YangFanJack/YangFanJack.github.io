@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>AJAX局部刷新技术 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="AJAX局部刷新技术" />
+<meta property="og:description" content="AJAX含义： Asynchromnous JavaScript And XML 异步的Javascript（编程语言）和XML（文件格式） AJAX不是一门新的编程语言，是一个多门已有技术组合后创新产" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-28T20:34:54+00:00" />
+<meta property="article:modified_time" content="2020-12-28T20:34:54+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AJAX局部刷新技术"/>
+<meta name="twitter:description" content="AJAX含义： Asynchromnous JavaScript And XML 异步的Javascript（编程语言）和XML（文件格式） AJAX不是一门新的编程语言，是一个多门已有技术组合后创新产"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/" /><link rel="prev" href="http://yangfanjack.top/posts/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/" /><link rel="next" href="http://yangfanjack.top/posts/%E5%88%B0%E5%BA%95%E5%95%A5%E6%98%AFvpn/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AJAX局部刷新技术",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF\/"
+        },"genre": "posts","keywords": "前端","wordcount":  1068 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF\/","datePublished": "2020-12-28T20:34:54+00:00","dateModified": "2020-12-28T20:34:54+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AJAX局部刷新技术</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-12-28">2020-12-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1068 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ajax含义">AJAX含义：</a></li>
+    <li><a href="#同步异步请求">同步&amp;异步请求</a>
+      <ul>
+        <li><a href="#同步请求">同步请求：</a></li>
+        <li><a href="#异步请求">异步请求：</a></li>
+      </ul>
+    </li>
+    <li><a href="#原生ajax操作">原生AJAX操作</a></li>
+    <li><a href="#ajax异步请求通用模型">AJAX异步请求通用模型</a></li>
+    <li><a href="#json">JSON</a>
+      <ul>
+        <li><a href="#jackson工具的使用">Jackson工具的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#需要注意">需要注意：</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="ajax含义">AJAX含义：</h2>
+<ul>
+<li>Asynchromnous JavaScript And XML</li>
+<li>异步的Javascript（编程语言）和XML（文件格式）</li>
+<li>AJAX不是一门新的编程语言，是一个多门已有技术组合后创新产生的新技术</li>
+<li>核心点：
+<ul>
+<li>核心编程语言是JS</li>
+<li>数据交换的工具是XML（现已被JOSN替代）</li>
+<li>AJAX是一种异步请求方式（和同步请求对立）</li>
+</ul>
+</li>
+</ul>
+<h2 id="同步异步请求">同步&amp;异步请求</h2>
+<h3 id="同步请求">同步请求：</h3>
+<!-- raw HTML omitted -->
+<ul>
+<li>浏览器发起的传统请求（表单，超链接，地址栏输入地址，location.href）</li>
+<li>用户从发起请求开始，到服务器端相应结果完毕，这段时间内不能再操作页面，如果服务端相应结果耗时很长，用户在这段时间内一直等待体验很差。</li>
+<li>特点：
+<ul>
+<li>一定刷新页面</li>
+<li>地址栏一定改变</li>
+<li>发起同步请求，会阻塞用户的其他操作</li>
+</ul>
+</li>
+</ul>
+<h3 id="异步请求">异步请求：</h3>
+<!-- raw HTML omitted -->
+<ul>
+<li>AJAX是一种浏览器端的异步请求技术</li>
+<li>对于AJAX，服务端响应的不是一个完整页面，而是字符串（页面的数据部分），不会刷新页面</li>
+<li>用户在JavaScript发起请求开始，到服务端响应结果完毕，不用等待，用户可以一直操作页面，用户体验好</li>
+<li>特点：
+<ul>
+<li>不刷新页面</li>
+<li>地址栏不改变</li>
+<li>异步请求不会阻塞用户的其他操作</li>
+</ul>
+</li>
+</ul>
+<h2 id="原生ajax操作">原生AJAX操作</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="ajax异步请求通用模型">AJAX异步请求通用模型</h2>
+<!-- raw HTML omitted -->
+<h2 id="json">JSON</h2>
+<ul>
+<li>
+<p>异步请求下，Server端响应会Client的不是一个完整页面，而是字符串数据，当服务端响应的结果比较复杂时（对象，数组，集合），简单格式的字符串不能满足需求，在传递复杂的数据时，不能使用简单格式的字符串，要使用JSON格式的字符串。</p>
+</li>
+<li>
+<p>JSON：JavaScript Object Notation，它是JS对象字符串表示形式，定义了对象等复杂数据的特定字符串格式，独立于各个编程语言，是一种轻量级的数据交换格式。</p>
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>按照java数据类型可分为以下两种JSON字符串转化方式：</p>
+<ul>
+<li>
+<p>普通对象 &amp; Map</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131028.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131028.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131028.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131028.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131028.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131028.png" /></p>
+</li>
+<li>
+<p>数组 &amp; List &amp; Set</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131029.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131029.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131029.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131029.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131029.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107131029.png" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="jackson工具的使用">Jackson工具的使用</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 引入依赖 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>2.12.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Student</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="err">传入参数</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">studentJson</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">studentJson</span><span class="o">);</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>属性没有值，可以在对应实体类加上注解，就只会转化非null的数据：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@JsonInlcude</span><span class="o">(</span><span class="n">JsonInclude</span><span class="o">.</span><span class="na">Include</span><span class="o">.</span><span class="na">NON_NULL</span><span class="o">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>属性名定制，在实体类属性上加注解：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&#34;别名&#34;</span><span class="o">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>对象回环问题解决：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107133621.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107133621.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107133621.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107133621.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107133621.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20210107133621.png" /></p>
+</li>
+<li>
+<p>日期格式输出：</p>
+<p>日期格式默认转化为时间戳来显示的（1970年1月1日开始到现在的毫秒数）</p>
+<p>在实体类的日期属性上加上注解：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@JsonFormat</span><span class="o">(</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span class="o">,</span><span class="n">timezone</span> <span class="o">=</span> <span class="s">&#34;GMT+8&#34;</span><span class="o">)</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="需要注意">需要注意：</h2>
+<ul>
+<li>POST和GET区别：
+<ul>
+<li>POST请求时必须带一个：content-type 指定参数的类型</li>
+<li>POST的请求参数不能直接写在请求地址后</li>
+</ul>
+</li>
+<li>在SpringMVC中使用@responsebody的注解需要先引入jackson-core和jackson-databind两个依赖（我的惨痛教训，以后使用非传统功能事前，一定要先看看是否引入了外部依赖）</li>
+<li></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-12-28</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/" data-title="AJAX局部刷新技术" data-hashtags="前端"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/" data-hashtag="前端"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/" data-title="AJAX局部刷新技术"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/" data-title="AJAX局部刷新技术"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/ajax%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E6%8A%80%E6%9C%AF/" data-title="AJAX局部刷新技术"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%85%E6%9E%90/" class="prev" rel="prev" title="内网穿透浅析"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>内网穿透浅析</a>
+            <a href="/posts/%E5%88%B0%E5%BA%95%E5%95%A5%E6%98%AFvpn/" class="next" rel="next" title="到底啥是VPN">到底啥是VPN<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

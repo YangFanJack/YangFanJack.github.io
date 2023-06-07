@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>计网-运输层 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="计网-运输层" />
+<meta property="og:description" content="传输层两个协议的应用场景： TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手) QQ传文件，访问网站，下载文件 UDP：基" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-21T15:07:07+00:00" />
+<meta property="article:modified_time" content="2020-11-21T15:07:07+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计网-运输层"/>
+<meta name="twitter:description" content="传输层两个协议的应用场景： TCP：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手) QQ传文件，访问网站，下载文件 UDP：基"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" /><link rel="prev" href="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/" /><link rel="next" href="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计网-运输层",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82\/"
+        },"genre": "posts","keywords": "计算机网络","wordcount":  2236 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82\/","datePublished": "2020-11-21T15:07:07+00:00","dateModified": "2020-11-21T15:07:07+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计网-运输层</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-11-21">2020-11-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2236 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#运输层的功能">运输层的功能</a></li>
+    <li><a href="#运输层协议udp和tcp">运输层协议UDP和TCP</a></li>
+    <li><a href="#tcp可靠传输的实现">TCP可靠传输的实现</a></li>
+    <li><a href="#tcp协议连接管理三次握手四次挥手协议的大致执行流程">TCP协议连接管理：三次握手/四次挥手协议的大致执行流程</a></li>
+    <li><a href="#tcp实际上的可靠传输实现以字节为单位的滑动窗口">TCP实际上的可靠传输实现：以字节为单位的滑动窗口</a></li>
+    <li><a href="#tcp的流量控制">TCP的流量控制</a></li>
+    <li><a href="#tcp的拥塞控制">TCP的拥塞控制</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><strong>传输层两个协议</strong>的应用场景：</p>
+<ul>
+<li>
+<p><strong>TCP</strong>：基于可靠传输的，丢包重传，分段编号，流量控制，建立会话(三次握手)</p>
+<ul>
+<li>QQ传文件，访问网站，下载文件</li>
+</ul>
+</li>
+<li>
+<p><strong>UDP</strong>：基于不可靠传输，一个数据包就能完成数据通信，不建立会话，支持多播</p>
+<ul>
+<li>QQ聊天，</li>
+</ul>
+</li>
+<li>
+<p><strong>UDP中IP分片是在IP层完成的， 而TCP分段是在TCP层完成的，TCP在ip层会尽量避免分片</strong></p>
+<p><strong>MTU = IP头+【TCP头+(MSS)】</strong></p>
+<p>TCP层提前完成了分段， 而且， 两个TCP包中都有TCP头， 这是必然的。 所以到了IP层后， 都保留了TCP头， 当然就有了端口信息啊。 这一点与IP层次的分片是不同的。</p>
+<p>​    而且我们应该看到， 因为TCP包在TCP层已经做了限制， 这就决定了， 等TCP包达到IP层的时候， IP层的数据绝对不会超过MTU,  因此， 对于TCP传输来说， IP层是没有必要分片的， 因为TCP层分段的时候， 已经考虑到了这个限制。</p>
+<p>​    所以， 我们经常会说， <strong>UDP传输中， IP分片， 是受到了MTU的限制</strong>， <strong>TCP传输中， TCP分段， 是受到了MSS的限制</strong>（实际上最终还是受到了MTU的限制）</p>
+</li>
+<li>
+<p>http=TCP+80</p>
+<p>https=TCP+443</p>
+<p>ftp=TCP+25</p>
+<p>SMTP=TCP+25</p>
+<p>POP3=TCP+110</p>
+<p>RDP=TCP+3389</p>
+<p>smb=TCP+445</p>
+<p>SQL Server=TCP+1433</p>
+<p>MySQL=TCP+3306</p>
+<p>DNS=UDP+53 or TCP+53</p>
+<p>Telnet=TCP+23</p>
+<p>SSH=TCP+22</p>
+</li>
+<li>
+<p>应用层协议和服务之间的关系：</p>
+<p>用ip地址定位计算机，用端口来定位服务，服务本质上是运行在TCP或UDP的某个端口侦听客户端请求的软件</p>
+<p>查看自己计算机侦听的端口：netstat -an</p>
+<p>测试远程计算机打开的端口：telnet xxx.xxx.xxx.xxx</p>
+</li>
+<li>
+<p>可以<strong>更改服务的端口</strong>和<strong>只打开必要的端口</strong>来<strong>增加服务器安全</strong></p>
+</li>
+<li>
+<p>Windows防火墙安全：</p>
+<ul>
+<li>在网卡上加一层过滤器：只允许某些端口的数据进来</li>
+<li>防火墙是单向的，只拦截来的，不管出去的，出去的时候自动打开端口，出去了就关了，外面的就不要想进来的。</li>
+</ul>
+</li>
+<li>
+<p>Windows防火墙程序防不了灰鸽子木马程序</p>
+<ul>
+<li>
+<p>防火墙是严进宽出，灰鸽子利用了这一点，让中木马的计算机灰鸽子客户端主动连到服务端。所以防火墙防不了灰鸽子木马。</p>
+</li>
+<li>
+<p>解决灰鸽子木马的问题：用IPsec的网络层安全严格控制网络流量</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="运输层的功能">运输层的功能</h2>
+<ul>
+<li>
+<p>TCP传送的协议数据的那元是TCP报文段</p>
+</li>
+<li>
+<p>UDP传送的协议数据单元是UDP报文或者用户数据报</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<h2 id="运输层协议udp和tcp">运输层协议UDP和TCP</h2>
+<ul>
+<li>
+<!-- raw HTML omitted -->
+<p>UDP是无连接的，即是发送数据之前不需要建立连接</p>
+<p>UDP使用尽最大努力交付数据，既不保证可靠交付，同时也不使用拥塞控制</p>
+<p>UDP是面向报文的，UDP没有拥塞控制，很适合多媒体通信的要求</p>
+<p>UDP支持一对一，一对多，多对一和多对多的叫交互通信</p>
+<p>UDP的首部开销小，只有8个字节</p>
+</li>
+<li>
+<!-- raw HTML omitted -->
+<p><strong>TCP中的几个标志位的作用</strong></p>
+<ul>
+<li><strong>URG</strong> 紧急指针，告诉接收TCP模块<strong>紧要指针域</strong>指着紧要数据。</li>
+<li><strong>ACK</strong> 置1时表示<strong>确认</strong>号（为合法，为0的时候表示数据段不包含确认信息，确认号被忽略。</li>
+<li><strong>PSH</strong> 置1时请求的数据段在<strong>接收方得到后就可直接送到应用程序</strong>，而不必等到缓冲区满时才传送。</li>
+<li><strong>RST</strong> 置1时<strong>重建连接</strong>。如果接收到RST位时候，通常<strong>发生了某些错误</strong>。</li>
+<li><strong>SYN</strong> 置1时用来<strong>发起一个连接</strong>，建立通话和同意建立通话的标志。</li>
+<li><strong>FIN</strong> 置1时表示发端完成发送任务。用来<strong>释放连接</strong>，表明发送方已经没有数据发送了。</li>
+</ul>
+<p>TCP是面向连接的传输层协议</p>
+<p>每一条TCP连接只能有两个端点，每一条TCP连接只能是点对点的，这里的端点是应用程序，也就是套接字(IP+端口号)。</p>
+<p>TCP提供可靠交付的服务</p>
+<p>TCP提供全双工通信（表现为通信与反馈）</p>
+<p>面向字节流</p>
+</li>
+</ul>
+<h2 id="tcp可靠传输的实现">TCP可靠传输的实现</h2>
+<p>提供可靠传输，流量控制，拥塞控制功能</p>
+<ul>
+<li>
+<p>可靠传输的工作原理：停止等待，超时重传，确认丢失，确认迟到，自动重传</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>使用ARQ机制的优点是简单，但是信道利用率太低（发送所用的时间占比太小）；基于此可以采用<strong>流水线传输（连续ARQ协议），可以得到更高的信道利用率，采用滑动窗口设计实现流水线的可靠传输</strong></p>
+<p>发一个确认一个</p>
+<!-- raw HTML omitted -->
+<p>累计确认</p>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<p><strong>netstat命令</strong>用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">-a <span class="o">(</span>all<span class="o">)</span>显示所有连接和监听端口选项，默认不显示LISTEN相关
+</span></span><span class="line"><span class="cl">-t <span class="o">(</span>tcp<span class="o">)</span>仅显示tcp相关选项
+</span></span><span class="line"><span class="cl">-o 显示与每个连接相关的所属进程 ID
+</span></span><span class="line"><span class="cl">-u <span class="o">(</span>udp<span class="o">)</span>仅显示udp相关选项
+</span></span><span class="line"><span class="cl">-n 以数字形式显示地址和端口号。
+</span></span><span class="line"><span class="cl">-l 仅列出有在 Listen <span class="o">(</span>监听<span class="o">)</span> 的服務状态
+</span></span><span class="line"><span class="cl">-p 显示 proto 指定的协议的连接
+</span></span><span class="line"><span class="cl">-r 显示路由信息，路由表
+</span></span><span class="line"><span class="cl">-e 显示以太网统计信息。此选项可以与 -s选项组合使用，例如uid等
+</span></span><span class="line"><span class="cl">-s 按各个协议进行统计
+</span></span><span class="line"><span class="cl">-c 每隔一个固定时间，执行该netstat命令。
+</span></span><span class="line"><span class="cl">提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>Wireshark抓包后的网络层次说明：</strong></p>
+<ul>
+<li><strong>Frame:物理层</strong>的数据帧概况</li>
+<li><strong>Ethernet II: 数据链路层</strong>以太网头部帧</li>
+<li><strong>Internet Protocol Version 4：网络层</strong>IP包头的信息</li>
+<li><strong>Transmission Control Protocol：传输层</strong>的数据段头部信息，此处是TCP协议。</li>
+<li><strong>Hypertext Transfer Protocol：应用层</strong>的信息，此处是<strong>HTTP</strong>协议</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144521.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144521.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144521.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144521.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144521.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144521.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144901.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144901.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144901.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144901.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144901.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125144901.png" /></p>
+</li>
+</ul>
+<h2 id="tcp协议连接管理三次握手四次挥手协议的大致执行流程">TCP协议连接管理：三次握手/四次挥手协议的大致执行流程</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>STP协议默认采用<strong>滑动窗口累计确认</strong>的机制：</p>
+<p><strong>利用TCP的三次握手协议实现对XP系统的攻击：SYN攻击和LAND攻击</strong></p>
+<!-- raw HTML omitted -->
+<h2 id="tcp实际上的可靠传输实现以字节为单位的滑动窗口">TCP实际上的可靠传输实现：以字节为单位的滑动窗口</h2>
+<ul>
+<li>
+<p><strong>UDP的可靠传输</strong>有上层的<strong>应用层协议来实现</strong></p>
+</li>
+<li>
+<p>TCP传输过程中<strong>无数据包丢失</strong></p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>TCP传输过程中<strong>有数据包丢失</strong></p>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<p><strong>超时重传时间确认：</strong></p>
+<!-- raw HTML omitted -->
+<h2 id="tcp的流量控制">TCP的流量控制</h2>
+<ul>
+<li>
+<p>TCP的流量控制是基于<strong>滑动窗口机制</strong>的</p>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<h2 id="tcp的拥塞控制">TCP的拥塞控制</h2>
+<ul>
+<li>
+<p>TCP的拥塞控制指的是将网络中的<strong>所有计算机</strong>，是一种全局控制，是如何避免让网络产生网络堵塞的。当一个计算机发现有丢包问题出现时，会主动把发送数据包的速度降下来。</p>
+</li>
+<li>
+<p>当资源的需求综合&gt;可用的资源时，将产生资源拥塞。</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>拥塞控制的四种算法：慢开始，拥塞避免，快重传，快恢复</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>A发送窗口的上限值=Min[A的拥塞窗口,B的接收窗口]</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-11-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" data-title="计网-运输层" data-hashtags="计算机网络"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" data-hashtag="计算机网络"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" data-title="计网-运输层"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" data-title="计网-运输层"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/%E8%AE%A1%E7%BD%91-%E8%BF%90%E8%BE%93%E5%B1%82/" data-title="计网-运输层"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/" class="prev" rel="prev" title="计网-网络层"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计网-网络层</a>
+            <a href="/posts/%E8%AE%A1%E7%BD%91-%E5%BA%94%E7%94%A8%E5%B1%82/" class="next" rel="next" title="计网-应用层">计网-应用层<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

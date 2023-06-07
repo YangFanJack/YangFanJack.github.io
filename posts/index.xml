@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/posts/</link>
+        <description>All Posts | Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Wed, 17 May 2023 08:34:33 &#43;0800</lastBuildDate><atom:link href="http://yangfanjack.top/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>设计模式浅析</title>
+    <link>http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/</link>
+    <pubDate>Wed, 17 May 2023 08:34:33 &#43;0800</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/</guid>
+    <description><![CDATA[what is design pattern? 设计模式Design Pattern是一套代码设计经验的总结 代码中合理的运用设计模式可以解决很多问题 设计模式的三大类： 创建型模式(Cr]]></description>
+</item>
+<item>
+    <title>汇编入门</title>
+    <link>http://yangfanjack.top/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8/</link>
+    <pubDate>Thu, 27 Apr 2023 14:00:10 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8/</guid>
+    <description><![CDATA[汇编语言概述 汇编语言是什么？ 对于人类来说，组成机器指令的01代码是不可读的，为了解决可读性问题以及偶尔的编辑需求，诞生了二进制指令的文本形式]]></description>
+</item>
+<item>
+    <title>操作系统概记</title>
+    <link>http://yangfanjack.top/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0/</link>
+    <pubDate>Tue, 25 Apr 2023 21:23:52 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0/</guid>
+    <description><![CDATA[操作系统概述 什么是操作系统 计算机硬件和应用之间的一层软件 操作系统的五大管理功能： 进程管理（CPU管理） 存储管理（内存管理） 设备管理（磁盘管理]]></description>
+</item>
+<item>
+    <title>计算机组成原理概记</title>
+    <link>http://yangfanjack.top/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0/</link>
+    <pubDate>Fri, 24 Mar 2023 09:27:16 &#43;0800</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0/</guid>
+    <description><![CDATA[概论 计算机系统硬件结构 CPU 系统总线 存储器 I/O CPU CPU的结构和功能 运算器（核心是ALU） 计算机中数的表示 计算机中的运算方法和运算器 控制器（核心是C]]></description>
+</item>
+<item>
+    <title>Ubuntu Server安装软件记录</title>
+    <link>http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
+    <pubDate>Fri, 10 Mar 2023 21:42:52 &#43;0800</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ubuntu-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
+    <description><![CDATA[Debian系统安装后的一些配置 CentOS社区版的死亡，不成熟的EulerOS，导致目前选择红帽系的Linux发行版不是一个好主意。还是老]]></description>
+</item>
+<item>
+    <title>Euler Server安装软件记录</title>
+    <link>http://yangfanjack.top/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
+    <pubDate>Fri, 10 Mar 2023 11:10:58 &#43;0800</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/euler-server%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
+    <description><![CDATA[MySQL MySQL官网下载RedHat版本的MySQL安装包：https://dev.mysql.com/downloads/mysql/ 按顺序安]]></description>
+</item>
+<item>
+    <title>从hugo重新启程</title>
+    <link>http://yangfanjack.top/%E4%BB%8Ehugo%E9%87%8D%E6%96%B0%E5%90%AF%E7%A8%8B/</link>
+    <pubDate>Tue, 17 Jan 2023 17:18:55 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E4%BB%8Ehugo%E9%87%8D%E6%96%B0%E5%90%AF%E7%A8%8B/</guid>
+    <description><![CDATA[工作一年半了，从工作后就没怎么写过博客了，当然这一年发生了很多事，但是作为IT人不应该忘记提升自己，就从给博客换一个生成框架开始新的一年，新]]></description>
+</item>
+<item>
+    <title>win10壁纸bingtoday</title>
+    <link>http://yangfanjack.top/win10%E5%A3%81%E7%BA%B8bingtoday/</link>
+    <pubDate>Wed, 30 Mar 2022 08:27:58 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/win10%E5%A3%81%E7%BA%B8bingtoday/</guid>
+    <description><![CDATA[注册表指定壁纸路径 WIN+R打开运行对话框：输入regedit打开注册表 到达路径：计算机\HKEY_CURRENT_USER\Softwar]]></description>
+</item>
+<item>
+    <title>RPM打包初试</title>
+    <link>http://yangfanjack.top/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</link>
+    <pubDate>Wed, 01 Dec 2021 10:44:01 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/rpm%E6%89%93%E5%8C%85%E5%88%9D%E8%AF%95/</guid>
+    <description><![CDATA[rpm打包需要一个独立的打包目录 BUILD：编译rpm包的临时目录 BUILDROOT：编译后生成的软件临时安装目录 RPMS：最终生成的可安装]]></description>
+</item>
+<item>
+    <title>国庆北京独游</title>
+    <link>http://yangfanjack.top/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/</link>
+    <pubDate>Wed, 13 Oct 2021 08:13:19 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E5%9B%BD%E5%BA%86%E5%8C%97%E4%BA%AC%E7%8B%AC%E6%B8%B8/</guid>
+    <description><![CDATA[在保定工作的这3个月里，从学校到工作过渡很平稳，学校里做的事和工作中差异不大，总体来说还是很快适应了工作环境。另外，和学校相比，假期确实太少]]></description>
+</item>
+</channel>
+</rss>

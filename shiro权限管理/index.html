@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>shiro权限管理 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="shiro权限管理" />
+<meta property="og:description" content="shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。 只要有人参与的系统都需要进行权" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-12T21:30:04+00:00" />
+<meta property="article:modified_time" content="2021-08-12T21:30:04+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="shiro权限管理"/>
+<meta name="twitter:description" content="shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。 只要有人参与的系统都需要进行权"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" /><link rel="prev" href="http://yangfanjack.top/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/" /><link rel="next" href="http://yangfanjack.top/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "shiro权限管理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86\/"
+        },"genre": "posts","keywords": "后端, JavaWeb","wordcount":  3000 ,
+        "url": "http:\/\/yangfanjack.top\/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86\/","datePublished": "2021-08-12T21:30:04+00:00","dateModified": "2021-08-12T21:30:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">shiro权限管理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3000 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#shiro权限管理">shiro权限管理</a>
+      <ul>
+        <li><a href="#什么是shiro">什么是Shiro？</a></li>
+        <li><a href="#shiro中用户的身份认证">Shiro中用户的身份认证</a></li>
+        <li><a href="#自定义realm">自定义Realm</a></li>
+        <li><a href="#密码加密">密码加密</a></li>
+        <li><a href="#shiro中的授权操作">Shiro中的授权操作</a></li>
+        <li><a href="#shiro中的授权实现">Shiro中的授权实现</a></li>
+        <li><a href="#权限模型">权限模型</a></li>
+        <li><a href="#shiro和ssm的整合">Shiro和SSM的整合</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="shiro权限管理">shiro权限管理</h1>
+<p>Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。</p>
+<p>只要有人参与的系统都需要进行权限管理。</p>
+<h2 id="什么是shiro">什么是Shiro？</h2>
+<p>Shiro是apache旗下的一个开源框架，它将软件系统的安全认认证相关的功能抽取出来，实现用户身份认证、权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225542.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225542.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225542.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225542.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225542.png"
+        title="Shiro核心架构图" /></p>
+<ul>
+<li>**Security Manager：**包含Authenticator认证器，Authorizer授权器，Session Manager会话管理器，Cache Manager缓存管理器，Session DAO会话数据访问对象，Pluggable Realms可插拔域</li>
+<li>**cryptography：**密码器（sha256，md5）</li>
+<li>**subject：**主体（Shiro集成的东西，宿主）</li>
+</ul>
+<h2 id="shiro中用户的身份认证">Shiro中用户的身份认证</h2>
+<ul>
+<li>
+<p><strong>subject：主体</strong></p>
+<p>访问系统的用户，主体可以是用户、程序等，进行认证都称为主体。主体在进行身份认证时需要身份信息Principal和凭证信息credential</p>
+</li>
+<li>
+<p><strong>Principal：身份信息</strong></p>
+<p>身份认证的标识，如用户名、手机号、邮箱地址等。一个主体可以有多个身份信息，但是只能有一个主身份信息。</p>
+</li>
+<li>
+<p><strong>credential：凭证信息</strong></p>
+<p>只有主体自己知道的安全信息，如密码、证书等</p>
+</li>
+</ul>
+<p><strong>认证流程：</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225641.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225641.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225641.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225641.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225641.png"
+        title="image-20210730101307429" /></p>
+<p><strong>代码</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[users]
+</span></span><span class="line"><span class="cl">zhangsan=123
+</span></span><span class="line"><span class="cl">lisi=1234
+</span></span><span class="line"><span class="cl">wangwu=12345
+</span></span><span class="line"><span class="cl">zhaoliu=123456
+</span></span><span class="line"><span class="cl">public class TestAuhenticator
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public static void main( String[] args )
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        //创建安全管理器对象
+</span></span><span class="line"><span class="cl">        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+</span></span><span class="line"><span class="cl">        //给安全管理器设置realm
+</span></span><span class="line"><span class="cl">        securityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));
+</span></span><span class="line"><span class="cl">        //SecurityUtils安全工具类
+</span></span><span class="line"><span class="cl">        SecurityUtils.setSecurityManager(securityManager);
+</span></span><span class="line"><span class="cl">        //拿到主体subject
+</span></span><span class="line"><span class="cl">        Subject subject = SecurityUtils.getSubject();
+</span></span><span class="line"><span class="cl">        //模拟登录，创建令牌
+</span></span><span class="line"><span class="cl">        UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);
+</span></span><span class="line"><span class="cl">        //用户登录
+</span></span><span class="line"><span class="cl">        try {
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+</span></span><span class="line"><span class="cl">            subject.login(token);
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (UnknownAccountException e){
+</span></span><span class="line"><span class="cl">            e.printStackTrace();
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;认证失败，用户名不存在！&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (IncorrectCredentialsException e){
+</span></span><span class="line"><span class="cl">            e.printStackTrace();
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;认证失败，密码错误！&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>源码剖析</strong></p>
+<ul>
+<li>
+<p>最终执行用户名校验，在 SimpleAccountRealm类（继承于AuthorizingRealm） doGetAuthenticationInfo() 这个方法中完成用户名校验：查看是否有这个用户</p>
+</li>
+<li>
+<p>最终密码的校验，在 AuthenticatingRealm类 assertCredentialsMath() 这个方法中完成密码校验的</p>
+</li>
+<li>
+<p>通过剖析源码可知，如果要把Realm放在数据库中，只需要继承AuthorizingRealm类，然后重写 doGetAuthenticationInfo() 方法即可</p>
+</li>
+<li>
+<p>几个重要Realm类的继承关系图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225652.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225652.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225652.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225652.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225652.png"
+        title="image-20210731093920423" /></p>
+</li>
+<li>
+<p>总结：</p>
+<p>AuthenticatingRealm中有认证方法：doGetAuthenticationInfo()</p>
+<p>AuthorizingRealm中有授权方法：doGetAuthorizationInfo()</p>
+<p>所以，当实际上操作数据库时，我们自定义的Realm类实际上是继承AuthorizingRealm类，然后重写 doGetAuthenticationInfo() 和 doGetAuthorizationInfo() 两个方法。</p>
+</li>
+</ul>
+<h2 id="自定义realm">自定义Realm</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">public class CustomRealm extends AuthorizingRealm {
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 授权
+</span></span><span class="line"><span class="cl">     * @param principalCollection
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    @Override
+</span></span><span class="line"><span class="cl">    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+</span></span><span class="line"><span class="cl">        return null;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 认证
+</span></span><span class="line"><span class="cl">     * @param authenticationToken
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     * @throws AuthenticationException
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    @Override
+</span></span><span class="line"><span class="cl">    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+</span></span><span class="line"><span class="cl">        String principal = (String) authenticationToken.getPrincipal();
+</span></span><span class="line"><span class="cl">        String credentials = new String((char[]) authenticationToken.getCredentials());
+</span></span><span class="line"><span class="cl">        System.out.println(&#34;************************************&#34;);
+</span></span><span class="line"><span class="cl">        System.out.println(principal);
+</span></span><span class="line"><span class="cl">        System.out.println(credentials);
+</span></span><span class="line"><span class="cl">        if(&#34;zhangsan&#34;.equals(principal)){
+</span></span><span class="line"><span class="cl">            return new SimpleAuthenticationInfo(&#34;zhangsan&#34;,&#34;123&#34;,this.getName());
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return null;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">public class TestAuhenticator
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public static void main( String[] args )
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        //创建安全管理器对象
+</span></span><span class="line"><span class="cl">        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+</span></span><span class="line"><span class="cl">        //给安全管理器设置realm
+</span></span><span class="line"><span class="cl">//        securityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));
+</span></span><span class="line"><span class="cl">        securityManager.setRealm(new CustomRealm());
+</span></span><span class="line"><span class="cl">        //SecurityUtils安全工具类
+</span></span><span class="line"><span class="cl">        SecurityUtils.setSecurityManager(securityManager);
+</span></span><span class="line"><span class="cl">        //拿到主体subject
+</span></span><span class="line"><span class="cl">        Subject subject = SecurityUtils.getSubject();
+</span></span><span class="line"><span class="cl">        //模拟登录，创建令牌
+</span></span><span class="line"><span class="cl">        UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);
+</span></span><span class="line"><span class="cl">        //用户登录
+</span></span><span class="line"><span class="cl">        try {
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+</span></span><span class="line"><span class="cl">            subject.login(token);
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (UnknownAccountException e){
+</span></span><span class="line"><span class="cl">            e.printStackTrace();
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;认证失败，用户名不存在！&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (IncorrectCredentialsException e){
+</span></span><span class="line"><span class="cl">            e.printStackTrace();
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;认证失败，密码错误！&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="密码加密">密码加密</h2>
+<p><strong>MD5算法</strong></p>
+<ul>
+<li>一般用来加密 &amp; 签名</li>
+<li>MD5加密不可逆</li>
+<li>MD5算法生成结果始终是一个16进、32位长度的字符串</li>
+<li>一般在后端代码的业务层完成加密操作如果要进行用户名</li>
+<li>使用MD5算法，输入只会有唯一输出。所以为了防止有人恶意穷举试探密码，我们需要给密码加盐后再MD5机密</li>
+</ul>
+<p><strong>Shiro中的MD5加密</strong></p>
+<p>直接看代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">public class CustomRealm extends AuthorizingRealm {
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 授权
+</span></span><span class="line"><span class="cl">     * @param principalCollection
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    @Override
+</span></span><span class="line"><span class="cl">    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+</span></span><span class="line"><span class="cl">        return null;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 认证
+</span></span><span class="line"><span class="cl">     * @param authenticationToken
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     * @throws AuthenticationException
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    @Override
+</span></span><span class="line"><span class="cl">    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+</span></span><span class="line"><span class="cl">        String principal = (String) authenticationToken.getPrincipal();
+</span></span><span class="line"><span class="cl">        String credentials = new String((char[]) authenticationToken.getCredentials());
+</span></span><span class="line"><span class="cl">        System.out.println(&#34;************************************&#34;);
+</span></span><span class="line"><span class="cl">        System.out.println(principal);
+</span></span><span class="line"><span class="cl">        System.out.println(credentials);
+</span></span><span class="line"><span class="cl">        if(&#34;zhangsan&#34;.equals(principal)){
+</span></span><span class="line"><span class="cl">            return new SimpleAuthenticationInfo(&#34;zhangsan&#34;,&#34;123&#34;, ByteSource.Util.bytes(&#34;abc*&#34;),this.getName());
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return null;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">public class TestAuhenticator
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public static void main( String[] args )
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        //创建安全管理器对象
+</span></span><span class="line"><span class="cl">        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+</span></span><span class="line"><span class="cl">        //新建自定义realm对象
+</span></span><span class="line"><span class="cl">        CustomRealm realm = new CustomRealm();
+</span></span><span class="line"><span class="cl">        //设置realm使用hash凭证检测器
+</span></span><span class="line"><span class="cl">        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+</span></span><span class="line"><span class="cl">        credentialsMatcher.setHashAlgorithmName(&#34;md5&#34;);
+</span></span><span class="line"><span class="cl">        credentialsMatcher.setHashIterations(1024);//设置加盐散列次数
+</span></span><span class="line"><span class="cl">        realm.setCredentialsMatcher(credentialsMatcher);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        //给安全管理器设置realm
+</span></span><span class="line"><span class="cl">//        securityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));
+</span></span><span class="line"><span class="cl">        securityManager.setRealm(realm);
+</span></span><span class="line"><span class="cl">        //SecurityUtils安全工具类
+</span></span><span class="line"><span class="cl">        SecurityUtils.setSecurityManager(securityManager);
+</span></span><span class="line"><span class="cl">        //拿到主体subject
+</span></span><span class="line"><span class="cl">        Subject subject = SecurityUtils.getSubject();
+</span></span><span class="line"><span class="cl">        //模拟登录，创建令牌
+</span></span><span class="line"><span class="cl">        UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);
+</span></span><span class="line"><span class="cl">        //用户登录
+</span></span><span class="line"><span class="cl">        try {
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+</span></span><span class="line"><span class="cl">            subject.login(token);
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (UnknownAccountException e){
+</span></span><span class="line"><span class="cl">            e.printStackTrace();
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;认证失败，用户名不存在！&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (IncorrectCredentialsException e){
+</span></span><span class="line"><span class="cl">            e.printStackTrace();
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;认证失败，密码错误！&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="shiro中的授权操作">Shiro中的授权操作</h2>
+<p><strong>关键对象</strong></p>
+<ul>
+<li>
+<p>Who对What进行How操作</p>
+</li>
+<li>
+<p>Who是访问资源的主体，What是系统的资源，How是针对资源的操作</p>
+</li>
+<li>
+<p>授权流程：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225715.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225715.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225715.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225715.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225715.png"
+        title="image-20210801100955232" /></p>
+</li>
+<li>
+<p>授权方式：</p>
+<ul>
+<li>
+<p>基于角色的访问控制：Role-Based Access Control</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if(subject.hasRole(&#34;admin&#34;)){
+</span></span><span class="line"><span class="cl">    //操作资源
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>基于资源的访问控制：Resource-Based Access Control</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if(subject.isPermission(&#34;user:create:*&#34;)){
+</span></span><span class="line"><span class="cl">    //操作资源
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl">权限字符串：资源标识符:操作:资源实例标识符
+</span></span><span class="line"><span class="cl">	* 用户创建权限：user:create:*
+</span></span><span class="line"><span class="cl">	* 用户实例001修改的权限：user:create:001
+</span></span><span class="line"><span class="cl">	* 用户实例001的所有权限：user:*:001
+</span></span><span class="line"><span class="cl">**/
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h2 id="shiro中的授权实现">Shiro中的授权实现</h2>
+<p><strong>编程式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Subject subject = SecurityUtils.getSubject();
+</span></span><span class="line"><span class="cl">if(subject.hasRole(&#34;admin&#34;)){
+</span></span><span class="line"><span class="cl">    //有权限
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">else{
+</span></span><span class="line"><span class="cl">    //无权限
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注解式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@RequireRoles(&#34;admin&#34;)
+</span></span><span class="line"><span class="cl">public void hello(){
+</span></span><span class="line"><span class="cl">    //有权限
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>JSP标签式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;shiro:hasRole name=&#34;admin&#34;&gt;
+</span></span><span class="line"><span class="cl">    &lt;!--有权限--&gt;
+</span></span><span class="line"><span class="cl">&lt;/shiro:hasRole&gt;
+</span></span><span class="line"><span class="cl">&lt;!--注意：Thymeleaf中使用shiro需要额外集成--&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>代码实现</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">public class CustomRealm extends AuthorizingRealm {
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 授权
+</span></span><span class="line"><span class="cl">     * @param principalCollection
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    @Override
+</span></span><span class="line"><span class="cl">    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+</span></span><span class="line"><span class="cl">        System.out.println(&#34;==================Authorization===================&#34;);
+</span></span><span class="line"><span class="cl">        String primaryPrincipal = (String) principalCollection.getPrimaryPrincipal();
+</span></span><span class="line"><span class="cl">        System.out.println(primaryPrincipal);
+</span></span><span class="line"><span class="cl">        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+</span></span><span class="line"><span class="cl">        simpleAuthorizationInfo.addRole(&#34;admin&#34;);
+</span></span><span class="line"><span class="cl">        simpleAuthorizationInfo.addRole(&#34;user&#34;);
+</span></span><span class="line"><span class="cl">        simpleAuthorizationInfo.addStringPermission(&#34;admin:create:*&#34;);
+</span></span><span class="line"><span class="cl">        simpleAuthorizationInfo.addStringPermission(&#34;user:update:01&#34;);
+</span></span><span class="line"><span class="cl">        return simpleAuthorizationInfo;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 认证
+</span></span><span class="line"><span class="cl">     * @param authenticationToken
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     * @throws AuthenticationException
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    @Override
+</span></span><span class="line"><span class="cl">    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+</span></span><span class="line"><span class="cl">        System.out.println(&#34;==================Authentication===================&#34;);
+</span></span><span class="line"><span class="cl">        String principal = (String) authenticationToken.getPrincipal();
+</span></span><span class="line"><span class="cl">        String credentials = new String((char[]) authenticationToken.getCredentials());
+</span></span><span class="line"><span class="cl">        System.out.println(&#34;************************************&#34;);
+</span></span><span class="line"><span class="cl">        System.out.println(principal);
+</span></span><span class="line"><span class="cl">        System.out.println(credentials);
+</span></span><span class="line"><span class="cl">        if(&#34;zhangsan&#34;.equals(principal)){
+</span></span><span class="line"><span class="cl">            return new SimpleAuthenticationInfo(principal,&#34;44610a20602341c591e0c9b5ecf19ff3&#34;, ByteSource.Util.bytes(&#34;abc*&#34;),this.getName());
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return null;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">public class TestAuthenticator
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public static void main( String[] args )
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        //创建安全管理器对象
+</span></span><span class="line"><span class="cl">        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+</span></span><span class="line"><span class="cl">        //新建自定义realm对象
+</span></span><span class="line"><span class="cl">        CustomRealm realm = new CustomRealm();
+</span></span><span class="line"><span class="cl">        //设置realm使用hash凭证检测器
+</span></span><span class="line"><span class="cl">        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+</span></span><span class="line"><span class="cl">        credentialsMatcher.setHashAlgorithmName(&#34;md5&#34;);
+</span></span><span class="line"><span class="cl">        credentialsMatcher.setHashIterations(1024);//设置加盐散列次数
+</span></span><span class="line"><span class="cl">        realm.setCredentialsMatcher(credentialsMatcher);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        //给安全管理器设置realm
+</span></span><span class="line"><span class="cl">//        securityManager.setRealm(new IniRealm(&#34;classpath:shiro.ini&#34;));
+</span></span><span class="line"><span class="cl">        securityManager.setRealm(realm);
+</span></span><span class="line"><span class="cl">        //SecurityUtils安全工具类
+</span></span><span class="line"><span class="cl">        SecurityUtils.setSecurityManager(securityManager);
+</span></span><span class="line"><span class="cl">        //拿到主体subject
+</span></span><span class="line"><span class="cl">        Subject subject = SecurityUtils.getSubject();
+</span></span><span class="line"><span class="cl">        //模拟登录，创建令牌
+</span></span><span class="line"><span class="cl">        UsernamePasswordToken token = new UsernamePasswordToken(&#34;zhangsan&#34;, &#34;123&#34;);
+</span></span><span class="line"><span class="cl">        //用户登录
+</span></span><span class="line"><span class="cl">        try {
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+</span></span><span class="line"><span class="cl">            subject.login(token);
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;Authentication Status:&#34;+subject.isAuthenticated());
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (UnknownAccountException e){
+</span></span><span class="line"><span class="cl">            e.printStackTrace();
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;认证失败，用户名不存在！&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (IncorrectCredentialsException e){
+</span></span><span class="line"><span class="cl">            e.printStackTrace();
+</span></span><span class="line"><span class="cl">            System.out.println(&#34;认证失败，密码错误！&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        //进行授权操作
+</span></span><span class="line"><span class="cl">        if(subject.isAuthenticated()){
+</span></span><span class="line"><span class="cl">            System.out.println(subject.hasRole(&#34;user&#34;));
+</span></span><span class="line"><span class="cl">            System.out.println(subject.hasAllRoles(Arrays.asList(&#34;admin&#34;,&#34;user&#34;)));
+</span></span><span class="line"><span class="cl">            System.out.println(subject.isPermitted(&#34;admin:create:*&#34;));
+</span></span><span class="line"><span class="cl">            System.out.println(subject.isPermitted(&#34;user:update:02&#34;));
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="权限模型">权限模型</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225741.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225741.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225741.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225741.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225741.png"
+        title="image-20210802215244502" /></p>
+<h2 id="shiro和ssm的整合">Shiro和SSM的整合</h2>
+<p><strong>整合思路</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225748.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225748.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225748.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225748.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521225748.png"
+        title="image-20210802191222968" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-08-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-title="shiro权限管理" data-hashtags="后端,JavaWeb"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-hashtag="后端"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-title="shiro权限管理"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-title="shiro权限管理"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" data-title="shiro权限管理"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>,&nbsp;<a href="/tags/javaweb/">JavaWeb</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%AF%95%E4%B8%9A%E4%B9%9D%E5%AF%A8%E4%B8%89%E4%BA%BA%E6%B8%B8/" class="prev" rel="prev" title="毕业九寨三人游"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>毕业九寨三人游</a>
+            <a href="/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/" class="next" rel="next" title="工作流Activiti">工作流Activiti<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

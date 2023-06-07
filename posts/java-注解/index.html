@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>java-注解 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="java-注解" />
+<meta property="og:description" content="什么是注解 可以被其他程序读取 可以附加在package,class,method,field上都可以添加注解 可通过反射实现对注解中信息的访问 注" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/java-%E6%B3%A8%E8%A7%A3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-19T12:55:39+00:00" />
+<meta property="article:modified_time" content="2020-12-19T12:55:39+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="java-注解"/>
+<meta name="twitter:description" content="什么是注解 可以被其他程序读取 可以附加在package,class,method,field上都可以添加注解 可通过反射实现对注解中信息的访问 注"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/java-%E6%B3%A8%E8%A7%A3/" /><link rel="prev" href="http://yangfanjack.top/posts/%E5%88%9D%E8%AF%95%E5%88%B7%E6%9C%BA/" /><link rel="next" href="http://yangfanjack.top/posts/java-%E5%8F%8D%E5%B0%84/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "java-注解",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/java-%E6%B3%A8%E8%A7%A3\/"
+        },"genre": "posts","keywords": "后端, Java","wordcount":  771 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/java-%E6%B3%A8%E8%A7%A3\/","datePublished": "2020-12-19T12:55:39+00:00","dateModified": "2020-12-19T12:55:39+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">java-注解</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-12-19">2020-12-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;771 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是注解">什么是注解</a></li>
+    <li><a href="#注解作用">注解作用</a></li>
+    <li><a href="#内置注解">内置注解</a></li>
+    <li><a href="#元注解">元注解</a></li>
+    <li><a href="#自定义注解">自定义注解</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="什么是注解">什么是注解</h2>
+<ul>
+<li>可以被其他程序读取</li>
+<li>可以附加在package,class,method,field上都可以添加注解</li>
+<li>可通过反射实现对注解中信息的访问</li>
+<li>注解是jdk1.5后的新特性</li>
+</ul>
+<h2 id="注解作用">注解作用</h2>
+<ol>
+<li>编写文档：通过代码里标识的注解生成doc文档</li>
+<li>代码分析：通过代码里标识的注解堆代码进行分析（结合反射）</li>
+<li>编译检查：通过代码里标识的注解让编译器能实现基本的编译检查（@Override）</li>
+</ol>
+<h2 id="内置注解">内置注解</h2>
+<ul>
+<li>@Override：必须重写父类的方法</li>
+<li>@Deprecated：已过时的，不推荐使用，存在更好的方式</li>
+<li>@SuppressWarning：镇压警告</li>
+</ul>
+<h2 id="元注解">元注解</h2>
+<ul>
+<li>负责解释其他注解的注解：Java定义了4个标准的meta-annotation类型，以供其他的annotation类型做说明</li>
+<li>@target：描述注解使用范围</li>
+<li>@Retention：描述什么级别保存该注释信息，用于描述注解的生命周期(SOURCE&lt;CLASS&lt;RUNTIME)</li>
+<li>@Documented：说明该注解将被包含在javadoc中</li>
+<li>@Inherited：说明子类可以继承父类中的该注解</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">value</span><span class="o">={</span><span class="n">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">,</span><span class="n">ElementType</span><span class="o">.</span><span class="na">TYPE</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="n">RetentionPolicy</span><span class="o">=</span><span class="n">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Inherited</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">MyAnnotation</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="自定义注解">自定义注解</h2>
+<ul>
+<li>@interface用来声明一个注解</li>
+<li>注解体中的每一个方法实际就是一个配置参数，方法名就是参数名，返回值类型就是参数的类型（返回值只能是Class,String,enum）</li>
+<li>可以通过default来声明参数的默认值</li>
+<li>只有一个参数，参数名是value，赋值时可省略参数名</li>
+<li>注解元素必须要有值，我们定义注解元素时，经常使用空字符串0作为默认值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//注解可以显式赋值，如果没有默认值必须给注解赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@MyAnnotation</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;JackYang&#34;</span><span class="o">,</span><span class="n">school</span><span class="o">={</span><span class="s">&#34;西部开源&#34;</span><span class="o">,</span><span class="s">&#34;清华大学&#34;</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(){}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">value</span><span class="o">={</span><span class="n">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">,</span><span class="n">ElementType</span><span class="o">.</span><span class="na">TYPE</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="n">RetentionPolicy</span><span class="o">=</span><span class="n">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">MyAnnotation</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">   	<span class="c1">//注解的参数：参数类型+参数名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="nf">name</span><span class="o">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">age</span><span class="o">()</span> <span class="k">default</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">id</span><span class="o">()</span> <span class="k">default</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="c1">//默认值是-1代表不存在
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span><span class="o">[]</span> <span class="nf">school</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-12-19</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/java-%E6%B3%A8%E8%A7%A3/" data-title="java-注解" data-hashtags="后端,Java"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/java-%E6%B3%A8%E8%A7%A3/" data-hashtag="后端"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/java-%E6%B3%A8%E8%A7%A3/" data-title="java-注解"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/java-%E6%B3%A8%E8%A7%A3/" data-title="java-注解"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/java-%E6%B3%A8%E8%A7%A3/" data-title="java-注解"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>,&nbsp;<a href="/tags/java/">Java</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%88%9D%E8%AF%95%E5%88%B7%E6%9C%BA/" class="prev" rel="prev" title="初试刷机"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>初试刷机</a>
+            <a href="/posts/java-%E5%8F%8D%E5%B0%84/" class="next" rel="next" title="java-反射">java-反射<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>linux软件包管理 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="linux软件包管理" />
+<meta property="og:description" content="软件包管理简介 ​ 软件包分类： 源码包：包括脚本安装包 二进制包：RPM包，系统默认包（ubuntu中是deb包） 源码包的优点 开源 可以自由选择所需" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-05T12:20:07+00:00" />
+<meta property="article:modified_time" content="2020-03-05T12:20:07+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux软件包管理"/>
+<meta name="twitter:description" content="软件包管理简介 ​ 软件包分类： 源码包：包括脚本安装包 二进制包：RPM包，系统默认包（ubuntu中是deb包） 源码包的优点 开源 可以自由选择所需"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/" /><link rel="prev" href="http://yangfanjack.top/posts/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/" /><link rel="next" href="http://yangfanjack.top/posts/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "linux软件包管理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86\/"
+        },"genre": "posts","keywords": "Linux, JavaWeb","wordcount":  1935 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86\/","datePublished": "2020-03-05T12:20:07+00:00","dateModified": "2020-03-05T12:20:07+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">linux软件包管理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-05">2020-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1935 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="软件包管理简介">软件包管理简介</h1>
+<p>​	<strong>软件包分类：</strong></p>
+<ul>
+<li>源码包：包括脚本安装包</li>
+<li>二进制包：RPM包，系统默认包（ubuntu中是deb包）</li>
+<li><strong>源码包的优点</strong>
+<ul>
+<li>开源</li>
+<li>可以自由选择所需的功能</li>
+<li>软件是便宜安装，所以更加是个自己的系统，更加稳定也效率更高</li>
+<li>卸载方便（直接把目录删除）</li>
+</ul>
+</li>
+<li><strong>源码包的缺点</strong>
+<ul>
+<li>安装步骤多</li>
+<li>编译并安装时间过长</li>
+<li>因为是编译安装，安装过程中一旦报错新手很难解决</li>
+</ul>
+</li>
+<li><strong>RPM包优点</strong>
+<ul>
+<li>包管理系统简单，只需要几个命令就可以实现软件包的安装，升级，查询和卸载</li>
+<li>安装速度比源码包快很多</li>
+</ul>
+</li>
+<li><strong>RPM包缺点</strong>
+<ul>
+<li>不能看见原代码</li>
+<li>功能选择不如源码包灵活</li>
+<li>依赖性</li>
+</ul>
+</li>
+</ul>
+<h1 id="rpm包管理rpm命令管理">RPM包管理—rpm命令管理</h1>
+<ul>
+<li>
+<p>RPM包名和包全名</p>
+</li>
+<li>
+<p>RPM包的依赖性：树形依赖，环形依赖，模块依赖(以.iso.数组结束的就是模块依赖，也叫库文件依赖<a href="www.rpmfind.net" rel="">模块依赖查询网站</a>)</p>
+</li>
+<li>
+<p>安装和升级使用包全名，卸载和查询使用包名（在/var/lib/rpm/中的数据库总搜索）</p>
+</li>
+<li>
+<p>RPM安装：<code>rpm -ivh 包全名</code></p>
+</li>
+<li>
+<p>RPM升级：<code>rpm -Uvh 包全名</code></p>
+</li>
+<li>
+<p>RPM卸载：<code>rpm -e 包名</code>,也要考虑依赖性，当有包被依赖时，此时这个包不能删掉</p>
+</li>
+<li>
+<p>RPM查询包：<code>rpm -q 包名</code>   <code>rpm -qa</code>：所有安装的包</p>
+</li>
+<li>
+<p>RPM查询包详细信息：<code>rpm -qi 包名</code></p>
+</li>
+<li>
+<p>RPM查询未安装包的详细信息：<code>rpm -qip 包全名</code></p>
+</li>
+<li>
+<p>RPM查询文件安装位置：<code>rpm -ql 包名</code></p>
+</li>
+<li>
+<p>RPM查询未安装包的文件安装的默认位置：<code>rpm -qlp 包名</code></p>
+</li>
+<li>
+<p>RPM查询系统文件属于哪个rpm包：<code>rpm -qf 系统文件名</code></p>
+</li>
+<li>
+<p>RPM查询软件包的依赖性：<code>rpm -qR 包名</code></p>
+</li>
+<li>
+<p>RPM查询未安装软件包的依赖性：<code>rpm -qRp 包全名</code></p>
+</li>
+<li>
+<p>RPM包校验：<code>rpm -V 包名</code></p>
+</li>
+<li>
+<p>RPM包中文件提取（用来修复系统）：</p>
+<ul>
+<li>
+<p>第一步：rpm2cpio 包全名</p>
+</li>
+<li>
+<p>第二布：cpio -idv . 包中的文件绝对路径</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="rpm包管理yum在线管理">RPM包管理—yum在线管理</h1>
+<ul>
+<li>
+<p>既可以用在线yum源文件服务器，也可以用本地光盘作为yum源文件服务器。</p>
+</li>
+<li>
+<p>会自动解决依赖性问题</p>
+</li>
+<li>
+<p>更换yum源：保存在<code>/etc/yum.repos.d/</code>目录下</p>
+</li>
+<li>
+<p><code>yum list</code>：</p>
+</li>
+<li>
+<p><code>yum search</code> 包名：搜索</p>
+</li>
+<li>
+<p><code>yum -y install</code> 包名：安装</p>
+</li>
+<li>
+<p><code>yum -y update包名</code>：<code>yum -y update</code>直接升级全部，慎用</p>
+</li>
+<li>
+<p><code>yum -y remove包名</code>：卸载，会卸载所有依赖的包</p>
+<p>注：linux服务器应该采用最小化安装的原则，用什么装什么，装完了最好不要用yum卸载，也不要随便升级。</p>
+</li>
+<li>
+<p>yum的软件组管理：</p>
+<p><code>yum grouplist</code>：</p>
+<p><code>yum groupinstall 软件包组名</code>：</p>
+<p><code>yum groupremove软件包组名</code>：</p>
+</li>
+<li>
+<p>用光盘做yum源：修改<code>/etc/yum.repos.d/</code>下的media配置文件，该源为关盘挂载点，注意：配置文件的格式要求很严格，注释应该顶头写。</p>
+</li>
+</ul>
+<h1 id="源码包管理">源码包管理</h1>
+<ul>
+<li>
+<p>区别：</p>
+<p>安装前的区别：概念上的区别，见上述</p>
+<p>安装后的区别：安装位置的区别</p>
+</li>
+<li>
+<p>RPM包（一个软件）的默认安装位置：</p>
+<p><code>/etc/</code>：配置文件</p>
+<p><code>/usr/bin/</code>：可执行的命令</p>
+<p><code>/usr/lib/</code>：程序所使用的函数库</p>
+<p><code>/usr/share/doc/</code>：基本的软件使用手册</p>
+<p><code>/usr/share/man/</code>：版主文档</p>
+<p><code>/var/www/html/</code>：服务器类软件的默认网页位置</p>
+</li>
+<li>
+<p>源码包的安装位置：</p>
+<p>需要手动指定安装目录：一般推荐<code>/usr/local/软件名/</code></p>
+</li>
+<li>
+<p>RPM包和源码包安装软件带来的影响：<strong>启动服务的方式不同</strong></p>
+<p>RPM包在<code>/etc/rc.d/init.d/</code>下有执行文件，采用两种方式启动：For Example:</p>
+<ul>
+<li><code>/etc/rc.d/init.d/httpd start</code></li>
+<li><code>service httpd start</code></li>
+</ul>
+<p>但是源码包的服务启动方式不能用系统服务管理命令例如service来管理。只能在<code>/usr/local/软件名/bin/执行软件吗 start</code> 目录下启动服务</p>
+</li>
+<li>
+<p>Apache源码包的具体安装步骤：</p>
+<ol>
+<li>
+<p>安装C语言编译器：gcc</p>
+</li>
+<li>
+<p>下载apache的源码包：<a href="http://mirror.bit.edu.cn/apache/httpd/" target="_blank" rel="noopener noreffer ">path</a></p>
+</li>
+<li>
+<p>确认源码保存位置<code>/usr/local/src/</code></p>
+</li>
+<li>
+<p>确认软件安装位置：<code>/usr/local/</code></p>
+</li>
+<li>
+<p>确认安装过程报错</p>
+<p>安装过程停止并出现error，warning，no等提示语言</p>
+</li>
+<li>
+<p>解压缩下载的源码包：<code>tar -zxvf 源码包名</code></p>
+</li>
+<li>
+<p>进入解压缩目录：INSTALL和README时安装说明和使用说明</p>
+</li>
+<li>
+<p>执行<code>./configure --prefix=默认安装目录</code>：编译前准备</p>
+<ul>
+<li>定义需要的功能选项</li>
+<li>检测系统环境是否符合安装要求</li>
+<li>把定义好的的功能选项和检测系统环境的信息都写入makefile文件，用于后续的编译</li>
+</ul>
+</li>
+<li>
+<p>执行<code>make</code>：编译</p>
+</li>
+<li>
+<p>如果前两步报错，执行<code>make clean</code>，清空过程中生成的临时文件。</p>
+</li>
+<li>
+<p>执行<code>make install</code>：安装</p>
+</li>
+<li>
+<p>删除源码包安装的软件：直接<code>rm -rf /usr/local/软件名/</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="脚本安装包与软件包管理">脚本安装包与软件包管理</h1>
+<ul>
+<li>脚本安装包不是独立的软件包类型，常见安装的是源码包</li>
+<li>人为包安装过程写成额自动安装的脚本，只要执行脚本，定义简单的参数，就可以完成安装</li>
+<li>非常类似于windows下软件的安装方式</li>
+<li><strong>Webmin</strong> 是一个基于Web的Linux系统管理界面，可以通过图形化的方式设置用户账号、Apache、DNS、文件共享等服务。<a href="http://sourceforge.net/projects/webadmin/files/webmin/" target="_blank" rel="noopener noreffer ">下载软件</a>，下载后解压缩，并进入解压缩目录，执行.sh安装脚本,最后登录ip地址的自己配置的端口号进入该网站即可</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-03-05</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/" data-title="linux软件包管理" data-hashtags="Linux,JavaWeb"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/" data-title="linux软件包管理"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/" data-title="linux软件包管理"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/" data-title="linux软件包管理"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/javaweb/">JavaWeb</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8-vim/" class="prev" rel="prev" title="强大的文本编辑器:Vim"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>强大的文本编辑器:Vim</a>
+            <a href="/posts/linux%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="next" rel="next" title="linux中的用户管理">linux中的用户管理<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

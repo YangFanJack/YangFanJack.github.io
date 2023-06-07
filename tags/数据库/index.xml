@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>数据库 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-    <description>Recent content in 数据库 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Thu, 11 Feb 2021 20:21:12 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>玩儿转MySQL</title>
-      <link>http://yangfanjack.top/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</link>
-      <pubDate>Thu, 11 Feb 2021 20:21:12 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</guid>
-      <description>数据库的特点： 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 常见的数据库软件： 数据库软件是对数据库的不同实现</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数据库 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+        <description>数据库 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Thu, 11 Feb 2021 20:21:12 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>玩儿转MySQL</title>
+    <link>http://yangfanjack.top/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</link>
+    <pubDate>Thu, 11 Feb 2021 20:21:12 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</guid>
+    <description><![CDATA[数据库的特点： 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 常见的数据库软件： 数据库软件是对数据库的不同实现]]></description>
+</item>
+</channel>
 </rss>

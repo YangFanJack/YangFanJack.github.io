@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>docker进阶指南 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="docker进阶指南" />
+<meta property="og:description" content="docker可视化 # Portainer:利用Portainer可以轻松构建，管理及维护Docker环境，它基于容器安装，高效部署 docker run -d -p 8088:9000 --restart=always" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-20T15:51:50+00:00" />
+<meta property="article:modified_time" content="2020-11-20T15:51:50+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="docker进阶指南"/>
+<meta name="twitter:description" content="docker可视化 # Portainer:利用Portainer可以轻松构建，管理及维护Docker环境，它基于容器安装，高效部署 docker run -d -p 8088:9000 --restart=always"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" /><link rel="prev" href="http://yangfanjack.top/posts/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" /><link rel="next" href="http://yangfanjack.top/posts/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "docker进阶指南",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97\/"
+        },"genre": "posts","keywords": "Linux, 后端, Docker","wordcount":  3278 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97\/","datePublished": "2020-11-20T15:51:50+00:00","dateModified": "2020-11-20T15:51:50+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">docker进阶指南</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-11-20">2020-11-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3278 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#docker可视化">docker可视化</a></li>
+    <li><a href="#docker的分层机制">docker的分层机制</a></li>
+    <li><a href="#commit镜像">commit镜像</a></li>
+    <li><a href="#容器数据卷">容器数据卷</a></li>
+    <li><a href="#dockerfile">DockerFile</a></li>
+    <li><a href="#docker网络容器编排集群部署">Docker网络（容器编排，集群部署）</a></li>
+    <li><a href="#devops">DevOps</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="docker可视化">docker可视化</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Portainer:利用Portainer可以轻松构建，管理及维护Docker环境，它基于容器安装，高效部署</span>
+</span></span><span class="line"><span class="cl">docker run -d -p 8088:9000 --restart<span class="o">=</span>always -v /var/run/docker.sock:/var/run/docker.sock --privileged<span class="o">=</span><span class="nb">true</span> portainer/portainer
+</span></span><span class="line"><span class="cl"><span class="c1"># Rancher:Rancher是一个开源的企业级全栈化容器部署及管理平台。Rancher为容器提供一揽子基础架构服务：CNI兼容的网络服务、存储服务、主机管理、负载均衡、防护墙……Rancher让上述服务跨越公有云、私有云、虚拟机、物理机环境运行，真正实现一键式应用部署和管理。</span>
+</span></span><span class="line"><span class="cl">docker run ‐di ‐‐name<span class="o">=</span>rancher ‐p 9090:8080 rancher/server
+</span></span></code></pre></div><h2 id="docker的分层机制">docker的分层机制</h2>
+<p>Docker镜像是<strong>分层</strong>构建的，Dockerfile 中每条指令都会新建一层。例如以下 Dockerfile:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">FROM ubuntu:18.04
+</span></span><span class="line"><span class="cl">COPY . /app
+</span></span><span class="line"><span class="cl">RUN make /app
+</span></span><span class="line"><span class="cl">CMD python /app/app.py
+</span></span></code></pre></div><p>以上四条指令会创建四层，分别对应<strong>基础镜像、复制文件、编译文件以及入口文件</strong>，每层只记录本层所做的更改，而这些层都是<strong>只读层(镜像层)</strong>。当你启动一个容器，Docker 会在最顶部添加<strong>读写层</strong>，你在容器内做的所有更改，如写日志、修改、删除文件等，都保存到了读写层内，一般称该层为<strong>容器层</strong>，如下图所示：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120162027.jpeg"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120162027.jpeg, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120162027.jpeg 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120162027.jpeg 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120162027.jpeg"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120162027.jpeg" /></p>
+<p>事实上，<strong>容器（container）和镜像（image）的最主要区别就是容器加上了顶层的读写层</strong>。所有对容器的修改都发生在此层，镜像并不会被修改，也即前面说的 COW(copy-on-write)技术。容器需要读取某个文件时，直接从底部只读层去读即可，而如果需要修改某文件，则将该文件拷贝到顶部读写层进行修改，只读层保持不变。</p>
+<p><strong>每个容器都有自己的读写层</strong>，因此多个容器可以使用同一个镜像，另外容器被删除时，其对应的读写层也会被删除（如果你<strong>希望多个容器共享或者持久化数据，可以使用 Docker volume</strong>）。</p>
+<p>最后，执行命令 docker ps -s，可以看到最后有两列 size 和 virtual size。其中 size就是容器读写层占用的磁盘空间，而 virtual size 就是读写层加上对应只读层所占用的磁盘空间。如果两个容器是从同一个镜像创建，那么只读层就是 100%共享，即使不是从同一镜像创建，其镜像仍然可能共享部分只读层（如一个镜像是基于另一个创建）。因此，docker 实际占用的磁盘空间远远小于 virtual size 的总和。</p>
+<h2 id="commit镜像">commit镜像</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker commit <span class="c1">#提交容器成为一个新的副本</span>
+</span></span><span class="line"><span class="cl">docker commit -m<span class="o">=</span><span class="s2">&#34;描述信息&#34;</span> -a<span class="o">=</span><span class="s2">&#34;作者&#34;</span> 容器id 自定义目标镜像名:<span class="o">[</span>版本号<span class="o">]</span>
+</span></span></code></pre></div><p><strong>接下来是docker的三个精髓：容器数据卷，DockerFile，Docker网络</strong></p>
+<h2 id="容器数据卷">容器数据卷</h2>
+<p>用来实现&quot;删服务不删数据&quot;，数据可持久化，将<strong>容器内的目录</strong>映射<strong>同步</strong>到<strong>宿主机的目录</strong>中，类似于双向绑定</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker run -it -v 宿主机目录:容器内目录 <span class="c1">#注意目录都是绝对地址</span>
+</span></span><span class="line"><span class="cl">docker inspect 容器id <span class="c1">#查看容器的具体同步目录信息Mount</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#数据卷命令</span>
+</span></span><span class="line"><span class="cl">docker volume create <span class="c1">#创建数据卷</span>
+</span></span><span class="line"><span class="cl">docker volume inspect <span class="c1">#显示数据卷详细信息</span>
+</span></span><span class="line"><span class="cl">docker volume ls <span class="c1">#显示所有数据卷</span>
+</span></span><span class="line"><span class="cl">docker volume rm <span class="c1">#移除数据卷</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#具名和匿名挂载（都不指定路径）</span>
+</span></span><span class="line"><span class="cl">docker run -d -P name nginx02 -v juming-nginx:/etc/nginx nginx
+</span></span><span class="line"><span class="cl">docker run -d -P name nginx01 -v /etc/nginx ngix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">所有的docker容器内的卷没有指定具体路径的情况下，都在<span class="sb">`</span>/var/lib/docker/volumes<span class="sb">`</span>下
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-v /宿主机路径：容器内路径   <span class="c1">#指定路径挂载</span>
+</span></span><span class="line"><span class="cl">-v 数据卷名：容器内路径  <span class="c1">#具名挂载</span>
+</span></span><span class="line"><span class="cl">-v 容器内路径  <span class="c1">#指定目录挂载</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#这里的ro和rw代表读写权限，ro表示只读，rw表示读和写，对挂载出来的内容就进行了限制，ro表示只能通过宿主机进行改变，容器内无法操作</span>
+</span></span><span class="line"><span class="cl">docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:ro nginx
+</span></span><span class="line"><span class="cl">docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:rw nginx
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#DockerFile:用来构建docker镜像的构建文件，相当于一个命令脚本。</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#镜像是层次的，脚本里的命令也是层次的</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#格式：指令(大写) 参数</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#每个命令就是镜像的一层</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">FROM centos
+</span></span><span class="line"><span class="cl">VOLUME <span class="o">[</span><span class="s2">&#34;volume01&#34;</span>,<span class="s2">&#34;volume02&#34;</span><span class="o">]</span> <span class="c1">#匿名挂载</span>
+</span></span><span class="line"><span class="cl">CMD <span class="nb">echo</span> <span class="s2">&#34;------end-------&#34;</span>
+</span></span><span class="line"><span class="cl">CMD /bin/bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker build -f dockerfile01 -t jack/centos
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#两个/多个容器之间同步数据（数据卷容器）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#docker02挂载到docker01上，此时docker01就是数据卷容器</span>
+</span></span><span class="line"><span class="cl">docker run -d -it --name docker02 --volumes--from docker01 jack/centos
+</span></span></code></pre></div><h2 id="dockerfile">DockerFile</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#构建步骤</span>
+</span></span><span class="line"><span class="cl">1. 编写dockerfile文件
+</span></span><span class="line"><span class="cl">2. docker build <span class="c1">#构建成为一个镜像</span>
+</span></span><span class="line"><span class="cl">3. docker run <span class="c1">#运行镜像</span>
+</span></span><span class="line"><span class="cl">4. docker push <span class="c1">#发布镜像（dockerhub，阿里云镜像仓库）</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#基础知识</span>
+</span></span><span class="line"><span class="cl">1. 每个保留关键字（指令）都大写
+</span></span><span class="line"><span class="cl">2. 执行从上到下
+</span></span><span class="line"><span class="cl">3. <span class="s2">&#34;#&#34;</span>表示注释
+</span></span><span class="line"><span class="cl">4. 每一个指令都会创建提交到一个新的镜像层
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220311.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220311.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220311.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220311.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220311.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220311.png" /></p>
+<p><strong>dockerfile是面向开发的，交付环境就是交付一个dockerfile文件：DockFile-&gt;DockerImages-&gt;Docker容器</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220723.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220723.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220723.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220723.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220723.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201120220723.png" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">FROM <span class="c1">#基础镜像</span>
+</span></span><span class="line"><span class="cl">MAINTAINER <span class="c1">#镜像是谁写的</span>
+</span></span><span class="line"><span class="cl">RUN <span class="c1">#镜像构建时需要运行的命令</span>
+</span></span><span class="line"><span class="cl">ADD <span class="c1">#添加内容（tocmat，mysql等）</span>
+</span></span><span class="line"><span class="cl">WORKDIR <span class="c1">#镜像的工作目录</span>
+</span></span><span class="line"><span class="cl">VOLUME <span class="c1">#挂载目录</span>
+</span></span><span class="line"><span class="cl">EXPOSE <span class="c1">#暴露的端口</span>
+</span></span><span class="line"><span class="cl">CMD <span class="c1">#指定容器启动的时候要运行的命令，只有最后一个会生效</span>
+</span></span><span class="line"><span class="cl">ENTRYPOINT <span class="c1">#指定容器启动的时候要运行的命令，可以追加命令</span>
+</span></span><span class="line"><span class="cl">ONBUILD <span class="c1">#只有当以当前镜像为基础镜像，去构建下一级镜像的时候才会被执行ONBUILD后的指令</span>
+</span></span><span class="line"><span class="cl">COPY <span class="c1">#将文件拷贝到目录中</span>
+</span></span><span class="line"><span class="cl">ENV <span class="c1">#构建的时候设置环境变量（例：mysql用户名）</span>
+</span></span></code></pre></div><p><strong>实战：自定义centos</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">vim mydocker-centos
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">FROM centos
+</span></span><span class="line"><span class="cl">MAINTAINER jack&lt;yangfanjack1024@qq.com&gt;
+</span></span><span class="line"><span class="cl">ENV MYPATH /usr/local
+</span></span><span class="line"><span class="cl">WORKDIR <span class="nv">$MYPATH</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">RUN yum -y install vim
+</span></span><span class="line"><span class="cl">RUN yum -y install net-tools
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">EXPOSE <span class="m">80</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CMD <span class="nb">echo</span> <span class="nv">$MYPATH</span>
+</span></span><span class="line"><span class="cl">CMD <span class="nb">echo</span> <span class="s2">&#34;-----end-----&#34;</span>
+</span></span><span class="line"><span class="cl">CMD /bin/bash
+</span></span><span class="line"><span class="cl"><span class="c1">#ADD </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#VOLUME </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#ENTRYPOINT </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#ONBUILD </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#COPY </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#得到自定义镜像mycentos:0.1</span>
+</span></span><span class="line"><span class="cl">docker build -f mydocker-centos -t mycentos:0.1 .
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#编写包含tomcat的centos自定义镜像</span>
+</span></span><span class="line"><span class="cl">1. 准备镜像文件tomvat和jdk的压缩包
+</span></span><span class="line"><span class="cl">2. 编写dockerfile文件，官方命名Dockerfile，build会自动寻找这个文件，就不需要-f指定了
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#Dockerfile文件</span>
+</span></span><span class="line"><span class="cl">FROM centos
+</span></span><span class="line"><span class="cl">MAINTAINER jack&lt;yangfanjack1024@qq.com&gt;
+</span></span><span class="line"><span class="cl">COPY readme.txt /usr/local/readme.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ADD jdk-8u271-linux-x64.tar.gz /usr/local
+</span></span><span class="line"><span class="cl">ADD apache-tomcat-9.0.40.tar.gz /usr/local
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">RUN yum -y install vim
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ENV MYPATH /usr/local
+</span></span><span class="line"><span class="cl">WORK <span class="nv">$MYPATH</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#设置环境变量</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/jdk1.8.0_271
+</span></span><span class="line"><span class="cl">ENV <span class="nv">CLASSPATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/lib/dt.jar:<span class="nv">$JAVA_HOME</span>/lib/tools.jar
+</span></span><span class="line"><span class="cl">ENV CATALINA_HOME /usr/local/apache-tomcat-9.0.40
+</span></span><span class="line"><span class="cl">ENV CATALINA_BASE /usr/local/apache-tomcat-9.0.40
+</span></span><span class="line"><span class="cl">ENV PATH <span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin:<span class="nv">$CATALINA_HOME</span>/lib:<span class="nv">$CATALINA_HOME</span>/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">EXPOSE <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CMD /usr/local/apache-tomcat-9.0.40/bin/startup.sh <span class="o">&amp;&amp;</span> tail -F /usr/local/apache-tomcat-9.0.40/bin/logs/catalina.out
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#构建自定义tomcat的镜像</span>
+</span></span><span class="line"><span class="cl">docker build -t diytomcat .
+</span></span><span class="line"><span class="cl"><span class="c1">#启动tomcat</span>
+</span></span><span class="line"><span class="cl">docker run -d -p 8080:8080 --name jacktomcat -v /root/test/:/usr/local/apache-tomcat-9.0.40/webapps/test/ -v /root/tomcatlogs/:/usr/local/apache-tomcat-9.0.40/logs/ diytomcat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#然后直接在宿主机的test中发布网站即可</span>
+</span></span></code></pre></div><p><strong>发布镜像到dockerhub和阿里云</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#先注册</span>
+</span></span><span class="line"><span class="cl">https://hub.docker.com/
+</span></span><span class="line"><span class="cl"><span class="c1">#在宿主机登录</span>
+</span></span><span class="line"><span class="cl">docker login -u XXX -p XXX
+</span></span><span class="line"><span class="cl"><span class="c1">#发布前先用tag命令修改为规范的镜像</span>
+</span></span><span class="line"><span class="cl">docker tag 镜像id jack/diytomcat:1.0
+</span></span><span class="line"><span class="cl">docker push jack/diytomcat:1.0
+</span></span><span class="line"><span class="cl"><span class="c1">#提交的时候就是按照层级来发布的</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#先注册</span>
+</span></span><span class="line"><span class="cl">https://www.aliyun.com/?spm<span class="o">=</span>5176.12901015.ahjq0uaqt.1.a8fd525cv7uh0R
+</span></span><span class="line"><span class="cl"><span class="c1">#找到容器镜像服务</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#创建命名空间（一个账号只能创建三个）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#创建镜像仓库</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#之后阿里云会有官方详细步骤</span>
+</span></span><span class="line"><span class="cl">docker login XXXXXXXXXXXXXXX
+</span></span><span class="line"><span class="cl">docker tag XXXXXXXXXXXXX
+</span></span><span class="line"><span class="cl">docker push jack/diytomcat:1.0
+</span></span></code></pre></div><p><strong>docker所有流程</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121084949.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121084949.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121084949.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121084949.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121084949.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121084949.png" /></p>
+<h2 id="docker网络容器编排集群部署">Docker网络（容器编排，集群部署）</h2>
+<p><strong>docker网络模式</strong>：有如下四种：</p>
+<p>host模式(&ndash;net=host)      container模式         none模式(&ndash;net=none)          bridge模式(&ndash;net=bridge)</p>
+<p><strong>host模式</strong>： 需要使用<strong>docker run</strong>是指定： <strong>&ndash;net=host</strong>   使用的网络实际上和宿主机是一样,在容器内的IP和宿主机的IP是一样,类似于<strong>vmare桥接模式</strong>；</p>
+<p>container模式：使用 <strong>&ndash;net=container:container_id/container_name</strong>，多个容器使用共同的网络,看到的IP是一样的；</p>
+<p>none模式： -<strong>-net=none</strong>  这种模式下,不会配置任何网络；</p>
+<p><strong>bridge模式</strong>：<strong>&ndash;net=bridge</strong>，不指定是默认也是这种模式，这种模式会为每个容器分配一个独立的network 网卡，同一个宿主机是在同一个网段下可以通信的，类似于 <strong>VMware 的 NAT模式</strong>；</p>
+<p><strong>桥接模式</strong>（类似于vm的nat模式）</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>host模式</strong>（类似于vm的桥接模式）</p>
+<!-- raw HTML omitted -->
+<p><strong>两个docker网络如何通信呢？</strong></p>
+<ul>
+<li>一台bai计算机是可以有多个IP地址的，如果我们给一台du服务器绑定两个以上zhiIP地址dao，其中一个IP地址在一个网段中(如192.168.1.0)，另一个IP地址在另一个网段中(如192.168.2.0)，如果给服务器提供路由功能，这两个IP地址充当网关，就可以把两个网段连接在一起了。</li>
+</ul>
+<p><strong>接下来是实战：Docker Compose，Docker Swarm，CI/CD Jenkins</strong></p>
+<h2 id="devops">DevOps</h2>
+<!-- raw HTML omitted -->
+<p><strong>DevOps（Development和Operations</strong>的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。</p>
+<p>它是一种重视“软件开发人员（Dev）”和“IT运维技术人员（Ops）”之间沟通合作的文化、运动或惯例。透过自动化“软件交付”和“架构变更”的流程，来使得构建、测试、发布软件能够更加地快捷、频繁和可靠。</p>
+<p>它的出现是由于软件行业日益清晰地认识到：为了按时交付软件产品和服务，开发和运维工作必须紧密合作。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121111806.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121111806.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121111806.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121111806.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121111806.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121111806.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112357.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112357.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112357.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112357.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112357.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112357.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112358.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112358.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112358.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112358.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112358.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201121112358.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-11-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" data-title="docker进阶指南" data-hashtags="Linux,后端,Docker"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" data-title="docker进阶指南"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" data-title="docker进阶指南"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" data-title="docker进阶指南"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>,&nbsp;<a href="/tags/docker/">Docker</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="prev" rel="prev" title="linux网络配置"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>linux网络配置</a>
+            <a href="/posts/martin-fowler%E5%85%B3%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BA%E6%96%87%E8%AF%91%E6%96%87/" class="next" rel="next" title="Martin Fowler关于微服务架构的论文译文">Martin Fowler关于微服务架构的论文译文<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,209 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>后端 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E5%90%8E%E7%AB%AF/</link>
-    <description>Recent content in 后端 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Thu, 23 Sep 2021 19:38:06 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E5%90%8E%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>工作流Activiti</title>
-      <link>http://yangfanjack.top/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</link>
-      <pubDate>Thu, 23 Sep 2021 19:38:06 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</guid>
-      <description>工作流的作用是：对系统的业务流程进行自动化管理。一个软件的系统核心是系统的业务流程，工作流只是协助进行业务流程管理。工作流能更好的管理业务流</description>
-    </item>
-    
-    <item>
-      <title>shiro权限管理</title>
-      <link>http://yangfanjack.top/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Thu, 12 Aug 2021 21:30:04 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
-      <description>shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。 只要有人参与的系统都需要进行权</description>
-    </item>
-    
-    <item>
-      <title>Java中加载配置文件的几种方法</title>
-      <link>http://yangfanjack.top/post/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Sun, 21 Mar 2021 19:22:16 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</guid>
-      <description>Java的常用web框架中会有很多配置文件，这些配置文件都是为了降低代码耦合性而从代码中剥离出来的。为了在程序运行时动态地加载这些文件进内存</description>
-    </item>
-    
-    <item>
-      <title>redis缓存技术</title>
-      <link>http://yangfanjack.top/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</link>
-      <pubDate>Tue, 16 Mar 2021 10:54:17 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</guid>
-      <description>Redis简介： 概念： redis是一款高性能的NOSQL（Not Only SQL）系列的菲关系型数据库 Redis特点： Redis 是一个开源的使用 ANSI、C</description>
-    </item>
-    
-    <item>
-      <title>javaWeb三大组件</title>
-      <link>http://yangfanjack.top/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</link>
-      <pubDate>Tue, 16 Mar 2021 10:51:26 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</guid>
-      <description>Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦</description>
-    </item>
-    
-    <item>
-      <title>java基础快速回顾-下</title>
-      <link>http://yangfanjack.top/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/</link>
-      <pubDate>Tue, 09 Mar 2021 11:42:39 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/</guid>
-      <description>Lambda表达式 匿名内部类可以省去定义实现类，但是语法太复杂 lambda表达式不关注面向对象，返璞归真，仅仅关注内容本身。 1 2 //一些参数</description>
-    </item>
-    
-    <item>
-      <title>java基础快速回顾-中</title>
-      <link>http://yangfanjack.top/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/</link>
-      <pubDate>Sat, 06 Mar 2021 09:36:20 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/</guid>
-      <description>Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名+@+hashcode”值 看</description>
-    </item>
-    
-    <item>
-      <title>JDBC</title>
-      <link>http://yangfanjack.top/post/jdbc/</link>
-      <pubDate>Thu, 18 Feb 2021 07:31:41 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/jdbc/</guid>
-      <description>JDBC JDBC本质： 其实是官方（sun公司）定义的一套操作所有关系型数据库的规则，即接口。各个数据库厂商去实现这套接口，提供数据库驱动jar包。</description>
-    </item>
-    
-    <item>
-      <title>SSM框架-Mybatis</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-mybatis/</link>
-      <pubDate>Fri, 22 Jan 2021 22:40:39 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-mybatis/</guid>
-      <description>开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下： 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成</description>
-    </item>
-    
-    <item>
-      <title>SSM框架-SpringMVC</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</link>
-      <pubDate>Thu, 21 Jan 2021 22:40:31 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-springmvc/</guid>
-      <description>SpringMVC的简介 SpringMVC概述 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于SpringFrameWork</description>
-    </item>
-    
-    <item>
-      <title>SSM框架-Spring</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-spring/</link>
-      <pubDate>Wed, 20 Jan 2021 22:40:22 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6-spring/</guid>
-      <description>Spring简介 Spring前身：EJB框架 Spring优点 方便解耦，简化开发：IOC容器使对象的依赖关系由Spring控制，编程者更专注于</description>
-    </item>
-    
-    <item>
-      <title>java-JVM</title>
-      <link>http://yangfanjack.top/post/java-jvm/</link>
-      <pubDate>Sat, 02 Jan 2021 15:59:28 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/java-jvm/</guid>
-      <description>JVM重点问题 JVM位置 JVM体系结构 类加载器 双亲委派机制 沙箱安全机制 Native PC寄存器 方法区 三种JVM 栈 堆 新生区，老年区 永久区 堆内存调优 GC机制</description>
-    </item>
-    
-    <item>
-      <title>Java-GC机制</title>
-      <link>http://yangfanjack.top/post/java-gc%E6%9C%BA%E5%88%B6/</link>
-      <pubDate>Mon, 21 Dec 2020 09:55:07 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/java-gc%E6%9C%BA%E5%88%B6/</guid>
-      <description>背景： Java的内存管理实际上就是对象的管理，其中包括对象的分配和释放。对于程序员来说，分配对象使用new关键字；释放对象时，只要将对象所有</description>
-    </item>
-    
-    <item>
-      <title>java基础快速回顾-上</title>
-      <link>http://yangfanjack.top/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/</link>
-      <pubDate>Sat, 19 Dec 2020 15:08:49 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8A/</guid>
-      <description>java语言开发环境搭建 java虚拟机——JVM 实质就是翻译，把.class文件翻译成计算机能认识的机器语言 java所谓的跨平台指的是jav</description>
-    </item>
-    
-    <item>
-      <title>java-反射</title>
-      <link>http://yangfanjack.top/post/java-%E5%8F%8D%E5%B0%84/</link>
-      <pubDate>Sat, 19 Dec 2020 12:56:10 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/java-%E5%8F%8D%E5%B0%84/</guid>
-      <description>静态语言（强类型语言） 静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。 例如：C++、Ja</description>
-    </item>
-    
-    <item>
-      <title>java-注解</title>
-      <link>http://yangfanjack.top/post/java-%E6%B3%A8%E8%A7%A3/</link>
-      <pubDate>Sat, 19 Dec 2020 12:55:39 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/java-%E6%B3%A8%E8%A7%A3/</guid>
-      <description>什么是注解 可以被其他程序读取 可以附加在package,class,method,field上都可以添加注解 可通过反射实现对注解中信息的访问 注</description>
-    </item>
-    
-    <item>
-      <title>docker进阶指南</title>
-      <link>http://yangfanjack.top/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</link>
-      <pubDate>Fri, 20 Nov 2020 15:51:50 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/docker%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/</guid>
-      <description>docker可视化 1 2 3 4 # Portainer:利用Portainer可以轻松构建，管理及维护Docker环境，它基于容器安装，高效部署 docker run</description>
-    </item>
-    
-    <item>
-      <title>linux服务器搭建ssm项目环境</title>
-      <link>http://yangfanjack.top/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
-      <pubDate>Thu, 19 Nov 2020 20:42:26 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</guid>
-      <description>购买服务器 阿里云云翼计划：9.5块钱/月 配置环境 jdk环境 1 2 yum -y install java-1.8.0-openjdk.x86_64 java -version mysql环境 安装mysql 1 2 3 4 cd /tmp wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm rpm -ivh mysql-community-release-el7-5.noarch.rpm yum install mysql mysql-server mysql-devel -y 启动</description>
-    </item>
-    
-    <item>
-      <title>Docker入门指南</title>
-      <link>http://yangfanjack.top/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
-      <pubDate>Thu, 19 Nov 2020 18:09:16 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
-      <description>docker介绍 下载docker依赖环境 1 2 想安装Docker，需要先将依赖的环境全部下载下来，就像Maven依赖JDK一样 yum -y install yum-utils device-mapper-persistent-data lvm2 指定</description>
-    </item>
-    
-    <item>
-      <title>SSM框架整合</title>
-      <link>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</link>
-      <pubDate>Mon, 19 Oct 2020 12:31:09 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/ssm%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/</guid>
-      <description>​ Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Desig</description>
-    </item>
-    
-    <item>
-      <title>javaWeb核心:servlet细节</title>
-      <link>http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</link>
-      <pubDate>Wed, 25 Mar 2020 16:42:00 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</guid>
-      <description>HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间</description>
-    </item>
-    
-    <item>
-      <title>IDEA中tomcat的神奇走位</title>
-      <link>http://yangfanjack.top/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/</link>
-      <pubDate>Wed, 18 Mar 2020 13:27:32 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/idea%E4%B8%ADtomcat%E7%9A%84%E7%A5%9E%E5%A5%87%E8%B5%B0%E4%BD%8D/</guid>
-      <description>tomcat服务器的三种部署方式： 直接将项目放进webapps目录下即可 /项目名就是访问路径 可以简化部署：将项目里的全部文件打一个war包，</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>后端 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E5%90%8E%E7%AB%AF/</link>
+        <description>后端 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Thu, 23 Sep 2021 19:38:06 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E5%90%8E%E7%AB%AF/" rel="self" type="application/rss+xml" /><item>
+    <title>工作流Activiti</title>
+    <link>http://yangfanjack.top/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</link>
+    <pubDate>Thu, 23 Sep 2021 19:38:06 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E5%B7%A5%E4%BD%9C%E6%B5%81activiti/</guid>
+    <description><![CDATA[工作流的作用是：对系统的业务流程进行自动化管理。一个软件的系统核心是系统的业务流程，工作流只是协助进行业务流程管理。工作流能更好的管理业务流]]></description>
+</item>
+<item>
+    <title>shiro权限管理</title>
+    <link>http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Thu, 12 Aug 2021 21:30:04 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/shiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
+    <description><![CDATA[shiro权限管理 Shiro的核心就是用来完成权限管理的。权限管理包括用户身份认证和授权两部分，简称认证授权。 只要有人参与的系统都需要进行权]]></description>
+</item>
+<item>
+    <title>Java中加载配置文件的几种方法</title>
+    <link>http://yangfanjack.top/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Sun, 21 Mar 2021 19:22:16 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/java%E4%B8%AD%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[Java的常用web框架中会有很多配置文件，这些配置文件都是为了降低代码耦合性而从代码中剥离出来的。为了在程序运行时动态地加载这些文件进内存]]></description>
+</item>
+<item>
+    <title>redis缓存技术</title>
+    <link>http://yangfanjack.top/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</link>
+    <pubDate>Tue, 16 Mar 2021 10:54:17 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/redis%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF/</guid>
+    <description><![CDATA[Redis简介： 概念： redis是一款高性能的NOSQL（Not Only SQL）系列的菲关系型数据库 Redis特点： Redis 是一个开源的使用 ANSI、C]]></description>
+</item>
+<item>
+    <title>javaWeb三大组件</title>
+    <link>http://yangfanjack.top/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</link>
+    <pubDate>Tue, 16 Mar 2021 10:51:26 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/javaweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6/</guid>
+    <description><![CDATA[Servlet 见之前的两篇博客：《javaWeb核心-理解servlet》，《javaWeb核心-servlet细节》，讲的很详细 Filter：过滤器 拦]]></description>
+</item>
+<item>
+    <title>java基础快速回顾-下</title>
+    <link>http://yangfanjack.top/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/</link>
+    <pubDate>Tue, 09 Mar 2021 11:42:39 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%8B/</guid>
+    <description><![CDATA[Lambda表达式 匿名内部类可以省去定义实现类，但是语法太复杂 lambda表达式不关注面向对象，返璞归真，仅仅关注内容本身。 1 2 //一些参数]]></description>
+</item>
+<item>
+    <title>java基础快速回顾-中</title>
+    <link>http://yangfanjack.top/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/</link>
+    <pubDate>Sat, 06 Mar 2021 09:36:20 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/java%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE-%E4%B8%AD/</guid>
+    <description><![CDATA[Java某些类 Object类 java的根类 toString() Object类的toString()方法默认返回该对象实现类的“类名+@+hashcode”值 看]]></description>
+</item>
+<item>
+    <title>JDBC</title>
+    <link>http://yangfanjack.top/jdbc/</link>
+    <pubDate>Thu, 18 Feb 2021 07:31:41 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/jdbc/</guid>
+    <description><![CDATA[JDBC JDBC本质： 其实是官方（sun公司）定义的一套操作所有关系型数据库的规则，即接口。各个数据库厂商去实现这套接口，提供数据库驱动jar包。]]></description>
+</item>
+<item>
+    <title>SSM框架-Mybatis</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-mybatis/</link>
+    <pubDate>Fri, 22 Jan 2021 22:40:39 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-mybatis/</guid>
+    <description><![CDATA[开始 原始jdbc操作的分析 原始jdbc开发存在的问题如下： 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能 sql 语句在代码中硬编码，造成]]></description>
+</item>
+<item>
+    <title>SSM框架-SpringMVC</title>
+    <link>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-springmvc/</link>
+    <pubDate>Thu, 21 Jan 2021 22:40:31 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-springmvc/</guid>
+    <description><![CDATA[SpringMVC的简介 SpringMVC概述 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于SpringFrameWork]]></description>
+</item>
+</channel>
 </rss>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>hexo博客优化之图床迁移&amp;google收录 - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="hexo博客优化之图床迁移&amp;google收录" />
+<meta property="og:description" content="前言： 搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-11T11:32:08+00:00" />
+<meta property="article:modified_time" content="2020-03-11T11:32:08+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
+
+<meta name="twitter:title" content="hexo博客优化之图床迁移&amp;google收录"/>
+<meta name="twitter:description" content="前言： 搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打"/>
+<meta name="application-name" content="Jack&#39;s Blog Site">
+<meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/" /><link rel="prev" href="http://yangfanjack.top/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" /><link rel="next" href="http://yangfanjack.top/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "hexo博客优化之图床迁移\u0026google收录",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95\/"
+        },"genre": "posts","keywords": "博客, hexo","wordcount":  1233 ,
+        "url": "http:\/\/yangfanjack.top\/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95\/","datePublished": "2020-03-11T11:32:08+00:00","dateModified": "2020-03-11T11:32:08+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">Jack&#39;s Blog Site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hexo博客优化之图床迁移&google收录</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>解决方案</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-11">2020-03-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1233 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#图床迁移">图床迁移：</a></li>
+    <li><a href="#google收录">Google收录：</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>前言：</p>
+<ul>
+<li>搭建完hexo后，当然就是写博客，markdown的语法插入图片很简单，但是把大量图片放在博客文件里面，未免太臃肿，会大大拖慢博客的打开时间（更别说我的博客是托管在github上的了）。<strong>图床</strong>就是一个好的解决方案，顾名思义，图床就是一个存储图片个“床”，一个<strong>云端的图片库</strong>，它把博客和图片分离开来，更好管理的同时也不会拖慢博客的速度。</li>
+<li>我写博客虽然都是给自己看的，但是搜索引擎搜不到自己的文章总感觉缺了点什么😆,让谷歌收录自己的博文，再加上自己博文的质量，就能在google搜索引擎上根据关键词搜索到自己的文章了。（百度的收录我没有弄，不过大同小异）</li>
+</ul>
+<h1 id="图床迁移">图床迁移：</h1>
+<p><strong>我之前的图床用的是<a href="https://imgchr.com/" target="_blank" rel="noopener noreffer ">路过图床</a>，这是个免费的图床，还不错，免费额度完全够用，但是感觉图片打开速度有点慢。所以就百度了一下，发现了一种同样免费且快捷的方式：gitee(码云)+PicGo。迁移过后，实测效果明显，下面就来总结一下</strong></p>
+<ul>
+<li>
+<p>现在码云建立一个仓库，按照下面格式来。没有账号的自己注册。</p>
+<img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220522094836.png" style="zoom: 67%;" />
+</li>
+<li>
+<p>在gitee的<strong>个人设置</strong>里选择   <strong>私人令牌</strong>——&gt;<strong>生成新令牌</strong>，最后会生成一串密文，保存它，后面和PicGo绑定要用。</p>
+</li>
+<li>
+<p>下载PicGo软件<a href="https://github.com/Molunerfinn/PicGo/releases" target="_blank" rel="noopener noreffer ">下载链接</a>，Windows系统选择exe安装程序下载，macos选择dmg程序安装程序下载。</p>
+</li>
+<li>
+<p>进入PicGo界面，插件搜索gitee-uploader，安装，然后重启。</p>
+</li>
+<li>
+<p>进入图床设置，选择gitee，然后填入以下信息</p>
+<ul>
+<li>repo：gitee中你建立的仓库地址，例如<code>yangfanjack/image</code></li>
+<li>branch：填<code>master</code></li>
+<li>token：刚才的密文</li>
+<li>path：一般填<code>img</code></li>
+<li>customPath：不填</li>
+<li>customUrl：不填</li>
+</ul>
+</li>
+<li>
+<p>然后点击<strong>设为默认图床</strong>——&gt;<strong>确认</strong>，即可，enjoy it!</p>
+</li>
+</ul>
+<h1 id="google收录">Google收录：</h1>
+<p>前提：看到这里的我相信都有办法进google吧</p>
+<ul>
+<li>
+<p>进入<a href="https://www.google.com/webmasters/#?modal_active=none" target="_blank" rel="noopener noreffer ">Google Search Console</a>，既然有新的，就选择左边的网域，按照他的格式例如<code>ordinaryman.club</code>填入你的域名，点击继续</p>
+</li>
+<li>
+<p>会DNS验证，去你的域名购买商添加一条txt record，如果之前更改过DNS服务器地址，就去DNS代理商添加record，我是cloudflare代理的，所以以此为例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215859.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215859.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215859.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215859.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215859.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215859.png" /></p>
+<p>点击**+Add record**，然后<strong>type</strong>选择TXT，<strong>Name</strong>填@，<strong>Content</strong>就填Google给你的txt内容，点击save，完成。</p>
+</li>
+<li>
+<p>返回Google Search Console界面，点击验证，一般会过一段时间通过，不过我是马上就通过了😐。</p>
+</li>
+<li>
+<p>然后进入你的本地博客根目录，安装站点地图插件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm install hexo-generator-sitemap --save
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装完后进入根目录的配置文件_config.yml</p>
+<ul>
+<li>在URL下：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">url: http://XXXXXX  //写入你的域名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>在最后加上：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sitemap:
+</span></span><span class="line"><span class="cl">	path: sitemap.xml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>保存后，hexo三件套：<code>hexo clean</code>       <code>hexo g</code>      <code>hexo d</code>，访问网页：<code>你的域名/sitemap.xml</code>，出现以下页面说明配置成功</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215929.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215929.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215929.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215929.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215929.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20200311215929.png" /></p>
+</li>
+<li>
+<p>进入Google Search Console的你的域名管理页面，点击站点地图，添加你的站点地图的网址：<code>你的域名/sitemap.xml</code>，等待一天时间，就可以生效啦。</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-03-11</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/" data-title="hexo博客优化之图床迁移&amp;google收录" data-hashtags="博客,hexo"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/" data-hashtag="博客"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/" data-title="hexo博客优化之图床迁移&amp;google收录"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/" data-title="hexo博客优化之图床迁移&amp;google收录"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB-google%E6%94%B6%E5%BD%95/" data-title="hexo博客优化之图床迁移&amp;google收录"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>,&nbsp;<a href="/tags/hexo/">hexo</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/linux%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" class="prev" rel="prev" title="linux日志管理"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>linux日志管理</a>
+            <a href="/linux%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86/" class="next" rel="next" title="linux启动管理">linux启动管理<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

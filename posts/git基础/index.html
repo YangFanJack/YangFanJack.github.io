@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>git基础 - Jack&#39;s Blog Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="git基础" />
+<meta property="og:description" content="git的安装 ​ 官网下载后，在cmd中输入git验证是否安装完成 git的基本配置 git config --global user.name &#34;name&#34; git config --global user.email &#34;email&#34; ​ 需要注意的是可以有三种参数，local、" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yangfanjack.top/posts/git%E5%9F%BA%E7%A1%80/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-03T11:53:47+00:00" />
+<meta property="article:modified_time" content="2020-03-03T11:53:47+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="git基础"/>
+<meta name="twitter:description" content="git的安装 ​ 官网下载后，在cmd中输入git验证是否安装完成 git的基本配置 git config --global user.name &#34;name&#34; git config --global user.email &#34;email&#34; ​ 需要注意的是可以有三种参数，local、"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/posts/git%E5%9F%BA%E7%A1%80/" /><link rel="prev" href="http://yangfanjack.top/posts/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" /><link rel="next" href="http://yangfanjack.top/posts/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "git基础",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/yangfanjack.top\/posts\/git%E5%9F%BA%E7%A1%80\/"
+        },"genre": "posts","keywords": "Linux, Git","wordcount":  6148 ,
+        "url": "http:\/\/yangfanjack.top\/posts\/git%E5%9F%BA%E7%A1%80\/","datePublished": "2020-03-03T11:53:47+00:00","dateModified": "2020-03-03T11:53:47+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jack Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Jack&#39;s Blog Site">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">git基础</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-03">2020-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6148 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#git的安装">git的安装</a></li>
+    <li><a href="#git的基本配置">git的基本配置</a></li>
+    <li><a href="#git基本操作">git基本操作</a></li>
+    <li><a href="#rebase变基">rebase(变基)</a></li>
+    <li><a href="#beyond-compare冲突解决软件">beyond compare冲突解决软件</a></li>
+    <li><a href="#多人协同开发">多人协同开发</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#如何给开源项目贡献代码">如何给开源项目贡献代码</a></li>
+    <li><a href="#再探">再探：</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="git的安装">git的安装</h2>
+<p>​		<a href="https://git-scm.com/" target="_blank" rel="noopener noreffer ">官网下载</a>后，在cmd中输入git验证是否安装完成</p>
+<h2 id="git的基本配置">git的基本配置</h2>
+<pre tabindex="0"><code>git config --global user.name &#34;name&#34;
+git config --global user.email &#34;email&#34;
+</code></pre><p>​		<strong>需要注意的是可以有三种参数，local、global和system，优先级依次降低。global是全局配置，local可以为本地项目添加单独配置</strong></p>
+<p>​		<strong>查看配置命令：</strong></p>
+<pre tabindex="0"><code>git config -l --global(或其他两个)
+</code></pre><blockquote>
+<p>git配置文件位置</p>
+</blockquote>
+<ol>
+<li>
+<p>本地项目配置文件：<code>当前项目/.git/config</code></p>
+<pre tabindex="0"><code>git config --local XXX
+</code></pre></li>
+<li>
+<p>全局配置文件：<code>~/.gitconfig</code></p>
+<pre tabindex="0"><code>git config --global XXX
+</code></pre></li>
+<li>
+<p>系统配置文件：<code>/etc/.gitconfig</code>（需要root权限）</p>
+<pre tabindex="0"><code>git config --system XXX
+</code></pre></li>
+</ol>
+<blockquote>
+<p>三种免密登录方式</p>
+</blockquote>
+<ol>
+<li>
+<p>URL中体现：</p>
+<pre tabindex="0"><code>原来：https://github.com/YangFanJack/DesignPattern.git
+免密：https://用户名:密码@github.com/YangFanJack/DesignPattern.git
+
+git remote add origin https://用户名:密码@github.com/YangFanJack/DesignPattern.git
+git push origin master
+</code></pre></li>
+<li>
+<p>SSH实现：</p>
+<pre tabindex="0"><code>//生成公钥和私钥，在用户的.ssh文件夹里面把公钥添加到远程仓库github里面
+ssh-keygen -t rsa -C &#34;youremail&#34;      //生成两把钥匙
+ssh -T git@github.com  //验证ssh配置是否配置好
+
+//注意：如果提示找不到ssh-keygen命令的错误，说明你执行这条命令的位置错了，应该在本地的git仓库根目录下执行
+</code></pre></li>
+<li>
+<p>git自动管理凭证</p>
+<pre tabindex="0"><code>//基于操作系统的功能，不同操作系统的实现方式不一样
+</code></pre></li>
+</ol>
+<h2 id="git基本操作">git基本操作</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204745.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204745.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204745.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204745.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204745.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204745.png" /></p>
+<p>​		<strong>第一步</strong></p>
+<pre tabindex="0"><code>git init //初始化，让git帮助管理文件夹
+git status //检测当前目录下文件状态
+git add //工作区到暂存区
+git commit -m &#34;注释&#34; //暂存区到版本库，生成版本/快照
+git diff //查看修改内容
+# git status显示不了中文解决方法
+git config --global core.quotepath false
+# 解决git-bash终端乱码问题
+git-bash的设置-文本-locale-zh_CN-utf-8
+# 启动bash.exe的命令加上参数-i -l
+</code></pre><p>​		<strong>从现在回溯到历史，和从历史回溯到将来</strong></p>
+<pre tabindex="0"><code>git log //查看提交历史
+git log --pretty=oneline --graph --abbrev-commit //以图线的方式精简显示版本历史
+
+//git中使用HEAD表示当前版本
+git reset --hard 版本号(HEAD^,HEAD^^,HEAD~n) //回滚
+
+//如果想从前面回到后面，使用git reflog查看你的每一次操作，然后使用git reset --hard
+git reflog //查看命令历史
+git reset --hard 版本号
+</code></pre><p>​		<strong>git reset 三种模式</strong></p>
+<pre tabindex="0"><code>git reset --hard 版本号：重置stage区和工作目录
+
+git reset --soft 版本号：保留工作目录，并把重置 HEAD 所带来的新的差异放进暂存区
+
+git reset --mixed(默认) 版本号：保留工作目录，并清空暂存区
+
+# 虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的
+为了撤销更改并分享给别人，我们需要使用 git revert，revert是一个commit一个commit地提交
+git revert commitID
+# 比较常见的一种场景是：merge了一个分支后需要恢复到merge前的状态，我们可以git revert 新生成的merge commitID，不通的一点是父ID不止一个，需要指定。1和2根据merge的log里的commitID的先后顺序
+git revert commitID -m 1/2
+</code></pre><p>​		<strong>与版本库内容进行比较</strong></p>
+<pre tabindex="0"><code>//显示暂存区和工作区的差异
+git diff 文件名
+//显示暂存区和上一次提交(commit)的差异
+git diff --cached 文件名
+git diff --staged 文件名
+</code></pre><p>​		<strong>暂存区文件撤销</strong></p>
+<pre tabindex="0"><code>git reset HEAD 文件名
+git rm --cached 文件名
+git restore --staged 文件名
+
+//如果暂存区有该文件，工作区和暂存区统一，如果没有，工作区和版本库统一
+git checkout -- 文件名
+</code></pre><p>​		<strong>git的分支操作</strong></p>
+<pre tabindex="0"><code>git branch //显示本地所有分支
+git branch -r //显示远程所有分支
+git branch -a //显示本地和远程所有分支
+git branch 分支名 //创建分支
+git checkout 分支名 //切换分支
+git checkout -b 分支名 //创建并切换分支
+git branch -d 分支名 //删除分支
+git merge 其他分支名 //合并其他分支到当前分支，可能产生冲突，手动修改冲突文件
+git branch -f main HEAD~3：将 main 分支强制指向 HEAD 的第 3 级父提交，git checkout只能移动HEAD到某个分支的最后一个commit，但是git branch -f能自定义某个分支的最后一个commit到任意节点
+</code></pre><p>​		<strong>git的删除操作</strong></p>
+<pre tabindex="0"><code>//手动删除工作区的文件后可以恢复
+//git restore指令使得在工作空间但是不在暂存区的文件撤销更改(内容恢复到没修改之前的状态)
+git restore 文件名
+
+git rm (-r -f) XX
+git commit -m &#34;直接同步删除操作到本地仓库&#34;
+
+rm (-r -f) XX
+git add XX
+git commit -m &#34;需要先add，再同步删除操作到本地仓库&#34;
+</code></pre><blockquote>
+<p><strong>问题：</strong>
+远程已经修改，然后你没pull就修改了本地，push时发生了错误
+<strong>解决：</strong>
+错误发生后，先pull，在本地中的冲突文件中按照需求修改文件，最后再push</p>
+</blockquote>
+<p><strong>经过上述步骤已经能实现本地多分支开发，假设目前开发进度如下图所示：</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgusachwRCOLndJli.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgusachwRCOLndJli.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgusachwRCOLndJli.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgusachwRCOLndJli.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgusachwRCOLndJli.png"
+        title="gnome-shell-screenshot-9CZIY0.png" /></p>
+<p>​		<strong>远程仓库操作（以github为例）</strong></p>
+<pre tabindex="0"><code>//查看关联的远程仓库
+git remote
+git remote -v
+git remote show origin
+
+//连接可以是http，也可以是ssh
+git remote add origin http://github.com/YangFanJack/xxxxx.git
+git remote rm origin
+//-u表示以后默认都是origin这个地址
+git push -u origin master
+//刷新远程跟踪分支
+git remote update origin --prune
+
+//git clone已经包含了remote add origin操作
+git clone http://github.com/YangFanJack/xxxxx.git
+
+//接上图继续开发
+git checkout dev //切换到需要拉取并合并的分支
+git merge master //将dev更新为最新版本[仅1次]（上次开发结束时最新版本在master主分支上）
+（继续开发...）
+git add .
+git commit -m XXX
+git push origin dev
+
+//异地拉取代码继续开发
+git checkout dev
+git pull origin dev
+（继续开发...）
+git add .
+git commit -m XXX
+git push origin dev
+
+//某一个阶段代码开发完后，合并dev到master
+git checkout master
+git merge dev
+git push origin master
+
+git checkout dev
+git merge master
+git push origin dev
+</code></pre><p>​		<strong>pull=fetch+merge</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204911.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204911.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204911.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204911.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204911.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521204911.png" /></p>
+<pre tabindex="0"><code>git pull origin dev
+
+git fetch origin dev
+git merge origin/dev
+</code></pre><h2 id="rebase变基">rebase(变基)</h2>
+<p>​		<strong>应用场景一：多版本记录合并为一个版本记录</strong></p>
+<pre tabindex="0"><code>git rebase -i HEAD~2 //HEAD和之前的1个合并
+git rebase -i 版本号 //HEAD到该版本之前合并
+
+//注意：合并版本的时候不要包含已经push到远程仓库的版本
+</code></pre><p>​		<strong>应用场景二：将另一个分支(dev)的版本强插到当前版本(master)中</strong></p>
+<pre tabindex="0"><code>git checkout dev
+git rebase master
+git checkout master
+git merge dev
+</code></pre><p>​		<strong>应用场景三：pull后产生冲突（公司上次开发没提交，在家继续开发，去公司pull代码时）</strong></p>
+<pre tabindex="0"><code>//会产生分支
+git pull origin dev = 
+git fetch origin dev + git merge origin/dev
+
+//不会产生分支
+git pull origin dev --rebase = 
+git fetch origin dev + git rebase origin/dev
+
+//git fetch这个命令会把远程的commits拉取到本地的repo中，但是，它不是直接把commits接在分支的最后面，而是从你最后一次push的那个commit节点，再拉取一个新的分支出来，类似这样：
+   * git fetch拉下来的节点，建立在一个新的分支上
+* /  你还没push的节点
+|/
+* 你最后一次push的节点
+|
+*
+</code></pre><p><strong>注意：git rebase可能有冲突，解决后 git add，然后 git rebase &ndash;continue 就可以</strong></p>
+<h2 id="beyond-compare冲突解决软件">beyond compare冲突解决软件</h2>
+<ol>
+<li>
+<p>安装bcompare软件</p>
+</li>
+<li>
+<p>在git中配置</p>
+<pre tabindex="0"><code>git config --local merge.tool bc3
+git config --local mergetool.path &#39;usr/bin/bcompare&#39;
+git config --local mergetool.keepBackup false
+</code></pre></li>
+<li>
+<p>调用beyond compare解决冲突</p>
+<pre tabindex="0"><code>git mergetool
+</code></pre></li>
+</ol>
+<h2 id="多人协同开发">多人协同开发</h2>
+<h4 id="gitflow工作流">gitflow工作流</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgkqFIWSKabYZci9m.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgkqFIWSKabYZci9m.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgkqFIWSKabYZci9m.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgkqFIWSKabYZci9m.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgkqFIWSKabYZci9m.png"
+        title="gnome-shell-screenshot-0W3HY0.png" /></p>
+<p>​		<strong>协同开发的两种方式：</strong></p>
+<ol>
+<li>自己账户下创建仓库，然后在setting里邀请其他github用户参与项目</li>
+<li>建立组织，在组织下创建仓库，再邀请其他github用户参与项目</li>
+</ol>
+<p>​		<strong>建立tag标签：</strong></p>
+<pre tabindex="0"><code>git tag -a v1 -m &#34;第一版&#34; //默认是HEAD处创建tag
+git tag -a v1.2 9fceb02 -m &#34;my tag&#34;
+git tag -d v1 //删除版本
+
+git tag //列出本地所有tag
+
+git push origin --tags
+
+git show v1.0 //显示标签处的commit
+
+git tag -d &lt;tagname&gt; //删除一个本地标签；
+git push origin :refs/tags/&lt;tagname&gt; //删除一个远程标签。
+</code></pre><h4 id="协同开发第一步master分支建立">协同开发第一步：master分支建立</h4>
+<pre tabindex="0"><code>git init
+git touch TestClass.java
+vim TestClass.java
+javac TestClass.java
+java TestClass
+
+git add .
+git commit -m &#34;Hello,world!&#34;
+git remote add origin git@github.com:queer-coder/test.git
+git push -u origin master
+
+git tag -a v1 -m &#34;第一版&#34;
+git tag
+
+git push origin v1.0
+git push origin --tags
+</code></pre><h4 id="协同开发第二步dev分支ddz分支建立">协同开发第二步：dev分支，ddz分支建立</h4>
+<pre tabindex="0"><code>git branch
+git checkout -b dev
+
+//邀请另外用户进组织
+//组织中setting可设置成员权限，默认是只读
+//项目中setting可以单独设置成员拥有写权限
+
+//另一个用户clone代码到本地开发斗地主分支
+git checkout -b ddz
+touch Doudizhu.java
+vim Doudizhu.java
+javac Doudizhu.java
+java Doudizhu
+git add .
+git commit -m &#34;斗地主&#34;
+git push origin ddz
+
+vim Doudizhu.java
+javac Doudizhu.java
+java Doudizhu
+git add .
+git commit -m &#34;斗地主开发完毕&#34;
+git push origin ddz
+</code></pre><h4 id="协同开发第三步dev管理者review-ddz开发者代码">协同开发第三步：dev管理者review ddz开发者代码</h4>
+<blockquote>
+<p>注意：</p>
+<p>release——》master分支具体是需要线上代码review还是直接本地merge要看项目需求</p>
+<p>开发分支——》dev分支必须要线上代码review，不能本地merge</p>
+</blockquote>
+<p><strong>通过github的pull request来实现代码review</strong></p>
+<p>​	**dev成员(owner)：**打开项目的setting——》branches——》add rule（跟dev合并必须要经过review）——》(开发成员pull request后)在pull request中add your review，然后merge pull request就实现了review后的同意合并，最后可删除ddz开发分支</p>
+<p>​	**斗地主开发成员(member)：**new pull request——》compare to base</p>
+<pre tabindex="0"><code>//在线上github中同意merge后，线上dev已经最新了
+//dev管理者owner本地再pull一下，本地就也就最新了
+git pull origin dev
+</code></pre><h4 id="协同开发第四步测试">协同开发第四步：测试</h4>
+<pre tabindex="0"><code>//代码测试分支由owner创建push到github
+git checkout dev
+git checkout -b release
+git push origin release
+
+//代码测试人员从github拉取release分支来进行代码测试
+
+//测试完后，将release版本merge到master分支和dev分支（同样采用review的方式来pull request）
+//删除release分支
+
+//本地的master拉取线上master，打上第二版标签
+git pull origin master
+git tag -a v2 -m &#34;第二版&#34;
+</code></pre><h2 id="如何给开源项目贡献代码">如何给开源项目贡献代码</h2>
+<blockquote>
+<p>fork + pull request</p>
+</blockquote>
+<ol>
+<li>fork源代码</li>
+<li>git clone 自己仓库的源代码到本地</li>
+<li>做二次开发，bug修复</li>
+<li>给开源项目作者提交 修复bug 的申请（pull request），把自己仓库的某个分支提交给原作者</li>
+<li>等待源代码作者审核通过</li>
+</ol>
+<blockquote>
+<p>实际开发中一些约定的分支名：</p>
+</blockquote>
+<ul>
+<li>master: 主分支，主要用来版本发布。</li>
+<li>develop：日常开发分支，该分支正常保存了开发的最新代码。</li>
+<li>feature：具体的功能开发分支，只与 develop 分支交互。</li>
+<li>release：release 分支可以认为是 master 分支的未测试版。比如说某一期的功能全部开发完成，那么就将 develop 分支合并到 release 分支，测试没有问题并且到了发布日期就合并到 master 分支，进行发布。</li>
+<li>hotfix：线上 bug 修复分支</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210323154250824.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210323154250824.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210323154250824.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210323154250824.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/imgimage-20210323154250824.png"
+        title="image-20210323154250824" /></p>
+<h2 id="再探">再探：</h2>
+<ol>
+<li>
+<p>千万不要使用Windows自带的<strong>记事本</strong>编辑任何文本文件。原因是Microsoft开发记事本的团队使用了一个非常弱智的行为来保存UTF-8编码的文件，他们自作聪明地在每个文件开头添加了0xefbbbf（十六进制）的字符，你会遇到很多不可思议的问题，比如，网页第一行可能会显示一个“?”，明明正确的程序一编译就报语法错误，等等，都是由记事本的弱智行为带来的。建议你下载Visual Studio Code代替记事本，不但功能强大，而且免费！</p>
+</li>
+<li>
+<p>提示：changes not staged for commit</p>
+<p>解决：应该先git add</p>
+</li>
+<li>
+<p>提示：changes to be commit</p>
+<p>解决：表示可以git commit了</p>
+</li>
+<li>
+<p>提示：nothing to commit，working tree clean</p>
+<p>解决：没有需要提交的修改，且工作目录是干净的</p>
+</li>
+<li>
+<p>git diff 比较的是工作区文件与暂存区文件（上次git add 的内容）的区别</p>
+<ul>
+<li>当暂存区中没有文件时，git diff比较的是，工作区中的文件与上次提交到版本库中的文件。</li>
+<li>当暂存区中有文件时，git diff则比较的是，当前工作区中的文件与暂存区中的文件。</li>
+</ul>
+<p>git diff &ndash;cached 比较的是暂存区的文件与仓库分支里（上次git commit 后的内容）的区别</p>
+<p>git diff HEAD 比较的是工作区中的文件与版本库中文件的差异</p>
+</li>
+<li>
+<p>通常，合并分支时，如果可能，Git会用<code>Fast forward</code>模式，但这种模式下，删除分支后，会丢掉分支信息。</p>
+<p>如果要强制禁用<code>Fast forward</code>模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
+<p>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去</span>
+</span></span><span class="line"><span class="cl">git merge --no-ff -m <span class="s2">&#34;merge with no-ff&#34;</span> dev
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img0"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img0, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img0 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img0 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img0"
+        title="git-br-policy" /></p>
+</li>
+<li>
+<p>你正在开发一个新功能，突然接到一个bug，必须优先解决bug，此时可以使用stash把当前工作区现场“储藏”起来，然后新建分支改bug再合并后，恢复之前”储藏“的工作现场就行了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash //储藏工作现场
+</span></span><span class="line"><span class="cl">... //改bug
+</span></span><span class="line"><span class="cl">git stash list //查看工作现场列表
+</span></span><span class="line"><span class="cl">//有两种方法恢复
+</span></span><span class="line"><span class="cl">//1. 一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除
+</span></span><span class="line"><span class="cl">git stash apply
+</span></span><span class="line"><span class="cl">git stash drop
+</span></span><span class="line"><span class="cl">//2. 另一种方式是用git stash pop，恢复的同时把stash内容也删了
+</span></span><span class="line"><span class="cl">git stash pop
+</span></span></code></pre></div></li>
+<li>
+<p>为了方便操作，Git专门提供了一个<code>cherry-pick</code>命令，让我们能复制一个特定的提交到当前分支</p>
+</li>
+<li>
+<p>多人协作开发：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone git@github.com:michaelliao/learngit.git
+</span></span><span class="line"><span class="cl">git checkout -b dev origin/dev
+</span></span><span class="line"><span class="cl">git add env.txt
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;add env&#34;</span>
+</span></span><span class="line"><span class="cl">git push origin dev
+</span></span><span class="line"><span class="cl"><span class="c1">#push发现有冲突</span>
+</span></span><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl"><span class="c1">#pull也失败，因为没有建立远程和本地的关闭</span>
+</span></span><span class="line"><span class="cl">git branch --set-upstream-to<span class="o">=</span>origin/dev dev
+</span></span><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl"><span class="c1">#解决冲突后最后push成功</span>
+</span></span></code></pre></div></li>
+<li>
+<p>标签是指向commit的死指针，分支是指向commit的活指针</p>
+</li>
+<li>
+<p>自定义Git</p>
+<ul>
+<li>
+<p>让Git显示颜色：git config &ndash;global color.ui true</p>
+</li>
+<li>
+<p>忽略特殊文件：.gitignore文件</p>
+<ul>
+<li>忽略原则：
+<ol>
+<li>忽略操作系统自动生成的文件，比如缩略图等；</li>
+<li>忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的<code>.class</code>文件；</li>
+<li>忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。</li>
+</ol>
+</li>
+</ul>
+<pre tabindex="0"><code># Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# My configurations:
+db.ini
+deploy_key_rsa
+</code></pre><ul>
+<li>
+<p>检验<code>.gitignore</code>的标准是<code>git status</code>命令是不是说<code>working directory clean</code></p>
+</li>
+<li>
+<p>使用命令<code>git check-ignore -v App.class</code>检查文件是否被忽略</p>
+</li>
+<li>
+<p>把指定文件排除在<code>.gitignore</code>规则外的写法就是<code>!</code>+文件名，所以，只需把例外文件添加进去即可。</p>
+<pre tabindex="0"><code># 排除所有.开头的隐藏文件:
+.*
+# 排除所有.class文件:
+*.class
+
+# 不排除.gitignore和App.class:
+!.gitignore
+!App.class
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>配置别名</p>
+<p>git config &ndash;global alias.st status</p>
+<pre tabindex="0"><code>git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.br branch
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>rebase</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205143.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205143.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205143.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205143.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205143.png"
+        title="img" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205203.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205203.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205203.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205203.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20220521205203.png"
+        title="img" /></p>
+</li>
+<li>
+<p><strong>致命问题：两个分支合并后为什么还存在不同？</strong></p>
+<p>答：首先需要明确的是：git的merge以来的不是不同分支文件内容的对比，而是不同分支的commit的对比</p>
+<p>举个例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git merge <span class="nb">test</span> //在dev上合并test，此时dev包含test
+</span></span><span class="line"><span class="cl">... //然后在dev上新建一个分支hotfix，把刚刚从test合并来的内容中，删除一些新增文件，增加一些删除文件，增删改一些修改行，然后将hotfix合并到dev
+</span></span><span class="line"><span class="cl">git merge <span class="nb">test</span> //再进行一次第一步操作，此时发现虽然merge了，但是dev并不包含test中修改的内容了，因为此时dev包含了test的所有commit，此足矣。
+</span></span></code></pre></div><p><strong>如何改进工作中对git使用来避免此类问题的发生？</strong></p>
+<p>工作中的产生原因：公司中项目分为test、dev、release、master分支，pull到本地新建xx-test、xx-dev分支进行修改，然后合并到对应的test、dev分支。经常还在线上的test、dev、release之间相互merge，导致问题出现的原因就是这个”相互“。</p>
+<p>要避免这样的问题就要强制要求提交顺序，应该按照功能新建分支来完成</p>
+</li>
+<li>
+<p>只需要部分commit中的内容？
+git rebase -i xx
+git cherry-pick xx</p>
+</li>
+<li>
+<p>Git的一些奇技淫巧</p>
+</li>
+</ol>
+<ul>
+<li>git stash save &ldquo;XXX&rdquo;</li>
+<li>git log &ndash;oneline &ndash;graph</li>
+<li>git push :branch_name</li>
+<li>git rm &ndash;cached filename</li>
+<li>git commit &ndash;amend</li>
+<li>git cherry-pick commit-id</li>
+<li>git archive-o archive.zip master</li>
+</ul>
+<ol start="16">
+<li>压缩提交记录的三种方法：</li>
+</ol>
+<ul>
+<li>git reset commit-id</li>
+<li>git commit &ndash;amend &ldquo;xxx&rdquo;</li>
+<li>git rebase -i commit-id</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-03-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://yangfanjack.top/posts/git%E5%9F%BA%E7%A1%80/" data-title="git基础" data-hashtags="Linux,Git"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://yangfanjack.top/posts/git%E5%9F%BA%E7%A1%80/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://yangfanjack.top/posts/git%E5%9F%BA%E7%A1%80/" data-title="git基础"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://yangfanjack.top/posts/git%E5%9F%BA%E7%A1%80/" data-title="git基础"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://yangfanjack.top/posts/git%E5%9F%BA%E7%A1%80/" data-title="git基础"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/git/">Git</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="prev" rel="prev" title="JavaScript类型转换"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>JavaScript类型转换</a>
+            <a href="/posts/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="next" rel="next" title="markdown基础语法">markdown基础语法<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

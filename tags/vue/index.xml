@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Vue on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/vue/</link>
-    <description>Recent content in Vue on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 05 Jan 2021 17:09:07 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/vue/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>vue入门指南</title>
-      <link>http://yangfanjack.top/post/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
-      <pubDate>Tue, 05 Jan 2021 17:09:07 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
-      <description>vue： 一款渐进式（逐步实现新特性）JavaScript框架。其特性综合了Angular(模块化MVVM)和React(虚拟DOM)的优点 A</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Vue - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/vue/</link>
+        <description>Vue - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Tue, 05 Jan 2021 17:09:07 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/vue/" rel="self" type="application/rss+xml" /><item>
+    <title>vue入门指南</title>
+    <link>http://yangfanjack.top/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
+    <pubDate>Tue, 05 Jan 2021 17:09:07 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/vue%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
+    <description><![CDATA[vue： 一款渐进式（逐步实现新特性）JavaScript框架。其特性综合了Angular(模块化MVVM)和React(虚拟DOM)的优点 A]]></description>
+</item>
+</channel>
 </rss>

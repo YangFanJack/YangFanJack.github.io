@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>汇编 on Jack&#39;s Blog Site</title>
-    <link>http://yangfanjack.top/tags/%E6%B1%87%E7%BC%96/</link>
-    <description>Recent content in 汇编 on Jack&#39;s Blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Thu, 27 Apr 2023 14:00:10 +0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E6%B1%87%E7%BC%96/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>汇编入门</title>
-      <link>http://yangfanjack.top/post/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8/</link>
-      <pubDate>Thu, 27 Apr 2023 14:00:10 +0000</pubDate>
-      
-      <guid>http://yangfanjack.top/post/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8/</guid>
-      <description>汇编语言概述 汇编语言是什么？ 对于人类来说，组成机器指令的01代码是不可读的，为了解决可读性问题以及偶尔的编辑需求，诞生了二进制指令的文本形式</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>汇编 - Tag - Jack&#39;s Blog Site</title>
+        <link>http://yangfanjack.top/tags/%E6%B1%87%E7%BC%96/</link>
+        <description>汇编 - Tag - Jack&#39;s Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Thu, 27 Apr 2023 14:00:10 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E6%B1%87%E7%BC%96/" rel="self" type="application/rss+xml" /><item>
+    <title>汇编入门</title>
+    <link>http://yangfanjack.top/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8/</link>
+    <pubDate>Thu, 27 Apr 2023 14:00:10 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8/</guid>
+    <description><![CDATA[汇编语言概述 汇编语言是什么？ 对于人类来说，组成机器指令的01代码是不可读的，为了解决可读性问题以及偶尔的编辑需求，诞生了二进制指令的文本形式]]></description>
+</item>
+</channel>
 </rss>
