@@ -119,8 +119,8 @@
 * 内核级线程的创建：ThreadCreate系统调用，内核负责管理TCB、切换线程
 * 每个内核级线程都是一套栈：用户栈&内核栈；切换的时候用户栈和内核栈都切换
 * 用户栈&内核栈的关联：
-  ![用户栈&内核栈的关联](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204454931-1793722551.png)
-  对比用户级线程的切换使用TCB进行切换，核心级线程也用TCB切换，不过这个TCB在内核中，而且根据TCB的切换来切换一套栈，内核栈和用户栈都得切换
+  * ![用户栈&内核栈的关联](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204454931-1793722551.png)
+  * 对比用户级线程的切换使用TCB进行切换，核心级线程也用TCB切换，不过这个TCB在内核中，而且根据TCB的切换来切换一套栈，内核栈和用户栈都得切换
 * 内核级线程切换的五段论：
   1. 线程Aint中断引发中断处理进入内核栈
   2. read函数的中断处理函数使线程进入阻塞状态，引入CPU调度，调用schedule
@@ -183,7 +183,7 @@
   ```
   为了操作PCB，P操作和V操作被做成了系统调用
 * 使用P/V操作解决生产者-消费者问题：
-  ![生产者-消费者问题](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204621905-1129881081.png)
+  * ![生产者-消费者问题](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204621905-1129881081.png)
   * empty表示空闲单元数量，full表示生产内容的数量，mutex表示只能让一个进程修改缓冲区
   * 空闲单元为0时生产者停下来（p(empty)），消费者对应增加（V(empty)）；生产内容为0时消费者停下 来（p(full)），生产者对应增加（V(full)）
   * 本质：一个信号量的含义是表示能让对应的进程能够使用多少次
@@ -283,7 +283,7 @@
     * 缺页的时候转动指针，为1置为0继续转动，为0换出
     * 当缺页很少时，退化为FIFO算法：因为当几乎不发生缺页中断的时候，指针不会转动，所以指针会很长时间都不会做转动，这和LRU中的最近矛盾，所以需要对算法做出改进
     * 再增加一个定时清除R位的扫描指针
-      ![Clock算法](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204916919-1871172492.png)
+    * ![Clock算法](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204916919-1871172492.png)
 # 设备管理
 ## I/O与显示器
 * 外设工作的3个关键部分
@@ -359,9 +359,9 @@
     * FCFS：按请求到达的先后顺序进行服务,没有考虑寻道时间的影响
     * SSTF（最短寻道）：每次选择与当前磁头位置最近的请求进行服务,可以在一定程度上减少磁头移动和提高吞吐量。但是可能产生工作驻留现象,某个区域的请求饥饿
     * SCAN（SSTF+中途不回折）：与SSTF算法相同,但是在一条磁道完成请求后,磁头会立即移动到同方向下一条磁道,而不会回折选择其他相近的请求。这样可以避免工作驻留现象,保证所有请求会被服务
-      ![SCAN](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205008637-809465200.png)
+    * ![SCAN](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205008637-809465200.png)
     * C-SCAN（电梯算法）：将SCAN算法进一步扩展,当磁头移动到磁盘最末尾后,直接回到磁盘最开始的磁道。这样可以视为磁头以定轨道扫描整个磁盘,更加公平和可预测。但是磁头移动幅度较大,寻道时间也较长
-      ![SCAN](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205030730-2058004570.png)
+    * ![SCAN](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205030730-2058004570.png)
 * 生磁盘的使用整理
   * ![生磁盘读写](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205043291-1589715988.png)
   * in：进程发出读请求后睡眠，磁盘将数据准备到缓冲内存，通过终端唤醒内存
