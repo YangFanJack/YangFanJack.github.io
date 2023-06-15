@@ -29,12 +29,12 @@
     <description><![CDATA[注册表指定壁纸路径 WIN+R打开运行对话框：输入regedit打开注册表 到达路径：计算机\HKEY_CURRENT_USER\Softwar]]></description>
 </item>
 <item>
-    <title>Win10桌面美化</title>
-    <link>http://yangfanjack.top/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</link>
+    <title>Win使用的一些tips</title>
+    <link>http://yangfanjack.top/win%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9Btips/</link>
     <pubDate>Wed, 11 Mar 2020 19:42:16 &#43;0000</pubDate>
     <author>Jack Yang</author>
-    <guid>http://yangfanjack.top/win10%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/</guid>
-    <description><![CDATA[先放上一张我的桌面： 前言：Windows操作系统经过几十年的发展，到目前已经相当成熟，在个人桌面操作系统中也是处于霸主地位，但是对于我而言，]]></description>
+    <guid>http://yangfanjack.top/win%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9Btips/</guid>
+    <description><![CDATA[先放上一张我的桌面（2020年）： 前言：Windows操作系统经过几十年的发展，到目前已经相当成熟，在个人桌面操作系统中也是处于霸主地位，但]]></description>
 </item>
 <item>
     <title>Windows包管理器scoop</title>

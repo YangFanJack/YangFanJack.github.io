@@ -28,7 +28,7 @@
 6. 迪米特：将模块间的依赖和相互影响降到最低
 7. 合成复用：能用关联就别用继承
 
-# Creational Pattern
+# Creational Patterns
 ## Simple Factory
 * 实质：由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例
 * 包含的角色&职责：
@@ -154,18 +154,106 @@
   * 工厂方法模式更加灵活和扩展性强,可以根据复杂的判断逻辑来创建不同的产品对象。适用于产品种类较多且需要灵活扩展的场景。用户一般需要知晓具体的产品和工厂类型
 
 ## Abstract Factory
-* 实质：
+* 实质：工厂方法模式是针对一个产品系列的，而抽象工厂模式是针对多个产品系列的，即工厂方法模式是一个产品系列一个工厂类，而抽象工厂模式是多个产品系列一个工厂类
+* 包含的角色&职责：
+  1. 抽象工厂(Creator)：核心，任何具体工厂类都必须实现这个接口
+  2. 具体工厂(Concrete Creator)：某个产品族抽象工厂的一个实现，负责实例化产品对象
+  3. 抽象产品(Product)：所有具体产品类的父类，它负责描述所有实例所共有的公共接口
+  4. 具体产品(Concrete Product)：不同产品族下的具体实例对象
+* 代码实现：
+  ```java
+    public interface Pad {
+        void use();
+    }
+
+    public interface Phone {
+        void use();
+    }
+
+    public class HuaweiPad implements Pad{
+        @Override
+        public void use() {
+            System.out.println("use huawei pad");
+        }
+    }
+
+    public class XiaomiPad implements Pad{
+        @Override
+        public void use() {
+            System.out.println("use xiaomi pad");
+        }
+    }
+
+    public class HuaweiPhone implements Phone{
+        @Override
+        public void use() {
+            System.out.println("use huawei phone");
+        }
+    }
+
+    public class XiaomiPhone implements Phone{
+        @Override
+        public void use() {
+            System.out.println("use xiaomi phone");
+        }
+    }
+
+    public interface Factory {
+        Pad productPad();
+        Phone productPhone();
+    }
+
+    public class HuaweiFactory implements Factory{
+        @Override
+        public Pad productPad() {
+            System.out.println("product huawei pad...");
+            return new HuaweiPad();
+        }
+
+        @Override
+        public Phone productPhone() {
+            System.out.println("product huawei phone...");
+            return new HuaweiPhone();
+        }
+    }
+    
+    public class XiaomiFactory implements Factory{
+        @Override
+        public Pad productPad() {
+            System.out.println("product xiaomi pad...");
+            return new XiaomiPad();
+        }
+
+        @Override
+        public Phone productPhone() {
+            System.out.println("product xiaomi phone...");
+            return new XiaomiPhone();
+        }
+    }
+
+    public class TestMain {
+        public static void main(String[] args) {
+            Factory huaweiFactory = new HuaweiFactory();
+            Factory xiaomiFactory = new XiaomiFactory();
+            huaweiFactory.productPad().use();
+            huaweiFactory.productPhone().use();
+            xiaomiFactory.productPad().use();
+            xiaomiFactory.productPhone().use();
+        }
+    }
+  ```
+* 适用场景：
+  * 如果系统中有多个产品族,而每个产品族都有多个产品,如果需要扩展新的产品族和产品时
+* 对比：
+  * 工厂方法模式:创建同属一个产品族但等级不同的产品实例。客户需要知道具体的工厂类,才能得到所需要的产品。
+  * 抽象工厂模式:创建不同产品族之间相关联的产品实例。客户只需要知道抽象工厂类,即可得到一组相关产品。
+## Singleton
+* 实质：保证一个类仅有一个实例,并提供一个访问该实例的全局访问点
 * 包含的角色&职责：
 * 代码实现：
 * 适用场景：
 * 对比：
 
-## Singleton
-* 实质：
-* 包含的角色&职责：
-* 代码实现：
-* 适用场景：
-* 对比：
 
 ## Builder
 * 实质：
@@ -181,7 +269,7 @@
 * 适用场景：
 * 对比：
 
-# Structural Pattern
+# Structural Patterns
 ## Adapter
 
 ## Bridge
@@ -190,4 +278,30 @@
 
 ## Decorator
 
-##辅导费
+## Facade
+
+## Flyweight
+
+## Proxy
+
+
+# Behavioral Patterns
+## Visitor
+
+## Template
+
+## Strategy
+
+## State
+
+## Observer
+
+## Memento
+
+## Mediator
+
+## Iterator
+
+## Command
+
+## Chain of Responsibility

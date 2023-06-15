@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://yangfanjack.top/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-03-24T09:27:16+08:00" />
-<meta property="article:modified_time" content="2023-06-07T10:32:27+08:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta property="article:modified_time" content="2023-03-24T09:27:16+08:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
 
@@ -29,8 +29,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/yangfanjack.top\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0\/"
-        },"genre": "posts","keywords": "计算机组成原理","wordcount":  8594 ,
-        "url": "http:\/\/yangfanjack.top\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0\/","datePublished": "2023-03-24T09:27:16+08:00","dateModified": "2023-06-07T10:32:27+08:00","publisher": {
+        },"genre": "posts","keywords": "计算机组成原理","wordcount":  8708 ,
+        "url": "http:\/\/yangfanjack.top\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0\/","datePublished": "2023-03-24T09:27:16+08:00","dateModified": "2023-03-24T09:27:16+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -103,7 +103,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机组成原理概记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8594 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8708 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;18 minutes&nbsp;<span id="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%B0/" class="leancloud_visitors" data-flag-title="计算机组成原理概记">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -135,9 +135,7 @@
         </li>
         <li><a href="#io">I/O</a>
           <ul>
-            <li><a href="#程序查询方式">程序查询方式</a></li>
-            <li><a href="#程序中断方式">程序中断方式</a></li>
-            <li><a href="#dma方式">DMA方式</a></li>
+            <li><a href="#数据传输的三种控制方式">数据传输的三种控制方式：</a></li>
           </ul>
         </li>
       </ul>
@@ -601,19 +599,26 @@
 <li>光盘存储器：激光</li>
 </ul>
 <h2 id="io">I/O</h2>
-<h3 id="程序查询方式">程序查询方式</h3>
+<h3 id="数据传输的三种控制方式">数据传输的三种控制方式：</h3>
+<ul>
+<li>程序查询方式
 <ul>
 <li>在I/O未准备就绪的情况下会出现踏步等待的情况</li>
 </ul>
-<h3 id="程序中断方式">程序中断方式</h3>
+</li>
+<li>程序中断方式
 <ul>
 <li>I/O工作分为两部分：自身准备阶段和与主机交换信息阶段，程序中断方式是在I/O自身准备的时候把CPU解放出来，使得CPU和I/O能进行部分的并行工作</li>
 <li>程序查询方式和程序中断方式都是以CPU为计算机系统的核心，数据的输入输出都必须经过CPU，内存和I/O无法直接交换数据</li>
 </ul>
-<h3 id="dma方式">DMA方式</h3>
+</li>
+<li>DMA方式
 <ul>
 <li>进一步将CPU从I/O过程中解放出来，内存和I/O之间有一条直接数据通路</li>
 <li>实现原理：不需要中断现行程序，采用周期挪用的方式（在挪用的这些个存取周期中，CPU虽然不能使用系统总线，不能访问内存，但是仍然能够执行其他任务）</li>
+<li>周期挪用：CPU将定期让出一定时间的总线使用权给DMA控制器。在这段时间内,DMA控制器可以自由使用总线进行数据传输。CPU让出的这段时间称为DMA时间窗或者DMA时间槽。DMA控制器可以在DMA时间窗内完成多个数据传输周期</li>
+</ul>
+</li>
 </ul>
 <h1 id="alu">ALU</h1>
 <h2 id="无符号数和有符号数">无符号数和有符号数</h2>
@@ -641,9 +646,6 @@
 </ul>
 </li>
 </ul>
-<p>01010 +10 00000 0
-10110 -6  10000 -16
-100000 16</p>
 <h2 id="数的定点表示和浮点表示">数的定点表示和浮点表示</h2>
 <ul>
 <li>定点表示：小数点按约定方式标出（小数定点机，整数定点机）</li>
@@ -1026,8 +1028,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-06-07&nbsp;<a class="git-hash" href="https://github.com/YangFanJack/commit/48fee0c5ca7872f599c21743689db52f0f58453d" target="_blank" title="commit by gw00243956(gw00243956@corp.gwm.cn) 48fee0c5ca7872f599c21743689db52f0f58453d: hh">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48fee0c</a></span>
+                <span>Updated on 2023-03-24</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
@@ -1053,7 +1054,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

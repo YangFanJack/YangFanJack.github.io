@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://yangfanjack.top/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-04-25T21:23:52+00:00" />
-<meta property="article:modified_time" content="2023-06-07T10:32:27+08:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta property="article:modified_time" content="2023-04-25T21:23:52+00:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
 
@@ -29,8 +29,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/yangfanjack.top\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  7193 ,
-        "url": "http:\/\/yangfanjack.top\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0\/","datePublished": "2023-04-25T21:23:52+00:00","dateModified": "2023-06-07T10:32:27+08:00","publisher": {
+        },"genre": "posts","keywords": "操作系统","wordcount":  10692 ,
+        "url": "http:\/\/yangfanjack.top\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0\/","datePublished": "2023-04-25T21:23:52+00:00","dateModified": "2023-04-25T21:23:52+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -103,8 +103,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统概记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-25">2023-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7193 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;15 minutes&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0/" class="leancloud_visitors" data-flag-title="操作系统概记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-25">2023-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;10692 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;22 minutes&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0/" class="leancloud_visitors" data-flag-title="操作系统概记">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -412,12 +412,101 @@
 <li>前台任务（I/O约束性任务）关注响应时间，后台任务（CPU约束性任务）关注周转时间</li>
 <li>任务响应时间和任务周转时间存在一定的矛盾关系：提高响应时间可能会导致切换次数多，减少任务可用处理器时间,从而降低系统吞吐量</li>
 <li>最简单的CPU调度策略：FCFS，会导致任务集的平均周转时间很长。</li>
+<li>SJF算法（短作业优先）：平均周转时间最短</li>
+<li>RR算法（时间片轮询）：按照时间片轮转调度，减少响应时间</li>
+<li>优先级算法：综合考虑，前台任务队列用RR，后台任务队列用SJF，之间用优先级调度保证前台任务的响应时间不会被后台任务拖慢</li>
+<li>优先级调度可能造成进程饥饿，还需综合考虑</li>
 </ul>
 <h2 id="一个实际的schedule函数">一个实际的schedule函数</h2>
+<ul>
+<li>counter有两个含义，一是优先级，二是时间片。简单理解就是，时间片多的，优先级高。然后每次调度的时候，找到counter最大的就绪任务，也就是优先级最高的就绪任务去执行</li>
+<li>而那些正在阻塞的进程（IO约束性任务）会额外分配一些时间，具体大小是它还剩下的counter的值的一半，IO时间越长，counter越大，照顾了前台进程</li>
+<li>
+<ul>
+<li>counter有两个含义，一是优先级，二是时间片。简单理解就是，时间片多的，优先级高。然后每次调度的时候，找到counter最大的就绪任务，也就是优先级最高的就绪任务去执行</li>
+</ul>
+</li>
+<li>而那些正在阻塞的进程（IO约束性任务）会额外分配一些时间，具体大小是它还剩下的counter的值的一半，IO时间越长，counter越大，照顾了前台进程</li>
+<li>后台进程是近似按照SJF调度，因为采用时间片切割轮转，那么肯定短时间的任务肯定就结束的快。</li>
+</ul>
 <h2 id="进程同步与信号量">进程同步与信号量</h2>
+<ul>
+<li>为了保证进程间合理有序地推进，需要根据信号让进程走走停停</li>
+<li>信号量用来判断可供使用的资源数量</li>
+<li>信号量的定义：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204607353-1128374342.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204607353-1128374342.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204607353-1128374342.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204607353-1128374342.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204607353-1128374342.png"
+        title="信号量的定义" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="n">semaphore</span> <span class="n">s</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="n">s</span><span class="p">.</span><span class="n">value</span><span class="o">++</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wakeup</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>为了操作PCB，P操作和V操作被做成了系统调用</li>
+<li>使用P/V操作解决生产者-消费者问题：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204621905-1129881081.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204621905-1129881081.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204621905-1129881081.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204621905-1129881081.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204621905-1129881081.png"
+        title="生产者-消费者问题" />
+<ul>
+<li>empty表示空闲单元数量，full表示生产内容的数量，mutex表示只能让一个进程修改缓冲区</li>
+<li>空闲单元为0时生产者停下来（p(empty)），消费者对应增加（V(empty)）；生产内容为0时消费者停下 来（p(full)），生产者对应增加（V(full)）</li>
+<li>本质：一个信号量的含义是表示能让对应的进程能够使用多少次</li>
+</ul>
+</li>
+</ul>
 <h2 id="信号量临界区保护">信号量临界区保护</h2>
+<ul>
+<li>并发错误由多个进程同时操作共享数据引起,需要加锁机制保护共享数据</li>
+<li>临界区必须成对出现,一方进入则其他方被互斥在外。互斥进入是实现互斥访问的基本手段</li>
+<li>进入与退出临界区的代码实现是关键,需要遵循互斥进入、有限等待与让近原则</li>
+<li>Peterson算法通过标记位与轮转实现互斥,简单高效</li>
+<li>在单核CPU上,可以使用cli/sti指令通过开关中断来上锁,禁止其他进程被调度运行,简单实现互斥</li>
+<li>可以使用CPU的原子指令(cmpxchg等)上锁,效率高且不会被中断,比使用信号量上锁更为简单高效</li>
+</ul>
 <h2 id="信号量的代码实现">信号量的代码实现</h2>
 <h2 id="死锁处理">死锁处理</h2>
+<ul>
+<li>死锁的原因：进程占有一些别人需要的资源不释放，再去申请别人的资源，各自占有的资源和申请的资源形成了环路等待</li>
+<li>产生死锁的4个必要条件：
+<ul>
+<li>互斥条件:资源被一个进程使用时其他进程不能使用</li>
+<li>占有且等待条件:进程已经占用了至少一个资源,但又申请新的资源时必须等待</li>
+<li>不可剥夺条件:进程已获得的资源在未使用完之前不能强行剥夺</li>
+<li>环路等待条件:在一个进程正在等待的资源中,必须存在一个由其他进程占用且正在等待的资源,形成一个环形链</li>
+</ul>
+</li>
+<li>死锁的处理方法：
+<ul>
+<li>死锁预防：破坏产生死锁的四个必要条件中的至少一个条件。例如规定所有进程以固定的顺序申请资源,避免环路等待资源形成</li>
+<li>死锁避免：在运行时根据资源分配情况判断是否会产生死锁,如果会产生则不分配资源。主要方法是检测安全状态,只在安全状态下分配资源</li>
+<li>死锁检测+恢复：允许死锁发生,然后进行检测并进行恢复。主要方法是使用资源分配图检测是否发生死锁。一旦检测到死锁,需要将进程回滚到安全状态并重新申请资源</li>
+<li>死锁忽略：简单地忽略死锁问题,让死锁在系统中自然解除。这种方法极不可取,因为死锁进程会永远阻塞,占用资源却无法运行</li>
+</ul>
+</li>
+</ul>
 <h1 id="存储管理">存储管理</h1>
 <h2 id="内存使用与分段">内存使用与分段</h2>
 <ul>
@@ -571,19 +660,240 @@
 </ul>
 <h1 id="设备管理">设备管理</h1>
 <h2 id="io与显示器">I/O与显示器</h2>
+<ul>
+<li>外设工作的3个关键部分
+<ol>
+<li>CPU访问外设：CPU可以通过执行in/out指令直接读取或写入外设的控制和数据寄存器，从而控制外设的工作。这是外设和CPU之间最基本的交互方式</li>
+<li>操作系统提供文件接口：操作系统会为外设建立文件抽象，屏蔽底层寄存器的操作细节。应用程序通过标准文件操作接口（open、read、write、close）来控制外设，这简化了应用程序的实现并提高了其可移植性</li>
+<li>中断机制：外设通过中断机制来响应操作系统和应用程序发出的请求或者通知其状态变化。当外设操作完成或状态变更时,会发出中断信号通知CPU。CPU接收到中断后会执行相应的中断处理程序(通常在操作系统内核中),然后唤醒等待该外设操作完成的进程。</li>
+</ol>
+</li>
+<li>操作外设的的程序：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">fd</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="err">“</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">xxx</span><span class="err">”</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>无论什么设备，操作系统都为外设提供了统一的文件视图接口：open、read、write、close</li>
+<li>不同的设备对应不同的设备文件，根据设备文件找到控制器的地址，内容格式等</li>
+</ul>
+</li>
+<li>显示器的输出：
+<ul>
+<li>找到设备
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="err">“</span><span class="n">Host</span> <span class="nl">Name</span><span class="p">:</span> <span class="o">%</span><span class="n">s</span><span class="err">”</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">-&gt;</span><span class="nf">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="p">...);</span>
+</span></span><span class="line"><span class="cl"><span class="o">-&gt;</span><span class="nf">sys_write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="p">...);</span>     <span class="c1">//通过fd找到文件的索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sys_write</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="n">file</span> <span class="o">*</span><span class="n">file</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">file</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">filp</span><span class="p">[</span><span class="n">fd</span><span class="p">];</span>     <span class="c1">//current进程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">inode</span> <span class="o">=</span> <span class="n">file</span><span class="o">-&gt;</span><span class="n">f_inode</span><span class="p">;</span>        <span class="c1">//显示器信息保存在inode中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//fd=1的filp从父进程shell fork拷贝而来
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">open</span><span class="p">(</span><span class="err">“</span><span class="n">dev</span><span class="o">/</span><span class="n">tty0</span><span class="err">”</span><span class="p">,</span><span class="n">O_RDWR</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="nf">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="nf">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>     <span class="c1">//dup用来复制一个文件描述符，并指向同一个设备
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">execve</span><span class="p">(</span><span class="s">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="n">argv</span><span class="p">,</span><span class="n">envp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//open系统调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">sys_open</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">i</span><span class="o">=</span><span class="nf">open_namei</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">flag</span><span class="p">,</span><span class="o">&amp;</span><span class="n">inode</span><span class="p">);</span>     <span class="c1">//inode保存设备信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">cuurent</span><span class="o">-&gt;</span><span class="n">filp</span><span class="p">[</span><span class="n">fd</span><span class="p">]</span><span class="o">=</span><span class="n">f</span><span class="p">;</span>       <span class="c1">// 第一个空闲的fd
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">f</span><span class="o">-&gt;</span><span class="n">f_mode</span><span class="o">=</span><span class="n">inode</span><span class="o">-&gt;</span><span class="n">i_mode</span><span class="p">;</span> <span class="n">f</span><span class="o">-&gt;</span><span class="n">f_inode</span><span class="o">=</span><span class="n">inode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">f</span><span class="o">-&gt;</span><span class="n">f_count</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="k">return</span> <span class="n">fd</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204933161-121053315.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204933161-121053315.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204933161-121053315.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204933161-121053315.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204933161-121053315.png"
+        title="外设的文件抽象" /></li>
+<li>向屏幕输出
+<ul>
+<li>inode-&gt;i_zone[0]获取设备号，crw_table是字符设备接口，从中找到tty</li>
+<li>tty_write是输出的核心函数，往write_q缓冲区队列中写</li>
+<li>tty-&gt;write，在tty_struct中，从缓冲区队列中往屏幕上写，内部用到mov ax, pos，往显存中写字符</li>
+<li>统一编址用pos，独立编制用out</li>
+<li>写设备驱动，就是包装out，编写驱动函数并注册到tty_struct中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="键盘">键盘</h2>
+<ul>
+<li>从键盘中断开始，从0x60端口读扫描码，调用key_table</li>
+<li>key_table：函数表，包含do_self等</li>
+<li>do_self专门用于处理可显示字符，从key_map中获取arscii码</li>
+<li>将arscii码放入read_q缓冲队列中，供程序使用</li>
+</ul>
 <h2 id="生磁盘的使用">生磁盘的使用</h2>
+<ul>
+<li>磁盘的基本概念：
+<ul>
+<li>磁道(柱面)，扇区，(磁头)盘面：根据这三个指标能定位一个512字节的扇区</li>
+<li>IO过程
+<ul>
+<li>控制器</li>
+<li>寻道：磁头移动到目的磁道，确定了磁道和盘面</li>
+<li>旋转：旋转磁盘到目的扇区，确定了扇区</li>
+<li>传输：磁生电（读缓冲区），电生磁（写缓冲区）</li>
+</ul>
+</li>
+<li>CPU通过out往控制器中写柱面、磁头、扇区的位置</li>
+</ul>
+</li>
+<li><strong>第一层抽象</strong>：根据盘块号读写磁盘
+<ul>
+<li>磁盘驱动负责从盘块号计算得到扇区号，根据扇区号计算得到CHS(C:柱面数;H:磁头号;S:扇区号)</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204952066-532789180.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204952066-532789180.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204952066-532789180.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204952066-532789180.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003204952066-532789180.png"
+        title="一层抽象" /></li>
+</ul>
+</li>
+<li><strong>第二层抽象</strong>：多个进程通过队列使用磁盘
+<ul>
+<li>磁盘调度的目的：减少寻道时间。磁盘的访问时延主要由寻道时间和数据传输时间组成。其中寻道时间是磁头定位到目标磁道所需要的时间,数据传输时间取决于目标扇区的数量。相比数据传输,寻道时间的影响更大。</li>
+<li>磁盘调度算法：
+<ul>
+<li>FCFS：按请求到达的先后顺序进行服务,没有考虑寻道时间的影响</li>
+<li>SSTF（最短寻道）：每次选择与当前磁头位置最近的请求进行服务,可以在一定程度上减少磁头移动和提高吞吐量。但是可能产生工作驻留现象,某个区域的请求饥饿</li>
+<li>SCAN（SSTF+中途不回折）：与SSTF算法相同,但是在一条磁道完成请求后,磁头会立即移动到同方向下一条磁道,而不会回折选择其他相近的请求。这样可以避免工作驻留现象,保证所有请求会被服务
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205008637-809465200.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205008637-809465200.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205008637-809465200.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205008637-809465200.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205008637-809465200.png"
+        title="SCAN" /></li>
+<li>C-SCAN（电梯算法）：将SCAN算法进一步扩展,当磁头移动到磁盘最末尾后,直接回到磁盘最开始的磁道。这样可以视为磁头以定轨道扫描整个磁盘,更加公平和可预测。但是磁头移动幅度较大,寻道时间也较长
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205030730-2058004570.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205030730-2058004570.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205030730-2058004570.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205030730-2058004570.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205030730-2058004570.png"
+        title="SCAN" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>生磁盘的使用整理
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205043291-1589715988.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205043291-1589715988.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205043291-1589715988.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205043291-1589715988.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205043291-1589715988.png"
+        title="生磁盘读写" /></li>
+<li>in：进程发出读请求后睡眠，磁盘将数据准备到缓冲内存，通过终端唤醒内存</li>
+<li>out：通过out往CHL写</li>
+<li>磁盘是一个共享资源,多个进程可以同时发出读请求,但同一时刻只能有一个进程访问磁盘进行写操作。读操作是并发的,需要队列进行排序和调度;写操作是互斥的,直接执行,不需要排队</li>
+</ul>
+</li>
+</ul>
 <h1 id="文件管理">文件管理</h1>
 <h2 id="从生磁盘到文件">从生磁盘到文件</h2>
+<ul>
+<li><strong>第三层抽象</strong>：根据文件到盘块号
+<ul>
+<li>用户眼里的文件是字符序列，磁盘中的文件是盘块集合</li>
+<li>文件的关键：建立字符流到盘块集合的映射关系</li>
+</ul>
+</li>
+<li>磁盘的三种存储结构：
+<ul>
+<li>顺序结构：访问速度慢但空间利用率高,适合批量存储</li>
+<li>链式结构：访问速度快但空间浪费较多,用于动态变化的数据</li>
+<li>索引结构：既有较高访问速度又能较高空间利用率,实现复杂,用于经常访问的数据
+<ul>
+<li>通过FCB找到文件对应的inode，找到索引块（存放索引的盘块），找到目标字符序列对应的盘块</li>
+<li>多级索引：可以表示很大的文件，很小的文件也能高效访问</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205119207-824686463.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205119207-824686463.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205119207-824686463.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205119207-824686463.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205119207-824686463.png"
+        title="多级索引" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="文件使用磁盘的实现">文件使用磁盘的实现</h2>
 <h2 id="目录与文件系统">目录与文件系统</h2>
+<ul>
+<li><strong>磁盘的最后一层抽象</strong>：将整个磁盘抽象成一棵目录树
+<ul>
+<li>一个磁盘块集合的抽象：文件</li>
+<li>整个磁盘的抽象：文件系统</li>
+</ul>
+</li>
+</ul>
 <h2 id="目录解析代码实现">目录解析代码实现</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-06-07&nbsp;<a class="git-hash" href="https://github.com/YangFanJack/commit/48fee0c5ca7872f599c21743689db52f0f58453d" target="_blank" title="commit by gw00243956(gw00243956@corp.gwm.cn) 48fee0c5ca7872f599c21743689db52f0f58453d: hh">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48fee0c</a></span>
+                <span>Updated on 2023-04-25</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
@@ -609,7 +919,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

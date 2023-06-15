@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://yangfanjack.top/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-05-17T08:34:33+08:00" />
-<meta property="article:modified_time" content="2023-06-07T10:32:27+08:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
+<meta property="article:modified_time" content="2023-05-17T08:34:33+08:00" /><meta property="og:site_name" content="Jack&#39;s Blog Site" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
 
@@ -29,8 +29,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/yangfanjack.top\/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90\/"
-        },"genre": "posts","keywords": "设计模式, Java","wordcount":  1841 ,
-        "url": "http:\/\/yangfanjack.top\/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90\/","datePublished": "2023-05-17T08:34:33+08:00","dateModified": "2023-06-07T10:32:27+08:00","publisher": {
+        },"genre": "posts","keywords": "设计模式, Java","wordcount":  2499 ,
+        "url": "http:\/\/yangfanjack.top\/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90\/","datePublished": "2023-05-17T08:34:33+08:00","dateModified": "2023-05-17T08:34:33+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -103,8 +103,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">设计模式浅析</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-17">2023-05-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1841 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" class="leancloud_visitors" data-flag-title="设计模式浅析">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-17">2023-05-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2499 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B5%85%E6%9E%90/" class="leancloud_visitors" data-flag-title="设计模式浅析">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -116,7 +116,7 @@
   <ul>
     <li><a href="#what-is-design-pattern">what is design pattern?</a></li>
     <li><a href="#设计原则">设计原则：</a></li>
-    <li><a href="#creational-pattern">Creational Pattern</a>
+    <li><a href="#creational-patterns">Creational Patterns</a>
       <ul>
         <li><a href="#simple-factory">Simple Factory</a></li>
         <li><a href="#factory">Factory</a></li>
@@ -126,12 +126,29 @@
         <li><a href="#prototype">ProtoType</a></li>
       </ul>
     </li>
-    <li><a href="#structural-pattern">Structural Pattern</a>
+    <li><a href="#structural-patterns">Structural Patterns</a>
       <ul>
         <li><a href="#adapter">Adapter</a></li>
         <li><a href="#bridge">Bridge</a></li>
         <li><a href="#composite">Composite</a></li>
         <li><a href="#decorator">Decorator</a></li>
+        <li><a href="#facade">Facade</a></li>
+        <li><a href="#flyweight">Flyweight</a></li>
+        <li><a href="#proxy">Proxy</a></li>
+      </ul>
+    </li>
+    <li><a href="#behavioral-patterns">Behavioral Patterns</a>
+      <ul>
+        <li><a href="#visitor">Visitor</a></li>
+        <li><a href="#template">Template</a></li>
+        <li><a href="#strategy">Strategy</a></li>
+        <li><a href="#state">State</a></li>
+        <li><a href="#observer">Observer</a></li>
+        <li><a href="#memento">Memento</a></li>
+        <li><a href="#mediator">Mediator</a></li>
+        <li><a href="#iterator">Iterator</a></li>
+        <li><a href="#command">Command</a></li>
+        <li><a href="#chain-of-responsibility">Chain of Responsibility</a></li>
       </ul>
     </li>
   </ul>
@@ -164,7 +181,7 @@
 <li>迪米特：将模块间的依赖和相互影响降到最低</li>
 <li>合成复用：能用关联就别用继承</li>
 </ol>
-<h1 id="creational-pattern">Creational Pattern</h1>
+<h1 id="creational-patterns">Creational Patterns</h1>
 <h2 id="simple-factory">Simple Factory</h2>
 <ul>
 <li>实质：由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例</li>
@@ -404,15 +421,196 @@
 </ul>
 <h2 id="abstract-factory">Abstract Factory</h2>
 <ul>
-<li>实质：</li>
-<li>包含的角色&amp;职责：</li>
-<li>代码实现：</li>
-<li>适用场景：</li>
-<li>对比：</li>
+<li>实质：工厂方法模式是针对一个产品系列的，而抽象工厂模式是针对多个产品系列的，即工厂方法模式是一个产品系列一个工厂类，而抽象工厂模式是多个产品系列一个工厂类</li>
+<li>包含的角色&amp;职责：
+<ol>
+<li>抽象工厂(Creator)：核心，任何具体工厂类都必须实现这个接口</li>
+<li>具体工厂(Concrete Creator)：某个产品族抽象工厂的一个实现，负责实例化产品对象</li>
+<li>抽象产品(Product)：所有具体产品类的父类，它负责描述所有实例所共有的公共接口</li>
+<li>具体产品(Concrete Product)：不同产品族下的具体实例对象</li>
+</ol>
+</li>
+<li>代码实现：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Pad</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">void</span> <span class="nf">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Phone</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">void</span> <span class="nf">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HuaweiPad</span> <span class="kd">implements</span> <span class="n">Pad</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;use huawei pad&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">XiaomiPad</span> <span class="kd">implements</span> <span class="n">Pad</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;use xiaomi pad&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HuaweiPhone</span> <span class="kd">implements</span> <span class="n">Phone</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;use huawei phone&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">XiaomiPhone</span> <span class="kd">implements</span> <span class="n">Phone</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;use xiaomi phone&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Factory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Pad</span> <span class="nf">productPad</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Phone</span> <span class="nf">productPhone</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HuaweiFactory</span> <span class="kd">implements</span> <span class="n">Factory</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">Pad</span> <span class="nf">productPad</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product huawei pad...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">new</span> <span class="n">HuaweiPad</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">Phone</span> <span class="nf">productPhone</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product huawei phone...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">new</span> <span class="n">HuaweiPhone</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">XiaomiFactory</span> <span class="kd">implements</span> <span class="n">Factory</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">Pad</span> <span class="nf">productPad</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product xiaomi pad...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">new</span> <span class="n">XiaomiPad</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">Phone</span> <span class="nf">productPhone</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;product xiaomi phone...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">new</span> <span class="n">XiaomiPhone</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMain</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Factory</span> <span class="n">huaweiFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HuaweiFactory</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Factory</span> <span class="n">xiaomiFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">XiaomiFactory</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">huaweiFactory</span><span class="o">.</span><span class="na">productPad</span><span class="o">().</span><span class="na">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">huaweiFactory</span><span class="o">.</span><span class="na">productPhone</span><span class="o">().</span><span class="na">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">xiaomiFactory</span><span class="o">.</span><span class="na">productPad</span><span class="o">().</span><span class="na">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">xiaomiFactory</span><span class="o">.</span><span class="na">productPhone</span><span class="o">().</span><span class="na">use</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>适用场景：
+<ul>
+<li>如果系统中有多个产品族,而每个产品族都有多个产品,如果需要扩展新的产品族和产品时</li>
+</ul>
+</li>
+<li>对比：
+<ul>
+<li>工厂方法模式:创建同属一个产品族但等级不同的产品实例。客户需要知道具体的工厂类,才能得到所需要的产品。</li>
+<li>抽象工厂模式:创建不同产品族之间相关联的产品实例。客户只需要知道抽象工厂类,即可得到一组相关产品。</li>
+</ul>
+</li>
 </ul>
 <h2 id="singleton">Singleton</h2>
 <ul>
-<li>实质：</li>
+<li>实质：保证一个类仅有一个实例,并提供一个访问该实例的全局访问点</li>
 <li>包含的角色&amp;职责：</li>
 <li>代码实现：</li>
 <li>适用场景：</li>
@@ -434,18 +632,30 @@
 <li>适用场景：</li>
 <li>对比：</li>
 </ul>
-<h1 id="structural-pattern">Structural Pattern</h1>
+<h1 id="structural-patterns">Structural Patterns</h1>
 <h2 id="adapter">Adapter</h2>
 <h2 id="bridge">Bridge</h2>
 <h2 id="composite">Composite</h2>
 <h2 id="decorator">Decorator</h2>
-<p>##辅导费</p>
+<h2 id="facade">Facade</h2>
+<h2 id="flyweight">Flyweight</h2>
+<h2 id="proxy">Proxy</h2>
+<h1 id="behavioral-patterns">Behavioral Patterns</h1>
+<h2 id="visitor">Visitor</h2>
+<h2 id="template">Template</h2>
+<h2 id="strategy">Strategy</h2>
+<h2 id="state">State</h2>
+<h2 id="observer">Observer</h2>
+<h2 id="memento">Memento</h2>
+<h2 id="mediator">Mediator</h2>
+<h2 id="iterator">Iterator</h2>
+<h2 id="command">Command</h2>
+<h2 id="chain-of-responsibility">Chain of Responsibility</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-06-07&nbsp;<a class="git-hash" href="https://github.com/YangFanJack/commit/48fee0c5ca7872f599c21743689db52f0f58453d" target="_blank" title="commit by gw00243956(gw00243956@corp.gwm.cn) 48fee0c5ca7872f599c21743689db52f0f58453d: hh">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48fee0c</a></span>
+                <span>Updated on 2023-05-17</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
@@ -470,7 +680,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
