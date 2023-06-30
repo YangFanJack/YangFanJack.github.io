@@ -230,6 +230,8 @@
 * 替换算法
   * FIFO先进先出：并不能很好践行程序的局部性原理
   * LRU最近最少使用：比较好的体现了程序的局部性原理
+* 现代CPU的三级缓存方案（Intel Core i5-4285U）：
+  * ![三级缓存方案](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/javabf-cpu-1.png)
 
 ### 辅助存储器
 * 磁记录原理：写：电流方向正向反向导致磁场变化得到0/1之分；读：磁盘旋转方向正向反向之分得到0/1之分
