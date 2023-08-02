@@ -41,7 +41,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/yangfanjack.top\/shell%E7%BC%96%E7%A8%8B\/"
-        },"genre": "posts","keywords": "Linux, Shell","wordcount":  2336 ,
+        },"genre": "posts","keywords": "Linux, Shell","wordcount":  2577 ,
         "url": "http:\/\/yangfanjack.top\/shell%E7%BC%96%E7%A8%8B\/","datePublished": "2020-03-06T22:51:56+00:00","dateModified": "2020-03-06T22:51:56+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -129,8 +129,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">shell编程</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-06">2020-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2336 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/shell%E7%BC%96%E7%A8%8B/" class="leancloud_visitors" data-flag-title="shell编程">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-06">2020-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2577 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/shell%E7%BC%96%E7%A8%8B/" class="leancloud_visitors" data-flag-title="shell编程">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -140,7 +140,11 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#基础正则表达式">基础正则表达式</a></li>
+    <li><a href="#基础正则表达式">基础正则表达式</a>
+      <ul>
+        <li><a href="#正则表达式的组匹配">正则表达式的组匹配</a></li>
+      </ul>
+    </li>
     <li><a href="#字符截取命令">字符截取命令</a>
       <ul>
         <li><a href="#grep命令提取符合条件的行"><strong><code>grep</code>命令</strong>：提取符合条件的行</a></li>
@@ -189,19 +193,37 @@
 <p><code>*</code>：前一个字符匹配0次或者任意多次</p>
 </li>
 <li>
+<p><code>+</code>：前一个字符匹配1次或者任意多次</p>
+</li>
+<li>
+<p><code>?</code>：前一个字符匹配0次或者1次</p>
+</li>
+<li>
 <p><code>.</code>：匹配任意一个字符（换行符除外）</p>
 </li>
 <li>
 <p><code>^</code>：匹配以后面字符作为行首的行</p>
 </li>
 <li>
-<p><code>$</code>：匹配以后面字符作为行尾的行</p>
+<p><code>$</code>：匹配以前面字符作为行尾的行</p>
 </li>
 <li>
 <p><code>^$</code>：匹配空白行</p>
 </li>
 <li>
+<p><code>()</code>：子表达式，子表达式可以获取供以后使用：特别是在替换字符串时，用$+数字可以代替子表达式</p>
+</li>
+<li>
 <p><code>[]</code>：匹配中括号中的指定的任意一个字符</p>
+<ul>
+<li>\w：字母、数字、下划线</li>
+<li>\s：空白符，换行符</li>
+<li>\S：非空白符，非换行符</li>
+<li>\t：制表符</li>
+<li>\t：回车符</li>
+<li>\n：换行符</li>
+<li>\b：单词边界</li>
+</ul>
 </li>
 <li>
 <p><code>[^]</code>：匹配除中括号中的字符外的任意一个字符</p>
@@ -210,13 +232,23 @@
 <p><code>\</code>：转义符</p>
 </li>
 <li>
-<p><code>\{n\}</code>：表示其前面的字符恰好出现n次</p>
+<p><code>{n}</code>：表示其前面的字符恰好出现n次</p>
 </li>
 <li>
-<p><code>\{n,\}</code>：表示其前面的字符出现不少于n次</p>
+<p><code>{n,}</code>：表示其前面的字符出现不少于n次</p>
 </li>
 <li>
-<p><code>\{n,m\}</code>：表示其前面的字符至少出现n次，最多出现m次</p>
+<p><code>{n,m}</code>：表示其前面的字符至少出现n次，最多出现m次</p>
+</li>
+</ul>
+<h2 id="正则表达式的组匹配">正则表达式的组匹配</h2>
+<ul>
+<li>正则表达式的小括号——子表达式 表示分组匹配</li>
+<li>例如：尾行注释转行上注释
+<ul>
+<li>匹配 ( *)(.+;)( *// *)(.+),替换为 $1// $4\n$1$2，</li>
+<li>$1-$4分别对应上述四个分组匹配到的字符串,在替换中使用这些分组引用来构建新的字符串</li>
+</ul>
 </li>
 </ul>
 <h1 id="字符截取命令">字符截取命令</h1>

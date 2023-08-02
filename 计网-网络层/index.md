@@ -301,7 +301,7 @@
 
 * VPN：Virtual Private Network，目的是建立更加安全私密的远程连接
 * 形象解释就是在巨大的错综复杂的互联网环境中建立一条两个路由器之间的直通隧道
-* <img src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/img20201125090725.png" style="zoom:80%;margin-left:0px;" />
+* ![](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Screenshot_20230630_202253.png)
 
 ## 网络地址转换NAT
 
