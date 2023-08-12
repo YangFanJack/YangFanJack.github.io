@@ -53,14 +53,6 @@
     <description><![CDATA[中文译文地址 Martin Flower原论文地址]]></description>
 </item>
 <item>
-    <title>linux网络配置</title>
-    <link>http://yangfanjack.top/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
-    <pubDate>Fri, 20 Nov 2020 10:02:31 &#43;0000</pubDate>
-    <author>Jack Yang</author>
-    <guid>http://yangfanjack.top/linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
-    <description><![CDATA[网络命令 1 2 3 4 5 6 7 8 9 10 #配置eth0的IP地址， 同时激活该设备 sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up #添加默认网关 sudo route add default gw 192.168.1.1 #配置DNS sudo vi /etc/resolv.conf #激活设备 ifconfig eth0]]></description>
-</item>
-<item>
     <title>linux服务器搭建ssm项目环境</title>
     <link>http://yangfanjack.top/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAssm%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</link>
     <pubDate>Thu, 19 Nov 2020 20:42:26 &#43;0000</pubDate>
@@ -83,6 +75,14 @@
     <author>Jack Yang</author>
     <guid>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-servlet%E7%BB%86%E8%8A%82/</guid>
     <description><![CDATA[HTTP协议： 概念：Hyper Text Transfer Protocol 特点： 基于TCP/IP的应用层协议 默认端口是80 基于请求响应模型，一次请求一次响应 无状态的；每次请求之间]]></description>
+</item>
+<item>
+    <title>JavaWeb核心:理解servlet</title>
+    <link>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</link>
+    <pubDate>Wed, 18 Mar 2020 19:37:53 &#43;0000</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</guid>
+    <description><![CDATA[Servlet定义 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java]]></description>
 </item>
 </channel>
 </rss>

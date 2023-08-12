@@ -20,7 +20,7 @@ Tips:其实，我觉得如果从实现目的这个层次去说，VPN的正向代
 * **正向代理：** 隐藏了真实的请求客户端。服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求，最典型的例子就是科学上网工具（访问谷歌被墙，于是在国外搭建一台代理服务器，让代理帮我去请求，代理把请求放回的数据再返回给我。此时，Proxy和Client同属一个LAN，对server透明）
 * **反向代理：** 反向代理隐藏里真实的服务端，反向代理服务器会帮我们把请求转发到真实的服务器那里去。最典型的就是Nginx这个性能强大的反向代理服务器（当我们访问百度时，百度在全国分布了上万台服务器，你的每次请求具体是哪台服务器处理你的请求你不用知道，只需要Nginx这个反向代理服务器知道就行了，这实际就是负载均衡的实现原理。此时，Proxy和Server同属于一个LAN，对Client透明）
 
-![反向代理&正向代理](https://img-blog.csdnimg.cn/20190715113403480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyODQ4Nzcz,size_16,color_FFFFFF,t_70)
+![反向代理&正向代理](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20190715113403480.png)
 
 **正向代理：** 典型例子就是VPN和shadowsocks等代理上网工具，通过安装工具来让本地机器和代理服务器处于同一局域网
 **反向代理：** 典型例子就是nginx和内网穿透，通过在服务端机器安装工具来让服务端机器和代理服务器处于同一局域网，nginx和内网穿透中的反向代理服务器的区别就是nginx可以根据算法策略自动选择服务终端，而内网穿透反向代理服务器直接通过工具和服务终端机做了ip:端口映射绑定

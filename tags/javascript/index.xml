@@ -21,14 +21,6 @@
     <description><![CDATA[再次回顾前端三件套 HTML（结构）：超文本标记语言，决定网页的结构和内容 CSS（表现）：层叠样式表，设定网页的表现样式 JavaScript（]]></description>
 </item>
 <item>
-    <title>JavaWeb核心:理解servlet</title>
-    <link>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</link>
-    <pubDate>Wed, 18 Mar 2020 19:37:53 &#43;0000</pubDate>
-    <author>Jack Yang</author>
-    <guid>http://yangfanjack.top/javaweb%E6%A0%B8%E5%BF%83-%E7%90%86%E8%A7%A3servlet/</guid>
-    <description><![CDATA[Servlet定义 物理上是一个运行在服务器端的一个小程序（serve applet），可以理解为就是一个接口（规则），定义了服务器端的Java]]></description>
-</item>
-<item>
     <title>JavaScript类型转换</title>
     <link>http://yangfanjack.top/javascript%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
     <pubDate>Mon, 16 Dec 2019 21:57:57 &#43;0000</pubDate>

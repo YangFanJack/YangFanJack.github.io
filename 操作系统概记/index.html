@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/yangfanjack.top\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  10692 ,
+        },"genre": "posts","keywords": "操作系统","wordcount":  12240 ,
         "url": "http:\/\/yangfanjack.top\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0\/","datePublished": "2023-04-25T21:23:52+00:00","dateModified": "2023-04-25T21:23:52+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -51,7 +51,7 @@
         title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg" />Jack&#39;s Blog Site</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Blogs </a><a class="menu-item" href="/tags/"> tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/roadmap/"> RoadMap </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search Here" id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
@@ -100,7 +100,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                </div><a class="menu-item" href="/posts/" title="">Blogs</a><a class="menu-item" href="/tags/" title="">tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/roadmap/" title="">RoadMap</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统概记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-25">2023-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;10692 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;22 minutes&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0/" class="leancloud_visitors" data-flag-title="操作系统概记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-25">2023-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;12240 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;25 minutes&nbsp;<span id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%B0/" class="leancloud_visitors" data-flag-title="操作系统概记">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -172,7 +172,7 @@
     <li><a href="#文件管理">文件管理</a>
       <ul>
         <li><a href="#从生磁盘到文件">从生磁盘到文件</a></li>
-        <li><a href="#文件使用磁盘的实现">文件使用磁盘的实现</a></li>
+        <li><a href="#文件使用磁盘的实现d">文件使用磁盘的实现d</a></li>
         <li><a href="#目录与文件系统">目录与文件系统</a></li>
         <li><a href="#目录解析代码实现">目录解析代码实现</a></li>
       </ul>
@@ -224,6 +224,18 @@
 </ul>
 </li>
 <li>BIOS的主要功能是系统自检与初始化工作。它会对设备进行检测与初始化,设置运行环境,加载boot设备的第一个扇区到内存执行。Boot扇区的作用是准备系统环境,加载操作系统启动代码</li>
+<li>操作系统启动过程中,CPU控制权的交接顺序一般是:
+<ol>
+<li>上电后,CPU首先执行BIOS程序。</li>
+<li>BIOS initializes CPU和硬件,然后读取MBR引导扇区到内存。</li>
+<li>BIOS将控制权转交给MBR中的引导加载程序(Bootloader)。</li>
+<li>Bootloader读取setup分区并进行系统初始化配置。</li>
+<li>之后Bootloader加载内核程序,并转交控制权给内核。</li>
+<li>内核完成自身初始化后,开始执行操作系统代码。</li>
+<li>最后操作系统启动完成,转入正常运行状态。</li>
+</ol>
+</li>
+<li>所以严格说来,CPU控制权的交接顺序是:BIOS -&gt; Bootloader -&gt; 内核 -&gt; 操作系统。而不是交给setup分区,setup分区只是被动被Bootloader读取和解析,以便进行必要的系统初始化配置,它不会获得CPU控制权。</li>
 </ul>
 <h2 id="操作系统启动">操作系统启动</h2>
 <ul>
@@ -494,9 +506,97 @@
 </ul>
 <h2 id="信号量临界区保护">信号量临界区保护</h2>
 <ul>
+<li>我们把一个时间段内允许一个进程的使用的资源，称为临界资源</li>
 <li>并发错误由多个进程同时操作共享数据引起,需要加锁机制保护共享数据</li>
-<li>临界区必须成对出现,一方进入则其他方被互斥在外。互斥进入是实现互斥访问的基本手段</li>
-<li>进入与退出临界区的代码实现是关键,需要遵循互斥进入、有限等待与让近原则</li>
+<li>临界区必须成对出现,一方进入则其他方被互斥在外。互斥进入是实现互斥访问的基本原则</li>
+<li>进入与退出临界区的代码实现是关键,需要遵循的原则：
+<ul>
+<li>互斥进入：只允许一个线程进入临界区,其他线程被互斥拒绝进入。这个原则保证了在同一时刻只有一个线程可以访问共享资源,避免出现竞争状态</li>
+<li>有限等待：当多个线程同时请求进入临界区时,线程只会在有限时间内等待。如果超过最大等待时间仍未获得临界区访问权,线程将放弃等待并执行其他操作。这个原则避免了某些线程由于优先级太低或其他原因导致无限期等待,从而 “饿死”</li>
+<li>有空让进：当占用临界区的线程完成工作准备离开临界区时,如果存在其他线程等待进入,应尽快让该线程进入。这个原则实现了对临界区的公平访问,避免某些线程长时间无法进入临界区</li>
+</ul>
+</li>
+<li>进程互斥的软件实现方法：
+<ul>
+<li>单标志法：
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616084952.jpg"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616084952.jpg, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616084952.jpg 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616084952.jpg 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616084952.jpg"
+        title="单标志法" /></li>
+<li>满足互斥进入原则，违背有空让进原则，因为只有一个标志，所以一定是按照P0-&gt;P1-&gt;P0-P1&hellip;顺序进行轮流访问</li>
+</ul>
+</li>
+<li>双标志先检查：
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/bf3f0d2763ad40309eebdc5578c4a33c.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/bf3f0d2763ad40309eebdc5578c4a33c.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/bf3f0d2763ad40309eebdc5578c4a33c.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/bf3f0d2763ad40309eebdc5578c4a33c.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/bf3f0d2763ad40309eebdc5578c4a33c.png"
+        title="双标志先检查" /></li>
+<li>若按照①⑤②⑥③⑦&hellip;的顺序执行，P0和P1将会同时访问临界区；违背互斥进入原则，原因是进入临界区的检查和上锁两个处理不是一气呵成的，检查和上锁之间可能发生进程切换</li>
+</ul>
+</li>
+<li>双标志后检查；
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/102ebe2d4f054d02b9c695c7a0033484.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/102ebe2d4f054d02b9c695c7a0033484.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/102ebe2d4f054d02b9c695c7a0033484.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/102ebe2d4f054d02b9c695c7a0033484.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/102ebe2d4f054d02b9c695c7a0033484.png"
+        title="双标志后检查" /></li>
+<li>前一个算法的问题是先“检查”后“上锁”，无法一气呵成。因此，想到先“上锁”后“检查”的方法来避免上述问题</li>
+<li>但还是有缺陷，若按照①⑤②⑥&hellip;.的顺序执行，P0和P1将都无法进入临界区，解决了互斥进入，违背了有限等待和有空让进</li>
+</ul>
+</li>
+<li>Peterson算法：
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/7ad03dca61a24611a257dcd0857811fa.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/7ad03dca61a24611a257dcd0857811fa.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/7ad03dca61a24611a257dcd0857811fa.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/7ad03dca61a24611a257dcd0857811fa.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/7ad03dca61a24611a257dcd0857811fa.png"
+        title="Peterson" /></li>
+<li>如果双方都想进入临界区，可以让进程主动谦让。自己的进程意愿设为true，还要表示谦让把trun设为对方的值。这样就解决了上一个方法的问题。</li>
+<li>Peterson算法用软件方法解决了进程互斥问题，遵循了互斥进入、有空让进、有限等待三个原则</li>
+<li>但是依然未遵循让权等待的原则，会发生忙等，因为如果他自己进不去临界区，就会一直卡在while循环，而他依旧是在处理机上的，在占着资源</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>进程互斥的硬件实现方法：
+<ul>
+<li>中断屏蔽方法：
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616103417.jpg"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616103417.jpg, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616103417.jpg 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616103417.jpg 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/Dingtalk_20230616103417.jpg"
+        title="中断屏蔽" /></li>
+<li>利用“开/关中断指令”实现，优点是简单高效，缺点是只能用于单处理器的机器，只适用于操作系统内核进程</li>
+</ul>
+</li>
+<li>TestAndSet（TS指令/TSL指令）和 Swap指令（XCHG指令）
+<ul>
+<li>用硬件实现执行的过程不允许被中断，由硬件强制一气呵成</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Peterson算法通过标记位与轮转实现互斥,简单高效</li>
 <li>在单核CPU上,可以使用cli/sti指令通过开关中断来上锁,禁止其他进程被调度运行,简单实现互斥</li>
 <li>可以使用CPU的原子指令(cmpxchg等)上锁,效率高且不会被中断,比使用信号量上锁更为简单高效</li>
@@ -893,13 +993,62 @@
 </ul>
 </li>
 </ul>
-<h2 id="文件使用磁盘的实现">文件使用磁盘的实现</h2>
+<h2 id="文件使用磁盘的实现d">文件使用磁盘的实现d</h2>
 <h2 id="目录与文件系统">目录与文件系统</h2>
 <ul>
 <li><strong>磁盘的最后一层抽象</strong>：将整个磁盘抽象成一棵目录树
 <ul>
 <li>一个磁盘块集合的抽象：文件</li>
 <li>整个磁盘的抽象：文件系统</li>
+</ul>
+</li>
+<li>目录树
+<ul>
+<li>引入目录树来实现文件的层次结构</li>
+<li>目录项：文件名，FCB地址的对应关系</li>
+<li>关键是根据树状结构产生的路径名，找到对应文件的inode，一个文件对应一个inode</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205208786-1075765720.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205208786-1075765720.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205208786-1075765720.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205208786-1075765720.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205208786-1075765720.png"
+        title="目录树的具体实现" /></li>
+<li>FCB中保存着inode，是文件的索引。根据inode索引找到数据盘块，数据盘块中保存着目录项</li>
+<li>目录项中包含FCB的编号和字符串，通过字符串匹配编号，通过编号找到FCB，通过FCB再找到数据盘快，循环递归，就构成了操作系统的文件目录层次结构</li>
+<li>根目录的FCB编号固定为0</li>
+</ul>
+</li>
+<li>格式化
+<ul>
+<li>操作系统每个分区都能格式化为不同的文件系统</li>
+<li>格式化后的硬盘结构如下：
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205225359-1212926205.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205225359-1212926205.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205225359-1212926205.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205225359-1212926205.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205225359-1212926205.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205225359-1212926205.png" /></li>
+<li>超级块；各个部分位置信息，mount操作实际上就是读超级块，然后挂载到目标外存的根目录位置</li>
+<li>引导块：如果该外存中存储了操作系统程序并且需要启动操作系统，则需要引导块</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>经过的四层抽象后的磁盘使用：
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205241538-220642981.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205241538-220642981.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205241538-220642981.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205241538-220642981.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/2997171-20221003205241538-220642981.png"
+        title="磁盘的使用" /></li>
 </ul>
 </li>
 </ul>

@@ -66,7 +66,7 @@
     <pubDate>Sat, 21 Nov 2020 15:06:46 &#43;0000</pubDate>
     <author>Jack Yang</author>
     <guid>http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
-    <description><![CDATA[网络层提供的两种服务 争论的焦点是可靠交付应当有谁来负责？运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。 网络层应]]></description>
+    <description><![CDATA[网络层提供的两种服务 可靠交付应当有谁来负责？ 运输过程中只由运输层来决定，网络层不负责可靠传输，可靠传输应该由端系统决定。因为如果网络层的传输]]></description>
 </item>
 <item>
     <title>计网-数据链路层</title>
@@ -74,7 +74,7 @@
     <pubDate>Sat, 21 Nov 2020 15:06:19 &#43;0000</pubDate>
     <author>Jack Yang</author>
     <guid>http://yangfanjack.top/%E8%AE%A1%E7%BD%91-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
-    <description><![CDATA[数据链路层基本概念及基本问题 基本概念 两种信道类型： 点到点信道 广播信道 链路和数据链路：链路是物理层，数据链路包含物理层和数据链路层 帧：在网络层]]></description>
+    <description><![CDATA[数据链路层基本概念及基本问题 基本概念 两种信道类型： 点到点信道 广播信道 链路和数据链路：链路是物理层，数据链路包含物理层和数据链路层。链路是一条]]></description>
 </item>
 <item>
     <title>计网-物理层</title>
