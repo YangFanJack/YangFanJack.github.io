@@ -16,11 +16,11 @@
 
 * 通过arp欺骗实现（应对方法就是在自己的计算机上安装arp防火墙，但是如果交换机能监视，cain能直接从交换机拿数据，自己机器上的arp防火墙就没用了）
 
-**DNS欺骗**：篡改DNS解析结果，比如钓鱼网站：你输入工商银行的域名，经由篡改服务机到DNS服务器得到正确的ip地址，回来先到篡改服务机，会把正确的ip改为一个和工商银行界面相似的钓鱼网站的ip，然后你进入钓鱼网站输入工商银行的域名，钓鱼网站就你的账号密码拿到了
+**DNS欺骗（篡改DNS解析结果）**的实例：钓鱼网站：你输入工商银行的域名，经由篡改服务机到DNS服务器得到正确的ip地址，回来先到篡改服务机，会把正确的ip改为一个和工商银行界面相似的钓鱼网站的ip，然后你进入钓鱼网站输入工商银行的域名，钓鱼网站就把你的账号密码拿到了。
 
-**伪造**：一个服务器只允许某几台计算机能访问，这时一台范围外的计算机伪造自己的ip为其中一台有访问权限的ip来访问目标服务器，前提是那一台计算机没有运行，否则会出现ip冲突。
+**伪造：**一个服务器只允许某几台计算机能访问，这时一台范围外的计算机伪造自己的ip为其中一台有访问权限的ip来访问目标服务器，前提是那一台计算机没有运行，否则会出现ip冲突。
 
-**中断**：Dos攻击和DDos攻击
+**中断：**Dos攻击和DDos攻击
 
 ### 计算机面临的威胁（恶意程序）
 
@@ -46,7 +46,7 @@
 
 ### 对称加密：
 
-![对称加密模型](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/14236436-f27bd0f020d105b3.webp)
+![对称加密模型](https://upload-images.jianshu.io/upload_images/14236436-f27bd0f020d105b3.png?imageMogr2/auto-orient/strip|imageView2/2/w/1064/format/webp)
 
 * 对称加密指的就是加密和解密使用同一个秘钥，所以叫做对称加密。对称加密只有一个秘钥，作为私钥。
 
@@ -64,7 +64,7 @@
 
 ### 非对称加密：
 
-![非对称加密模型](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/14236436-905efe6ee06ec3ba.webp)
+![非对称加密模型](https://upload-images.jianshu.io/upload_images/14236436-905efe6ee06ec3ba.png?imageMogr2/auto-orient/strip|imageView2/2/w/1062/format/webp)
 
 * 非对称加密指的是：加密和解密使用不同的秘钥，一把作为公开的公钥，另一把作为私钥。公钥加密的信息，只有私钥才能解密。私钥加密的信息，只有公钥才能解密。
 * 常见的非对称加密算法：RSA，ECC
@@ -75,7 +75,7 @@
 
 ## 数字签名
 
-![数字签名模型](https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/14236436-79c0d684fa37cfa0.webp)
+![数字签名模型](https://upload-images.jianshu.io/upload_images/14236436-79c0d684fa37cfa0.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
 * 数字签名是非对称加密的一个实际应用
 
