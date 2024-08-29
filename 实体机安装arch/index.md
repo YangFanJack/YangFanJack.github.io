@@ -20,9 +20,16 @@
 #### 联网
 
 ```bash
-#安装过程中调整字体
+#调整键盘映射
+ls /usr/share/kbd/keymaps/**/*.map.gz
+loadkeys mac-us
+#调整字体
+ls /usr/share/kbd/consolefonts
 setfont ter-132n
 setfont ter-122b
+
+#验证引导模式 UEFI
+ls /sys/firmware/efi/efivars
 
 #查看网卡
 ip link
@@ -49,7 +56,7 @@ ping archlinux.org
 #### 更新系统时间
 
 ```bash
-#更新系统时间
+#更新系统时间(NTP 或网络时间协议用于通过网络同步计算机系统时钟)
 timedatectl set-ntp true
 #检查服务状态
 timedatectl status
@@ -58,30 +65,60 @@ timedatectl status
 #### 系统分区
 
 ```bash
-#查看当前分区
+#列出所有可用的块设备(sdX / nvme0nX)
 lsblk
+#查看每个磁盘的分区情况
 fdisk -l
-#新建分区
+fdisk -l /dev/sdX
+#新建分区(选择GPT)
 cfdisk /dev/sdX  (X替换成相应的硬盘字母，一般是a或b，默认gpt即可)
 
 #分区建议
-# /boot/efi:和win10共用 512M
-# swap:固态硬盘1G
-# /:固态硬盘剩下所有
+# /boot/efi:和win10共用 512M   EFI System
+# swap:固态硬盘1G   Linux swap
+# /:固态硬盘剩下所有   Linux filesystem
 
+#EXT
 #格式化分区
-mkfs.fat -F32 /dev/sdaX #/boot/efi
-mkfs.ext4 /dev/sda6 #/和/home
-mkfs.ext4 /dev/sdb2
-mkswap /dev/sda5 #交换分区
-swapon /dev/sda5
+mkfs.fat -F32 /dev/sda1 #/boot/efi
+mkfs.ext4 /dev/sda2 #/
+mkswap /dev/sda3 #交换分区
+swapon /dev/sda3
+#挂载
+mount /dev/sda2 /mnt
+mkdir /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
+
+#Btrfs
+#格式化分区
+mkfs.fat -F32 /dev/nvme0n1p1
+mkfs.btrfs -f -m single -L Arch /dev/nvme0n1p2
+mkswap /dev/nvme0n1p3
+swapon /dev/nvme0n1p3
+#建立子卷
+mount -t btrfs -o compress=lzo /dev/nvme0n1p2 /mnt
+btrfs subvol create /mnt/@
+btrfs subvol create /mnt/@home
+btrfs subvol create /mnt/@cache
+btrfs subvol create /mnt/@log
+btrfs subvol create /mnt/@tmp
+# 使用 chattr 忽略无需写时复制的目录
+chattr +C /mnt/@cache
+chattr +C /mnt/@log
+umount /mnt
 
 #挂载
-mount /dev/sda6 /mnt
-mkdir /mnt/boot/efi
-mount /dev/sda2 /mnt/boot/efi
-mkdir /mnt/home
-mount /dev/sdb2 /mnt/home
+mount -o noatime,nodiratime,ssd,compress=zstd,subvol=@ /dev/nvme0n1p2 /mnt
+mkdir -p /mnt/{boot/efi,home,var/{log,cache}}
+mount -o noatime,nodiratime,ssd,compress=zstd,subvol=@home /dev/nvme0n1p2 /mnt/home
+mount -o noatime,nodiratime,ssd,compress=zstd,subvol=@log /dev/nvme0n1p2 /mnt/var/log
+mount -o noatime,nodiratime,ssd,compress=zstd,subvol=@cache /dev/nvme0n1p2 /mnt/var/cache
+mount -o noatime,nodiratime,ssd,compress=zstd,subvol=@tmp /dev/nvme0n1p2 /mnt/var/tmp
+mount /dev/nvme0n1p1 /mnt/boot/efi
+
+# 安装Btrfs快照工具
+yay -S timeshift timeshift-autosnap grub-btrfs
+
 ```
 
 #### 安装arch核心
@@ -95,10 +132,10 @@ vim /etc/pacman.d/mirrorlist
 #找到中国镜像移到最上面或者添加
 Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-#更新
+#更新(保持软件包仓库数据库的最新状态)
 pacman -Syy
 #pacstrap脚本安装arch基础
-pacstrap /mnt base base-devel linux linux-firmware linux-headers dhcpcd vim networkmanager intel-ucode git openssh bash-completion
+pacstrap /mnt base base-devel linux linux-firmware linux-headers dhcpcd vim networkmanager intel-ucode git openssh bash-completion ntfs-3g sudo btrfs-progs
 ```
 
 #### 生成fstab挂载文件
@@ -111,28 +148,32 @@ cat /mnt/etc/fstab
 #### 进入ch-root
 
 ```bash
+# 从实时环境进入新安装的系统
 arch-chroot /mnt
+#更新(保持软件包仓库数据库的最新状态)
 pacman -Syy
-#设置时间
+#配置默认时区
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hwclock --systohc
-#设置语言
+#设置可用本地化语言
 vim /etc/locale.gen
 en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
 zh_TW.UTF-8 UTF-8
+
 locale-gen
 #设置默认语言
 vim /etc/locale.conf
 LANG=en_US.UTF-8
+# LANG=zh_CN.UTF-8
 #本地化设置
 vim /etc/hostname
-myArch
+jacksArch
 
 vim /etc/hosts
 127.0.0.1	localhost
 ::1		localhost
-127.0.1.1	myArch.localdomain	myArch
+127.0.1.1	jacksArch.localdomain	jacksArch
 
 #自启动设置
 systemctl enable NetworkManager sshd
@@ -144,7 +185,6 @@ passwd
 useradd -m -G wheel -s /bin/bash jack1024
 passwd jack1024
 #给用户sudo权利
-pacman -S sudo
 ln -s /usr/bin/vim /usr/bin/vi
 visudo
 %wheel ALL=(ALL) ALL
@@ -153,12 +193,21 @@ visudo
 #### 安装引导
 
 ```bash
-pacman -S os-prober ntfs-3g grub efibootmgr efivar
+pacman -S grub efibootmgr efivar
+# 如果与其他操作系统一起安装，在/etc/default/grub文件中注释#GRUB_DISABLE_OS_PROBER=false
+pacman -S os-prober
+
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 
 #生成并查看引导配置
 grub-mkconfig -o /boot/grub/grub.cfg
 cat /boot/grub/grub.cfg
+
+# 对于 btrfs 文件系统，需要编辑 mkinitcpio 文件，通常位于 /etc/mkinitcpio.conf，找到 MODULES=() 一行，在括号中添加 btrfs，这是为了在系统启动时提前加载 btrfs 内核模块，从而正常启动系统。记得每次编辑完 mkinitcpio 文件后都需要手动重新生成 initramfs
+vim /etc/mkinitcpio.conf
+MODULES=(btrfs)
+HOOKS=(base udev autodetect modconf block filesystems keyboard btrfs)
+mkinitcpio -P
 
 #退出chroot
 exit
@@ -216,12 +265,13 @@ sudo pacman -S archlinuxcn-keyring
 #### 图形化界面
 
 ```bash
-#窗口系统服务xorg
+#窗口系统服务xorg 或者 wayland
 sudo pacman -S xorg xorg-server
+sudo pacman -S plasma-wayland-session xdg-desktop-portal-kde
 #kde
 sudo pacman -S plasma
 #不建议kde-applications，太多，选几个就行了
-sudo pacman -S ark dolphin dolphin-plugins juk kdeconnect kdenlive konsole 
+sudo pacman -S ark dolphin dolphin-plugins juk kdeconnect kdenlive konsole okular
 #登录界面sddm
 sudo pacman -S sddm sddm-kcm
 systemctl enable sddm
@@ -251,8 +301,12 @@ export LC_ALL=zh_CN.UTF-8
 
 ```bash
 sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa
+sudo pacman -S wireplumber pipewire-pulse
+sudo pacman -S alsa-firmware sof-firmware alsa-ucm-conf
+
 //sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings
-sudo pacman -S xf86-video-intel
+sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel
+sudo pacman -S xf86-video-intel intel-media-driver
 sudo pacmna -S bluez bluez-utils bluedevil pulseaudio-bluetooth
 systemctl enable bluetooth
 ```
@@ -290,6 +344,18 @@ GTK_IM_MODULE DEFAULT=fcitx
 QT_IM_MODULE  DEFAULT=fcitx
 XMODIFIERS    DEFAULT=\@im=fcitx
 SDL_IM_MODULE DEFAULT=fcitx
+
+#词库
+yay -S rime-ice-git
+#皮肤
+sudo pacman -S fcitx5-material-color
+```
+
+#### 触摸板
+```bash
+yay -S xf86-input-libinput
+yay -S xorg-xinput
+yay -S xf86-input-evdev xf86-input-elographics
 ```
 
 ## 需要注意的点
@@ -369,4 +435,18 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 p10k configure
 ```
 
-
+## pacman命令
+```bash
+# 安装
+pacman -S xxx
+# 删除
+pacman -Rns xxx
+# 删除孤儿包
+sudo pacman -Qdtq | pacman -Rs -
+# 升级软件包
+pacman -Syu
+# 搜素
+pacman -Ss xxx
+# 查询某个包是否已经安装
+pacman -Qs xxx
+```

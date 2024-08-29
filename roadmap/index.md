@@ -41,6 +41,7 @@
 11. Git
 12. Linux
 13. 前端基础：HTML，CSS，JavaScript，Vue
+> 《mysql必知必会》
 
 # Java企业开发进阶
 1. 软件工程理论知识

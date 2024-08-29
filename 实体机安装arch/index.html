@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/yangfanjack.top\/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch\/"
-        },"genre": "posts","keywords": "Linux, Arch","wordcount":  1935 ,
+        },"genre": "posts","keywords": "Linux, Arch","wordcount":  2572 ,
         "url": "http:\/\/yangfanjack.top\/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch\/","datePublished": "2021-06-14T09:18:48+00:00","dateModified": "2021-06-14T09:18:48+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">实体机安装Arch</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>解决方案</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-06-14">2021-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1935 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/" class="leancloud_visitors" data-flag-title="实体机安装Arch">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-06-14">2021-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2572 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/%E5%AE%9E%E4%BD%93%E6%9C%BA%E5%AE%89%E8%A3%85arch/" class="leancloud_visitors" data-flag-title="实体机安装Arch">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -154,11 +154,13 @@
                 <li><a href="#声音显卡蓝牙">声音&amp;显卡&amp;蓝牙</a></li>
                 <li><a href="#电源管理">电源管理</a></li>
                 <li><a href="#输入法">输入法</a></li>
+                <li><a href="#触摸板">触摸板</a></li>
               </ul>
             </li>
           </ul>
         </li>
         <li><a href="#需要注意的点">需要注意的点</a></li>
+        <li><a href="#pacman命令">pacman命令</a></li>
       </ul>
     </li>
   </ul>
@@ -212,11 +214,25 @@
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#安装过程中调整字体</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#调整键盘映射</span>
+</span></span><span class="line"><span class="cl">ls /usr/share/kbd/keymaps/**/*.map.gz
+</span></span><span class="line"><span class="cl">loadkeys mac-us
+</span></span><span class="line"><span class="cl"><span class="c1">#调整字体</span>
+</span></span><span class="line"><span class="cl">ls /usr/share/kbd/consolefonts
 </span></span><span class="line"><span class="cl">setfont ter-132n
 </span></span><span class="line"><span class="cl">setfont ter-122b
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#验证引导模式 UEFI</span>
+</span></span><span class="line"><span class="cl">ls /sys/firmware/efi/efivars
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#查看网卡</span>
 </span></span><span class="line"><span class="cl">ip link
@@ -249,7 +265,7 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#更新系统时间</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#更新系统时间(NTP 或网络时间协议用于通过网络同步计算机系统时钟)</span>
 </span></span><span class="line"><span class="cl">timedatectl set-ntp <span class="nb">true</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#检查服务状态</span>
 </span></span><span class="line"><span class="cl">timedatectl status
@@ -282,32 +298,90 @@
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#查看当前分区</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#列出所有可用的块设备(sdX / nvme0nX)</span>
 </span></span><span class="line"><span class="cl">lsblk
+</span></span><span class="line"><span class="cl"><span class="c1">#查看每个磁盘的分区情况</span>
 </span></span><span class="line"><span class="cl">fdisk -l
-</span></span><span class="line"><span class="cl"><span class="c1">#新建分区</span>
+</span></span><span class="line"><span class="cl">fdisk -l /dev/sdX
+</span></span><span class="line"><span class="cl"><span class="c1">#新建分区(选择GPT)</span>
 </span></span><span class="line"><span class="cl">cfdisk /dev/sdX  <span class="o">(</span>X替换成相应的硬盘字母，一般是a或b，默认gpt即可<span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#分区建议</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># /boot/efi:和win10共用 512M</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># swap:固态硬盘1G</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># /:固态硬盘剩下所有</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /boot/efi:和win10共用 512M   EFI System</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># swap:固态硬盘1G   Linux swap</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /:固态硬盘剩下所有   Linux filesystem</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#EXT</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#格式化分区</span>
-</span></span><span class="line"><span class="cl">mkfs.fat -F32 /dev/sdaX <span class="c1">#/boot/efi</span>
-</span></span><span class="line"><span class="cl">mkfs.ext4 /dev/sda6 <span class="c1">#/和/home</span>
-</span></span><span class="line"><span class="cl">mkfs.ext4 /dev/sdb2
-</span></span><span class="line"><span class="cl">mkswap /dev/sda5 <span class="c1">#交换分区</span>
-</span></span><span class="line"><span class="cl">swapon /dev/sda5
+</span></span><span class="line"><span class="cl">mkfs.fat -F32 /dev/sda1 <span class="c1">#/boot/efi</span>
+</span></span><span class="line"><span class="cl">mkfs.ext4 /dev/sda2 <span class="c1">#/</span>
+</span></span><span class="line"><span class="cl">mkswap /dev/sda3 <span class="c1">#交换分区</span>
+</span></span><span class="line"><span class="cl">swapon /dev/sda3
+</span></span><span class="line"><span class="cl"><span class="c1">#挂载</span>
+</span></span><span class="line"><span class="cl">mount /dev/sda2 /mnt
+</span></span><span class="line"><span class="cl">mkdir /mnt/boot/efi
+</span></span><span class="line"><span class="cl">mount /dev/sda1 /mnt/boot/efi
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#Btrfs</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#格式化分区</span>
+</span></span><span class="line"><span class="cl">mkfs.fat -F32 /dev/nvme0n1p1
+</span></span><span class="line"><span class="cl">mkfs.btrfs -f -m single -L Arch /dev/nvme0n1p2
+</span></span><span class="line"><span class="cl">mkswap /dev/nvme0n1p3
+</span></span><span class="line"><span class="cl">swapon /dev/nvme0n1p3
+</span></span><span class="line"><span class="cl"><span class="c1">#建立子卷</span>
+</span></span><span class="line"><span class="cl">mount -t btrfs -o <span class="nv">compress</span><span class="o">=</span>lzo /dev/nvme0n1p2 /mnt
+</span></span><span class="line"><span class="cl">btrfs subvol create /mnt/@
+</span></span><span class="line"><span class="cl">btrfs subvol create /mnt/@home
+</span></span><span class="line"><span class="cl">btrfs subvol create /mnt/@cache
+</span></span><span class="line"><span class="cl">btrfs subvol create /mnt/@log
+</span></span><span class="line"><span class="cl">btrfs subvol create /mnt/@tmp
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 chattr 忽略无需写时复制的目录</span>
+</span></span><span class="line"><span class="cl">chattr +C /mnt/@cache
+</span></span><span class="line"><span class="cl">chattr +C /mnt/@log
+</span></span><span class="line"><span class="cl">umount /mnt
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#挂载</span>
-</span></span><span class="line"><span class="cl">mount /dev/sda6 /mnt
-</span></span><span class="line"><span class="cl">mkdir /mnt/boot/efi
-</span></span><span class="line"><span class="cl">mount /dev/sda2 /mnt/boot/efi
-</span></span><span class="line"><span class="cl">mkdir /mnt/home
-</span></span><span class="line"><span class="cl">mount /dev/sdb2 /mnt/home
+</span></span><span class="line"><span class="cl">mount -o noatime,nodiratime,ssd,compress<span class="o">=</span>zstd,subvol<span class="o">=</span>@ /dev/nvme0n1p2 /mnt
+</span></span><span class="line"><span class="cl">mkdir -p /mnt/<span class="o">{</span>boot/efi,home,var/<span class="o">{</span>log,cache<span class="o">}}</span>
+</span></span><span class="line"><span class="cl">mount -o noatime,nodiratime,ssd,compress<span class="o">=</span>zstd,subvol<span class="o">=</span>@home /dev/nvme0n1p2 /mnt/home
+</span></span><span class="line"><span class="cl">mount -o noatime,nodiratime,ssd,compress<span class="o">=</span>zstd,subvol<span class="o">=</span>@log /dev/nvme0n1p2 /mnt/var/log
+</span></span><span class="line"><span class="cl">mount -o noatime,nodiratime,ssd,compress<span class="o">=</span>zstd,subvol<span class="o">=</span>@cache /dev/nvme0n1p2 /mnt/var/cache
+</span></span><span class="line"><span class="cl">mount -o noatime,nodiratime,ssd,compress<span class="o">=</span>zstd,subvol<span class="o">=</span>@tmp /dev/nvme0n1p2 /mnt/var/tmp
+</span></span><span class="line"><span class="cl">mount /dev/nvme0n1p1 /mnt/boot/efi
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装Btrfs快照工具</span>
+</span></span><span class="line"><span class="cl">yay -S timeshift timeshift-autosnap grub-btrfs
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="安装arch核心">安装arch核心</h4>
@@ -335,10 +409,10 @@
 </span></span><span class="line"><span class="cl"><span class="c1">#找到中国镜像移到最上面或者添加</span>
 </span></span><span class="line"><span class="cl"><span class="nv">Server</span> <span class="o">=</span> http://mirrors.ustc.edu.cn/archlinux/<span class="nv">$repo</span>/os/<span class="nv">$arch</span>
 </span></span><span class="line"><span class="cl"><span class="nv">Server</span> <span class="o">=</span> http://mirrors.tuna.tsinghua.edu.cn/archlinux/<span class="nv">$repo</span>/os/<span class="nv">$arch</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#更新</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#更新(保持软件包仓库数据库的最新状态)</span>
 </span></span><span class="line"><span class="cl">pacman -Syy
 </span></span><span class="line"><span class="cl"><span class="c1">#pacstrap脚本安装arch基础</span>
-</span></span><span class="line"><span class="cl">pacstrap /mnt base base-devel linux linux-firmware linux-headers dhcpcd vim networkmanager intel-ucode git openssh bash-completion
+</span></span><span class="line"><span class="cl">pacstrap /mnt base base-devel linux linux-firmware linux-headers dhcpcd vim networkmanager intel-ucode git openssh bash-completion ntfs-3g sudo btrfs-progs
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="生成fstab挂载文件">生成fstab挂载文件</h4>
@@ -392,30 +466,37 @@
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">arch-chroot /mnt
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 从实时环境进入新安装的系统</span>
+</span></span><span class="line"><span class="cl">arch-chroot /mnt
+</span></span><span class="line"><span class="cl"><span class="c1">#更新(保持软件包仓库数据库的最新状态)</span>
 </span></span><span class="line"><span class="cl">pacman -Syy
-</span></span><span class="line"><span class="cl"><span class="c1">#设置时间</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#配置默认时区</span>
 </span></span><span class="line"><span class="cl">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 </span></span><span class="line"><span class="cl">hwclock --systohc
-</span></span><span class="line"><span class="cl"><span class="c1">#设置语言</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#设置可用本地化语言</span>
 </span></span><span class="line"><span class="cl">vim /etc/locale.gen
 </span></span><span class="line"><span class="cl">en_US.UTF-8 UTF-8
 </span></span><span class="line"><span class="cl">zh_CN.UTF-8 UTF-8
 </span></span><span class="line"><span class="cl">zh_TW.UTF-8 UTF-8
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">locale-gen
 </span></span><span class="line"><span class="cl"><span class="c1">#设置默认语言</span>
 </span></span><span class="line"><span class="cl">vim /etc/locale.conf
 </span></span><span class="line"><span class="cl"><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+</span></span><span class="line"><span class="cl"><span class="c1"># LANG=zh_CN.UTF-8</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#本地化设置</span>
 </span></span><span class="line"><span class="cl">vim /etc/hostname
-</span></span><span class="line"><span class="cl">myArch
+</span></span><span class="line"><span class="cl">jacksArch
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">vim /etc/hosts
 </span></span><span class="line"><span class="cl">127.0.0.1	localhost
 </span></span><span class="line"><span class="cl">::1		localhost
-</span></span><span class="line"><span class="cl">127.0.1.1	myArch.localdomain	myArch
+</span></span><span class="line"><span class="cl">127.0.1.1	jacksArch.localdomain	jacksArch
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#自启动设置</span>
 </span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> NetworkManager sshd
@@ -427,7 +508,6 @@
 </span></span><span class="line"><span class="cl">useradd -m -G wheel -s /bin/bash jack1024
 </span></span><span class="line"><span class="cl">passwd jack1024
 </span></span><span class="line"><span class="cl"><span class="c1">#给用户sudo权利</span>
-</span></span><span class="line"><span class="cl">pacman -S sudo
 </span></span><span class="line"><span class="cl">ln -s /usr/bin/vim /usr/bin/vi
 </span></span><span class="line"><span class="cl">visudo
 </span></span><span class="line"><span class="cl">%wheel <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> ALL
@@ -449,14 +529,32 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pacman -S os-prober ntfs-3g grub efibootmgr efivar
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pacman -S grub efibootmgr efivar
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果与其他操作系统一起安装，在/etc/default/grub文件中注释#GRUB_DISABLE_OS_PROBER=false</span>
+</span></span><span class="line"><span class="cl">pacman -S os-prober
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">grub-install --target<span class="o">=</span>x86_64-efi --efi-directory<span class="o">=</span>/boot/efi --bootloader-id<span class="o">=</span>GRUB
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#生成并查看引导配置</span>
 </span></span><span class="line"><span class="cl">grub-mkconfig -o /boot/grub/grub.cfg
 </span></span><span class="line"><span class="cl">cat /boot/grub/grub.cfg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 对于 btrfs 文件系统，需要编辑 mkinitcpio 文件，通常位于 /etc/mkinitcpio.conf，找到 MODULES=() 一行，在括号中添加 btrfs，这是为了在系统启动时提前加载 btrfs 内核模块，从而正常启动系统。记得每次编辑完 mkinitcpio 文件后都需要手动重新生成 initramfs</span>
+</span></span><span class="line"><span class="cl">vim /etc/mkinitcpio.conf
+</span></span><span class="line"><span class="cl"><span class="nv">MODULES</span><span class="o">=(</span>btrfs<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HOOKS</span><span class="o">=(</span>base udev autodetect modconf block filesystems keyboard btrfs<span class="o">)</span>
+</span></span><span class="line"><span class="cl">mkinitcpio -P
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#退出chroot</span>
 </span></span><span class="line"><span class="cl"><span class="nb">exit</span>
@@ -573,14 +671,16 @@
 </span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#窗口系统服务xorg</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#窗口系统服务xorg 或者 wayland</span>
 </span></span><span class="line"><span class="cl">sudo pacman -S xorg xorg-server
+</span></span><span class="line"><span class="cl">sudo pacman -S plasma-wayland-session xdg-desktop-portal-kde
 </span></span><span class="line"><span class="cl"><span class="c1">#kde</span>
 </span></span><span class="line"><span class="cl">sudo pacman -S plasma
 </span></span><span class="line"><span class="cl"><span class="c1">#不建议kde-applications，太多，选几个就行了</span>
-</span></span><span class="line"><span class="cl">sudo pacman -S ark dolphin dolphin-plugins juk kdeconnect kdenlive konsole 
+</span></span><span class="line"><span class="cl">sudo pacman -S ark dolphin dolphin-plugins juk kdeconnect kdenlive konsole okular
 </span></span><span class="line"><span class="cl"><span class="c1">#登录界面sddm</span>
 </span></span><span class="line"><span class="cl">sudo pacman -S sddm sddm-kcm
 </span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> sddm
@@ -620,11 +720,19 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa
+</span></span><span class="line"><span class="cl">sudo pacman -S wireplumber pipewire-pulse
+</span></span><span class="line"><span class="cl">sudo pacman -S alsa-firmware sof-firmware alsa-ucm-conf
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">//sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings
-</span></span><span class="line"><span class="cl">sudo pacman -S xf86-video-intel
+</span></span><span class="line"><span class="cl">sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel
+</span></span><span class="line"><span class="cl">sudo pacman -S xf86-video-intel intel-media-driver
 </span></span><span class="line"><span class="cl">sudo pacmna -S bluez bluez-utils bluedevil pulseaudio-bluetooth
 </span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> bluetooth
 </span></span></code></pre></td></tr></table>
@@ -674,6 +782,11 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S fcitx5-im fcitx5-rime fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-pinyin-moegirl fcitx5-pinyin-zhwiki-rime fcitx5-pinyin-moegirl-rime
@@ -691,6 +804,24 @@
 </span></span><span class="line"><span class="cl">QT_IM_MODULE  <span class="nv">DEFAULT</span><span class="o">=</span>fcitx
 </span></span><span class="line"><span class="cl">XMODIFIERS    <span class="nv">DEFAULT</span><span class="o">=</span><span class="se">\@</span><span class="nv">im</span><span class="o">=</span>fcitx
 </span></span><span class="line"><span class="cl">SDL_IM_MODULE <span class="nv">DEFAULT</span><span class="o">=</span>fcitx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#词库</span>
+</span></span><span class="line"><span class="cl">yay -S rime-ice-git
+</span></span><span class="line"><span class="cl"><span class="c1">#皮肤</span>
+</span></span><span class="line"><span class="cl">sudo pacman -S fcitx5-material-color
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="触摸板">触摸板</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S xf86-input-libinput
+</span></span><span class="line"><span class="cl">yay -S xorg-xinput
+</span></span><span class="line"><span class="cl">yay -S xf86-input-evdev xf86-input-elographics
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="需要注意的点">需要注意的点</h2>
@@ -842,6 +973,37 @@
 </span></span><span class="line"><span class="cl">p10k configure
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="pacman命令">pacman命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">pacman -S xxx
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除</span>
+</span></span><span class="line"><span class="cl">pacman -Rns xxx
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除孤儿包</span>
+</span></span><span class="line"><span class="cl">sudo pacman -Qdtq <span class="p">|</span> pacman -Rs -
+</span></span><span class="line"><span class="cl"><span class="c1"># 升级软件包</span>
+</span></span><span class="line"><span class="cl">pacman -Syu
+</span></span><span class="line"><span class="cl"><span class="c1"># 搜素</span>
+</span></span><span class="line"><span class="cl">pacman -Ss xxx
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询某个包是否已经安装</span>
+</span></span><span class="line"><span class="cl">pacman -Qs xxx
+</span></span></code></pre></td></tr></table>
+</div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -873,7 +1035,7 @@
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

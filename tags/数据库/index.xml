@@ -4,13 +4,29 @@
         <link>http://yangfanjack.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
         <description>数据库 - Tag - Jack&#39;s Blog Site</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1144536063@qq.com (Jack Yang)</managingEditor>
-            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Thu, 11 Feb 2021 20:21:12 &#43;0000</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>1144536063@qq.com (Jack Yang)</webMaster><lastBuildDate>Mon, 04 Sep 2023 14:21:20 &#43;0800</lastBuildDate><atom:link href="http://yangfanjack.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>MySQL运维</title>
+    <link>http://yangfanjack.top/mysql%E8%BF%90%E7%BB%B4/</link>
+    <pubDate>Mon, 04 Sep 2023 14:21:20 &#43;0800</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/mysql%E8%BF%90%E7%BB%B4/</guid>
+    <description><![CDATA[日志 主从复制 概念：随着业务的增长，一台数据服务器已经满足不了需求了，负载过重。这个时候就需要减压了，实现负载均衡读写分离，一主一丛或一主多从]]></description>
+</item>
+<item>
+    <title>深入MySQL</title>
+    <link>http://yangfanjack.top/%E6%B7%B1%E5%85%A5mysql/</link>
+    <pubDate>Mon, 28 Aug 2023 09:43:13 &#43;0800</pubDate>
+    <author>Jack Yang</author>
+    <guid>http://yangfanjack.top/%E6%B7%B1%E5%85%A5mysql/</guid>
+    <description><![CDATA[存储引擎 定义：存储数据，建立索引，CRUD数据等技术的实现方式；存储引擎也被成为表类型 存储引擎是基于表的，不是基于库的，不同表可以有不同存储]]></description>
+</item>
+<item>
     <title>玩儿转MySQL</title>
     <link>http://yangfanjack.top/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</link>
     <pubDate>Thu, 11 Feb 2021 20:21:12 &#43;0000</pubDate>
     <author>Jack Yang</author>
     <guid>http://yangfanjack.top/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/</guid>
-    <description><![CDATA[数据库的特点： 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 常见的数据库软件： 数据库软件是对数据库的不同实现]]></description>
+    <description><![CDATA[数据库的特点： 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 数据模型示意图：客户端 -&gt; DBMS -&gt; 数据库 -&gt; 表 注意：DB]]></description>
 </item>
 </channel>
 </rss>

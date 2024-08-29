@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>玩儿转MySQL - Jack&#39;s Blog Site</title><meta name="Description" content="Jack&#39;s Blog Site"><meta property="og:title" content="玩儿转MySQL" />
-<meta property="og:description" content="数据库的特点： 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 常见的数据库软件： 数据库软件是对数据库的不同实现" />
+<meta property="og:description" content="数据库的特点： 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 数据模型示意图：客户端 -&gt; DBMS -&gt; 数据库 -&gt; 表 注意：DB" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://yangfanjack.top/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/" /><meta property="og:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-02-11T20:21:12+00:00" />
@@ -14,7 +14,7 @@
 <meta name="twitter:image" content="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"/>
 
 <meta name="twitter:title" content="玩儿转MySQL"/>
-<meta name="twitter:description" content="数据库的特点： 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 常见的数据库软件： 数据库软件是对数据库的不同实现"/>
+<meta name="twitter:description" content="数据库的特点： 持久化存储数据，数据库就是一个文件系统 方便存储并管理数据 提供了方式统一操作数据 数据模型示意图：客户端 -&gt; DBMS -&gt; 数据库 -&gt; 表 注意：DB"/>
 <meta name="application-name" content="Jack&#39;s Blog Site">
 <meta name="apple-mobile-web-app-title" content="Jack&#39;s Blog Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/lADPM5VwCzOYYRzNAkHNAhw_540_577.jpg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://yangfanjack.top/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/" /><link rel="prev" href="http://yangfanjack.top/ssm%E6%A1%86%E6%9E%B6-mybatis/" /><link rel="next" href="http://yangfanjack.top/jdbc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/yangfanjack.top\/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql\/"
-        },"genre": "posts","keywords": "数据库, MySQL","wordcount":  5270 ,
+        },"genre": "posts","keywords": "数据库, MySQL","wordcount":  10085 ,
         "url": "http:\/\/yangfanjack.top\/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql\/","datePublished": "2021-02-11T20:21:12+00:00","dateModified": "2021-02-11T20:21:12+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -115,8 +115,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">玩儿转MySQL</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jack Yang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>学习笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-02-11">2021-02-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5270 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;<span id="/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/" class="leancloud_visitors" data-flag-title="玩儿转MySQL">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-02-11">2021-02-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;10085 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;21 minutes&nbsp;<span id="/%E7%8E%A9%E5%84%BF%E8%BD%ACmysql/" class="leancloud_visitors" data-flag-title="玩儿转MySQL">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -134,6 +134,8 @@
             <li><a href="#启动">启动</a></li>
           </ul>
         </li>
+        <li><a href="#mysql执行流程">MySQL执行流程</a></li>
+        <li><a href="#mysql行记录存储机制">MySQL行记录存储机制</a></li>
         <li><a href="#sql语句">SQL语句</a>
           <ul>
             <li><a href="#sql语句分类">SQL语句分类</a>
@@ -197,10 +199,9 @@
 <li>方便存储并管理数据</li>
 <li>提供了方式统一操作数据</li>
 </ol>
-<p>常见的数据库软件：</p>
-<ul>
-<li>数据库软件是对数据库的不同实现</li>
-<li>常见的有：
+<p>数据模型示意图：客户端 -&gt; DBMS -&gt; 数据库 -&gt; 表
+注意：DBMS可以操作多个数据库，单个数据库可以存在多个表</p>
+<p>常见的数据库管理系统：</p>
 <ol>
 <li>Oracle</li>
 <li>MySQL</li>
@@ -210,8 +211,6 @@
 <li>SQLite</li>
 <li>Redis</li>
 </ol>
-</li>
-</ul>
 <h2 id="mysql准备">MySQL准备</h2>
 <h3 id="安装推荐57版本">安装：推荐5.7版本</h3>
 <ul>
@@ -247,7 +246,268 @@
 </span></span><span class="line"><span class="cl"><span class="nb">exit</span> or quit
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="sql语句">SQL语句</h2>
+</div><h2 id="mysql执行流程">MySQL执行流程</h2>
+<ol>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907143925.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907143925.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907143925.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907143925.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907143925.png"
+        title="MySQL内部架构各个功能模块" />
+<ol>
+<li>Server层负责建立连接，分析和执行SQL。MySQL 大多数的核心功能模块（连接器，查询缓存、解析器、预处理器、优化器、执行器等）都在这实现。另外，所有的内置函数（如日期、时间、数学和加密函数等）和所有跨存储引擎的功能（如存储过程、触发器、视图等。）都在 Server 层实现。</li>
+<li>存储引擎层负责数据的存储和提取。不同的存储引擎共用一个 Server 层。现在最常用的存储引擎是 InnoDB，从 MySQL 5.5 版本开始， InnoDB 成为了 MySQL 的默认存储引擎。我们常说的索引数据结构，就是由存储引擎层实现的，不同的存储引擎支持的索引类型也不相同，比如 InnoDB 支持索引类型是 B+树。</li>
+</ol>
+</li>
+<li>第一步：连接器
+<ol>
+<li>与客户端进行TCP三次握手建立连接</li>
+<li>校验客户端的用户名和密码，如果用户名和密码不对，报错</li>
+<li>如果校验通过，读取用户权限，之后sql语句的权限逻辑判断都基于此时读取的权限</li>
+</ol>
+</li>
+<li>第二步：查询缓存
+<ol>
+<li>以key（查询语句）-value（查询结果）的形式存在，理论上能加速查询速度</li>
+<li>查询缓存挺鸡肋，对于更新频繁的表，缓存的命中率很低（只要一个表有更新操作，那么这个表的查询缓存就会被清空）</li>
+<li>MySQL 8.0 版本直接将查询缓存删掉了，对于 MySQL 8.0 之前的版本，如果想关闭查询缓存，我们可以通过将参数 query_cache_type 设置成 DEMAND</li>
+</ol>
+</li>
+<li>第三步：解析SQL
+<ol>
+<li>词法分析：把SQL字符串识别出一个个的关键字，非关键字</li>
+<li>语法分析：根据词法分析的结果，语法解析器会根据语法规则判断SQL语句是否满足MySQL语法，没有问题就会构建出SQL语法树
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907152512.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907152512.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907152512.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907152512.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907152512.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230907152512.png" /></li>
+<li>注意，表不存在或者字段不存在，MySQL5.7中是在此时进行。但是MySQL8中并不是在解析器里做的，是在执行的时候做的</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>第四步：执行SQL
+<ol>
+<li>prepare预处理阶段：
+<ol>
+<li>检查SQL语句中的表，字段是否存在</li>
+<li>将 select * 中的 * 符号，扩展为表上的所有列</li>
+</ol>
+</li>
+<li>optimize优化阶段：
+<ol>
+<li>优化器主要负责将 SQL 查询语句的执行方案确定下来，比如在表里面有多个索引的时候，优化器会基于查询成本的考虑，选择一个查询成本最小的执行计划</li>
+<li>要想知道优化器选择了哪个索引，我们可以在查询语句最前面加个 explain 命令，这样就会输出这条 SQL 语句的执行计划。</li>
+<li>执行计划中的 key 就表示执行过程中使用了哪个索引</li>
+<li>如果查询语句的执行计划里的 key 为 null 说明没有使用索引，那就会全表扫描（type = ALL），这种查询扫描的方式是效率最低的</li>
+</ol>
+</li>
+<li>execute执行阶段：
+<ol>
+<li>优化器的输出就是执行计划，执行器按照执行计划和存储引擎交互，交互是以记录为单位的</li>
+<li>主键索引查询の执行：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">   </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="c1">-- 执行器第一次查询，会调用 read_first_record 函数指针指向的函数，因为优化器选择的访问类型为 const，这个函数指针被指向为 InnoDB 引擎索引查询的接口，把条件 id = 1 交给存储引擎，让存储引擎定位符合条件的第一条记录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 存储引擎通过主键索引的 B+ 树结构定位到 id = 1的第一条记录，如果记录是不存在的，就会向执行器上报记录找不到的错误，然后查询结束。如果记录是存在的，就会将记录返回给执行器；
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 执行器从存储引擎读到记录后，接着判断记录是否符合查询条件，如果符合则发送给客户端，如果不符合则跳过该记录。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 执行器查询的过程是一个 while 循环，所以还会再查一次，但是这次因为不是第一次查询了，所以会调用 read_record 函数指针指向的函数，因为优化器选择的访问类型为 const，这个函数指针被指向为一个永远返回 -1 的函数，所以当调用该函数的时候，执行器就退出循环，也就是结束查询了
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>全表扫描の执行：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">   </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;iphone&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="c1">-- 执行器第一次查询，会调用 read_first_record 函数指针指向的函数，因为优化器选择的访问类型为 all，这个函数指针被指向为 InnoDB 引擎全扫描的接口，让存储引擎读取表中的第一条记录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 执行器会判断读到的这条记录的 name 是不是 iphone，如果不是则跳过；如果是则将记录发给客户的（是的没错，Server 层每从存储引擎读到一条记录就会发送给客户端，之所以客户端显示的时候是直接显示所有记录的，是因为客户端是等查询语句查询完成后，才会显示出所有的记录）。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 执行器查询的过程是一个 while 循环，所以还会再查一次，会调用 read_record 函数指针指向的函数，因为优化器选择的访问类型为 all，read_record 函数指针指向的还是 InnoDB 引擎全扫描的接口，所以接着向存储引擎层要求继续读刚才那条记录的下一条记录，存储引擎把下一条记录取出后就将其返回给执行器（Server层），执行器继续判断条件，不符合查询条件即跳过该记录，否则发送到客户端；
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">--一直重复上述过程，直到存储引擎把表中的所有记录读完，然后向执行器（Server层） 返回了读取完毕的信息；
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 执行器收到存储引擎报告的查询完毕的信息，退出循环，停止查询。
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>索引下推の执行：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">   </span><span class="c1">-- 索引下推能够减少二级索引在查询时的回表操作，提高查询的效率，因为它将 Server 层部分负责的事情，交给存储引擎层去处理了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t_user</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">reward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100000</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="c1">-- 联合索引当遇到范围查询 (&gt;、&lt;) 就会停止匹配，也就是 age 字段能用到联合索引，但是 reward 字段则无法利用到索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 不使用索引下推（MySQL 5.6 之前的版本）时，执行器与存储引擎的执行流程：先由存储引擎定位到age&gt;20的第一条记录，回表将完整记录返回给server层，并由server判断reward是否=100000以及其他非索引条件，以此往复
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 用索引下推后，判断记录的 reward 是否等于 100000 的工作交给了存储引擎层，过程：先由存储引擎定位到age&gt;20的第一条记录，判断reward是否=100000，成立才回表把完整数据返回Server层判断其他非索引条件是否满足，以此往复
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 充分利用索引中的判断条件来减少回表次数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="c1">-- 当你发现执行计划里的 Extr 部分显示了 “Using index condition”，说明使用了索引下推
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="mysql行记录存储机制">MySQL行记录存储机制</h2>
+<blockquote>
+<ol>
+<li>MySQL的NULL值是如何存放的？</li>
+<li>MySQL 的 NULL 值会占用空间吗？</li>
+<li>MySQL 怎么知道 varchar(n) 实际占用数据的大小？</li>
+<li>varchar(n) 中 n 最大取值为多少？</li>
+<li>行溢出后，MySQL 是怎么处理的？</li>
+</ol>
+</blockquote>
+<ol>
+<li>MySQL数据存放在哪个文件？
+<ol>
+<li><code>SHOW VARIABLES LIKE 'datadir';</code>：结果：/var/lib/mysql/，我们每创建一个 database（数据库） 都会在 /var/lib/mysql/ 目录里面创建一个以 database 为名的目录，然后保存表结构和表数据的文件都会存放在这个目录里。</li>
+<li>opt文件：存储当前数据库默认字符集和字符校验规则，一个数据库一个</li>
+<li>frm文件：存储表结构定义，一张表一个</li>
+<li>ibd文件：存储表数据，一张表一个。表数据既可以存在共享表空间文件（文件名：ibdata1）里，也可以存放在独占表空间文件（文件名：表名字.ibd）。主键索引放在ibd文件中，二级索引放在ibdata1中</li>
+<li>MySQL的存储引擎主要就是以这些库文件的形式存在,存储在MySQL的数据目录内</li>
+</ol>
+</li>
+<li>表空间文件的结构？
+<ol>
+<li>表空间由段segment，区extent，页page，行row组成</li>
+<li>row：
+<ol>
+<li>数据库表中的记录都是按行（row）进行存放的，每行记录根据不同的行格式，有不同的存储结构。</li>
+</ol>
+</li>
+<li>page：
+<ol>
+<li>记录是按照行来存储的，是按「页」为单位来读写的</li>
+<li>页是 InnoDB 存储引擎磁盘管理的最小单元，默认每个页的大小为 16KB，也就是最多能保证 16KB 的连续存储空间</li>
+<li>页的类型有很多，常见的有数据页、undo 日志页、溢出页等等</li>
+</ol>
+</li>
+<li>extent：
+<ol>
+<li>InnoDB 存储引擎是用 B+ 树来组织数据的，B+ 树中每一层都是通过双向链表连接起来的，如果是以页为单位来分配存储空间，那么链表中相邻的两个页之间的物理位置并不是连续的，可能离得非常远，那么磁盘查询时就会有大量的随机I/O，随机 I/O 是非常慢的</li>
+<li>在表中数据量大的时候，为某个索引分配空间的时候就不再按照页为单位分配了，而是按照区（extent）为单位分配。每个区的大小为 1MB，对于 16KB 的页来说，连续的 64 个页会被划为一个区，这样就使得链表中相邻的页的物理位置也相邻，就能使用顺序 I/O 了</li>
+</ol>
+</li>
+<li>segment：
+<ol>
+<li>表空间是由各个段（segment）组成的，段是由多个区（extent）组成的。段一般分为数据段、索引段和回滚段等</li>
+<li>索引段：存放 B + 树的非叶子节点的区的集合；</li>
+<li>数据段：存放 B + 树的叶子节点的区的集合；</li>
+<li>回滚段：存放的是回滚数据的区的集合，之前讲事务隔离 (opens new window)的时候就介绍到了 MVCC 利用了回滚段实现了多版本查询数据。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>InnoDB行格式：
+<ol>
+<li>四种：Redundant、Compact、Dynamic、Compressed</li>
+</ol>
+</li>
+<li>Compact行格式
+<ol>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908105022.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908105022.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908105022.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908105022.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908105022.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908105022.png" /></li>
+<li>记录的额外信息：变长字段长度列表、NULL 值列表、记录头信息
+<ol>
+<li>变长字段长度列表：
+<ul>
+<li>在存储varchar(n)数据的时候，也要把数据占用的大小存起来，存到「变长字段长度列表」里面，读取数据的时候才能根据这个「变长字段长度列表」去读取对应长度的数据。其他 TEXT、BLOB 等变长字段也是这么实现的</li>
+<li>「记录头信息」中指向下一个记录的指针，指向的是下一条记录的「记录头信息」和「真实数据」之间的位置，这样的好处是向左读就是记录头信息，向右读就是真实数据，比较方便。</li>
+<li>这些变长字段的真实数据占用的字节数会按照列的顺序逆序存放，是因为这样可以使得位置靠前的记录的真实数据和数据对应的字段长度信息可以同时在一个 CPU Cache Line 中，这样就可以提高 CPU Cache 的命中率</li>
+</ul>
+</li>
+<li>NULL值列表：
+<ul>
+<li>NULL 是不会存放在行格式中记录的真实数据部分里的，如果存在允许 NULL 值的列，则每个列对应一个二进制位（bit），二进制位按照列的顺序逆序排列</li>
+<li>NULL值列表会占用 1 字节空间，当表中所有字段都定义成 NOT NULL，行格式中就不会有 NULL值列表，这样可节省 1 字节的空间</li>
+</ul>
+</li>
+<li>记录头信息：
+<ul>
+<li>delete_mask ：标识此条数据是否被删除。执行 detele 删除记录的时候，并不会真正的删除记录，只是将这个记录的 delete_mask 标记为 1。</li>
+<li>next_record：下一条记录的位置。指向的是下一条记录的「记录头信息」和「真实数据」之间的位置，这样的好处是向左读就是记录头信息，向右读就是真实数据，比较方便。</li>
+<li>record_type：表示当前记录的类型，0表示普通记录，1表示B+树非叶子节点记录，2表示最小记录，3表示最大记录</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>记录的真实信息：
+<ol>
+<li>row_id：如果我们建表的时候指定了主键或者唯一约束列，那么就没有 row_id 隐藏字段了。如果既没有指定主键，又没有唯一约束，那么 InnoDB 就会为记录添加 row_id 隐藏字段。row_id不是必需的，占用 6 个字节。</li>
+<li>trx_id：事务id，表示这个数据是由哪个事务生成的。 trx_id是必需的，占用 6 个字节</li>
+<li>roll_pointer：这条记录上一个版本的指针。roll_pointer 是必需的，占用 7 个字节。</li>
+<li>trx_id 和 roll_pointer 和 MVCC机制的实现有关</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>VARCHAR(n)中n最大取值为多少？
+<ol>
+<li>MySQL 规定除了 TEXT、BLOBs 这种大对象类型之外，其他所有的列（不包括隐藏列和记录头信息）占用的字节长度加起来不能超过 65535 个字节</li>
+<li>一行数据的最大字节数 65535，其实是包含「变长字段长度列表」和 「NULL 值列表」所占用的字节数的</li>
+</ol>
+</li>
+<li>行溢出后，MYSQL如何处理？
+<ol>
+<li>MySQL 中磁盘和内存交互的基本单位是页，一个页的大小一般是 16KB，也就是 16384字节，而一个 varchar(n) 类型的列最多可以存储 65532字节，一些大对象如 TEXT、BLOB 可能存储更多的数据，这时一个页可能就存不了一条记录。这个时候就会发生行溢出，多的数据就会存到另外的「溢出页」中</li>
+<li>Compact 行格式在发生行溢出后的处理：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110816.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110816.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110816.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110816.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110816.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110816.png" /></li>
+<li>Compressed 和 Dynamic 这两种格式采用完全的行溢出方式(记录的真实数据处不会存储该列的一部分数据，只存储 20 个字节的指针来指向溢出页。而实际的数据都存储在溢出页中)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110913.png"
+        data-srcset="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110913.png, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110913.png 1.5x, https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110913.png 2x"
+        data-sizes="auto"
+        alt="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110913.png"
+        title="https://jack-blog-img.obs.cn-north-4.myhuaweicloud.com/github-page/20230908110913.png" /></li>
+</ol>
+</li>
+</ol>
+<h2 id="sql语句">SQL语句</h2>
 <ul>
 <li><strong>SQL：</strong> Structured Qurey Language，结构化查询语言实际上就是定义了操作所有关系型数据库的规则</li>
 </ul>
@@ -280,13 +540,19 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="sql语句分类">SQL语句分类</h3>
+<ol>
+<li>DDL	Data Definition Language	数据定义语言，用来定义数据库对象（数据库，表，字段）</li>
+<li>DML	Data Manipulation Language	数据操作语言，用来对数据库表中的数据进行增删改</li>
+<li>DQL	Data Query Language	数据查询语言，用来查询数据库中表的记录</li>
+<li>DCL	Data Control Language	数据控制语言，用来创建数据库用户，控制数据库的访问权限</li>
+</ol>
 <h4 id="ddl操作数据库表">DDL（操作数据库、表）</h4>
 <ul>
 <li>数据定义语言</li>
 <li>drop，create，alter</li>
 </ul>
 <p><strong>Create</strong></p>
-<p>数据库:</p>
+<p>create数据库:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -302,11 +568,13 @@
 <li>int(位数)：整数类型</li>
 <li>double(位数)：小数类型</li>
 <li>date：日期（yyyy-MM-dd）</li>
-<li>datetime：日期（yyyy-MM-dd HH:mm:ss）</li>
-<li>timestamp：时间戳类型，默认是当前系统的时间</li>
+<li>datetime：日期(1000-01-01 00:00:00 至 9999-12-31 23:59:59)</li>
+<li>timestamp：时间戳(1970-01-01 00:00:01 至 2038-01-19 03:14:07)</li>
 <li>varchar(位数)：字符串类型</li>
+<li>bolb：二进制长文本</li>
+<li>text：长文本</li>
 </ol>
-<p>表:</p>
+<p>create表:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -330,22 +598,30 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Retrieve</strong></p>
-<p>数据库:</p>
+<p>show数据库:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="c1"># 查询mysql目前所有数据库
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">show</span><span class="w"> </span><span class="k">databases</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 查询当前数据库
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="k">database</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 使用数据库
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">use</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 查看数据库字符集
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">mysql</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>表:</p>
+</div><p>show表:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -360,8 +636,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">desc</span><span class="w"> </span><span class="err">表名</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Update</strong></p>
-<p>数据库</p>
+</div><p><strong>Alter</strong></p>
+<p>alter数据库</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -372,7 +648,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">db2</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="kt">set</span><span class="w"> </span><span class="n">utf8</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>表</p>
+</div><p>alter表</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -403,8 +679,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="err">列名</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Delete</strong></p>
-<p>数据库</p>
+</div><p><strong>Drop</strong></p>
+<p>drop数据库</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -413,7 +689,7 @@
 <pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">db2</span><span class="w"> </span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>表</p>
+</div><p>drop表</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -422,21 +698,6 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="err">表名</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="err">表名</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>使用数据库</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="c1"># 查询当前正在使用您的数据库
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="k">database</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 使用数据库
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">use</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="dml增删改表中的数据">DML（增删改表中的数据）</h4>
@@ -485,7 +746,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="err">分页限定</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>add</strong></p>
+</div><p><strong>insert</strong></p>
 <ul>
 <li>如果不写表名，表示所有字段</li>
 </ul>
@@ -514,7 +775,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">truncate</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="err">表名</span><span class="p">;</span><span class="w"> </span><span class="c1">#先删除表，然后创建一张一样的表，效率更高
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>modify</strong></p>
+</div><p><strong>update</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -701,6 +962,8 @@
 <li>如果关系模式R1中的某属性集不是自己的主键，而是关系模式R2的主键，则该属性集称为是关系模式R1的外键</li>
 </ul>
 </li>
+<li>默认约束：DEFAULT，为字段设置默认值</li>
+<li>检查约束：check，保证字段值满足某一条件</li>
 </ol>
 </li>
 </ul>
@@ -1040,7 +1303,7 @@
 <ol>
 <li>**单行单列：**子查询结果可以作为条件（用比较运算符）</li>
 <li>**多行单列：**子查询结果可以作为集合条件（用 in）</li>
-<li>**多行多列：**子查询结果集可以作为一张虚拟表继续进行查询</li>
+<li>**多行多列：**子查询结果集可以作为一张虚拟表继续进行查询 或者 作为多字段条件in查询</li>
 </ol>
 </li>
 </ul>
@@ -1087,16 +1350,16 @@
 <p>概念：多个事务之间是隔离的，相互隔离的。但是如果多个事务（线程）操作<strong>同一批数据，则会引发一些问题</strong>，设置不同的隔离级别就可以解决这些问题。</p>
 </li>
 <li>
-<p><strong>脏读：</strong> 读取到另一个事务没有提交的数据</p>
+<p><strong>脏读：</strong> 一个事务读到另外一个事务还没有提交的数据</p>
 </li>
 <li>
-<p><strong>不可重复读（虚读）：</strong> 同一个事务中，两次读到的数据不一样</p>
+<p><strong>不可重复读（虚读）：</strong> 一个事务先后读取同一条记录，但两次读取的数据不同</p>
 </li>
 <li>
-<p><strong>幻读：</strong> 一个事务操作（DML）数据表中所有记录，另一个事务添加了一条数据，则第一个事务查询不到自己的修改</p>
+<p><strong>幻读：</strong> 一个事务按照条件查询数据时，没有对应的数据行，但在插入数据时，又发现该数据已经存在</p>
 </li>
 <li>
-<p>4中隔离级别：级别从小到大安全性越高，效率越低</p>
+<p>4种隔离级别：级别从小到大安全性越高，效率越低</p>
 <ol>
 <li>
 <p>**read uncommitted：**读未提交</p>
@@ -1149,7 +1412,7 @@
 <ul>
 <li>优势：
 <ol>
-<li>快速查询</li>
+<li>快速查询，降低IO消耗</li>
 <li>降低数据排序成本，降低CPU消耗</li>
 </ol>
 </li>
@@ -1270,7 +1533,7 @@
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jack Yang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
